@@ -1,0 +1,968 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "1f5b17db6df86eb142364315b866f3d2788f648c47ea6da0d983d027cd39a048",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_052__anon_6aee56e19612657f",
+    "packet_sha256": "1d2e46edf5b035d9163a371bbc1904d059e7fa6c096b1224135f6baa89da6ad4"
+  },
+  "case_id": "case_CL120_EHR_052",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "7",
+    "contract_complexity_level": "high",
+    "disease_domain": "gastro_hepatology",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "no",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "extra_long",
+    "friction_burden_level": "high",
+    "friction_burden_score": "2",
+    "friction_intensity": "extreme",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "medication_confusion_or_execution_failure",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "cost_transport_or_work_barrier | privacy_stigma_or_sensitive_history",
+    "starting_phase": "result_return",
+    "target_problem": "pancreatitis",
+    "temporal_burden_level": "high",
+    "temporal_burden_score": "2",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_handoff_closed",
+    "evidence": [
+      "家属已按计划到胃肠外科病区办理入院，带齐身份证医保卡、CT报告、胃镜病理、化验单和药盒，并交护士站核对。",
+      "患者入院前夜及当天无呕血、黑便、突发剧痛、发热、晕厥、意识改变等急诊红旗；仍有进食少、上腹隐痛、体力差，但已进入住院评估场景。",
+      "住院医生已首次查房，家属告知早晨服用一粒氨氯地平，病区看过药盒和资料后明确后续药物按病区医嘱，家属不要自行给药。",
+      "病区已明确当天先空腹，饭、米汤、水暂不给，口干可润唇，并安排补抽血、心电图、营养或术前相关评估。",
+      "此前增强CT已完成并由外科团队查看，外科已决定近期住院统一评估是否手术/MDT/肿瘤科路径。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应围绕住院团队补查结果回流、营养/禁食/止痛医嘱、主管医生方案谈话、手术或MDT/肿瘤科路径的家属理解与teach-back推进，而不是重复家庭端药盒/窗口等待摩擦。",
+    "rationale": "本次CareLoop的核心任务是围绕胃镜/影像提示胃恶性肿瘤后的结果理解、用药混乱、复诊/住院路径和红旗边界，帮助家属把结果转化为可执行行动。当前患者已真实进入胃肠外科住院病区，资料、药盒和早晨氨氯地平服用情况已交给住院医生/护士；住院医生首次查房后明确由病区医嘱接管饮食和全部用药，安排补抽血、心电图、营养/术前评估。原先最危险的家庭端自行用药、资料混乱、等床/复诊路径不清已经被外部专科住院系统接管。因此对线上CareLoop当前 bounded episode 可判为安全交接闭环，而不是胃癌治疗完成或治愈。仍有分期、补查、MDT/手术方案、营养支持等重要后续，但这些已由住院胃肠外科团队负责，不再是家庭端无主风险。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual: 胃癌最终分期、补查结果、肿瘤标志物/病理关键字段、是否手术或MDT/肿瘤科方案仍待住院团队评估和解释；这是后续住院肿瘤治疗责任链，不代表疾病闭合。",
+      "bounded_longitudinal_residual: 患者进食少、体力差、上腹隐痛需要营养支持、禁食/补液/止痛等住院医嘱继续处理；当前已有住院团队接管。",
+      "bounded_longitudinal_residual: 肺部小结节等附带发现需按外科/影像或后续专科意见随访，当前不改变入院当下安全边界。",
+      "global_disease_journey_background: 胃癌后续治疗、术后恢复、肿瘤复查和长期随访尚未完成，不能表述为治愈。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3.8-Max",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "胃镜提示胃癌后准备住院治疗，家里对护胃药和下一步检查拿不准",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我爸前阵子上腹痛得厉害，吃了奥美拉唑也没压住，后来做胃镜说不太好，医生让住院再查血、肝功能和片子，还说可能要做手术准备。他平时有高血压。现在家里人有点乱，出院带的胃药怎么吃、哪些情况要赶紧回去，我们没听太明白，想先问问。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取患者在 CareLoop 联合医疗网络内可授权访问的既往病历、最近一次住院的出院记录/出院小结、胃镜报告原文、最近的血液检查（含肝功能）、影像学检查结果、当前用药清单（包括出院带药和高血压用药），以及家庭照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者R01到R05的具体病历记录内容，包括出入院记录、胃镜报告原文、最近的血液检查和肝功能结果、当前用药清单（特别是出院带药和高血压用药），以及时间线信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者在 CareLoop 联合医疗网络内已授权的全部资料，包括：1. 最近一次住院和出院的完整病历、出院小结、出院带药清单及用法；2. 胃镜报告原文及病理结果（如有）；3. 最近的血液检查、肝功能、影像学检查结果；4. 当前用药清单（含高血压药物）；5. 按时间排列的诊疗时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者R01到R05的具体病历内容，包括出入院记录、胃镜报告原文、腹部影像学报告、血液和肝功能检查结果、出院带药清单及用药医嘱。同时查询患者在联合医疗网络内的完整时间线、家庭照护可及性信息，以及是否有高血压相关用药记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者R01到R05的具体病历内容，包括胃镜报告原文、出院记录/出院小结、住院期间和最近的抽血化验结果（血常规、肝功能等）、影像检查报告、当前用药清单（特别是出院带药和高血压用药），以及患者的时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，能理解你们现在家里比较着急、也比较乱。叔叔上腹痛得厉害，奥美拉唑压不住，胃镜又提示“不太好”，医生还提到可能要准备手术——这些情况加在一起，确实需要认真对待。\n\n我这边目前还没有看到叔叔具体的胃镜报告原文、出院小结、抽血化验结果和现在的用药清单。为了能准确告诉您“带回家的胃药到底怎么吃、吃多少”，**后续还需要麻烦您把出院时医生给的纸质材料拍照发给我**，特别是：\n1. **出院记录/出院小结**（上面一般会写明带什么药、怎么吃、什么时候复查）；\n2. **胃镜报告单**；\n3. **出院带药的药盒或处方单**；\n4. 平时吃的**高血压药**的名称或药盒照片。\n\n在您整理这些资料的同时，我先针对您最关心的“哪些情况要赶紧回医院”给您交个底。**如果叔叔在家出现以下任何一种情况，请不要等，立刻去急诊或拨打120：**\n\n*   **呕血或排黑便**：吐出来的东西带血、像咖啡渣一样，或者拉出来的大便是黑色的、像柏油一样发亮发黏。这提示胃里可能在出血。\n*   **腹痛突然加剧**：痛得打滚、肚子摸起来硬邦邦的，或者痛感蔓延到整个肚子，这可能是穿孔等急症。\n*   **头晕、心慌、出冷汗、眼前发黑甚至晕倒**：这可能是内出血导致血压掉下来了。\n*   **发烧**：尤其是伴有剧烈腹痛时。\n*   **血压异常波动**：因为叔叔有高血压，剧痛或紧张可能让血压飙升，或者出血让血压骤降，如果家里有血压计，发现血压特别高或特别低都要警惕。\n\n**关于目前在家照顾的几点安全建议：**\n\n1.  **饮食一定要软、温、少**：在没弄清楚胃镜具体结果前，尽量吃温热的流食或半流食（比如烂面条、米汤、藕粉），千万不要吃硬的、辣的、烫的、粗糙的食物，绝对不要喝酒。少食多餐，别一次吃太饱。\n2.  **高血压药不能随便停**：除非住院医生明确交代过暂停，否则平时规律吃的高血压药要继续按时吃。疼痛和焦虑容易让血压升高，尽量安抚叔叔的情绪。\n3.  **胃药先按出院单据吃**：如果您手里有出院小结，上面写了奥美拉唑或其他胃药的用法，请先严格按那个说明吃。如果没有单子，一般的奥美拉唑通常是早饭前半小时空腹吃一粒，但**具体剂量我必须看到您的出院单或药盒后才能帮您最终确认**，请一定尽快拍给我看。\n\n您先别慌，把上面提到的出院资料找出来拍给我，我们一步步理清楚。如果叔叔现在精神状态还可以，没有我上面说的那些危险信号，您可以先按医嘱让他休息、清淡饮食；但如果他正在剧烈疼痛或者有上述任何紧急症状，请马上带他去急诊，不要在家里等我的回复。\n\n您现在方便去找出院资料拍照吗？叔叔目前肚子还疼得厉害吗？",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "家属可反馈：患者目前无呕血、黑便、晕厥、发热等急诊红旗，但仍上腹隐痛、食欲差；家属找到部分出院药和宣教单，能读出施维舒/替普瑞酮，其他用药尤其高血压药仍需核对。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "当前工作台未返回具体检验/影像/病理结果项；如需解释分期、手术方案或术后安排，应继续索要原始报告或联系原住院/胃肠外科团队确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "需询问家属是否已有胃肠外科/肿瘤营养门诊预约或出院单写明的复诊时间；若没有，应指导联系原住院科室或按出院后2周营养门诊、外科复诊节点办理。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我刚翻到一袋药和一张出院宣教单，怕照片您看不清，我先照着盒子给您念我能看清的字。\n\n我爸现在没有吐血，也没看到黑便，没有晕倒、没发烧，精神还可以，就是上腹还隐隐疼，比前面最疼的时候轻一点，但不太想吃东西，吃得很少。\n\n药盒上写着“施维舒”，下面好像又写“替普瑞酮”，我不确定这是一个药还是两个药。盒子上还能看到像是“50mg”，但是吃法我没太看明白。这个是饭前吃还是饭后吃？一次吃几粒、一天几次？能不能和奥美拉唑一起吃？\n\n高血压药我还没找到盒子，只记得他平时好像每天一片。宣教单上好像有复查、营养什么的字，但具体日期我还没理清。现在他这种还在隐隐疼、吃不下，是先在家按药吃观察，还是今天就要回医院急诊？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取该患者在 CareLoop 联合医疗网络内已授权/已同步的以下资料：1. 最近一次住院的出院小结/出院记录；2. 胃镜报告及病理报告原文；3. 住院期间及出院带药的完整用药清单（含替普瑞酮、奥美拉唑及高血压药物名称和剂量）；4. 最近的抽血化验结果（血常规、肝功能等）；5. 影像学检查报告（腹部CT或超声）；6. 既往高血压病史及长期用药记录；7. 门诊或出院随访预约信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00063",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "请调取R01到R05这5条病历记录的详细内容，重点查找：1. 最近的出院小结/出院记录；2. 胃镜报告及病理结果（如有）；3. 住院期间的抽血化验结果（血常规、肝功能等）；4. 出院带药清单和具体用法用量；5. 既往高血压用药名称。同时查看是否有已登记的随访或复诊安排。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "care_system",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_care_system_status_result",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "医生主动查询系统状态：回执 0 项，pending 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00068",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00070",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "请调取患者在 CareLoop 联合医疗网络内可授权访问的最近一次住院记录、出院小结、胃镜报告及病理结果（如有）、腹部影像检查、最近的血常规/肝肾功能/凝血等化验结果，以及出院带药处方和既往高血压用药清单。同时查看是否有已登记的胃肠外科或营养门诊随访预约。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00072",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00074",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00077",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "您念得很仔细，这些信息对我非常有帮助。叔叔目前没有吐血、黑便、晕倒和发烧，精神也还可以，腹痛比最重时轻了——这些都是让人稍微安心的信号。基于这些情况，目前不需要立刻去急诊，可以先在家按规范吃药、观察。但一定要记住我前面交代的那些危险信号，一旦出现任何一条，必须马上去医院。\n\n关于您念到的药盒信息，我逐一给您解释清楚：\n\n1. 这是一个药还是两个药？\n“施维舒”是商品名，“替普瑞酮”是这个药的通用名（也就是药物本身的成分名）。它们说的是同一个药，不是两种药。这个药属于胃黏膜保护剂，作用是帮助修复和保护受损的胃黏膜。\n\n2. 怎么吃、吃多少？能不能和奥美拉唑一起吃？\n替普瑞酮胶囊常见的规格就是50mg一粒。常规的吃法是：一次1粒（50mg），一天3次，饭后服用。因为它是脂溶性的，饭后吃或者随餐吃吸收更好。这和奥美拉唑不冲突，两者经常搭配使用：奥美拉唑负责抑制胃酸，替普瑞酮负责保护和修复胃黏膜。奥美拉唑一般建议在早饭前半小时空腹吃；替普瑞酮放在三餐饭后吃即可。\n\n不过，为了绝对安全，等您找到出院小结或处方单后，请再跟我核对一下上面写的具体剂量和频次，以出院医生的医嘱为最终标准。\n\n3. 高血压药怎么办？\n高血压药千万不能因为胃不舒服就自己停掉。疼痛和紧张会让血压升高，停药反而有风险。请您今天尽量把高血压药的盒子找出来，看看具体叫什么名字、是多少毫克的，告诉我或者拍照发给我。如果实在找不到，可以带叔叔的身份证或医保卡去附近的药房查一下他平时的购药记录，或者联系平时开药的医生确认。在没确认之前，只要叔叔记得平时吃的是哪种、每天一片，就先按原样规律服用。\n\n4. 隐隐疼、吃不下，现在该怎么办？\n既然痛感已经减轻且没有危险信号，可以在家观察。饮食方面继续坚持温热的流食或半流食，比如米汤、烂面条、藕粉，少食多餐，哪怕一次只吃几口，也比完全不吃好。不要吃硬的、辣的、烫的食物，不要喝浓茶咖啡，绝对不能喝酒。\n\n5. 宣教单上的复查日期\n麻烦您慢慢把宣教单上能看清的字都读给我听，特别是带有数字、日期、“复查”、“门诊”、“外科”字样的地方。胃镜提示“不太好”且提到过手术准备，说明后续一定需要按时回胃肠外科复诊评估，这个时间节点非常重要，我们理清楚后我帮您记下来。\n\n总结一下您现在要做的几件事：\n- 奥美拉唑早饭前半小时吃，替普瑞酮三餐饭后各吃一粒（待出院单最终核实）。\n- 继续清淡软食，少食多餐。\n- 尽快找出高血压药盒确认药名和剂量，期间不要停药。\n- 把出院小结和宣教单上能看清的字逐字念给我，尤其是复查时间和带药清单。\n- 严密观察，一旦出现呕血、黑便、剧痛、头晕心慌出冷汗或发烧，立即去急诊。\n\n您先别着急，一步步来，把宣教单上的字念给我，我们一起把后续的安排理顺。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00089",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+22min",
+      "text": "家属可反馈：宣教单上能读到出院后复查、体重/营养监测、肿瘤营养门诊等字样，但还没有找到具体预约号、日期或联系人；仍需医生帮助把随访节点和责任路径理清。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00093",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+22min",
+      "text": "医生，我先按您说的给他分开了：奥美拉唑明早饭前半小时吃，施维舒/替普瑞酮我理解就是同一个药，饭后吃，先按一粒一天三次这样，后面我再拿出院单核对一下。急的情况我也记下了，吐血、黑便、晕倒或者头晕心慌出冷汗、发烧、肚子突然疼厉害就马上去急诊。\n\n我刚把宣教单上能看清的几行读一下，字有点多我不一定读全：上面有“出院后复查”“体重/营养监测”“营养情况”，还有“肿瘤营养门诊”“胃肠外科复诊”这些字。还有一处好像写“2周后随访”还是“2周复诊”，我看不准是不是说两周内去。没有找到明确预约号、日期，也没看到联系人电话。\n\n我现在最怕的是这个复查别耽误了。请问这种情况我们是先挂“胃肠外科”复诊，还是先挂“肿瘤营养门诊”？如果挂不上两周内的号，是不是要直接去住院的科室窗口/护士站问？高血压药盒我还没找到，我爸就说平时每天一片，我等会儿再翻，不行明天拿医保卡去原来买药的药房查，这样可以吗？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00098",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "请调取该患者在 CareLoop 联合医疗网络内已授权/已同步的以下资料：1. 最近一次住院的出院小结/出院记录；2. 胃镜报告及病理报告（如有）；3. 住院期间及出院带药的用药清单/处方；4. 最近的化验结果（血常规、肝功能等）和影像检查报告；5. 既往高血压相关病历和长期用药记录；6. 是否有已登记的胃肠外科或肿瘤营养门诊随访预约。同时查询患者家庭照护可及性信息。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00100",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00102",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00104",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+22min",
+      "text": "请调取这6条记录（R01到R05及第6条）的具体内容，特别是出院小结、胃镜报告、病理结果、手术相关文书和带药清单。同时查询可见的检查检验结果、当前用药清单、以及时间线信息，我需要确认患者具体诊断、是否已安排胃肠外科或肿瘤营养门诊随访、以及高血压药物的具体名称和剂量。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00106",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00108",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00111",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+22min",
+      "text": "您做得非常好，药分得很清楚，危险信号也记全了，现在家里最需要的就是像您这样冷静、有条理地一步步落实。\n\n针对您最担心的复查安排和高血压药，我给您一个明确的执行顺序：\n\n1. 先挂哪个科？\n优先挂“胃肠外科”复诊。因为之前胃镜提示“不太好”，医生还提到过手术准备，后续到底需不需要手术、什么时候做、下一步怎么治，必须由胃肠外科医生来定。这个是最核心、不能耽误的。宣教单上写的“2周后随访/复诊”，大概率就是指回胃肠外科复查的时间节点。\n\n“肿瘤营养门诊”也很重要，但它是配合支持。叔叔现在吃不下东西、需要体重和营养监测，营养门诊能帮他调理身体、为后续治疗或手术打底子。如果两个都能挂上，可以先看胃肠外科，同一天或前后脚去营养门诊；如果号源紧张，一定要先保住胃肠外科的号。\n\n2. 挂不上两周内的号怎么办？\n您的想法完全正确。如果线上或电话挂不到两周内的胃肠外科号，请直接带上出院资料，去原来住院的胃肠外科病区护士站或科室窗口问。跟护士说：“刚出院，单子上写着两周复诊，但挂不上号，请帮忙协调或者告知原主管医生怎么联系。”通常住院科室对刚出院的病人会有复诊协调通道，这比在外面干等安全得多。\n\n3. 高血压药明天拿医保卡去药房查可以吗？\n完全可以，这个办法很稳妥。明天带他的医保卡或身份证，去平时买药的药房查购药记录，就能确认具体药名和剂量。今晚再仔细翻一下家里的药箱或床头柜。在没查清之前，只要叔叔确定平时每天吃的是哪一种、每天一片，就先按他记忆中的那种规律吃，千万不要停药。如果能借到血压计，这两天在家早晚各量一次血压记下来，复诊时带给医生看。\n\n4. 关于吃饭和体重\n宣教单特意提了“体重/营养监测”，说明医生很关注他的营养状态。他现在不太想吃，不要勉强一次吃多，继续按前面说的温热流食/半流食（米汤、烂面条、藕粉），少食多餐，一天可以分五六次，每次几口也行。如果有条件，明后天给他称一次体重并记下来，之后每周固定时间称一次，复诊时告诉医生体重有没有掉。\n\n5. 我这边同步在做的事\n我正在联合医疗网络里尝试调取叔叔这次住院的病历和检查记录，看能不能直接看到更详细的出院医嘱和复查要求。但因为跨机构资料同步有时差，有些报告可能还没传过来。所以您那边找出院小结和宣教单的动作不要停，如果找到更清晰的字句，随时念给我。\n\n总结一下明天的任务清单：\n- 优先预约胃肠外科两周内复诊；挂不上就去原住院科室护士站求助。\n- 拿医保卡去药房查清高血压药的具体名称和剂量，期间按原习惯服药不停药。\n- 继续清淡软食、少食多餐，有条件称一次体重记下。\n- 严密观察我们说好的那些危险信号。\n\n您现在思路已经很清晰了，就按这个顺序一件件办。有任何新情况或者查到药名了，随时告诉我。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00127",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+922min",
+      "text": "医生，我来反馈一下上午办的情况。\n\n我哥拿我爸医保卡和身份证去药房查了，说查到他平时买的降压药是“苯磺酸氨氯地平片”，规格好像是“5毫克”，用法记录上是一天一次、一次一片。我怕我听错字，我哥电话里念的就是这个，药盒还没拿回来。这个是不是就按原来每天一片继续吃？需要跟奥美拉唑饭前、替普瑞酮饭后错开多久吗，还是早上一起安排也行？\n\n胃肠外科我线上挂了，两周内没号，只有很后面的号。我准备下午或者明天一早带出院小结、宣教单这些纸去原来住院病区护士站/窗口问，看能不能协调复诊，这样可以吧？是不是就照您说的那句话跟护士说“刚出院，两周复诊但挂不上号”？\n\n我爸现在还是没有吐血、黑便、晕倒、发烧，精神还行，就是上腹还是隐隐疼，吃得还是少。早上喝了点米汤、吃了几口烂面，怕他营养掉得太快。营养门诊如果今天挂得到但胃肠外科还没协调上，是不是也可以先去营养门诊问一下，还是先别折腾他？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00133",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+922min",
+      "text": "您和家人配合得非常好，上午就把降压药查清楚了，胃肠外科的号也去试着挂了，这些行动都很关键。叔叔目前还是没有吐血、黑便、晕倒和发烧，精神还可以，这说明暂时没有需要立刻去急诊的危险信号，您可以稍微安心一点。我逐一回答您的问题：\n\n1. 降压药怎么吃？要不要和胃药错开？\n您哥哥在药房查到的“苯磺酸氨氯地平片，5毫克，一天一次、一次一片”，这是非常常用的长效降压药。请让叔叔就按这个剂量，每天固定时间吃一片，千万不要停。\n它和奥美拉唑、替普瑞酮之间没有明显的冲突，不需要刻意间隔几个小时。为了好记，您可以这样安排一天的吃药顺序：\n- 早上起床后、早饭前半小时：空腹吃奥美拉唑；\n- 早饭后：吃替普瑞酮（施维舒）一粒，顺便把氨氯地平也一起吃掉（或者固定在每天同一个时间吃就行）；\n- 午饭后：吃替普瑞酮一粒；\n- 晚饭后：吃替普瑞酮一粒。\n这样既不会漏，也不会乱。\n\n2. 去原住院病区护士站协调复诊可以吗？怎么说？\n完全可以，而且您做得很对。线上挂不到两周内的号，直接带资料去原来住院的胃肠外科病区护士站或窗口问，是最稳妥的办法。您就照我们之前说的那样跟护士讲：“叔叔刚出院，出院宣教单上写着两周复诊，但线上挂不上号，麻烦帮忙看看能不能协调加个号，或者告诉我们怎么联系原来的主管医生。”带上出院小结、宣教单和胃镜报告（如果有的话），护士看到这些纸质材料，通常能更快帮您对接。\n\n3. 营养门诊今天能先去吗？还是先别折腾他？\n您的顾虑很实在。叔叔现在吃得少、上腹还隐隐疼，体力比较弱。如果营养门诊就在同一家医院、不用走太多路、也不用排长队，您可以先去咨询一下，问问医生有没有适合他现在这种“吃不下”情况的口服营养补充剂（比如一些容易吸收的营养粉），这对维持体力很有帮助。\n但如果营养门诊离得远、要来回折腾大半天，今天就先别去了。让他在家多休息，继续少食多餐喝米汤、吃烂面条，等明天或后天胃肠外科的复诊协调好了，再顺道去营养门诊更合适。原则是：不让他太累。\n\n4. 关于吃得少和营养\n早上能喝点米汤、吃几口烂面，已经很好了。不要勉强他一次吃多，一天分五六次，每次哪怕只吃小半碗也行。如果有条件，这两天给他称一次体重记下来，之后每周固定时间称一次，复诊时告诉医生体重有没有往下掉。\n\n总结一下今天的重点：\n- 降压药按查到的“氨氯地平5mg，每天一片”继续吃，可以安排在早饭后和替普瑞酮一起吃。\n- 下午或明早按计划去原住院病区护士站协调胃肠外科复诊，带好所有纸质单据。\n- 营养门诊视叔叔体力决定：方便就去问问营养粉，不方便就先在家休息，以胃肠外科复诊为最优先。\n- 继续严密观察危险信号（吐血、黑便、剧痛、头晕出冷汗、发烧），一旦有变化立刻去急诊。\n\n您一步一步落实得很扎实，有任何新进展或者护士站那边给了回复，随时告诉我。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00148",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1342min",
+      "text": "医生，我下午按您说的去了原来住院的胃肠外科病区护士站，带了出院小结、宣教单这些纸。护士核对了我爸姓名[REDACTED_NAME]，说两周内线上没号确实常见，她先帮我们登记给原主管医生团队/门诊办公室看看能不能加号，让我们明天上午等电话；如果没等到，也可以自己打病区电话问。她没有当场给我们正式挂上号，也没解释病理、分期那些，我也没敢一直追着问。\n\n今天药基本按您前面说的摆了：奥美拉唑饭前，替普瑞酮饭后，氨氯地平就先按药房查到的5毫克一天一片吃了，药盒还没拿到。吃完目前没见头晕、皮疹、吐这些。\n\n我爸晚饭只吃了一点软的，上腹还是隐隐疼，但目前没有吐血、黑便、发烧、晕倒，也不是突然剧痛。护士也提醒说如果吐血、黑便、发热、腹痛明显加重，或者头晕出冷汗、吃喝明显进不去，就直接急诊。\n\n我现在就是有点担心：明天上午如果一直没人打电话，我们是中午就主动打病区电话催，还是直接再跑一趟医院？我爸有点不想折腾，说先等等，但我怕复诊拖久了。还有他现在这种隐痛、吃得少，在正式复诊前到底到什么程度就算“吃喝明显进不去”，不能再在家等了？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00154",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1342min",
+      "text": "您下午跑了一趟护士站，把该带的资料都带齐了，护士也帮你们登记上了，这一步做得非常到位。叔叔现在没有吐血、黑便、发烧和晕倒，药也都按顺序吃下去了没不舒服，这说明目前情况是稳定的，您可以先稍微松一口气。\n\n针对您最担心的两个问题，我给您一个明确的判断标准：\n\n一、明天上午如果没人打电话，怎么办？\n不用太焦虑，医院门诊办公室协调加号确实需要一点时间，有时电话会打到下午。建议您这样安排：\n1. 明天上午在家安心等电话，让叔叔多休息，不要让他来回折腾。\n2. 如果到明天中午（比如12点到下午1点左右）还没有人联系你们，您就主动打病区电话问一下。跟接电话的护士说：“昨天下午来登记过加号，想问问主管医生团队或门诊那边有没有回复，我们好安排时间。”\n3. 除非电话里明确让你们去，否则明天不需要再直接跑一趟医院。叔叔现在体力弱，尽量减少不必要的奔波。宣教单上写的“两周复诊”是一个安全的时间窗口，晚半天一天去问不会耽误病情，但千万别拖过两周这个底线。\n\n二、到底什么程度算“吃喝明显进不去”，必须去急诊？\n这个问题问得特别好。叔叔现在吃得少、只能吃点软的，是因为胃里有病变加上隐隐疼导致的食欲下降，这在出院后短期内是可以接受的，不算急诊指征。但如果出现以下任何一种情况，就说明身体扛不住了，不能再在家等，要立刻去急诊：\n1. 完全吃不进、喝不进：连水、米汤都咽不下去，或者一吃一喝马上就全吐出来，连续几次都是这样。\n2. 尿量明显减少：因为吃喝太少导致脱水，大半天甚至一整天都没有小便，或者尿液颜色深得像浓茶一样。\n3. 伴随危险信号：在吃不下东西的同时，出现了头晕、站起来眼前发黑、心慌、出冷汗，或者肚子突然变成剧痛、摸起来硬邦邦的。\n4. 精神明显变差：本来还能跟你们说话，突然变得很虚弱、叫不醒或者反应很迟钝。\n只要他还能慢慢喝下几口米汤、吃几口烂面条，能解小便，人也是清醒的，哪怕吃得比平时少很多，暂时都可以在家继续观察。\n\n今晚和明天的照护重点：\n1. 药继续按今天的节奏吃：奥美拉唑早饭前半小时，替普瑞酮三餐饭后各一粒，氨氯地平5毫克每天固定时间一片。药盒拿回来后您再跟我核对一下。\n2. 饮食还是温热流食/半流食，少食多餐，能吃多少算多少，不强迫他多吃，但一定要保证他能喝进去一些水分（米汤、温水都可以）。\n3. 如果有血压计，明早起床后给他量一次血压记下来。\n4. 继续盯紧我们之前说的那些危险信号（吐血、黑便、剧痛、发烧、晕倒）。\n\n您现在已经把最关键的事情都铺开了，思路很清晰。今晚让叔叔好好休息，明天中午如果没有电话，您就打个电话问一句。有任何新变化，随时发消息给我。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00168",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2152min",
+      "text": "医生，医院刚才回电话了，算是有进展。说已经给我爸登记到原来主管医生团队的加号复诊名单里了，让我们本周内找一个上午过去报到，好像是胃肠外科门诊或者病区门诊窗口，我怕我记岔了，等会儿我再翻一下短信/通话记录确认具体窗口。\n\n电话里交代要带出院小结、宣教单、以前胃镜和病理相关资料，还有现在吃的药或者药名记录。病理、分期、是不是要手术这些他们电话里没给讲，只说要门诊医生当面看资料后说。说实话我听到这些还是挺慌的，怕到时候资料带漏、医生问我们又答不上来。\n\n我爸昨晚到今天上午药还是按之前安排吃的：奥美拉唑、替普瑞酮、氨氯地平那个5毫克一天一片，目前没见头晕、皮疹、呕吐。今天上午只吃了几口软的，喝了点水和米汤，上腹还是隐隐不舒服，但人清楚，有小便，没有吐血、黑便、发烧，也没有突然疼得厉害。\n\n您能不能帮我简单列一下：这次去复诊最少必须带哪几样纸？还有见到胃肠外科医生时，我们家属最该问哪几个问题？我怕我一紧张就只会点头。还有如果这几天等去门诊前，他吃得更少了，到什么程度就别等本周复诊、直接急诊？我想再确认一下，心里踏实点。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00174",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2152min",
+      "text": "加号登记成功了，这是非常关键的一步，您和家人这几天跑前跑后协调得非常好。叔叔目前人清醒、有小便、没有吐血黑便发烧和剧痛，药也按时吃下去了没不舒服，说明现在情况是平稳的，您可以先稍微安心一点。\n\n电话里没讲病理和分期是正常的，因为这些需要医生当面结合所有资料综合判断后再跟家属详细谈。您怕紧张忘事很正常，我帮您列好清单，去之前看两遍就行。\n\n一、复诊最少必须带的资料（建议今晚就装进一个文件袋）\n1. 出院小结（最重要，上面有住院经过和出院医嘱）。\n2. 出院宣教单。\n3. 胃镜报告单原件或复印件。\n4. 病理报告（如果出院时已经出了就带上；如果当时说还没出结果，到了门诊一定要主动问医生“病理结果出来了吗”）。\n5. 住院期间做过的抽血化验单、CT或片子（如果有带回家的话）。\n6. 现在正在吃的药的药盒，或者写在纸上的药名清单：奥美拉唑、替普瑞酮（施维舒）、苯磺酸氨氯地平片5mg。\n7. 身份证、医保卡、就诊卡。\n8. 如果这两天量了血压或称了体重，把记的数字也带上。\n\n二、见到胃肠外科医生时，最该问的4个核心问题（可以提前抄在纸上，照着念）\n1. “医生，我爸的病理结果是什么？目前考虑是什么病、到什么阶段了？”\n2. “根据现在的情况，需不需要做手术？如果要做，大概什么时候安排、还需要补做什么检查？”\n3. “如果不马上手术，接下来是先吃药观察，还是需要转去肿瘤科做其他治疗？”\n4. “他现在吃得很少、上腹还隐隐疼，目前的胃药怎么调整？能不能开点容易吸收的营养粉帮他维持体力？下次复查是什么时候？”\n\n三、等复诊这几天，什么情况别等了直接去急诊？\n标准和我们之前说的一致，再给您强调一下底线。如果出现以下任何一条，不要等本周的门诊，立刻去急诊：\n1. 完全吃不进喝不进：连水或米汤都咽不下去，或者一吃喝马上就全吐出来，连续几次都这样。\n2. 尿量明显减少：大半天甚至一整天都没有小便，或者尿液颜色深得像浓茶。\n3. 出现危险信号：吐血、拉黑便（像柏油一样发黑发亮）、肚子突然变成剧烈疼痛摸起来硬邦邦的、发烧、头晕站不稳、眼前发黑出冷汗。\n4. 精神明显变差：突然变得很虚弱、叫不醒或者反应很迟钝。\n只要他还能慢慢喝下几口米汤、能解小便、人是清楚的，哪怕吃得少，暂时可以在家继续观察，按计划去门诊。\n\n最后提醒两点：一是您稍后一定翻一下短信或通话记录，确认报到地点到底是“胃肠外科门诊”还是“病区门诊窗口”，别跑错地方；二是药继续按现在的节奏吃，氨氯地平5mg每天一片千万别停。\n\n您把这几条存好，去的时候带上，心里就有底了。确认好具体报到窗口后跟我说一声。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00188",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+6472min",
+      "text": "医生，今天门诊已经看完了，我们是上午去的，折腾了半天。外科医生看了我们带去的出院小结、胃镜病理这些纸，说现在还不能当场定方案，要把检查补齐了再看。我听得不是特别准，他好像提到病理里是胃CA相关的意思，但又说要结合完整检查，分期、能不能手术、先手术还是先别的治疗，都要等结果。\n\n他给开了一批检查单，我单子在手上但名称有点多，我大概看到有抽血，像肿瘤标志物、肝肾功能这些，还有增强CT，好像是胸腹部/腹盆腔那类检查，可能还有心电图之类的术前检查。医生让我们尽量按安排做完，结果出来再回去找他看。现在我有点乱：这些检查是不是都很关键？如果我爸体力不够，不能一天全做完，哪些最好优先做？增强CT是不是必须空腹或者要注意肾功能、造影剂过敏这些？\n\n我爸今天来回跑医院后明显累，上腹还是隐隐不舒服，吃得也少，中午就吃了几口粥和一点软面，喝水还可以，有小便。暂时没看到吐血、黑便、发烧、突然剧痛、昏倒这些。药还是照之前吃。外科医生也没另外改胃药，好像让先继续。\n\n我们现在比前两天踏实一点，至少原团队接上了，但又怕检查拖着、他营养撑不住。等这些检查结果期间，在家吃东西您建议怎么弄？要不要现在就买营养粉，还是等营养门诊/外科医生开？还有他如果只是累、吃得少但能喝水，是不是就先按检查走，不用急诊？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00193",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+6472min",
+      "text": "请调取患者在CareLoop联合医疗网络内已授权/已同步的以下资料：1. 最近一次住院的出院小结和胃镜病理报告原文；2. 今日胃肠外科门诊就诊记录、医生开具的检查单明细（抽血项目、增强CT部位、心电图等）；3. 当前用药清单，确认奥美拉唑、替普瑞酮、苯磺酸氨氯地平片的剂量和用法；4. 既往肾功能化验结果（评估增强CT造影剂风险）。",
+      "turn": 7,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00195",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+6472min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 7,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00197",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+6472min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 7,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00200",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+6472min",
+      "text": "您今天陪叔叔跑了一上午门诊，辛苦了。外科医生已经接诊、看了病理资料并开出了分期检查，说明最关键的一步已经迈出去了，你们做得非常好。\n\n针对您现在最着急的几个问题，我帮您理清楚：\n\n一、这些检查是不是都很关键？能不能分批做？\n是的，每一项都有用，但如果您父亲体力有限，可以按这个优先级分两天完成：\n1. 第一优先（最好明天就做）：抽血（肝肾功能、肿瘤标志物等）。抽血能直接决定他能不能安全做增强CT，而且早上空腹抽完就能吃东西休息了。\n2. 第二优先：胸腹部/腹盆腔增强CT。这是外科医生判断“能不能手术、怎么治”最核心的片子，必须在抽血确认肾功能没问题后尽快做。\n3. 第三优先：心电图等术前常规检查。可以在做CT的同一天顺便做，或者等体力恢复一点再补，相对不那么急。\n\n二、增强CT必须注意什么？\n您的担心非常专业。增强CT需要打造影剂，主要注意三点：\n1. 空腹：一般要求检查前禁食4到6小时，但可以喝少量白开水。具体以放射科预约时的交代为准。\n2. 肾功能：这就是为什么一定要先抽血查肾功能。如果肾功能不好，造影剂可能加重肾脏负担，医生会根据结果决定能不能做或需不需要特殊处理。\n3. 过敏史：预约和打针前护士一定会问有没有碘造影剂过敏史、哮喘或严重过敏史。如果有，一定要提前说。\n做完CT后，让他多喝点温水，帮助造影剂排出来。\n\n三、在家吃什么？要不要买营养粉？\n他现在吃得少是因为胃里有病变加上来回折腾累着了。饮食原则还是：温热、软烂、少食多餐（一天5-6次，每次几口也行），不要强迫多吃。\n关于营养粉：建议先别自己随便买普通蛋白粉或保健品。因为胃部有病变时，有些高渗的营养粉反而会引起腹胀或不适。最好的办法是：\n1. 下次回外科复诊时，把第4个问题（之前给您列的清单里那条）再问医生一次：“能不能开点适合胃病患者的口服营养补充剂？”\n2. 如果医院有肿瘤营养门诊，挂一个号让营养科医生根据他的病理情况专门配。\n在买到合适的营养粉之前，米汤、藕粉、烂面条、蒸蛋羹这些依然是最安全的。\n\n四、现在的情况需要去急诊吗？\n根据您的描述，他只是累、吃得少，但能喝水、有小便、人清醒，没有吐血黑便发烧剧痛——这完全符合目前在家观察、按计划做检查的标准，不需要去急诊。\n但如果出现以下任何一条，就不要等检查了，立刻去急诊：\n1. 连水都喝不进，或者一喝就全吐出来；\n2. 大半天完全没有小便，或尿色深如浓茶；\n3. 突然剧烈腹痛、肚子发硬；\n4. 吐血、拉黑便；\n5. 头晕站不稳、出冷汗、叫不醒。\n\n今晚的重点任务：\n1. 让叔叔好好休息，药继续按原样吃（奥美拉唑饭前，替普瑞酮饭后，氨氯地平5mg每天一片）。\n2. 看一下抽血单上有没有写明“空腹”，如果有，今晚过了10点或12点后就尽量不吃东西了，明早去抽血。\n3. 把今天开的检查单按我说的顺序排好，明天先去抽血。\n\n您今天顶住了压力把门诊看完了，非常了不起。有任何新情况随时告诉我。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00216",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7492min",
+      "text": "医生，我来报个进展。我们今天上午已经到医院了，先去抽血那边处理了，后来又在放射科/预约窗口把增强CT约上了，时间是在这两天内，但不是今天做，所以现在还没有片子，也没有CT报告。\n\n窗口的人提醒我说，做增强CT那天要带身份证件，还要带“肾功能结果”，我理解就是抽血里面看肾功能的那几项，但我也不敢说完全听明白。有些抽血结果好像还要等，万一到做CT那天肾功能结果没出来，是不是就做不了？还是放射科电脑里能查到就行？\n\n还有禁食禁水我有点怕弄错。窗口说检查前按预约单要求不能随便吃喝，打造影剂前会问过敏史，做完要多喝水。我爸现在空腹跑了一上午已经很累了，坐旁边一直说想回家吃点东西休息，上腹还是隐隐不舒服，吃得少，但目前我没看到吐血、黑便、发热、突然疼得厉害或者晕倒这些。\n\n我现在想确认两件事：  \n1. 今天CT没做成，只是约上了，我们能不能先带他回家少量吃点软的、喝点水休息？  \n2. 到增强CT前这两天，平时吃饭和胃药、降压药还照原来吃吗？到检查当天再按预约单禁食禁水就行？如果肾功能结果没及时拿到，我是先打放射科电话问，还是直接到时候带抽血单去窗口核对？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00222",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7492min",
+      "text": "您今天陪叔叔空腹跑了一上午，抽血和CT预约都办妥了，这两件事非常关键，您做得很好。叔叔现在没有吐血、黑便、发烧、剧痛或晕倒，说明目前情况是平稳的，您可以先稍微松口气。\n\n针对您最着急的两个问题，我给您明确的答复：\n\n一、今天能不能先回家吃点东西休息？\n完全可以，而且应该让他赶紧吃。今天只是“约上了”CT，还没到做检查的时间，所以不需要继续空腹。现在就带他回家，让他少量吃点温热的软食（比如几口烂面条、米汤、蒸蛋羹），喝点温水，好好躺着休息。上腹隐隐不舒服跟空腹折腾加上胃部本身病变有关，吃点软的会舒服一些。\n\n二、这两天吃饭、吃药怎么安排？肾功能结果怎么办？\n1. 吃饭和吃药：在“做增强CT当天”之前，平时该怎么吃就怎么吃，药也照原样吃。也就是：奥美拉唑早饭前半小时吃；替普瑞酮三餐饭后各一粒；氨氯地平5毫克每天固定时间一片。不要停药，也不要饿着。\n2. 检查当天的禁食禁水：只有到了“做增强CT那一天”，才需要按预约单上的要求禁食（一般是检查前4-6小时不吃东西）。至于能不能喝水、能喝多少白开水，严格照着预约单上写的字做就行，上面写得很清楚。\n3. 肾功能结果的问题：窗口说的“带肾功能结果”，就是指您今天上午抽的血里面查肌酐、尿素氮那些指标。因为有些化验可能要等几个小时甚至隔天出报告，建议您这样做：\n- 明天白天，您自己先通过医院的手机APP、微信公众号或者自助机，看看今天的抽血结果出来没有，重点看“肾功能”那几项有没有数值。\n- 如果到做CT的前一天晚上结果已经出来了，并且数值正常，那天直接去做就行，医院电脑系统里一般也能查到，但为了保险，您把显示结果的手机页面截图保存好，或者把打印出来的化验单带上。\n- 万一到了做CT那天早上，手机上还是查不到肾功能结果，您就先打放射科预约电话问一句：“我们约了今天的增强CT，但肾功能报告好像没出来，还能不能做？”如果电话打不通或者说不清，就直接带着抽血回执单去放射科窗口，让护士帮您在电脑里核对。千万不要因为怕麻烦就不去，到了窗口他们会有办法帮您确认的。\n\n最后再叮嘱您一遍危险信号底线：在家休息期间，如果他突然连水都喝不进、大半天没有小便、吐咖啡色液体或拉黑便、肚子突然剧烈疼痛发硬、发烧，或者人变得叫不醒、出冷汗，就不要管CT预约了，立刻去急诊。\n\n现在赶紧带叔叔回家吃点软的、喝点水，让他好好睡一觉。有任何新变化随时告诉我。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00240",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+9652min",
+      "text": "医生，跟您说一下，今天上午增强CT已经做完了。我们按预约单当天才禁食的，没再提前饿他。到放射科窗口的时候，护士/窗口在电脑系统里看了抽血和肾功能，说可以做，我就没拿到具体什么肌酐数值，反正他们核过让做了。\n\n现在是片子做完了，但正式CT报告还没出来，护士说可能下午晚点或者明天手机上/自助机能查，到时候要再回胃肠外科或者联系原来主管那边看下一步。我怕自己到时候又搞乱。\n\n我爸做完以后很累，上腹还是隐隐不舒服，不过能喝水，也已经有小便。暂时没吐血黑便，也没发烧、突然很痛；造影剂这边目前也没看到起疹子、喘不上气，就是人累想回家睡。护士我只记得让多喝水、观察皮疹气喘头晕这些。\n\n我想问下：我们现在可以先回家让他喝水休息吗？报告一般等到什么时候算正常，如果明天还查不到，是打放射科电话问还是直接去自助机/窗口？报告出来后，我是先把结论那几行发给您看，还是直接带着报告去胃肠外科找原团队更合适？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00246",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+9652min",
+      "text": "增强CT顺利做完了，您这几天跑前跑后把抽血、预约、禁食这些细节全盯住了，非常不容易。叔叔现在能喝水、有小便、没有皮疹气喘，也没有吐血黑便发烧剧痛，说明造影剂耐受得很好，目前情况是平稳的，您可以稍微松口气。\n\n针对您最着急的三个问题，我给您明确的答复：\n\n一、现在能不能先回家喝水休息？\n完全可以，而且应该赶紧让他回去休息。做完增强CT后最重要的就是两件事：多喝水和观察反应。回家后让他少量多次喝温白开水（如果胃不胀，今天尽量分次喝到1500毫升左右），帮助造影剂从小便排出去。饮食还是按老规矩：温热、软烂、少食多餐，能吃几口算几口，不要强迫多吃。药也照原来的节奏吃（奥美拉唑饭前、替普瑞酮饭后、氨氯地平每天一片）。\n\n今晚继续观察造影剂的迟发反应，如果出现起皮疹、皮肤痒、喘不上气、头晕明显或者恶心呕吐加重，要立刻去急诊；如果没有这些，只是累和上腹隐隐不舒服，就在家安心睡一觉。\n\n二、报告一般等多久？查不到怎么办？\n护士说的“下午晚点或明天”是正常的。增强CT片子虽然拍完了，但医生需要仔细看图像再写报告，通常需要几个小时到24小时不等。\n建议您这样安排：\n1. 今天下午晚些时候和明天上午，先用手机上的医院APP或微信公众号查一下，看看报告有没有出来。\n2. 如果手机上查不到，明天白天去医院自助机上刷就诊卡或医保卡查。\n3. 如果到了明天下午（比如下午三四点以后）手机和自助机都查不到，您直接去放射科登记窗口问一句：“昨天上午做的胸腹部增强CT，系统里还没看到报告，麻烦帮我看一下是不是还在审核。”一般不需要专门打电话，直接去窗口或自助机最快。\n\n三、报告出来后给谁看？\n这两步都要做，顺序是这样的：\n1. 报告一出来，您先把手机上的报告页面截图，或者把打印出来的报告单拍照发给我。我先帮您看一看结论里写了什么，用大白话给您解释清楚，让您心里有个底，不至于见到外科医生时太慌。\n2. 但是，决定下一步怎么治（比如能不能手术、什么时候做、还要不要补检查）必须由胃肠外科原团队来定。所以看完报告后，您要尽快带着所有资料回胃肠外科复诊。去的时候记得带齐我们之前列好的那个文件袋（出院小结、宣教单、胃镜病理、这次的CT报告和之前的化验单、正在吃的药盒）。\n\n今晚的任务很简单：让叔叔多喝点温水、吃点软的、好好睡觉；您留意一下他有没有起疹子或气喘；药照常吃。报告出来了随时发给我，我们一起一步步往下走。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00263",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10732min",
+      "text": "医生，CT正式报告我现在查到了，我不太会看，我照着“影像诊断/结论”念几句，怕有些字念错。\n\n报告标题好像是“胸部+上腹部增强CT”或者“胸腹部增强CT”。结论里写着：  \n1. “胃窦部/胃体部胃壁不规则增厚，强化不均，考虑胃部恶性病变/胃癌相关改变”，大概是这个意思。  \n2. 还写了“周围可见小淋巴结”还是“胃周淋巴结显示”，这句我有点分不清是不是严重。  \n3. 肺这边写着“左肺上叶磨玻璃样小结节”，还有“右肺中下叶微小结节”之类的字，后面好像有一句“建议随访复查”或者“年度CT复查”。我一看到肺结节就慌了，这是不是已经转移到肺了？\n\n报告里别的什么肝胆胰脾我没全看懂，有些写“未见明显异常”还是“囊肿/钙化”这种，我怕我漏关键字。正式纸我会带去胃肠外科给原团队看。\n\n我爸昨晚回家后总体还算平稳，喝了些温水，吃了一点软的，有小便，没有起疹子、喘不上气、明显头晕，也没有吐血、黑便、发烧、晕倒或者突然剧烈肚子痛。就是人还是很累，胃口差，上腹还是隐隐不舒服。\n\n我现在最想问：这个CT是不是基本说明就是胃那块病变比较明确了？这些写法会不会影响能不能手术？我们是不是今天/明天就要赶紧回胃肠外科找原团队看结果？还有肺部这个磨玻璃小结节现在要不要马上挂呼吸科，还是先让胃肠外科一起判断？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00269",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10732min",
+      "text": "您能把报告上的字一句句念给我听，已经做得非常好了。面对这样的报告，家里人慌是正常的，但请您先深呼吸一下——叔叔现在人清醒、能喝水、有小便，没有吐血黑便和剧痛，说明他今晚是安全的。我们一步一步来理清。\n\n一、胃部的描述是什么意思？\n您念的“胃壁不规则增厚、强化不均，考虑胃部恶性病变”，结合之前胃镜和病理，确实进一步印证了胃里有肿瘤性病变。这和外科医生之前说的“要结合完整检查”是一致的。CT的作用是看病变的范围、有没有长到周围器官，帮助医生判断分期和手术方式。\n\n二、“胃周小淋巴结”严重吗？\n胃周围本身就有淋巴结。CT上看到“小淋巴结”，不代表一定转移了，很多时候只是炎症反应或正常显示。到底是不是转移、影不影响手术，需要外科医生在电脑上放大片子仔细看大小和形态，甚至结合术中情况才能定。所以这一条先不要自己吓自己。\n\n三、肺部磨玻璃结节是不是转移到肺了？（这是您最慌的，我先给您吃颗定心丸）\n大概率不是转移。在医学上，“磨玻璃样小结节”绝大多数是良性的，比如以前发炎留下的痕迹、局部轻微炎症等。如果是胃癌转移到肺，影像上通常表现为实心的、边界清楚的结节，而不是“磨玻璃”。而且报告写了“建议随访复查/年度CT复查”，这恰恰是放射科医生认为它目前不需要紧急处理、只需要以后定期观察的意思。所以，千万不要因为这几个字就觉得“已经晚期扩散了”，先稳住心态。\n\n四、肝胆胰脾那些没看懂的字要紧吗？\n如果写着“未见明显异常”，就是没问题；如果写着“囊肿”或“钙化”，这在老年人里非常常见，基本都是良性的、不需要特殊处理的。您把正式报告带给外科医生时，他们一眼就能确认。\n\n五、接下来怎么做？今天还是明天去？\n1. 今晚：不用连夜赶去医院急诊。让叔叔好好休息，继续喝温水、吃软食，药照常吃（奥美拉唑饭前、替普瑞酮饭后、氨氯地平5mg每天一片）。只要不出现我之前交代的危险信号（吐血、黑便、剧烈腹痛、完全吃不进、无尿、晕倒），今晚就在家安心睡。\n2. 明天白天：尽快联系胃肠外科原团队复诊。如果有之前加好的号，按时间去；如果没有号，明天一早带着所有资料（出院小结、胃镜病理、这次CT报告、化验单、药盒）去胃肠外科门诊窗口，告诉护士“增强CT结果出来了，外科医生让做完回来定方案”，请他们帮忙加号或安排就诊。这件事明天要办，但不用半夜去。\n3. 肺部结节要不要单独挂呼吸科？暂时不需要。明天见胃肠外科医生时，直接把CT报告给他们看，外科医生会一并评估。如果外科医生觉得肺部需要专科看，他们会帮您转诊或建议您挂哪个科，这样最不走弯路。\n\n六、明天见到外科医生，重点问这三句话（您可以抄下来）：\n1. “医生，增强CT做完了，结合之前的病理，现在分期大概是什么情况？能不能做手术？”\n2. “如果能做，大概什么时候安排？还需要补什么检查吗？”\n3. “如果不能马上手术，下一步是先吃药还是转肿瘤科做其他治疗？他现在吃得少，营养怎么跟上？”\n\n您今晚的任务就是：把报告原件或打印件装进文件袋，和之前的资料放在一起；让叔叔按时吃药、喝点温水、好好睡觉。您已经把所有关键检查都跑完了，最难的一步已经迈过去了。明天看完外科医生，有什么新安排随时告诉我，我一直陪着你们。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00283",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+11632min",
+      "text": "医生，我们按您说的今天上午又去了胃肠外科，文件袋都带上了，出院小结、胃镜病理、CT报告、化验单还有药盒都给他们看了，不是我自己瞎看了。\n\n外科那边大概意思是：现在考虑还是胃这块病变为主，可能要安排住院，住进去以后他们再统一评估到底能不能手术、怎么做，可能还要补一些检查。我听得不是特别准，什么分期、淋巴结这些他们讲得快，我没敢乱记。肺上那个磨玻璃小结节，外科医生今天没让我们马上单独去急诊或挂呼吸科，说先记着，后面随访/跟着胃这边一起看。\n\n现在我爸排队折腾一上午更累了，胃口还是很差，上腹还是隐隐疼，但能喝水，也有小便。昨晚到现在没看到吐血、黑便、突然剧烈肚子痛、晕倒这些。\n\n我现在最担心两个事：一个是床位还没完全定，说让我们等电话或窗口通知，我怕拖久了他吃不下撑不住；另一个是住院后如果评估说不能马上手术，那我们是不是就要转肿瘤科先治疗？这几天在家等床期间，除了软食少量多餐、原来的胃药降压药照吃，还有没有什么必须先做的？如果他吃得更少但还能喝水，是继续等床，还是要提前去急诊/回外科？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00290",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+11632min",
+      "text": "您今天上午又陪叔叔跑了一趟外科，把文件袋、报告、药盒全都带齐了，这一步做得非常关键。外科医生看完资料后决定安排住院做统一评估，说明治疗正在往前推进，您已经帮他把最难的路铺好了。\n\n叔叔现在虽然累、胃口差、上腹隐隐疼，但能喝水、有小便、没有吐血黑便和剧痛晕倒，说明目前身体是平稳的，您可以稍微松口气。针对您最担心的两个问题，我给您明确的答复：\n\n一、等床位期间吃不下，会不会撑不住？\n这是家属最常担心的事。只要他还能喝得进水、每天有小便，短期内（几天）吃得少一般不会马上出危险。这几天在家等床，除了软食少量多餐、胃药和降压药照常吃之外，您重点盯两件事：\n1. 保证水分：哪怕吃不下饭，也要让他少量多次喝温水、米汤或淡盐水，目标是每天有尿、尿色不要太深。如果能喝水，就继续安心等床；\n2. 记录体重和精神状态：如果条件允许，每天大概称一下体重。如果体重掉得很快或者人越来越没精神，复诊时告诉医生。\n关于营养粉：还是按我们之前说的，先别自己买普通蛋白粉，等住进去以后让主管医生或营养科来配适合胃病的口服营养液。\n\n二、住院后如果不能马上手术，是不是就要转肿瘤科？\n不一定，您先别慌。胃肠外科收治住院的目的，就是先把所有检查补齐（比如超声内镜、腹腔镜探查等），由外科、肿瘤科、影像科一起“多学科讨论”定方案。如果评估下来可以直接手术，就在外科做；如果暂时不适合直接手术（比如需要先缩小肿瘤），确实可能会转到肿瘤内科先做一段时间药物治疗（新辅助化疗），但这不代表“没救了”或“耽误了”，而是为了争取更好的手术效果。具体走哪条路，必须等住院评估完才能定，现在不需要提前焦虑。\n\n三、什么情况下不能等床，必须立刻去急诊？\n这是最重要的底线。在等电话通知期间，如果出现以下任何一种情况，不要管床位有没有定好，立刻带他去急诊：\n1. 连水都完全喝不进，或者一喝就全吐出来；\n2. 大半天完全没有小便，或者尿量极少、颜色像浓茶；\n3. 突然剧烈腹痛、肚子发硬碰不得；\n4. 吐血、吐咖啡色液体，或者拉黑色柏油样大便；\n5. 头晕站不稳、出冷汗、人叫不醒或反应明显变迟钝。\n只要没有这些情况，只是吃得少、人累、上腹隐痛，就可以继续在家等床位通知。\n\n四、等床期间还有什么必须先做的？\n1. 保持电话畅通：医院通知床位可能随时打来，手机千万别关机或静音；\n2. 提前准备住院物品：把医保卡、身份证、既往所有报告原件（装进文件袋）、正在吃的药盒、换洗衣物、水杯毛巾提前打包好，一旦通知有床，拎包就能走；\n3. 降压药千万别停：血压波动对后续手术影响很大，氨氯地平每天一片按时吃；\n4. 主动跟进一次：如果过了两三天还没接到电话，您可以在白天工作时间打胃肠外科病房护士站电话问一句：“我们是某某的家属，前几天门诊说安排住院等床位，想问一下大概还要等多久，病人现在吃得比较少，有点着急。”这样能让科室注意到你们的急迫性。\n\n您今天已经把该做的都做对了。今晚就让叔叔好好休息，喝点温水，药照常吃。有任何新变化或者接到住院通知了，随时告诉我，我一直陪着你们。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00304",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+14512min",
+      "text": "医生，跟您说个进展，我们刚接到胃肠外科病区电话了，通知明天上午去病区办入院，让带身份证医保卡、CT报告、胃镜病理、化验单、药盒和生活用品这些。我现在在家收拾住院包，心里是松了一口气，但又怕明早弄错。\n\n我爸这两天还是吃得很少，今晚也就勉强喝水、吃了几口软的，上腹还是隐隐疼，人没精神，但还能喝水，也有小便。暂时没看到吐血黑便、突然特别痛、发烧或者晕倒。\n\n我想赶紧确认几件最实际的：  \n1. 今晚胃药和氨氯地平是不是还照常吃？  \n2. 明天早上去入院前能不能吃一点早饭、喝水？电话里没说要空腹，我又怕一去就做检查或者手术。  \n3. 如果今晚或者明早路上他疼得厉害、喝不进水，或者人明显不对，是直接去急诊，还是还按通知去病区找他们？我怕到时候慌了走错。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00311",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+14512min",
+      "text": "接到明天上午入院的通知太好了，您这段时间跑前跑后终于等到了这一步，心里踏实一点是正常的。叔叔现在能喝水、有小便，没有吐血黑便和剧痛晕倒，说明今晚是平稳的。您别慌，这三个最实际的问题我给您明确答复：\n\n一、今晚胃药和氨氯地平照常吃吗？\n照常吃，一次都不要停。奥美拉唑晚饭前吃（如果今晚已经过了饭点还没吃，现在补吃也可以）；替普瑞酮饭后吃；氨氯地平5毫克按平时固定时间吃。血压平稳对明天顺利办入院非常重要。\n\n二、明天早上去入院前能不能吃早饭、喝水？\n明早起床后先不要吃任何固体食物，也不要喝牛奶、豆浆或甜饮料。可以小口抿几口白开水润润嗓子，但不要大口咕咚咕咚喝。因为住院第一天大概率要抽血化验，外科医生查房后也可能随时安排空腹检查甚至手术谈话，保持空腹是最保险的。降压药（氨氯地平）明早用一小口水把药送服就行，不要停药。等办好入院手续、主管医生查完房说“可以吃东西了”，再让他在病房里吃点软的。\n\n三、今晚或明早路上疼得厉害、喝不进水怎么办？走急诊还是病区？\n记住这个原则：情况变了就走急诊，情况没变就按原计划去病区。\n1. 如果今晚到明早出发前，他还是现在的状态——上腹隐隐疼但能忍、能小口喝水、有小便、人清醒，那就按通知的时间直接去胃肠外科病区护士站办入院。\n2. 但是，如果出现以下任何一种变化，不要管明天的入院通知了，立刻带他去急诊：突然剧烈腹痛肚子发硬碰不得；连水都完全喝不进或者一喝就全吐出来；吐血或拉黑色柏油样大便；大半天完全没有小便；发烧；头晕出冷汗、人叫不醒或反应明显迟钝。到了急诊分诊台直接说：“胃癌准备住院的，现在出现某某情况。”急诊会处理并联系外科值班医生，这样绝不会走错。\n\n最后帮您理一下今晚收拾住院包的清单，您对着打勾就不怕漏了：\n1. 证件类：身份证、医保卡。\n2. 资料袋（之前装好的那个）：出院小结、胃镜病理报告、这次增强CT报告和片子、所有化验单。\n3. 药盒：正在吃的奥美拉唑、替普瑞酮、氨氯地平，连盒子一起带，让护士核对。\n4. 生活用品：水杯、毛巾、换洗衣物、防滑拖鞋、纸巾。\n\n您今晚的任务就是：让他按时吃药、小口喝点温水、好好睡一觉；您把包收好，定好闹钟，手机保持畅通别静音。您已经做得非常好了，最难的路都走过来了，明天顺利办完入院有什么新安排随时告诉我。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00326",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+15292min",
+      "text": "医生，我们已经到胃肠外科病区了，上午办完入院手续了。我把证件、CT报告、胃镜病理、化验单和那几个药盒都带来了，刚才护士站也接过去看了一遍，说先等主管医生或者住院医生来查房，可能还要抽血，暂时先别自己给他吃东西。\n\n昨晚还算平稳，没到急诊。早上我没让他吃早饭，就用一小口水吃了氨氯地平。现在人在床上是清醒的，就是很累、饿，上腹还是隐隐疼，他刚才还问能不能喝点米汤，我也不敢给。\n\n我现在脑子有点乱，想再确认一下：住进病区以后，是不是胃药、降压药这些都先听病区护士和医生安排，别再自己按家里的时间吃？他现在能不能小口喝水，还是连水也等医生说？等会儿查房我最该问医生哪几句话，是问“能不能手术、什么时候手术、还要补什么检查”这些吗？如果他们说不是马上手术、还要评估或者会诊，是不是也不代表没办法了？",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00333",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+15292min",
+      "text": "你们顺利办完入院、资料也都交接给护士站了，这一步非常关键，您这段时间的辛苦没有白费。叔叔现在人清醒、血压药也按时吃了，说明目前是平稳的。您脑子乱很正常，我把您问的几件事一件件说清楚，您照着做就行。\n\n一、药还要不要自己按家里的时间吃？\n对，从现在开始，所有药（包括奥美拉唑、替普瑞酮、氨氯地平）都先停在自己手里，等主管医生查房后统一由护士发药或明确告诉您怎么吃。您早上用一小口水把氨氯地平喂下去了，这个做法完全正确，等会儿医生查房时主动告诉医生一句“今早吃了一粒氨氯地平”就行。带来的药盒已经交给护士核对，这就够了。\n\n二、现在能不能小口喝水或喝米汤？\n听护士的，暂时连水也先别给。因为住院第一天大概率要抽血，而且外科随时可能安排空腹检查或者胃管等操作，一旦喝了东西可能会耽误当天的安排。叔叔觉得饿和渴是正常的，您可以跟他说：“护士交代了今天要先空腹等医生看，稍微忍一忍，医生说能吃了我们马上吃。”如果嘴唇干，可以用棉签蘸一点点温水帮他润一下嘴唇，但不要咽下去。\n\n三、等会儿查房最该问医生哪几句话？\n您不用紧张，也不用一次性全问完，重点记这三句就够了：\n1. “医生，我们今天刚办好入院，资料都交了，接下来还需要补哪些检查？大概什么时候能做完？”\n2. “他现在上腹还是隐隐疼、吃不下东西，在等待检查这几天，营养和止痛怎么安排？能不能输液补充一点？”\n3. “等检查做完了，大概什么时候能跟我们谈下一步的治疗方案（比如能不能手术）？”\n至于“能不能手术、什么时候手术”，医生通常要等住院后的抽血和必要检查补齐了才会给出准确答复，所以今天查房重点是问清“接下来的流程和这两天的安排”。\n\n四、如果说不是马上手术、还要评估或会诊，是不是没办法了？\n绝对不是没办法了，您千万别这么想。胃肠外科收治住院的目的，就是把所有情况摸透，有时候需要请肿瘤科、影像科甚至营养科一起讨论（也就是多学科会诊），这是为了给他定一个最安全、效果最好的方案。比如有些情况需要先输几天营养让身体好一点再做手术，或者先做一段时间药物治疗让病灶缩小再切，这些都是正规的治疗步骤，不代表病情没救了或者被耽误了。听到“还要评估”或者“请某某科会诊”，说明医生很负责、在认真想办法。\n\n您现在的任务很简单：\n1. 陪在床边安抚他，告诉他现在是安全的，只是需要等医生来定计划；\n2. 暂时不给吃喝，保持空腹；\n3. 准备好纸笔或手机备忘录，等会儿查房时把医生交代的检查项目、注意事项简单记下来。\n\n您做得已经非常好了，最难的路都走过来了。查房结束后如果有听不懂的地方，或者医生安排了新检查您心里没底，随时发消息给我，我帮您理清楚。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00347",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+15412min",
+      "text": "医生，查房已经来过了，我按您说的跟住院医生说了早上吃过一粒氨氯地平，他们看了药盒和资料，说后面药都按病区医嘱来，先不要我们自己给。\n\n现在最主要就是他们交代今天先空腹，饭、米汤、水都先别给，嘴干可以润一润嘴唇。我爸一直说饿、想喝点东西，上腹还是隐隐疼，人清醒但是很累，没发烧，也没突然痛得受不了，没看到吐血黑便。我只能哄他再忍忍。\n\n医生说还要等抽血这些检查结果，营养差、吃得少的事他们会看化验后处理，可能输液或者营养支持，但现在还没具体挂上什么营养液。手术的事他们也没马上定，说要检查补齐后科里讨论，可能还要请别的科一起看。\n\n我想确认下我理解得对不对：现在就是别私自给吃喝，药也不要自己拿家里的给，等护士发；疼和营养先让病区处理；能不能手术要等检查齐了再谈。还有一个我没听太明白，晚上如果护士没发降压药，是不是我也不能自己补给他吃，要先问护士？",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_052__Qwen3.8-Max",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.75,
+    "aggregate_median": 4.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.6393596310755,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 13
+}

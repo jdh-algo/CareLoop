@@ -1,0 +1,562 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "2b0c2048b669c8e9b7b9281d210fb5d2cf0446cd002b7738a2ba9d6148f55320",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_078__anon_f06d54a898736393",
+    "packet_sha256": "bbe43e901b6efec494cabbb047fa39cf5819bcdd28234b5b5b1ebdf986d12399"
+  },
+  "case_id": "case_CL120_EHR_078",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "obstetrics_gynecology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "misstated_family_or_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "delayed_or_staged_result_return | low_adherence_or_refusal",
+    "starting_phase": "longitudinal_followup",
+    "target_problem": "gynecologic_mass_pathway",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_handoff_closed",
+    "evidence": [
+      "家属读回既有病理关键词“子宫内膜、宫内物，破碎子宫内膜广泛复杂非典型增生”，医生解释其为高风险癌前病变、宫颈筛查阴性不能排除子宫内膜问题，并建议上级妇科肿瘤专科评估。",
+      "家属随后确认已挂到约一周后的上级医院妇科肿瘤普通门诊，患者同意先去会诊；医生给出资料准备、问题清单和红旗急诊边界。",
+      "门诊后家属反馈：上级医院医生看了纸质病理、B超、宫颈筛查原件，建议尽快住院评估，按恶性可能准备，家属完成护士台/住院处排床登记。",
+      "最近一轮家属确认：已接到床位电话，已带患者到上级医院妇科病区办理住院，资料已被护士和住院医生查看并部分收去核对，患者已在病房安顿，病区准备术前检查、麻醉评估和病理资料核验。",
+      "等待期间家属多次反馈无大量阴道出血、发热、剧烈难缓解腹痛等红旗；医生此前已明确红旗时不等床位、直接急诊/就近妇科处理。"
+    ],
+    "if_continued_next_focus": "若继续模拟，下一步应等待住院团队的正式术前谈话/病理核验或术后病理结果回流，再由医生帮助家属理解手术范围、最终病理和后续治疗计划；不应继续重复挂号、照片或等床摩擦。",
+    "rationale": "本次 CareLoop 的核心责任是帮助家属从“听不懂病理/误把宫颈筛查阴性当作排除风险/抗拒手术”推进到可执行的妇科肿瘤评估路径。轨迹中已完成关键风险解释、纠正宫颈筛查误解、推动上级妇科肿瘤门诊、排床登记，并最终由家属确认患者已真实进入上级医院妇科病区住院，纸质病理/B超/宫颈筛查等资料已交由护士和住院医生核对，病区开始术前检查、麻醉评估和病理资料核验。当前手术方式、切除范围和最终病理尚未确定，但这些已成为住院妇科团队的当前责任，不再是线上医生必须继续主动追踪才能保证最低安全的开放任务。因此可判为安全交接闭环；但不是疾病治愈，也不是完整肿瘤治疗闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual: 最终病理、是否合并子宫内膜癌、手术方式、切除范围、是否需后续肿瘤治疗仍未确定，但已由住院妇科/妇科肿瘤团队接管并核验资料。",
+      "bounded_longitudinal_residual: 患者仍害怕切除子宫和双附件、害怕开腹，需要病区主管医生继续完成知情沟通和共同决策；目前她已接受住院评估，暂未形成当前线上安全阻断。",
+      "global_disease_journey_background: 若后续确诊恶性肿瘤，仍需依据术后病理、分期和MDT决定随访或辅助治疗；这超出本次线上导航 episode 的终局范围。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Doubao-Seed-2.0-lite",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "宫腔镜后两个月，病理和手术方案听不明白",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我想替我妈妈问一下。她前阵子做了宫腔镜，已经差不多两个月了，后来医生说病理不太好，提到子宫内膜非典型增生，还说可能要把子宫和两边附件一起切掉。她一听要开腹手术就很抗拒，又说宫颈筛查是阴性，应该没那么严重。我现在也有点乱，不知道该先确认什么。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取你妈妈在CareLoop联合医疗网络内可授权访问的宫腔镜手术记录、病理报告原文、术前检查结果、宫颈筛查报告，以及既往病史和用药记录，方便我先帮你们核对清楚具体情况。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调阅这次宫腔镜手术的手术记录、病理报告全文，以及患者之前的宫颈筛查结果，同时调取患者的既往病史、合并症情况和本次诊疗的时间线，请返回可见内容。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取联合医疗网络内可授权访问的、关于本次宫腔镜手术的完整记录、病理报告原文、术前检查和宫颈筛查结果，帮我整理出时间线和关键信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调阅这5条既往中心医院记录里的宫腔镜手术记录、病理报告原文，请获取具体内容。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请帮我调取这5条既往/CareLoop中心医院记录中的宫腔镜手术记录以及病理报告原文，获取子宫内膜非典型增生的具体病理诊断结果、分级和范围信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "我理解你们现在很纠结，我先帮你理清楚当下最需要确认的关键信息：目前系统里暂时还调不到你妈妈这次宫腔镜的具体病理报告和手术记录，麻烦您把病理报告、宫腔镜手术记录还有宫颈筛查报告的纸质版拍照或者电子版上传给我，我可以先帮你确认几个关键点：\n1. 子宫内膜非典型增生是单纯性还是复杂性，有没有局灶癌变的情况；\n2. 现在也可以先安排带齐所有资料，去上级妇科肿瘤专科做一次线下会诊，现在这类手术不一定需要开腹，也可以选择微创腹腔镜手术，能减少术后痛苦。\n先把现有的报告资料给我看看，我们再一起分析后续的选择。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "家属可能反馈已在纸质病理会诊资料上看到“广泛复杂非典型增生”等字样，但仍需完整报告照片、病理号或线下病理会诊核验。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "妇科肿瘤专科线下会诊目前只是建议，尚无预约或转诊回执；需确认患者是否愿意去、何时能挂号、资料是否齐全。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "如需核实病理，应告知患者准备原病理报告、病理号、HE切片/蜡块及宫腔镜手术记录；但本轮尚未发生送检或出结果。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我刚翻到一张像是病理会诊单/住院资料的纸，我念给您听，可能不全：上面写着“子宫内膜、宫内物，破碎子宫内膜广泛复杂非典型增生”。前面的病理号、日期我还没完全对上，宫腔镜手术记录好像不在这一沓里，我再找。\n\n我想先问一下，这个“广泛复杂非典型增生”是不是已经等于癌了？还是说属于癌前病变、里面有可能夹着癌但现在看不出来？\n\n还有我妈一直在旁边说她宫颈筛查阴性，觉得应该没大事，不想听到切子宫和附件，更怕开腹。这个宫颈筛查阴性是不是只能说明宫颈那边问题小，不能说明子宫内膜就没风险？\n\n如果按这几个字看，下一步是不是不要再拖了，应该先挂妇科肿瘤专科，把这些原件带过去？到时候能不能争取微创腹腔镜，不一定开腹？我也怕说重了她更不愿意去。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "我先帮你把这些问题说清楚：\n1. 子宫内膜广泛复杂非典型增生属于**癌前病变**，还不等于癌，但它癌变风险很高，而且宫腔镜只取了部分组织做病理，确实有可能漏掉已经癌变的地方，这也是医生建议手术切除的原因。\n2. 你妈妈说的没错，宫颈筛查阴性只能说明宫颈没有问题，完全不代表子宫内膜没有风险，这两个是不同部位的病变，不能用宫颈结果排除子宫内膜的问题。\n3. 你理解的对，现在确实不建议拖，尽快带齐所有病理和手术资料去妇科肿瘤专科门诊会诊是对的，目前这类手术大多都可以做微创腹腔镜手术，不一定需要开腹，能减少创伤和术后恢复时间，你可以把这一点好好跟阿姨说说，减少她的顾虑。\n\n我也会先帮你调取一下CareLoop网络里可查到的同步病历资料，你找到完整病理报告和手术记录后，可以再把关键信息告诉我，我们帮你一起核对。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00072",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+24min",
+      "text": "医生，我刚把您这段话念给我妈听了，她现在不再一直拿“宫颈阴性”顶着了，说可以先去听听上级妇科肿瘤专科怎么说。但是她一听“切子宫、两边附件”还是很害怕，刚还问我“是不是一去就要被按着住院开刀”。\n\n我想确认几个实际问题：\n\n1. 这个情况一般是按“尽快”到什么程度？比如一两周内挂到妇科肿瘤专科可以吗，还是最好这几天就去？如果专科号暂时挂不上，先挂大医院普通妇科或妇科肿瘤普通门诊也行吗？\n\n2. 去会诊是不是主要先让专科医生看病理和手术记录、评估手术方式，不等于当天马上必须开刀？我想这样跟我妈说，她可能没那么抗拒。\n\n3. 我现在不继续折腾拍照片了，准备把这一沓原件都装起来：病理那张、宫腔镜相关、宫颈筛查、之前B超/抽血这些能找到的都带去。宫腔镜手术记录我还没翻到，如果找不到，是不是到原来做宫腔镜的医院病案室或妇科门诊去补打一份？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00078",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+24min",
+      "text": "我来给你这几个问题明确的答案，你可以放心跟阿姨说：\n1. 这个情况建议1-2周内安排门诊就诊，不算急得要这几天马上住院，但也不要拖更久；如果挂不上妇科肿瘤专家号，先挂大医院的普通妇科或妇科肿瘤普通门诊先做初步会诊、登记预约手术都是可以的，不会耽误病情。\n2. 第一次去就是会诊，主要是让医生看所有病理和手术资料，评估病情和手术方案，不会当天就开刀，这点你完全可以跟阿姨讲清楚，帮她放宽心。\n3. 你把能找到的所有报告原件都带上是对的，如果宫腔镜手术记录找不到，直接去原来做宫腔镜的医院病案室或者妇科门诊补打一份就可以，现在医院都可以调取住院或门诊病案，很方便。\n\n阿姨现在愿意迈出第一步去就诊已经很好了，慢慢帮她缓解顾虑，后续有任何结果都可以再来找我帮你分析。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00093",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+56min",
+      "text": "医生，我现在就在挂号平台上看号了。专家号好像比较紧张，我看有的普通妇科、还有一个写着妇科肿瘤普通门诊的号源可能更早一点，但我不太会分这个。如果专家号要等得久，我是不是优先挂“妇科肿瘤普通门诊”，实在没有再挂普通妇科？只要能在一两周内先让上级医院医生看上资料就行，对吗？\n\n我妈刚听到第一次只是门诊会诊、不是当天开刀，稍微松口了，说可以先去听听。但她还一直问我，最后是不是肯定要切子宫和两边附件、能不能微创。我也只能先跟她说先让专科医生看资料再定，不能在家自己想。\n\n资料我这边已经把病理单、宫颈筛查、B超这些原件先装文件袋了，宫腔镜手术记录还没找到。我明天准备打电话问原来医院病案室或妇科门诊能不能补打。这样做应该比较稳妥吧？如果挂普通门诊去，会不会因为少了这个手术记录就白跑一趟？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00099",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+56min",
+      "text": "你的安排是非常稳妥的，优先挂妇科肿瘤普通门诊确实是更高效的选择，比等很久专家号更合适，1-2周内能让医生先看上资料就完全符合要求，要是连妇科肿瘤普通门诊都没号，再挂普通妇科也完全可以，不会耽误初步评估。\n\n关于手术的问题，你这样跟阿姨说就很好：是不是一定要切子宫附件，需要医生看过全部资料再最终定，但即使最终需要手术，现在绝大多数都可以做微创腹腔镜，不需要开腹，创伤小很多，恢复也比开腹快很多，可以先让阿姨放宽心。\n\n资料方面，你明天联系原来的医院补打宫腔镜手术记录就好，哪怕短时间内真的补不出来，带着现有的病理单、B超和宫颈筛查去，医生也可以先做初步会诊，不会白跑这一趟；当然能补到手术记录会更完整，更方便医生判断，所以你去补打的做法完全正确。\n\n挂好号之后要是还有不清楚，或者拿到会诊结果之后，随时再来找我帮你分析就好。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00114",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+102min",
+      "text": "医生，我刚刚已经挂好了，是上级医院大概一周后上午的“妇科肿瘤普通门诊”。号确认了，我妈听说不是当天就开刀，也答应先去听医生怎么说，但还是一直问我会不会一定切子宫和两边附件、会不会开腹，我现在也只能先劝她别在家自己吓自己。\n\n我这边文件袋已经装了病理那张、B超、宫颈筛查这些原件。宫腔镜手术记录还没补到，明天我去打电话问原医院病案室或者妇科门诊，实在补不到也先不取消这次门诊。\n\n我现在想最后再确认几件最实际的：  \n1. 去门诊前除了这些原件，还最要紧带什么？身份证、医保卡、以前住院号这些也要带吧？  \n2. 到时见妇科肿瘤医生，我怕一紧张问漏了，最该问的就是“病理风险、是不是需要手术、切除范围、能不能腹腔镜、什么时候安排”这几件吗？  \n3. 等这一周期间，如果我妈出现什么情况就不能等门诊，要提前去急诊或者妇科？比如大量出血、肚子痛、发烧这种算不算？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00120",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+102min",
+      "text": "我来帮你把这几个实际问题都确认清楚，你安心准备就好：\n1. 除了所有检查和病理原件，身份证、医保卡是必须带的，原来医院的住院号/门诊号如果记下来也一起带上，能方便新医院快速调取原院资料，其他不需要额外带太多东西了。\n2. 你梳理的这几个问题刚好就是最关键的：病理到底是什么风险程度、需不需要手术、如果手术要切多大范围、能不能做腹腔镜微创、什么时候可以安排手术，把这几个问清楚就够了，不会漏重点。你也可以把这几个问题写在便签上，到时候拿出来看就不怕紧张忘啦。\n3. 你说的这几种情况都属于要提前就诊的警报，如果一周里出现**明显多于月经量的阴道大量出血、剧烈难以缓解的肚子痛、发烧超过38℃**，都不要等门诊，直接去急诊或者就近妇科先处理；如果只是少量出血、轻微肚子胀，没有上面说的这些情况，可以先观察等到门诊。\n\n你现在的准备已经很充分了，阿姨愿意配合去就诊就是很好的开始，看完门诊拿到结果之后，不管是什么方案，你都可以再来找我帮你一起分析。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00134",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+120min",
+      "text": "好的医生，我明白了。我已经把身份证、医保卡、原件和那几个要问的问题都写在小纸条上，放文件袋里了。宫腔镜手术记录我明天再去问原医院，补不到也先带现有资料去，不取消这个号。\n\n我现在就按您说的理解：这一周先等妇科肿瘤门诊看资料，不是在家自己决定手术；如果她出血明显比平时月经多、肚子痛得厉害缓不过来，或者发烧到38度以上，就不等号了，直接去急诊或者就近妇科。少量出血、轻微胀痛就先观察。\n\n我妈还是会反复念叨怕切子宫、怕开腹，但至少现在答应先去会诊了。等门诊医生看完怎么说，我再回来跟您讲。谢谢您，我这会儿总算稍微有点底了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00141",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+120min",
+      "text": "不客气，能帮你和阿姨理清头绪就好。你现在准备得非常充分，放宽心带阿姨去看门诊就可以。看完之后不管是什么结果，有任何拿不准或者想再梳理的地方，随时回来找我就好。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00155",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10200min",
+      "text": "医生，我们今天已经带我妈去上级医院妇科肿瘤普通门诊看过了。路上这一周她没有出现您说的那种大量出血、发高烧或者痛得受不了，所以是按预约去的。\n\n门诊医生看了我们带去的纸质病理单、B超和宫颈筛查这些原件，我记得大概意思是说这个不是光看宫颈筛查阴性就能放心，主要还是子宫内膜那边的病理风险，要按比较严肃的情况处理。医生说建议尽快住院评估，后面多半还是要手术，可能要切子宫，附件要不要一起切、能不能腹腔镜，要看他们再评估和术中情况。我妈一听“住院、手术、切子宫”又有点慌，一直问是不是已经就是癌、是不是一定要开腹。\n\n我现在有两个地方没太听明白：一个是医生说的“按恶性可能准备”是不是就等于已经确诊癌了？另一个是如果让住院，我们是不是应该先答应排住院床位，别再回家拖着等她想通？我怕我转述错了，报告原件医生是现场看了，但我自己记专业词记不全。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00161",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10200min",
+      "text": "我来帮你把这两个问题理清楚，你可以放心转告阿姨：\n1. 「按恶性可能准备」不等于已经确诊癌。子宫内膜非典型增生本身是癌前病变，但它有很高的概率已经合并有隐藏的子宫内膜癌，只是术前的病理活检只取到了增生部分，没取到癌变的地方，所以医生才会说要按恶性可能来准备，等住院进一步评估、手术之后再做最终的病理确诊，不是说现在就百分之百肯定是癌了。\n2. 这种情况建议你先答应排床位，不要拖着等阿姨完全想通。子宫内膜非典型增生合并癌变的风险比较高，越早安排评估和治疗，预后越好；哪怕阿姨还有顾虑，先排上床位也只是占一个预约名额，真的到了入院前改变想法还可以再调整，不会强制马上手术，比拖着让病情进展风险要小得多。\n\n关于你妈妈担心的点，你也可以帮她宽心：现在绝大多数这类手术都可以做腹腔镜微创手术，不一定需要开腹，切除范围也会根据术中最终的冰冻病理结果来定，不是上来就直接一刀切，不用太提前恐慌。你要是方便的话，可以把这次门诊给你开的住院单拍照或者把上面文字读给我，我也能帮你再确认一下安排。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00176",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10560min",
+      "text": "医生，我按您说的去办了，刚从医院那边回来。住院处和护士台都联系过了，说已经给我妈登记排床了，现在就是等电话通知床位，还没真正住进去，也没有说今天就手术。\n\n住院单我自己能读到的大概是“妇科”这边，方向像是妇科肿瘤，诊断那一栏我看着像写“子宫内膜非典型增生，待排恶性可能”之类的，后面有些字我不敢保证读得准。工作人员提醒我，等通知入院要带原始病理、B超、宫颈筛查，还有身份证、医保卡这些。\n\n我刚也跟我妈说了，按您说的不是现在就百分百确诊癌，也不是一进医院马上把她拉去开刀。她听完稍微能接受排床了，但还是在旁边一直问会不会最后切子宫、切附件、会不会开腹。\n\n我想再确认一下：现在我们就等床位电话，接到电话就按要求去住院对吧？等床位这几天还是按之前说的，出现大量出血、肚子痛得厉害、发烧就别等，直接去急诊/妇科，是这个意思吗？还有接到电话入院前，如果她临时又害怕不想去，我是不是还是尽量劝她先去住院评估，别在家拖？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00183",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10560min",
+      "text": "你理解得完全正确，现在可以安心等床位通知，我再把要点给你确认清楚：\n1. 接到床位通知就按要求带齐所有资料去住院就好，你们已经提前登记安排，流程都是顺的。\n2. 等床位这几天的警报线和之前说的一样：如果出现**明显多于月经量的大量出血、剧烈难以缓解的腹痛、体温超过38℃的发烧**，不用等床位通知，直接去急诊或就近妇科处理就可以，不用硬等。\n3. 如果到入院前阿姨又临时害怕不想去，还是建议你尽量劝她先去住院评估——这个评估本身不是马上手术，只是把风险、手术范围、能不能微创都再确认清楚，哪怕最后真的改变想法，也可以再调整，拖着不评估的风险比先排上要大，先做评估总是更稳妥的。\n\n关于阿姨担心的问题，你可以再帮她宽心：即使最终需要手术，目前绝大多数这类手术都可以做腹腔镜微创，不需要开腹，创伤和恢复都会比原来好很多；切除范围也会根据术中最终病理结果来定，不是入院就直接一刀切，不用一直提前焦虑。\n\n等接到入院通知或者住院后有了新的安排和结果，你随时再来和我说就好。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00198",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+14880min",
+      "text": "医生，我们接到床位电话了，今天已经带我妈到上级医院妇科病区办住院了。身份证医保卡还有病理单、B超、宫颈筛查这些纸质的，刚才护士和一个住院医生都看了，有些原件好像先收去核对了。\n\n这几天她倒是没有大量出血、发烧、肚子痛得受不了，所以是正常等床位来的。现在人已经在病房安顿，病号服也换了，但还没说哪天手术，也没见到主管医生正式谈。\n\n我现在主要有点没听懂：住院医生好像说还要“核一下原来的病理”，可能要病理会诊还是等切片，我听着就慌了——这是不是说明他们更怀疑已经是癌？还是只是住院前正常流程？我妈在旁边又一直问是不是要重新做病理、是不是一定切子宫和两边附件、会不会开腹，我也不知道怎么回答她才不说错。\n\n明天应该会查房或者谈话，我怕一堆术语听不懂。医生您帮我想想，我明天最该抓住问清楚哪几句？是不是就问：病理怎么核、手术大概什么时候、能不能腹腔镜、切除范围怎么决定？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_078__Doubao-Seed-2.0-lite",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.299038105676658,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 8
+}

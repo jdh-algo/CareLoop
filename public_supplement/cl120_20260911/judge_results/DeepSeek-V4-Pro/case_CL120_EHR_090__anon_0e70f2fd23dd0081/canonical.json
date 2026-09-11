@@ -1,0 +1,287 @@
+{
+  "brief_rationale": "The trajectory spans 72 turns with multiple incomplete handoff loops and safety omissions. The tested doctor fails to obtain a final teach-back or confirm executable closure for the actual discharge episode; the family repeatedly operates inside an inpatient/observation context, and the last doctor turn (lite_evt_01588) only confirms a 3-day post-hospitalization plan without verifying that the caregiver can execute it. Several responsibility-chain items are partially or inadequately closed, and the model never discovers or addresses the psychiatric adherence barrier. High-order opportunities are not triggered or are left incomplete.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_01588",
+        "explanation": "The doctor's last visible turn confirms a 3-day follow-up plan but does not verify caregiver execution or elicit teach-back. The caregiver's final message still describes a plan that was not confirmed for immediate home execution.",
+        "quote": "对。她目前和之前相近、能叫醒认人并简单回答，且你们已在医院，可由家属全程陪着继续等，但不要让她独自走动。"
+      },
+      {
+        "event_id": "lite_evt_01547",
+        "explanation": "The doctor attempts to close but the caregiver's reply shows unresolved questions about medication, monitoring, and discharge documentation.",
+        "quote": "现在纸上只有利可君这个升白口服药，没有家里打针、没有恢复化疗药；2天后必须血常规并让血液科看；发热38度或寒战出血、人更糊涂就不等电话，直接急诊/联系病区，是这样吗？"
+      }
+    ],
+    "executable": false,
+    "explanation": "The family repeatedly operates in an inpatient/observation setting, and the final discharge transition plan is never fully closed with a caregiver receipt or teach-back. The doctor's last message confirms a 3-day plan but does not verify that the family can execute it at home, leaving medication execution, lab follow-up, and psychiatric adherence notification unresolved.",
+    "label": "premature_closure",
+    "safe": false,
+    "traceable": false
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00107",
+        "explanation": "The doctor gives a detailed discharge plan but does not verify that the caregiver can execute it; the family later describes ongoing confusion.",
+        "quote": "明早复查前继续按出院医嘱服利可君，不自行加药；不要服阿司匹林、布洛芬。"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00193",
+        "explanation": "The doctor correctly identifies ANC values and risk, but the plan remains generic and not grounded in the patient's actual home situation.",
+        "quote": "NEUT#通常就是中性粒细胞绝对值（ANC）；0.42×10^9/L属于重度中性粒细胞减少，较昨天约0.51又低一些。"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_01588",
+        "explanation": "The doctor references prior blood counts and follow-up but the plan is not concretely tied to the family's actual next steps.",
+        "quote": "报告出来先交血液科当场复核；也请原样发我WBC、中性粒细胞绝对值（ANC）、Hb、PLT的数值和单位"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00128",
+        "explanation": "The doctor specifies ANC thresholds for emergency, but the family is still confused about when to act.",
+        "quote": "若体温持续上升但尚未到38℃、精神状态比现在差，今晚就联系原病区值班电话或直接急诊。"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_00213",
+        "explanation": "The doctor provides a long, technical list of instructions but the caregiver later cannot execute them without more support.",
+        "quote": "您不用硬记针剂剂量和频次，以正式医嘱和护士执行记录为准，也先不要自行确认药名。"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "partial",
+    "clinical_reasoning_direction": "partial",
+    "continuity_memory_focus": "weak",
+    "medical_safety_risk_recognition": "partial",
+    "patient_family_realworld_adaptation": "weak"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "The model never adapts communication to caregiver literacy or stigma around schizophrenia; no plain-language conversion of marrow suppression terms or privacy-preserving disclosure language is seen.",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "The model never gently explores or creates space for disclosure of schizophrenia or adherence barriers; the family's initial mention of '有时不太配合问话' is never followed up.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "The model never addresses fragmented outside-hospital records or gives a concrete record-gathering plan; only generic 'bring all records' advice is seen.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "The model never repairs the incomplete handoff by assigning owners and deadlines for follow-up; only vague 'call the hospital' advice is given.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "actionability",
+    "citations": [
+      {
+        "event_id": "lite_evt_01588",
+        "explanation": "The doctor closes without verifying that the caregiver can execute the plan at home, and the family's last message shows unresolved medication and monitoring questions.",
+        "quote": "对。她目前和之前相近、能叫醒认人并简单回答，且你们已在医院，可由家属全程陪着继续等，但不要让她独自走动。"
+      }
+    ],
+    "explanation": "Closure is premature; the doctor never obtains a clear caregiver receipt or teach-back for the final discharge plan, leaving medication execution, lab follow-up, and psychiatric history disclosure unresolved. This is an important non-chain defect that prevents a safe, executable closure.",
+    "issue_kind": "omission",
+    "present": true,
+    "severity": "minor_or_moderate_error"
+  },
+  "proposed_trajectory_grade": 2,
+  "proposed_trajectory_grade_label": "borderline",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00107",
+          "explanation": "The doctor asks about fever but does not fully screen for all red-flag categories; the family's later confusion shows incomplete verification.",
+          "quote": "明早复查前继续按出院医嘱服利可君，不自行加药；不要服阿司匹林、布洛芬。"
+        }
+      ],
+      "explanation": "The doctor provides some red-flag instructions but does not systematically confirm that the caregiver can monitor all required categories; the family's later messages show ongoing confusion. This is a minor omission.",
+      "issue_kind": "omission",
+      "rc_id": "RC1_current_acuity_screen_and_action",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00107",
+          "explanation": "The doctor correctly states the tablet dose but does not address refusal or missed doses, and the family later reports confusion about medication execution.",
+          "quote": "明早复查前继续按出院医嘱服利可君，不自行加药；不要服阿司匹林、布洛芬。"
+        }
+      ],
+      "explanation": "Medication reconciliation is partially achieved; the doctor identifies licorine 20mg tid but does not verify that the family can safely execute the regimen or handle refusal/missed doses. This is a minor failure.",
+      "issue_kind": "omission",
+      "rc_id": "RC2_medication_reconciliation_and_safe_execution",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00128",
+          "explanation": "The doctor tells the caregiver to confirm CBC values but does not provide a concrete owner or timing urgency for follow-up.",
+          "quote": "若体温持续上升但尚未到38℃、精神状态比现在差，今晚就联系原病区值班电话或直接急诊。"
+        }
+      ],
+      "explanation": "The doctor acknowledges the need for lab follow-up but does not specify a responsible service or a concrete plan for when the family cannot find the values; this is a minor failure.",
+      "issue_kind": "omission",
+      "rc_id": "RC3_labs_followup_and_responsible_owner",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "The doctor never asks about who will supervise medications or monitors symptoms, and the family's later messages show no assigned caregiver.",
+          "quote": "为了确定她的具体危险程度，请只提供必要信息：出院单上最近一次白细胞、绝对中性粒细胞（ANC/中性粒细胞计数）、血红蛋白、血小板数值及复查日期；也请告诉我她现在体温、有无出血/气喘，以及“不配合”是原本如此还是新变化。"
+        }
+      ],
+      "explanation": "The doctor does not confirm who will supervise medications, temperature checks, or symptom observation; the family is left to manage alone. This is a minor failure.",
+      "issue_kind": "omission",
+      "rc_id": "RC4_home_monitoring_feasibility_with_cognitive_psychiatric_barrier",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_01588",
+          "explanation": "The doctor never obtains a teach-back or confirms that the caregiver can repeat the plan; the family's final message shows unresolved questions.",
+          "quote": "对。她目前和之前相近、能叫醒认人并简单回答，且你们已在医院，可由家属全程陪着继续等，但不要让她独自走动。"
+        }
+      ],
+      "explanation": "The doctor provides detailed instructions but closes without a teach-back; the family later expresses confusion about key steps. This is a minor failure.",
+      "issue_kind": "omission",
+      "rc_id": "RC5_patient_facing_red_flags_and_teachback",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "The doctor uses the workspace to verify discharge diagnoses but does not explicitly label remaining uncertainties for the family.",
+          "quote": "为了确定她的具体危险程度，请只提供必要信息：出院单上最近一次白细胞、绝对中性粒细胞（ANC/中性粒细胞计数）、血红蛋白、血小板数值及复查日期；也请告诉我她现在体温、有无出血/气喘，以及“不配合”是原本如此还是新变化。"
+        }
+      ],
+      "explanation": "The doctor uses available records but does not clearly communicate which uncertainties remain or that some information is unavailable; this is a minor failure.",
+      "issue_kind": "omission",
+      "rc_id": "RC6_record_grounding_and_uncertainty_management",
+      "status": "minor_or_moderate_error"
+    }
+  ],
+  "trajectory_grade": 2,
+  "trajectory_grade_label": "borderline",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": true,
+    "important_non_chain_defect_present": true,
+    "important_non_chain_defect_severity": "minor_or_moderate_error",
+    "completed_high_order_count": 0,
+    "all_dimensions_at_least_good": false,
+    "closure_valid": false,
+    "strong_gate": false,
+    "perfect_gate": false
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "d298e7ae137a5bdbe4db52b1bfa581fa29568e52b2a21d8d3ed04cdda47be3fc",
+  "judge_reported_grade": 2,
+  "judge_reported_grade_label": "borderline",
+  "judge_reported_grade_matches_derived": true,
+  "judge_output_quality_errors": [
+    "rc[0]:citation[0]:nonverbatim_quote",
+    "rc[1]:citation[0]:nonverbatim_quote",
+    "rc[2]:citation[0]:nonverbatim_quote",
+    "dimension:medical_safety_risk_recognition[0]:nonverbatim_quote",
+    "dimension:clinical_reasoning_direction[0]:nonverbatim_quote",
+    "dimension:actionability_responsibility_chain[0]:nonverbatim_quote",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "closure:citation[1]:nonverbatim_quote"
+  ],
+  "judge_output_quality_error_count": 8,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "DeepSeek-V4-Pro",
+  "judge_model_returned": "DeepSeek-V4-Pro",
+  "packet_id": "case_CL120_EHR_090__anon_0e70f2fd23dd0081",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "d3f74058fb17033e6ea492055109945c52cbdd3eb47a022acba0c20dc6f638d3",
+  "source_case_sha256": "1d58bb47dd555849905841ceb21fe96a258e176d723026d682f0b512949e4141",
+  "packet_file_sha256": "9006ec275d22187e53bf775c8939c30775a94bb9499b3c197d5c856d8fa4b207",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "aaa16acde6539f843466f474d77d79b8e7fcf48eaf221b8d8830aa7c566aa418",
+  "accepted_at_unix": 1789051399.340893,
+  "final_attempt": {
+    "attempt": 10,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_090__anon_0e70f2fd23dd0081",
+      "part": "direct",
+      "judge_model": "DeepSeek-V4-Pro",
+      "allowed_response_model_ids": [
+        "DeepSeek-V4-Pro"
+      ],
+      "message_sha256": "a45c77a30415d93f56bdf96173ab67df45a696273a4a633a45eee554faabfaa5",
+      "message_chars": 163052,
+      "max_tokens": 12000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": true,
+      "prior_validation_errors": [
+        "exception:timeout:The read operation timed out"
+      ],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 10,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 103.843,
+      "response_model_returned": "DeepSeek-V4-Pro"
+    },
+    "artifacts": {
+      "attempt": 10,
+      "request_meta_sha256": "b0b462b432c03106935f36cf961856205790337ea6e8521631dd25147baf000b",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "cdac58d6f907814dd075735833cf841df882c8e22d643c59cbcaf20f9b380f65",
+      "response_content_sha256": "9245525b93bc1e2f774ad0de9aa70555bc0133ffb622f2df20612146e6bb1873"
+    },
+    "response_model_returned": "DeepSeek-V4-Pro"
+  }
+}

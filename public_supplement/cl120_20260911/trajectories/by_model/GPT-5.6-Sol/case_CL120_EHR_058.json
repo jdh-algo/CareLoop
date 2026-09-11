@@ -1,0 +1,773 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "838fc532936f86e07c6d57fcd5c88bdb94f9fcffeea5f4ee26afcd0634ee9343",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_058__anon_bccc18593eaa2fc0",
+    "packet_sha256": "64be5d6794709abce172f065810f3e243bc18cc2242e56240f90349f2a1e3055"
+  },
+  "case_id": "case_CL120_EHR_058",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "gastro_hepatology",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "misstated_family_or_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "delayed_or_staged_result_return | low_adherence_or_refusal",
+    "starting_phase": "discharge_transition",
+    "target_problem": "colonoscopy_or_pathology_followup",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "医生早期要求逐字 readback 出院小结、检查名称、结果/结论和日期，并区分申请单/项目单与结果单，未凭模糊单据猜测。",
+      "家属 teach-back：今晚不再猜单据，大便纸先按申请单处理；监测体温、出血、腹痛加重、呕吐/不排气、伤口红肿流脓、头晕等，明显情况直接急诊。",
+      "医生要求次日联系或前往原医院核对药物、粪便检查是否留样/出报告、妇科复诊和病理查询方式，并给出电话打不通时现场办理替代路径。",
+      "家属次日上午实际到原医院：药房核对出院药并提醒漏服不双倍补；检验科确认粪便常规为本次术前申请且系统有普通结果记录但家属手中不是结果单；妇科复诊约到术后第8天；病理仍未回传。",
+      "医生对药房核验后的药物逐项行动化：头孢克肟0.1g bid共3天，洛索洛芬按需饭后且避免NSAID叠加，奥美拉唑按药袋短期，未可靠确认的中成药不凭外观加药，并列出过敏、黑便/呕血、持续胃痛等用药相关升级条件。",
+      "家属末轮确认已回家并按医生说明分开药物、头孢按3天吃、止痛药不硬吃、护胃药按药袋、不自行续药、不添加类似中成药；已设第8天复诊提醒，备注查病理和调粪便常规完整报告；理解若发热、出血多、腹痛加重、吐/不排气、伤口红肿流脓、胸闷气短或小腿肿痛则直接急诊。",
+      "当前患者状态稳定：轻微牵拉痛、走动后疲劳，无突然加重、无已报告急诊红旗。"
+    ],
+    "if_continued_next_focus": "若继续运行，应在术后第8天复诊节点确认是否实际到诊、病理是否回流、妇科医生如何解释病理和粪便常规完整报告；若复诊失败或出现红旗，则转入外部接管/急诊或失败后果线程。",
+    "rationale": "本案当前责任单元是出院交接混乱后的有限过渡照护：辨认出院袋中肠道/粪便相关单据性质、核对术后用药、明确妇科复诊和病理/结果追踪、建立红旗返回规则并确认家属能执行。轨迹已显示家属完成药房/检验科/挂号窗口第一轮外部核验，医生对回流信息进行了行动化，家属随后在家完成药物分拣、设置复诊和病理/粪便报告提醒，并能复述红旗。患者当前无发热、大量出血、腹痛加重、呕吐不排气、伤口感染等急诊红旗，仅轻微牵拉痛和疲劳。术后病理仍未回流、粪便常规完整数值未被线上医生审阅、术后第8天复诊尚未实际发生，但这些已被明确为由妇科门诊/原病区和家属共同追踪的有 owner、due window、verification path、escalation path 的 bounded residual follow-up；它们不改变当前居家安全边界。需注意这不是疾病治愈，也不是所有后续随访完成，而是本次出院过渡责任链安全闭合。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：术后病理仍未回流；责任人为术后第8天妇科复诊医生/原病区及家属主动查询，常规3-7个工作日，逾期仍无报告需联系妇科门诊或原病区追踪；当前不得生成病理结论。",
+      "bounded_residual_followup：粪便常规仅确认系统内有普通结果记录，完整项目、数值、参考范围未由线上医生审阅；计划在第8天妇科复诊时请医生调阅，若需线上复核需提供正式报告关键行。因目前被定位为术前普通检查且无红旗，不构成当前居家安全阻断。",
+      "bounded_residual_followup：术后第8天复诊已预约并设提醒但尚未实际面诊；若不能按时完成，应尽快改约或联系原病区/妇科门诊。当前因预约、提醒、替代路径和红旗安全网均明确，不阻断本次出院过渡闭环。",
+      "global_disease_journey_background：子宫肌瘤术后恢复、肺结节/乳腺囊肿等既往记录及所有未来长期随访不属于本次线上出院交接任务的完全终局。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "出院后才发现肠道相关结果和复诊单没理清",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我妈刚做完妇科那个肌瘤手术出院，家里人轮流陪的，交接有点乱。她以前做过痔疮和直肠黏膜脱垂手术，这次住院前好像又让查了大便还是肠道方面的东西，我妈说医生没特别交代，可出院袋里有几张单子我们看不懂。想问下哪些结果要追、哪些症状要马上回去？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请一次性调取患者本次妇科肌瘤手术相关的入院记录、手术记录、出院记录/出院医嘱、病理申请及结果状态、住院前后全部检验检查（尤其大便、肠道、贫血和感染相关）、当前出院用药；同时调取既往痔疮及直肠黏膜脱垂手术资料、消化/肛肠科记录，并按日期整理时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "我目前还没查到这次住院的出院记录或检验报告，所以不能凭那几张单子猜结果。请先逐字发来：①出院小结中的手术名称、出院诊断、复诊时间；②每张单子的检查名称、结果/结论和日期（可直接照着读关键行）；③是否还有“病理检查、粪便隐血/大便常规、肠镜”未出结果。妇科肌瘤手术后最要追的是术后病理和妇科复诊；肠道检查若异常也要单独追踪。若出现阴道出血达到或超过每小时浸透1片卫生巾并持续、晕厥/明显头晕心慌、持续或加重腹痛、腹胀伴停止排气排便或反复呕吐、体温≥38℃、伤口红肿流脓、恶臭分泌物、胸痛气促或单侧小腿肿痛，请立即回急诊。现在也请告诉我她手术和出院日期、目前体温、出血量、腹痛、排气排便及伤口情况。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "家属可提供部分出院小结和单据 readback：腹腔镜下子宫肌瘤剔除术、子宫平滑肌瘤、术后约1周妇科复诊；病理和肠道/大便相关单据仍需继续核对。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00032",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "术后病理可能尚未出结果，需按出院单/医院系统在术后约1周复诊时查询，若超过常规时间未见报告应联系妇科病区或门诊。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00033",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "肠道/大便相关单据不能只凭标题判断；需家属读出完整标题、申请/采样/报告日期、结果栏和结论栏。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00034",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "家属可反馈目前无高热、大量出血、持续加重腹痛/肠梗阻表现或伤口明显感染；仍需医生进行安全网确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00039",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我照着纸念，可能有的字不准。\n\n出院小结上手术名称写的是：“腹腔镜下子宫肌瘤剔除术”。出院诊断我看到有“子宫平滑肌瘤”，后面还列着“直肠黏膜脱垂术后”“混合痔术后”这些字，我分不清这是以前做过的也写上去，还是这次又发现的问题。\n\n复诊那里大概写的是术后约1周到妇科门诊复查、看伤口之类的。我现在没看到已经挂好的号，也没看到明确的最终病理报告，只看到类似“病理结果按医院通知或复诊时查看”这种意思，所以是不是病理还要我们自己追？\n\n还有一张跟大便有关的单子，我只能看懂标题像“粪便检查/粪便常规/隐血”这类，下面有日期栏，但结果/结论那块我没找着，不知道这张是申请单还是已经做完的结果单。这个要不要打电话问病区，还是等一周复诊一起问？\n\n我妈现在在家躺着，体温没到38℃，阴道没有那种一小时湿透一片卫生巾的大出血，就是肚子有点牵拉痛。她能放屁，排便还不太规律但不是完全不通。伤口外面敷料看着是干的，没看到流脓，也没闻到臭味。手术具体哪天我再翻一下，今天上午刚办出院。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00044",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取本次妇科住院的入院记录、手术记录、出院小结及医嘱、病理申请和当前报告状态；同时查询住院前后所有粪便常规、隐血、肠镜或其他肠道检查的申请、采样及结果状态，并查看出院用药清单、手术和出院日期。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00048",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "请调取本次妇科住院的入院记录、手术记录、出院小结原文、术后医嘱与复诊要求、病理申请及当前报告状态；同时查询住院前后所有粪便常规、隐血、肠道检查的申请/采样/完成状态和结果，并查看出院用药清单及手术、出院日期。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00052",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00054",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00056",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "请为患者登记：①术后病理结果追踪与回传后复核提醒；②术后约1周妇科门诊随访安排。并查询此次住院的出院记录、手术日期、病理申请/报告状态、粪便常规及隐血等肠道检查的申请、采样和结果状态；如可见，同时调取出院用药及伤口护理要求。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "care_system",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_care_system_receipt",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "医生登记结果追踪/回访任务：医生明确要求登记术后病理结果追踪与回传后复核提醒。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "care_system",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_care_system_receipt",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "医生登记随访/复诊计划。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00060",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "目前描述更像常见术后牵拉痛，暂未见明显急症信号；可适当下床缓慢活动，不必一直卧床，并按出院医嘱用药、护理伤口。“直肠黏膜脱垂术后、混合痔术后”通常是在记录既往手术史，不等于本次复发或又做了手术。\n\n最终病理确实需要主动确认。我已登记病理结果追踪和术后复诊计划；你们仍需自行预约术后约1周的妇科门诊，复诊时看伤口并核对病理。若届时仍无报告，直接联系妇科病区或门诊查询，不要默认没通知就是正常。\n\n大便那张目前不能判断是申请单还是结果单。请再找一下并逐字读出：完整检查名称，以及是否有“申请日期、采样日期、报告日期、结果、参考范围、结论”。如果只有患者信息和申请日期、没有采样/报告日期及结果，多半尚未完成；建议明天先电话问病区或检验科是否已留样、是否出结果，不必空等一周。若明确只是普通粪便常规或隐血，且她没有黑便、鲜血便、明显腹痛等，一般不属于今晚急查。\n\n若体温≥38℃、出血达到每小时浸透1片卫生巾并持续、腹痛明显加重、腹胀且停止排气排便或反复呕吐、晕厥气促、伤口红肿流脓或有恶臭分泌物，应立即急诊。也请把手术日期和出院药物名称、剂量发来，我再帮你们核对居家安排。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00082",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "家属读出的粪便相关纸张仍不像完整结果单；建议按患者姓名、住院号、申请日期向原病区或检验科核实是否已留样和是否有报告。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00083",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "术后复诊尚未预约成功。需患者家属今天或次日尝试挂号，并保留预约凭证；号源困难时联系原病区/门诊。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "术后病理仍未出结果。需继续追踪，复诊时主动查询；超过常规时间仍无报告应联系妇科病区或门诊。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00088",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+20min",
+      "text": "医生，我又翻了一遍，照着念啊，可能有字看错。\n\n那张大便的纸上面比较清楚的是“粪便检查”还是“粪便常规”，下面有我妈名字、住院号这些，还有一个“申请日期”一栏。可是我没找到您说的“采样日期”“报告日期”，也没看到结果、参考范围、结论这些字。这样是不是基本就当它不是结果单？我明天打病区电话问一下有没有留样、有没有出结果，可以吗？\n\n复诊这边我也没找到挂号短信、预约号或者订单号，只看到出院提示写“术后约1周妇科门诊复查”，看伤口、看病理这种意思。那我们是不是自己去公众号挂妇科普通门诊就行，还是一定要挂做手术那个医生？如果挂不到一周内的号，晚两三天行不行？\n\n还有药我有点怕念错。药袋上我只能看出像有止痛的、消炎药/抗生素，还有一个护胃的，剂量和一天几次那块小字我看不全。我妈在旁边说肚子牵着疼、想休息了。我怕今晚给她吃错，是不是先严格按药袋贴纸写的吃，不确定的药先别乱加？明天我带药盒去药房或者打病区电话核对每种药怎么吃，这样安全不？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00094",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+20min",
+      "text": "对，这张纸目前应按“申请单/项目单、不是结果单”处理，不能据此判断正常或异常。明天按姓名、住院号和申请日期询问原病区或检验科：是否已经留取标本、具体项目是什么、是否出报告；如果没留样，再问是否还需要补做。\n\n复诊可以先挂原医院妇科普通门诊，不一定非要手术医生；能挂手术医生或其团队更方便。病情稳定时，约1周复查晚2–3天通常可以；若伤口、出血、发热或疼痛有异常则不要等。挂不到号可联系原病区，请他们告知术后复诊渠道；就诊时带出院小结并主动查询病理。\n\n今晚用药原则是：只有药名、每次剂量、每日次数和服用时间都能从药袋标签或出院医嘱中确认的，才按其服用；任何一项看不清的药先不要凭“像止痛药/抗生素”猜着吃，也不要自行加家里的止痛药或消炎药，避免重复成分或过敏。明天带全部药盒、药袋和出院材料到原院药房或联系病区逐种核对，这样更安全。尤其抗生素需尽快确认，不要自行减量、加量或把两种同类药一起吃。\n\n她现在可先休息，但请测一次体温，并留意腹痛是否越来越重、腹胀、呕吐、不能排气、明显出血或头晕。若疼痛剧烈或持续加重，或出现上述情况及体温≥38℃，今晚就回急诊，不要等明天。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00110",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+26min",
+      "text": "家属已能复述今晚观察、不乱服不清楚药物、明天核对药物和粪便检查状态、预约妇科复诊的计划；仍需确认任务优先级和失败替代路径。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00111",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+26min",
+      "text": "术后病理仍在等待期内，继续追踪；复诊时主动查询，超过常规时间未出可联系妇科病区或门诊。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+26min",
+      "text": "术后复诊尚未约上。需家属明天按医院渠道预约；若打不通或无号源，应联系原病区询问复诊替代通道。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00113",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+26min",
+      "text": "粪便检查仍无可解释结果。建议明天联系原病区或检验科核实是否留样和是否有报告；若未留样，询问是否仍需补做。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00117",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+26min",
+      "text": "好的医生，我先按您说的理解一下，怕我明天一忙又弄乱：\n\n今晚先不再猜那些单子，大便那张我就先当申请单，不当结果。现在我准备给我妈量一次体温，主要看有没有到38℃、出血有没有变多、肚子痛是不是越来越厉害、有没有胀得厉害吐、还能不能放屁，还有伤口有没有红肿流东西、她有没有头晕这些。只要出现您说那些明显情况，就直接急诊。\n\n药这块我也记住了：药名、一次几粒、一天几次、什么时候吃，只要有一项看不清我就先不给她凭感觉吃，也不加家里的消炎药止痛药。今晚如果她只是轻微牵拉痛、能忍，我就让她先休息；要是疼得明显加重就去医院。\n\n明天我打算先做三件事：第一，拿药袋和出院单问原医院药房或病区，把每种药怎么吃问清楚；第二，按住院号问病区或检验科那个粪便检查到底有没有留样、有没有报告；第三，挂原医院妇科门诊，复诊时问伤口和病理。这样顺序对不对？\n\n我还想问一句，明天如果病区电话、药房电话、检验科电话都打不通，是不是就直接带着出院袋和全部药去医院窗口/药房现场问？还是先挂上妇科门诊再让门诊医生一起看？我怕白跑一趟，但也怕药特别是那个像抗生素的拖久了不对。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00123",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+26min",
+      "text": "顺序对。若明早电话都打不通，建议直接带患者本人、全部药盒/药袋、出院小结和相关单据去原医院：先到住院药房或门诊药房逐种核对药名、剂量、次数、疗程；同时先把妇科门诊号挂上，当天有号就让医生一起核对出院医嘱、伤口和病理进度。粪便检查可顺路到检验科窗口凭住院号查询是否留样、是否出报告、没留样是否还需补做。\n\n疑似抗生素不要凭外观猜，也不要自行补吃或加倍。若今晚漏了一次尚未确认的药，明天核对时把“最后一次服药时间、漏了哪一顿”告诉药师或医生；通常确认清楚比误服更安全，但明天应优先处理，不要拖到一周后复诊。若出现发热、疼痛加重、明显出血、反复呕吐或不能排气等情况，则不走普通窗口，直接急诊。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00139",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+866min",
+      "text": "家属已理解今晚不再猜单据，准备次日核对药物、粪便检查和复诊预约。术后病理仍未回流，复诊仍未确认约上。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00140",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+866min",
+      "text": "家属已形成次日核验计划；今晚仅观察红旗，不凭外观猜药。等待次日上午反馈药物、粪便检查状态和复诊预约情况。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00141",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+866min",
+      "text": "术后病理仍未出结果，继续追踪；复诊时主动查询，超过常规时间未见报告应联系妇科病区或门诊。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00142",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+866min",
+      "text": "妇科复诊仍未约上；需家属次日执行预约并回传是否成功。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00143",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+866min",
+      "text": "粪便检查尚无可解释结果。建议次日向原病区或检验科核实是否留样和是否有报告。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00144",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+866min",
+      "text": "仍需避免把旧资料、申请单或采样说明误当作本次出院后新结果；线下核验时应看姓名、日期、科室、报告类型和是否有结果/结论栏。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00149",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+866min",
+      "text": "医生，昨晚按您说的盯了一夜，没看到发烧到38度以上，也没有那种出血很多、吐得厉害、肚子胀得不放屁，伤口也没闻到臭味流脓。我妈现在就是在家休息，肚子还是有点牵着疼，但没说突然加重。\n\n我今天上午准备先打原医院电话，问药房/病区药怎么吃，再问检验科那个大便检查到底是申请还是有报告。电话要是打不通，我就把出院袋、旧资料、药盒药袋都带上，带我妈去原医院窗口让他们按日期和项目看，不再自己猜了。复诊和病理我也一起问，先看能不能挂到妇科号。\n\n昨晚不确定的药我没有凭样子给她乱加，也没补吃。等我问到药房或者现场核对完，再回来跟您说。谢谢医生，昨晚心里踏实一点了。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00155",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+866min",
+      "text": "做得对，目前没有明显急症信号，轻微且不加重的牵拉痛可继续观察，适当缓慢下床活动，不必一直卧床。今天核对时请逐种记下药名、剂量、每日次数、疗程及漏服后怎么处理，不要自行补双倍；同时确认粪便项目是否留样、是否已有报告，以及妇科复诊日期和病理查询方式。拿到信息后把原话或报告关键行发我，我再帮你们核对。若出现体温≥38℃、腹痛明显加重、持续大量出血、反复呕吐或停止排气、伤口流脓恶臭、胸痛气促或单侧小腿肿痛，直接急诊。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1046min",
+      "text": "家属已到原医院核验：药房核清出院药用法但具体药名/剂量需家属逐条回传；检验科称粪便常规为本次术前申请且系统内有普通结果记录，家属手中不是结果单，完整数值未回传；妇科复诊约到术后第8天。术后病理仍未回传。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00172",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1046min",
+      "text": "家属已到原医院核验：药房核清出院药用法但具体药名/剂量需家属逐条回传；检验科称粪便常规为本次术前申请且系统内有普通结果记录，家属手中不是结果单，完整数值未回传；妇科复诊约到术后第8天；术后病理仍未回传。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00173",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1046min",
+      "text": "粪便常规可视为已完成且系统有结果记录，但线上医生尚未看到完整结果，不应直接说正常或异常。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00174",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1046min",
+      "text": "术后病理未回，责任路径已明确：术后第8天妇科复诊查；逾期无报告联系妇科门诊或原病区。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00178",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1046min",
+      "text": "医生，我们刚从医院跑完出来，在走廊坐一下，我妈走一会儿有点累，肚子还是轻微牵着疼，没有说更厉害。\n\n药房给我们按出院处方和药袋核对了，特别说昨晚没弄清楚漏的那顿不要双倍补，按后面正常那顿继续。我照药房写的小纸条念给您，您帮我看看我理解有没有错：\n\n1. 头孢克肟分散片，0.1g，一次1片，一天2次，吃3天。  \n2. 洛索洛芬钠片，60mg，一次1片，一天3次，疼痛明显再吃/饭后吃，这个我有点没听清是不是不疼就可以不吃那么满。  \n3. 奥美拉唑肠溶胶囊，20mg，一次1粒，一天1次，早饭前吃，好像也是3天还是5天，药房说按药袋数量吃完。  \n4. 还有一个像“桂枝茯苓胶囊”还是中成药，一次3粒，一天3次，这个是药袋上写的，我怕字念错，药房说不是抗生素，按袋子吃就行。\n\n粪便检查我去检验科窗口问了，他们说我手上那张不是结果单，像申请/条码那种。系统里说这次住院术前有普通粪便常规记录，但窗口没把隐血、红细胞白细胞这些数值给我，只说没看到需要现在马上急处理的提示。完整的让我自助机或者公众号查，或者复诊让医生调系统看。这样我们现在还需要另外补做大便吗，还是等复诊让妇科医生调出来看？\n\n复诊我已经约到术后第8天的妇科普通门诊。病理窗口说现在还没审核回传，让复诊时主动问，如果超过一周还没有再找妇科门诊或原病区追。这样安排算稳妥吗？我怕病理没出来我们白跑。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00183",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1046min",
+      "text": "请调取本次妇科住院的出院小结、手术记录/手术日期与术式、出院处方及药房记录、术前粪便常规完整报告（含隐血、红白细胞等项目）、术后病理申请及当前状态，并查看过敏史、肾功能、消化性溃疡或消化道出血史及抗凝/抗血小板用药，以便核对洛索洛芬和其他出院药的安全性与疗程。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00185",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1046min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00187",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1046min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00190",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1046min",
+      "text": "你们理解基本正确，漏服那顿不补双倍。\n\n1）头孢克肟：按药房核对的0.1g每次1片、每日2次，共3天完成；如既往对头孢或青霉素有严重过敏史，或出现呼吸困难、面唇肿胀、全身风团，立即停药并急诊。\n2）洛索洛芬：如果药房明确写的是“疼痛明显再吃”，通常就是按需服，不疼或轻微可忍可以不吃满每日3次；每次60mg、饭后服，24小时最多3片。不要同时吃布洛芬、双氯芬酸、塞来昔布等其他同类止痛药。若黑便、呕血或明显胃痛应停药就医。\n3）奥美拉唑：20mg早饭前服；疗程现在仍没完全确认，按药袋数量吃完可以，但最好今天在小纸条上补记清到底3天还是5天，不要自行长期续用。\n4）中成药名称尚未可靠确认，不能按“像桂枝茯苓胶囊”替你确认；按药房已经核对过的药袋服，回家后再逐字核对正式药名，不要另加同类中成药。\n\n粪便常规既然已确认术前做过、系统有结果，而目前没有便血、黑便、腹泻等肠道症状，一般无需现在重复留大便；术后第8天让妇科医生调出完整报告核对即可。若出现黑便、鲜血便、持续腹泻、发热或腹痛明显加重，则提前就诊。\n\n第8天复诊安排稳妥，即使病理当天尚未审核，也不算白跑：仍可检查恢复和伤口、核对用药及粪便结果，并让门诊明确病理追踪方式。病理超过一周仍未回传，就按窗口说的联系妇科门诊或原病区主动追，不要默认未通知就是正常。现在走累了先坐着休息、补水，之后短距离慢走即可；若乏力越来越重、头晕欲晕、心慌气促或出血增多，应及时就医。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00206",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1256min",
+      "text": "家属已把用药和复诊/病理追踪计划落实到家庭提醒；当前无新结果回传，等待术后第8天复诊和病理报告。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00207",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1256min",
+      "text": "术后病理仍未回传，继续按已登记路径追踪；第8天复诊主动查询，逾期联系妇科门诊/原病区。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00208",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1256min",
+      "text": "粪便常规已做且系统有结果记录，但完整报告未见；不能据此判断正常/异常。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00209",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1256min",
+      "text": "复诊已安排，但仍需患者按时到诊；若不能去，应提前改约或联系原妇科团队。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00213",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1256min",
+      "text": "好的医生，我们已经回到家了，她现在躺着休息，走回来确实累，肚子就是那种轻微牵着疼，没有说突然更痛。\n\n药我按您刚才说的分开了，头孢就按3天吃，止痛药不疼就先不硬吃，护胃那个我按药袋吃完，不自己再买着续。中成药我也不再猜名字了，就按今天药房核过的那袋吃，家里类似的都不加。\n\n复诊第8天我已经设了手机提醒，备注了到时候问病理、让妇科医生调大便那个完整报告。现在病理还没出来，我心里还是有点悬，但也只能先追着问。\n\n今晚如果就是这样轻微疼、累一点，没有发烧出血这些，就在家观察休息可以吧？除了按时吃药、慢慢走两步、注意您说那些情况，今晚还需要额外做什么吗？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_058__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5811388300841898,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 6
+}

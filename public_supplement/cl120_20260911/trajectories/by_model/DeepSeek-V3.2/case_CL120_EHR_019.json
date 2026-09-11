@@ -1,0 +1,858 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "f6c19325b9d3d6e6516311d458f4e4ce9019bc94fff46dc837747f3240baf4f2",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_019__anon_9f669abd876d2e32",
+    "packet_sha256": "41f3009c8cbec4d793bb3cde959b9efa0b39f100963a461904fac001fa684b36"
+  },
+  "case_id": "case_CL120_EHR_019",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "respiratory",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "cost_transport_or_work_barrier",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "low_adherence_or_refusal | external_system_gap",
+    "starting_phase": "post_handoff",
+    "target_problem": "home_oxygen_or_inhaler_execution",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属按建议带药袋、出院小结和证件到原医院窗口核对，窗口确认出院带药为桉柠蒎肠溶软胶囊、复方甲氧那明胶囊，头孢曲松为住院期间静脉医嘱，出院未开继续口服抗生素。",
+      "当天呼吸科普通门诊完成出院后复核；门诊医生查阅住院记录和药袋并听诊，认为当前无发热、不像急性加重，暂不补口服抗生素，继续现有对症药。",
+      "医生随后整理了居家执行方案：按药袋标签继续现有药物、不自行加抗生素；3-5天内复查血常规/CRP；2-4周后挂呼吸科开胸片或胸部CT单；结果可回流解读。",
+      "家属在turn 5回读三点计划：继续现药、不自行加抗生素；3-5天抽血；2-4周复查胸片/CT，并询问结果回流和复诊科室。",
+      "turn 6家属反馈患者昨晚到次日上午总体平稳，仍咳痰和活动后轻度气短但未较出院时加重，无发热、明显咯血、胸痛突然加重或嘴唇发紫，并已把抽血、结果读数、2-4周呼吸科影像复查和按药袋服药记入手机提醒。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应进入3-5天抽血是否完成及血常规/CRP数值回流；或若出现发热、喘憋加重、咯血、胸痛骤增、发绀、精神变差等红旗，则立即急诊/呼吸科处理。",
+    "rationale": "本案目标是肺部感染/胸膜炎出院后用药与复查衔接的有限责任片段，而不是等待感染完全吸收或肺结节长期随访全部完成。当前核心不确定性已被自然收束：出院带药经原医院药房/窗口核对，头孢曲松明确为住院静脉用药，出院未继续口服抗生素；患者随后完成呼吸科门诊复核，外部医生确认暂无急性加重、暂不补抗生素，继续现有对症药，并给出血常规/CRP及2-4周影像复查计划。AI医生把外部门诊计划转化为家庭可执行清单，家属两次回读并已记入手机提醒；患者症状在约13-25小时内稳定，无高热、明显咯血、胸痛骤增、明显喘憋加重或发绀。尚未完成的抽血和影像属于有明确责任人、时间窗、回流方式和升级路径的bounded residual follow-up，不再阻断当前出院衔接episode闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：3-5天内血常规/CRP尚未完成；但家属已明确执行窗口、结果回流方式和需要关注白细胞/中性粒细胞/CRP，若异常或症状变差需联系呼吸科/急诊。",
+      "bounded_residual_followup：2-4周后胸片或胸部CT尚未预约/完成，用于评估感染吸收、胸膜炎恢复及肺结节随访；已有呼吸科作为owner和时间窗。",
+      "global_disease_journey_background：肺结节、冠心病、转氨酶/肿瘤标记物升高等长期或其他专科问题仍需后续门诊管理，但当前轨迹没有新的已回流、未解释的决策性结果，也不改变本次出院用药衔接的安全边界。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V3.2",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "肺部感染出院后咳痰胸闷，家里不知道药和复查怎么接上",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家里人前阵子咳了半个多月，晚上咳得厉害，还有黄痰、声音哑、胸口闷，右边胸口也疼。住院打了几天针说炎症降了、没发烧就让回家门诊随访。出院纸上写了一堆肺部感染、胸膜炎、肺结节什么的，我们没太听懂。现在回来还有点咳和气短，想问药还要怎么用、什么时候必须再去看？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络中可授权访问的该患者的既往病历、最近出入院记录、胸部影像学报告、炎症标志物等检查结果、当前的用药清单以及出院带药方案。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的本次住院的出院小结、住院期间的用药记录、以及相关的检查报告（包括影像报告如胸部CT/X线、炎症指标如血常规、C反应蛋白、降钙素原等）。同时请查看患者是否有门诊随访的计划或已开具的出院带药信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络内可授权访问的既往病历、最近出入院文书、住院期间检查结果（特别是感染指标、影像报告）、用药清单以及出院后用药方案。同时获取家庭/交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请调取这位患者在CareLoop联合医疗网络内的以下资料，以便准确评估出院后状况和进行用药、随访指导：\n1. 最近一次的出院小结或出院记录全文，特别是出院诊断、出院时情况、出院带药清单和随访建议。\n2. 住院期间的关键检查结果，尤其是血常规（特别是炎症指标如白细胞、C反应蛋白）、胸部影像学报告（CT或X光）和病原学检查（如痰培养、血培养）。\n3. 患者既往的用药记录，包括住院期间用药和当前手中的出院带药。\n4. 患者的基本人口学信息、基础疾病史（如是否有吸烟史、慢性肺病、免疫缺陷等）。\n5. 如果有可能，调阅住院前门诊或急诊的就诊记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取这位患者在 CareLoop 联合医疗网络内可授权访问的完整资料，包括：1. 最近一次的住院病历（尤其是出院小结或出院记录）、2. 住院期间的胸部影像学报告（如胸部CT或X线报告）、3. 关键的化验检查结果（如血常规、C反应蛋白、降钙素原等）、4. 住院期间的用药记录（尤其是静脉输注的抗生素）和出院带药处方、5. 如果有，关于肺结节的详细描述或建议。以及6. 患者的年龄、性别等基本信息。请将这些能访问到的资料一次性提供给我。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "我理解您作为照护者的担心。从您的描述来看，家人之前因为严重咳嗽、胸痛、黄痰住院，经过治疗后症状好转出院。目前“肺部感染、胸膜炎、肺结节”这些诊断名词听起来复杂，我为您简单解释一下：\n\n1.  **肺部感染**：就是肺部有细菌或病毒引起的炎症，当时用的“打针”（静脉抗生素）就是治疗这个的。\n2.  **胸膜炎**：是包裹肺脏的薄膜发炎了，这会导致咳嗽、深呼吸时或某个位置的胸痛。\n3.  **肺结节**：这是在CT或X光片上看到的一个或几个小点，性质待定，在感染期间出现很常见，部分会随着感染消退而吸收或缩小。\n\n您最关心回家后的用药和什么情况需要再就医，根据现有信息，我给您以下关键建议：\n\n**关于用药**：\n出院带药的用法非常关键。我需要看到出院小结或者药盒、药单的照片，才能给出最准确的指导。请您**现在就将出院小结（特别是出院带药清单部分）或者所有药盒、药单拍清晰的照片发给我**。在没有看到确切信息前，**请务必按照出院时医生交代的用法和疗程继续服药，不要自行停药**，尤其是抗生素类药物，吃够疗程很重要。\n\n**关于何时必须再去看医生（危险信号）**：\n在恢复期有轻微咳嗽和气短是常见的，但**如果出现以下任何一种情况，请立即带家人去医院急诊或联系门诊医生**：\n*   呼吸困难加重、感觉气不够用、嘴唇或指甲发紫。\n*   再次发烧，体温超过38.5℃。\n*   胸痛变得非常剧烈，或者疼痛的性质、位置发生明显改变。\n*   咳出大量脓痰，或者痰中带新鲜的血丝。\n*   感到头晕、心慌、或者非常虚弱。\n\n**下一步行动建议**：\n1.  首先，**请尽快上传出院小结或药盒照片**，这是目前我最需要的信息。\n2.  出院小结上通常会写明需要**门诊复查的时间**（比如出院后1-2周），请留意并按预约时间复诊。\n3.  复查时，医生通常会建议复查胸部CT，以评估感染吸收情况和肺结节的变化，请遵医嘱完成。\n\n我们先从确认用药开始，这样最安全。您可以把资料发给我，我帮您一起看看。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "出院随访尚无预约/回执信息，需向家属确认出院小结复诊要求，并指导其落实呼吸科/急诊医学科或原出院科室复诊。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "当前不能把住院静脉头孢曲松等同于出院后应继续用药；请要求家属逐字读出出院带药清单或药盒标签，并必要时联系原出院科室/药房确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "肺结节和感染吸收复查目前只是随访计划方向，尚无已预约或已完成影像服务。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00051",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "患者资料可能不完整或无法识别，建议要求家属逐字读出药名、规格、用法、疗程和出院复诊建议。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00052",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "存在出院药物未领全或理解错误的可能，不能凭药袋肉眼印象判断是否应继续抗感染治疗。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00057",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+14min",
+      "text": "医生，我刚把出院纸和药盒拍了几张，但灯有点反光，我也不确定您这边能不能看清。她现在人是比住院前好些，刚摸着不烫，也没看到嘴唇发紫、咳很多血那种，就是还有痰，走几步还是说有点气短，右边胸口痛没有比出院时更重。\n\n我翻药袋没看到住院时打的那个“头孢曲松”之类的针药，袋子里看着好像主要是化痰止咳的。我怕是不是少拿了抗生素，还是说打完针出院就不用再吃抗生素了？\n\n我先把能看清的大字读给您：有一个好像叫“桉柠蒎肠溶软胶囊”，还有一个“复方甲氧那明胶囊”，另一个字有点小我看不准。出院纸上我只看到“门诊随访”，没看到具体哪天、挂哪个科。您看这种是先按这些药吃，还是我明天打电话问住院科室/药房确认一下有没有漏药？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+14min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的该患者的完整出院小结、住院期间的主要检查结果（特别是炎症指标、影像学报告）、详细的出院带药清单、以及住院期间及出院后任何登记过的用药记录。同时，我需要查看此次住院的时间线和相关科室信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00066",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00068",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+14min",
+      "text": "请调取该患者在CareLoop联合医疗网络内可授权访问的出院记录（出院小结）、住院期间的检查结果（重点是血常规、炎症标志物、胸部影像如CT/X光报告）、用药清单（包括住院期间静脉用药和出院带药），以及出院后的门诊随访预约信息或建议。同时，请调取患者的家庭/交通可及性信息，以便后续规划复查。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00070",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00072",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00074",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+14min",
+      "text": "我先调取患者在 CareLoop 联合医疗网络内可授权访问的本次住院的相关资料，具体包括：出院小结全文、住院期间的主要检查检验结果（尤其是血常规、炎症标志物、病原学检查、胸部影像报告）、住院期间的详细用药清单（特别是抗生素使用记录），以及出院带药处方原文。请同时查看患者既往的门诊或住院记录，看是否有关于肺结节的描述。另外，请提供患者家庭可及性信息，例如返院交通是否方便、有无专人陪护等。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00076",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00078",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00080",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+14min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的关于这位患者本次住院的出入院记录、出院小结、检查报告（包括影像、血常规、炎症指标等）、用药清单（包括住院期间和出院带药），以及本次在联合医疗网络中的时间线，以便确认诊断、治疗经过和当前方案。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00082",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00084",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+14min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的相关记录：本次住院的出院小结/出院记录、住院期间的用药医嘱/记录（特别是抗生素使用情况）、肺部CT/胸片等影像学报告、以及病历首页或诊断记录。同时请查询患者在本院的药房出院带药记录。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00090",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+14min",
+      "text": "您提供的信息非常关键。根据您的描述和用药情况，我来为您梳理一下：\n\n1.  **关于药物**：您读出的“桉柠蒎肠溶软胶囊”是化痰药，“复方甲氧那明胶囊”常用于缓解咳嗽、喘息和气短的症状。这两种都是针对症状的辅助治疗药物。您没有找到口服抗生素（如头孢类药物），这**可能**是正常的，因为一些严重肺部感染在住院期间使用静脉抗生素（如您提到的“头孢曲松”针剂）足够疗程后，出院时可能不需要继续口服抗生素。**但是，** 这必须根据出院时的具体感染程度和医生评估来决定，因此存在疑问是合理的。\n\n2.  **关于您的担心**：您担心“少拿了抗生素”或对停药有疑虑，这是非常重要且正确的警惕。**我不能仅凭症状药就确认可以停用抗生素**，必须基于完整的医疗记录来判断。\n\n3.  **关于资料**：我尝试在医疗网络内调取本次住院的详细记录（包括出院小结、用药医嘱和检查报告），但目前检索到的信息不足以支撑做出完整的用药安全判断。这说明，线下医院的详细文书对当前决策至关重要。\n\n**给您的明确建议如下：**\n\n**首要行动（今天或明天尽快完成）：**\n请您**立即或在工作时间**打电话给患者之前住院的科室（或科室的随访电话）以及医院药房，进行双重确认。询问时请清晰说明：\n-   “患者XXX于X月X日出院，目前带药是桉柠蒎和复方甲氧那明。请问住院期间的抗感染治疗（抗生素）是否已经完成疗程？**出院后是否需要继续口服抗生素？** 我们袋子里没有找到口服抗生素，是否正常？”\n-   同时，**询问具体的复诊安排**：“出院小结上只写了‘门诊随访’，请问应该挂哪个科室（通常是呼吸与危重症医学科或原住院科室的门诊）？建议在出院后多久复查？”\n\n**在获得明确答复前，可以这样做：**\n-   已经领回家的两种症状药（桉柠蒎、复方甲氧那明），**可以按照药品说明书或药袋上贴的用法先服用**，这两种药通常比较安全，且针对您家人目前仍有的咳、痰、气短症状。\n-   **切勿自行购买或服用任何抗生素。**\n\n**需要警惕并立即去急诊的情况（与上次告知您的一致）：**\n如果出现呼吸困难加重、高烧、胸痛剧烈加剧、咳大量脓痰或新鲜血、头晕心慌等情况，请立即前往急诊。\n\n**总结：** 目前最关键的一步是**通过电话向原住院科室核实抗生素使用方案和复诊细节**。在没有得到医院官方确认前，关于抗感染治疗的核心决策（用不用、用什么、用多久）需要暂缓。您先按上述建议联系医院，获得明确信息后，我们可以再进行下一步沟通。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00106",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+46min",
+      "text": "医生，我刚才按您说的打了医院几个电话，但没问出个准话。药房那边好像只说系统里有桉柠蒎和复方甲氧那明，别的我没听明白，又让我去问原来住院的科室；科室电话这会儿没人接，还是护士站说让等医生回电话，我也分不清到底该找谁。\n\n她现在还在沙发上歇着，咳痰还是有，走去厕所回来会说有点气短，但没有比刚出院更厉害。右边胸口痛也没明显加重，我摸着不烫，也没看到嘴唇发紫、咳血那种。她自己还说“没那么严重，先吃这两个药别折腾了”，但我还是怕万一抗生素漏了耽误。\n\n那我现在是继续等科室回电话，还是下午就拿药袋和出院纸去医院窗口核对？如果挂门诊，是挂呼吸科就行，还是必须找原来住院那个科？现在这种情况需要直接去急诊吗？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00111",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+46min",
+      "text": "我调取本次住院的完整出院小结（出院记录）、住院期间的用药医嘱（特别是静脉抗生素和出院带药处方）、所有相关的影像学报告（胸部CT、X光）和关键的实验室检查结果（如血常规、炎症标志物），以及家属上传的出院纸和药盒照片的文本记录或工作区资料。同时，查询患者/照护者的家庭/交通可及性信息，以评估线下就医的方便程度。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00113",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+46min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00115",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+46min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00117",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+46min",
+      "text": "我需要调取这位患者在CareLoop联合医疗网络内的全部资料，尤其是本次因‘咳了半个多月、黄痰、声音哑、胸口闷、右边胸口疼’住院期间的记录。具体请调取：\n1. 本次住院的出入院记录、出院小结（完整文书），包括出院诊断和出院带药医嘱。\n2. 住院期间的所有检查检验结果（如血常规、C反应蛋白、降钙素原、胸部CT或X光报告、痰培养药敏、血气分析等）。\n3. 住院期间的用药记录（尤其是静脉抗生素的使用种类、剂量、疗程）。\n4. 出院后已同步的任何门诊随访记录或影像复查计划。\n5. 患者家庭的照护可及性信息（如居住地离医院距离、有无紧急联系人等）。\n请提供所有已授权、已同步并可用的原始记录，以便我进行连续照护评估。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00119",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+46min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00121",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+46min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00124",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+46min",
+      "text": "您先别急，您反馈的这种情况很常见，也说明电话沟通确实效率不高。现在信息没确认，您有顾虑是完全正确的。我们来定一个清晰、可执行的方案：\n\n1.  **行动优先级**：**我建议您今天下午直接带上所有出院资料（出院小结、药袋、身份证/医保卡）去一趟医院窗口核对**。电话容易转圈，而面对面到门诊药房或住院部药房/出院结账窗口，他们能直接在电脑系统里查到完整的出院带药医嘱，这是最可靠的。\n\n2.  **挂哪个科**：您不必纠结是“原来住院的科”还是“呼吸科”。对于这种出院后的用药核对和首次复查，**挂“呼吸与危重症医学科”的普通门诊是最通用、最合适的**。挂上号后，医生可以在诊间系统里调阅全部住院记录，一次性为您解答所有问题：抗生素是否还需继续、当前症状药是否合适、何时复查CT等。如果挂不上当天的号，至少先去药房窗口把药的问题核实清楚。\n\n3.  **现在需要去急诊吗？** 根据您的描述——“没有比刚出院更厉害”、“不烫”、“无发紫咳血”，目前**不需要直接去急诊**。您家人的情况属于恢复期残留症状，但存在**用药方案不明确**这个关键问题。这不是急性生命危险，但需要尽快明确以避免病情反复。我们的目标就是在今天通过线下途径把这个“不确定”变成“确定”。\n\n4.  **等待期间的临时安排**：在下午去医院核对之前，那两种症状药（桉柠蒎、复方甲氧那明）可以继续按说明服用。**请依然不要自行添加任何抗生素。**\n\n**总结一下您的下一步：**\n**首选**：下午带上所有材料，去医院门诊药房或相关窗口核对出院带药清单，并挂呼吸科门诊（普通号即可）进行复查咨询。\n**备选**：如果实在无法出门，继续尝试联系原科室，请护士站务必留言给管床医生回电，并强调是“出院带药疑问，急需确认抗生素方案”。\n\n您先按这个计划行动，有任何新的进展或变化，随时告诉我。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00142",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+301min",
+      "text": "医生，我们现在已经到原医院了，按您说的拿着药袋、出院小结和证件去窗口核对过了。窗口人员在电脑里查了，说出院带药记录就是这两种：桉柠蒎肠溶软胶囊、复方甲氧那明胶囊，跟我们袋子里的药对得上，应该不是少拿药。\n\n他们还说那个头孢曲松是住院期间输液的医嘱，出院带药里没有继续开的口服抗生素。但药房也说他们只能查发药记录，不能判断现在还要不要补抗生素，让我们还是问呼吸科医生。\n\n我们现在挂了呼吸科普通门诊，在这边等号，还没看到医生。老人排队走路以后有点累，一直说想回家，说既然没少药就别等了。她现在还是有咳痰，走动后气短跟出院后差不多，我看着没有明显发烧，嘴唇也没紫，没有大量咯血，右胸痛也没突然更厉害。\n\n我想问下您：现在既然确认出院药里确实没有口服抗生素，我们还必须今天继续等呼吸科医生看一下吗？还是可以先回家按这两种药吃，改天再预约复查？如果回家观察，出现哪些情况就不能等、要直接急诊？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00148",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+301min",
+      "text": "你们做得非常好，已经完成了最关键的一步——确认了出院带药记录，排除了“少拿药”的可能性。现在情况更清晰了：\n\n1.  **抗生素问题**：窗口确认了“头孢曲松”是住院期间使用的静脉用药，出院带药里确实没有继续开口服抗生素。这说明，负责您家人治疗的医生团队评估认为，住院期间的静脉抗生素疗程已经足够，不需要出院后继续口服。这是一个常见的临床决策，但药房的谨慎也是对的——最终“要不要补”的医疗判断，确实需要呼吸科医生结合患者现在的具体情况（比如咳嗽、痰液性质、血常规炎症指标等）来复核。\n\n2.  **是否必须今天看医生**：既然已经挂了号、人也到了医院，而且对“是否需要抗生素”这个核心问题仍有待医生解答，**我强烈建议你们继续等待，把今天的门诊看完**。理由如下：\n    *   **效率最高**：医生可以当场调阅完整的住院病历、检查结果，并结合查体，给出明确的下一步指导（是继续观察，还是需要复查血常规、CT，或者确实需要加开口服抗生素）。\n    *   **避免二次奔波**：如果今天回家，过几天症状没好转甚至加重，你们还是得来医院，老人又要折腾一次。\n    *   **给老人和您一个“安心”**：让医生亲口确认治疗方案是否合适，能消除所有疑虑，也让后续的居家护理更有信心。\n\n您可以安抚一下老人：我们来都来了，就是为了把最后这个“问号”去掉，让医生看一眼，说一句“没问题，按这个药吃，过两周来复查就行”，然后咱们就安心回家。这比心里一直悬着要轻松得多。\n\n3.  **如果执意回家观察，必须明确的“红线”**：\n    如果您们经过沟通，老人坚持今天必须回家，那么**必须严格监测以下情况，一旦出现任何一条，不要犹豫，立即去急诊**：\n    *   **呼吸困难明显加重**：比如安静坐着也感觉气短、喘不上气，或者说话都费劲。\n    *   **再次发烧**：体温超过38.5℃。\n    *   **胸痛突然加剧**，或者疼痛的性质、位置发生改变。\n    *   **咳出大量黄脓痰，或痰中带新鲜的血丝、血量增多**。\n    *   **出现头晕、心慌、出冷汗、或者异常虚弱、精神萎靡**。\n\n**总结建议**：请尽量鼓励老人，完成今天的门诊。这是最安全、最高效的选择。如果最终决定回家，请牢记上述“红线”，并务必在近期（比如1-2周内）预约呼吸科门诊复查。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00165",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+396min",
+      "text": "医生，我们听您的还是等着看完了呼吸科普通门诊，现在还在医院走廊坐着缓一下，准备回家。\n\n门诊医生看了住院记录和药袋，也听诊看了一下，说现在没发烧，也不像急性加重，出院药和记录是对的，暂时不用再补口服抗生素，就继续吃现在这些药，主要就是桉柠蒎、复方甲氧那明这些。这个我们算是放心一点了。\n\n但后面复查我有点听乱了。他好像说这几天要查血常规、CRP之类，看炎症有没有继续降；然后肺部感染、胸膜炎、肺结节这些，如果症状平稳，大概2到4周后再拍胸片或者胸部CT，看吸收和结节变化。我没记清抽血到底是明天就去、三天内，还是一周内；还有胸片和CT是不是二选一，肺结节是不是也靠这次一起看。\n\n她现在人很累，催我赶紧回家，说“医生都说不用吃消炎药了”。麻烦您帮我按普通家属能执行的方式整理一下：回家后药怎么吃、抽血大概什么时候做、拍片/CT什么时候约、哪些情况直接急诊。简单一点就行，我怕我回去又记错。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+396min",
+      "text": "好的，门诊医生的结论很明确，也让你们安心了。我来帮您把后续事项整理成一个简单的清单，方便您执行。\n\n**一、回家后继续用的药（按原用法）：**\n1.  **桉柠蒎肠溶软胶囊**：化痰，帮助痰液排出。一般是饭前半小时用凉开水送服，具体次数请按药盒上的说明。\n2.  **复方甲氧那明胶囊**：缓解咳嗽、气短和喘息症状。请按药盒说明的剂量和时间服用，通常一天3次。\n\n**二、近期需要做的检查（时间点）：**\n1.  **抽血（血常规、CRP）**：目的是看身体里的炎症有没有继续好转。**建议在接下来3到5天内**，挑一个方便的时间去医院完成。不着急明天就去，但也不要拖超过一周。\n2.  **拍片（胸片或胸部CT）**：目的是看肺部感染吸收得怎么样，以及那个肺结节有没有变化。**建议在2到4周后**（比如出院后3周左右）去预约检查。\n   - **胸片和CT选哪个？** 门诊医生通常会更推荐**胸部CT**，因为它看得更清楚，对评估感染吸收和结节性质都更好。您可以按医生建议或预约时咨询放射科。\n   - **肺结节这次能一起看吗？** 能，这次复查主要就是看感染好了没有，同时也看这个结节是跟着吸收了、没变，还是有其他变化。\n\n**三、什么情况必须去急诊（危险信号不变）：**\n如果出现以下任何一种，别犹豫，直接去急诊：\n- **呼吸困难突然加重**，感觉气不够用、嘴唇或指甲发紫。\n- **再次发烧**，体温超过38.5℃。\n- **胸痛变得非常剧烈**，或者疼痛的位置、感觉和以前不一样了。\n- **咳出大量脓痰，或者痰里带新鲜血丝、血量增多。**\n- **感觉头晕、心慌、出冷汗，或者人特别虚弱、没精神。**\n\n**总结一下您的待办清单：**\n1.  **3-5天内**：抽血（血常规+CRP）。\n2.  **2-4周后**：预约做胸部CT（或按医生建议的检查）。\n3.  **每天**：按时吃现在的两种药，观察症状。\n4.  **随时**：牢记上面的急诊信号。\n\n现在可以安心回家了，让老人好好休息。如果抽血结果出来了，或者有任何新情况，随时联系我。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00186",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+491min",
+      "text": "医生，我们已经回到家了，老人先躺下休息了。现在还是有点咳痰，走动后会气短，但没有突然更喘，右胸痛也没说更厉害，我摸着也不发烧。\n\n我按您刚才说的记到手机里了，您帮我看我理解对不对：  \n1. 现在就继续吃桉柠蒎和复方甲氧那明，具体几粒几次我按药袋贴的来，不自己加抗生素。  \n2. 这3到5天内去抽血，查血常规和CRP，别拖过一周。  \n3. 2到4周后复查肺部影像，最好是约胸部CT，这样感染吸收和肺结节能一起看。\n\n我还有两个地方不太确定：抽血结果出来以后，是我先发给您看看就行，还是一定要再挂呼吸科门诊让线下医生看？还有那个影像复查，我预约时是直接挂呼吸科让医生开胸部CT，还是自己先去约胸片/CT？老人现在听到不用吃消炎药就说后面别折腾了，我怕我到时候被她一说又拖了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00192",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+491min",
+      "text": "我调取 CareLoop 联合医疗网络中本次住院患者的出院小结、详细用药医嘱记录（包括静脉用药和出院带药）、血常规/CRP等炎症指标报告、胸部影像报告（胸片或CT）的详细内容，以及既往病史中的肺结节相关记录。同时，我想查看患者的用药时间线和家庭/交通可及性信息。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00194",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+491min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00196",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+491min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00198",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+491min",
+      "text": "我需要调取CareLoop联合医疗网络中关于这位患者的完整住院记录，包括出院小结（诊断列表、治疗总结、出院医嘱）、本次住院期间的关键检查结果（特别是血常规、CRP、PCT、胸部CT报告原文、痰培养/药敏、胸水相关报告等），以及本次出院带药的详细医嘱（药名、规格、用法用量、疗程）。另外，如果网络内有关于肺结节既往评估的任何资料，也请一并提供。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00200",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+491min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00202",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+491min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00205",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+491min",
+      "text": "您总结得完全正确，理解得非常到位。您的这三个要点正是当前需要执行的。\n\n针对您的两个疑问，我为您明确一下：\n\n1.  **抽血结果出来后**：您**可以先拍照发给我看看**。血常规和CRP是客观指标，我可以帮您初步解读，比如炎症指标（白细胞、中性粒细胞、CRP）是否在正常范围，有没有需要警惕的趋势。如果指标平稳且继续下降，通常可以继续居家观察。如果出现异常升高或有其他我看不懂的异常，我会明确建议您再次挂号，让线下医生结合查体做进一步判断。\n\n2.  **影像复查（CT/胸片）的预约方式**：您**不能直接去CT室或放射科预约**，这是对的。正确的流程是：**先挂号（呼吸科普通门诊）让医生开单**。因为医生需要根据患者的病情和可能的“肺结节”情况，开具正规的检查申请单，上面会写明检查部位和目的。您拿着医生开好的申请单，才能去缴费、预约具体做检查的时间。所以，您的待办清单里，在“2-4周后”的那条，需要拆成两步：先挂呼吸科门诊开检查单，然后预约检查时间。\n\n我理解老人的想法，觉得麻烦。您可以这样沟通：抗生素是不吃了，但医生嘱咐我们得看两个“成绩单”——一个是近期的“血”成绩（3-5天抽血），一个是远期“肺”的恢复照片（2-4周后CT）。我们做这两项，就是为了确认身体里的火确实灭了，病灶也吸收干净了，这样之后才能真正放心，不用总惦记着。\n\n您现在做得非常好，思路清晰。让老人好好休息，您也辛苦了。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00220",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1211min",
+      "text": "医生，昨晚到今天上午总体还算平稳。她还是咳痰，起来走几步会有点气短，但没有比出院时更喘，我也没发现发烧、明显咯血、胸痛突然加重或者嘴唇发紫，人就是累，躺着休息多。\n\n您说的我已经记到手机提醒里了：这几天内去抽血查血常规和CRP，结果出来我尽量把白细胞、中性粒细胞、CRP这些数字读给您；2到4周后先挂呼吸科，让医生开胸片或胸部CT单。药就先按药袋吃，不自己加消炎药。\n\n我现在就是想再确认一下：像她这种出院后还咳痰、走动后轻微气短，一般持续几天算能接受？如果没有发烧也没更喘，是不是就按计划观察到抽血就行？另外那个“肺结节”我心里还是有点怕，是不是主要等2到4周后的CT一起看变化？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_019__DeepSeek-V3.2",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.5,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 6
+}

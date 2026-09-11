@@ -1,0 +1,834 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "829c40e5a04474570c7189a67ec851aa04d65ddb62049151ddb4fddd2fe058cd",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_007__anon_ad0ec10d4d10e36d",
+    "packet_sha256": "48e07cb6ee741524a5c8165168295f37c34316ded8f7f33894a555203c3fa00e"
+  },
+  "case_id": "case_CL120_EHR_007",
+  "case_metadata": {
+    "blocking_residual_risk_count": "4",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "7",
+    "contract_complexity_level": "high",
+    "disease_domain": "cardiovascular",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "4",
+    "primary_friction": "external_system_gap",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "document_or_image_quality_problem | delayed_or_staged_result_return",
+    "starting_phase": "post_handoff",
+    "target_problem": "heart_failure_decompensation",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "EHR/出院资料显示住院期间无再发晕厥、出院后需关注动态心电图结果，并有增加水盐摄入、避免闷热环境等出院指导。",
+      "家属电话联系住院护士站，确认动态心电图报告已进入院内系统且未触发危急值电话，但护士不逐项解释；医生没有把“无危急值电话”等同于完全正常，而是要求获取正式报告/门诊核对。",
+      "家属次日上午实际到医院打印到动态心电图纸质报告，并按医生模板读回关键字段；医生解释为当前不需因报告立即急诊，但强调本周儿童心内/心内/心律失常门诊复核原件。",
+      "医生给出具体行动：保存纸质原件，携带Holter、出院小结、心超/化验、坐站记录和补液盐盒；儿童心内优先，挂不到则普通心内/心律失常门诊替代。",
+      "医生明确家庭监测方案：坐位、站立5分钟/10分钟脉搏血压记录，站着发虚不硬撑，坐下休息；家属次日上午已实际完成一次记录，坐位心率约76、血压约112/72，站5分钟有点发虚但坐下缓解。",
+      "医生多轮明确红旗：再晕、胸痛、持续明显心悸、黑朦/意识异常、抽搐、呼吸困难、发绀、受伤或喝不进水等立即急诊/120；家属在后续反馈中持续报告无这些症状。",
+      "家属已teach-back式确认：AI医生是基于其抄读内容判断，原件仍需本周线下门诊核对；会继续刷儿童心内号，必要时改挂心内/心律失常门诊。"
+    ],
+    "if_continued_next_focus": "若继续运行，下一步应推进本周线下儿童心内/心内/心律失常门诊是否实际完成、线下医生核对Holter原件及出院检查后的结论、是否调整水盐/运动/药物计划，并在2-6周后回收症状和坐站记录反馈。",
+    "rationale": "本次 bounded post-handoff episode 的核心任务是：出院后晕厥患儿在动态心电图未明/外部系统通知不清的情况下，完成短期安全分层、结果追踪路径、家庭可执行监测、用药/补液边界、红旗急诊边界和复诊责任链。轨迹已从“报告未回、家属不知道怎么盯”推进到：家属联系院方确认报告状态，实际到院打印纸质Holter，按模板读回关键字段，医生基于读回内容进行短期风险解释并明确暂不因当前报告/状态冲急诊；家属已整理Holter原件、出院小结、心超化验、坐站记录、补液盐盒，确认本周优先儿童心内/替代心内或心律失常门诊，且已在家完成至少一次坐站脉搏血压记录并知道不硬撑和红旗急诊/120边界。孩子持续无再晕厥、胸痛、持续心悸、黑朦、抽搐或意识异常。残余的线下专科原件核对和后续POTS/体位性晕厥长期管理仍存在，但已有明确owner、时间窗、携带材料、验证路径和升级条件，属于bounded residual follow-up，不阻断本次短期出院后结果追踪与安全分层episode闭环。不能判为durable longitudinal management，因为尚未完成专科核验原件及2-6周疗效反馈调整。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup: Holter正式纸质原件尚未由线下儿童心内/心内/心律失常医生直接核对；但家属已取得原件、知道本周复诊、携带材料和异常时急诊路径。",
+      "bounded_residual_followup: POTS/体位性晕厥或其他晕厥机制的长期诊断边界与治疗调整仍需专科复诊后确认；当前仅完成短期安全分层和结果追踪episode。",
+      "bounded_residual_followup: 居家水盐摄入、补液盐、作息运动、学校/洗澡/久站场景管理尚需后续2-6周反馈调整，不能视为持久长期管理闭环。",
+      "global_disease_journey_background: 青少年晕厥未来复发风险和所有长期随访并未结束。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "MiniMax M3",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "14岁孩子晕倒后出院，动态心电图还没出来",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "孩子前两天突然晕过去一次，住了几天院，说暂时没再晕，考虑好像是体位性什么心动过速。我们因为家里有事先出院了，但动态心电图结果还没回，也不知道要不要等电话、还要不要复查。现在孩子说不头晕，就是我心里不踏实，想问问接下来怎么盯。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取本次诊疗判断所需的资料，请一次性返回：1）该患儿最近这次因晕厥住院的住院病历/出院小结、诊断、用药清单、相关检查（心电图、超声心动图、Holter/动态心电图、血液检验、直立倾斜试验等）的结果或状态；2）CareLoop 联合医疗网络中已授权/已同步的既往病史、过敏史、慢性病或既往晕厥史；3）家庭照护可及性信息（居住地、距离医院、最近能去的医疗机构、能否按时复诊）；4）当前用药清单（含剂量与依从情况）。系统未自动提供问题导向摘要，请按时间线和文书类型返回可见的原始材料与索引。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取本次住院相关的具体资料：1）最近这次晕厥住院的入院记录、出院小结、诊断、医嘱；2）已做的检查检验结果（血常规、生化、心肌酶、甲状腺、电解质、心脏超声、卧立位血压/心率、Holter 结果若已回、直立倾斜试验若有）；3）当前用药清单；4）已安排的随访计划或待出报告的追踪状态；5）患者年龄和既往史相关记录。请尽量一次返回详细原文/摘要，我需要据此判断后续怎么处理 Holter 结果、是否需要主动复诊、是否存在红旗征。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请帮我调取 CareLoop 联合医疗网络中可见的既往/本次住院病历、相关检查检验报告（特别是动态心电图/心电图/血常规/电解质/卧立位血压/超声心动图等）、用药清单、出入院小结，以及照护可及性（家庭监测条件、交通、能否按时回院）和时间线，重点关注这次晕厥住院的主要诊断、处置和待出报告。请尽量一次返回本轮判断所需的全部材料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00022",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我是CareLoop联合医疗网络连续照护AI医生。先说一句：孩子刚晕过一次，虽然现在说不晕，但报告没回来、孩子又已经出院回家了，您心里不踏实是正常的，也是当妈妈/当家人该有的反应。我先帮您把眼下最要紧的几件事理清楚。\n\n**先请您告诉我几件事（我好判断现在监测强度够不够）**：\n1. 孩子多大？这次晕倒前有没有预兆（比如眼前发黑、出汗、心慌、站久了），还是没有任何先兆就突然倒了？\n2. 住院期间除了动态心电图，还做了哪些检查（心脏超声、直立倾斜试验、心肌酶、电解质、甲功等）？\n3. 现在在吃什么药？出院时医生有没有开口服补液盐、盐片、美托洛尔之类？\n4. 出院小结上具体写的诊断是什么？是「血管迷走性晕厥」「直立性心动过速综合征（POTS）」「体位性低血压」，还是只是「待查」？\n5. 动态心电图是什么时候戴上的？戴了多久？出院时医生说几天出结果？\n\n**在家必须立刻去急诊或叫120的红线（任何一条出现都不要等报告）**：\n- 运动过程中或刚运动完就晕倒\n- 晕倒时伴有明显胸痛、胸闷、心悸\n- 没有任何先兆的突然倒下\n- 倒后超过5分钟意识还没完全清楚，或伴有抽搐、咬舌、大小便失禁\n- 跌倒时撞到头\n- 家族里有猝死、心肌病、长QT综合征或其他心律失常、离子通道病的病史\n\n**如果是「直立性心动过速（POTS）」或体位相关晕厥，在家可以先做的**：\n- 每天喝够水（儿童一般1200-1500ml、青少年1500-2000ml，看出汗和活动量调整），饮食不要刻意清淡，适当吃盐\n- 起床、蹲起、站起都慢一点，先在床上坐一会儿再站\n- 避免长时间站立不动、闷热环境、大量出汗后不及时补水；发烧、呕吐、腹泻时尤其注意\n- 可以每天早晚记一下脉搏（坐着平静时 vs 站起 5 分钟、10 分钟时），家里有血压计的也一起记下来带给医生看\n- 孩子自己能感觉到头晕、眼前发黑、心慌要倒时，立刻坐下或躺下，避免摔伤\n\n**关于动态心电图结果**：\n- 一般 1-3 个工作日会出报告，不一定要等医院主动打电话，您可以主动打住院科室或心电图室问报告是否已出\n- 报告出来后尽快带结果挂心内科门诊复查；如果是血管迷走性或 POTS，恢复期一般几周到几个月，期间按上面的方式管理\n\n您先把上面那几条信息发给我，尤其是孩子年龄、出院诊断和现在的用药，我看完再告诉您现在是不是需要把回诊提前、或者在家加做哪些监测。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00039",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+7min",
+      "text": "候选：动态心电图报告可能已回传，需医生查看并解释。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00040",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+7min",
+      "text": "动态心电图仍为待结果状态，需要医生明确追踪方式、复诊时点和若出现红旗症状的急诊路径。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00045",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7min",
+      "text": "医生我翻了出院小结和药袋，先把我能看懂的说一下。\n\n孩子14岁，男孩。那次不是跑步或者运动中突然倒的，我记得是站起来还是站了一会儿以后，他说眼前发黑、出汗，脸色很白，然后就倒了。醒得挺快的，当时我没看到抽搐、咬舌头、大小便失禁这些。住院这几天没有再晕，今天在家也说不头晕、不胸痛胸闷，也没有再黑朦。\n\n出院小结上诊断那一栏我能看见写的是“体位性心动过速综合征”，后面还有些字我看不太明白。检查我记得做过一个站起来测心率血压那种，可能叫直立试验？还戴过心电监护或者动态心电图，反正胸口贴着线大概一天左右，但正式动态心电图报告我们这边还没收到，也没人打电话通知。其他像心脏彩超、抽血那些我看小结字太多，有些分不清是不是都做了。\n\n药袋里现在主要是口服补液盐，还有一个布拉氏酵母菌散，像益生菌那个。我没看到有美托洛尔、盐片这种名字。这个布拉氏酵母菌散还要继续吃吗？口服补液盐是每天都喝还是头晕才喝？另外动态心电图我今天就打电话去住院科室或者心电图室催可以吗，复诊是挂儿童心内科还是普通心内科？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+7min",
+      "text": "我先调取 CareLoop 联合医疗网络中本轮判断真正需要的资料：1) 该 14 岁男孩本次住院的出院小结全文（包括诊断、已做检查、医嘱用药、随访安排）；2) 动态心电图（Holter）报告最新状态与报告原文（如果已回传）；3) 心电监护记录、直立试验/直立倾斜试验报告、心脏彩超、心肌酶、电解质、甲功、血常规等本次住院所有检验检查结果；4) 当前用药清单与药房发药记录；5) 患者家庭所在城市、可前往的随访科室（儿童心内科 vs 心内科）以及交通可及性信息。一次性合并调取，看完后我再决定下一步。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00052",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+7min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00054",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+7min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00056",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+7min",
+      "text": "我再调阅一次：1）这位14岁男孩最近这次住院的出院小结原文（诊断、所有检查项目、直立试验结果、心脏超声、抽血化验、医嘱）；2）动态心电图（Holter）报告，今天上午如有回传请优先返回完整结论；3）当前用药清单和出院带药医嘱；4）是否已有儿童心内科或心内科的复诊预约记录；5）患者在CareLoop联合医疗网络内可见的其他机构同步记录。请把所有可见内容都返回。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+7min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00060",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+7min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+7min",
+      "text": "我在临床工作区查询：1) 这次住院的出院小结原文（包括诊断、检查清单、用药清单、医嘱注意事项）；2) 动态心电图（Holter）报告，如果今天上午已提前回传请把完整报告调出来；3) 心脏彩超、直立试验/直立倾斜试验、心肌酶、电解质、甲功等所有住院期间已做的检查/检验报告；4) 住院期间和出院带药的完整用药清单；5) CareLoop联合医疗网络中已授权/已同步的跨机构既往记录；7) 患者家庭照护可及性信息（离CareLoop中心医院或其他可挂号医院的距离、最近的儿童心内科或心内科门诊可挂号情况）。请尽量一次返回本轮判断真正需要的全部资料。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+7min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00066",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+7min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00068",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+7min",
+      "text": "我需要详细查看本次住院相关的具体资料：(1) R01-R05 这 5 条既往/本次记录的详细内容，包括出院小结原文、入院记录、医嘱；(2) 是否有动态心电图（Holter）报告已回传，包括报告原文和结论；(3) 已开具/已做的检查检验项目列表（心脏彩超、直立倾斜试验、心肌酶、电解质、甲功、血常规等）；(4) 当前用药医嘱清单（含剂量、频次）；(5) 家庭照护可及性信息（医院、距离、最近复诊渠道）。请一并调取。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00070",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+7min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00072",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+7min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00075",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+7min",
+      "text": "我需要查看CareLoop联合医疗网络中这个孩子的完整病历资料和最新检查结果。请帮我调取以下内容：\n\n1. R01-R05这5条记录的详细内容（按时间排序），包括出院小结/出院记录原文、直立试验/直立倾斜试验结果、动态心电图或床旁心电监护报告、心脏彩超报告、抽血化验（电解质、心肌酶、甲功、肾素-醛固酮等）、心电图。\n2. 是否有今日（上午）回流的动态心电图报告原文？\n3. 当前用药清单（口服补液盐、布拉氏酵母菌散的剂量、频次、疗程）。\n4. 出院小结中\"体位性心动过速综合征\"后面的诊断补充文字和医嘱、复诊安排。\n5. 家庭/照护可及性信息（是否挂过儿童心内科、距离、能否尽快返院）。\n\n请一次性返回以上所有可见资料。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00078",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7min",
+      "text": "孩子这次晕倒的整个过程——站位相关、有眼前发黑、出汗、脸色发白这些先兆、醒得快、没有抽搐和咬舌、大小便也没失禁——这个模式其实和“体位性心动过速综合征（POTS）”或血管迷走性晕厥比较吻合。目前没再晕、不胸痛不心悸是好的信号，但报告没回来您不放心是完全可以理解的。我一项一项回您：\n\n**关于布拉氏酵母菌散**\n这个药本来就是益生菌那一类，主要用于急性腹泻或抗生素相关腹泻的调节。POTS 的治疗里没有这一项。**孩子现在大便正常的话，可以停掉**；如果住院期间有过腹泻、医生是为了调节肠道才开的，那按出院小结上写的天数吃完就停，不用长期吃。这个药不治心也不管血压，留着没必要。\n\n**关于口服补液盐（ORS）**\nPOTS / 体位相关晕厥的孩子，**水盐补充是治疗的核心**。孩子 14 岁、男孩，一般建议：\n- 每天喝够水，约 **1500–2000 ml**（看出汗和活动量加减），不要等口渴才喝\n- 饮食**不要刻意清淡**，正常吃盐；如果出汗多、活动量大，可以在医生指导下额外补一点盐\n- 口服补液盐可以**每天按说明冲一袋到两袋，分次喝**，不一定要等头晕才喝——头晕才喝就来不及了\n- 呕吐、腹泻、发烧、运动大量出汗那天要加量\n\n**关于催动态心电图报告**\n完全可以主动打。建议今天就打电话：\n- 优先打**住院科室的护士站**或主管医生办公室，问“我们孩子姓名 + 住院号 + 戴动态心电图的日期，报告出了没有”\n- 如果他们说还没出，再问**心电图室**（一般报告是从那里出来的）\n- 出报告一般 1–3 个工作日，节假日顺延。如果超过一周还没回，就值得在复诊时主动提一下\n\n**关于复诊挂哪个科**\n14 岁、诊断是 POTS 这种功能性问题，**首选儿童心内科**（很多医院的儿科心内看到 14 或 16 岁，具体看这家医院的儿科接诊年龄上限）。儿童心内科对青少年 POTS 的非药物管理、运动康复和长期随访经验更多。如果这家医院儿科只看到 14 岁以下，那就挂成人心内科**心律失常 / 晕厥门诊**或普通心内科，但要在挂号时跟分诊说清楚是青少年体位性晕厥。\n\n**这几天在家要盯的红线**（出现任何一条，不要等报告、直接就近急诊或叫 120）：\n- 运动中、刚运动完突然晕倒\n- 再次晕倒时伴有明显胸痛、胸闷、心悸\n- 倒之前**完全没有先兆**突然倒下\n- 意识超过 5 分钟还没完全清楚、或者出现抽搐、咬舌、大小便失禁\n- 跌倒撞到头\n- 家里或孩子这边有猝死、心肌病、长 QT 综合征、心律失常家族史的，请主动告诉我\n\n**这几天可以帮孩子做的事**：\n1. 每天早晚各记一次脉搏：先坐着安静 5 分钟数一次，然后站起 5 分钟、10 分钟各再数一次，记在本子上带给复诊医生看（这是判断 POTS 严重程度最直接的家用方法）\n2. 家里有血压计的话，顺便记一下坐位和站位 5 分钟时的血压\n3. 起床、蹲起、站起都慢一点；长时间站立（比如站地铁、洗热水澡、军训）尽量避免\n4. 把出院小结原件、所有报告、心脏彩超、抽血化验、用药清单**拍清楚照片**存好，下次复诊带上，也方便您万一换医院时医生快速看到\n\n如果今天打电话问到动态心电图的结果，可以把**报告照片发给我**（或者把“窦性心动过速”“最长 RR 间期”“室性早搏”“房性早搏”“最长停搏”这些关键词告诉我），我帮您先看一眼有没有需要提前复诊或加急处理的内容。您先把上面这些做完，有新情况随时发过来。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00094",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+15min",
+      "text": "医生，我大概记下来了。孩子现在还是没头晕、没胸痛心慌，也没再晕，我先稍微放心一点。\n\n我准备等会儿就打住院科室护士站问动态心电图，问不出来再问心电图室；然后今天开始按您说的坐着、站起来5分钟、10分钟记脉搏，血压计我也找出来试试。\n\n我怕自己理解错，再确认两件事：  \n1. 口服补液盐就是每天固定喝，不是头晕才喝，对吧？那14岁男孩一般先按一天1袋可以吗，分上午下午慢慢喝？还是一开始就要2袋？我怕盐喝多了不好。  \n2. 复诊是不是不算今天必须马上跑医院挂号？如果孩子这几天都没有您说的那些红线，我今天先催报告、开始记数值，然后尽快约儿童心内科复诊，可以这样吗？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00099",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+15min",
+      "text": "请帮我查一下CareLoop联合医疗网络中已同步/已授权的资料，重点关注：1）孩子最近这次住院的出院小结、动态心电图报告（系统通知说可能今天上午已回传，也有可能仍待回）、心脏彩超、直立倾斜/直立试验报告、抽血化验（心肌酶、电解质、甲功、肝肾功能等）；2）当前用药清单（口服补液盐、布拉氏酵母菌散等）；3）住院期间和出院时医生下的诊断原文；4）家族史、过敏史等基础信息。如果动态心电图报告还没回，请告诉我明确是哪种状态。我需要根据真实报告内容决定下一步怎么跟家属交代。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00101",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+15min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00103",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+15min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00106",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+15min",
+      "text": "您好，两个问题我都直接回答您，这样您下午操作就不会犹豫。\n\n**1. 口服补液盐怎么喝、喝多少**\n\n是的，**每天固定喝，不是头晕才喝**。头晕才喝已经晚了，预防才是目的。\n\n14 岁男孩、POTS 的情况下，我的建议是：\n- **先按一天 1 袋开始**没问题，按说明书冲（一般一袋配 250–500 ml 温开水，看您买的是哪个牌子），分上午、下午慢慢喝完就行，不要一次猛灌\n- 喝 1–2 天如果孩子耐受好、没有不舒服，可以加到**一天 1.5–2 袋**，分 3 次；夏天、出汗多、运动那天再加到 2 袋是可以的\n- **盐多这点您不用担心**。POTS 的孩子本来就因为体位改变丢失钠、而且很多孩子其实平时吃盐偏淡。每天 1–2 袋口服补液盐的盐量是在医生认可范围内的，不是\"额外多吃盐\"，是**把饮食里本来就该有的盐补回来**。除非孩子有高血压、肾脏病、心衰，否则按这个量喝不会有问题\n- 注意：冲好后**尽量当天喝完**，放久了细菌会繁殖；不要拿它完全替代白开水，正餐之间当加餐喝就行\n\n**2. 复诊要不要今天就跑医院**\n\n**今天不需要专门跑医院挂号**，按您说的这个节奏走完全可以：\n- 今天：催动态心电图报告 + 开始记坐位/站位 5 分钟/10 分钟脉搏 + 每天固定喝口服补液盐 + 观察有没有我之前列的红线\n- 这几天如果没有再次晕倒、没有胸痛胸闷、没有\"无先兆突然倒\"、没有意识不清/抽搐，那就在家安心管理，**不是急诊**\n- 但请**尽量在 1 周内**挂到儿童心内科（实在挂不到就先挂心内科或心律失常门诊），把出院小结、动态心电图报告、心脏彩超、抽血化验这几样原件带上\n- 如果您打电话问动态心电图，对方说**报告已经出来了**，那就尽量**当天或隔天**带着报告去门诊看一眼，比空手复诊有用得多；如果还要再等 1–2 天，就按时间约一个儿童心内科的号\n\n您按这个节奏做是对的，不用今天就跑医院。如果电话里问到报告内容（哪怕只是对方念一句\"窦性心动过速\"、\"最快心率\"、\"有没有早搏\"），都可以发给我，我先帮您看一下心里有个数。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00123",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+45min",
+      "text": "医生，我刚打了住院科室护士站电话，报了孩子名字和住院信息，护士帮我在系统里查了。\n\n她说动态心电图报告已经进系统了，不是完全没出；但是她电话里不给我念具体数值，也不解释报告是什么意思。只跟我说没有接到那种需要马上电话通知家属的危急值提醒，让我们下午或者明天去门诊/自助机打印，或者挂儿童心内、心内科给医生看。\n\n孩子这半小时在家还是稳定的，没有再晕，也没说胸痛、明显心慌、眼前发黑，意识也都清楚。我还没正式开始记坐着、站5分钟、10分钟的脉搏，准备下午开始弄；补液盐我就先按您说的一天1袋冲了慢慢喝。\n\n我想问一下：您这边能不能直接看到他们系统里的正式动态心电图报告？如果您看不到，我是不是今天下午就必须跑一趟医院打印加挂号？还是说既然护士说没有危急值电话通知、孩子现在也没事，可以明天去打印，或者这几天内约儿童心内科看？我怕自己把“没有危急值通知”理解成“没问题”会耽误。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00128",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+45min",
+      "text": "我先调取一下CareLoop联合医疗网络里当前已授权/已同步的资料，重点看：1）最近这次动态心电图（24小时Holter）报告原文、监测时长、最快最慢心率、平均心率、是否有显著心律失常（室早/房早/室速/长RR/长QT/停搏）、是否报告窦性心动过速或与体位性心动过速综合征相关的信息；2）出院小结原文（诊断、住院期间做过的检查、用药、出院医嘱）；3）心脏彩超、直立倾斜/直立试验、血常规、电解质、甲功、心肌酶等住院期间已做检查的结果；4）当前用药清单（含口服补液盐、布拉氏酵母菌散等）；5）家庭照护可及性和此前已登记过的随访/检查回执状态。请一并返回。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00130",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+45min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "care_system",
+      "event_id": "lite_evt_00132",
+      "event_type": "doctor_care_system_status_result",
+      "metadata": {},
+      "sim_time": "T+45min",
+      "text": "医生主动查询系统状态：回执 0 项，pending 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00133",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+45min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00135",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+45min",
+      "text": "请按本次住院时间和动态心电图项目，再调取并查阅可访问的正式报告原文或摘要、报告日期、心率与节律异常、最长停搏/间歇、室性或房性早搏等关键结果，并一并查看出院小结和当前用药清单。若报告尚未同步或无权限，请明确返回可访问范围；不要把“没有危急值电话通知”当作报告正常。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00137",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+45min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00139",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+45min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00142",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+45min",
+      "text": "我直接回答您：\n\n**我能不能看到他们系统里的动态心电图报告？**\n看不到。我这边能调到的，是孩子在我们 CareLoop 联合医疗网络里已经授权、同步过来的病历摘要索引；动态心电图的具体波形、结论、各项数值，我从您这个孩子目前同步过来的资料里**看不到**。所以我不会假装能看到，也不会凭空告诉您\"窦性心动过速\"\"最长RR\"这些数字是不是在。\n\n您打电话问护士站、她们说\"报告进了系统、没有要立刻打电话通知家属的危急值\"，这句话**只能说明一件事**：没有出现那种必须当下立刻打电话让家属冲到医院、否则会出生命危险的结果（比如持续性室速、严重长停搏、三度房室传导阻滞等）。**它不等于\"报告正常\"，也不等于\"没事\"**。这一点您警惕得对，是对的，下面我具体说一下。\n\n**\"没有危急值通知\"≠\"报告没问题\"，差别在哪？**\n危急值是有明确触发标准的，只有少数几类才会马上打电话。其他很多临床上**重要、但不需要立刻冲到医院**的发现，护士站都不会打电话，比如：\n- 室性早搏、房性早搏的次数和形态（单发、联律、二联律、成对）\n- 短阵室上性心动过速、非持续性室速\n- 最快心率、最慢心率、平均心率，以及白天/夜间心率分布（这个对判断 POTS 尤其重要）\n- 窦性停搏、窦性静止、R-R 长间歇（一般 <3 秒通常不报危急值，但临床有意义）\n- QTc 数值是否延长\n- 起搏信号、传导异常等\n\n这些都需要**医生看完整份报告才能判断**，所以一定要把报告拿到门诊让医生看一遍。\n\n**今天要不要冲去医院？**\n按孩子现在状态（稳定、不晕、不胸痛心慌、意识清楚），**今天下午不用专门跑一趟**。\n按下面这个节奏走比较稳：\n- 今天下午：在家里开始记坐位 → 站起 5 分钟、10 分钟的脉搏，血压计有就一起记；口服补液盐按一天 1 袋分上午、下午慢慢喝；继续观察我之前列的红线\n- **明天上午**：带孩子去一趟医院，主要是两件事——\n  - 用孩子的就诊卡 / 住院号在**自助打印机**上把动态心电图报告、心脏彩超报告、相关化验报告一起打出来（自助机一般比窗口快，告诉工作人员是哪个孩子的，他们会让您用孩子的卡或住院号取）\n  - **同一天**在门诊挂一个**儿童心内科**或心内科的号，把报告当面给医生看——这样医生手里有完整资料，比空手复诊有用得多\n- 如果明天上午挂不到号，**这周内**挂到就行；中间孩子不出现红线，就按上面在家管理\n- 一旦出现我之前列的任一红线（运动中/无先兆晕倒、胸痛胸闷、抽搐、撞头、意识超过5分钟不清等），**不要等报告、不要等门诊，立刻就近急诊或叫120**\n\n**报告拿到后，您可以做的两件事**\n1. 拍清楚**报告首页的\"结论 / 诊断\"那一段**，把照片发给 CareLoop 我这边；同时把**\"最快心率\"\"最慢心率\"\"平均心率\"\"最长 R-R\"\"室性早搏次数\"\"房性早搏次数\"\"QTc\"**这几项的数值，**逐字念给我听**或写在消息里发给我——口头文字我这边能可靠读取，比单看照片稳。我帮您先看一遍有没有需要提前处理或加急门诊的内容\n2. 把出院小结原件、心脏彩超报告、所有化验报告**一起拍清楚存好**，下次门诊带上，也方便换医院或换医生时快速交接\n\n您现在按\"今天下午在家记数、明天上午去医院打报告+挂号\"这个节奏走就对了，不用今天冲医院，也不必拖到好几天后。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00157",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+55min",
+      "text": "医生，我明白了，您这边看不到正式报告，我不能把护士说的“没危急值电话”当成没问题。\n\n我现在把孩子就诊卡、住院号、出院小结、药袋都放一个袋子里了，准备明天上午早点带孩子去医院自助机，把那些检查报告都打出来，能挂上儿童心内最好，挂不上就先看心内科，实在没号就这周内再约。孩子现在在旁边休息，看着还平稳，没再晕，也没说胸痛或者心慌。\n\n我再确认两个小细节，怕明天手忙脚乱弄错：\n\n1. 如果明天打印出来了，但是当天挂不到号，我能不能先把报告“结论/诊断”那几行照着打给您？还有您说的最快心率、最慢心率、平均心率、最长R-R、早搏次数、QTc这些，我如果看得懂就逐字抄过来；看不懂我就找窗口或家里人帮我读。这样您先帮我看看要不要加急，可以吗？\n\n2. 今天下午这个脉搏血压记录，我就写成这样行不行：  \n日期、时间——坐着安静5分钟后的脉搏/血压；站起来后5分钟的脉搏/血压；站起来后10分钟的脉搏/血压；有没有头晕心慌。  \n站起来以后是从他屁股离开椅子开始计时对吧？中间要一直站着不动，还是可以轻轻靠一下墙？我怕他站着又不舒服。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00163",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+55min",
+      "text": "孩子现在稳定、没再晕、没胸痛心慌，这是好的信号，您按这个节奏走就稳。两个细节我都一项一项回您，明天照着来不会手忙脚乱。\n\n**关于第1个问题——打印出来但当天挂不到号，可以先把数据发我吗？**\n\n完全可以，这就是我最希望您做的。请按这个模板把能抄到的逐字抄过来，看不懂的就空着，不要瞎猜：\n\n【动态心电图报告】\n- 戴动态心电图日期：____\n- 戴了多长时间（24 小时还是 48 小时）：____\n- 报告\"结论/诊断\"那一行原文（逐字）：____\n- 最快心率：____ 次/分\n- 最慢心率：____ 次/分\n- 平均心率：____ 次/分\n- 最长 R-R 间期：____ 秒\n- 室性早搏：____ 次\n- 房性早搏：____ 次\n- 是否提到\"短阵室速\"\"非持续性室速\"\"窦性停搏\"\"二度/三度房室传导阻滞\"：____\n- QTc：____ ms\n- 其他您看不懂但看着像重要结论的字：____\n\n看不懂的字您就让窗口工作人员或家里人帮读一遍，读不出就空着。发给我之后我会告诉您：哪些是放心范围内的、哪些是需要门诊重点跟医生提的、哪些是需要在挂号当天主动跟分诊说\"这个报告麻烦医生早一点看\"的。**只要孩子没出现我之前列的红线症状（运动中突然倒、无先兆突然倒、胸痛抽搐、撞头、5 分钟意识不清等），就完全不用半夜冲医院。**\n\n**关于第2个问题——脉搏血压怎么记**\n\n您写的格式基本是对的，按这个顺序写一行就行：\n\n日期 / 时间 → 坐位安静 5 分钟脉搏 / 坐位血压 → 站起后 5 分钟脉搏 / 站位血压 → 站起后 10 分钟脉搏 / 站位血压 → 期间症状（头晕 / 心慌 / 眼前发黑 / 出汗 / 脸色白）\n\n**几个具体操作要点：**\n\n1. **计时起点**：对，从孩子屁股离开椅子那一刻开始计 5 分钟、10 分钟。\n2. **站姿**：理想是孩子**安静站着、不靠墙、不说话、不走动、不憋气",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00180",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+355min",
+      "text": "医生，我拖到傍晚才把第一次坐站记录做完，孩子现在在沙发上歇着，还是没有再晕，也没胸痛、明显心慌、黑朦这些，就是站着测的时候他说有一点点发虚。\n\n我照着纸念一下，可能血压顺序我写得不太漂亮：坐着安静后脉搏大概是70多，血压好像是110多/70多；站起来5分钟脉搏到了100多，大概103还是105，血压我写的是差不多108/70左右；站10分钟的时候脉搏还是100上下，好像101、102那样，血压那一格我写得有点乱，看着也没有特别低，好像还是一百零几/七十左右。中间没说眼前发黑，也没胸痛，就是有点虚。\n\n我现在主要想问，这个从70多一下到100多，是不是就很严重？今晚还需要去急诊吗？还是说只要他没有再晕、没有胸痛心慌，就先让他休息，继续喝补液盐，明天早上去医院打印动态心电图和挂号就行？我怕我把数值记乱了，明天我会把这张纸也带去给门诊医生看。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00186",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+355min",
+      "text": "收到，您辛苦了，能把第一次坐站记录做完而且坚持逐条念给我听，这一步已经比大多数家长都到位。下面我直接回答您的两个问题，然后再补两个小提醒。\n\n**1. 心率从 70 多一下跳到 100 多，是不是很严重？**\n\n这个数字跳法其实\"反而不意外\"——它正是住院时考虑 POTS 的家用典型表现之一。POTS 诊断看三件事：\n- 站起 10 分钟内心率比坐位**持续升高 ≥30 次/分**（青少年严格标准是 ≥40，成人 ≥30）\n- **血压没有明显掉下来**（没有体位性低血压）\n- 站着的时候有不舒服的症状（头晕、虚、心慌、发黑等）\n\n您今天这次记录：\n- 心率 70 多 → 103-105 → 101-102，**升高 30 次左右**，正好踩在临界\n- 血压 110/70 → 108/70 → 100+/70，**基本没掉**，这一点非常关键\n- 症状只有\"有点虚\"，没有黑朦、没有胸痛、没有真正晕过去\n\n这三项一起看，是符合 POTS 的\"教科书表现\"，不是新冒出来的危险信号。**所以今晚不需要因为这个数字冲急诊**。但\"不严重\"≠\"不用管\"——明天按计划打印报告、挂儿童心内科是对的。\n\n**2. 今晚要不要去急诊？**\n\n按目前这个状态——没再晕、没胸痛心慌、血压没掉——**今晚不需要去急诊**。让孩子继续在沙发上休息、补液盐按白天节奏喝（不要因为紧张一下猛灌，也别喝太多）、晚上早点睡；明天上午按计划去医院打印报告 + 挂儿童心内科或心内科就行。\n\n但**今晚如果出现下面任何一项，不要等明天，立刻就近急诊或叫 120**：\n- 站着或刚站起来时**真的晕过去**（不是发虚，是失去意识）\n- 这次晕倒**完全没有先兆**、像断电一样突然倒下\n- 倒下时**抽搐、咬舌、大小便失禁**\n- 伴有明显**胸痛、胸闷、心悸**\n- **跌倒撞到头**\n- 心率安静坐着时持续 ≥120，或站位 ≥130-140\n- 持续呕吐、没法喝水、明显脱水\n\n出现这些才需要立刻急诊。按今天这个状态，没有。\n\n**两个小提醒，明天用得上：**\n\n1. **下次测之前，让他先喝 200–300 ml 水**（白开水就行，不一定非要补液盐）。POTS 孩子的家用记录最好在\"水盐补够\"的状态下做，这样数字更接近日常稳态，也更能让门诊医生判断治疗反应。明早测第二次之前先喝点水。\n\n2. **数值记乱了不怕**：明天带去门诊，医生看的是\"趋势和变化\"（坐 vs 站），不会拿您一次记录单独定性。所以您今晚不用反复核对自己的数字，按原样写上去就行；如果明早愿意再做一次 1–2 次，把两次一起带上更有参考价值。\n\n**明天去医院带齐这几样：**\n- 孩子就诊卡 / 住院号\n- 出院小结原件\n- 今天这张坐站记录纸（门诊医生会看）\n- 动态心电图、心脏彩超、抽血化验报告都打出来\n- 挂儿童心内科最好；挂不到就心内科 / 心律失常门诊，分诊时说一句\"青少年体位性晕厥、住院考虑 POTS、动态心电图刚出\"，他们会安排\n\n明天拿到动态心电图报告后，把\"结论/诊断 + 最快/最慢/平均心率 + 最长 R-R + 室早/房早次数 + QTc\"这几项拍清楚或逐字念给我，我帮您先过一遍有没有需要重点跟门诊医生提的内容。\n\n今晚先踏实休息，孩子看着是稳的，您别把\"记乱了\"这件事往心里去——纸在、人在、状态在，明天门诊医生看到会谢您。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00203",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1115min",
+      "text": "医生，我们现在在医院大厅坐着了，孩子昨晚到现在没有再晕，也没说胸痛、明显心慌、眼前发黑，意识都清楚，就是早上排队折腾下来有点累，现在坐着休息还算稳。\n\n我用住院号在窗口终于把动态心电图纸质报告打出来了，但是儿童心内今天号满了，普通心内那边也没马上看上。导诊说如果现场再晕、胸痛、明显心悸就去急诊，不然就后面预约。我现在先照着您昨天给的模板把报告关键行打出来，纸上字有点小，我可能抄错一两个字或数字，您先帮我看看有没有必须现在急诊或者一定要加急的。\n\n【动态心电图报告】  \n- 戴动态心电图日期：这个写的是 [REDACTED_DATE]，好像是这天装的  \n- 戴了多长时间：写着 24小时动态心电图  \n- 报告“结论/诊断”原文我照抄：  \n  1、窦性心律；  \n  2、窦性心动过速；  \n  3、偶发房性早搏；  \n  4、偶发室性早搏。  \n  后面好像还有一句“未见明显ST-T改变”还是“未见明显异常ST-T改变”，这个我不太确定。\n\n- 最快心率：我看着是 154 次/分  \n- 最慢心率：52 次/分  \n- 平均心率：83 次/分  \n- 最长 R-R 间期：好像是 1.36 秒  \n- 室性早搏：写的是 3 次  \n- 房性早搏：写的是 12 次  \n- 有没有写“短阵室速/非持续性室速/窦性停搏/二度三度房室传导阻滞”：我在结论那块没看到这些字  \n- QTc：这项我找了半天，纸上有个 QT/QTc，好像写 374/421 ms，不知道我有没有看错\n\n我现在最怕的是最快心率154这个算不算吓人，还有早搏虽然说偶发，但孩子是晕厥住院过的，这个是不是今天必须想办法走急诊让医生看？还是说他现在稳定的话，我们先回去继续约儿童心内，把纸质报告和出院小结带上就行？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00209",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1115min",
+      "text": "您这份报告抄得非常清楚，**关键数字都在合理范围，今晚和今天都不用因为报告冲急诊**。我一项一项给您说，您心里就踏实了。\n\n**1. 最快心率 154 次/分——吓不吓人？**\n\n不吓人。\n\n一个 14 岁孩子戴 24 小时动态心电图，这一天里会走路、上楼、排队、站起坐下、可能还跑几步、被扎针紧张一下、甚至睡着做梦——**这些情况下心率到 140–170 都非常常见**。154 是窦性心动过速，是心脏在正常反应，不是危险的室上速、不是室速、不是心律失常。报告结论里写的是\"窦性心动过速\"，不是\"室性心动过速\"，这两件事差得很远。\n\n而且平均心率 83 次/分，这是正常的——说明一整天里孩子的心率总体是稳的，只是有高峰到 154。\n\n**2. 早搏——偶发房早 12 次、室早 3 次**\n\n**24 小时里出现 12 次房早、3 次室早，几乎可以算\"正常\"。**健康青少年做 24 小时 Holter，多少都会有几次早搏，教科书上把\"偶发\"定得非常宽松。您孩子这个数量远远够不上\"频发\"，更不是\"成对\"、\"联律\"、\"短阵室速\"那种需要警惕的形态。报告结论里没有写\"成对室早\"\"非持续性室速\"\"室性心动过速\"，这本身就是好消息。\n\n**3. 最长 R-R 1.36 秒**\n\n**正常**。一般要 ≥2 秒（有时看 ≥3 秒）才算临床意义上的长间歇，1.36 秒只是夜间睡眠时正常的心率减慢，不是窦性停搏。\n\n**4. QTc 421 ms（QT 374 ms）**\n\n**正常**。青少年 QTc 一般以 440–450 ms 为警戒线，421 离警戒线还有余地，**不支持长 QT 综合征**。这点对晕厥的孩子特别重要——基本可以排除一种比较吓人的遗传性心律失常原因，您可以稍微放点心。\n\n**5. ST-T 那一句**\n\n\"未见明显 ST-T 改变\"和\"未见明显异常 ST-T 改变\"意思基本一样，**就是没有看到心肌缺血的表现**。这一条对 14 岁、不胸痛的孩子来说基本是放心项。\n\n---\n\n**所以这份报告整体看，是符合\"住院考虑 POTS、动态心电图没抓到恶性心律失常\"这个方向的**：\n- 窦性心动过速（站起、活动时心率反应快，跟 POTS 一致）\n- 早搏非常少（不是早搏引起的晕厥）\n- 没有长间歇、没有长 QT、没有室速（不是恶性心律失常引起的晕厥）\n- 没有 ST-T 改变（不是心肌缺血引起的晕厥）\n\n这是一件好事。\n\n**今天要不要走急诊？**\n\n按这份报告 + 孩子目前稳的状态，**今天不用走急诊**。儿童心内号满了、今天普通心内也看不上，那就**不要为了'看一眼报告'挤急诊**——急诊里看不到儿心专科医生，反而会让孩子再累一次、又等几个小时。可以这样做：\n\n1. **把纸质报告原件、出院小结原件、心脏彩超、抽血化验报告都带回家收好**（自助机或窗口打印的那一份纸留着，别只拍照）\n2. **这周内挂到儿童心内科的号**——挂不到就先挂心内科或心律失常专科门诊，分诊时把\"青少年体位性晕厥、住院考虑 POTS、动态心电图刚出、报告结论窦性心动过速+偶发早搏\"简短说一句，他们会安排\n3. **挂号当天带上**：① 出院小结 ② 动态心电图报告原件 ③ 心脏彩超报告 ④ 抽血化验报告 ⑤ 昨天那张坐站脉搏记录纸 ⑥ 现在喝的补液盐包装盒（让医生看一下牌子剂量）\n4. **挂上号之前这几天**：继续每天固定喝补液盐、早上做一次坐站脉搏记录、观察我之前列的红线\n\n**今天在医院里如果出现下面任何一项，不要等门诊，立刻就近急诊或叫 120**：\n- 站着或刚站起来时真的晕过去（不是发虚，是失去意识）\n- 完全没先兆、像断电一样突然倒下\n- 倒下时抽搐、咬舌、大小便失禁\n- 明显胸痛、胸闷、心悸持续不缓解\n- 跌倒撞到头\n- 安静坐着心率持续 ≥120\n- 持续呕吐、没法喝水\n\n孩子现在坐着休息、意识清楚、没晕没胸痛心慌，是稳的，按上面的节奏走就行。\n\n**一个小提醒**：您抄的\"戴动态心电图日期：[REDACTED_DATE]\"——这个日期看着和住院时间对不上（住院是最近的事），可能是纸上的字您看走眼了，下次门诊把原件给医生核对一下日期就行，不影响结论。\n\n您今天带孩子跑一趟把报告打出来、还一条一条念给我听，已经非常到位了，剩下的就是这周内把门诊挂上、报告原件收好、家里照常观察。**今晚和今天都不用冲急诊。**",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00223",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1150min",
+      "text": "医生，您这么解释我就踏实多了。孩子现在还坐在大厅椅子上，人清楚，能正常说话，没有再晕、胸痛，也没说心慌，就是排队折腾累了。\n\n我就不再带他去急诊排了，准备现在先回家休息。资料我都塞文件袋里了：动态心电图纸、出院小结、能打到的心超和化验单、昨天那个坐站脉搏纸，还有补液盐盒子，下次门诊都带着，让线下医生看原件，那个日期我也让医生到时候核一下。\n\n我理解接下来就是这周内尽量约儿童心内，约不到就心内科或者心律失常门诊，挂号时说“青少年体位性晕厥、住院考虑POTS、动态心电图刚出，结论是窦性心动过速和偶发早搏”。回家这几天补液盐还是每天固定分开慢慢喝，不猛灌；早上再做一次坐着和站5分钟、10分钟的脉搏血压记录。\n\n红旗我记住最要紧的：真晕过去、突然没先兆倒下、抽搐咬舌、撞头、胸痛胸闷或者心慌一直不好、坐着心率一直很快、吐得喝不进水，这些就不等号了，直接急诊或120。这样理解对吧？我现在就带他回去了。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00230",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1150min",
+      "text": "您每一条都理解对了，就这样走，不用再回头确认。\n\n再简单对一遍：\n- 这周内挂儿童心内科最好，挂不到就先心内科或心律失常专科；挂号时报的那句\"青少年体位性晕厥、住院考虑 POTS、动态心电图刚出，窦性心动过速加偶发早搏\"，分诊一听就明白怎么给您安排\n- 补液盐每天固定分开慢慢喝，这几天是水盐补充打基础的关键期，**不要因为今天踏实了就停**，也别因为紧张突然猛灌\n- 早上坐站脉搏血压记录继续；**测之前先让孩子喝 200–300 ml 白开水**，数字更接近真实稳态\n- 文件袋里这些资料（动态心电图报告、出院小结、心超、化验、坐站记录纸、补液盐盒子）下次门诊全带上，让医生看原件，日期也一起让医生核一下\n\n红旗您也记全了——真晕过去、无先兆突然倒下、抽搐咬舌、撞头、胸痛胸闷或心慌一直不缓解、安静坐着心率一直很快、吐得喝不进水——任何一项出现都不要等号，直接急诊或 120。这条您能背下来，比我再说一遍还重要。\n\n孩子今天稳，您也辛苦了。从住院、出院、等报告、念数据、到今天跑医院把报告打出来还一条一条念给我听，每一步您都没掉链子——能按模板抄、能把\"没电话通知\"和\"报告正常\"分开、不为了\"看一眼报告\"挤急诊，这些都是对的判断。\n\n回家好好休息，明天早上测第二次坐站之前，先让他喝杯水。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00245",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1195min",
+      "text": "医生，我们已经到家了，孩子现在躺着休息，路上和到家后都清醒，能正常说话，没再晕，也没喊胸痛心慌，就是人很累，不想再折腾了。\n\n我把动态心电图那张纸、出院小结、心超化验、坐站记录纸和补液盐盒子都放到一个文件袋里了。您这边是按我抄读的关键内容帮我判断的，原件我这周门诊还是会给线下医生核一遍。\n\n我晚上再和他爸爸刷儿童心内的号，实在没有就先挂心内那类或者心律失常门诊。还有一个小问题确认下：明早是不是先让他喝200到300毫升白开水，然后坐着安静一会儿测一次，再站5分钟、10分钟各测一次就行？如果他站着说很不舒服，是不是就先坐下，不硬撑到10分钟？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00255",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1195min",
+      "text": "到家了就好，您和孩子的判断都对，按这个节奏走就好。\n\n您问的明早那两个操作问题，我一项一项回您，照着做就行。\n\n**1. 明早坐站测的顺序对不对？**\n\n对，就是这个顺序，不用改：\n\n1) **先喝 200–300 毫升白开水**（慢慢喝，别一口气灌）\n2) **安静坐 5 分钟**（不玩手机、不说话、不动），然后测一次**坐位脉搏和坐位血压**，记下来\n3) **站起的那一瞬间开始计时**（屁股离开椅子那一刻）\n4) **站 5 分钟**时测一次**站位脉搏和站位血压**，记下来\n5) **站 10 分钟**时再测一次**站位脉搏和站位血压**，记下来\n6) 全程记下他有没有说\"虚\"、头晕、心慌、眼前发黑、出汗、脸色白\n\n您之前那张纸格式就是这个，明早照抄一行就行。\n\n**2. 站着说很不舒服，是不是先坐下、不硬撑到 10 分钟？**\n\n**是的，绝对不要硬撑。**\n\n测这个的目的，是看\"日常状态下心率怎么反应、有没有不舒服\"，**不是要把孩子逼到再晕一次**。只要他站着说很不舒服——尤其出现下面任何一种——**立刻让他坐下或蹲下、把头放低**：\n- 眼前发黑、看东西模糊\n- 觉得马上要晕过去\n- 严重头晕、站不稳\n- 心慌得难受\n- 出冷汗、脸色发白\n- 恶心、想吐\n\n让他坐下那一刻**记下时间、记下当时心率（如果来得及按一下）**，这就是有用数据，不用觉得\"没测满就白测了\"。门诊医生看的就是\"站了几分钟开始顶不住\"+\"坐着时是多少、顶不住时是多少\"，这两条比硬撑 10 分钟更有价值。\n\n**如果只是\"有点虚\"但能站稳、能说话、没有上面这些**，那就鼓励他再坚持一会儿看看，5 分钟到了先测一次，10 分钟到了再测一次，看心率是不是回落。\n\n**两种情况都属于正常数据**，门诊都能用，您不要为了\"没测满 10 分钟\"自责。\n\n---\n\n**今天剩下的时间就这样过**：\n\n- 让孩子躺着休息，补液盐按白天节奏分开慢慢喝（**不要因为今天踏实了就把今天该喝的那份停掉，也不要因为想\"补一补\"突然猛灌**）\n- 晚饭清淡、别一次喝太多汤水、胃别撑着\n- 晚上和明早注意红线：真晕过去、没先兆突然倒、抽搐咬舌、撞头、胸痛胸闷或心慌一直不好、安静坐着心率一直很快、吐得喝不进水——任何一项不要等号，直接急诊或 120\n- 明早测完坐站记录，把新数据和昨天那张一起留着，下次门诊一起给医生看\n- 今晚您和孩子他爸刷儿童心内的号，挂不到就先心内科或心律失常门诊，分诊时把\"青少年体位性晕厥、住院考虑 POTS、动态心电图刚出，窦性心动过速加偶发早搏\"简短说一句，他们会帮您安排\n\n文件袋那些资料（动态心电图、出院小结、心超、化验、坐站记录纸、补液盐盒子）下次门诊全带上，让医生看原件。\n\n您今天带着孩子跑医院、把报告打出来、还一条条念给我听、把文件袋都收好——这些都做到位了。明早不慌、按这个节奏来就行。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00269",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1915min",
+      "text": "医生，早上按您说的测了一次。昨晚一夜孩子都清醒，没再晕过去，早上先喝了大概一杯水，坐了几分钟再测的。\n\n我纸上记的是：坐着心率大概 76 左右，血压好像 112/72；站到 5 分钟时心率到 109 还是 111，血压我写的像是 106/70，孩子那会儿说“有点发虚”，但还能说话、站得住。我有点怕他再难受，就没让他硬撑到 10 分钟，赶紧让他坐下了，坐了一会儿说缓过来了，没有真的晕。\n\n这样没测到 10 分钟也算有用吧？今天看起来没有昨晚说的那些吓人的情况，我们是不是就继续在家休息、补液盐慢慢喝，等这周门诊？动态心电图那些原件还都在文件袋里，我到门诊会让线下医生看原件核一下。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_007__MiniMax-M3",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7853571071357126,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 9
+}

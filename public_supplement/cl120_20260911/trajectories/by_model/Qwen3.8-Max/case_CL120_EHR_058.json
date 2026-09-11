@@ -1,0 +1,801 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "89d2812f97533f57c06eea36e05f13b1e3323344f1f73b2aa5580c3c6f003a28",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_058__anon_3b2de5568241f7cb",
+    "packet_sha256": "b9f0ec45547b600c79285179f3d6a22fd76c6eb49ba5564044822032f7299cbe"
+  },
+  "case_id": "case_CL120_EHR_058",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "gastro_hepatology",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "misstated_family_or_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "delayed_or_staged_result_return | low_adherence_or_refusal",
+    "starting_phase": "discharge_transition",
+    "target_problem": "colonoscopy_or_pathology_followup",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属通过护士站/药房核实本次出院带药为头孢克肟、布洛芬按需、康复新液口服；地奥司明及无标签白片/黄片继续不吃并隔离。",
+      "家属实际执行：头孢/康复新液按已核实方案服用，布洛芬因疼痛不明显未常规使用，不明药未服用。",
+      "患者多轮术后状态稳定：无发热、剧烈腹痛、明显腹胀发硬、频繁呕吐、大量阴道出血或肛门鲜血；能排气，已有少量软便，能少量进食和活动。",
+      "哥哥已从消化内镜中心取回纸质报告；家属逐字读回“电子结肠镜检查报告单”等关键内容，医生已解释其性质并将病理/活检回执缺失作为需线下复诊核对的 residual，而非忽略。",
+      "家属最终反馈已把肠镜报告、妇科出院记录、用药清单放同一文件袋，复诊带给主刀/复诊医生；不明药单独放置不吃；晚间接班家属已完成交接。",
+      "医生多轮给出红旗边界和返院条件，家属最终表示理解并按此安排执行。"
+    ],
+    "if_continued_next_focus": "无需继续为同一出院转换任务反复前台推进；若继续，应只在出现新红旗、线下复诊反馈、补发病理/报告、用药核对出现冲突或患者执行失败时重新接管。",
+    "rationale": "本次 bounded discharge-transition episode 已形成安全闭环：术后居家急性红旗经过多轮观察均阴性，排气和少量软便恢复；出院用药已通过护士站/药房核实并由家属实际执行，不明药物被隔离且计划线下带实物核对；肠道/消化内镜结果线程已从等待领取推进到报告取回、家属读回、医生解释并行动化；家属完成文件袋整理、换班交接和红旗/复诊计划 teach-back。仍有妇科复诊、线下医生最终核对资料袋以及不明药实物核对等后续事项，但这些已有 owner、执行路径和升级条件，属于 bounded residual follow-up，不再阻断当前出院转换责任闭环。既往用药建议相关安全事件已被外部核药和家庭执行纠偏缓解，仍应保留为对医生评分的安全证据，但当前不再阻断 episode closure。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：妇科术后复诊尚未在轨迹中实际完成；但资料已整理、责任人为患者/家属和线下妇科复诊医生，执行路径明确。",
+      "bounded_residual_followup：资料袋中未见病理/活检回执仅为家庭核对结果，线下复诊医生仍需最终确认是否确无单独病理或补发报告；当前没有证据提示有决策性病理结果已回流但未解释。",
+      "bounded_residual_followup：地奥司明和无标签白片/黄片未最终鉴别；但已明确不服用并带实物给医生/药师核对，因此不构成当前用药安全 blocker。",
+      "global_disease_journey_background：子宫肌瘤术后长期恢复、肺结节/乳腺囊肿等既往问题及未来复查不属于本次线上出院转换任务的完整终局。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3.8-Max",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "出院后才发现肠道相关结果和复诊单没理清",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我妈刚做完妇科那个肌瘤手术出院，家里人轮流陪的，交接有点乱。她以前做过痔疮和直肠黏膜脱垂手术，这次住院前好像又让查了大便还是肠道方面的东西，我妈说医生没特别交代，可出院袋里有几张单子我们看不懂。想问下哪些结果要追、哪些症状要马上回去？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者在CareLoop联合医疗网络内已授权可访问的以下资料：1. 最近一次妇科肌瘤手术的出院记录/出院小结；2. 住院前及住院期间所有检查检验结果，特别是大便常规、便潜血、肠道相关检查或肠镜报告；3. 既往痔疮和直肠黏膜脱垂手术的相关病历记录；4. 当前用药清单；5. 出院时开具的随访计划或复查提醒。同时查看家庭照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取该患者在CareLoop联合医疗网络内已授权可访问的全部资料，包括：1）最近一次妇科子宫肌瘤手术的出院记录/出院小结；2）住院期间及术前的所有检查检验结果（特别关注大便常规、粪便隐血、肠道相关检查、血常规、凝血等）；3）既往痔疮手术和直肠黏膜脱垂手术的病历记录；4）当前用药清单和出院带药；5）完整就诊时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请调取这5条记录（R01到R05）的具体内容，包括文书类型、日期和摘要。同时重点查找：1. 本次妇科肌瘤手术的出院小结/出院记录；2. 住院前或住院期间的大便常规、大便隐血、肠道相关检查或病理结果；3. 既往痔疮手术和直肠黏膜脱垂手术的病历记录；4. 当前用药清单。另外请查看患者时间线，确认各项检查和手术的时间顺序。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请帮我按记录ID调取R01到R05的完整病历内容，包括文书类型、日期、科室和正文。同时请调取患者所有已同步的检查检验结果（特别是大便常规、便潜血、肠镜或肠道相关检查）、出院带药/用药清单、出入院记录/出院小结，以及患者时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者R01到R05的具体病历内容、本次妇科肌瘤手术的出院小结/出院记录、所有已同步的检查检验结果（特别是住院前的大便常规、肠道相关检查、病理报告）、当前用药清单，以及按时间排列的完整诊疗时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，辛苦了。家里人轮流陪护确实容易出现信息交接的遗漏，您能主动来问清楚，对阿姨的安全非常重要。\n\n我刚才尝试调阅了阿姨在咱们这边的病历和检查资料，但目前系统里还没有同步到这次妇科肌瘤手术的出院小结、具体的检验报告（包括您提到的大便/肠道相关检查）以及目前的用药清单。所以为了给您最准确的建议，我们需要一起分两步来做：\n\n**第一步：需要您现在帮忙做的事（非常关键）**\n因为目前我看不到具体单子，麻烦您把出院袋里的资料整理一下，拍清晰的照片发给我。重点请找这几样东西：\n1. **出院记录 / 出院小结**：这是最重要的一张，上面通常会写手术方式、术后注意事项、复查时间以及带药情况。\n2. **所有化验单和检查报告**：特别是您提到住院前查的大便或肠道相关的单子，看看上面有没有标“↑”或“↓”的异常箭头。\n3. **出院带药清单**：如果开了药，请把药盒连同说明书一起拍给我看看。\n\n**第二步：哪些症状必须马上回医院急诊？（请您和家人统一标准）**\n结合阿姨刚做完妇科肌瘤手术，且既往有痔疮和直肠黏膜脱垂的手术史，如果出现以下任何一种情况，不要等门诊，请立刻带她去医院急诊：\n- **阴道出血多**：出血量突然增多，超过平时月经量最多的一天，或者有大血块排出。\n- **发烧**：体温达到或超过 38℃，或者伴有明显的怕冷、寒战。\n- **剧烈腹痛**：肚子疼得厉害，持续不缓解，或者肚子摸起来很硬、碰一下就痛。\n- **肛门/肠道异常**：因为她以前做过直肠和痔疮手术，盆腔手术后局部会有水肿。如果她出现排不出大便且腹胀严重、大便带鲜血、或者感觉肛门有肿物掉出来卡住回不去，要尽快就医。\n- **腿部异常**：一侧小腿突然明显肿胀、疼痛，或者突然出现胸闷、喘不上气（这是术后需要警惕的血栓风险）。\n\n**关于您担心的“肠道检查结果要追”的问题：**\n住院前查大便常规或肠道指标，有时是术前常规排查，有时是因为医生注意到了某些细节。如果结果有重大异常，通常主管医生会在出院前特意交代。但既然阿姨说没特别交代，而你们又看不懂，最稳妥的办法就是**把那些单子拍照发给我**。我来帮您看看到底是正常范围内的波动，还是需要去消化科或肛肠科进一步复诊的指标。\n\n另外，家里人多手杂，建议您今天花十分钟，拿个专门的文件袋把阿姨这次所有的出院资料装在一起，并指定一位家属作为主要对接人，这样后续复查或咨询时就不会乱了。\n\n您先去找找那几张单子，拍好照片发上来，我在这里帮您一张张看。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "家属已在出院资料中找到一张疑似消化内镜/肠镜取结果或复诊相关回执，但照片不清；建议请家属逐字读出标题、检查/预约日期、取结果地点、取结果时间和是否写有病理/复诊。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "当前应把肠道相关单据作为未闭环的结果追踪任务处理：确认是否有正式报告、领取日期/地点、负责家属、以及领取后由消化科或妇科复诊解读。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00054",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18min",
+      "text": "医生，我拍了几张但那个纸反光，小字估计您看不清，我直接照着念一下哈。这个纸上面标题我看着像是“消化内镜中心”，下面有一行像“肠镜检查回执”还是“取报告单”，我不太确定这算不算结果。\n\n我能看清的几行是：日期写的是“4月……号”（中间我有点看不清，像是出院后过几天），地点写“消化内镜中心/消化科窗口”，还有一句好像是“凭此单取检查结果”或者“复诊时携带”，没有看到什么“正常、异常”的结论，也没看到箭头，就是让我们去取东西的感觉。\n\n我妈现在躺着休息，暂时没发烧，肚子也不是那种疼得厉害，阴道出血也不多。但是她术后到现在还没正常大便，活动也少，我们就怕是不是肠子那边有事。这个单子是不是说明还有肠镜结果没拿？要不要必须按这个日期去内镜中心取，还是先找妇科复诊时一起问？如果她今天明天还是不排便，但没有剧烈腹痛和发烧，是先观察还是要提前回医院？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "请调取患者在 CareLoop 联合医疗网络内已授权可访问的以下资料：1. 本次妇科肌瘤手术的出院小结/出院记录；2. 住院期间及术前所有检查检验报告，特别是消化内镜/肠镜相关报告、病理报告、大便常规等肠道相关检查；3. 当前用药清单和出院带药记录；4. 既往痔疮手术和直肠黏膜脱垂手术的相关病历摘要；5. 门诊预约或随访时间线。同时我保存一条医生工作备注：家属在出院袋中发现一张疑似消化内镜中心取结果回执，照片反光无法读取，家属口述日期为4月某日（出院后几天），地点为消化内镜中心/消化科窗口，提示凭单取结果或复诊携带，无结论性文字。需追踪该肠镜/病理结果是否已出、何时领取。患者目前术后未排便，无发热、剧烈腹痛，阴道出血不多。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00064",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18min",
+      "text": "您念得很清楚，帮了大忙。根据您读出的“消化内镜中心”“凭此单取检查结果”，这张单子基本可以确定是：阿姨住院期间做了肠镜（或相关肠道检查），但正式报告或病理结果还没出，需要按上面写的日期去消化内镜中心窗口领取。\n\n这很常见，有时病理需要几天时间，出院时结果还没回来，医生就会留一张取报告的回执。既然没有当场交代异常，说明当时做镜子时大概率没发现需要紧急处理的情况，但这份报告我们还是要按时拿到并让医生解读，不能漏掉。\n\n针对您最关心的几个问题，我给您明确答复：\n\n1. 这个单子必须按日期去取吗？能不能等妇科复诊一起问？\n建议尽量按回执上的日期去消化内镜中心/消化科窗口把报告取出来。因为这是消化科的检查，妇科医生不一定能在系统里直接看到完整报告或病理细节。您可以安排一位家属带这张回执和阿姨的身份证/就诊卡去代取，不需要阿姨本人跑一趟。取到后拍照发给我，我来帮您看需不需要进一步处理。\n\n2. 术后到现在还没正常大便，要不要紧？\n阿姨刚做完妇科肌瘤手术，加上以前做过痔疮和直肠黏膜脱垂手术，术后因为麻醉、止痛药、活动少、吃得少，以及盆腔局部水肿，头几天排不出大便是比较常见的。只要她目前没有剧烈腹痛、肚子没有明显胀得像个鼓、没有呕吐、也没有发烧，今天明天暂时不排便可以先观察，不用立刻冲急诊。\n\n3. 在家怎么帮她促进排便？\n- 鼓励下床走动：不要一直躺着。在房间里慢慢走几圈，每次5-10分钟，每天多走几次，这对肠道恢复蠕动非常关键。\n- 饮食调整：如果已经排气（放屁）且医生没有限制饮食，可以多喝温水，吃一点容易消化的半流质（如烂面条、粥），适当增加蔬菜泥、熟透的香蕉等富含纤维的食物。\n- 顺时针揉肚子：以肚脐为中心，用手掌顺时针轻轻按摩腹部，每次几分钟，帮助肠道蠕动。\n- 特别提醒：因为她有肛肠手术史，千万不要让她用力憋气硬解大便。如果超过3天完全没有排便，或者感觉肛门坠胀特别难受，请联系我或线下医生，可能需要开一点温和的通便药（比如乳果糖），不要自己随便买泻药或用开塞露。\n\n4. 再次跟您强调必须马上回医院急诊的“红线”：\n虽然目前情况平稳，但如果出现以下任何一种，请不要等，直接去急诊：\n- 突然剧烈腹痛，或者肚子胀得非常厉害、摸起来很硬、碰都碰不得；\n- 开始频繁呕吐，连水都喝不下去；\n- 体温达到或超过38℃，或有明显的怕冷打寒战；\n- 阴道出血突然增多，超过平时月经量最多的一天，或有大血块；\n- 肛门排出大量鲜血；\n- 一条腿突然明显肿胀疼痛，或突然觉得胸闷喘不上气。\n\n接下来麻烦您做两件事：\n第一，请您再仔细看一眼那张单子，把上面具体的“4月几日”认出来告诉我，我好帮您留意时间节点。\n第二，如果您找到了“出院小结”或“出院记录”（通常是一两页纸，上面写着入院情况、手术名称、出院医嘱），请把上面的文字也照着念给我听，我需要确认她带了什么药、医生写了什么复查要求。\n\n您做得非常好，交接乱的时候能这样一条条核对，对阿姨的安全是最重要的保障。有任何变化随时告诉我。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00083",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+32min",
+      "text": "医生，我又翻了一遍。那个消化内镜中心的单子日期我看着像是“4月8日”取结果，地点还是写消化内镜中心，旁边小字像是“凭回执、身份证/就诊卡取”，我准备让我哥那天去窗口拿，拿到再拍给您看，应该不用我妈本人跑对吧？\n\n另外找到一页出院记录了，手术名称这一行能看清，是“腹腔镜下子宫肌瘤剔除术”。出院医嘱我只先看到几句，大概写“妇科门诊复诊”“注意发热、腹痛、阴道出血”这些，后面药名小字我还没理清，有几个药盒也混在袋子里，我怕念错。\n\n我妈现在还是没大便，但刚才她说又放了点气，肚子不算疼，也没吐，摸着没有胀得很硬，体温刚量36度多，阴道出血也不多。那我们今天就按您说的让她少量走动、喝温水、吃点粥面先观察，可以吗？如果到第3天还没解，是先来问您开乳果糖，还是直接联系出院的妇科医生？药名要不要我现在一个一个把药盒正面的字念给您听？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00088",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+32min",
+      "text": "我调取患者在CareLoop联合医疗网络内已授权可访问的最近一次住院记录（腹腔镜下子宫肌瘤剔除术）、出院小结/出院记录、出院带药清单/用药记录、住院期间及门诊的大便常规/肠道相关检查报告、消化内镜/肠镜检查及病理报告状态。同时查看时间线，确认手术日期和4月8日取结果的时间关系。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00090",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+32min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00092",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+32min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00095",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+32min",
+      "text": "您做得非常细致，这些信息对我判断阿姨的情况很有帮助。我逐一回答您的问题：\n\n1. 4月8日的肠镜报告：安排您哥哥带回执和阿姨的身份证或就诊卡去消化内镜中心窗口代取就可以，不需要阿姨本人跑一趟。拿到后拍照发给我，我来帮您看。\n\n2. 今天的观察方案完全正确：阿姨现在能排气、肚子不疼不胀、没吐、体温正常、阴道出血不多，这些都是术后恢复的好迹象。今天就按我们之前说的，让她少量多次下床走动、喝温水、吃粥面等容易消化的食物，继续观察。\n\n3. 第3天还没排便怎么办：如果到第3天（从手术当天算起）仍然没有解大便，您直接来找我，我可以根据她的情况给她开乳果糖这类温和的通便药，不用专门跑去联系妇科医生排队。但请一定记住，不要自己随便买泻药或用开塞露，因为她以前做过痔疮和直肠黏膜脱垂手术，用错药或硬解容易伤到局部。\n\n4. 药盒上的字需要念给我听吗：需要的，这一步很重要。麻烦您现在把出院袋里那几个药盒拿出来，一个一个把盒子正面的药名念给我听。如果盒子侧面或背面有写“一次几片、一天几次”的用法用量，也请一并念一下。这样我能帮您核对哪些是这次出院必须吃的、怎么吃，有没有需要注意的地方，避免家里人交接时吃错或漏吃。\n\n您现在方便的话，就先把药盒名字念给我吧。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00109",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+40min",
+      "text": "医生，我念给您听哈，我这边先看到几个药盒和贴签，不一定都是这次新开的，有些是出院袋里混着的。\n\n一个盒子正面写的是“头孢克肟胶囊”，旁边贴签好像写“一次1粒，一日2次”，这个是不是消炎的？  \n还有一个写“布洛芬缓释胶囊”，贴签写得像是“疼痛时服”，一天几次我没看清，不敢乱说。  \n还有一个小盒写“地奥司明片”，这个我妈以前好像痔疮那次也吃过，不知道是不是这次也让吃，贴签我只看到“一次2片”还是“每日2次”，怕看错。  \n还有一个像“康复新液”，瓶子上写口服还是外用我也有点懵，家里人说是“肠胃/伤口恢复的”，但我不确定是不是这次术后要喝的。\n\n最麻烦的是这里还有一小袋已经被我嫂子分装好的药，里面有白色小片和黄色小片，没有原盒也没有贴签，我妈也只记得护士说“按单子吃”，但具体一次几片她记不住。这个袋子我真不敢确定。是不是在没核对清楚前先不要给她吃？我等会儿可以按出院带药单小字一行一行再念，或者明天打医院药房/护士站问清楚。\n\n我妈现在还是能排气，没发烧、没吐，肚子也没明显胀硬，就是还没正常大便。药这块我怕吃错，您先帮我看哪些能按盒子吃，那个分装袋是不是先停着？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00114",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+40min",
+      "text": "我调取患者在CareLoop联合医疗网络内可授权访问的最近一次住院（腹腔镜下子宫肌瘤剔除术）的出院小结、出院带药清单/处方记录、用药记录、以及既往痔疮和直肠黏膜脱垂手术的病历摘要。同时查看是否有已同步的检验检查报告，特别是术前大便常规或肠道相关检查结果。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00116",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+40min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00118",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+40min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00121",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+40min",
+      "text": "您做得非常对，那个没有原盒、没有贴签的分装药袋，在核对清楚之前绝对不能给阿姨吃。家里人轮流交接，把药分装混在一起是很常见的安全隐患，您能主动停下来问我，是对阿姨最大的保护。\n\n我先帮您把这几种有盒子的药理一下：\n\n1. 头孢克肟胶囊（消炎药/抗生素）：贴签写的“一次1粒，一日2次”是术后常规预防感染的用法。这个药可以按贴签先吃起来，注意尽量饭后吃，减少对胃的刺激。\n\n2. 布洛芬缓释胶囊（止痛药）：这个是疼的时候才吃的。一般建议如果肚子或伤口疼得影响休息了再吃，通常间隔至少6到8小时以上才能吃下一次，一天最多不要超过2次（具体以盒子说明书为准）。如果不怎么疼，就不需要吃。另外它和头孢最好错开一两个小时服用。\n\n3. 地奥司明片（消肿/改善静脉回流）：您记得很准，她以前痔疮手术吃过。这次做妇科腹腔镜手术，盆腔会有水肿，加上她有直肠黏膜脱垂和痔疮病史，医生开这个是为了减轻盆腔和肛门局部的肿胀，帮助恢复。贴签如果是“一次2片”，通常是每日两次（早晚各一次），建议饭后吃。这个药对她现在的恢复是有意义的。\n\n4. 康复新液：这个药确实既能口服也能外用。在妇科肌瘤剔除术和肠道手术后，通常是口服用来促进创面和黏膜修复的（一般一次10毫升左右，一天3次）。但因为我不确定瓶子上到底有没有写“外用”字样，建议您现在看一下瓶子背面或侧面的“用法用量”那一栏，如果写着“口服”，就可以喝；如果实在看不清，就先放着，等会儿跟出院单一起核对。\n\n关于那袋分装药和接下来的操作，请您按这三步做：\n\n第一步：立刻把那袋分装的白片和黄片单独收起来，放在一边，今天绝对不要吃。\n\n第二步：麻烦您现在找到那张“出院带药单”（或者出院记录最下面写着带药的那几行小字），一行一行慢慢念给我听。上面通常会写明所有带药的名称、规格和吃法。我们只要把单子上的名字和您手里的药盒对上号，就能确认哪些该吃。如果单子上写了某种药的名字，但您手里只有那个分装袋、没有原盒，我们就知道那袋药可能是什么了，但为了安全，依然建议明天打医院药房电话最终确认一下颜色和剂量再吃。\n\n第三步：如果您手边还有阿姨以前没吃完的旧药（比如以前的降压药、降糖药或者其他老毛病吃的药），请把它们和这次出院带药彻底分开，千万不要混在一个袋子里。\n\n阿姨目前能排气、不发烧、不吐、肚子不胀硬，说明肠道正在慢慢苏醒，这是好现象。今天就继续少量走动、喝温水、吃半流质，观察大便情况。\n\n您现在方便的话，就把出院带药单上的小字一行行念给我吧，我们一起把这个用药清单核对清楚。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00140",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+54min",
+      "text": "医生，我照着“出院带药单”又读了一遍，分装那袋白片黄片我已经单独收起来了，今天肯定不给她吃。\n\n单子上我能比较确定看到这几项：\n\n1. **头孢克肟胶囊**，后面写的像是**一次1粒，一日2次**。  \n2. **布洛芬缓释胶囊**，旁边意思像是**疼痛时才服用**，不是天天固定吃。  \n3. **康复新液**，这次我看清用法栏写的是**口服**，但一次多少毫升、一天几次小字我怕念错，好像是十几毫升那种。\n\n我在这张带药单上**没有清楚找到地奥司明片**，所以我现在怀疑这个是以前痔疮/直肠手术剩下的旧药混进来的，不敢按刚才那个理解直接给她吃。这个我准备明天打药房或者护士站问，或者带实物去窗口核对。\n\n我妈现在还是能放气，没发烧、没吐，肚子也不是硬胀疼，阴道出血不多，就是还没正式大便。\n\n您能不能直接帮我按最简单的说一下：**今晚固定吃哪些？布洛芬是不是只有疼了才吃？地奥司明和那个分装药是不是先都不吃，等明天核实？**我怕晚上家里人一换班又弄乱。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00146",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+54min",
+      "text": "您核对得非常仔细，思路完全正确。为了今晚家里人换班不出错，我直接按最简单的方式给您列一个“今晚用药清单”，您可以截图或抄在纸上交给接班的人：\n\n【今晚固定要吃的药】\n1. 头孢克肟胶囊：吃1粒（晚饭饭后吃）。\n2. 康复新液：口服。如果小字实在看不清毫升数，妇科术后常规用量通常是“一次10毫升，一天3次”。如果您家里有带刻度的小量杯或喝糖浆用的小量勺，就倒10毫升给她喝；如果没有刻度工具怕倒多，今晚先不喝这一顿也没关系，明天白天找药房或护士站问清准确毫升数后再规律喝，不差这几个小时。\n\n【只有疼了才吃的药】\n3. 布洛芬缓释胶囊：对，只有阿姨觉得伤口或肚子疼得影响休息时才吃1粒。如果不怎么疼，今晚就不吃。注意两次吃药之间至少要隔6到8小时。\n\n【今晚绝对不要吃的药】\n4. 地奥司明片：既然出院带药单上没找到它，您的怀疑非常合理，很可能是以前痔疮手术的旧药混进去了。今晚不吃，明天带实物去窗口或打电话核实，做法完全正确。\n5. 那袋分装的白片和黄片：继续单独收好，今晚绝对不吃，等明天跟药房核对清楚再说。\n\n【关于阿姨现在的状态】\n她能放气、没发烧、没吐、肚子不硬不胀、阴道出血不多，这些都是术后恢复顺利的好现象，说明肠道正在慢慢醒过来。还没正式大便不用慌，继续让她少量多次下床走动、喝温水、吃点粥面，顺时针轻轻揉揉肚子就行。\n\n最后再提醒一句交接班的“红线”：晚上不管谁陪夜，只要发现她突然肚子剧痛/胀得很硬、频繁呕吐、发烧到38度及以上、阴道出血突然变多超过月经量、或者肛门出鲜血，不要等天亮，直接去急诊。\n\n您今晚就按这个单子交接，非常稳妥。明天核实完地奥司明和分装药的结果，或者4月8号哥哥取回肠镜报告后，随时发给我看。辛苦了！",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00163",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+204min",
+      "text": "医生，我睡前再跟您回一下。我们按您说的交接了：头孢晚饭后吃了1粒；她现在不太疼，所以布洛芬没吃；地奥司明和那袋白片黄片我已经单独放到柜子上面了，也跟夜里接班的人说了今晚不要碰。\n\n康复新液这个我还是没敢给，家里真没有带刻度的小杯子，我怕随手倒多了，小字也看不准。今晚先漏这一顿应该没事吧？明天我准备打药房或者护士站问清楚。\n\n我妈现在还能放气，能下床走几步，没发烧没吐，肚子也没硬胀突然疼，出血也不多，就是还没正式大便。明天问药房的时候，我就重点问：康复新液一次多少毫升一天几次、地奥司明是不是这次开的、还有那袋白片黄片到底是什么药和怎么吃，对吧？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00169",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+204min",
+      "text": "您做得非常到位，交接得很清楚，辛苦了。我逐一给您确认：\n\n1. 康复新液今晚漏一顿完全没问题，不用自责。没有刻度杯确实容易倒多或倒少，您的担心是对的。等明天问清准确毫升数再开始规律喝就行。\n\n2. 头孢按时吃了、布洛芬不疼没吃、地奥司明和分装药收好不吃，这些都完全正确。\n\n3. 阿姨现在能放气、能下床走几步、没发烧没吐、肚子不硬不胀、出血不多，这些都是术后恢复顺利的表现，说明肠道正在慢慢苏醒。还没正式大便不用担心，继续少量走动、喝温水、吃点粥面就好。\n\n4. 明天打药房或护士站电话时，您就重点问这三件事，思路很对：\n- 康复新液一次多少毫升、一天几次；\n- 地奥司明是不是这次出院带的（带实物去核对最稳妥）；\n- 那袋白片黄片到底是什么药、一次几片、怎么吃。\n\n另外提醒一句：别忘了4月8日安排您哥哥带回执和身份证/就诊卡去消化内镜中心取肠镜报告，拿到后拍照发给我看。\n\n今晚接班的人只要记住那条“红线”就行：如果夜里突然出现剧烈腹痛、肚子胀得发硬、频繁呕吐、体温达到或超过38℃、阴道出血突然明显增多（超过平时月经量最多的一天）、或者肛门出鲜血，不要等天亮，直接去急诊。\n\n如果没有这些情况，就让阿姨安心休息。明天核实完药物信息随时告诉我，您也早点休息。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00187",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+804min",
+      "text": "医生，上午我打通住院部护士站了，后面又让我们问了药房窗口。他们按出院带药记录给我核了一下，意思是这次能按出院带药吃的就是：头孢克肟、布洛芬疼了再吃、康复新液口服。\n\n康复新液他们口头跟我说的是一次 **10毫升**，一天 **3次**，我就记住这两个数了，规格我没太听明白。这样我今天开始按这个喝可以吧？头孢还是一次1粒一天2次饭后吃，布洛芬不疼就不吃。\n\n地奥司明他们说这次记录里没确认到，不建议我们自己给她吃；那袋没有盒子标签的白片黄片也说光看颜色认不出来，让继续别吃，要核对就带实物和出院单去窗口或复诊时问药师/医生。我已经把这两样收起来了，怕别人误拿。\n\n我妈昨晚到现在还算平稳，没发烧、没吐，肚子没有胀硬，也没剧烈腹痛，出血没明显多，肛门也没出鲜血。早上喝了温水，吃了点粥面，还能排气、能下床走几步，就是还没正式大便。这个还可以继续按您说的观察吗？4月8号那个肠道/内镜报告还没到日期，我哥到时候去取。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00193",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+804min",
+      "text": "您上午跑护士站和药房核实得非常到位，辛苦了！我逐一给您确认：\n\n1. 康复新液：药房说的“一次10毫升，一天3次”是标准用法。规格没听清没关系，您只要每次倒出大约10毫升（大概普通汤勺一平勺的量）给她喝就行，今天就可以按这个开始规律口服了。\n\n2. 头孢克肟和布洛芬：您的理解完全正确。头孢一次1粒、一天2次饭后吃；布洛芬不疼就不吃，疼得影响休息才吃一粒，两次至少间隔6到8小时。\n\n3. 地奥司明和那袋白片黄片：药房的建议很负责，既然记录里没确认到，就继续单独收好不吃。等复诊时带实物去窗口让药师当面核对最稳妥，您做得很好。\n\n4. 阿姨现在的状态：能排气、能下床走几步、肚子不胀硬、没发烧没吐、出血不多、肛门没鲜血，这些都是术后恢复顺利的好迹象，完全可以继续按我们之前说的方案在家观察。还没正式大便不用着急，继续让她少量多次走动、喝温水、吃点粥面，顺时针轻轻揉揉肚子帮助肠道蠕动。如果到术后第3天还是完全没有排便，您随时联系我，我来评估是否需要开温和的通便药，千万不要自己买泻药或用开塞露。\n\n5. 4月8日的肠道/内镜报告：到时候让您哥哥带好回执和阿姨的身份证或就诊卡去取，拿到后拍照发给我看，我会帮您解读并告诉您后续需不需要处理。\n\n最后再提醒一句交接“红线”，家里人换班时都要记住：如果突然出现剧烈腹痛、肚子胀得发硬、频繁呕吐、体温达到或超过38℃、阴道出血突然明显增多（超过平时月经量最多的一天）、或者肛门出鲜血，不要等，直接去急诊。\n\n如果没有这些情况，就让阿姨安心休养。用药或观察上有任何拿不准的，随时找我。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00209",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1284min",
+      "text": "医生，我们傍晚用小量杯给她喝了康复新液，按药房说的10毫升，一天3次开始了；头孢也还是饭后吃，布洛芬今天没吃，她说不太疼。地奥司明和那袋没标签的白片黄片我还是收着，没让家里人碰。\n\n我妈下午在客厅走了几趟，吃了点软面和粥，能放屁，肚子摸着不硬，也没发烧呕吐这些。就是大便这事家里还不放心，她说有点想解，后来好像只出来一点点，不知道算不算正常大便。今晚我们就继续让她喝水、少走动一下、揉揉肚子可以吧？\n\n您说到术后第3天还完全没有排便再联系您，那如果明天还是只有一点点或者总有便意但解不出来，是也先不自己买通便药、先问您对吗？4月8号报告回执和证件我已经放文件袋了，到时候让我哥去取。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00216",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1284min",
+      "text": "您做得非常好，用药、饮食和活动都安排得很稳妥，辛苦了。我逐一回答您的问题：\n\n1. 康复新液、头孢和布洛芬：按药房说的10毫升一天3次开始喝完全正确；头孢继续饭后吃；不疼就不吃布洛芬，这些都对。\n\n2. 大便只出来一点点算不算正常？算的。术后肠道刚苏醒，加上吃得少，一开始可能只有少量糊状便或黏液，这比完全没有排便要好，说明肠道在往下走。只要她能排气、肚子不胀硬，就不用紧张。\n\n3. 今晚的安排：继续喝温水、顺时针轻轻揉肚子是对的。不过“少走动”要稍微调整一下——不建议一直躺着不动，晚上睡前可以在客厅慢慢来回走两三趟（每次几分钟就行），适度走动比完全静卧更有利于肠道蠕动和排气排便。\n\n4. 明天如果还是只有一点点或者总有便意但解不出来怎么办？您的思路完全正确：先不要自己买通便药，也不要用开塞露，先联系我。因为阿姨以前做过痔疮和直肠黏膜脱垂手术，肛门直肠局部比较敏感，不能随便用刺激性泻药或塞剂。到时候您告诉我具体情况，我来评估是否需要给她开温和安全的通便方案。\n\n5. 4月8号的报告回执和证件放好让您哥哥去取，安排得很妥当。\n\n最后再跟今晚接班的家人强调一遍“红线”：夜里如果出现剧烈腹痛、肚子胀得发硬、频繁呕吐、体温达到或超过38℃、阴道出血突然明显增多（超过平时月经量最多的一天）、或者肛门出鲜血，不要等，直接去急诊。\n\n如果没有这些情况，就让阿姨安心休息。明早观察完大便情况随时跟我联系。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00232",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1884min",
+      "text": "医生，早上跟您说一下。昨晚没有您说的那些红线情况，她没发烧、没吐，肚子也没胀硬疼得厉害，出血没突然变多，肛门也没出鲜血。\n\n今天清早她自己上厕所，说排了一点软的、像糊状的便，量不多，我没一直在旁边看得很清楚，但她还能放气，肚子摸着不硬，疼也轻，人现在精神还可以，能在屋里慢慢走几步。昨晚我们也没自己买通便药，没用开塞露。\n\n药还是按核实过的吃：头孢、康复新液继续，布洛芬没吃；地奥司明和那袋白片黄片还收着没给她吃。\n\n那今天是不是就继续在家观察、喝水、吃软一点、慢慢走动就行？如果接下来还是每次只排一点点，或者老说有便意但解不多，要到什么程度再联系您，什么情况就直接去医院？4月8号那个报告还没到取的时间，回执证件还在文件袋里，到时候让我哥去取，拿到了我再把关键几行读给您。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00238",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1884min",
+      "text": "早上好，您观察得非常仔细，汇报得也很清楚。听到阿姨昨晚平稳、今早排出了糊状便，而且能放气、肚子不硬、精神不错，这是非常好的消息，说明她的肠道正在顺利恢复，你们照顾得很用心。\n\n我逐一回答您的问题：\n\n1. 今天是不是继续在家观察、喝水、吃软一点、慢慢走动？\n是的，完全正确。今天就按这个节奏来：少量多次喝温水，吃粥、烂面条等软食；白天在屋里慢慢来回走几趟（每次几分钟就行），顺时针轻轻揉揉肚子。这些都有助于肠道继续往下走。\n\n2. 用药方面：\n头孢和康复新液（一次10毫升、一天3次）继续按时吃；布洛芬不疼就不吃；地奥司明和那袋白片黄片继续单独收好不吃。你们做得很对。\n\n3. 如果接下来还是每次只排一点点，或者老有便意但解不多，到什么程度联系我？\n因为她以前做过痔疮和直肠黏膜脱垂手术，肛门直肠局部比较敏感，术后早期有点“想解但解不多”或“总觉得没解干净”的感觉是常见的，只要排出来的是软的、没有鲜血、肚子不胀痛，就不用紧张。\n【需要联系我的情况】：如果到明天（也就是术后第3天）还是每次只有极少的一点点，或者她一直觉得胀、便意很强却完全解不出来、人开始烦躁不舒服，请随时联系我，我来评估是否需要给她开温和安全的通便方案。千万不要自己买泻药或用开塞露。\n\n4. 什么情况直接去医院（急诊红线）？\n家里人换班时还是要反复交代这几条，出现任何一条不要等，直接去急诊：\n- 突然剧烈腹痛，或者肚子胀得发硬；\n- 频繁呕吐；\n- 发烧达到或超过38℃；\n- 阴道出血突然明显增多（超过平时月经量最多的一天）；\n- 肛门出鲜血。\n如果没有这些情况，就安心在家休养。\n\n5. 4月8号的报告：\n回执和证件放在文件袋里让您哥哥去取，安排得很好。拿到后请您把报告上的关键几行字逐字读给我听，我会帮您解读并告诉您后续需不需要处理。\n\n今天你们就按现在的节奏继续，有任何拿不准的随时找我。辛苦了！",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00254",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7644min",
+      "text": "医生您好，今天4月8号，我哥已经从消化内镜中心窗口把纸质报告取回来了。我妈这几天在家总体还算平稳，没发烧、没吐、肚子没胀硬疼得厉害，也没肛门鲜血；大便比前几天顺一点了，还是少量软便，继续吃软食、慢慢走。\n\n我现在照着报告给您念关键几行，怕有些字念错，您帮我看意思：\n\n标题上写的是：**电子结肠镜检查报告单**。  \n日期我看着是：**[REDACTED_DATE]**取的报告，检查日期好像是前几天住院时做的，具体我这里看着有点小。  \n检查所见里面写：**进镜至回盲部，回盲瓣及阑尾开口可见**，后面写**肠腔清洁度尚可**。  \n然后有一段我不太懂，像是写：**直肠黏膜充血、水肿，距肛缘约几厘米处可见术后改变/瘢痕样改变**，这个“瘢痕”两个字我不确定有没有念对。  \n还写到：**内痔/痔术后改变**这种意思。  \n诊断意见那栏写的是：**直肠炎？** 后面好像还有 **痔术后改变**。  \n建议栏写：**结合临床，必要时消化科门诊随诊**，没有看到开新药。\n\n另外我没看见很明确写“病理诊断”那一栏，或者说这张上面没有单独病理结果。我就想问您：这份是不是只是肠镜检查报告，不是病理？报告里这个“直肠炎？”严重吗，需要我们再挂消化科复诊吗？还是带着纸报告等妇科复诊时一起给医生看就行？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00259",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+7644min",
+      "text": "我调取患者在CareLoop联合医疗网络内可授权访问的以下资料：1. 本次住院的出院记录/出院小结；2. 住院期间及近期的电子结肠镜检查报告原文和病理报告（如有）；3. 既往痔疮手术、直肠黏膜脱垂手术的病历记录；4. 本次妇科肌瘤手术的出院带药清单和用药记录；5. 住院至出院的时间线。请返回可见内容。",
+      "turn": 10,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00261",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+7644min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 10,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00263",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+7644min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 10,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00266",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7644min",
+      "text": "您哥哥顺利取回报告、您逐字念给我听，做得非常到位，辛苦了。阿姨这几天大便越来越顺、没有发烧呕吐腹胀和出血，说明恢复得很好，你们照顾得很用心。\n\n我逐一回答您的问题：\n\n1. 这份是肠镜报告还是病理？\n您念的这份确实是“电子结肠镜检查报告单”，也就是做肠镜时医生用摄像头看到的情况记录，不是病理报告。如果当时取了小块组织送化验，病理结果通常会晚几天单独出，或者印在另一张单子上。您可以看一下取报告的窗口有没有另外给一张写着“病理”的回执或日期条；如果没有，大概率这次没有取活检，不需要等病理。\n\n2. 报告里这些描述是什么意思？严重吗？\n- “进镜至回盲部，回盲瓣及阑尾开口可见”：说明镜子顺利走完了整个大肠，检查很完整。\n- “直肠黏膜充血、水肿”加上“直肠炎？”：问号表示内镜医生只是看到有点发红肿胀，怀疑轻度炎症，不是确诊严重疾病。结合阿姨以前做过痔疮和直肠黏膜脱垂手术，局部本身就容易有术后改变，加上这次住院前后的肠道准备刺激，出现轻度充血水肿很常见，目前不算严重问题。\n- “瘢痕样改变”和“痔术后改变”：您念的“瘢痕”两个字是对的，就是疤痕的意思。这正好对应她以前做过的痔疮和直肠手术留下的痕迹，属于预期内的旧伤表现，不用担心。\n\n3. 需要专门挂消化科复诊吗？\n报告建议写的是“必要时消化科门诊随诊”。既然阿姨现在排便顺畅、没有鲜血、肚子不胀痛，目前不属于必须马上跑消化科的情况。建议您把这张纸质报告和所有出院资料一起收好，等妇科肌瘤手术按约定时间回去复诊时一并带上给妇科医生看，让主刀医生全面掌握情况。如果之后出现持续便血、长期腹泻或肛门明显不适，再单独挂消化科也不迟。\n\n4. 接下来的照护安排：\n- 头孢和康复新液（一次10毫升、一天3次）继续按时吃，疗程吃完为止；布洛芬不疼就不吃；地奥司明和白片黄片继续收好不吃。\n- 饮食和活动：继续软食、少量多次喝温水、每天在屋里慢慢走动几趟、顺时针轻揉肚子。\n- 红线提醒不变：家里人换班时仍要交代，若出现剧烈腹痛、肚子胀硬、频繁呕吐、体温≥38℃、阴道出血突然明显增多（超过平时月经量最多的一天）、或肛门出鲜血，直接去急诊。\n\n如果您能确认一下窗口有没有另外给病理回执单，随时告诉我。其他方面阿姨状态很好，你们就按现在的节奏安心照顾，有任何拿不准的随时找我。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00282",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7734min",
+      "text": "医生，我刚又把我哥拿回来的资料袋翻了一遍，主要就是这张“电子结肠镜检查报告单”和窗口小票，没有另外看到写“病理”“活检病理”或者新的取病理日期条的纸。不过我也只能说是我自己没找到，不敢说窗口正式确认过没有活检。\n\n我已经把肠镜报告、妇科出院记录、用药清单都放到同一个文件袋了，等妇科复诊时一起带给主刀医生或复诊医生看。地奥司明和那袋白片黄片也还收着不吃，怕家里人拿错。\n\n我妈现在还是比较平稳，那些红线情况都没有，没发烧没吐，肚子不胀硬不剧痛，阴道出血没有明显多，也没有肛门鲜血；今天还有少量软便，能吃一点、慢慢走。那我们就按您说的继续头孢和康复新液吃完，其他先观察，等妇科复诊时一起问，对吧？如果后面出现便血、拉肚子一直不好或者肛门不舒服，再单独挂消化科。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00289",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7734min",
+      "text": "您确认得很仔细，辛苦了。资料袋里只有肠镜报告单和窗口小票、没有病理回执，这基本说明这次肠镜检查没有取活检，不需要再等病理结果，您可以放心。\n\n您的总结完全正确，就按这个计划执行：\n\n1. 用药：头孢和康复新液（一次10毫升、一天3次）继续按时吃完疗程；布洛芬不疼不吃；地奥司明和白片黄片继续单独收好，复诊时带实物让药师当面核对。\n2. 资料：肠镜报告、妇科出院记录和用药清单放在同一个文件袋，等妇科复诊时一起带给主刀医生看，安排得很好。\n3. 消化科就诊时机：目前阿姨排便顺畅、没鲜血、肚子不胀痛，不需要专门跑消化科。如果后面出现便血、拉肚子一直不好或者肛门明显不舒服，再单独挂消化科就行。\n4. 日常照护：继续软食、少量多次喝温水、每天在屋里慢慢走动几趟、顺时针轻揉肚子。\n5. 红线提醒不变：家里人换班时仍要交代，若出现剧烈腹痛、肚子胀硬、频繁呕吐、体温≥38℃、阴道出血突然明显增多（超过平时月经量最多的一天）、或肛门出鲜血，直接去急诊。\n\n阿姨现在恢复得不错，你们照顾得非常用心。接下来就安心休养，有任何拿不准的随时联系我。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00304",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7884min",
+      "text": "好的医生，那我心里踏实一点了。我们刚刚把文件袋和药又跟晚上接班的人交代了一遍：资料都放一起，地奥司明和那袋白片黄片单独放着不吃，复诊带去让医生或药师看实物。\n\n我妈晚饭后吃了点软的，现在在旁边休息，刚才还能慢慢走几步，目前没看出您说的那些危险情况。病理那个我们只是家里没翻到，复诊时还是让线下医生再帮忙看一眼资料袋。\n\n那今晚就按这个安排休息观察了，有变化或者出现红线我们就不等，直接去急诊。谢谢您，今天麻烦您这么久。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_058__Qwen3.8-Max",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2,
+    "aggregate_median": 1.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7320508075688772,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 11
+}

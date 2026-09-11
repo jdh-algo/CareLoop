@@ -1,0 +1,582 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "282a71043f8b83d648fcbc07e08ebdd30e233e609c6433465cf5fb4774b76277",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_081__anon_9582c28034334ef2",
+    "packet_sha256": "860fcdcf48ee032afd44c64545d3bd910027a91c625b0d514b57fcc9ef7a7169"
+  },
+  "case_id": "case_CL120_EHR_081",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "pediatrics",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "6",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "discharge_transition",
+    "target_problem": "short_stature_growth_hormone_deficiency_and_scoliosis_followup",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "医生使用临床工作区/住院记录线索，确认出院诊断为矮小症、生长激素缺乏症、脊柱侧弯，并有康复科门诊随访建议。",
+      "医生多轮解释：当前精神好、无发热、吃饭可，矮小/生长激素缺乏和脊柱侧弯属于门诊随访管理问题；无急症表现时不需要急诊。",
+      "医生给出排序和时间窗：康复科近几天可先看侧弯；儿科内分泌/生长发育号若等一两周通常不算耽误；约不到可走窗口、门诊加号/候补、其他院区等替代路径。",
+      "医生给出资料清单：出院小结、骨龄报告/片子袋、住院化验检查单、身高体重记录等都带上，不要求家属自行精确区分。",
+      "家属执行反馈：已把资料装入文件袋，康复科近几天号保留，计划当天问侧弯角度、是否需再拍片或康复，并现场问内分泌加号/候补。",
+      "家属确认孩子仍在吃东西、活动和平时差不多，无医生列出的头痛呕吐、看不清、突然走不了、明显腰腿痛等红旗。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应进入近几天康复科门诊反馈或内分泌加号/候补结果；若加号失败、出现红旗症状，或专科给出新检查/用药方案，再由医生解释并行动化。",
+    "rationale": "本 case 的目标是出院过渡期的患者/家属导航，而不是完成矮小症/生长激素缺乏或脊柱侧弯的全部长期诊疗。轨迹中医生已调取/参考住院记录，围绕出院诊断和康复科会诊建议解释了问题性质；确认孩子当前稳定、无急诊红旗；把“先看哪个科、内分泌号约不到是否耽误、康复科是否可先去、资料怎么带、何时升级”转换成可执行计划。家属随后实际完成资料整理、保留近几天康复科预约，并复述将带资料现场询问儿科内分泌加号/候补，若不成再看其他院区/机构；同时确认孩子仍稳定、无头痛呕吐、视物异常、走路困难、明显腰腿痛等红旗。内分泌尚未真正复诊、康复科尚未评估侧弯角度，但在当前出院过渡责任单元内属于有 owner、时间窗、替代路径和红旗升级条件的 bounded residual follow-up，不再是当前 episode 的阻断项。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：儿科内分泌/生长发育复诊尚未完成，后续需专科解释生长激素激发试验、IGF-1/IGFBP-3、骨龄和是否/何时治疗；当前已有家属负责、现场加号/候补/其他院区路径和可接受等待窗口。",
+      "bounded_residual_followup：康复科尚未完成脊柱侧弯角度评估、是否需全脊柱片/康复/支具等方案；当前已有近几天预约和就诊问题清单。",
+      "global_disease_journey_background：矮小症/生长激素缺乏和脊柱侧弯的长期治疗、监测疗效、副作用和生长曲线管理仍需线下专科长期随访；不属于本次线上出院过渡 episode 必须完成的终点。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V4-Pro",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "孩子偏矮复查后还要不要赶着去康复科",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "你好，我想问下我家孩子最近因为长得慢住院查了一圈，出院单上写了矮小症、生长激素缺乏，还说胸片看着有点脊柱侧弯，要去康复科门诊随访。我们家里人听得有点乱，孩子现在精神还行，也不发烧，就是不知道这些检查结果到底急不急，下一步该先看哪个科。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取你在 CareLoop 联合医疗网络中可授权访问的本次住院相关记录：出院小结、生长激素缺乏相关检查结果、脊柱侧弯相关的胸片/影像报告原文、院内其他相关检查及出院带药/随访建议；同时查看该家庭照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中该患儿在中心医院住院期间的病历索引、出院小结全文、胸片报告原文、生长激素相关检查结果、出院带药情况、以及最近一次的生长曲线/身高体重数据；同时查一下家庭照护可及性和后续康复科门诊预约状态。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请从 CareLoop 联合医疗网络内调取这名孩子在 CareLoop 中心医院住院期间的五条记录及出院文书；同时调取近期生长激素、骨龄、胸片/脊柱相关的检查报告原文；并查看用药清单、照护可及性及家庭上下文中是否有其他上传材料。需要先确认矮小症、生长激素缺乏和脊柱侧弯的严重程度、有无急迫警示信号、出院建议优先顺序，才好给家属一个安全的分级排队建议。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请帮我调取 CareLoop 联合医疗网络中该患儿最近一次住院的详细出院小结、住院期间全部检查检验结果（包括生长激素激发试验、垂体影像、骨龄、甲状腺功能等内分泌相关检查，以及胸片/脊柱全长正侧位报告）、出院带药和当前用药记录，同时查看是否有康复科或骨科相关的门诊随访安排或转诊记录。此外请一并调取该患儿既往在 CareLoop 网络中其他机构的生长曲线/身高体重监测数据、既往门诊/急诊就诊摘要和过敏史。最后请查询该家庭当前的照护可及性信息（交通、陪护能力、最近可及的儿科内分泌/康复/骨科资源）。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请帮我调取 CareLoop 联合医疗网络中该患儿本次住院的完整出院小结/出院记录、住院期间的全部检查/检验结果（尤其生长激素激发试验、甲状腺功能、骨龄片/骨龄报告、胸片/脊柱X线结果及报告原文）、生长曲线/身高体重记录、儿科内分泌专科会诊意见、以及康复科/骨科相关脊柱侧弯的出院建议与随访安排。同时请调取近期门诊或外院可能已有的类似资料。另外请调取家庭照护可及性信息，包括主要照护者、交通/居住地、能否按时带患儿去康复科门诊随访。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您别着急，我们先把出院单上说的几件事捋一捋，这样心里就有数了。\n\n首先，孩子现在精神好、不发烧，这说明目前整体状态是稳定的，没有需要马上跑急诊的急症。出院诊断里提到的“矮小症、生长激素缺乏”和“胸片看着有点脊柱侧弯”，虽然听起来名字多，但它们都属于需要按计划在门诊长期管理的慢性问题，不是隔天就恶化的急病，所以可以按顺序来安排。\n\n关于下一步该先看哪个科，比较稳妥的顺序是：先挂**儿科内分泌**门诊。因为“长得慢”的核心原因，这次住院查下来指向生长激素缺乏，这是内分泌科管的。内分泌医生会把住院期间做的生长激素激发试验、甲状腺功能、骨龄这些关键结果都再跟您仔细解释一遍，告诉您孩子到底缺不缺、缺多少，后面需要用什么方案、怎么随访。把这个搞清楚了，全家的长期管理方向就清楚了。\n\n等内分泌那边看完了，生长问题有了明确方案，再带孩子去**康复科（或骨科/脊柱侧弯专科）**门诊。出院单上提到的脊柱侧弯，多半是胸片发现的，重要的是要请专科医生判断侧弯的角度有多大、是姿势性的还是结构性的、要不要做脊柱全长X线片进一步评估、是否需要康复训练或者支具。这个一般不是抢在生长激素治疗前马上处理的问题，但也不能一直拖着，按出院建议去门诊评估就好。\n\n另外，您手边要是方便，可以把孩子这次**住院的出院小结、骨龄片子/报告、身高体重的记录本、还有之前生长曲线图**都找出来，带去看内分泌门诊。这些资料医生一看就明白，不用再重复做很多检查。如果有以前在其他医院看过的检查也一并带上，就更省时间。\n\n简单说，不急，但需要按部就班：先儿科内分泌，后康复科，把两个问题都陆续落实下来就好。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "家属反馈：孩子目前稳定；儿科内分泌最近号源紧张，康复科较好挂，但出院单未写清康复随访需要几天内完成，想确认若内分泌约不到近号是否可以先看康复科。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "可能存在儿科内分泌号源不足导致复诊延后的情况，需给出可接受等待时间和替代就诊路径。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18min",
+      "text": "我刚按您说的去医院小程序看了下，儿科内分泌或者那个生长发育门诊最近号很少，普通号好像这两周都不太好约，我怕一直抢不到耽误孩子长个。\n\n康复科倒是这几天有号。我翻出院单上能看到诊断写的是“矮小症、生长激素缺乏症、脊柱侧弯”，康复会诊那行我只看见类似“可至门诊随访”，没写几天内必须去。\n\n孩子现在精神还行，吃饭差不多，也没发烧。想问您一下：内分泌如果一两周后才挂上，会不会耽误治疗？这期间我能不能先把康复科看了？还是说要换院区、找别的医院或者去现场问能不能加号更稳一点？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "我先调取 CareLoop 联合医疗网络中该患儿已授权可访问的本次住院出院小结原文、儿科内分泌相关检查结果（生长激素激发试验、甲状腺功能、骨龄等）、脊柱侧弯相关影像报告/会诊记录、出院带药/用药方案以及身高体重生长曲线记录，同时查看家庭照护可及性和本次就诊时间线。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00063",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+18min",
+      "text": "我先调取孩子在CareLoop联合医疗网络内已授权可见的以下资料：出院小结原文、住院期间所做的生长激素相关检查及骨龄/脊柱影像报告、出院时开具的用药记录、以及本次住院的完整时间线和照护可及性信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00067",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00069",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+18min",
+      "text": "我先调取 CareLoop 联合医疗网络内这个孩子的近期出院小结（或出院记录）、住院期间做的生长激素相关检查结果/骨龄报告/胸片报告/康复科会诊意见，以及用药清单和家庭/交通可及性信息，帮我确认内分泌等待一两周会不会耽误、脊柱侧弯到底急不急。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00071",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00073",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00075",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+18min",
+      "text": "我调取一下 CareLoop 联合医疗网络中该患儿本次住院的出院小结、儿科内分泌和脊柱/康复相关的记录索引、以及已有的检查检验结果（包括骨龄、生长激素激发试验、甲状腺功能、脊柱相关影像等），同时查看用药清单和已有的照护可及性信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00077",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00079",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00082",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+18min",
+      "text": "我这轮先集中查以下几样，别反复调：1) 调取 CareLoop 中心医院该患儿本次住院的出院小结、儿科内分泌出院诊断全文、康复科会诊记录/康复建议原文；2) 调取住院期间所做的生长激素激发试验结果、甲状腺功能、骨龄报告或骨龄片文字描述、以及如果有的脊柱/胸片侧弯角度或 Cobb 角相关报告；3) 调取 CareLoop 联合医疗网络内是否有其他外院/既往生长发育相关记录或既往就诊资料；4) 帮我查看患儿在 CareLoop 中心医院近期的用药/药房记录，尤其是有无已开具但未执行或未领取的生长激素/内分泌相关处方；5) 帮我查看照护可及性信息，尤其是家庭住址对应的网络内其他院区/合作机构的儿科内分泌及儿科康复/脊柱侧弯专科门诊可及性；6) 回看第0–3轮原始对话，确认家属已经说过哪些关于挂号困难、出院单文字、目前居家情况的原话。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00085",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18min",
+      "text": "好的，我们先把目前能确定的情况和接下来的动作说清楚。\n\n首先，根据孩子现在的状态——精神好、不发烧、吃饭差不多，整体是稳定的，没有需要去急诊的急症，这一点您可以放心。\n\n其次，您最关心的“内分泌号等一两周会不会耽误”，**在这个阶段，内分泌门诊不差这一两周**。生长激素缺乏的评估和治疗方案制定，本身就是需要反复看检查结果、动态观察发育曲线的过程，不是几天就发生大变化的急症。所以，这一两周内，**完全可以把康复科先看了**，不会耽误孩子的整体生长管理。但注意不要说“先看康复科等于把内分泌问题解决了”，只是把顺序调整一下，先处理能挂到的。\n\n关于康复科，出院单上既然写了“可至门诊随访”，说明目前脊柱侧弯是需要评估和制定康复计划的，不是必须马上处理但也不能一直拖着。既然这几天有号，**建议您先约一个康复科门诊**，带着出院时已有的胸片或脊柱相关报告，让康复科医生判断侧弯的程度、角度、是否需要进一步做脊柱全长X线片，以及是否需要开始康复训练或支具。这样，等您后面挂上内分泌号时，康复这边可能已经有一个初步评估方案了，两边的进度都不会耽误。\n\n关于挂号困难，除了在小程序上等号，更稳妥的做法是：**到医院的挂号窗口或儿科内分泌门诊门口直接问有没有现场加号的规则**。很多医院对于出院后需要随访的患儿，医生是可以酌情给加号的。您也可以把出院小结或诊断证明带上，这样更有说服力。如果这个院区实在加不上，再考虑换院区或别的医院的生长发育门诊，但一定要找儿科内分泌或生长发育专科，不要随便挂成人内分泌科。\n\n最后，后续内分泌门诊必须带上的关键材料：**这次住院的出院小结、生长激素激发试验的结果单、甲状腺功能报告、骨龄片或骨龄报告、身高体重的连续记录本或生长曲线图**。如果之前在外院看过，也一并带上。这些材料在康复科看诊时也先别弄丢，它是两科共同的参考依据。\n\n总结一下：**先看康复科，不耽误；同时继续想办法约儿科内分泌，现场窗口或加号优先；期间如果孩子出现持续头痛、呕吐、视力明显下降、剧烈腰腿痛或突然行走困难，再去急诊**。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00100",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+63min",
+      "text": "明白了，我现在先把康复科这几天的号约上了，准备按您说的先去看一下侧弯。内分泌/生长发育那个线上还是没抢到近的，我打算去康复科那天顺便带着出院小结到窗口或者儿科门诊门口问问能不能加号、候补，不能加再看别的院区。\n\n孩子现在看着还是和平时差不多，吃饭也还行，没有您说的那种头痛呕吐、看不清、突然走不了或者腰腿疼得厉害这些。\n\n我想再确认下资料：出院小结、骨龄报告和片子袋、这次住院的检查单、身高体重记录这些都带上对吧？那个“生长激素激发试验”的结果单我还没完全分清是哪一张，可能在一叠化验单里面，我准备都装上带过去。甲状腺功能我也不太会认，能不能也先全部带着，让窗口或门诊医生帮我看？还有就是这个生长激素缺乏，是不是也不是说马上这几天就一定要打针，得等内分泌医生把报告看全了再定？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00106",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+63min",
+      "text": "您理解得很对，我把几个关键点再帮您明确一下，这样您带孩子跑门诊的时候心里更有底。\n\n**1. 资料准备：您刚才列的这些都对，全部带上。**\n- 出院小结：这是最重要的“总目录”，窗口和门诊医生一看就知道孩子这次查了什么、结论是什么。\n- 骨龄报告和片子袋：内分泌和康复科都可能参考。\n- 这次住院所有的检查单/化验单：不用自己去区分哪张是“生长激素激发试验”、哪张是“甲状腺功能”，**全部装在一个文件袋里带过去就行**。让窗口工作人员帮您整理，或者直接交给门诊医生，他们会从中挑出需要的关键单子。\n- 身高体重记录本/生长曲线图：平时幼儿园或家里记的那份。\n- 如果有之前外院的检查和病历，也一并带上。\n\n**2. “分不清化验单”完全没关系，这是正常情况。**\n出院时给的化验单往往是一大叠，家属很难自己把生长激素激发试验、甲状腺功能这些一张张找对。您不用自行区分，全部带去交给医生或窗口就行，他们会帮您辨认和整理。\n\n**3. 生长激素缺乏的治疗，不是马上这几天就必须打针。**\n这个判断非常准确。生长激素治疗的启动，必须等儿科内分泌医生把住院期间完整的检查结果（尤其是激发试验、骨龄、甲状腺功能、IGF-1等）全部看完，结合孩子的生长曲线和发育情况，综合判断后才能定方案、定剂量、定开始时间。这不是急诊处理，不差这几天。所以您现在的顺序——先看康复科，同时想办法约内分泌——是完全合理的。\n\n**4. 去康复科那天，您需要顺便做的事。**\n- 在康复科门诊，把侧弯的情况问清楚：大概多少度、需不需要拍脊柱全长X线片、需不需要康复训练或支具。\n- 带着出院小结和您那一袋资料，去儿科门诊或挂号窗口问现场加号规则，如果窗口不知道，可以直接到儿科内分泌诊室门口问护士或医生。很多医院对出院后需随访的患儿，医生是可以酌情给加号或候补的。\n\n孩子现在整体状态稳定，没有危险信号，您可以按这个节奏往下走。如果再到康复科看诊过程中，医生对侧弯的判断和下一步建议有变化，或者挂号过程遇到新情况，随时可以再来问我。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00120",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+153min",
+      "text": "好的，那我就先这样安排了：资料我刚才都装到一个文件袋里了，出院小结、骨龄报告和片子袋、住院那些化验单、身高体重记录都放一起，分不清的也不挑了。\n\n康复科这几天的号我先保留，到时候先去问侧弯多少度、要不要再拍片或者做康复。儿科内分泌/生长发育门诊线上还是没约到近号，我准备那天顺路去窗口和儿科门诊问加号、候补。\n\n孩子现在在旁边吃东西、活动都还和平时差不多，没有新不舒服。那我们就按这个节奏等到门诊当天可以吧？如果中间没有您说的那些头痛呕吐、看不清、走路突然不行或者腰腿痛得厉害，就不用提前跑急诊了对吗？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_081__DeepSeek-V4-Pro",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2.75,
+    "aggregate_median": 2.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.299038105676658,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 3
+}

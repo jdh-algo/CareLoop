@@ -1,0 +1,852 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "52f2515f2d9335cb330616ada3816c887b751f5581bd953ef147bd272d4cde8b",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_091__anon_8e20c07e0b0d684f",
+    "packet_sha256": "45fd596358b444102336dca78ceb0e21806bd7f35d10f04d04746d55196a1c1e"
+  },
+  "case_id": "case_CL120_EHR_091",
+  "case_metadata": {
+    "blocking_residual_risk_count": "4",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "3",
+    "contract_complexity_level": "low",
+    "disease_domain": "oncology_hematology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "discharge_transition",
+    "target_problem": "family_disclosure",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "工作区/EHR摘要显示：纵隔肿瘤/纵隔恶性肿瘤，拟行胸腔镜/经腔镜纵隔肿瘤切除术，全麻，术前检查基本完善，未见明显手术禁忌。",
+      "医生在资料回流后明确说明目前只看到住院摘要，未看到完整CT报告正文、病理报告原文、病理类型、精确大小和分期，要求这些由主管胸外科医生结合原始资料当面确认。",
+      "家属已联系胸外科，得到反馈：入院/手术日期暂未最终通知，保持电话畅通；约一周未通知可复联或门诊/病区确认；正式术前谈话、麻醉评估、知情同意需患者本人到场。",
+      "患者已看到医生整理的话术/清单，知道单子写“纵隔恶性肿瘤”、医院倾向胸腔镜/全麻手术，虽焦虑和责怪家属隐瞒，但同意下次复诊或接到入院通知时本人一起去听主管胸外科医生解释并自己确认、签字。",
+      "家属最后反馈已把必问清单和警报信号抄到纸上，夹在出院小结和片子袋子里；能复述未正式通知前不自行禁食、不乱停药，电话开着，资料原件带好。",
+      "多次确认当前无急性胸痛、明显气促、发热、咯血、晕厥、面颈上肢肿胀等红旗；家属能复述若出现胸痛、喘不上气、发热、咯血、晕厥、面颈上肢肿胀等则急诊/联系医院。"
+    ],
+    "if_continued_next_focus": "若继续模拟，最有价值的是把等待排期线程推进到具体胸外科复联/复诊/入院通知结果：由外部胸外科确认手术安排、解释CT/病理/分期缺口、给出正式术前禁食停药和麻醉评估指令；如等待超过约一周或出现红旗，则执行升级路径。",
+    "rationale": "本案闭环目标是纵隔肿瘤术前出院过渡期的 bounded discharge_transition，不是肿瘤治疗完成或癌症旅程终结。轨迹已完成关键责任链：医生使用工作区资料核对了可见EHR摘要，向家属明确区分“系统可见的纵隔恶性肿瘤/拟胸腔镜全麻手术”与“尚无完整CT、病理类型、分期、最终日期”的边界；患者已不再被完全隐瞒，知道恶性肿瘤和拟手术事实，并同意下次本人参与胸外科解释和签字；家属已把主管医生必问清单、资料携带、等待排期边界、术前禁食/停药边界、红旗症状和急诊/联系医院路径抄下并夹入资料袋，能复述执行。当前无胸痛、明显气促、发热、咯血、晕厥、面颈上肢肿胀等急症红旗。残余的病理类型、CT细节、分期、最终手术日期属于后续胸外科/主管医生面对面解释和手术排期责任，不应被写成治愈或肿瘤诊疗终局，但在本次“回家等待安排、家属不敢全说”的过渡任务中已有 owner、时间窗和升级路径，因此可作为 bounded residual follow-up 接受。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：完整CT正文、病理类型、分期、肿瘤大小/侵犯关系尚未明确；由胸外科主管医生/线下医院在复诊、入院通知或术前谈话时解释，患者和家属需带原件和影像，当面确认。",
+      "bounded_residual_followup：最终入院/手术日期尚未确定；已设定保持电话畅通、一周未通知则患者本人加家属带资料联系胸外科门诊/病区确认的路径。",
+      "bounded_residual_followup：居家药物完整清单未逐项核验；但当前已形成最低安全边界——未接正式术前通知前不自行禁食、停药或改药，具体术前停药/禁食听医院正式通知和麻醉/胸外科评估。",
+      "global_disease_journey_background：纵隔恶性肿瘤的手术、术后病理、分期、是否需MDT/肿瘤科治疗及长期随访仍未完成；这不是本次过渡沟通任务的终局闭环。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V3.2",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "纵隔肿瘤术前安排回家后家属不敢全说",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "你好，我家里人前阵子查出胸口里面有个纵隔肿瘤，住院检查说大概可以做胸腔镜手术，好像还要全麻。现在人刚回家等安排，我们手上单子不少，但本人还不知道医生说得这么明确，家里怕他紧张。我想先问问，接下来复诊、手术前要注意什么，哪些话必须跟他说清楚？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的该患者的既往病历、外院记录、最近住院的检查结果、影像/病理报告、用药记录，以及关于纵隔肿瘤诊断和手术建议的任何文书（如出院小结、门诊记录、手术知情同意书草案等）。同时，请提供患者的家庭/交通可及性信息，以便评估后续复诊和手术安排的现实条件。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取CareLoop联合医疗网络中，患者此次‘纵隔肿瘤’相关的所有可授权访问资料，包括外院和本次住院记录、出入院文书、影像报告（如CT）、病理/活检结果、术前检查（如血常规、肝肾功能、心电图、肺功能）、用药记录、手术知情同意或预沟通记录，以及家庭照护、交通可及性、家属关系等背景信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取并查阅这位患者在 CareLoop 联合医疗网络内所有已授权、已同步的资料，包括既往病历、住院/门诊/出院记录、所有检查结果（特别是关于纵隔肿瘤的影像学、病理、活检、PET-CT、肿瘤标志物、心肺功能、凝血功能等）、手术相关会诊记录、用药清单、以及家庭/交通等可及性信息。请提供按时间线排列的详细记录和报告原文。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者近期在CareLoop联合医疗网络内所有已授权、已同步的病历资料，包括但不限于：纵隔肿瘤相关的检查记录（如胸部CT、增强CT、MRI、PET-CT报告）、门诊/住院记录、病理报告（如果有）、手术知情同意讨论记录、麻醉评估记录、以及出院小结（如果有）。同时，请查看用药记录、主要接诊医生和科室、家庭/交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中可授权访问的关于该患者纵隔肿瘤的全部资料，包括：住院期间的出入院记录、诊断记录、已完成的检查检验报告（如胸部CT、病理、血常规、生化、心肺功能评估等）、手术建议/会诊记录、以及患者当前的用药清单和家庭/交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好。理解您作为家人的担心。目前根据我这边能查询到的联合医疗网络记录，**没有看到这位家人具体的住院病历、检查报告和诊断文书**。这可能是因为信息尚未完全同步或授权。\n\n在等待手术安排、家人又不知具体病情的情况下，有几件事是目前您可以着手准备的，对后续沟通和手术安全都很关键：\n\n1.  **资料整理**：请把您手头的所有出院小结、检查报告单（特别是胸部CT、病理活检报告，如果有的话）、以及他正在吃的所有药物（包括处方药、非处方药和保健品）的药盒/说明书拍照或整理好。这些是医生下次复诊和制定手术方案的核心依据。\n\n2.  **沟通要点（您可以和家人谈的内容）**：\n    *   **病情本身**：可以说“医生发现胸腔里有个东西，位置在中间（纵隔），需要做个微创手术（胸腔镜）拿掉它，这样更放心。手术会用麻醉，睡一觉就做好了。”\n    *   **下一步流程**：告诉他现在回家是等待医院通知复诊和具体手术时间，期间需要保持好身体状态。\n    *   **鼓励提问**：建议他可以把担心的问题（比如手术风险、恢复时间等）记下来，下次见医生时一起问清楚。家人陪伴和支持非常重要。\n\n3.  **术前准备（一般性建议）**：\n    *   保持良好作息，均衡营养，如果吸烟务必戒烟。\n    *   注意保暖，预防感冒、发烧或任何感染，一旦出现要及时告诉医生，可能会影响手术安排。\n    *   按照出院医嘱服用现有药物，如果有阿司匹林、氯吡格雷等“活血”药物，是否需要停用必须由主管医生明确告知。\n\n为了能给您更精准的建议，**如果您方便，可以把前面提到的出院小结和关键检查报告拍照发给我看看**。这样我能更好地帮您分析情况，并确认还有哪些信息需要从医院调取。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+22min",
+      "text": "暂无新的检查结果回传；请核实患者是否已有胸外科复诊/入院/手术排期通知及主管科室联系电话。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+22min",
+      "text": "家属可提供部分文书字段，但请按‘口头/文字读回资料’处理，避免把未见原件的信息当作完整报告结论。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+22min",
+      "text": "如家属反馈一直未收到排期，应建议主动联系胸外科门诊/病区或按出院小结复诊时间回院确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00054",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+22min",
+      "text": "医生，我刚翻出纸了，照片我怕还是不清楚，我先照着上面几个字念给您听：有一张写着“纵隔肿瘤”，还有“出院诊断：纵隔恶性肿瘤”，另一张像术前谈话的复印件上写“拟胸腔镜下纵隔肿瘤切除术”“全麻”。我不知道这是不是就等于已经确诊癌症了，还是只是医院先这么写。\n\n他现在人在家，暂时没有明显胸痛、喘不上气、发烧这些，但他已经感觉我们在瞒他，一直问我是不是很严重。我们还没接到具体哪天入院、哪天手术的通知，也不知道该等电话还是主动打胸外科门诊/病区问。\n\n我最担心的是，“恶性肿瘤”这几个字要不要现在就直接告诉他？我怕他说了以后他受不了、发脾气或者不肯手术；但要是一直瞒着，后面签字、麻醉、手术是不是也不行？如果他现在追问我，我能不能先按您刚才那种说法讲，还是必须把“恶性”两个字说出来？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "我先调取患者目前在CareLoop联合医疗网络内可授权访问的近期病历记录，特别是出院小结、病理报告（若有）、胸部CT报告和手术相关文书。同时查看用药记录，了解是否有抗血小板/抗凝药物。请一并提供家庭交通信息，以评估其主动返院确认的可行性。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+22min",
+      "text": "我先调取查阅在 CareLoop 联合医疗网络内可授权访问的这位家人的既往病历，特别是最近一次住院的相关记录：包括出院小结、胸部CT报告、病理活检报告（如果有）、术前检查结果、术前谈话记录，以及用药清单。同时，请提供相关的医疗文书全文，以确认诊断和拟行手术的具体细节。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00069",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00071",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+22min",
+      "text": "我保存一条医生工作备注：纵隔肿瘤，出院诊断明确写有“纵隔恶性肿瘤”，术前谈话为“拟胸腔镜下纵隔肿瘤切除术”“全麻”。家人信息患者本人不知情。目前无通知，未确认手术排期。重点：家属沟通困境及需协调手术排期。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00074",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00076",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+22min",
+      "text": "我调取 CareLoop 联合医疗网络内可授权访问的、与本次住院相关的所有记录，包括：出院小结、入院记录、胸部CT报告、病理报告（如已做活检）、术前谈话记录、以及任何相关的实验室检查结果（如血常规、生化、凝血功能）。同时，请提供患者的用药清单、家庭/交通可及性信息，以及一条能帮助我确认手术排期状态的时间线。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00078",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00080",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00083",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+22min",
+      "text": "我调取 CareLoop 联合医疗网络中这位患者的完整跨机构住院记录，包括入院记录、病程记录、出院小结（特别是您读回的这份）、手术/术前谈话相关文书、所有影像学报告（如胸部CT、增强CT、PET-CT等）、所有病理/活检报告、以及重要的检验结果和当前用药清单。请同时提供治疗时间线概览。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00086",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+22min",
+      "text": "从您读回的信息来看，出院诊断上明确写着“纵隔恶性肿瘤”，术前谈话也是针对这个肿瘤的切除手术。这说明医院根据检查（通常包括影像和/或活检）已经做出了临床诊断，并计划进行根治性手术。在医学上，“恶性肿瘤”即我们通常所说的癌症。\n\n关于您最关心的沟通问题，我的建议如下：\n\n**现阶段如何与家人沟通：**\n\n1.  **告知的必要性**：手术和麻醉前的知情同意必须由患者本人签署。因此，他需要在手术前了解基本病情和手术方案。完全隐瞒“恶性”二字在伦理和流程上都不可行，也可能在最后一刻引发更大的信任危机和情绪波动。\n2.  **沟通的策略**：不必一次性把所有最严重的词汇和可能性都压给他。可以采取分步、有重点的沟通方式：\n    *   **第一步（现在可以做的）**：可以按照我上次建议的说法，告诉他医生发现胸腔里有个肿瘤，位置比较深，为了明确性质和防止以后有问题，需要做微创手术把它完整拿掉。强调“手术是当前最直接有效的治疗方法”。\n    *   **第二步（在医生进行术前谈话时）**：由主管医生在术前谈话时，以专业、冷静的方式向他说明“恶性肿瘤”的诊断以及手术的必要性。家属在场可以提供情感支持。医生的权威解释往往比家人自己说要更容易被接受。\n    *   **核心是传递希望**：重点是让他明白，这个病“有办法治”，而“手术”就是这个办法。早期发现并手术，预后是相对好的。\n\n**关于手术安排：**\n\n您不能只是被动等待。**建议您主动联系**：找到出院小结上的科室联系电话（通常是胸外科病房或门诊），主动打去询问手术排期的大概时间、是否需要提前复诊、以及目前需要做什么准备。这能缓解焦虑，也能避免延误。\n\n**接下来的具体行动建议：**\n\n1.  **联系医院**：明天就尝试联系胸外科，确认手术排期流程。\n2.  **准备资料**：还是建议您尽量把**完整的出院小结、所有CT或病理报告拍清晰照片发给我**。我目前看到的系统记录里没有这些详细信息，有了这些我才能更准确地评估情况，并提醒您需要注意哪些具体的术前准备事项。\n3.  **观察家人**：在家期间，密切观察他是否有新出现的胸痛、气短、声音嘶哑、发烧或剧烈咳嗽等情况，如有需及时联系医院或就诊。\n4.  **沟通练习**：您可以心里预演一下如何平静、坚定地跟他进行第一步沟通，把重点放在“积极治疗”上。\n\n请别太过焦虑，家人患癌对家属也是巨大的考验。您已经做得很好了，正在为他寻求最好的支持和信息。先走好联系医院和准备资料这两步。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00101",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+67min",
+      "text": "医生，我刚刚已经打电话问了胸外科，可能是病区还是窗口的人接的，我也没完全听明白。对方说现在还没有确定入院日期，也没有手术日期，让我们电话保持通，一周左右还没通知的话再打过去问，或者去胸外科门诊看一下。还说后面患者本人肯定要到场签字，这个我听懂了，所以我现在更慌。\n\n他现在在家倒是没有胸痛、喘不上气、发烧这些，就是情绪很敏感，刚才看我打电话又问我：“是不是他们说我很严重？你们是不是瞒着我？”我真的不知道今天晚上怎么开口。\n\n我想问得具体一点：如果他直接问“是不是癌症”，我能不能先说“单子上写的是恶性倾向/恶性肿瘤，医生建议尽快手术，具体分期和后面怎么治要等主管医生当面讲”，这样可以吗？还是我必须直接说“就是癌症”？我怕我一说癌症两个字，他当场崩了不肯去了。\n\n还有等通知这几天，在家要不要提前禁食、停什么药？他平时抽烟，我让他少抽他还不高兴。没有确定入院日期前，是不是正常吃饭、按原来药吃，先别自己乱停？我们到时候是不是把这些纸质单子原件都带去门诊/住院就行？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00107",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+67min",
+      "text": "我先调取一下您在CareLoop联合医疗网络中的资料，特别是之前住院的出院小结、CT报告、病理结果（如果有）以及入院前的用药记录，这样能更准确地回答您关于禁食、停药和资料携带的问题。稍等我看一下。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00119",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+70min",
+      "text": "工作区已返回半结构化住院摘要：胸外科记录支持纵隔肿瘤/纵隔恶性肿瘤、拟胸腔镜/经腔镜纵隔肿瘤切除术、全麻、术前检查基本完善且未见明显手术禁忌；但未返回完整CT正文、病理类型/分期、肿瘤大小、具体手术日期或当前居家用药执行情况。请按摘要证据解释，不要把缺失项说成已确认。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00123",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+70min",
+      "text": "医生，您先看，我这边压着声音跟您说，他就在旁边一直问。您调的那个CareLoop里如果能看到的话，麻烦您告诉我一下：您现在看到的是完整CT、病理原文，还是只是住院摘要？现在能确定的到底是“单子写了纵隔恶性肿瘤、准备胸腔镜全麻手术”这些，还是已经能确定癌的类型、分期了？这些我真的分不清。\n\n他刚才又问我“是不是癌症、是不是要开刀”，我不想再骗他，但我也怕我一句“癌症”把他吓坏。今晚我能不能就这样说：  \n“报告上写的是纵隔恶性肿瘤，医生建议做胸腔镜手术切掉，现在还没通知具体入院和手术日期，具体是哪一种、严重到什么程度、后面要不要别的治疗，要等主管医生当面讲清楚。我们不是不告诉你，是怕自己讲错。”  \n这样算不算既没骗他，也不会太刺激？\n\n还有他现在没有胸痛、喘不上气、发烧这些，就是情绪不稳。等您看完资料再帮我说下，没定日期前是不是不要自己禁食、不要乱停药，抽烟先尽量停，原件都带去医院核对就行？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00128",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+70min",
+      "text": "我查阅CareLoop联合医疗网络中可授权访问的这位患者近期住院的完整记录，特别是出院小结、胸部CT报告原文、任何病理活检报告原文、术前谈话记录、以及入院前的用药清单。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00130",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+70min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 10 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00132",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+70min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00134",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+70min",
+      "text": "我需要查看这位患者在 CareLoop 联合医疗网络内本次住院的完整出院小结、所有相关检查报告（特别是胸部 CT 报告和病理报告原文）、以及用药记录（包括术前和院外长期用药）。请按照文书类型和时间顺序调取。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+70min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00138",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+70min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00140",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+70min",
+      "text": "我先调取或查阅这位患者在CareLoop联合医疗网络内可授权访问的既往病历，特别是最近住院期间的出院小结、胸部CT报告全文、病理报告全文（如有）、术前谈话记录，以及当前居家用药情况、家属/交通可及性信息。同时，请帮我回看一下第3轮对话中家属提到的‘纵隔恶性肿瘤’、‘拟胸腔镜下纵隔肿瘤切除术’等关键信息的原始语境。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00142",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+70min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00145",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+70min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00147",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+70min",
+      "text": "我需要调取这位患者在CareLoop联合医疗网络中，特别是近期在‘CareLoop中心医院’胸外科住院期间的全部病案资料，包括：完整的出院小结、住院病历、所有胸部影像学检查（尤其是CT）的正式报告全文、任何病理活检报告全文、术前谈话记录、术前检查结果（血常规、凝血功能、心电图、肺功能等）、以及完整的用药清单（包括住院期间和目前居家正在服用的所有药物）。同时，请一并提供相关的家庭/照护可及性信息。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00149",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+70min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00151",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+70min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00154",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+70min",
+      "text": "我先调取你在CareLoop联合医疗网络内可授权访问的该患者既往病历、住院资料（特别是出院小结、完整CT报告、病理报告原文）、用药记录、以及家庭可及性信息。请根据索引、时间或文书类型提供具体内容。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00157",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+70min",
+      "text": "根据我目前查看到的系统内资料，情况是这样的：\n\n**关于您看到的资料：**\n我看到的是住院期间的简要记录摘要，其中确认了“纵隔恶性肿瘤”的诊断，并计划进行“胸腔镜手术”和“全麻”。但是，**系统里目前没有显示完整的CT报告正文和病理报告原文**。这意味着，具体是哪种类型的肿瘤（例如是胸腺瘤还是淋巴瘤等）、它的精确大小、以及具体的病理分期，这些更详细的信息在现有摘要里无法直接确认。这些关键细节，通常需要看完整的病理报告才能确定，也直接影响后续是否需要额外的治疗。\n\n**关于今晚如何沟通：**\n您的说法**非常恰当**。我完全支持您用这个方式来回应。这样说既诚实（使用了“恶性肿瘤”这个医学术语，没有隐瞒诊断），又稳妥（把解释具体类型和分期的责任留给了主管医生，避免了因信息不全而造成的误解或过度恐慌）。您可以把重点放在“有明确有效的治疗方案（手术）”上，这能传递积极的信号。\n\n**关于术前准备的几个具体问题：**\n1.  **饮食和用药**：**在接到医院明确的术前通知（通常是电话或短信，会告知具体禁食时间）之前，请正常吃饭、按时服用日常药物。** 绝对不要自行提前禁食或停药，尤其是某些影响凝血的药物（如阿司匹林、氯吡格雷等），是否需要停、何时停，必须由主管医生根据手术安排来专门告知。\n2.  **吸烟**：**是的，请尽力劝他停止吸烟，这是术前非常重要的一环。** 吸烟会增加麻醉和手术风险，影响术后恢复。可以把这个作为“为了让手术更顺利、恢复更快”的一个实际行动来沟通。\n3.  **资料携带**：**是的，到时务必带上您手头所有的纸质原件**，包括出院小结、CT片子和报告、以及任何其他检查单。医院会逐一核对。\n\n**接下来的行动建议：**\n您现在做的已经很好了。请保持冷静，按照您准备好的话和家人沟通。同时，继续留意医院的通知。如果一周后仍未收到入院消息，按胸外科的建议，带患者本人去门诊复查并确认排期，届时所有疑问都可以当面问清楚。\n\n目前患者没有胸痛、呼吸困难等新症状，这是好的迹象。请先处理好眼前的沟通，一步一步来。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00172",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+94min",
+      "text": "医生，我刚按您这个意思跟他说了，没再瞒着“恶性肿瘤”这几个字。我说了单子上是这么写的，医院倾向做胸腔镜、全麻，具体是哪一种、分期这些我们家里人说不准，要等主管医生当面讲。\n\n他现在是明显紧张了，一直问“那不就是癌症吗？是不是一定要开刀？为什么之前不告诉我？”倒没有突然胸痛、喘不上气这些，就是情绪上有点顶着，说要听主管医生亲口说才信。\n\n我现在不想再翻照片了，纸质单子我都先收好，到时候原件带去医院核对。麻烦您再帮我压缩成两三句话，最好是能直接给他本人看的那种：  \n1. “恶性肿瘤”和“癌症”我到底该怎么回答他，才不算骗他也不把话说死？  \n2. 如果他问“是不是必须开刀”，我怎么说比较稳妥？  \n3. 等通知这几天，我们就正常吃饭、药别乱停、烟尽量不抽，一周没消息就带他本人去胸外科门诊问排期，对吧？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00178",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+94min",
+      "text": "好的，我理解您想把复杂的医学信息，转换成几句既真实又平和、能让家人本人听明白的话。直接回答您的三个问题：\n\n1.  **关于“恶性肿瘤”和“癌症”**：\n    **“医生，报告上的诊断确实是‘恶性肿瘤’，也就是我们常说的癌症。但医学上癌症有很多种，具体是哪一种、是早期还是别的分期，需要主管医生结合全部资料才能最终确认，这也是为什么我们需要尽快完成手术的原因。”**\n\n2.  **关于“是不是必须开刀”**：\n    **“目前的治疗计划，是在我们能力范围内，能够最有效、最彻底地处理这个肿瘤的方法。微创手术（胸腔镜）是目前首选且成熟的技术，主管医生会为您详细解释为什么这个方案最适合您。在见到医生之前，我们先不自己下结论。”**\n\n3.  **关于等待期间的安排**：\n    **“没错，现在保持平常生活最重要：正常吃饭，平时吃的药一颗也别停（尤其是医生开的药）。为了手术安全和术后恢复顺利，请尽量从现在开始戒烟。如果一周内没接到医院通知，我们一定带着您本人和所有纸质单子，去胸外科门诊问清楚排期。”**\n\n请把这三段话拿给家人看。如果他还有更多担心，可以告诉他，这些问题都记下来，是我们下次见主管医生时必须当面问清的，这不是拖延，而是为了确保下一步治疗万无一失。您现在处理得非常好。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00192",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+129min",
+      "text": "医生，我把您这三段给他看了，他看完还是脸色不好，怪我们之前没说清，但比刚才好一点，至少他说下次要自己去听主管医生讲，不要我们家里人转述了。\n\n我现在也不想再瞎解释了，纸都收一块了，到时候原件直接带去医院让医生当面核对。今晚我们先按您说的：不自己禁食、不乱停药，电话开着，烟我再劝他少抽或者不抽。\n\n麻烦您最后再帮我们整理一个很短的“去见主管医生一定要问什么”的单子吧，别太长，患者本人也能看懂的那种。比如是不是要问：到底是哪种肿瘤、有没有病理/分期、为什么建议胸腔镜手术、什么时候入院、平时药和抽烟怎么处理。还有就是在家等通知这几天，哪些情况不能等电话、要提前去医院？我怕今晚家里人又争起来，我想就按这一张纸执行。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00198",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+129min",
+      "text": "好的，我为您整理一份简明、直接、患者本人也能看懂的“见主管医生前必问清单”，以及在家等待期间的“警报信号”。您可以把这两部分打印出来或记在一张纸上。\n\n---\n**第一部分：见主管医生时，一定要当面问清的5个问题**\n1.  **诊断是什么？** 请您帮我明确，我得的到底是什么类型的肿瘤（比如胸腺瘤、淋巴瘤等）？有没有更具体的病理名称和分期？\n2.  **手术方案为什么是这样？** 为什么建议我做胸腔镜手术？它和传统开胸手术比，好处和可能的风险是什么？\n3.  **手术时间安排？** 预计什么时候可以入院？什么时候安排手术？大概需要住院多久？\n4.  **术前准备怎么做？** 我平时吃的药（特别是降压、降糖、抗凝的，像阿司匹林这类）该怎么处理？是继续吃，还是要提前停？停多久？\n5.  **吸烟影响大吗？** 为了手术安全和恢复，我是不是从现在起必须完全戒烟？\n\n---\n**第二部分：在家等通知这几天，出现以下情况不能等，需立即联系医院或急诊：**\n（如果出现任何一条，就不要等排期电话了）\n1.  **新出现的胸痛、胸闷，或呼吸比之前明显困难、急促。**\n2.  **发烧（体温超过38.5℃），或者剧烈咳嗽、咳血。**\n3.  **声音突然变得嘶哑、喝水呛咳，或者吞咽困难。**\n4.  **感觉脖子、面部或者上臂肿胀。**\n\n---\n**今晚开始的行动：**\n1.  正常吃饭，药按原样吃。\n2.  尽全力戒烟或减少吸烟。\n3.  保持电话畅通，整理好所有检查单、出院小结、影像片子。\n4.  如果一周内没接到入院通知，就按计划带患者本人和所有资料去胸外科门诊问排期。\n\n这样大家都能统一行动，减少无谓的争论。您做得很好，已经走在正确的轨道上了。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00212",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+224min",
+      "text": "医生，我照着您这个抄到纸上了，夹在出院小结和片子袋子里，也给他看了。他还是生气，说我们早该讲清楚，但现在答应下次复诊或者接到入院通知时，他本人一起去听主管胸外科医生说，自己确认、自己签字。\n\n今晚我就不再翻那些小字和照片了，怕越说越错。我们先按这张纸来：没正式通知前不自己禁食、不乱停药，电话开着，资料原件都带好；如果有胸痛喘不上气、发烧咯血、声音吞咽不对、脸脖子胳膊肿这些，就不等电话直接去医院；一周左右还没消息就带他本人去胸外科问排期。\n\n这样执行可以吧？我现在也累了，今晚就尽量让他先睡，后面具体类型、分期、手术风险这些就等主管医生当面讲了。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_091__DeepSeek-V3.2",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5811388300841898,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 6
+}

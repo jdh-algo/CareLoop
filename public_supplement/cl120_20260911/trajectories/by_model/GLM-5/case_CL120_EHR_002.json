@@ -1,0 +1,766 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "b0f4d3f1532912bd8557f76cf3d761c3b57dec6fa1ce3bb1d6d410d272f52f15",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_002__anon_b11480da78820b41",
+    "packet_sha256": "fa781409a45091c487af21d1414000a7b245303aee6ef3d9df2761abfbe61dca"
+  },
+  "case_id": "case_CL120_EHR_002",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "cardiovascular",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "medication_confusion_or_execution_failure",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "cost_transport_or_work_barrier | privacy_stigma_or_sensitive_history",
+    "starting_phase": "longitudinal_followup",
+    "target_problem": "heart_failure_decompensation",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属找到并读回出院带药/用药医嘱：阿司匹林100mg qd、替格瑞洛90mg bid、雷贝拉唑10mg qd、达格列净10mg qd；医生也调取了相关用药/住院记录作为背景。",
+      "家属已把明早阿司匹林、替格瑞洛、雷贝拉唑、达格列净和明晚替格瑞洛放入药格，确认今天不额外补达格列净，明早恢复每日一次；医生解释雷贝拉唑饭前、其余饭后。",
+      "患者多次报告仍乏力但清醒，无胸痛胸闷、明显气促、不能平卧、晕厥、黑便、呕血；首次血压约126/72、心率78，腿肿和尿量未见明显异常。",
+      "普通心内科数日后上午号已付款预约；出院带药页、药盒、药格、复查项目清单已整理，准备带给线下医生核对。",
+      "医生给出复诊前家庭监测：每日标准时间记录体重、血压心率，观察腿肿和尿量；给出胸痛/胸闷加重、明显气促或不能平卧、晕厥/意识改变、黑便/呕血等急诊红旗，以及体重快速增加、腿肿加重等提前就医边界。",
+      "家属最后明确 teach-back：买体重秤电池，明早开始起床如厕后饭前称重并量血压心率，腿和尿量观察，按药格服药，复诊带资料，若出现红旗直接急诊。"
+    ],
+    "if_continued_next_focus": "若继续模拟，下一高价值节点是数日后普通心内科复诊或明早第一组标准体重/血压心率记录；重点核对肾功能/电解质、心衰评估、双联抗血小板持续时间和是否需要调整心衰用药。",
+    "rationale": "本次线上 CareLoop 的核心责任单元是支架术后/ACS 后早期复查等待期的用药混乱、乏力风险分层、家庭监测与复诊前安全边界。轨迹中已通过工作区用药记录和家属逐字读回的出院带药页，明确阿司匹林、替格瑞洛、雷贝拉唑、达格列净的剂量频次；家属已按医嘱重整药格并能复述明早/明晚服药安排。患者当前仅乏力、清醒，反复无胸痛胸闷、明显气促、不能平卧、晕厥、黑便呕血；首次家庭血压心率、腿肿、尿量反馈未触发急诊阈值。普通心内科数日后复诊已付款预约，资料和药盒将带去线下核对；医生已给出复诊前监测项目、急诊/提前就医红旗和执行边界，家属最后完成了可执行 teach-back。未完成的心超、心电图、血生化、BNP/NT-proBNP 等属于已交给线下复诊开单/核对的有 owner、有时间窗、有升级路径的 bounded residual follow-up，而不是当前阻断性的未解释结果。既往替格瑞洛漏服风险被淡化的安全事件仍应计入医生评分，但后续通过恢复双联抗血小板用药节奏、药格监督、复诊和红旗安全网已缓解当前风险，因此不再阻断本 episode 闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：普通心内科复诊尚未发生；心电图、心超、血生化、BNP/NT-proBNP、血常规等检查尚未实际开单或回流，但已有复诊 owner、数日后时间窗、携带资料核对计划和红旗提前急诊路径。",
+      "bounded_residual_followup：达格列净长期适应证、肾功能/电解质等需线下复诊进一步核对；当前按出院带药单和工作区记录恢复明早每日一次，未加倍补服，且有线下复核计划。",
+      "bounded_residual_followup：体重基线今日缺失，需明早开始标准化记录；在当前无急性心衰红旗、血压心率稳定、无明显水肿/少尿的情况下不阻断当前 episode closure。",
+      "global_disease_journey_background：ACS/PCI 术后、心功能不全、下肢动脉粥样硬化和缺血性脑血管病仍需长期心内科管理；本闭环不代表疾病治愈或长期优化完成。",
+      "scoreable_safety_event：医生早期称漏服一次替格瑞洛导致支架血栓概率“极低”过于淡化风险；该事件已被后续执行和监测缓解但仍应由 evaluator 评分。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "支架术后复查期间药该怎么吃有点乱",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我爸之前因为心脏问题做过支架，最近是术后一个多月复查，医生说还有心功能不太好。他现在人清醒，就是总说没劲，暂时没喊胸闷胸痛。家里药有阿司匹林、替格瑞洛，还有护胃的雷贝拉唑，可他记不清哪些停了哪些继续吃，我也怕吃错。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络中已授权的资料：支架植入术的住院/手术记录、术后一个多月复查的门诊记录和心功能评估结果、当前用药清单/处方记录、最近检验结果（血常规、肝肾功能、电解质、心肌标志物、BNP或NT-proBNP等）、心脏超声报告、心电图，以及时间线和家庭照护情况。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内可授权访问的完整资料：既往病历、支架植入手术记录、术后一个多月复查的门诊/住院记录、最近心功能评估（超声心动图、BNP/NT-proBNP等）、最近检查检验结果、当前用药清单/处方记录、出院小结，以及患者家庭照护和交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内的详细病历资料，包括：支架植入术的手术记录、术后一个多月复查的门诊/住院记录、心功能相关检查结果（心脏超声、BNP/NT-proBNP、心电图等）、当前用药清单和处方记录，以及最近一次医生交代的用药调整建议。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内已授权访问的：1）支架植入术的住院病历和手术记录；2）最近一次术后复查的门诊记录和心功能评估资料；3）出院小结和出院带药清单；4）心超、BNP、肌钙蛋白、电解质、肾功能等相关检查结果；5）药房/用药记录。我需要明确支架植入时间、靶血管、术后用药方案、目前心功能分级和具体检查数值，以判断当前用药建议。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在CareLoop联合医疗网络中已授权访问的既往病历、支架置入术记录、术后一个多月复查的门诊/住院记录、心功能相关检查结果（心脏超声、BNP/NT-proBNP、心电图等）、最近用药/处方记录，以及时间线和家庭照护可及性信息。请返回这些资料的详细内容。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我理解您的担心。您父亲目前术后一个多月、心功能不太好，现在虽然清醒、没有胸闷胸痛，但\"总说没劲\"，这个症状需要重视——可能是心功能不全的表现，也可能是用药或康复过程中的问题。\n\n**关于当下的安全判断：**\n好消息是目前没有胸痛、气短加重、夜间不能平躺、下肢水肿等急性心衰加重的典型表现。但如果出现以下情况，建议及时去急诊：\n- 突发胸闷、胸痛\n- 呼吸困难明显加重，尤其躺下更难受\n- 下肢明显水肿、体重几天内快速增加\n- 头晕、晕厥或意识模糊\n\n**关于药物的紧急建议：**\n您家里提到的三种药——阿司匹林、替格瑞洛、雷贝拉唑，在支架术后患者中通常是**长期联合使用**的方案（前两种是抗血小板药，用于预防支架血栓，非常重要；雷贝拉唑是护胃药，用于减少抗血小板药物对胃的刺激）。\n\n**在确认具体医嘱前，我建议您这样做：**\n1. **不要自行停药**——尤其是两种抗血小板药（阿司匹林和替格瑞洛），随意停用可能增加支架血栓风险，这是危险的\n2. **拍一张药盒照片**，把所有目前手头的药拍清楚，下次发给我看\n3. **找到出院小结或最近的门诊病历**，上面一般会写明哪些药继续吃、吃多少\n4. 如果实在找不到，建议**尽快联系原来手术或复查的医生/医院**确认用药方案\n\n**关于\"没劲\"这个症状：**\n心功能不好本身就可能导致乏力。但也要警惕其他原因，比如贫血、电解质紊乱、甲状腺问题等。后续建议：\n- 复查心脏超声、BNP或NT-proBNP（评估心功能）\n- 查血常规、肝肾功能、电解质\n- 如果乏力明显加重，建议提前复诊\n\n您先别着急，目前情况暂时稳定。方便的时候把药盒照片和出院/门诊病历发给我，我帮您仔细核对用药。如果出现我上面说的那些紧急情况，不要犹豫，直接去医院急诊。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00044",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者家属已在家中找到部分药盒并反馈存在实际服药时间不确定，尤其替格瑞洛今日是否已服不清；需医生继续逐项核对药名、剂量、频次、最后服药时间及是否有出血/胸闷气短等风险表现。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "后续复查项目目前只是建议，未见新增检查/检验 receipt；若症状稳定，可由患者预约心内科复诊后开单，若出现胸痛、气促、不能平卧、晕厥等则应急诊评估。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00050",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我刚把床头柜药袋翻了一下，照片我也拍了，但不知道您那边能不能看清，我先把盒子上能认出来的字打给您：\n\n阿司匹林肠溶片是 100mg，好像写一天一次；替格瑞洛这个盒子上是 90mg，像是早晚各一次（是不是叫倍林达那种）；雷贝拉唑是 10mg，频次我爸说大概一天一次。  \n另外还翻到一个“安达唐/达格列净”的药盒，这个我之前没当心脏药说，不知道是不是也要继续吃？\n\n现在最卡的是：我爸这两天胃不舒服，嫌药多，有时候自己凭记忆吃。他说今天早饭后“应该吃过了”，但问他是哪一片他说不清，替格瑞洛今天早上到底吃没吃我真不敢确定。这个要不要现在补一片？还是等晚上按原来时间吃，怕万一重复吃出血。\n\n他现在还是说没劲，人清醒，没有胸痛胸闷，也没明显喘、不能平躺、意识不清，我也没看到腿肿或大出血。您先告诉我今天这几种药怎么最安全地处理，我等会儿再想办法找出院单或打原医院电话问。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00055",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的既往病历、心脏介入手术记录、最近一次出院小结、门诊复查记录、当前用药清单/处方记录，以及最近的检查结果（心脏超声、BNP/NT-proBNP、血常规、肝肾功能、电解质）。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "我调取这位患者在CareLoop联合医疗网络内的完整病历资料，包括：心脏支架手术记录、术后住院和出院记录、最近一次复查的门诊病历、心脏超声和BNP/NT-proBNP等心功能检查结果、血常规和肝肾功能电解质检验、以及药房/用药清单记录。同时查看患者家庭照护可及性信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00065",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "我调取这位患者的详细病历资料：包括支架手术记录、最近一次术后复查的门诊/住院病历、出院小结、心脏超声报告、BNP/NT-proBNP结果、血常规、肝肾功能、电解质、既往用药清单和出院带药记录。同时调取患者的基础疾病诊断、心功能分级、家庭照护条件和就近医疗可及性信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00069",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00071",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00074",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "您现在处理得很谨慎，这是对的。我先回答您最关心的替格瑞洛问题，再逐个说清楚。\n\n**关于替格瑞洛今天早上吃没吃——我的建议：不要现在补服**\n\n理由：\n1. 替格瑞洛是强效抗血小板药，重复吃会增加出血风险\n2. 您父亲说\"应该吃过了\"，只是记不清具体哪种药——这种情况下，漏服一次的风险（支架血栓概率极低）远小于重复服用的风险（出血）\n3. 即使真的漏了早上一次，今晚按原时间正常吃即可，不需要加倍\n\n**今天的安全处理方案：**\n\n1. **阿司匹林 100mg，一天一次**——如果早上不确定是否吃过，今天暂时不要再补，明天按原时间正常服用即可\n\n2. **替格瑞洛（倍林达）90mg，早晚各一次**——今晚按原时间正常服用一片，不要加倍\n\n3. **雷贝拉唑 10mg，一天一次**——护胃药，如果父亲这两天胃不舒服，可以在今天早饭前或今天任意时间补服一片（这类药相对安全）\n\n4. **达格列净（安达唐）**——这个药常用于心功能不全患者，可能是医生加用的，但目前没有医嘱确认，**暂时先不要自行加吃**，等找到出院单或联系原医院确认后再说\n\n**需要您尽快做的事：**\n- 找出院小结或最近的门诊病历，上面会写明完整用药方案\n- 联系原来手术或复查的医院/医生，确认达格列净是否需要继续吃\n\n**关于胃不舒服：**\n您父亲在吃两种抗血小板药，胃不适是常见副作用。雷贝拉唑继续按医嘱吃可以保护胃。如果出现黑便、呕血、明显腹痛，要及时就医。\n\n目前没有胸痛胸闷、呼吸困难加重、腿肿等紧急情况，暂时可以在家观察，按上面方案处理今天的药物。找到出院单后发给我，我帮您逐项核对。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00091",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+20min",
+      "text": "医生，我先按您说的弄了：今天白天阿司匹林和替格瑞洛都不再补了，今晚替格瑞洛就按平时那个时间只放了一片，没有加倍。雷贝拉唑我也单独放好了，等会儿让他吃护胃的。\n\n我现在把今晚和明早的药分开放到药格旁边了，不让他自己再乱拿。就是想再确认一下：明天早上是不是阿司匹林100mg照常吃一片，替格瑞洛也按原来早晚各一片恢复？还是明早替格瑞洛要不要受今天早上不确定影响？\n\n还有那个安达唐/达格列净我暂时没敢给他吃，我一会儿去翻出院小结，找不到就明天打原医院或者药房问清楚再说。\n\n我爸现在还是说没劲，但人清醒，没说胸痛胸闷，也没明显喘，没看到黑便呕血。就是他嫌药多、胃不舒服，我怕我不在旁边他又自己凭记忆吃，您看我这样分药算对吗？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00096",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+20min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的既往病历、支架手术记录、最近术后复查资料、出院小结、用药清单、心脏超声和BNP/NT-proBNP等心功能相关检查结果，以及肾功能电解质等近期检验报告。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00098",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+20min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00100",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+20min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00103",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+20min",
+      "text": "您处理得非常正确，分药的方法也很好——把今晚和明早的药分开、不让老人自己凭记忆拿，这能有效避免吃错或重复。\n\n**确认明天的用药方案：**\n\n1. **阿司匹林 100mg，明早照常吃一片**——不受今天早上不确定的影响，按原时间恢复正常即可\n\n2. **替格瑞洛 90mg，明天开始恢复正常——早晚各一片**\n   - 今天早上的不确定不需要\"补\"回去，从今晚开始已经回到正常节奏\n   - 明早按原时间吃一片、明晚一片，就这样恢复常规\n\n3. **雷贝拉唑 10mg，一天一次**——继续按医嘱服用，护胃的\n\n4. **达格列净（安达唐）**——您暂时不给是对的，等找到出院小结或联系上原医院确认后再说\n\n**关于\"没劲\"和胃不舒服：**\n目前没有胸痛胸闷、呼吸困难加重、腿肿、黑便等警报信号，暂时可以在家观察。但\"没劲\"如果是心功能不全引起的，需要后续复查评估。胃不舒服在吃两种抗血小板药的情况下比较常见，雷贝拉唑继续吃能保护胃。\n\n**关于您分药的做法：**\n您把药分开放、不让老人自己乱拿，这是最安全的做法。建议您可以准备一个7格药盒，提前把一周的药分好，这样即使您不在，他按格子吃也不容易错。\n\n找到出院小结或联系上原医院后，把用药方案发给我，我帮您逐项核对，特别是达格列净这个药是否需要长期吃。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00118",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+48min",
+      "text": "医生，我刚又翻到一张折过的出院带药/用药医嘱单，我照着纸上能看清的几行打给您，那个 qd、bid 我不懂是不是一天一次、一天两次的意思，先原样写：\n\n- 阿司匹林肠溶片 100mg qd  \n- 替格瑞洛 90mg bid  \n- 雷贝拉唑 10mg qd  \n- 达格列净 10mg qd  \n\n这几行看着是出院带药里的，不是药盒上我自己猜的，但也还没问到原医院核实。那达格列净既然纸上写了 10mg qd，明天是不是也可以恢复吃一片？还是您还是建议等明天打医院/药房确认后再吃？我主要怕这个停了影响心功能，但也怕吃错。\n\n纸后面还有写“心内科复诊、按医嘱复查心电图/心超/血生化”这类话，但我没看出来具体哪天去，也不知道挂普通心内还是介入/支架复诊号。您看他现在还是没劲，胃不舒服不算很重，没有胸痛胸闷、明显喘、不能平躺、晕倒，也没黑便呕血。这个复诊复查是这几天就要去，还是可以先把药按好、尽快约一周内？需要重点查哪几项我好跟医院窗口说。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00123",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+48min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内可授权访问的既往病历、出院记录、最近一次支架术后/心内科复诊的检查结果（包括心超、心电图、BNP/NT-proBNP、血常规、肝肾功能、电解质）、以及用药/药房记录，帮助核实出院带药医嘱和心功能状态。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00125",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+48min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00127",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+48min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00129",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+48min",
+      "text": "我调取该患者在CareLoop联合医疗网络中可授权访问的既往病历、出院记录、心脏介入/支架手术记录、最近一次心内科门诊或住院病历、心超/心电图/BNP或NT-proBNP/血生化等检查检验结果、用药清单，以及时间线和照护可及性信息。重点核对：支架术后时间、心功能评估结果、达格列净的用药依据、有无肾功能不全或糖尿病等合并症。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00131",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+48min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00133",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+48min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+48min",
+      "text": "您找到的这张出院带药单非常关键，帮了大忙。我先确认几个问题：\n\n**关于药名缩写：**\n- qd = 一天一次\n- bid = 一天两次\n所以您理解得完全正确。\n\n**现在四样药的用法都清楚了：**\n1. 阿司匹林 100mg，一天一次——明早照常一片\n2. 替格瑞洛 90mg，一天两次——明早一片、明晚一片，恢复正常节奏\n3. 雷贝拉唑 10mg，一天一次——继续吃，护胃\n4. **达格列净 10mg，一天一次——可以恢复吃**\n\n**关于达格列净：**\n这张出院单上明确写了 10mg qd，来源是纸质医嘱，可信度比之前\"药盒上猜的\"高很多。这个药对心功能不全患者有保护作用，您担心的\"停了影响心功能\"是有道理的。既然纸上写清楚了，**明天可以恢复一片**。\n\n当然，如果您明天能打通原医院电话再确认一下，更稳妥。但不需要为了等这个确认而继续停药。\n\n**关于复诊时间：**\n目前没有胸痛胸闷、明显喘、不能平躺、晕倒、黑便呕血这些紧急情况，\"没劲\"虽然需要重视，但不属于这几天必须急诊的信号。\n\n我的建议：**先把药按好，尽快约一周内的心内科复诊**。\n\n**挂号建议：**\n- 优先挂**心内科**，跟窗口说\"支架术后一个多月复查，心功能不太好\"\n- 如果有介入/支架专病门诊，更好；没有的话，普通心内科也可以\n\n**复诊时重点查这几项（可以直接跟窗口/医生说）：**\n1. 心电图\n2. 心脏超声（心超）\n3. 血生化（包括肝肾功能、电解质）\n4. BNP 或 NT-proBNP（评估心功能的指标）\n5. 血常规\n\n您把这张出院单收好，复诊时带上。继续分药的做法很好，这几天看着他按格子吃，别让他自己凭记忆拿。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00151",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+70min",
+      "text": "医生，我按您说的已经把药格重新摆好了：明早放了阿司匹林100mg、替格瑞洛90mg、雷贝拉唑10mg、达格列净10mg各一片；明晚也放了替格瑞洛一片。今天达格列净我没有再补，理解就是今晚不用补，明早开始一天一片，对吧？\n\n还想确认下达格列净明早能不能跟那几种一起吃？饭前饭后有讲究吗？我怕他胃不舒服，雷贝拉唑是不是最好早饭前吃，其他的饭后吃也行？\n\n挂号这边我正在看，介入/支架专病近期没号，普通心内科能约到几天后的上午号，我还没付款。按他现在还是没劲但人清醒、没胸痛胸闷、没明显喘、没晕倒、没黑便呕血这种情况，约这个几天后的普通心内科可以吗？还是明天得去医院窗口问加号，或者直接急诊？我爸在旁边一直说“我就是没劲，不想折腾急诊”，我怕听他的又耽误。出院带药单我已经夹回药袋了，到时候一起带去。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00157",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+70min",
+      "text": "您做得非常好，药格摆放完全正确。我逐个回答您的问题：\n\n**1. 达格列净今天不用补，明早开始一天一片——您理解得对。**\n\n**2. 明早四种药可以一起吃，具体建议：**\n\n- **雷贝拉唑**：建议早饭前30分钟左右空腹吃，护胃效果最好\n- **阿司匹林、替格瑞洛、达格列净**：早饭后服用即可，减少对胃的刺激\n\n所以明早的顺序可以是：先吃雷贝拉唑，等半小时左右再吃早饭，饭后吃另外三种。\n\n**3. 挂号建议：**\n\n按您父亲目前的情况——没劲但人清醒，没有胸痛胸闷、明显喘、晕倒、黑便呕血——**约几天后的普通心内科号是可以的**，不需要明天急诊或专门去窗口加号。\n\n但我要提醒一点：\"没劲\"虽然是心功能不好的常见表现，但如果这几天出现以下情况，不要再等预约，直接急诊：\n- 胸闷胸痛\n- 呼吸困难加重，尤其躺下更难受\n- 下肢明显水肿、体重几天内快速增加\n- 头晕、晕厥\n- 黑便或呕血\n\n您父亲说\"不想折腾急诊\"，我理解他的心情。目前确实没有急诊指征，几天后的普通心内科复诊是合适的。您先把号约上，把出院带药单收好带去。\n\n**4. 复诊时提醒医生查：**\n心电图、心脏超声、血生化（肝肾功能、电解质）、BNP或NT-proBNP、血常规。您可以把这几点记在手机上。\n\n药分好了就让他按格子吃，您这周多盯着点。有情况随时联系。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00171",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+88min",
+      "text": "医生，普通心内科那个几天后上午的号我已经付款约上了，专病门诊暂时没号我就先不等了。出院带药那张纸、几个药盒、药格，还有您说的心电图、心超、血生化、BNP/NT-proBNP、血常规，我都写手机里并装到一个文件袋了，到时候带去给线下医生再核对。\n\n我爸现在还是说没劲，人清醒，刚才也没听他说胸痛胸闷，我看着也没有明显喘、晕倒、黑便呕血。他还是不太愿意去急诊，所以我想把界线记清楚点：我理解的是，如果胸痛胸闷、喘得厉害或躺不平、晕倒、黑便呕血，就别等号直接急诊；腿肿明显、体重突然涨也要警惕。这样记对吗？\n\n另外这几天在家等复诊，我要不要每天给他记血压心率、体重、尿量和腿肿？如果要记，您能不能说个简单做法，比如一天量几次、体重涨多少算不对劲、尿量是不是只要大概看少不少就行？我怕弄复杂了坚持不了，但又怕漏掉心衰加重。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00177",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+88min",
+      "text": "您对急诊界限的理解完全正确，我帮您确认一下：\n\n**需要直接急诊的情况：**\n- 胸痛或胸闷加重\n- 喘得厉害、躺不平\n- 晕倒或意识模糊\n- 黑便（柏油样便）或呕血\n\n**需要警惕并密切观察的情况：**\n- 腿肿明显加重\n- 体重几天内快速上涨\n\n您记的没错。\n\n---\n\n**关于这几天的家庭监测，我给您一个最简方案：**\n\n**1. 血压和心率：每天一次，早上起床后、吃药前量**\n- 记下数值即可\n- 如果收缩压低于90mmHg，或心率低于50或超过100，联系我\n\n**2. 体重：每天一次，早上起床、排尿后、吃早饭前称**\n- 穿类似的衣服，用同一个秤\n- **警戒线：如果3天内体重增加超过2公斤，要警惕心衰加重，联系我**\n\n**3. 尿量：不用精确量，大概看就行**\n- 主要看是不是明显变少，比如一整天尿量比平时少很多，或者他没怎么上厕所\n- 如果明显少，同时腿肿、体重涨，要警惕\n\n**4. 腿肿：每天看一眼脚踝、小腿**\n- 用手指按一下，看有没有坑\n- 如果比之前明显加重，或者按下去的坑很深、回不来，联系我\n\n---\n\n这个方案每天只需要几分钟，关键是坚持。您可以拿个小本子或手机备忘录，每天记一行：日期、血压、心率、体重、腿肿有无、尿量大概情况。\n\n目前他状态稳定，几天后复诊是合适的。这周您多盯着点，有任何变化随时联系。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00191",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+115min",
+      "text": "医生，我刚按您说的先临时量了一次，不是早上吃药前那种标准时间。血压大概是126/72，心率78，没到您说的那些线。脚踝小腿我也看了、按了下，没有明显比平时肿，也没按出很深回不来的坑。尿量只能说个大概，他说今天跟平时差不多，不是明显一天没怎么尿那种。\n\n他现在还是说没劲，但人清醒，没有胸痛胸闷、明显喘、躺不平、晕倒，也没有黑便呕血。我爸已经有点烦了，说别老量来量去。\n\n就是体重这块卡住了，家里秤电池好像不行，数字跳来跳去，今天没有一个准的基线。我下午去买电池，或者明早重新称。这样今天缺一次体重，能不能还是先按几天后的普通心内科复诊等着？如果明天才开始记体重，会不会影响判断？\n\n还有您说“联系我”，我有点拿不准：比如血压不是低于90，只是比平时低一些，或者体重明后天才发现涨了一点但没到3天2公斤，是先在这里给您留言等回复，还是该提前去门诊/急诊？直接急诊我知道是胸痛、喘得厉害躺不平、晕倒糊涂、黑便呕血这些。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00197",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+115min",
+      "text": "您这次量的数据很好——血压126/72、心率78都在安全范围内，腿不肿、尿量也没问题。**今天缺一次体重不影响判断，可以按原计划等几天后的复诊。**\n\n**回答您的问题：**\n\n**1. 明天开始记体重完全可以**\n下午买好电池，明早正式开始。今天缺的这一次不需要担心，不会影响对心功能的判断。重点是之后的趋势，而不是单次数值。\n\n**2. 什么情况\"先留言等回复\"，什么情况\"直接去门诊/急诊\"：**\n\n**先在这里留言的情况：**\n- 血压比平时低一些，但没有低于90\n- 体重涨了一点但没到3天2公斤\n- 腿肿稍微明显一点但人还清醒、不难受\n- \"没劲\"加重但没有其他新症状\n- 任何您拿不准但不像紧急的情况\n\n我会尽快回复您，帮您判断要不要去医院。\n\n**需要直接去急诊的：**\n- 胸痛胸闷\n- 喘得厉害、躺不平\n- 晕倒或意识模糊\n- 黑便、呕血\n- 血压低于90\n\n**可以去门诊（不需要急诊，但不用等复诊号）的情况：**\n- 比如体重3天涨了2公斤以上，但人还清醒、不难受——可以提前去心内科门诊加号或急诊留观\n\n**3. 关于老人嫌烦**\n每天早上量一次血压心率就够了，不用反复量。体重也是早上一次。把监测控制在每天几分钟，老人会更容易接受。\n\n您做得很好，有问题随时留言。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00211",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+190min",
+      "text": "明白了医生，我就按这个来，不再反复量来量去了，也先不折腾专病号和拍资料了。\n\n我下午去买体重秤电池，明早开始正式记：起床上完厕所、吃早饭前称体重，顺便量一次血压心率；腿和尿量就大概看一下。药还是按药格吃，雷贝拉唑饭前，其他饭后。文件袋我放固定地方了，复诊带过去让线下医生再核对。\n\n我爸现在还是主要说没劲，人是清醒的，没有新出现胸痛胸闷、喘得躺不下、晕倒糊涂、黑便呕血这些。就是他在旁边嫌我管太细，说“别天天折腾”，我就尽量控制在早上几分钟。\n\n我最后确认一下：如果明早他不太配合，最低最低是不是先保证按药格吃药，再至少量血压心率；体重如果实在当天没称成，第二天补上看趋势，不用因为漏一次就慌，对吧？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_002__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.5,
+    "aggregate_median": 4.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 7
+}

@@ -1,0 +1,654 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "8896c06b830c0709176ba01ef5f3d25796e3ba0c269e2ec94c355457103ef61c",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_101__anon_07f8f85cd9aecf3c",
+    "packet_sha256": "9178f48a2753d66f10bc587edf67816115bfe4899906f53fd2e16ceca1e1423f"
+  },
+  "case_id": "case_CL120_EHR_101",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "infectious_disease",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "long",
+    "friction_burden_level": "high",
+    "friction_burden_score": "2",
+    "friction_intensity": "heavy",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "6",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "discharge_transition",
+    "target_problem": "culture_result_action",
+    "temporal_burden_level": "high",
+    "temporal_burden_score": "2",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者停左氧后连续多日稳定：无再发热，颈部包块未明显增大、红热或疼痛，无吞咽/呼吸不适，精神和进食尚可。",
+      "家属已执行用药边界：左氧5片吃完后没有自行续买、没有换其他抗生素。",
+      "外部感染科门诊接续并在医院系统查看后反馈：目前没有需急诊或重新住院处理的培养阳性报警，建议继续不自行抗生素，2-4周内复查颈部淋巴结及必要血常规/肝功能，红旗提前就诊或转血液科。",
+      "AI医生明确说明不能把现有反馈理解为正式报告全部正常，要求下次复诊确认培养最终阴/阳性、若阳性则菌名和药敏、穿刺报告原文及“反应性”的含义、是否复查血/肝功能/超声、何时需要血液科。",
+      "家属最后一轮teach-back：已把复诊问题抄到手机，能复述培养/药敏、穿刺报告、复查血和肝功能、颈部包块超声、血液科触发条件，并确认红旗不再等门诊。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应进入2-4周感染科/原住院团队复查节点：核对正式培养/药敏和穿刺报告原文，评估颈部淋巴结变化、血常规/肝功能及是否需超声或转血液科。",
+    "rationale": "本例的目标是出院过渡期的有限任务：核对左氧氟沙星执行、追踪未回报培养/药敏与淋巴结穿刺结果、明确复诊责任和红旗处理。当前患者已完成左氧5片并停止自行续抗生素，停药后持续稳定；外部感染科已在系统中查看并给出“不需急诊/再住院、继续不自行抗生素、2-4周复查颈部淋巴结及必要血常规/肝功能、红旗提前就诊/必要时转血液科”的边界。AI医生没有把口头反馈包装成正式阴性或治愈，而是把剩余正式报告解释转成下次复诊问题清单、责任科室和升级条件；家属已把清单抄到手机并能复述关键计划。因此，对于当前出院过渡 episode，主要责任链已安全边界化并有可执行下一步。残余的正式培养/药敏与穿刺报告原文未取得，但在当前稳定、无立即报警、外部感染科已接续并设定2-4周复查的前提下，属于有责任人、时间窗、验证路径和升级条件的 bounded residual follow-up，而非当前阻断项。需注意这不是证明所有感染/血液病风险已排除，也不是全病程终局治愈。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：正式血培养/厌氧培养/药敏报告原文仍未由家属拿到；需在2-4周复诊或更早若报告异常时由感染科/原住院团队解释并决定是否改变处理。",
+      "bounded_residual_followup：淋巴结穿刺/病理报告原文及“反应性”含义仍需线下医生核对；若提示非反应性、恶性风险或包块进展，应转血液科/相应专科。",
+      "global_disease_journey_background：淋巴结肿大后续是否完全消退、是否需要长期血液科或感染科随访，仍取决于线下复查结果；这不属于当前出院过渡任务已闭合的证明。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.4",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "出院后血培养结果还没看懂，脖子淋巴结的问题该怎么跟进",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家孩子前阵子因为发烧、脖子两边淋巴结肿住过院，今天刚把出院带回来的单子翻出来看，有好几项培养、药敏什么的好像还没完全明白。现在不烧了，医生开了左氧氟沙星，我怕吃错，也不知道如果后面培养结果出来要不要马上处理。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取这次住院及出院相关的完整资料：入院记录、病程记录、会诊意见、出院小结、出院医嘱、所有培养及药敏结果（已出和待回报状态）、血常规/炎症指标、影像或超声报告、用药记录与出院带药清单，最好按时间线返回；同时查看患者年龄/体重等基础信息与照护可及性。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取这次孩子因发热、双侧颈部淋巴结肿大相关的5条既往/CareLoop中心医院记录详情，优先看：急诊/门诊/住院经过、入出院记录、会诊记录、出院小结、所有培养和药敏报告原文、病原学检验、血常规/CRP/降钙素原/肝肾功能、影像检查、出院带药与剂量、年龄/体重等基本信息，并给我时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00016",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "先别着急。孩子现在已经退烧，这说明眼下不一定需要因为“培养单还没看懂”立刻做额外处理，但左氧氟沙星这类药在儿童是否适合用、怎么用，要结合年龄、体重、当时住院诊断和培养结果来判断，不能只凭药名硬吃。\n\n请你先告诉我这几项关键信息：\n1. 孩子几岁、体重多少？\n2. 现在左氧氟沙星是已经开始吃了，还是还没吃？如果已经吃了，吃了几次、每次多少？\n3. 出院诊断或出院小结上怎么写的？你可以把关键几行直接打字给我。\n4. 培养/药敏单上，能否把“标本名称、培养出什么菌、药敏结果、报告日期”逐字发给我？\n\n在这些信息没核实前：\n- 如果孩子精神、食欲都还可以，也没有再发烧、呼吸困难、颈部明显加重肿痛，一般不用因为担心培养结果马上去急诊。\n- 但如果左氧氟沙星还没开始吃，先别自行开始；等我帮你核对后更稳妥。\n- 如果已经在吃，也先把年龄体重和处方用法发我，我先帮你判断是否需要继续。 \n\n另外，如果后面培养结果只是“晚出来”，不代表一定要立刻换药；要看培养的标本是不是可靠、孩子临床上是不是已经明显好转、以及结果和当时感染部位是否对得上。你把内容发来，我帮你一条条解释。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00033",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者侧资料很可能不是正式培养结果，建议医生要求核对报告标题、状态、采样时间、报告时间和结论栏。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00038",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我翻了一会儿，照着纸给您打，可能有些我不懂。\n\n他其实不是小小孩，是年轻成人男的，我们家习惯叫孩子，23岁，体重大概65公斤左右。左氧氟沙星早上我还没敢给他正式吃，药袋上写的是“左氧氟沙星片”，后面有“qd、po”这种字，我看不懂，就是医院带回来的。\n\n出院诊断那几行我照着读是：\n“急性淋巴结炎”\n“淋巴瘤待除外”\n“EB病毒感染”\n“肝功能异常”\n我看到“淋巴瘤待除外”这几个字真的有点吓到了，这是不是已经怀疑很严重了？还是只是先写上要以后排查？\n\n培养/药敏那个我现在只能看到纸上像是项目名，不像正式结果。上面有“厌氧菌培养及鉴定（血第1套）”，还有一行像“血培养鉴定+药敏……第1套”，但我没看到写培养出什么菌，也没看到什么S、R，也没找到清楚的报告日期。会不会这张只是待出结果的单子，不是结果单？\n\n他现在不发烧，精神还行，刚才也吃了点东西，脖子两边包块我摸着没觉得又明显变大。那这个左氧氟沙星现在到底先别吃，还是按药袋开始吃？培养结果是不是要我明天打住院科室或者检验科电话问清楚？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00043",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取这次住院相关的完整资料：入院记录、住院经过、会诊记录、出院小结/出院记录、出院带药清单与处方用法；所有本次住院检查结果及时间线，重点看血常规、肝功能、炎症指标、EB病毒相关结果、影像/超声/CT、病理/穿刺（如有）、血培养/厌氧培养及药敏报告原文和当前状态（已出/未出/阴性/污染/阳性）；同时返回患者本次就诊的关键时间线。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00047",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "先按药袋开始吃，不要因为那张像“项目名/送检单”的纸先停着不动。你刚读到的“qd、po”里，po 是口服，qd 是一天一次。\n\n你现在描述的情况里，他已退烧、精神和进食都还可以、颈部包块也没明显加重，这说明眼下不像是需要立刻因培养单去急诊处理。你看到的那几行更像是送检项目或待出结果单，不像正式培养/药敏结果；真正的结果单一般会有明确的报告时间、培养结论，以及药敏里的 S/I/R 这些字样。\n\n“淋巴瘤待除外”不等于已经确诊肿瘤。它的意思通常是：这次住院时淋巴结肿大比较明显，医生需要把这个可能性保留在鉴别诊断里，后续结合复查、影像、血液检查，必要时再进一步排查。现在已经退烧、整体好转，是偏支持感染相关的，但这个随访不能丢。\n\n明天建议你做两件事：\n1. 给住院科室或检验科打电话，重点问：血培养/厌氧培养最终是否有结果、报告日期、是否培养出细菌、药敏结果是什么。\n2. 再把左氧氟沙星药袋上“每片多少毫克、一次几片、共吃几天”逐字发我，我帮你核对用法是否合理。仅凭 qd、po 还不够，关键是剂量和疗程。\n\n如果出现这些情况，不要等电话结果，尽快线下复诊或急诊：再次发烧、颈部包块明显变大或更疼、吞咽/呼吸困难、明显乏力加重、黄疸，或者精神状态变差。\n\n你先不用被“待除外”三个字吓住，先把药袋完整用法和后续培养正式结果核清楚，我继续帮你看。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+19min",
+      "text": "当前工作区暂无新增培养、药敏或淋巴结穿刺/病理正式结果推送；仍需建立明确追踪责任和时间点。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00066",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+19min",
+      "text": "医生，我把药袋正面和清单又翻了一遍，能看清的我直接打给您：\n\n药袋上写的是：**左氧氟沙星片，规格 0.5g/片，用法：一次1片，每日1次，口服**。  \n他到现在还没吃第一片，我是想等您确认一下再给。\n\n就是我看到 **0.5g** 心里还是有点慌，这个23岁、65公斤左右的男孩子，按这个“一天一次一片”是正常剂量吗？另外出院诊断里有个“肝功能异常”，这种情况下吃左氧氟沙星要不要特别注意？比如要不要饭后吃、要不要避开什么药，或者吃了以后看什么反应？\n\n疗程我现在还没完全弄清，袋子里好像有几片/一盒，我等下再数一下，或者看清单后面有没有写“几天”。培养和药敏那个正式结果我这边还是没有看到，明天我按您说的打住院科室或者检验科电话问清楚。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00071",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+19min",
+      "text": "我先调取这次住院相关的出院记录、住院病程、感染科/血液科会诊、最近肝功能与肾功能检查、CBC、炎症指标、血培养/厌氧培养及药敏结果状态、出院带药处方与疗程说明、时间线；同时查看是否有淋巴结超声/CT、EB病毒相关检查，以及照护可及性信息。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00073",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+19min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00075",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+19min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00078",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+19min",
+      "text": "可以先给他按这个剂量开始吃：23岁、约65公斤的成年人，左氧氟沙星 0.5g 每次1片、每日1次，是成人常见剂量之一。既然是医院出院带药，结合他现在已经退烧、精神尚可，这个剂量本身看起来不离谱。\n\n关于“肝功能异常”：左氧氟沙星一般不是最典型的伤肝药，更多需要结合肝功能异常到底有多重来判断。单凭出院诊断里写了这几个字，并不等于绝对不能用；如果只是住院时轻中度异常，通常仍可用，但要留意不适反应。\n\n服药注意：\n1. 每天固定一个时间吃即可，饭前饭后都可以；如果胃不舒服，放在饭后更容易耐受。\n2. 和含铝/镁的胃药、硫糖铝、铁剂、锌剂、钙片/高钙补充剂、某些营养粉不要同服，前后最好间隔至少2小时，否则会影响吸收。\n3. 吃药期间注意补水。\n4. 尽量避免剧烈运动，尤其跑跳、打球、负重，以防少见但需要重视的肌腱疼痛问题。\n\n吃了以后重点观察这些：\n- 明显恶心呕吐、腹泻很重\n- 皮疹、喘、嘴唇眼睑肿\n- 心慌很明显、头晕要晕倒\n- 小腿跟腱、脚踝后方、肩肘等部位突然疼痛\n- 黄疸、尿色明显变深、右上腹痛\n如果有这些情况，先停药并尽快线下就医；如果只是轻微胃不舒服，可以先观察并告诉我。\n\n另外两件事请继续核对：\n1. 把总共拿了几片、计划吃几天告诉我，我帮你核疗程。\n2. 明天继续问血培养/厌氧培养有没有正式结果、报告日期、是否培养出菌、药敏结论。现在没有正式结果，不用因为那张单子立刻改药；但结果一旦出来，值得再核对一次是否需要调整。\n\n如果他今天已经不烧、状态稳定，现在可以开始第1片。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00092",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+30min",
+      "text": "医生，我刚按您说的让他吃了第一片，配水吃的，没和钙片、营养粉这些一起吃。现在他还是不烧，能吃点东西，精神也还可以，脖子包块看着没明显变大。\n\n我刚才数药袋，左氧氟沙星这个袋里一共是 **5片**，现在吃掉1片，还剩4片。清单上我没找到很明确写“吃几天”，我理解是不是就是一天一片、总共吃5天？这个疗程够不够，还是要等明天培养结果再说？\n\n明天我准备打电话问住院科室或者检验科，我就问“血培养、厌氧培养最终报告出了没有、有没有培养出菌、有没有药敏结果”，这样问对吧？如果他们说还没出，我是不是就先按这5天药吃着，不用自己改？我记住要看脚后跟疼、皮疹、黄疸这些，就是还是怕漏了结果。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00098",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+30min",
+      "text": "对，你这样理解基本是对的：目前先按**一天1片，吃完这5片**，先不要自己加量、减量或临时换药。像他现在这样**不发烧、精神和进食都还可以、颈部也没明显加重**，说明眼下病情是稳定的；在正式培养结果没明确出来前，通常不需要你们自己改方案。\n\n你明天电话可以这样问，很合适：\n1. **血培养最终报告出了没有？**\n2. **厌氧培养最终报告出了没有？**\n3. **有没有培养出细菌？培养出的是什么菌？**\n4. **有没有药敏结果？**\n5. 如果方便，再加一句：**请把报告日期、结论栏内容帮我读一下。**\n\n如果对方说**还没出**，那就先把这5天按原方案吃着，不用自己改。等正式结果一出来，再决定要不要调整。\n\n如果对方说**出了结果**，你就把这几项原话记下来发我：\n- 报告名称\n- 报告日期\n- 是否“未生长/阴性”还是培养出菌\n- 菌名\n- 药敏里有没有写 S / I / R\n\n现在你们继续观察就行。若出现**再次发烧、脖子包块明显变大或更疼、吞咽呼吸不舒服、精神明显变差、皮疹、脚后跟/跟腱疼、黄疸**，那就不要等结果，尽快线下复诊。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00113",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+60min",
+      "text": "好的医生，我明白了。我已经把您说的那几句问话抄到手机里了，明天就照着问他们，让他们读报告日期和结论栏，别让我自己猜。\n\n他刚吃第一片后睡了一会儿，这会儿没看见起疹子，也没吐，没说喘或者脚后跟疼，还是不发烧。这个我知道只是暂时没反应，不代表后面就不用看了。\n\n我现在主要担心明天电话这块：如果住院科室说让问检验科，检验科又说不方便电话里读，或者一直打不通、说还没出结果，那我怎么兜底比较稳？是先继续按一天一片把这5片吃完，然后每天打一次问？还是过两三天直接带着出院资料去医院窗口/门诊问？另外如果他们就是不给电话说结论，我是不是只能挂复诊号让医生在系统里查？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00119",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+60min",
+      "text": "对，兜底思路可以这样定：**先继续按一天1片把这5片吃完，同时追结果，但不用为了追电话每天反复打很多次。**\n\n比较稳妥的顺序是：\n1. **明天先打一次住院科室**，问能不能帮查培养最终结果；\n2. 如果让你问检验科，就再问一次检验科；\n3. 如果电话里**不给读、打不通，或者明确说还没出**，那就**不要自己猜结果、也不要自己改药**；\n4. **2–3天内**如果还拿不到明确结论，比较稳的是**带出院资料去原住院科室复诊/门诊窗口问**，或者**挂一次复诊号**让医生当面在系统里查。\n\n所以不是必须每天打一次电话追。**明天问一次；如果没拿到明确结果，隔2–3天再落实一次线下或复诊**，这样更实际。\n\n如果他们一直不给电话说结论，**挂复诊号让医生查**，通常就是最稳妥的办法。你可以把要点直接带去：\n- 出院诊断写了什么\n- 目前左氧氟沙星已吃到第几天\n- 现在已经退烧、精神食欲如何\n- 想确认血培养/厌氧培养最终结果和是否需要调整用药\n\n这几天先继续观察就行。若在结果还没落实前出现**再次发烧、颈部包块明显变大或更痛、吞咽或呼吸不舒服、明显皮疹喘憋、跟腱/脚后跟疼、黄疸或精神明显变差**，那就不要等电话，直接尽快线下复诊。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00136",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1500min",
+      "text": "医生，我上午按您说的打通原住院科室电话了，但他们电话里没有给我读正式报告，也没说菌名、药敏那些。\n\n我记下来的大概原话是：**目前没看到需要马上电话通知家属的血培养阳性报警**，但是正式培养、药敏结果还是要以系统报告和复诊医生解释为准。淋巴结穿刺那个结果他们也说电话里不好解释，让按出院医嘱带资料复诊，或者挂原科室/血液内科/感染科门诊去系统里查。\n\n他昨晚到今天上午都没再发烧，精神、吃饭还可以，脖子包块看着没明显变大。左氧氟沙星已经继续按一天一片吃了，到现在没看见皮疹、喘、吐，也没说脚后跟疼，眼睛皮肤也没看出发黄。\n\n我现在怕自己把电话那句理解成“肯定阴性”了，但其实他们没给正式结果。那现在是不是还是先把这5片吃完，不自己改药？复诊这块您看是挂原住院科室更合适，还是血液内科/感染科？大概这两三天就去查系统和穿刺结果，还是等吃完5天药再去？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00142",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1500min",
+      "text": "对，这句话**不能等同于“正式阴性”**，你的理解很对：它最多只说明**目前电话里没有提示到需要立刻电话通知家属的血培养阳性报警**，但**正式培养、药敏和穿刺结果仍然要看系统报告原文**。\n\n在孩子现在**不发烧、精神和进食可以、颈部包块没明显变大、吃左氧后也没见明显不良反应**的情况下，**先把这5片按原方案吃完，不要自己改药**，这个处理是稳妥的。\n\n复诊选择上，**首选原住院科室/原收治团队**，因为他们最容易把这次住院经过、培养送检和淋巴结穿刺结果连起来解释；如果原科室不好挂，第二选择再考虑**感染科**（偏感染和抗菌药解读），至于**血液内科**，更适合在穿刺结果、血象或后续评估提示需要进一步排除血液系统问题时介入。就你现在提供的信息，**先挂原住院科室更合适**。\n\n时间上**不用特意等5天药全吃完再去**。我更建议你们**这两三天内就去复诊/查系统结果**，把培养和穿刺结果尽快看清楚；因为穿刺结果电话里已经明确说不好解释，这类结果拖着自己猜没有意义。\n\n去复诊时你们重点问这几件事：\n1. 血培养、厌氧培养最终报告是否已出；\n2. 结论是未生长/阴性，还是培养出菌；\n3. 如果有菌，菌名和药敏结果是什么；\n4. 淋巴结穿刺最终报告原文是什么，医生倾向感染性反应、坏死性淋巴结炎，还是还需要进一步排查；\n5. 目前左氧氟沙星这个疗程是否够，需不需要继续、停药或换药。\n\n如果这两三天内挂不上号，也先不要慌，**药先按原方案吃完**，但只要出现这些情况，就不要再等复诊：**再次发烧、脖子包块明显变大或更痛、发红发热、吞咽或呼吸不舒服、精神明显变差、皮疹喘憋、脚后跟/跟腱疼、眼黄尿黄**，需要尽快线下就医。\n\n如果你愿意，我下一条可以直接帮你整理一段**复诊时给医生看的简短说明和要问的清单**，你拿着念就行。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00157",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1525min",
+      "text": "医生，我刚在医院公众号和预约入口翻了半天，原住院科室/原来那个团队这两三天的号都没挂到，近的不是没有就是不知道是不是同一个医生。现在就卡在这里了。\n\n他现在人还是稳定的，没再烧，吃饭精神还行，脖子包块我看着没明显变大；左氧还是一天一片吃着，暂时也没说什么脚后跟疼、起疹这些。\n\n那这种挂不上原科室的情况，我下一步怎么兜底最稳？是先改挂感染科，还是明天直接带出院资料去门诊窗口/病区护士站问能不能让医生在系统里查培养和穿刺结果？如果他没有您说那些加重情况，是不是不用去急诊排队？我主要怕等号等着等着，把该改药或者该解释的穿刺结果给耽误了。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00163",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1525min",
+      "text": "目前这情况如果孩子一直稳定，**一般不用为追结果去急诊排队**；急诊更适合再次高烧、脖子迅速肿大变红变热、吞咽或呼吸不舒服、精神明显变差这类情况。\n\n你现在最稳的兜底顺序是：\n1. **先改挂感染科**，不用死等原住院科室；\n2. **明天也可以直接带出院资料去门诊窗口或原病区护士站咨询**，重点不是让他们现场治，而是请他们帮你明确：培养最终报告和淋巴结穿刺结果在哪里看、由哪个门诊最合适接续解释；\n3. 如果窗口/护士站能协助联系到原团队当然最好；联系不上，就按**感染科先接上**，先把“培养是否出结果、穿刺报告原文、左氧疗程是否够”这三件事落实。\n\n也就是说：**感染科是现在最现实的替代选择**；窗口/护士站咨询可以同时做，但不要把希望只放在电话或口头转述上。\n\n在这期间，孩子既然稳定，**左氧先继续按原来一天一片吃完这5天，不自己改药**。目前没有正式培养/药敏原文，不建议你们自行换药或停药。\n\n你明天去时就拿着这几句问：\n- 我们是这次住院后复诊，想查**血培养、厌氧培养最终报告**是否已出；\n- 想看**淋巴结穿刺最终报告原文**；\n- 目前左氧氟沙星已吃到第几天，孩子现在已退烧、状态稳定；\n- 请医生判断**疗程是否够，需不需要继续/停药/换药**。\n\n如果你愿意，我下一条可以直接给你整理一版**去门诊窗口/感染科时能直接照着念的简短说明**。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00177",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2485min",
+      "text": "医生，我今天按您说的已经跑了一趟医院了。门诊服务台和原来病区护士站都问了，他们不给我口头读培养、药敏，也没告诉我到底什么菌、穿刺结果是什么，只说这些要门诊医生在系统里看了再解释，不能让家属自己猜。\n\n原来住院那个团队号还是很难挂，工作人员也说可以先挂感染科普通号，必要时感染科再转血液科或者原团队。我现在已经弄到一个比较近的感染科普通号/候补了，但还没见上医生。\n\n孩子这边目前还算稳，没再发烧，吃饭精神还可以，脖子那个包我看着没明显变大。左氧还是一天一片吃着，没自己停也没换。\n\n我现在就想再确认一下：  \n1. 等感染科号这几天，左氧就是把这5片吃完就先停吗？如果吃完了还没见到感染科医生，要不要自己续买几片？  \n2. 如果一直稳定，是不是就不用急诊，等感染科门诊看系统报告就行？  \n3. 到感染科我最主要就问培养最终报告、穿刺报告原文、左氧够不够这三件事，对吧？我怕我到时候又被医生问懵了。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00183",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2485min",
+      "text": "对，现阶段可以这样把握：\n\n1. **先把这5片按原方案吃完，然后先不要自己续买。**\n   在**没有看到正式培养/药敏和穿刺报告原文前**，不建议你们自己把左氧延长几天。也就是说：**吃完这5天先停，不自行续药**，然后等感染科门诊结合系统里的正式结果判断要不要继续、换药或停药观察。\n\n2. **如果孩子一直稳定，一般不用急诊，等感染科门诊就可以。**\n   你现在描述的是：**不发烧、精神和吃饭可以、颈部包块没明显变大**，这种情况下更适合门诊把结果和后续方案理清。\n   只有出现这些情况才要尽快线下加急，必要时急诊：**再次发烧、脖子包块明显变大/更痛/发红发热、吞咽或呼吸不舒服、精神明显变差、持续呕吐、明显皮疹喘憋、脚后跟或跟腱疼。**\n\n3. **到感染科，重点问这三件事，完全对。**\n   我帮你再整理成更顺手的一版：\n   - **请医生看这次住院的血培养、厌氧培养最终报告，有没有培养出菌，药敏结果是什么；**\n   - **请医生看淋巴结穿刺最终报告原文，结论到底偏什么；**\n   - **孩子现在已经退烧、左氧已吃到第几天，请医生判断这个疗程够不够，是否需要继续、停药或换药。**\n\n你到时候如果怕被问懵，可以直接先说：\n**“孩子前阵子因发热和双侧颈部淋巴结肿大住院，现在已退烧，精神食欲还可以，颈部包块没明显变大。出院后一直按医嘱吃左氧氟沙星一天一片，共5片。我们今天来主要想请您看住院期间的培养最终结果、药敏、淋巴结穿刺最终报告，并判断左氧疗程是否够。”**\n\n所以这两天你们的执行要点就一句话：**孩子稳定就继续等感染科，左氧按这5天吃完，不自己续买。**",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00198",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+5365min",
+      "text": "医生，我们今天终于看完感染科普通门诊了。医生是在医院系统里看了住院记录和结果状态，说目前没看到那种需要马上急诊或者重新住院处理的血培养阳性报警，我听着是比前几天踏实一点，但他也没给我讲具体有没有长什么菌、药敏是啥，淋巴结穿刺那个也没有给我们一份正式结论。\n\n孩子这两天还是稳定的，没再发烧，精神吃饭都还可以，脖子包块没明显变大。左氧氟沙星5片今天吃完了，暂时没起疹子、喘、吐，也没说脚后跟疼。\n\n感染科医生交代的是：不要自己再去买左氧，也不要自己换抗生素；如果吃完药后还稳定，就先停药观察，等正式结果或者后面血液科/原住院团队复诊再决定。我想再跟您确认一下：\n\n1. 现在按这个说法，左氧吃完先停、不续买，算是安全的吧？我就怕停了又反复烧。  \n2. 感染科说目前不用急诊/住院，我能不能理解成现在可以稍微放心一点，但还不能当成正式培养阴性、也不能说穿刺没问题？  \n3. 后面我还要不要必须挂血液科，还是先继续追原住院团队/感染科看正式报告？这几天跑得有点乱，我怕自己又听漏了。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00204",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+5365min",
+      "text": "可以这样理解：\n\n1. **左氧今天吃完先停、不自己续买**，按你现在得到的感染科意见，**这是安全而且稳妥的做法**。孩子这几天一直稳定、也没有明显药物不良反应，在**没有正式结果提示必须继续或换药**之前，不建议你们自己把抗生素延长。停药后不代表一定会反复烧，关键是继续观察。\n\n2. **目前确实可以比前几天稍微放心一点**，因为门诊医生看过系统后认为**现在没有需要马上急诊或重新住院处理的信号**。但你的理解也对：**这不等于已经拿到了正式培养阴性结论，也不等于穿刺结果已经明确没问题。** 现在只能说：**眼下病情表现稳定，短期风险看起来不高；正式结论还要等正式报告或复诊医生完整解释。**\n\n3. **现阶段不一定必须马上挂血液科。** 更实际的顺序是：**先继续追原住院团队/感染科，把正式培养结果、药敏和穿刺最终报告落实清楚。**\n   - 如果后面**穿刺结果、血象或复诊医生判断**提示需要进一步排查血液系统问题，再去血液科；\n   - 如果感染科或原团队已经能把结果解释清楚、而且孩子持续稳定，未必需要你们自己先额外挂血液科。\n\n你接下来就按这条线走：\n- **现在停左氧，先观察；**\n- **不要自己加药、换药；**\n- **继续等正式结果/复诊解释。**\n\n这几天重点看有没有这些变化：**再次发烧，脖子包块明显变大或更痛、发红发热，吞咽或呼吸不舒服，精神明显变差，持续呕吐，皮疹喘憋。** 如果有，就不要继续等结果，尽快线下就医。\n\n如果一直稳定，那你们下一步最该做的不是急着加药，而是**把“正式报告原文到底写了什么”这件事追清楚**。如果你愿意，我下一条可以直接帮你整理成一份**后续复诊只问4句话的清单**，你拿着照着问就行。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00218",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+6085min",
+      "text": "医生，左氧5片已经吃完了，我们这半天没有再去买，也没换别的抗生素。孩子现在还行，在屋里正常吃饭休息，没再发烧，脖子包块我看着也没明显大起来。\n\n我大概明白了：现在不是说报告都没问题了，只是目前不用急诊住院；先停药观察，别自己加药。再烧、脖子明显变大变疼或者红热、吞咽呼吸不舒服、精神差这些就不能等门诊。\n\n我现在最想请您帮我把后面追报告的事说得再落地一点：如果这几天一直没拿到正式培养/药敏、穿刺那个报告原文，我是隔几天再挂感染科复诊查系统，还是继续想办法挂原住院团队？血液科是不是只有等穿刺或复诊医生说需要再去，不用我现在马上硬挂？我怕自己理解成“先等着”然后又把该追的结果拖过去了。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00224",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+6085min",
+      "text": "你的理解是对的，现阶段**不用马上硬挂血液科**，也**不能无限期“先等着”**。更落地的做法我建议你这样执行：\n\n**第一顺位：继续追原住院团队；第二顺位：感染科接续看结果。**\n原因很简单：原住院团队最清楚这次住院经过和为什么做穿刺；如果实在挂不上，**感染科复诊看系统正式报告也完全可以**，不用因为不是原医生就不去。\n\n你可以按这个时间线做：\n1. **未来2–3天内**，先继续查一次预约：原住院团队能挂到就挂原团队；挂不到就按你已经能接上的**感染科**复诊。\n2. 如果**再过3–5天**，正式培养/药敏、穿刺报告原文还是没落实到任何一个门诊医生给你解释清楚，**不要继续空等**，就直接用感染科把这件事接住，请医生当面查看系统原文并告诉你结论。\n3. **血液科暂时不是现在必须立刻做的事。** 只有在以下情况之一再去推进更合适：\n   - 穿刺报告提示需要进一步排查；\n   - 复诊医生看完结果后建议转血液科；\n   - 孩子后面又反复发烧、淋巴结持续增大不消、血象异常或医生担心不是单纯感染性问题。\n\n所以你现在不是“什么都不做等着”，而是：\n- **这几天继续追号；**\n- **原团队优先，挂不到就感染科继续接；**\n- **血液科先不硬挂。**\n\n你下次复诊时就盯住这4句话问：\n1. **这次血培养/厌氧培养最终结论是什么？有没有长菌？**\n2. **如果有菌，药敏结果是什么？**\n3. **淋巴结穿刺最终报告原文怎么写？医生倾向什么？**\n4. **基于这些正式结果，后面是继续观察，还是需要转原团队/血液科？**\n\n你可以把目标理解成：**不是谁都要挂一遍，而是尽快让一个门诊医生把“培养最终结果+穿刺原文+是否要转血液科”这三件事真正讲清楚。**\n\n如果你愿意，我下一条可以直接给你整理成一段**去复诊时能照着念的 30 秒说明**。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00240",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+8965min",
+      "text": "医生，我们又去看了感染科复诊，刚出来。原来住院那边号还是没挂上，这次感染科医生在系统里看了住院记录和结果，我听着他说目前不用急诊、也不用重新住院，左氧已经停了就不要自己再买抗生素。\n\n孩子这两天停药后还是稳的，没发烧，吃饭精神还可以，脖子包块我看着没有变大，也没红没热。医生好像说那个穿刺更像反应性的、先观察，但我不敢保证原话，我怕把培养和穿刺听混了，他也没给我完整纸质报告。\n\n那现在我是不是可以按“先别折腾血液科，继续门诊随访、把正式报告问清楚”这样执行？如果一直不烧、包也不变大，是不是就等感染科或原团队下次把报告讲明白就行；一旦再烧或者脖子变大变疼再加急？我这几天跑得有点累，也怕自己听成“没事了”就放松过头。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00246",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+8965min",
+      "text": "对，你现在可以按这个方向执行：**先不折腾血液科，继续门诊随访，把正式报告问清楚；孩子只要一直稳定，就先观察。**\n\n基于你这次复诊后提供的信息，现阶段更像是：**短期风险不高，但还不能把它理解成“所有结果都已经彻底没事了”。** 所以最合适的做法不是再自己买抗生素，也不是立刻到处加挂科，而是**继续由感染科或原住院团队把正式培养结果、穿刺最终报告原文解释清楚。**\n\n你现在可以这样把握：\n1. **左氧已经停了，就不要自己再买、再补、再换别的抗生素。**\n2. **如果一直不发烧、颈部包块不变大、不变疼、没有发红发热，精神食欲都还行，就按门诊随访。**\n3. **血液科目前不是必须马上硬挂。** 只有后面正式报告提示需要，或者孩子病情又反复，再加快往那边转。\n\n你担心“别把医生的话听成完全没事了”，这个警惕是对的。你现在更准确的理解应该是：\n**不是完全结案了，而是目前看起来可以先观察，不需要急诊/再住院。**\n\n后面什么时候要加急：\n- **再次发烧**\n- **脖子包块明显变大、变疼，或者发红发热**\n- **吞咽不舒服、呼吸不舒服**\n- **精神明显变差、吃不下、反复呕吐**\n\n如果没有这些情况，就继续按门诊节奏追结果。下次复诊你就重点问两件事：\n- **培养最终结论到底是什么，是否有长菌/药敏怎么解释**\n- **穿刺最终报告原文怎么写，医生为什么倾向“反应性”**\n\n所以一句话总结：**现在可以先按“观察+继续门诊追正式报告”执行；一旦再烧或颈部情况变坏，再及时加急。**",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00260",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12565min",
+      "text": "医生，我们又过了两天多，按您说的左氧停了，没有再买抗生素。孩子这几天还是没再发烧，吃饭精神都还可以，脖子那个包我看着也没大、没红没热，也没说吞咽喘气不舒服。\n\n今天又接上感染科门诊了，医生是在医院系统里看的，说目前没有那种需要急诊或者重新住院处理的培养阳性报警，还是让别自己吃抗生素。后面说2到4周内复查颈部淋巴结，可能再查血常规、肝功能；如果再发热、包变大变痛红热，或者盗汗消瘦、一直乏力、吞咽呼吸不舒服，就提前去，必要时再转血液科。\n\n我还是没拿到完整纸质报告，所以不能跟您保证培养、药敏、穿刺原文到底怎么写。医生好像提到偏观察、反应性之类的，我怕自己把话听混。那现在我们就按“停抗生素、在家观察、2到4周复查，出现这些情况就提前就诊/可能血液科”来做，可以吧？下次复查我最该盯医生确认哪些关键字？比如“培养最终结论”“穿刺原文”“血常规有没有异常”这些对吗？",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00266",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12565min",
+      "text": "可以，就按你现在这条线执行：**停抗生素、在家观察、2到4周复查；一旦出现再发热、包变大变痛红热、盗汗消瘦、持续乏力、吞咽或呼吸不舒服，就提前就诊。** 这和你今天门诊听到的意见是一致的。\n\n你下次复查最该盯住医生确认的，确实就是这几项：\n\n1. **培养最终结论**\n   直接问：**“这次血培养/其他培养最终是阴性还是阳性？如果阳性，长了什么菌，临床上要不要处理？”**\n\n2. **药敏结果有没有实际意义**\n   直接问：**“如果有培养到菌，药敏结果支持什么药？但结合孩子现在情况，是污染、既往感染已控制，还是仍需要治疗？”**\n\n3. **穿刺最终报告原文**\n   直接问：**“淋巴结穿刺最终报告原文怎么写？‘反应性’具体是什么意思？有没有提示需要进一步排查血液科或别的专科？”**\n\n4. **血常规和肝功能有没有异常**\n   直接问：**“复查血常规、肝功能有没有异常？有没有提示还在炎症、贫血、白细胞/血小板异常，或者需要继续追查？”**\n\n5. **颈部淋巴结后续怎么随访**\n   直接问：**“这次复查后，是继续观察，还是要做颈部超声/再复诊？多大、多长时间不消，才需要转血液科或进一步检查？”**\n\n你可以把这些压缩成一段，复诊时直接念：\n**“孩子目前不发烧，精神食欲可以，颈部包块没明显变大也没红热。麻烦您帮我确认培养最终结论、如果有菌药敏怎么解释、穿刺最终原文怎么写、血常规和肝功能有没有异常，以及后面淋巴结怎么复查、什么情况下需要转血液科。”**\n\n你现在最重要的不是自己猜报告，而是让复诊医生把这5件事讲清楚。按你目前描述，孩子状态稳定，可以先放心按门诊节奏走，但还不是“以后都不用看了”的意思。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00281",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12745min",
+      "text": "医生，我把您刚才那段已经抄到手机备忘录里了，准备下次复诊就照着念。大概就是问培养最后到底阴性阳性、有菌的话药敏怎么理解，穿刺报告原文，“反应性”到底算什么意思，还有下次看看血、肝功能和脖子这个包后面要不要再做超声、什么时候才需要血液科。\n\n孩子这几个小时在家还是稳的，没再发烧，饭也吃了，精神还可以，脖子包我看着没明显变大，也没红没热，他也没说吞咽或者喘气不舒服。左氧也已经停着，没有再买别的药。\n\n我现在理解就是：不是完全结案，但目前不用自己乱吃抗生素，也不用急着住院或硬挂血液科；按感染科说的2到4周复查。中间如果再发烧、包变大变疼红热，或者盗汗消瘦、一直没劲、吞咽呼吸不舒服，就不等复查，提前去医院。这样我就按这个执行了，对吧？正式报告没拿到我心里还是有点不踏实，但下次就让门诊医生在系统里给我们把原文讲清楚。",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_101__GPT-5.4",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.75,
+    "aggregate_median": 4.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.6393596310755,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 12
+}

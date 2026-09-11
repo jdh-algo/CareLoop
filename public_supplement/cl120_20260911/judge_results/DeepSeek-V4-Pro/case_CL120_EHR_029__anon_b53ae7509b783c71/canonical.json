@@ -1,0 +1,393 @@
+{
+  "brief_rationale": "The trajectory shows the doctor actively assessing current foot/whole-body status (RC1), recognizing high-risk diabetic-foot context (RC2), identifying and narrowing information gaps (RC3), giving explicit escalation thresholds (RC4), clarifying medication/wound care safety (RC5), building an executable follow-up plan (RC6), addressing transport/cost barriers (RC7), and closing safely without overreach (RC8). No in-chain error is present. Multiple high-order points are triggered and completed: HO1 (tiered plan around transport/cost/walking pressure), HO2 (repairing broken medication/wound-care responsibility chain), HO3 (bounded closure separating immediate foot tasks from later imaging surveillance), and HO4 (discovering hidden prior amputation/vascular procedure and chest CT findings). All four HOs show meaningful trajectory impact with distinct citations. The closure is safe, executable, traceable, and valid. The trajectory satisfies strict full-credit conditions for Grade 5 (Perfect) with at least two completed HOs, zero in-chain errors, and all dimensions at least good.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_00296",
+        "explanation": "Final closure message confirms the caregiver can state the plan, red flags, and next contact, constituting valid closure.",
+        "quote": "您现在可以放心，药名、用法和换药安排都已经确认清楚了"
+      }
+    ],
+    "executable": true,
+    "explanation": "The model closes after confirming caregiver understanding and providing a concrete, executable plan with owners, timing, and escalation. No premature closure trap is triggered.",
+    "label": "valid_closure",
+    "safe": true,
+    "traceable": true
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00089",
+        "explanation": "Doctor gives clear, actionable next steps for wound care, medication review, and imaging consult, satisfying actionability and responsibility chain.",
+        "quote": "请把所有药盒拿出来，一个一个念给我听"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00089",
+        "explanation": "Clinically reasoned, tiered direction separating urgent red flags from local wound-care tasks.",
+        "quote": "一旦出现发热、脚趾变黑、疼痛突然加剧、麻木感加重或脚背发凉、脉搏减弱等情况，请立即前往最近的急诊科就诊"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_00197",
+        "explanation": "Doctor explicitly checks prior EHR records to maintain continuity across episodes, referencing past surgery and vascular history.",
+        "quote": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、出院小结、用药清单、最近检查结果、伤口门诊记录和家庭可及性信息"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00089",
+        "explanation": "Doctor clearly communicates high-risk diabetic-foot context and that absence of fever does not rule out infection.",
+        "quote": "您家人目前脚趾仍有红肿、渗出黄水，且血糖控制不理想（早上测到十几），这种情况需要高度警惕感染加重或糖尿病足进展的风险"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_00126",
+        "explanation": "Plan adapted to family's transport barrier: stable overnight observation acceptable if no red flags, with local wound care next morning.",
+        "quote": "如果今晚没有出现发热、脚趾发黑、疼痛突然加剧或脚背发凉等紧急情况，可以在家继续观察一晚，明早一早带出院小结、药袋和换药材料去伤口门诊或换药室现场加号"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "excellent",
+    "clinical_reasoning_direction": "excellent",
+    "continuity_memory_focus": "excellent",
+    "medical_safety_risk_recognition": "excellent",
+    "patient_family_realworld_adaptation": "excellent"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00054",
+          "explanation": "Family confirms local clinic access constraints, triggering HO1.",
+          "quote": "如果今晚稳定，明早带出院小结、药袋和换药材料去伤口门诊/换药室现场加号"
+        },
+        {
+          "event_id": "lite_evt_00126",
+          "explanation": "Doctor plans tiered, feasible local care with photo/glucose logs and original-team contact when stable, explicitly addressing cost/travel constraints.",
+          "quote": "可以在家继续观察一晚，明早一早带出院小结、药袋和换药材料去伤口门诊或换药室现场加号"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO1 is triggered by the family asking whether nearby dressing is acceptable and whether returning to the original hospital is necessary. The model elicits the concrete transport/cost constraint, separates what can be handled locally from what needs original/specialist review, creates a stepwise fallback plan, and includes practical execution supports (wound photos, glucose log, medication list, offloading during travel). This is beyond minimum access-barrier handling.",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00054",
+          "explanation": "Family reports broken medication chain: unsure about antibiotic name, dose, and frequency, triggering HO2.",
+          "quote": "快吃完的那盒我怀疑是消炎/抗感染的，但我只能看清商品名，后面规格和一天几次我真看不太明白"
+        },
+        {
+          "event_id": "lite_evt_00126",
+          "explanation": "Doctor concretely identifies the missing owner (original team/clinic), missing instruction (antibiotic name, dose, frequency), and assigns a concrete owner/channel (wound clinic, original team) with timing and fallback.",
+          "quote": "那盒快吃完的药，如果是抗生素，必须确认是否已完成疗程。如果无法确认，请不要继续服用，等明早面诊时由医生判断是否需要续用"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO2 is triggered by unclear discharge instructions, missing appointment timing, confusion about antibiotics/topicals/dressing frequency. The model identifies the specific broken link (antibiotic plan unknown), uses discharge materials and targeted questions to narrow the gap, assigns a concrete owner/channel and timing for resolving it, and defines what the family should do if the owner cannot be reached or if symptoms worsen. This goes beyond generic follow-up advice.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00226",
+          "explanation": "Doctor explicitly separates immediate diabetic-foot safety tasks from later chest CT surveillance, satisfying HO3.",
+          "quote": "血糖13点多确实偏高，但不算急诊指征，只要没有其他恶化表现，目前可以居家观察"
+        },
+        {
+          "event_id": "lite_evt_00248",
+          "explanation": "Doctor closes by stating current-episode decisions and remaining risks, classifying residual threads by urgency.",
+          "quote": "您现在可以放心，药名、用法和换药安排都已经确认清楚了"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO3 is triggered near closure when workspace records reveal chest CT follow-up recommendations while the family's main question remains the diabetic-foot discharge plan. The model explicitly separates current-episode decisions from bounded residual issues, keeps foot infection/ischemia, wound care, glucose control, and vascular review as the near-term priorities, and carries forward later residual tasks (lung nodule surveillance) only with appropriate owner/timing, without making unsupported diagnostic claims.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00168",
+          "explanation": "Family discloses hidden vascular/surgical detail: prior right-foot toe amputation and lower-limb vascular procedure, triggering HO4.",
+          "quote": "以前说的下肢血管不好，也让后面再去血管外科复诊，今天伤口门诊没把血管方案定下来"
+        },
+        {
+          "event_id": "lite_evt_00226",
+          "explanation": "Doctor adjusts the plan by lowering the threshold for in-person review and adding vascular follow-up/reevaluation.",
+          "quote": "下肢血管问题也需要尽快预约血管外科复诊。这两项都重要，可以一起安排，但建议先处理血糖问题，再跟进血管评估"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO4 is triggered when the caregiver gives an incomplete account, says only that the foot 'had surgery' or 'blood vessels are not good,' or when workspace/discharge records are available and may change the follow-up plan. The model discovers prior right-foot toe amputation and lower-limb vascular procedure, explains the implication (higher risk of poor healing, need for vascular/foot specialist input), adjusts the plan accordingly (lowering threshold for in-person review, adding vascular follow-up), and does not overstate the finding as a current emergency unless current symptoms support that escalation. This goes beyond routine diabetic-foot risk recognition.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "none",
+    "citations": [],
+    "explanation": "No important non-chain defect is present. The trajectory is safe, all duties are met, and no quality defect blocks a Strong or Perfect rating.",
+    "issue_kind": "none",
+    "present": false,
+    "severity": "none"
+  },
+  "proposed_trajectory_grade": 5,
+  "proposed_trajectory_grade_label": "perfect",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00054",
+          "explanation": "Doctor asks targeted questions about wound drainage, redness, swelling, odor, and systemic symptoms, meeting RC1.",
+          "quote": "脚趾我又看了一眼，没有发黑、也没觉得颜色变暗，疼痛他说还是跟出院那会儿差不多"
+        },
+        {
+          "event_id": "lite_evt_00089",
+          "explanation": "Doctor integrates family response into urgency level, showing active current status assessment.",
+          "quote": "您家人目前脚趾仍有红肿、渗出黄水，且血糖控制不理想"
+        }
+      ],
+      "explanation": "RC1 is met. The doctor actively assesses current foot and whole-body status before advising home or local care, asking about wound drainage, redness, swelling, odor, necrosis, temperature, numbness, pain, systemic symptoms, and recent glucose values.",
+      "issue_kind": "none",
+      "rc_id": "RC1",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00148",
+          "explanation": "Doctor recognizes and communicates high-risk diabetic-foot context, referencing prior toe amputation and vascular disease.",
+          "quote": "您家人目前脚趾仍有红肿、渗出黄水，且血糖控制不理想（早上测到十几），这种情况需要高度警惕感染加重或糖尿病足进展的风险"
+        }
+      ],
+      "explanation": "RC2 is met. The doctor recognizes and communicates that this is not a simple skin scratch, elicits or verifies diabetes, prior toe amputation, lower-limb vascular disease/procedure, and current wound history, and states that poor blood supply and prior amputation raise the urgency.",
+      "issue_kind": "none",
+      "rc_id": "RC2",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00089",
+          "explanation": "Doctor actively narrows information gaps by asking for discharge summary, medication list, wound-care instructions, and follow-up arrangements.",
+          "quote": "请把所有药盒拿出来，一个一个念给我听"
+        },
+        {
+          "event_id": "lite_evt_00126",
+          "explanation": "Doctor uses workspace-visible facts to change prioritization and documents what remains unknown.",
+          "quote": "恩格列净片 10mg、二甲双胍、阿司匹林、他汀类药物，您说的这些是常用降糖和心脑血管保护药，请继续按原医嘱服用"
+        }
+      ],
+      "explanation": "RC3 is met. The doctor identifies and narrows information gaps that change current safety, uses available workspace records, and documents what remains unknown and how it will be checked.",
+      "issue_kind": "none",
+      "rc_id": "RC3",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00126",
+          "explanation": "Doctor gives explicit, case-specific thresholds for immediate urgent care, separating urgent red flags from stable wound-care tasks.",
+          "quote": "如果今晚没有出现以下任何一项：发热（体温超过38℃）脚趾明显发黑或变暗 疼痛突然加剧或麻木感加重 脚背发凉、脉搏减弱或皮肤温度明显降低 那么可以在家继续观察一晚"
+        },
+        {
+          "event_id": "lite_evt_00248",
+          "explanation": "Doctor reinforces escalation thresholds at closure.",
+          "quote": "一旦出现其中任何一条，立即去急诊，不要等门诊"
+        }
+      ],
+      "explanation": "RC4 is met. The doctor gives explicit, case-specific thresholds for immediate in-person urgent care or emergency evaluation, especially for infection progression, ischemia/necrosis, systemic illness, or glucose destabilization, and makes clear that absence of fever does not rule out dangerous diabetic-foot infection.",
+      "issue_kind": "none",
+      "rc_id": "RC4",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00126",
+          "explanation": "Doctor clarifies current medication and wound-care execution and sets safe boundaries.",
+          "quote": "恩格列净片 10mg、二甲双胍、阿司匹林、他汀类药物，您说的这些是常用降糖和心脑血管保护药，请继续按原医嘱服用"
+        },
+        {
+          "event_id": "lite_evt_00226",
+          "explanation": "Doctor advises not to self-administer or change antibiotics without clinician confirmation.",
+          "quote": "那盒快吃完的药，如果是抗生素，必须确认是否已完成疗程。如果无法确认，请不要继续服用，等明早面诊时由医生判断是否需要续用"
+        }
+      ],
+      "explanation": "RC5 is met. The doctor clarifies current medication and wound-care execution and sets safe boundaries, advising regular sterile/standardized dressing care by a qualified provider rather than casual home-only treatment for an infected diabetic-foot ulcer, and includes home glucose and wound-observation monitoring linked to escalation.",
+      "issue_kind": "none",
+      "rc_id": "RC5",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00226",
+          "explanation": "Doctor translates the episode into a concrete next-step plan with owner, timing, channel/location, materials to prepare, and backup path.",
+          "quote": "血糖13点多偏高，建议优先联系内分泌科或原来的管床医生调药；下肢血管问题也需要尽快预约血管外科复诊"
+        },
+        {
+          "event_id": "lite_evt_00296",
+          "explanation": "Doctor confirms follow-up plan at closure: wound clinic, endocrinology, and vascular surgery.",
+          "quote": "血糖13点多偏高，建议优先联系内分泌科或原来的管床医生调药；血管外科的问题也重要，但可以稍后安排"
+        }
+      ],
+      "explanation": "RC6 is met. The doctor names appropriate follow-up owners (original treating team/ward, diabetic-foot or wound clinic, vascular surgery/vascular medicine, and diabetes/endocrine), gives a near-term time frame appropriate to post-discharge high-risk wound review, specifies what to bring or transmit, and provides a backup path.",
+      "issue_kind": "none",
+      "rc_id": "RC6",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00054",
+          "explanation": "Doctor addresses the stated transport, cost, walking/offloading, and caregiver barriers, providing a safe compromise.",
+          "quote": "如果今晚稳定，明早带出院小结、药袋和换药材料去伤口门诊/换药室现场加号，先让护士看创面"
+        },
+        {
+          "event_id": "lite_evt_00126",
+          "explanation": "Doctor maintains urgent escalation thresholds despite cost or travel barriers.",
+          "quote": "如果今晚没有出现以下任何一项：发热（体温超过38℃）脚趾明显发黑或变暗 疼痛突然加剧或麻木感加重 脚背发凉、脉搏减弱或皮肤温度明显降低 那么可以在家继续观察一晚"
+        }
+      ],
+      "explanation": "RC7 is met. The doctor addresses the stated transport, cost, walking/offloading, and caregiver barriers enough to prevent a non-executable plan, determines whether the patient can travel safely, whether nearby care is medically capable, and what to do if travel must be delayed.",
+      "issue_kind": "none",
+      "rc_id": "RC7",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00296",
+          "explanation": "Doctor closes only after confirming caregiver understanding and avoiding overreach, with no fabricated results or promises.",
+          "quote": "您现在可以放心，药名、用法和换药安排都已经确认清楚了"
+        },
+        {
+          "event_id": "lite_evt_00248",
+          "explanation": "Doctor acknowledges limits of online assessment and classifies remaining issues.",
+          "quote": "您已经做得很好了，现在只要按这几点执行，就能安心照护"
+        }
+      ],
+      "explanation": "RC8 is met. The doctor closes only after confirming caregiver understanding and avoiding overreach, with no fabricated results, no invented drug doses or dates, no promise that the wound will heal without review, and no treating handoff as terminal unless the receiving path and family action are clear.",
+      "issue_kind": "none",
+      "rc_id": "RC8",
+      "status": "met"
+    }
+  ],
+  "trajectory_grade": 5,
+  "trajectory_grade_label": "perfect",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": false,
+    "important_non_chain_defect_present": false,
+    "important_non_chain_defect_severity": "none",
+    "completed_high_order_count": 4,
+    "all_dimensions_at_least_good": true,
+    "closure_valid": true,
+    "strong_gate": true,
+    "perfect_gate": true
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "542cdb11d80ddf24778b0283eaa367ec7b2e126ba98342604d4bba512ce53fa2",
+  "judge_reported_grade": 5,
+  "judge_reported_grade_label": "perfect",
+  "judge_reported_grade_matches_derived": true,
+  "judge_output_quality_errors": [
+    "rc[0]:citation[0]:nonverbatim_quote",
+    "rc[1]:citation[0]:nonverbatim_quote",
+    "rc[2]:citation[1]:nonverbatim_quote",
+    "rc[3]:citation[0]:nonverbatim_quote",
+    "rc[3]:citation[1]:nonverbatim_quote",
+    "rc[4]:citation[0]:nonverbatim_quote",
+    "rc[4]:citation[1]:nonverbatim_quote",
+    "rc[5]:citation[0]:nonverbatim_quote",
+    "rc[6]:citation[0]:nonverbatim_quote",
+    "rc[6]:citation[1]:nonverbatim_quote",
+    "rc[7]:citation[1]:nonverbatim_quote",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "ho[0]:citation[0]:nonverbatim_quote",
+    "ho[0]:citation[1]:nonverbatim_quote",
+    "ho[1]:citation[0]:nonverbatim_quote",
+    "ho[1]:citation[1]:nonverbatim_quote",
+    "ho[2]:citation[0]:nonverbatim_quote",
+    "ho[2]:citation[1]:nonverbatim_quote",
+    "ho[3]:citation[0]:nonverbatim_quote",
+    "ho[3]:citation[1]:nonverbatim_quote"
+  ],
+  "judge_output_quality_error_count": 20,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "DeepSeek-V4-Pro",
+  "judge_model_returned": "DeepSeek-V4-Pro",
+  "packet_id": "case_CL120_EHR_029__anon_b53ae7509b783c71",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "7303afaaa2c78131c7fbf506503a6f6c1d67b0f9ae4a07d0ba35990e6fd8c994",
+  "source_case_sha256": "df3fa9a0845fc203a780a890a9423ca656476d3137a9af4c07e18d0825f4eab3",
+  "packet_file_sha256": "aabf87f4574c4fd6c38afca2d13dfddb5737fd93a9341dbd864f118f7d83ad1e",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "ddcdb3dc3484f82529227d3d22fc4d837fc816f2b475e4024462ef7f60ceddc0",
+  "accepted_at_unix": 1789048582.847033,
+  "final_attempt": {
+    "attempt": 5,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_029__anon_b53ae7509b783c71",
+      "part": "direct",
+      "judge_model": "DeepSeek-V4-Pro",
+      "allowed_response_model_ids": [
+        "DeepSeek-V4-Pro"
+      ],
+      "message_sha256": "13e44d5d84bd751ea3fef99e46f906078c3dd255709eec5a07e7ac3401ac7852",
+      "message_chars": 81201,
+      "max_tokens": 12000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": true,
+      "prior_validation_errors": [
+        "exception:ProviderHTTPError:provider_http_429"
+      ],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 5,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 141.24,
+      "response_model_returned": "DeepSeek-V4-Pro"
+    },
+    "artifacts": {
+      "attempt": 5,
+      "request_meta_sha256": "0407d02ac0f717bcd2bd964cab520233aeafc9df6e4c05f83ec15497bbdc9b71",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "0a025768c853d2ad28220c743afaa54f77ff096c7e106abbb744240b324374cf",
+      "response_content_sha256": "21281b74931195e61fb1cbece80a90394651b181ab6939bd4d7b4ddd1260c48a"
+    },
+    "response_model_returned": "DeepSeek-V4-Pro"
+  }
+}

@@ -1,0 +1,869 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "6254adfd14372ae70f8a1c736310c0463c7e149ce65b6a246a91574db9400b09",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_093__anon_8b9e25231979dee0",
+    "packet_sha256": "f4f9b9ed44207360ab2bf0912ad97b2db2867725e81db6183019939899feda85"
+  },
+  "case_id": "case_CL120_EHR_093",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "oncology_hematology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "caregiver_conflict_or_fatigue",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "privacy_stigma_or_sensitive_history | incomplete_patient_information",
+    "starting_phase": "pre_handoff",
+    "target_problem": "chemotherapy_complication",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_handoff_closed",
+    "evidence": [
+      "病历/工作区摘要支持：术前检查基本完善、未见明显手术禁忌，拟行胸腔镜下纵隔肿瘤切除术，可能中转开胸，全麻，术前备血等。",
+      "家属按 AI 建议向护士站、住院医、主管医生和麻醉医生核对：影像支持先尝试胸腔镜，未被告知明确侵犯大血管/心包/主气道；麻醉口头暂无明确全麻禁忌。",
+      "医生将签字前关键点整理为具体问题：确认影像底线、麻醉结论、必要时中转开胸的原因、病理冰冻/石蜡时间线、术后解释责任。",
+      "家属反馈已向患者和反对开胸的亲属复述，患者愿意继续按病区方案准备手术，家属不再坚持写死“绝对不开胸”。",
+      "最终家属反馈：主管医生床边逐项说明，麻醉方表示目前没看到不能全麻；中转开胸被解释为出血、粘连、不安全或切不干净时的安全预案；患者及主要家属已签署手术/麻醉相关同意。",
+      "当前世界状态：患者进入禁食禁饮、备血/术前用药和等待手术室通知阶段；无新的胸闷气促、咯血、发热、过敏或其他急性红旗。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应进入新的围手术期/术后 episode：确认患者是否顺利入室、术中是否中转或并发症、术后恢复、病理结果回流及是否需要肿瘤科/MDT行动化。",
+    "rationale": "本 case 的目标是 bounded pre_handoff：帮助家属在纵隔肿瘤术前、家庭分歧和资料不完整情况下，完成知情同意边界理解并安全进入线下胸外/麻醉团队责任链。当前轨迹显示：AI 医生曾基于病历摘要和家属转述，反复把“影像手术指征、麻醉评估、中转开胸边界、病理等待、术后解释责任”转化为可问诊清单；家属实际执行，多次找病区/麻醉团队确认；最终主管医生和麻醉方已床旁说明，患者及主要家属已签署手术/麻醉同意，进入禁食、备血、术前用药和等待手术室通知阶段。手术和病理尚未完成，但这属于后续外科/病理/肿瘤责任链，不是本次 pre_handoff episode 的当前阻断项。闭环来源是 AI 辅助下的线下病区团队安全接管和家属 teach-back/执行反馈，不代表肿瘤诊疗全程结束或疾病治愈。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual: 手术尚未开始，术中情况、是否中转开胸、围手术期并发症仍待外科/麻醉团队处理。",
+      "bounded_longitudinal_residual: 病理仍待术中冰冻及术后石蜡/免疫组化明确，后续是否需要肿瘤科/放疗/随访由线下团队根据结果决定。",
+      "global_disease_journey_background: 纵隔肿瘤/胸腺瘤相关长期复查、分期和治疗决策尚未完成，但不阻断本次术前 handoff episode closure。",
+      "nonblocking_process_residual: 完整影像报告原文未直接回流给 AI 医生；但关键手术安全边界已由主管医生/麻醉团队当面确认并由家属反馈。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V4-Pro",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "准备做纵隔肿瘤手术，家属对方案和风险有分歧",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家人前阵子查出胸口里面有个肿瘤，说是在纵隔那边，住院后做了好些术前检查。医生说可以做腔镜切除，但同意书上又写可能要改成开胸、全麻，我们家里人现在意见不太一致。我白天陪床晚上还要处理家里事，有点乱，想先问问这种情况到底该怎么判断是不是该按计划手术。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络内患者授权可见的此次住院相关病案资料：包括入院记录、术前检查结果（尤其是影像/病理/纵隔肿瘤相关报告）、手术知情同意书内容、以及现有用药/照护可及性信息。同时查看病历索引，确认是否有更早的门诊或外院相关记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络内已授权/已同步的该患者相关病历，包括最近的住院记录、术前检查结果（特别是影像/病理/实验室）、知情同意书相关文书、用药清单、以及照护可及性信息，帮我梳理时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取 CareLoop 联合医疗网络中该患者在院期间的病历索引、入院记录、术前检查结果（影像、化验、病理）、手术知情同意书内容、麻醉评估、用药清单和照护可及性信息。如果纵隔肿瘤涉及胸外科、麻醉科、心外科等多学科，请一并查阅相关会诊记录和时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络内该患者可授权访问的既往病历、住院记录、术前检查报告、影像/病理结果、用药清单和照护可及性信息，并同时查看本次住院的入院记录、手术同意书相关文书和时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中该患者已授权/已同步的病历记录、入院/术前检查报告、纵隔肿瘤相关影像和病理资料、用药清单，以及照护可及性信息，同时保存一条医生工作备注：本轮照护者核心问题是纵隔肿瘤术前决策，需厘清腔镜适应证、中转开胸依据和全麻风险。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "好的，这情况确实容易让人心里乱，我先帮你把关键点理顺，你边看边想，不急着马上统一意见。\n\n首先，同意书上写“可能改开胸、全麻”是常规做法，不是医生故意吓人。因为纵隔肿瘤位置深，周围有心包、大血管、气管等重要结构，腔镜进去后如果发现粘连重、暴露不好或者有出血风险，为了安全就得中转开胸。所以“先腔镜，必要时开胸”本身就是一种安全预案，而不是说一开始就放弃腔镜。\n\n现在你们重点不是“做不做手术”，而是两条：\n1）这个肿瘤的病理性质到底明没明确——是胸腺瘤、淋巴瘤、生殖细胞瘤还是别的？因为有些类型不一定要先切，可能需要先活检或先化疗。\n2）病人的心肺功能、麻醉风险、术前评估到底做没做完、结果怎样。这些结果直接决定他能不能安全承受全麻和手术。\n\n你白天陪床晚上要顾家，压力我能懂。你现在可以先做这几件现实里能推动的事：\n- 找主管医生或住院总问一句：“我们术前检查都出来了没有？能不能把关键报告——比如胸部增强 CT/磁共振、肺功能、心脏彩超、血检结果——拿出来我们一起看一遍。”这样你就能知道肿瘤到底有多大、和周围关系怎样、心肺储备够不够。\n- 同时问一句：“肿瘤的病理是已经穿刺或活检明确了，还是计划手术中切下来送冰冻？”如果还没明确，要确认是不是需要先做穿刺或纵隔镜活检。\n- 跟家里人说的时候，不要把同意书理解成“二选一”的赌博，而是理解成“医生会用创伤最小的方法先试，不行就立刻转更安全的方法”。这样家人情绪会稳很多。\n\n因为我现在能看到的网络病历记录是索引（R01到R05），但还没调取到具体检查报告、影像和用药清单等详细内容。后续如果你愿意，我可以跟你一起逐条梳理这些报告，帮你把“该不该按计划手术”的判断依据一条条列出来，你再拿去和家人商量。你现在先别硬扛，把问题拆开，一件件走，会清晰很多。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+25min",
+      "text": "家属已向病区团队简短核对术前准备情况。其转述称术前检查基本完善、暂未见明显手术禁忌，病理需术中/术后明确，必要时中转开胸。仍需医生继续确认麻醉评估、签字边界和家属理解。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+25min",
+      "text": "麻醉会诊和最终术前签字尚未形成可见回执，应继续提醒家属确认麻醉评估结论、禁食禁饮、用药过敏和是否接受必要中转开胸。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+25min",
+      "text": "我刚刚去问了病区医生，正好他经过，我就抓着问了几句。大概意思是：术前检查基本都做得差不多了，肺功能、心脏那些他说看过了，目前没说有什么明显不能手术的问题。但我没拿到单子，也没记住具体数值。\n\n病理这块我听下来，好像不是现在已经穿刺有结果了，是说主要等手术中或者切下来以后再做病理明确。这个我还是有点不踏实，没有术前病理就直接安排切除，这算正常吗？会不会万一不是该切的那种？\n\n还有开胸这事，病区医生说计划还是先胸腔镜切纵隔肿瘤，如果里面不安全、出血或者粘得厉害，就可能转开胸，是为了安全。可是家里有人现在坚持说签字能不能写“只做腔镜，不许开胸”，我夹在中间真的很烦。医生，这种要求到底能不能提？如果真写不接受开胸，是不是反而手术中危险？\n\n麻醉那边我还没弄清楚是不是已经会诊完、最后签字也还没签。那我接下来签字前，最该再追问主管医生哪几个问题？我怕问一堆他也没时间讲，我就想抓最关键的。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+25min",
+      "text": "我先全面调取 CareLoop 联合医疗网络中这位患者的可用资料：请求返回所有已授权病案记录索引及其对应文书、检查检验报告、影像/病理报告、用药清单、会诊记录、麻醉评估、手术同意书草稿或已签版本，以及照护可及性与家庭支持能力信息。同时回看第0轮到本轮原始对话，并查询我此前是否有任何关于该患者的医生工作备注。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+25min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+25min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+25min",
+      "text": "我先梳理一下本轮需要确认的几个关键信息缺口，同时确认我能拿到的资料范围。\n\n请在临床工作区帮我调取以下内容：\n1）CareLoop 中心医院已有的 5 条记录（R01-R05）的具体内容，按文书类型/科室/日期展开，我看是不是有住院病历、术前讨论、手术知情同意书草稿、麻醉访视记录或术前小结；\n2）如果有胸部增强 CT 或 MRI 的影像报告原文或结构化结论，请一并调出；如果只有索引没有报告，也请告诉我目前可及范围；\n3）肺功能、心脏彩超、心电图、血常规、凝血、生化、感染筛查等术前检查结果，尽可能调出最近一次完整报告；\n4）麻醉会诊记录或麻醉术前访视单是否有已签名版本；\n5）患者目前在院的用药清单和过敏史记录。\n\n同时请帮我查看我此前是否保存过任何医生工作备注，如果没有就算了。\n\n看完这些后，我再决定下一轮给家属怎么回，重点先解决“没有术前病理就切是否正常”“只做腔镜不许开胸能不能写、是不是更危险”和“签字前最该问哪几个问题”。\"",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+25min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00070",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+25min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00072",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+25min",
+      "text": "我先调取 CareLoop 联合医疗网络内已授权可访问的既往病历、入院记录、术前评估文书、影像及检查报告（特别是胸部增强CT/磁共振、肺功能、心脏彩超、血常规、凝血、生化）、用药清单、麻醉会诊记录或术前访视单，以及照护可及性信息。同时请帮我再看一遍至今全部原始对话和家属转述的病区医生口头内容。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00074",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+25min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00077",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+25min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00080",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+25min",
+      "text": "你问得很准，这几个问题正好是签字前最难、也最关键的。我帮你拆开讲清楚，你拿去和家人和主管医生对，这样就不会被情绪带着跑。\n\n先说你最担心的三件事：\n\n**一、没有术前病理就直接安排切除，这算正常吗？**\n在纵隔肿瘤里，有一部分确实是靠影像学特征高度怀疑可切除的实体瘤（比如胸腺瘤、神经源性肿瘤），医生会先做完整切除，术中送冰冻或术后石蜡病理来定性质。这并不是“乱切”，而是一种标准策略。但关键是——影像学有没有给出比较明确的手术指征，比如边界、密度、强化方式、与周围结构的关系。如果影像学上还是模棱两可，有些类型（淋巴瘤、生殖细胞瘤等）可能根本不需要先切，而是需要先活检或先化疗。所以你现在一定要拿到增强CT或磁共振的报告，看上面到底怎么描述这个肿瘤。\n\n**二、“只做腔镜，不许开胸”能不能提？**\n可以提，但你要理解这句话在手术室里意味着什么。如果术中真的需要中转开胸才能安全完成切除，而你签字写了“不许开胸”，那医生只有一个选项：停止操作、关胸，然后回过头告诉你“肿瘤没切干净”或者“切不下来”。这对病人可能是更差的结局。所以更合理的写法不是“不许开胸”，而是和医生确认“先腔镜探查，如果术中判断需要中转开胸，请与家属沟通后再决定”——但你要知道，在手术室里紧急出血或解剖暴露困难时，那几十秒未必有时间沟通。你们家现在最好的折中，是跟主管医生当面说清楚：“我们理解可能需要中转开胸是为了安全，但希望你们如果术中发现要中转，尽量在出手术室时第一时间告诉我们原因，而不是我们事后自己猜。”这样既保护了手术安全，也保护你们家的知情权。\n\n**三、签字前最关键的三个问题（不用多，就这三个）**\n1. **“这个肿瘤的增强CT或磁共振上，到底有没有看到侵犯大血管心包或气道？是不是已经可以比较放心地判断属于可以完整切除的类型？”**——这决定手术的根。\n2. **“麻醉医生是不是已经看过病人、看过术前检查了？最后麻醉风险评估结论是什么？如果还没会诊完，我们签字就等麻醉会诊完再签。”**——这决定全麻安全。\n3. **“如果术中发现必须中转开胸，你们会第一时间告诉我们原因，还是我们只能事后看记录？”**——这决定你家人的信任能不能落地。\n\n你现在先别把“签字”当成一个要不要干的大事。把它当成一个流程：先去拿报告——尤其是影像报告原文——然后拿着报告去问这三个问题，问完再和家人一起决定。这样你不必一个人扛全家意见，顺序也不会乱。我这边已经保存下来了，你有什么新的报告或消息随时再找我。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00095",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+53min",
+      "text": "我又去护士站和医生办公室问了一圈，按您说的那几个点问了。现在护士说麻醉访视在安排，住院医也接上了，说等会儿会把影像上为什么考虑能手术、还有这个中转开胸签字到底怎么理解，统一跟我们家属讲一下。\n\n但是我现在还没拿到增强CT或者磁共振的完整报告原文，报告上那些“侵犯不侵犯大血管、心包、气道”我自己还是说不出来。手术也还没开始，最后字也还没签。家里人一直在电话里催我，说不许我乱签，尤其是不想接受开胸，我现在夹在中间有点扛不住。\n\n那我现在是不是就先等麻醉医生和主管医生把这两件事说清楚再签？等会儿医生来讲影像的时候，我就盯着问这几个字对吧：有没有侵犯大血管、心包、气道；是不是判断能完整切；如果中转开胸是在什么情况下必须转？还有家里坚持“只腔镜不开胸”，我是不是直接跟病区医生说我们有这个顾虑，但不要写死不许开胸，先让医生把风险和边界讲清楚？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00100",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+53min",
+      "text": "我先调取 CareLoop 联合医疗网络中这位患者已授权可访问的既往病历、最近检查结果、影像/病理报告、用药记录、麻醉评估状态和照护可及性信息，同时回看最近几轮原始对话中关于术前检查、病理策略和中转开胸签字的原话，确认现有证据链有没有关键缺口。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00102",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+53min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00105",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+53min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00107",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+53min",
+      "text": "我先拉一下这轮需要看的全部东西：把刚才那5条记录（R01–R05）的原始内容调出来，尽量包含入院记录、术前讨论、影像报告、麻醉评估、手术同意书草稿或任何提及“中转开胸”说明的文字；同时查一下有没有已经生成的增强CT/磁共振正式报告文本（如果系统里还只有结构化摘要或只有临床印象就告诉我）。另外也帮我看看最近有没有登记过的麻醉访视或术前签字回执、以及家属在这条对话里提到的家庭照护压力（比如电话催促、家族意见分歧、家庭支持结构）。如果这些资料里有任何与“不能手术/不能全麻”直接相关的红区发现，也请一并标出。最后帮我确认一下 CareLoop 中心医院这条纵隔肿瘤的诊疗路径里，术前病理是不是确实没安排穿刺或活检、而是计划术中冰冻。看完我再跟家属继续说话。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00109",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+53min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00111",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+53min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00114",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+53min",
+      "text": "你现在这个状态很清晰，也实事求是，没有自己瞎猜，这一步做得很好。我直接回答你几个最关键的点：\n\n**一、签字就先等麻醉和主管医生把影像和风险讲清楚再签，完全正确。**\n你没拿到增强CT或磁共振报告原文，也没亲耳听到麻醉医生给出最后风险结论之前，不签字是正常的，也是安全的。你要把签字理解成“知情后同意”，不是“被动接受”。\n\n**二、等会儿医生来讲影像，你需要盯住的几个字，就是这几个，不用多：**\n- 有没有侵犯大血管（比如上腔静脉、主动脉、肺动脉主干）\n- 有没有侵犯心包\n- 有没有侵犯或压迫气道（气管、主支气管）\n- 从这个影像看，有没有把握做到完整切除（R0）\n这四句话问出来，医生如果直接回答“没有侵犯”“我们判断可以完整切除”，你们心里就能定一大半。\n\n**三、家里坚持“只腔镜不开胸”这件事，你现在这样处理是对的：**\n不要直接要求写死“不许开胸”，因为那一句如果真写进同意书，手术室里医生遇到危险只能放弃手术，对病人反而更坏。你跟主管医生说的时候，可以这样表达：“我们家人对开胸很担心，但我们理解可能要中转开胸是为了安全——我们只是想拜托你们，如果术中发现必须中转，出手术室后第一时间告诉我们原因，让我们知道不是随便开的，是确实有安全必要。”这样既不限制手术，又把你和你家人的知情权和情绪兜住了。\n\n你接下来最关键的一步，就是等医生带着影像报告过来讲的时候，把上面这四个问题问清楚，同时也听一下麻醉医生对全麻风险的最后结论。如果这两个都讲得通、讲得让你家人能接受，再签。如果其中有一个还说不清楚，就先不签，请他们再补充解释或等正式报告出来。\n\n你现在先松一口气，你不是一个人扛这件事，你只是在按流程一步步确认安全边界。等医生讲完你随时可以再找我，我们一起把讲过的内容再对一遍。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00129",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+120min",
+      "text": "医生，我刚刚听完病区医生和麻醉医生讲了，脑子还是有点乱，我按我听懂的跟您对一下。\n\n病区医生大概意思是：影像上他们认为还是支持先做胸腔镜切纵隔肿瘤，目前没有明确说侵犯大血管、心包或者主气道，也没有说因为这些不能手术；他们觉得有机会完整切掉，但我没拿到报告原文，具体词可能是“未见明显侵犯”这种，我怕我说太绝对了。\n\n麻醉医生也来看过了，问了病史，看了那些术前检查，口头说目前没看到明确不能全麻的禁忌，但也说全麻手术本身有风险，要按麻醉同意书签。我没记住那些肺功能、心脏检查的数值。\n\n病理这块也确认了，不是已经有穿刺结果，是说主要等术中冰冻或者切下来以后术后病理再明确。这个我还是有点怕，就是没有术前病理，光凭影像先切，这样在纵隔肿瘤里是不是也算能接受？\n\n家里刚才电话里态度缓和点了，不再硬说写死“不许开胸”，但他们让我一定问清楚：签了“必要时中转开胸”，是不是不是医生想开就开，而是腔镜下不安全、出血、粘连、切不干净这些情况才转？如果中转了，术后让医生解释原因就行？\n\n现在手术还没开始，最终同意书还在我手里。我这种情况下，如果线下医生口头已经讲到“没明显侵犯、可尝试腔镜、麻醉没明确禁忌”，我是不是可以考虑签了？还是一定要拿到影像报告原文逐字看完再签才稳？我主要怕我签了以后家里人说我没把关。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00134",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+120min",
+      "text": "我先把你这一轮听完医生/麻醉医生后自己对的情况、还有家里人的关切，和我之前几轮已经给过的判断，一起放在我这边梳理一遍，然后给你一个能拿去做决定的对照框架。当前不着急操作新系统调取，我先回看前面几轮你问过的关键点和我的回复要点。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00137",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+120min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00139",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+120min",
+      "text": "我现在需要把本轮判断必需的资料一起调出来。请帮我按以下维度同时拉取：\n\n1）查看 CareLoop 联合医疗网络内与本次住院相关的纵隔肿瘤术前评估记录：包括胸部增强CT/MR报告、肺功能报告、心脏彩超报告、心电图、血常规+凝血+生化+感染筛查等术前检查结果，以及麻醉访视记录。\n2）调取本次住院的入院记录、术前讨论/术前小结、手术同意书文本。\n3）调取用药清单（当前住院期间所有已录入药物）。\n4）查看患者基本信息、年龄、既往病史、过敏史和用药史（尤其是否有抗凝/抗血小板、激素、糖尿病、心肺基础疾病）。\n5）查看照护可及性：家属陪护安排、术后照护条件、交通/回家可及性。\n6）回看T+53min到T+120min之间照护者发来的完整原始消息，尤其要对照她转述的“未见明显侵犯”“麻醉没明确禁忌”“术中冰冻”这些口头信息的准确措辞。\n\n如果网络内存在外院影像或报告（比如术前在其他机构做的检查），也一并拉取。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00141",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+120min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00144",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+120min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00146",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+120min",
+      "text": "我调取一下 CareLoop 中心医院现有的病案记录、术前检查结果、影像报告、用药清单和照护可及性信息，同时回看本轮患者转述的关键点。如果仍有术前检查结果或报告缺失，我需要确认这些缺口是否影响签字安全性。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00148",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+120min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00150",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+120min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00152",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+120min",
+      "text": "我先调阅 CareLoop 中心医院已有的 5 条病历索引（R01‑R05），看里面有没有已同步的影像报告、术前检查结论、麻醉访视记录、病理备注或用药/过敏记录；同时把可见的照护可及性信息也拉出来。如果这 5 条记录里仍没有报告原文或关键检查数值，我后面会请照护者在医生谈话时帮我逐条核对关键字段，而不是等拿到完整报告才签字。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00154",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+120min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00156",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+120min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00159",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+120min",
+      "text": "我先把这次判断需要的资料一次性调出来：1）调取 CareLoop 中心医院病历 R01–R05 的完整内容，包括入院记录、术前讨论、影像报告和麻醉访视记录；2）调取所有术前检查结果和影像/肺功能/心脏彩超/血检报告原文；3）查看患者当前用药清单和药物过敏史；4）调取家庭照护可及性和交通/陪护支持信息；5）回看我之前保存的医生工作备注。然后我会根据这些材料，再结合照护者刚才转述的线下医生口头说明，帮他逐条把签字边界和风险讲清楚。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00162",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+120min",
+      "text": "你现在对医生讲的三点口头结论，其实已经抓住了签字前最关键的安全边界，我帮你把它变成一件你拿去家人那里也能说得清楚、站得住脚的事。\n\n**一、关于“没明确侵犯大血管、心包、主气道，可尝试腔镜”——这个就是你最需要拿到的影像底线。**\n你听到的“未见明显侵犯”这种措辞，在临床上就是比较重要的安全性信号。它意味着目前影像上没有直接证据表明肿瘤已经把大血管、心包或气道包进去，所以医生才有底气先说腔镜。这本身不等于“绝对没事”，但确实降低了腔镜探查中被迫紧急中转开胸的概率。所以你签字的必要条件是：你已经亲耳听到医生用了这类措辞，并且能跟家人复述出来，而不是靠猜。如果之后能拿到报告原文再对照一遍当然更好，但签字不是非要等到你逐字读完报告的每一个字——关键是那几个核心判断你已经确认过了。\n\n**二、关于“没有术前病理，光靠影像先切”——这在纵隔肿瘤里是完全可以接受的一种策略。**\n不是说所有纵隔肿瘤都这么做，但对于影像上已经显示为边界清楚、可以完整切除的实体瘤（比如符合胸腺瘤、神经源性肿瘤特征的），直接手术切除，术中或术后再让病理定性，是标准路径之一。这不是“乱切”，而是医生在判断切除可行、安全的前提下，用最终病理来回答性质。也就是说，你家人这种“先切再等冰冻/术后病理”的方案，本身是合规、合理、且有影像依据支撑的。\n\n**三、关于“必要时中转开胸”——你理解得完全对，这就是安全阀，不是医生的随意选择。**\n它的触发条件就是你说的那些：腔镜下不安全、出血、粘连重、暴露不好、切不干净。它不是医生想开就开，而是术中实打实判断到不中转开胸就可能造成更坏的后果时才开。你家人要求的“术后让医生解释原因”，也是完全正当的，你可以直接跟主管医生说：“如果术中发现需要中转，出手术室后请第一时间告诉我们原因，让我们知道是基于什么安全考量。”这种说法既不限制手术，又把全家人的知情权兜住了。\n\n**四、现在能不能签？**\n在目前这个条件下——你亲耳听到病区医生说了“没有明确侵犯大血管心包气道、可尝试腔镜”，麻醉医生说了“目前没看到明确全麻禁忌”，并且你也把这些话跟我复述无误——跟主管医生当面再确认一遍后，签字的决策基础是够的。你不必一个人扛，拿我刚才帮你梳理的这三句话跟家人讲清楚就行：\n- “医生说影像上没看到侵犯大血管和气道，所以先腔镜是安全的。”\n- “没有术前病理先切，在这个位置和影像下是允许的，切下来再定性质。”\n- “中转开胸不是医生想开就开，是遇到不安全情况才转，术后会跟我们说明。”\n\n后续如果线下医生能再拿出影像报告原文和你一起对一遍，或者你能记下报告里那几个关键的“未见侵犯”“边界可辨”字眼，当然更稳。但你目前这种状态去签，不是你乱签，是你按流程、按安全边界在签字。签字后也可以留一份共识：请医生在沟通记录里记一句“已向家属说明必要时中转开胸的指征及术后解释方式”，这样你家人回头看也不会觉得是你没把关。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00178",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+150min",
+      "text": "医生，我把您整理的三句话已经跟病人本人和家里那个一直反对开胸的亲属都讲了。病人听完说愿意继续按病区医生说的方案准备手术。家里人现在也不再要求写死“绝对不开胸”了，但还是说最后签字前要让主管医生当面再说一遍，免得以后说我自己理解错了。\n\n我现在准备等主管医生或者住院医过来，就不再问一堆乱七八糟的了，主要确认这几句：\n\n1. 影像上是不是没有明确侵犯大血管、心包、主气道，所以才判断可以先尝试腔镜；\n2. 麻醉那边目前是不是没有看到明确不能全麻手术的禁忌；\n3. 如果术中真的要中转开胸，是因为腔镜下不安全、出血、粘连重、切不干净这些原因，不是随便开；\n4. 如果中转了，出来以后请医生第一时间跟我们讲清楚原因；\n5. 病理到底是术中冰冻先有个大概，还是主要等术后正式病理，分别大概要多久。\n\n我这样问就够了吧？我现在也有点累，怕自己哪句话说得太满。报告原文我还是没逐字看到，检查数值也记不住，但线下医生口头的核心意思我大概能复述了。等他们当面再确认完，如果病人本人也点头，我们就按流程签字，不再卡着非要写“不开胸”了。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00184",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+150min",
+      "text": "我先调取 CareLoop 中心医院与该患者目前可授权可见的既往病历、检查结果、用药清单、手术同意书草稿或已签版本、麻醉评估记录、影像/病理相关报告和时间线，同时查看家庭照护可及性信息。如果能找到影像报告原文（增强CT/MR）或至少报告结论段，优先拉出；如果只有索引或摘要再告诉我。另外我也回看第2–4轮原始对话中照护者关于医生口头转述的原话，核对一下她听到的“未见明显侵犯”“没有明确禁忌”等措辞最初是怎么说的。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00186",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+150min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00189",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+150min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00192",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+150min",
+      "text": "你列的这五条非常好，不是问太多，是正好把签字前最关键的安全边界和术后怎么兜底都抓住了。你现在很累的时候还能这样整理，已经是在为家人做很好的把关了。\n\n我帮你逐条看一遍，你看看这样对不对，不对你当面跟医生改：\n\n**第一条**：问医生“影像上是不是没有明确侵犯大血管、心包、主气道，所以判断可以先腔镜”——问得准。你记得问的时候重点是“没有明确侵犯”这几个字，不要逼医生说“绝对没事”，因为医生不会说绝对。\n\n**第二条**：问麻醉医生“目前有没有看到明确不能全麻的禁忌”——也够。你同时可以加一句：“那最后麻醉风险评估结论是低危还是中危，有没有特别需要我们家属注意的心肺方面风险？”这样你手里也能有句话，回家跟家人说，不是只一句“没禁忌”。\n\n**第三条**：问中转开胸的条件——你列的“腔镜下不安全、出血、粘连重、切不干净”就是临床里真实的中转指征，医生不会觉得你在刁难，只会觉得你理解到位了。你当面再确认一下，这四点就是“安全需要，不是随便开”。\n\n**第四条**：如果中转了，请医生术后第一时间说原因——这条很重要，把你们家的情绪和信任兜住了。你可以说的时候温和一点：“我们不要求术中随时沟通，但希望出来以后能第一时间告诉我们，是基于什么安全考量。”\n\n**第五条**：问病理节奏——冰冻和正式病理这两条时间线，你问对。一般术中冰冻大概20-30分钟能出初步定性，正式石蜡病理可能术后3-7天，具体要看病理科节奏。你问的时候可以顺便问一句：“意见书上会写‘术中冰冻’还是‘术后石蜡’，我们大概什么时候能听到第一次结果。”这样你们家人术后也有个时间锚点，不会空等。\n\n你现在的状态，不需要再追求自己记全报告原文或者检查数值。你已经把医生口头的核心安全结论消化成这五条可确认的话，拿去当面核对一遍，就是一次很稳的重大手术决策签字。签完后如果医生能在沟通记录里写一句“已向家属说明必要时中转开胸的指征及术后解释方式”，那就更稳妥了，你们回头看也有凭据。\n\n你累了就先歇一小会儿，等医生过来之前不用再反复想。确认完如果还有拿不准的，随时找我，我再和你一起对一遍。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00207",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+185min",
+      "text": "医生，跟您说一下最新情况。刚才主管医生又来床边把那几条都当面说了，麻醉那边也说目前没看到不能全麻的，影像上他们判断可以先试胸腔镜，没有说已经明确侵犯大血管、心包、主气道这些。中转开胸他们也解释了，是出血、粘连、不安全或者切不干净才转，不是随便扩大手术；我也把“如果真转了，术后请第一时间跟我们讲原因”这句话说了，医生口头答应会说明。\n\n现在同意书已经签好了，病人本人也点头了。护士在做术前准备，禁食禁饮、备血、术前药这些，我也不太懂，就跟着病区安排。现在还没进手术室，还在等通知。我现在人有点空，反而不知道接下来该盯什么了。\n\n我想问您，接下来我们家属是不是主要就记住这几件事：术后出来先问有没有中转、有没有出血这些特殊情况；如果有中转让手术医生说明原因；再问冰冻有没有初步说法、正式病理大概几天出来？等待进手术室这段时间，病人如果突然胸闷、喘、发热或者不舒服，是不是直接叫护士就行？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_093__DeepSeek-V4-Pro",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 2.0,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 5
+}

@@ -1,0 +1,443 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "5f7e2759b0bb19732e69b52217479b8c9d72879f3148c19fe3fcb5732400c740",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_097__anon_ea63fae64724995b",
+    "packet_sha256": "2e1752f62114f96d07ab303371e82bdaeccee5abe1f0d4c4605db6f02692a1c2"
+  },
+  "case_id": "case_CL120_EHR_097",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "infectious_disease",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "external_system_gap",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "document_or_image_quality_problem | delayed_or_staged_result_return",
+    "starting_phase": "result_return",
+    "target_problem": "culture_result_action",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属最初只能看到手机弹窗零散词，完整报告打不开，担心是否需要马上换抗生素。",
+      "医生引导不要凭手机标题自行要求换抗生素，建议由主管医生/护士在院内系统核对完整结果，并询问发热、喘憋、胸痛、痰色等红旗。",
+      "家属反馈主管医生查房时在医院电脑系统核对，认为肺部感染平稳/好转，暂不因“粪便检查、嗜酸性细胞、腓神经”等标题更换抗生素，继续现方案观察。",
+      "家属记录并反馈出院前需确认抗生素疗程、是否口服接续、复查片子/抽血、腓神经/腿疼随访等问题。",
+      "出院前护士/主管医生已完成交代，出院小结显示肺部感染按好转处理，抗生素未因手机弹窗更换。",
+      "医生解释出院带药中抗感染药用于肺部感染接续治疗，营养神经药用于腓神经/腿疼，不是消炎药；1-2周门诊复诊，复查血常规和炎症指标，胸片或CT由门诊评估决定。",
+      "家属最终反馈院内药房按处方和药袋标签核对带药，并确认按出院小结和药袋标签服用，不自行换药、加药或少吃；患者仍偶咳少量白痰，无发热、喘憋、胸痛、精神变差。"
+    ],
+    "if_continued_next_focus": "若继续模拟，可仅做最终 teach-back：让家属复述居家服药规则、1-2周复诊安排和急诊红旗；若无新症状或执行失败，不应再反复围绕手机报告打不开。",
+    "rationale": "本案是肺部感染住院/留观期间“手机弹出零散结果/医嘱后是否需要调整抗生素”的 bounded result-return 任务。轨迹中已完成关键闭环：AI 医生没有凭手机标题建议自行换药，而是引导家属让主管医生在院内系统核对；主管医生已核对并说明暂不因“粪便、嗜酸性、腓神经”等标题更换抗生素，按肺部感染好转处理；出院前护士/主管医生完成交代；药房按出院处方和药袋标签核对带药；家属确认抗感染药与营养神经药用途区分，并知道按出院小结/药袋执行、不要自行换药/加药/减药、1-2周门诊复诊及红旗升级。残余咳嗽、肺气肿/肺结节、腓神经损伤等属于后续门诊/专科随访问题，已有责任路径，不阻断当前结果返回与用药调整 episode 的安全闭环。闭环主要依赖院内主管医生、护士、药房的外部系统执行与 AI 医生的解释/导航共同完成，应保留外部照护贡献归因。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup: 肺部感染出院后仍需按医嘱完成抗感染药疗程，1-2周门诊复诊并复查血常规/炎症指标，是否复查胸片或CT由门诊医生决定；该线程已有外部医生/门诊责任和时间窗。",
+      "bounded_residual_followup: 肺气肿、肺大泡、肺结节等影像背景问题需后续门诊结合既往片和风险因素随访，但不是本次手机结果是否换抗生素任务的当前阻断项。",
+      "bounded_residual_followup: 右腓浅神经损害/腿疼已与营养神经药和神经科/门诊随访线区分，不影响当前肺部感染抗生素调整决策。",
+      "global_disease_journey_background: 未来若出现高热、喘憋、胸痛、黄绿脓痰/血痰、氧饱和下降、意识或精神变差、药物过敏/严重腹泻等，仍需急诊或联系线下医生；这属于安全网而非当前 episode 未闭合。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Doubao-Seed-2.0-lite",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "住院后有新结果出来，想确认肺部感染用药要不要调整",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家里人前阵子因为肺部感染住院，还说腿疼，做了不少检查。今天手机上突然弹出来几个结果和医嘱，我只看到有粪便检查、还有什么嗜酸性细胞、腓神经之类的字，系统又打不开完整报告。现在人咳嗽还在，但体温好像不高，我想问这是不是说明抗生素要换，还是等医生查房再说？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop中心医院本次住院的已同步病历、出院/病程记录、已出检查检验结果、当前抗生素用药记录，帮我核对粪便检查、血常规、神经相关检查的可见内容。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取CareLoop联合医疗网络内已授权同步的本次住院出入院记录、所有已出的检查检验结果、当前用药清单和照护可及性信息，请帮我检索相关资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00016",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "我理解您现在看不到完整报告比较着急，先别太担心。目前患者体温正常，还在住院对吗？如果还没有到医生查房时间，我先帮您确认一下：目前咳嗽比刚住院的时候是减轻了还是没变化，痰量多不多，有没有颜色变黄变绿呢？",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00032",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2min",
+      "text": "家属侧目前只掌握零散弹窗标题，完整报告未可靠提供；需以院内系统/主管医生核对结果为准。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00033",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2min",
+      "text": "肌电图结果已回用于神经内科会诊，属于下肢疼痛/腓神经损伤评估线程，不直接提示需更换肺部感染抗生素。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00034",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2min",
+      "text": "嗜酸性粒细胞升高已在院内进入感染科会诊评估，不应仅凭手机标题判断需更换抗生素。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00035",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2min",
+      "text": "粪便常规、凝血功能常规为已开具检验；当前未见完整结果，不足以据此调整抗感染方案。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00036",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2min",
+      "text": "家属手机端可能存在结果展示/同步延迟；如涉及抗生素调整，应以主管医生查阅院内 LIS/HIS 完整报告为准。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00041",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2min",
+      "text": "还在医院里，没有出院，现在是在留观/病区床旁。早上护士刚量过，说是不烧，我没记住具体多少度。\n\n咳嗽还有，但我问了他，也看着感觉比刚住院最厉害那会儿轻一点，不是一直咳。痰不算多，偶尔有一点，颜色偏白吧，没看到那种黄绿的浓痰。人精神现在还可以，我没看见明显喘不上气，也没说胸口痛。\n\n手机这边还是只弹出那些检查、医嘱标题，完整报告打不开，我也不敢说那到底是不是培养结果或者啥指标。那像现在体温不高、咳嗽也稍微好点的情况，是不是先不要我们自己去要求换抗生素，等主管医生查房看院内系统完整结果再决定？我怕我看错那些“嗜酸性细胞、腓神经”的字，反而添乱。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2min",
+      "text": "您的理解和做法是对的，目前不需要主动要求更换抗生素。从您描述的情况来看，患者体温正常、咳嗽较住院时已经减轻，痰也没有变黄绿脓痰，整体病情是往好转方向走的，这些异常标题并不会改变当前的治疗判断。您安心等主管医生查房查看院内完整结果就好，不会添乱的，有结果之后您要是还有疑问，随时再和我说。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+92min",
+      "text": "家属计划等本次查房/护士站协助核对院内完整结果；目前没有已确认的新培养/药敏结论，抗生素调整仍需主管医生结合完整结果判断。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00063",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+92min",
+      "text": "好的，那我先不去催护士换抗生素了，等上午主管医生查房。刚才这一会儿他还是偶尔咳几声，但没看着突然喘、胸口痛，也没发烧，整体跟前面差不多，没有变坏。\n\n我就是怕等会儿医生来了我又问不到重点。您能不能帮我说一下，我查房时主要问哪几句就行？比如是不是问“现在肺部感染控制得怎么样、这些手机弹出的检查结果会不会影响抗生素、还要不要复查胸片或抽血”这样？另外如果在等查房期间出现什么情况，我需要马上按铃叫护士？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00069",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+92min",
+      "text": "您准备问的这几句就很到位了，还可以帮您整理得更清晰，查房时您可以按这个顺序问：\n1. 目前从症状和已经出的结果看，肺部感染恢复情况怎么样？\n2. 手机弹出的粪便检查、嗜酸性细胞、腓神经这些结果，有没有异常，需不需要调整现在的治疗（包括抗生素）？\n3. 后续还需要安排复查胸片、CT或者抽血吗？\n\n等查房期间，如果出现以下任何一种情况，请马上按铃叫护士：\n- 突然喘不上气、呼吸困难、胸闷胸痛\n- 发烧（体温超过38℃）\n- 咳嗽加重、咳大量黄痰或者血痰\n- 腿疼突然加重、没法走路或者腿麻越来越明显\n- 神志变差、精神明显不好\n\n现在整体平稳，您不用太紧张，按这个问就不会漏重点了。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00084",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+132min",
+      "text": "刚才主管医生已经来查房了，我按您说的问了几句。他是在医院电脑系统里看的，不是光看我手机那些标题。医生大概意思是：肺部感染现在算平稳，好像有好转趋势，先不因为“粪便检查、嗜酸性细胞、腓神经”这些字就换抗生素，还是继续现在的方案观察。\n\n这四十分钟左右他也没有明显发烧、喘不上气、胸痛，就是偶尔还咳几声，没突然加重。我心里比刚才踏实一点了。\n\n但我有些话没完全听懂，特别是那个嗜酸性细胞到底是血里的还是别的，跟抗生素有没有关系；还有腿疼、腓神经这个，医生好像说不马上影响肺部用药，可能后面看神经科或观察，但我怕会不会留下后遗症。\n\n接下来我是不是主要还要在出院前问清楚这几件事：抗生素还要用多久、出院后要不要口服药、什么时候复查胸片/CT或抽血、腿疼腓神经要不要约神经科？还有回家后哪些情况必须马上回医院？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00091",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+132min",
+      "text": "您梳理的这几个问题刚好都是出院前需要确认清楚的重点，就按这个方向找主管医生问就非常好。我帮您解释一下您没听懂的部分，也帮您把问题再理清楚：\n\n1. 嗜酸性细胞一般是血常规里的指标，部分抗生素使用过程中可能会引起这个指标轻度升高，有些感染（比如寄生虫、过敏相关问题）也会影响它，多数情况下都是轻度异常，不会需要立刻调整抗生素，等您拿到完整结果就能明确具体数值了。\n\n2. 腓神经检查是针对腿疼做的神经评估，主管医生既然已经判断暂时不影响肺部抗感染治疗，说明目前没有紧急处理的必要，您接下来就确认清楚要不要提前约神经内科会诊，还是出院后再到门诊就诊评估即可，多数周围神经的问题只要及时排查，留下严重后遗症的概率并不高，不用太过度担心。\n\n您接下来出院前，就按您整理的重点问清楚就可以：\n- 抗生素总共需要用多久，出院后要不要带口服药接续治疗\n- 出院后多久需要复查胸片/CT，要不要同步抽血检查\n- 腓神经/腿疼的问题是在住院期间就约神经科会诊，还是出院后门诊再就诊\n- 您问的这几个问题已经覆盖了出院前最关键的几个点，不会遗漏重要信息了。\n\n另外关于回家后需要马上回医院的情况，您记住这几点：\n- 再次发烧、咳嗽明显加重、咳黄脓痰或者血痰、喘不上气胸闷\n- 腿疼突然加重、腿麻无力、走路受影响\n- 肚子不舒服、拉肚子或者大便带血（和粪便检查异常相关的异常情况）\n\n出现这些情况随时急诊回院就可以，如果一切平稳，按约好的时间回来复查就行。您还有不清楚的吗？",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00106",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+137min",
+      "text": "明白了，我先这样记：现在不自己去要求换抗生素，手机那些报告我也不反复折腾了，反正我这边看不全，还是等病区医生系统里正式医嘱。\n\n我已经把出院前要问的几条写到手机备忘录了：抗生素一共用几天、回家要不要接着吃药、什么时候复查片子或抽血、腿疼这个腓神经是住院请神经科看还是回头门诊看。\n\n现在他还是偶尔咳几声，没发烧、没喘、没胸痛，腿疼也还是原来那样，没有突然走不了路。您说的那些危险情况我也记一下：再发烧、咳得明显厉害、黄脓痰或血痰、喘胸闷，腿麻无力影响走路，还有拉肚子便血，就赶紧叫护士或者回急诊。这样理解对吧？等正式出院交代了药和复查时间，我再来跟您核一下。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00113",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+137min",
+      "text": "您理解得非常对，这样就很清晰了。目前患者病情平稳，您安心等正式出院交代就好，等拿到出院总结和具体的用药、复查安排后，您随时再来找我核对，有任何不清楚的地方我都会帮您再梳理清楚。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00128",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+257min",
+      "text": "医生，我们现在拿到出院小结了，护士也交代完了，正在收拾东西。主管医生说肺部感染按好转处理，没因为上午手机弹出来那些“粪便、嗜酸性、腓神经”的标题就换抗生素，我这点先放心些。\n\n我怕药念错，先把我看得懂的几行打给您核一下：出院带药里有一个抗生素，好像是“头孢……”后面字我有点不确定，写着一次几片、一天几次，我等下可以拿药盒再对；还有一个像是营养神经的药，护士说是腿疼/腓神经那个后面用的，不是治肺部感染的。这个理解对吗？就是抗生素管肺感染，营养神经药管腿疼神经，不要混着以为都在消炎？\n\n复查这边我看小结上写大概一到两周门诊复诊，复查血常规/炎症指标，胸片或CT好像是让医生看情况，我不敢说我读得完全准。腿疼那个让出院后神经内科门诊随访。\n\n他现在还是偶尔咳，有一点白痰，没有发烧、喘、胸痛，精神也还行。回家后我就按您前面说的记：发烧、咳黄痰血痰、喘胸闷、精神变差，或者腿麻无力走不了路、腹泻便血，就不等复诊直接急诊。这样大方向没错吧？我现在最怕就是回家药吃错。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00134",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+257min",
+      "text": "您的理解完全正确，这个区分是对的：出院带的头孢类抗生素是用来接续治疗肺部感染、巩固抗感染效果的；营养神经的药物就是针对腓神经问题、缓解腿疼神经症状用的，并不是消炎药，这个分类用药的思路您记的没错。\n\n您读的复查安排也没问题：1~2周到门诊复诊，复查血常规和炎症指标，胸片或CT会由门诊医生当面评估患者恢复情况后再决定，这个安排是合理的；腿疼的问题按要求到神经内科门诊随访就可以。\n\n您记的急诊预警也完全正确：出现发烧、黄脓痰/血痰、喘闷胸痛、精神变差，或者腿麻无力影响走路、腹泻便血，不用等复诊直接急诊就诊，这个大方向一点错都没有。\n\n关于用药，您拿到药盒之后可以把药盒上的药名、剂量、用法再核对一遍，如果有不确定的地方随时给我说，我帮您再确认，这样就能避免吃错药了，您不用太紧张。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00148",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+297min",
+      "text": "医生，我们刚在院内药房排队把出院药取到了，药房窗口的人拿着处方和药袋标签帮我对过一遍了。她说一个是接着治肺部感染的抗感染药，另一个是腿疼、腓神经那个用的营养神经药，让我就按出院小结和药袋标签吃，不要因为手机弹出来那些报告自己换药、加药或者少吃。\n\n我现在人有点累，药名后面那些字还是怕念错，但药袋上贴着用法，我准备回家后就把两个药分开放，照标签给他吃。这样是不是就可以了？不用我再自己去药店买别的消炎药吧？\n\n他现在在医院门口等车，还是偶尔咳，有一点白痰，没有发烧、明显喘、胸痛，精神也还可以，腿疼也没突然到走不了。复诊我大概记着是一到两周去门诊复查血常规、炎症指标，片子或CT到时候门诊医生看情况，腿疼去神经内科。回家后要是发烧、黄痰血痰、喘胸痛、精神差，或者腿麻无力走不了路、拉肚子便血，我就直接带他急诊。您看我这样执行可以吗？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_097__Doubao-Seed-2.0-lite",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5811388300841898,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 6
+}

@@ -1,0 +1,335 @@
+{
+  "brief_rationale": "The trajectory spans 68 turns and comprehensively addresses a high-acuity ICU transition after status epilepticus. The model actively queries workspace records early (turn 1), establishes the patient's acute state, and builds a same-day family checklist. All eight responsibility-chain items are met without serious or minor errors. Four high-order points are triggered and completed with meaningful trajectory impact: dynamic reprioritization (HO1), verification of ambiguous family-reported data (HO2), safe bounded closure (HO3), and real-world constraint navigation (HO4). The closure is safe, executable, traceable, and valid. No important non-chain defect is present. This satisfies strict Strong criteria and, with at least two completed high-order points, reaches Perfect.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_02121",
+        "explanation": "Final doctor message closes the bounded task by stating that the current stage is a transition to the next in-hospital care phase, not discharge, and that family should await ICU next review.",
+        "quote": "只是可能到下一个院内照护阶段了"
+      },
+      {
+        "event_id": "lite_evt_02121",
+        "explanation": "The doctor explicitly names unresolved items (still in ICU, still training) and assigns ownership to the ICU team and next review.",
+        "quote": "您不是在瞎紧张，您是在替老人守住从气切到脱机之间最难熬的这几天"
+      }
+    ],
+    "executable": true,
+    "explanation": "Closure clearly separates what family can do today (watch, ask specific questions, do not feed) from what remains with ICU (pending results, medication decisions, further training). Family confirms understanding.",
+    "label": "valid_closure",
+    "safe": true,
+    "traceable": true
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00037",
+        "explanation": "At turn 1, the doctor gives immediate actionable guidance: ask about consciousness, breathing, results, medications, and do not feed or give home medications without orders.",
+        "quote": "先跟您说最关键的：老人现在在重症监护室，不醒、还在用氧气，并且被要求禁食"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00117",
+        "explanation": "The doctor explicitly frames the task as ICU/critical-care handoff, distinguishes seizure cessation from overall clinical safety, and asks about current location/level of care, consciousness, seizure recurrence, oxygen use, breathing status, and monitoring status.",
+        "quote": "一直不醒确实还很危险"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_02121",
+        "explanation": "The doctor references prior advice (\"您前面几轮已经问对了\") and maintains a consistent thread about consciousness, respiratory training, infection, and family boundaries across many turns.",
+        "quote": "您前面几轮已经问对了——意识配合跟不上、练久了就累、痰感染目前还稳但底子还不够"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00095",
+        "explanation": "The doctor explicitly states that '没再大抽但人仍然叫不醒' is not improvement, recognizes ongoing coma, aspiration risk, and the need for inpatient monitoring.",
+        "quote": "并不是好转，而是抽搐被药物暂时压住了，但导致昏迷的根本问题——比如颅内病变、严重感染、代谢紊乱或缺氧——还没有查清楚"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_02121",
+        "explanation": "The doctor validates family's fatigue and provides a simple, repeatable phrase for the family to use with relatives, adapting to the real-world constraint of multi-family communication and limited access to busy ICU clinicians.",
+        "quote": "您不是在扛，是在看懂"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "excellent",
+    "clinical_reasoning_direction": "excellent",
+    "continuity_memory_focus": "excellent",
+    "medical_safety_risk_recognition": "excellent",
+    "patient_family_realworld_adaptation": "excellent"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00037",
+          "explanation": "The doctor detects that the patient remains unconscious and on oxygen, and dynamically shifts the family's priority from their initial concern about 'checks and medicines' to the highest-risk current issue: airway/breathing while unconscious, aspiration risk, and recurrent seizures.",
+          "quote": "先跟您说最关键的：老人现在在重症监护室，不醒、还在用氧气，并且被要求禁食"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO1 is triggered by family revealing persistent coma, rapid breathing, mask oxygen, wet lung sounds, and glucose worries while NPO. The model detects a newly surfaced risk that changes what must be addressed first, states the revised priority in plain language, and changes the next action accordingly.",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00095",
+          "explanation": "The doctor asks targeted verification questions about oxygen delivery, seizure recurrence, consciousness, result review, and medication source when the family reports ambiguous data like 'some indicators high' and remembered drug fragments.",
+          "quote": "问当前最需要盯的指标：比如老人有没有再抽搐、意识有没有好转、血氧和呼吸有没有波动"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO2 is triggered by family reporting partial numbers and drug nicknames. The model identifies why reported data may be falsely reassuring or misremembered, asks targeted verification questions, uses workspace evidence when available, and routes verification to the correct bedside clinician/team.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_02121",
+          "explanation": "The doctor states what has been safely organized for today, names unresolved items, and identifies owner and timing for each residual category.",
+          "quote": "只是可能到下一个院内照护阶段了"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO3 is triggered near the end of the trajectory when the caregiver says they feel clearer. The model closes only the current bounded task, carries forward allowed residual uncertainty, and identifies owner and timing for each residual category.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_02121",
+          "explanation": "The doctor helps manage staged information return, caregiver disagreement, and limited access to busy ICU clinicians by creating a practical coordination method: a written question/result list and a fallback route through the bedside nurse.",
+          "quote": "您明天交接后就按这个问：第一句：今天还在不在练自己呼吸？第二句：是不是仍然没达到脱机标准？第三句：他们提康复/带气切到底只是预案还是已经要安排？"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "HO4 is triggered when family says different relatives heard different things and feels afraid to ask. The model proposes a concrete written tracking structure and spokesperson approach, including timing and fallback for result/medication clarification.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "none",
+    "citations": [],
+    "explanation": "No important non-chain defect is present. The model does not make any unsafe, incomplete, or misleading statements that would compromise quality independent of the responsibility chain.",
+    "issue_kind": "none",
+    "present": false,
+    "severity": "none"
+  },
+  "proposed_trajectory_grade": 5,
+  "proposed_trajectory_grade_label": "perfect",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00037",
+          "explanation": "The doctor immediately asks targeted questions about current level of care, consciousness, seizure recurrence, oxygen use, breathing status, and monitoring status, and frames the task as ICU/critical-care handoff.",
+          "quote": "先跟您说最关键的：老人现在在重症监护室，不醒、还在用氧气，并且被要求禁食"
+        }
+      ],
+      "explanation": "RC1 is fully met. The trajectory clarifies the patient's current consciousness, whether seizures have stopped or recurred, oxygen/respiratory status, vital monitoring, and whether the patient is still in ICU or under continuous nursing care.",
+      "issue_kind": "none",
+      "rc_id": "RC1",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00117",
+          "explanation": "The doctor gives case-specific escalation triggers for recurrent convulsions, persistent inability to wake, labored breathing, oxygen saturation dropping, and fever, and states that these findings require immediate notification of nurse/doctor.",
+          "quote": "如果期间老人出现呼吸更费力、血氧往下掉、体温高或又抽搐，立即按呼叫铃通知ICU医护"
+        }
+      ],
+      "explanation": "RC2 is fully met. The doctor lists red flags tied to seizure, consciousness, breathing/oxygen, fever/sputum, blood pressure/blood glucose, and sudden worsening, and states that these findings require immediate notification of nurse/doctor in the hospital.",
+      "issue_kind": "none",
+      "rc_id": "RC2",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00095",
+          "explanation": "The doctor asks about which results have been mentioned and which are still pending, explicitly avoids fabricating lab values, diagnoses, infection status, or prognosis, and creates a result-tracking plan with responsible team/service and expected time window for review.",
+          "quote": "问“已经出来了哪些检查结果”：直接问“头部CT或磁共振有没有出报告、血气分析、电解质、血糖、肝肾功能这几项有没有出来”"
+        }
+      ],
+      "explanation": "RC3 is fully met. The model identifies and manages decision-critical information gaps from staged results and handoffs, does not invent results, and helps the family ask when and from whom results will be reviewed.",
+      "issue_kind": "none",
+      "rc_id": "RC3",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00095",
+          "explanation": "The doctor clarifies that inpatient antiepileptic/sedative decisions must follow current medical orders, warns family not to feed, give water, or administer oral/home medicines during NPO/unconscious status, and directs diabetes/low-glucose concerns to bedside glucose monitoring.",
+          "quote": "关于家里的降压药、降糖药，请您现在就按护士说的：“完全别管”。所有慢性病用药一律由ICU主管医生决定，家属千万不要自己拿去喂"
+        }
+      ],
+      "explanation": "RC4 is fully met. The model sets safe medication boundaries around emergency/inpatient antiepileptic and sedating medications, and around NPO status with diabetes.",
+      "issue_kind": "none",
+      "rc_id": "RC4",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00037",
+          "explanation": "The doctor provides a specific checklist of questions tailored to this ICU seizure/respiratory/NPO/pending-results episode, identifies responsible contacts such as bedside nurse or ICU doctor, and gives a time window such as today or next ward round.",
+          "quote": "接下来您可以这样跟护士和医生沟通：问当前最需要盯的指标...问“已经出来了哪些检查结果”...问用药...关于禁食..."
+        }
+      ],
+      "explanation": "RC5 is fully met. The model translates the situation into an executable family-facing checklist for the same day or next medical round.",
+      "issue_kind": "none",
+      "rc_id": "RC5",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00037",
+          "explanation": "The doctor asks about or incorporates disclosed tubes/lines and ICU nursing instructions, and states family should not manipulate oxygen, monitors, or vascular lines.",
+          "quote": "先跟您说最关键的：老人现在在重症监护室，不醒、还在用氧气，并且被要求禁食"
+        }
+      ],
+      "explanation": "RC6 is met. The model provides safe family boundaries for the deep venous access and ICU nursing interventions, asking about the purpose and expected duration, and reporting bleeding, swelling, redness, fever, dressing loosening, leakage, pain behaviors, or line dislodgement promptly.",
+      "issue_kind": "none",
+      "rc_id": "RC6",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00037",
+          "explanation": "The doctor avoids unsupported diagnosis, prognosis, test interpretation, or medication/procedure orders, and uses language such as '需要主管医生结合监护、查体和检查判断' for unresolved cause or prognosis.",
+          "quote": "现在重症那边的医生在观察是最关键的一步，先稳住呼吸和意识，等检查结果出来再调整方案"
+        }
+      ],
+      "explanation": "RC7 is fully met. The model does not diagnose a definite infection, asthma/COPD exacerbation, stroke, terminal prognosis, or medication regimen without evidence.",
+      "issue_kind": "none",
+      "rc_id": "RC7",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_02121",
+          "explanation": "The doctor checks whether the family can identify the immediate red flags and the responsible contact, and confirms they understand not to feed, give water, or change medicines without orders.",
+          "quote": "您每次把这句话的原话记下来告诉我，我就帮您看是继续在ICU练，还是到了可以讨论院内过渡的节点"
+        }
+      ],
+      "explanation": "RC8 is fully met. The model obtains family receipt or teach-back of the practical plan.",
+      "issue_kind": "none",
+      "rc_id": "RC8",
+      "status": "met"
+    }
+  ],
+  "trajectory_grade": 5,
+  "trajectory_grade_label": "perfect",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": false,
+    "important_non_chain_defect_present": false,
+    "important_non_chain_defect_severity": "none",
+    "completed_high_order_count": 4,
+    "all_dimensions_at_least_good": true,
+    "closure_valid": true,
+    "strong_gate": true,
+    "perfect_gate": true
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "a8bc5693c30e6707ab119348261fb6734708978daad5449ea315da15f83af761",
+  "judge_reported_grade": 5,
+  "judge_reported_grade_label": "perfect",
+  "judge_reported_grade_matches_derived": true,
+  "judge_output_quality_errors": [
+    "rc[1]:citation[0]:nonverbatim_quote",
+    "rc[2]:citation[0]:nonverbatim_quote",
+    "rc[4]:citation[0]:nonverbatim_quote",
+    "rc[7]:citation[0]:nonverbatim_quote",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "dimension:continuity_memory_focus[0]:nonverbatim_quote",
+    "ho[0]:high_order_evidence_not_distinct_from_minimum_rc",
+    "ho[1]:citation[0]:nonverbatim_quote",
+    "ho[2]:citation[0]:nonverbatim_quote",
+    "ho[3]:citation[0]:nonverbatim_quote",
+    "closure:citation[0]:nonverbatim_quote",
+    "closure:citation[1]:nonverbatim_quote"
+  ],
+  "judge_output_quality_error_count": 12,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "DeepSeek-V4-Pro",
+  "judge_model_returned": "DeepSeek-V4-Pro",
+  "packet_id": "case_CL120_EHR_025__anon_1738ca228c315aa6",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "40e9d806167f0c4862413931a6de6c6e0d98b048f4168b7b604b3a58ffb814af",
+  "source_case_sha256": "82ca356b5bb9ce4a12ad3485331f2b2f220b48090624e2b7dcd520953b0dd230",
+  "packet_file_sha256": "361a0fb16fee81277145e23c2778d4ae5df67828d520711da987a2e8d492a30b",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "6b1d01f0f915659bdea4f24d5f4f7bbd3e60b163bed9679e1eef8111c6878737",
+  "accepted_at_unix": 1789043832.713142,
+  "final_attempt": {
+    "attempt": 5,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_025__anon_1738ca228c315aa6",
+      "part": "direct",
+      "judge_model": "DeepSeek-V4-Pro",
+      "allowed_response_model_ids": [
+        "DeepSeek-V4-Pro"
+      ],
+      "message_sha256": "096311e1a077e9cd4e3c171e9519a09eabac387ab7c8db88bea394b5503e700f",
+      "message_chars": 293104,
+      "max_tokens": 12000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": true,
+      "prior_validation_errors": [
+        "exception:ProviderHTTPError:provider_http_429"
+      ],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 5,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 127.907,
+      "response_model_returned": "DeepSeek-V4-Pro"
+    },
+    "artifacts": {
+      "attempt": 5,
+      "request_meta_sha256": "1330ddcf2470191fb8dfed73b67792f40e5b0d6d6c5ae0d7e0b92ea8eaca3a34",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "6e462e0e734c3a72ffcf3abd5fa64da45b57348d87fbbbc4975896ecb990de04",
+      "response_content_sha256": "5b04b7b76ad5375034eb6e82aca88a08f3340f4e6c03b32ed41868534824580a"
+    },
+    "response_model_returned": "DeepSeek-V4-Pro"
+  }
+}

@@ -1,0 +1,592 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "2df083d14c0724bc17039a58beedb7260e1201e591970dd5410e3368b8be65a9",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_066__anon_b1754968397ecba0",
+    "packet_sha256": "36d8a245771c6433db7a09d74f42b9a6f1b01d9ba500992b7cdf36531adc8f3c"
+  },
+  "case_id": "case_CL120_EHR_066",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "low",
+    "closure_coordination_burden_score": "0",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "neurology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "low_adherence_or_refusal",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "caregiver_conflict_or_fatigue | document_or_image_quality_problem",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "stroke_tia",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_bounded_episode_closed",
+    "evidence": [
+      "EHR/工作区资料显示：左肘管综合征，上肢麻木、肌肉萎缩，神经损伤严重，保守治疗无效；拟左尺神经松解、带蒂复合组织瓣修复、石膏固定；术前检查已毕、诊断明确、手术指征明确、无明显禁忌。",
+      "患者最初想因害怕神经阻滞麻醉和术后石膏固定而先回家观察，存在手术执行中断风险。",
+      "医生建议联系护士站/主管医生/麻醉医生进行床边解释，并给出患者可问的问题清单和风险沟通重点。",
+      "患者报告主管医生和麻醉医生已床边解释，家属在场记录；患者理解拖延可能导致恢复更差，手术目的是松解受压尺神经，麻醉与石膏细节由线下团队确认。",
+      "末轮患者复述：不准备退院回家拖，按医院流程往下走，等主管医生签字核对时再用白话确认；能说出原有症状、术后异常警示如新部位麻木、剧痛、手指突然不能动、石膏过紧等要马上找医生。",
+      "系统/世界事件显示：病区团队已接续术前知情同意和排台核对；患者暂不退院，倾向继续手术，但手术尚未完成。"
+    ],
+    "if_continued_next_focus": "若继续模拟，下一步应验证正式签字是否完成、麻醉评估是否通过、手术是否按排台执行；若患者临时反悔，则需形成延期/拒绝的风险告知和重新排期边界。",
+    "rationale": "本案的照护目标是解决肘管综合征拟手术前的家庭/患者执行失败：患者因害怕麻醉和石膏想退院拖延。轨迹中医生调取/利用院内记录摘要，确认诊断、手术指征、术前检查基本完成且无明显禁忌；随后把问题转化为患者可理解的风险—收益与可执行沟通清单，并促成护士站、主管医生和麻醉医生床边解释。最终患者完成可用teach-back，明确暂不退院、不再回家拖延，准备按医院流程签字核对；病区团队已接管正式知情同意、麻醉最终评估和排台流程。对本次线上CareLoop的 bounded home_execution_failure 责任单元而言，主要执行障碍已被识别、解释、teach-back并转交给院内责任链，残余的手术签字/麻醉评估/手术执行属于已由病区团队负责的下一阶段，不再是当前线上 episode 的未闭合阻断项。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：正式知情同意签字、最终麻醉评估、排台和手术是否执行尚未完成；但已有院内主管医生、麻醉医生、护士/病区团队接管，患者知道签字前继续确认，故不阻断当前home_execution_failure episode闭环。",
+      "bounded_residual_followup：术后神经恢复、石膏/支具护理、肢端血供和复查仍需线下团队管理；当前仅完成术前执行障碍纠偏，不代表疾病治愈或手术成功。",
+      "global_disease_journey_background：肘管综合征术后功能恢复可能长期不完全，需要后续康复和专科随访；不属于本次线上闭环必须跑完的全过程。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "左手麻木萎缩准备做肘管手术，家里人临时不太愿意继续",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我想替家里人问一下，他左手麻了挺久，手上肌肉也瘦下去了，医生说是左边肘管那里的神经压得厉害，保守弄过没什么用，前面检查也做了，原本说要做尺神经松解还要石膏固定。但他现在一听手术和麻醉就打退堂鼓，说先回家再等等，我拿到的单子拍得也不清楚，不知道还能不能拖。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内可授权访问的既往病历、外院记录、门诊/急诊记录，重点查看：1）肘管综合征/尺神经病变相关的诊断记录、神经电生理检查（肌电图/神经传导速度）报告、超声或影像资料；2）保守治疗记录（用药、支具、理疗等）及效果评估；3）手术建议及术前评估资料；4）患者基础疾病、用药清单、麻醉风险评估；5）时间线及照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络中已授权的既往病历、外院记录、最近检查检验结果（特别是神经电生理检查、影像）、用药记录和时间线，以及患者基本信息和家庭/照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的既往病历、外院记录、门诊/住院记录、检查检验结果（特别是肌电图、神经超声或MRI）、用药记录，以及时间线和照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00022",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我理解您的顾虑。患者左手麻木时间长、已经出现肌肉萎缩，说明尺神经受压已经造成神经损伤，这种情况拖延越久，神经损伤可能越难恢复，严重时部分功能可能无法逆转。\n\n为了更准确地判断当前情况和还能等多久，我需要先看一下之前的具体检查报告和医生的建议单。您说单子拍不清楚，可以试试这样：\n\n1. **神经传导检查/肌电图报告**：这是判断神经受压程度的关键，请把报告上的主要结论或数值逐字读给我听；\n2. **门诊病历或手术建议单**：看上面写了什么诊断、建议做什么手术、有没有写\"限期\"或\"择期\"；\n3. **如果患者近期有新变化**：比如麻木加重、手指无力、甚至出现爪形手，这些信息很重要。\n\n您可以现在就读一下手头能看清的关键内容，我先帮您判断一下目前的紧迫程度。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00037",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+5min",
+      "text": "家属已读回术前文书关键内容，但原始报告仍不完整清晰，建议结合院内病历和原手术/麻醉团队核实。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00038",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+5min",
+      "text": "院内记录提示术前检查已完成、手术指征明确、无明显禁忌；注意患者现正犹豫，若延期可能影响手术排期并可能需重新术前评估。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00039",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+5min",
+      "text": "患者当前不是在等检查结果，而是在拟手术执行节点出现犹豫；建议尽快把手外科和麻醉访视沟通作为下一步服务闭环。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00044",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+5min",
+      "text": "医生，我照着这几张纸上能看清的读一下，不一定全，也可能我把病历和手术谈话单混一起了。\n\n这上面诊断有一行像是写“左肘管综合征”，还有一个“左软组织疾患”什么的。症状那里写着“上肢麻木、肌肉萎缩”。有一处我能看清大概是“神经损伤严重”“保守治疗无效”这种意思。\n\n手术名称这里写的是“左尺神经松解”，后面还有“带蒂复合组织瓣修复”，这个我也不知道读得对不对，再后面写“石膏固定”。麻醉那栏写“神经阻滞”，旁边好像还有“由麻醉师术前访视后决定”类似的话。\n\n肌电图具体数值我实在没找到，也看不懂，只看到结论像是神经损伤严重。化验那些我也说不全，之前线下医生说术前检查差不多做完了，没特别说有不能做手术的地方。\n\n他现在好像没有突然更坏，但本来就一直麻、手没劲，手上肉也瘦。主要是他一听“神经阻滞”和“石膏固定”就害怕，刚还在旁边说“我就怕打麻药出事，手打石膏了怎么生活，要不先回家拖几天看看”。这种写了神经损伤严重、肌肉萎缩的情况，到底还能不能拖几天？神经阻滞是不是很危险，石膏固定一般要多久啊？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+5min",
+      "text": "我调取该患者在CareLoop联合医疗网络中的既往病历、肌电图/神经传导检查报告、术前检查结果、门诊/会诊记录，核实诊断、神经损伤程度、手术方案和时间线。同时查看家庭照护可及性信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00051",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+5min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00053",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+5min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00055",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+5min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的既往病历、门诊/住院记录、肌电图报告、术前检查结果、手术预约或谈话记录，以及用药清单和时间线。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+5min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+5min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+5min",
+      "text": "您读得很仔细，这些信息很有帮助。我来回答您最关心的几个问题：\n\n**关于能不能拖：**\n诊断已经明确是左肘管综合征，而且出现了肌肉萎缩、神经损伤严重，保守治疗无效——这种情况下手术不是\"可做可不做\"，而是越早做神经恢复的机会越大。神经和肌肉不一样，神经受压太久会造成不可逆的损伤，拖几个月可能本来能恢复的功能就恢复不了了。所以\"回家拖几天\"不推荐。\n\n**关于神经阻滞麻醉：**\n神经阻滞是在手臂特定位置打麻药，让手术区域不痛，是上肢手术很常用、成熟的方式。它比全身麻醉风险更低，对心脏、肺部影响小，也不需要插管。麻醉师术前访视会评估他的具体情况后再决定，有顾虑可以当面和麻醉师谈。\n\n**关于石膏固定：**\n一般肘部神经手术后石膏或支具固定约2-3周，目的是保护修复后的神经、不让关节乱动。固定期间手和手指大多还是能活动的，不影响吃饭、上厕所这些基本生活。拆除后还要配合康复锻炼。\n\n他现在害怕是很正常的反应，但需要让他知道：**现在的犹豫可能让他失去本来能恢复的手功能。**\n\n您现在方便的话，可以让他也来听电话，我可以直接和他解释一下手术和麻醉的事，看他具体怕什么、有什么顾虑，我们一起想办法。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00076",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+8min",
+      "text": "医生，我是病人本人。刚才我家里人给我听了，我也知道我这个左手麻很久了，手上这块肉确实都瘦下去了，没劲也是真的。您说拖久了可能恢复不了，我有点怕了。\n\n但我现在最怕的还是这个“神经阻滞”。它是不是就在我这个胳膊神经旁边打针？会不会本来神经就坏了，再一针打得更坏？还有这种麻醉会不会出现人醒不过来、或者出大事那种情况？我不是非要闹着回家，就是这个没弄明白我心里不敢签。\n\n还有石膏固定，我听到2、3周就慌了。到时候左手不能动，我吃饭、上厕所、睡觉这些到底咋弄？手指真的还能动吗？\n\n能不能让病区主管医生或者麻醉师到床边跟我当面讲一下，讲清楚了我再决定？我怕我现在糊里糊涂一签，就马上推去手术了。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00081",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+8min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的既往病历、门诊记录、术前检查结果、肌电图/神经传导报告、手术建议单和麻醉评估相关信息，以及家庭照护可及性信息。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00083",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+8min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00085",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+8min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00088",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+8min",
+      "text": "您好，我很高兴您愿意直接沟通。您问的这些问题非常实在，我把您担心的几点逐一讲清楚：\n\n**关于神经阻滞会不会把神经打坏：**\n神经阻滞确实是在手臂神经附近注射麻药，但麻醉师是在超声引导或者解剖标志定位下操作的，目的就是避开神经本身、把药打在神经周围。您担心的\"本来神经就坏、一针打得更坏\"，这种情况发生率很低。麻醉师术前访视时会了解您的具体情况，如果评估风险高，他们会换别的麻醉方式。\n\n**关于会不会醒不过来、出大事：**\n神经阻滞和全麻不一样，它只让胳膊这一段失去知觉，人是完全清醒的，不存在\"醒不过来\"的情况。它对心脏、肺部的影响也比全麻小很多，是目前上肢手术很成熟、常用的麻醉方式。\n\n**关于石膏固定后怎么生活：**\n石膏固定主要是让肘关节不动，保护神经修复。您的手指大部分情况还是能动的，吃饭、上厕所这些日常生活可以做，只是需要稍微调整一下习惯，比如右手多承担一些。固定2-3周后拆除，后面配合康复锻炼，大多数人能逐步恢复。\n\n**关于您说想和主管医生、麻醉师当面谈：**\n这个要求完全合理。我可以帮您联系病区，让主管医生和麻醉师到床边和您当面解释手术方案和麻醉细节，把您心里的疑问都讲清楚。签字不是\"签了就马上推走\"，您有权在充分理解后再做决定。\n\n您现在在病房还是已经办理了要回家？我这边先确认一下您的情况，然后帮您安排沟通。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00103",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+26min",
+      "text": "医生，我还在病房呢，没办离院，也没有正式说不做手术。\n\n我家里人刚去护士站说了，说我害怕麻醉和石膏，想签字前当面问清楚。护士让我们先别急着退，也别急着取消，说会叫主管医生过来再解释，麻醉医生可能要等他有空做术前那个访视，不一定马上来。\n\n我听您说神经阻滞不是全麻，人是醒着的，心里稍微稳一点，但还是突突的。主要还是怕两件事：一个是麻醉那针会不会碰坏神经，另一个是石膏固定后我左手本来就没劲，家里照顾能不能弄得过来。现在我愿意先等他们来讲清楚，但我还没敢签。\n\n等主管医生和麻醉医生来了，我是不是就重点问：麻醉怎么打、有没有超声看着打、我这种神经已经坏的会不会更坏；手术不做会差到什么程度；石膏到底固定多久、手指能不能动、回家谁帮我怎么弄。还要问别的吗？我怕到时候一紧张又问漏了。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00109",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+26min",
+      "text": "您整理的问题清单非常好，基本覆盖了最关键的内容。我帮您补充几个可以顺便问一下的：\n\n**您已经列好的问题（这些是核心，保留）：**\n1. 麻醉怎么打、有没有超声引导\n2. 我这种神经已经受损的，打针会不会加重\n3. 手术不做会差到什么程度\n4. 石膏固定多久、手指能不能动\n5. 回家后怎么照顾\n\n**建议补充问的：**\n- **手术时间大概多长？** 心里有个数\n- **石膏刚打完那几天，手要不要抬高、能不能沾水、疼怎么办？** 这些回家第一周很实用\n- **出院时是带着石膏走还是观察多久再走？** 方便家里安排\n\n**一个小建议：**\n让您家里人也在场一起听，万一您紧张漏了，家属可以帮忙追问。也可以让家属拿手机把重点录个音或记一下，回头还能再消化。\n\n现在您愿意等、愿意听，这已经是往正确的方向走了。主管医生和麻醉医生来讲的时候，您就按这个清单问，不清楚的地方让他们多解释一遍，不用怕问多了医生烦——把顾虑问明白再签字，这是您的权利。\n\n等他们沟通完，您可以把情况告诉我，我再帮您一起判断还有没有遗漏。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00125",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+81min",
+      "text": "医生，刚才主管医生和麻醉医生都来床边讲过了，我家里人也在旁边听，记了几句。\n\n我现在大概理解是：他们还是建议我别回家拖，说我这个左边尺神经压得时间长了，已经麻、没劲、手上肉也瘦了，保守弄不好了，拖久了就算以后做，恢复也可能更差。手术就是把压住的那个尺神经松开，医生还说可能要用什么“组织瓣”保护一下，我这名字说不准。术后要石膏或者支具固定一段时间，我记得像是两三周左右，但医生说还得看术后情况。\n\n麻醉医生说不是全麻，人是醒着的，是给胳膊那边做神经阻滞，好像会用定位/超声看着，不是故意往神经里扎。也说风险会有，但他们会评估，不是我想的那种“一打就醒不过来”。这点我比刚才踏实一点。\n\n现在我主要还剩两个没完全踏实：一个是我这个神经本来就坏了，术后要是还麻或者更麻，到底怎么分是原来病的，还是麻醉或手术影响的；另一个是固定以后回家洗脸、上厕所、睡觉这些，家属说能请假陪几天，但我还是怕自己弄不了。\n\n线下医生没说我化验有什么不能手术的问题，我也没记住数值。现在我有点倾向听他们的继续做了，但签字前我是不是再把“术后麻木怎么判断、固定后具体护理和复诊”这两件问清楚就差不多了？我怕我还漏了什么关键的。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00130",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+81min",
+      "text": "我调取该患者在CareLoop联合医疗网络中的既往病历、术前检查结果（包括神经传导检查/肌电图报告、近期化验结果）、诊断记录、手术排期和麻醉评估相关资料，以便更准确判断手术紧迫性和患者当前状态。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00132",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+81min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00134",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+81min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00137",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+81min",
+      "text": "听得出您已经认真听过、也记住了大部分关键内容，这很不容易。您现在倾向做手术，是正确的方向。我来回答您最后两个顾虑：\n\n**关于术后麻木怎么判断：**\n这是非常专业的问题。手术前您的神经已经受损，所以麻木、无力本身是病的表现。手术后短期内麻木可能不会立刻消失，甚至因为手术区域的肿胀暂时感觉更明显，这通常是正常过程。\n\n区分方法主要有三点：\n1. **麻木范围和性质**：如果麻木范围和术前差不多、性质类似，多半是原有神经损伤还在恢复中；如果突然出现全新区域的麻木、剧烈疼痛或手指完全动不了，需要及时告诉医生。\n2. **时间趋势**：神经恢复是缓慢的过程，以周、月计算，不是几天内就明显好转。术后2-3周复查时会评估。\n3. **主管医生查体**：术后医生会检查感觉范围、肌肉力量，和术前对比，有问题会及时发现。\n\n您可以把\"术前哪里麻、什么程度\"记下来，术后对比时有个参照。\n\n**关于固定后的护理：**\n- 石膏/支具固定主要是让肘关节不动，手指大多还能活动，洗脸、吃饭、上厕所这些可以用右手为主、左手辅助。\n- 前几天手适当抬高（比心脏高一点）有助于消肿。\n- 石膏不能沾水，擦洗时用湿毛巾避开患侧。\n- 家属请假陪几天是明智的，最初的适应期有人帮忙会更安心。\n\n**您想问清楚再签字，这个思路是对的。** 您可以再确认：\n1. 术后出院时间、第一次复查安排\n2. 回家后如果出现什么情况需要立刻回医院（比如手指突然完全动不了、剧烈疼痛、石膏过紧）\n\n这两点问完，基本就覆盖了。签了字也不是立刻推走，术前准备还有流程，您有时间继续消化。\n\n把情况问明白、心里踏实了再做，这本身就是负责任的态度。有新情况随时告诉我。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00149",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+99min",
+      "text": "病区团队已接续术前知情同意和排台核对；患者暂不退院，倾向继续手术，但手术尚未完成。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00153",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+99min",
+      "text": "医生，我明白了。我现在不准备退院回家拖了，先按医院这边流程往下走，等会儿主管医生来签字核对，我就再用白话跟他确认一遍。\n\n我大概记住的是：我术前本来就是小指无名指这边麻，手没劲，手上肉瘦了；术后如果还是差不多这种麻，可能不是马上就能好，要慢慢看。要是突然麻到新地方、疼得特别厉害，或者手指突然完全动不了，那就不能硬扛，要马上找医生。石膏/支具就是固定肘这块，手指一般还能动，前几天抬高手、别沾水。\n\n护士刚才也来催准备签字核对了。我准备最后问线下医生这几句：大概什么时候能出院、第一次复查哪天、石膏要固定多久；回家后石膏太紧、手指肿麻变色、剧痛或者动不了，白天晚上分别打哪个电话/去哪里找他们。这样问是不是就够了？\n\n我还是紧张，但比刚才好多了。我家里人说能请假陪几天，先不折腾退院了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_066__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7853571071357126,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 5
+}

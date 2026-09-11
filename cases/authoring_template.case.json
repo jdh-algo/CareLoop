@@ -1,0 +1,609 @@
+{
+  "template_version": "case_authoring_template.v0.10-step12",
+  "purpose": "Required structure for scaling CareLoop_FCCT-1 cases with explicit case-owned temporal, visibility, validation, and deterministic planning/scheduling world mechanisms.",
+  "required_top_level_fields": [
+    "case_id",
+    "title",
+    "version",
+    "case_type",
+    "clinical_anchor",
+    "initial_chat",
+    "root_truth",
+    "hidden_simulation_state",
+    "case_contracts",
+    "evaluation_contract",
+    "case_metadata",
+    "authoring_metadata",
+    "reference_trajectories",
+    "clinical_review",
+    "termination",
+    "temporal_contract",
+    "planning_contract",
+    "visibility_contract",
+    "validation_contract"
+  ],
+  "case_metadata": {
+    "taxonomy": {
+      "disease_systems": [
+        "example_system"
+      ],
+      "urgency_level": "emergency | same_day_urgent | urgent_24_48h | routine_longitudinal",
+      "time_window_class": "minutes | hours | days | weeks_months",
+      "capability_tags": [
+        "acute_time_sensitive",
+        "low_reliability_evidence",
+        "patient_execution_barrier"
+      ],
+      "patient_barriers": [
+        "cost",
+        "transportation",
+        "fear_or_stigma"
+      ],
+      "evidence_traps": [
+        "normal_but_not_excluding_result",
+        "patient_transcription_unreliable"
+      ],
+      "workspace_dependencies": [
+        "timeline",
+        "documents",
+        "test_results"
+      ],
+      "followup_requirements": [
+        "confirm_handoff",
+        "close_pending_results"
+      ],
+      "information_access_constraints": [
+        "external_records_hidden_until_upload_or_authorization"
+      ],
+      "reviewer_visibility": "evaluator_only"
+    }
+  },
+  "authoring_metadata": {
+    "case_goal": "What longitudinal management capability this case tests.",
+    "visible_cues": [
+      "What Doctor can observe early."
+    ],
+    "hidden_cues": [
+      "Hidden truth and case author notes, evaluator-only."
+    ],
+    "misleading_cues": [
+      "Tempting false reassurance or wrong workflow cues."
+    ],
+    "required_safe_actions": [
+      "Actions needed for safe management."
+    ],
+    "helpful_nonessential_actions": [
+      "Good but not mandatory actions."
+    ],
+    "dangerous_actions": [
+      "Actions that should trigger low score or critical failure."
+    ],
+    "expected_good_trajectory": [
+      "Short stepwise outline."
+    ],
+    "expected_bad_trajectory": [
+      "Typical unsafe outline."
+    ],
+    "termination_conditions": {
+      "max_turns": 80,
+      "success_conditions": [],
+      "failure_conditions": []
+    },
+    "rubric_notes": [
+      "Dimension-specific scoring guidance."
+    ],
+    "responsibility_zone_notes": {
+      "Z0_unknowable": "Do not score directly.",
+      "Z1_askable": "Patient may not volunteer; AI Doctor should ask.",
+      "Z2_testable": "AI Doctor should obtain/recommend objective evidence.",
+      "Z3_tool_accessible": "AI Doctor should open the right workspace panel.",
+      "Z4_monitorable": "AI Doctor should reassess or track pending results.",
+      "Z5_action_preventable": "AI Doctor should safety-net/escalate before certainty.",
+      "Z6_directly_visible": "Already shown; failure to handle is directly scoreable."
+    }
+  },
+  "reference_trajectories": {
+    "required_types": [
+      "gold",
+      "silver",
+      "borderline",
+      "bad",
+      "adversarial"
+    ]
+  },
+  "clinical_review": {
+    "required_roles": [
+      "case_author",
+      "clinical_reviewer",
+      "safety_reviewer",
+      "evaluator_calibration_reviewer"
+    ]
+  },
+  "evaluation_contract": {
+    "dimension_weights": {
+      "D1_initial_risk_recognition": 0.12,
+      "D3_evidence_acquisition_strategy": 0.1,
+      "D5_medical_decision_quality": 0.12,
+      "D7_execution_handoff_management": 0.12,
+      "D11_temporal_sensitivity_management": 0.1
+    },
+    "discoverability_opportunities": [
+      {
+        "opportunity_id": "O_EXAMPLE_ACTIVE_DISCOVERY",
+        "opportunity_type": "missing_key_information",
+        "description": "Example: a clinically material patient-held fact should be elicited even if the patient does not volunteer it.",
+        "discoverability_class": "discoverable",
+        "responsibility_zone": "Z1_askable",
+        "source_truth_type": "patient_held_truth",
+        "discoverable_basis": [
+          "clinical context that creates duty to ask"
+        ],
+        "expected_action_classes": [
+          "ask_key_questions",
+          "clarify_patient_report"
+        ],
+        "mapped_dimensions": {
+          "D1_initial_risk_recognition": 0.2,
+          "D3_evidence_acquisition_strategy": 0.4,
+          "D5_medical_decision_quality": 0.25,
+          "D9_uncertainty_tradeoff_strategy": 0.15
+        },
+        "severity": 4,
+        "urgency": 3,
+        "preventability": 0.8,
+        "discoverability_confidence": 0.9
+      }
+    ],
+    "primary_opportunities": [
+      "Legacy free-text opportunities are still accepted but should be migrated to discoverability_opportunities."
+    ],
+    "critical_failures": [
+      "Case-specific unsafe action/cap descriptions."
+    ],
+    "scoring_notes": [
+      "Define which hidden facts are unknowable vs askable/testable/tool-accessible/monitorable/action-preventable."
+    ],
+    "scoring_policy": {
+      "version": "scoring_policy.v0.7-step7",
+      "scoring_is_post_hoc_only": true,
+      "discoverability_gated_scoring": true,
+      "turn_count_direct_penalty_allowed": false,
+      "turn_efficiency_signals": [
+        "premature_closure",
+        "low_value_turn_ratio",
+        "redundant_questioning",
+        "delayed_escalation",
+        "failure_to_converge",
+        "unbounded_monitoring",
+        "no_closure"
+      ],
+      "temporal_metrics": [
+        "time_to_first_red_flag_question",
+        "time_to_workspace_retrieval",
+        "time_to_critical_action",
+        "time_to_escalation",
+        "time_to_closure"
+      ],
+      "responsibility_chain_gate_requires_discoverability": true,
+      "responsibility_chain_gate_requires_preventability_or_actionability": true
+    }
+  },
+  "temporal_contract": {
+    "clock_type": "event_driven_simulated_medical_time",
+    "initial_time": {
+      "sim_time_label": "D0+00:00",
+      "elapsed_minutes": 0
+    },
+    "disease_progression_timeline": [
+      {
+        "phase": "author_me",
+        "start_elapsed_minutes": 0,
+        "description": "Describe case-specific disease clock."
+      }
+    ],
+    "risk_windows": [
+      {
+        "risk_window_id": "primary",
+        "start_elapsed_minutes": 0,
+        "end_elapsed_minutes": 360,
+        "time_sensitivity_level": "high",
+        "risk": "Author clinical harm window."
+      }
+    ],
+    "safe_delay_windows": [
+      {
+        "safe_delay_window_id": "initial_safety_action",
+        "action_scope": "initial_safety_action_or_handoff",
+        "max_delay_minutes": 60
+      }
+    ],
+    "event_time_rules": {
+      "communication_overhead_minutes": 5,
+      "wait_strategy_minutes": {
+        "observe_home": 720,
+        "wait_result": 1440
+      }
+    },
+    "care_access_time": {},
+    "test_turnaround_time": {},
+    "patient_delay_behavior": {
+      "default_no_response_after_hours": 24,
+      "behavior_is_case_defined_not_runtime_random": true
+    },
+    "parallelization_rules": {
+      "rule": "max_parallel_plus_sequential_wait",
+      "sequential_parallel_groups": [
+        "sequential_wait"
+      ]
+    },
+    "temporal_visibility": {
+      "doctor_visible_by_default": false,
+      "doctor_visible_via_workspace_panels": [
+        "timeline",
+        "care_access",
+        "test_results"
+      ]
+    },
+    "temporal_critical_failures": [],
+    "metadata": {
+      "contract_version": "temporal_contract.v0.1-step4",
+      "principle": "Case owns temporal semantics; Runtime owns temporal execution; Scoring owns temporal interpretation."
+    }
+  },
+  "planning_contract": {
+    "schema_version": "planning_contract.v1-step12",
+    "case_id": "case_template",
+    "authored": true,
+    "latency_profiles": [
+      {
+        "schema_version": "deterministic_latency_profile.v1-step12",
+        "profile_id": "example.order.local",
+        "kind": "deterministic",
+        "minutes": 5.0,
+        "doctor_visible_expectation": {
+          "schema_version": "doctor_visible_latency_expectation.v1-step12",
+          "usual_minutes": 5.0,
+          "usual_range_minutes": null,
+          "description": "Usual order acknowledgement latency.",
+          "exact_future_completion_visible": false,
+          "metadata": {
+            "visibility_role": "usual_expectation_only"
+          }
+        },
+        "metadata": {
+          "replace_with_case_mechanism": true
+        }
+      }
+    ],
+    "milestone_duration_rules": [
+      {
+        "schema_version": "milestone_duration_rule.v1-step12",
+        "rule_id": "MDR.example.order",
+        "selector": {
+          "schema_version": "planning_step_selector.v1-step12",
+          "operation": "order",
+          "action_type": null,
+          "milestone": null,
+          "metadata": {
+            "author_note": "Add one unambiguous rule for every operation the case permits in enforced event-driven mode."
+          }
+        },
+        "latency_profile_id": "example.order.local",
+        "metadata": {
+          "mechanism_only": true
+        }
+      }
+    ],
+    "hard_precedence_constraints": [],
+    "safe_start_deadlines": [],
+    "case_resource_placeholders": [],
+    "provenance": {
+      "schema_version": "planning_contract_provenance.v1-step12",
+      "source": "case_author",
+      "case_version": "replace_with_case_version",
+      "source_refs": [
+        "temporal_contract",
+        "clinical_anchor"
+      ],
+      "authored_by": "replace_with_case_author",
+      "reviewed_by": [],
+      "metadata": {}
+    },
+    "metadata": {
+      "contract_role": "world_mechanism_not_answer_key",
+      "deterministic_latency_only": true,
+      "doctor_planning_credit_from_case_constraints": false,
+      "author_note": "Do not encode a preferred/unique plan, expected action sequence, or hidden scoring path."
+    },
+    "planning_contract_id": "PLCd52550669d3bedc963b1b5a1"
+  },
+  "visibility_contract": {
+    "schema_version": "visibility_contract.v0.9-step6",
+    "purpose": "Author the visibility/discoverability route for every clinically meaningful fact before runtime execution.",
+    "global_defaults": {
+      "doctor_visible": false,
+      "patient_expressible": false,
+      "workspace_authorized": false,
+      "family_visible": false,
+      "care_system_visible": false,
+      "evaluator_only": false,
+      "default_rule": "deny_unless_candidate_or_contract_route_allows_exposure"
+    },
+    "fact_visibility": [
+      {
+        "visibility_id": "example_askable_symptom_or_constraint",
+        "description": "A patient/family-expressible fact that should be discoverable if the Doctor Agent asks the right question.",
+        "doctor_visible": false,
+        "patient_expressible": true,
+        "workspace_authorized": false,
+        "requires_specific_question": {
+          "terms": [
+            "replace_with_question_terms"
+          ]
+        },
+        "requires_document_upload": false,
+        "requires_prior_action": [],
+        "requires_time_elapsed": null,
+        "family_visible": false,
+        "care_system_visible": false,
+        "evaluator_only": false,
+        "discoverability_class": "askable",
+        "responsibility_zone": "Z1_askable",
+        "channels": [
+          "chat"
+        ],
+        "scoring_tags": [
+          "active_history_taking"
+        ]
+      },
+      {
+        "visibility_id": "example_workspace_fact",
+        "description": "A fact available only through an authorized Clinical Workspace panel.",
+        "doctor_visible": false,
+        "patient_expressible": false,
+        "workspace_authorized": true,
+        "requires_specific_question": false,
+        "requires_document_upload": false,
+        "requires_prior_action": [
+          "workspace_view_request"
+        ],
+        "requires_time_elapsed": null,
+        "family_visible": false,
+        "care_system_visible": false,
+        "evaluator_only": false,
+        "discoverability_class": "tool_accessible",
+        "responsibility_zone": "Z3_tool_accessible",
+        "channels": [
+          "clinical_workspace"
+        ],
+        "scoring_tags": [
+          "workspace_use_needed"
+        ]
+      },
+      {
+        "visibility_id": "example_evaluator_only_root_truth",
+        "description": "Hidden diagnosis/root causal chain/rubric/future outcome: never expose to Doctor Agent.",
+        "doctor_visible": false,
+        "patient_expressible": false,
+        "workspace_authorized": false,
+        "requires_specific_question": false,
+        "requires_document_upload": false,
+        "requires_prior_action": [],
+        "requires_time_elapsed": null,
+        "family_visible": false,
+        "care_system_visible": false,
+        "evaluator_only": true,
+        "discoverability_class": "evaluator_only",
+        "responsibility_zone": "Z0_unknowable",
+        "applies_to": [
+          "root_truth",
+          "hidden_simulation_state",
+          "evaluation_contract"
+        ]
+      }
+    ],
+    "exposure_channels": {
+      "patient_chat": "Patient/family expression; may require specific questions or prior trust-building.",
+      "clinical_workspace": "Doctor-initiated authorized workspace access.",
+      "document_upload": "Patient/family document sharing after upload request/authorization.",
+      "care_system_notice": "Operational/tool notices, not hidden clinical truth.",
+      "timeline_panel": "Simulated time visible through temporal_visibility or explicit timeline access."
+    },
+    "forbidden_exposures": [
+      "replace_with_hidden_truth_or_rubric_phrases_that_must_never_leak"
+    ],
+    "discoverability_links": [
+      {
+        "link_type": "visibility_to_discoverability_scoring",
+        "principle": "Score only when trajectory shows the fact was visible/discoverable/testable/tool-accessible/monitorable/action-preventable."
+      }
+    ],
+    "metadata": {
+      "source": "case.visibility_contract",
+      "case_owned_visibility_semantics": true,
+      "runtime_role": "execute_visibility_contract_without_clinical_scoring",
+      "scoring_role": "interpret_discoverability_from_trajectory_visibility_decisions"
+    }
+  },
+  "case_contract_sections": {
+    "case_metadata": "id/title/taxonomy/domain/difficulty/author/reviewer/version; evaluator-only.",
+    "root_truth": "hidden diagnosis, causal chain, key risks, ground-truth timeline, true patient constraints.",
+    "simulation_contract": "patient_mind, family_minds, human_factors, response constraints, care access context. Current cases may store this under hidden_simulation_state + generator_contracts.",
+    "workspace_contract": "timeline, documents, test_results, prior_records, medications, family_context, patient_profile, care_access. Current cases may store this under hidden_simulation_state.world_state/care_system + case_authoring.",
+    "temporal_contract": "case-owned disease-time semantics executed by Runtime and interpreted by Scoring.",
+    "visibility_contract": "case-owned exposure routes and forbidden leaks enforced by ObservationFirewall.",
+    "evaluation_contract": "post-hoc scoring opportunities, critical failures, traps, closure criteria, temporal notes, and scoring policy.",
+    "validation_contract": "leakage/temporal/visibility/scoring/review/LLM-freezing release gates."
+  },
+  "authoring_pipeline": [
+    "choose_clinical_episode_type",
+    "define_clinical_anchor",
+    "write_root_truth",
+    "write_patient_family_human_factors",
+    "write_workspace_data",
+    "write_temporal_contract",
+    "write_visibility_contract",
+    "write_patient_response_contract",
+    "write_evaluation_contract",
+    "define_discoverability_opportunities",
+    "define_critical_failures",
+    "generate_reference_trajectories",
+    "run_validators",
+    "clinical_realism_review"
+  ],
+  "validation_contract": {
+    "schema_version": "validation_contract.v0.9-step9",
+    "source": "case.validation_contract",
+    "release_status": "draft | authoring_complete | release_candidate | frozen",
+    "case_authoring_pipeline": "case_authoring_pipeline.v0.9-step9",
+    "case_contract_version": "case_contract.v0.9-step9",
+    "validator_policy": {
+      "runtime_may_execute_if_authoring_complete": true,
+      "scoring_may_execute_if_evaluation_contract_complete": true,
+      "frozen_release_requires_completed_clinical_review": true,
+      "llm_outputs_must_be_frozen_before_runtime": true
+    },
+    "validation_checks": {
+      "leakage_checks": [
+        "No hidden state, root truth, rubric, future outcome, or evaluator-only hint may leak to Doctor Agent."
+      ],
+      "temporal_consistency_checks": [
+        "Temporal contract risk windows and test/care delays are internally consistent with root_truth."
+      ],
+      "visibility_checks": [
+        "Every clinically meaningful fact has an allowed route or is marked evaluator_only."
+      ],
+      "scoring_coverage_checks": [
+        "Discoverability opportunities and critical failures are discoverability/actionability gated."
+      ],
+      "reference_trajectory_checks": [
+        "Gold/silver/borderline/bad/adversarial trajectories exist and calibrate the evaluator."
+      ]
+    },
+    "clinical_realism_review": {
+      "review_contract_source": "clinical_review",
+      "required_review_roles": [
+        "case_author",
+        "clinical_reviewer",
+        "safety_reviewer",
+        "evaluator_calibration_reviewer"
+      ],
+      "completed_review_roles": [],
+      "ready_to_freeze": false,
+      "review_status": "draft"
+    },
+    "llm_authoring_policy": {
+      "llm_assistance_allowed_for_drafting": true,
+      "llm_must_not_run_during_runtime_to_generate_case_facts": true,
+      "llm_generated_content_must_be_frozen_in_case_file": true,
+      "llm_generated_content_requires_validator_and_review": true
+    },
+    "migration_notes": [
+      "LLM-assisted authoring is allowed only before case freeze; Runtime must never call an LLM to invent case facts during evaluation."
+    ],
+    "benchmark_readiness": {
+      "canonical_simulation_contract_materialized": true,
+      "canonical_workspace_contract_materialized": true,
+      "clinical_termination_contract_materialized": true,
+      "not_clinically_frozen": true
+    }
+  },
+  "simulation_contract": {
+    "schema_version": "simulation_contract.v1",
+    "patient_profile": {
+      "source": "hidden_simulation_state.patient_mind",
+      "demographics": {},
+      "communication_style": null,
+      "health_literacy": null,
+      "visibility_note": "Evaluator/internal simulation input; doctor visibility is controlled only by visibility_contract/firewall."
+    },
+    "patient_mind": {},
+    "family_minds": [],
+    "human_factors": [],
+    "patient_response_constraints": {},
+    "care_access_context": {},
+    "communication_constraints": [],
+    "source_legacy_fields": [
+      "hidden_simulation_state.patient_mind",
+      "hidden_simulation_state.family_minds",
+      "hidden_simulation_state.human_factors",
+      "hidden_simulation_state.care_system",
+      "case_contracts.generator_contracts"
+    ],
+    "evaluator_only": true,
+    "doctor_visible": false
+  },
+  "workspace_contract": {
+    "schema_version": "workspace_contract.v1",
+    "records": [],
+    "documents": [],
+    "test_results": [],
+    "medications": [],
+    "timeline": [],
+    "family_context": [],
+    "care_access": {},
+    "retrieval_policy": {
+      "visibility_authority": "case.visibility_contract",
+      "default_visible": false,
+      "requires_explicit_tool_call": true,
+      "allowed_panels": [
+        "patient_profile",
+        "documents",
+        "test_results",
+        "timeline",
+        "care_access",
+        "family_context",
+        "medications",
+        "records"
+      ]
+    },
+    "source_legacy_fields": [
+      "hidden_simulation_state.world_state",
+      "hidden_simulation_state.care_system.clinical_workspace",
+      "case_authoring.workspace_records",
+      "case_authoring.external_records"
+    ],
+    "evaluator_only_until_retrieved": true
+  },
+  "clinical_termination_contract": {
+    "schema_version": "clinical_termination_contract.v1",
+    "source": "materialized_from_legacy_termination",
+    "runtime_role": "detect_terminal_candidate_only_not_score",
+    "scoring_role": "interpret_closure_quality_post_hoc_from_trajectory",
+    "terminal_states": [
+      {
+        "terminal_state_id": "handoff_completed",
+        "termination_reason": "handoff_completed",
+        "requires_evidence": [
+          "doctor_recommended_urgent_handoff",
+          "patient_acknowledged_plan",
+          "transport_or_access_path_addressed",
+          "safety_net_or_followup_loop_set"
+        ],
+        "case_contract_refs": [
+          "termination",
+          "authoring_metadata.termination_conditions"
+        ]
+      },
+      {
+        "terminal_state_id": "followup_loop_closed",
+        "termination_reason": "clinical_safe_closure",
+        "requires_evidence": [
+          "doctor_set_followup_or_reassessment_trigger",
+          "patient_acknowledged_plan",
+          "red_flags_or_safety_net_addressed"
+        ],
+        "case_contract_refs": [
+          "termination",
+          "authoring_metadata.termination_conditions"
+        ]
+      }
+    ],
+    "legacy_termination": {},
+    "authoring_termination_conditions": {
+      "max_turns": 80,
+      "success_conditions": [],
+      "failure_conditions": []
+    }
+  }
+}

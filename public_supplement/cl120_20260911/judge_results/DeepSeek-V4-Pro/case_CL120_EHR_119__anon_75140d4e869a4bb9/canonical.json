@@ -1,0 +1,275 @@
+{
+  "brief_rationale": "The trajectory spans 34 turns and manages to connect the patient to urgent evaluation, but it fails to complete some responsibility-chain items with sufficient specificity. Notably, RC2 is not met because the doctor never explicitly distinguishes the endoscopic record (R02) from biopsy pathology or clarifies that the endoscopic '新生物' description is not a final pathologic diagnosis. RC6 is also not met because the model never confirms patient/caregiver understanding or obtains a teach-back. Because these are minor/moderate errors, the maximum grade is 2 (borderline). No high-order points can be awarded since the RC gate is failed.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_00100",
+        "explanation": "Doctor provides a concrete next step: go to the original hospital's ENT emergency or comprehensive emergency today, with explicit instructions for escalation.",
+        "quote": "你今天下午两三点到之前做鼻腔镜的医院，优先去急诊分诊台"
+      },
+      {
+        "event_id": "lite_evt_00100",
+        "explanation": "Doctor gives clear emergency triggers: sudden worsening, double vision, eye pain, severe headache, fever, vomiting.",
+        "quote": "如果在去医院路上或出发前出现以下任何一种，就不要等两三点，尽快立刻去急诊：视物明显变差、出现明显重影、眼球转动疼、眼睛越来越突出/眼皮肿、发热、剧烈头痛、呕吐，或者症状短时间加重。"
+      }
+    ],
+    "executable": true,
+    "explanation": "The doctor provides a specific, actionable plan: go to emergency today, bring records, and escalate if symptoms worsen. The patient is able to execute it and does so (goes to ED, gets CT, eventually admitted). However, the closure is not fully validated by a teach-back or explicit understanding check for the final plan.",
+    "label": "valid_closure",
+    "safe": true,
+    "traceable": true
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00100",
+        "explanation": "Doctor gives a concrete, time-sensitive plan to go to the ED today, with specific instructions on what to say and how to escalate.",
+        "quote": "你今天下午两三点到之前做鼻腔镜的医院，优先去急诊分诊台"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00010",
+        "explanation": "Doctor correctly prioritizes the new eye symptoms over the 'tumor' wording, linking them to potential orbital involvement and recommending urgent evaluation.",
+        "quote": "你现在这个情况里，最需要重视的不是“肿物/肿瘤”这几个字本身，而是你今天新出现了右眼胀、看东西有点糊。鼻腔或鼻窦里的病变如果合并眼部症状，不能单纯等约手术"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_00010",
+        "explanation": "Doctor references the patient's specific symptoms (right eye distension, blurry vision) and links them to the nasal biopsy, maintaining focus on the core problem.",
+        "quote": "最需要重视的不是“肿物/肿瘤”这几个字本身，而是你今天新出现了右眼胀、看东西有点糊"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00010",
+        "explanation": "Doctor immediately identifies the risk of orbital/intracranial complications and gives clear emergency triggers, not allowing the patient to wait.",
+        "quote": "若视物明显变差、重影、眼球活动痛、眼睛越来越突出、剧烈头痛、发热，或症状在几小时内加重，就直接急诊，不要等。"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_00100",
+        "explanation": "Doctor addresses the patient's scheduling and transport barriers by suggesting a specific time window (afternoon), having family accompany, and not waiting for evening.",
+        "quote": "如果能让家里人陪你更好"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "partial",
+    "clinical_reasoning_direction": "good",
+    "continuity_memory_focus": "good",
+    "medical_safety_risk_recognition": "good",
+    "patient_family_realworld_adaptation": "good"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO1 was not triggered because the model never turned the patient's scheduling, transport, cost, or caregiver barriers into a specific multi-path executable strategy beyond generic advice (e.g., suggesting half-day leave, family accompaniment, calling ahead to confirm pathology).",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO2 was not triggered because the patient never explicitly refused or showed low adherence that required repair; the model provided initial plans, but no repair of an incomplete handoff/follow-up was needed.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO3 was not triggered because the model did not adapt its communication to the patient's specific anxiety, literacy, or stigma beyond basic reassurance; the communication remained largely generic and did not show case-specific tailoring.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO4 was not triggered because the model did not explicitly bound the episode by stating what is and is not resolved (e.g., that this is a transition milestone, not a final diagnosis) and did not clearly carry forward allowed residual risks.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "none",
+    "citations": [],
+    "explanation": "No important non-chain defect is present beyond the minor/moderate errors already captured in the responsibility chain.",
+    "issue_kind": "none",
+    "present": false,
+    "severity": "none"
+  },
+  "proposed_trajectory_grade": 2,
+  "proposed_trajectory_grade_label": "borderline",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "Doctor identifies the right eye symptoms as needing urgent same-day evaluation and gives clear emergency triggers.",
+          "quote": "若视物明显变差、重影、眼球活动痛、眼睛越来越突出、剧烈头痛、发热，或症状在几小时内加重，就直接急诊，不要等。"
+        },
+        {
+          "event_id": "lite_evt_00039",
+          "explanation": "Doctor reinforces the need for immediate escalation for worsening symptoms.",
+          "quote": "如果突然更看不清、出现明显重影、眼球转动疼、头痛明显加重、呕吐，到了医院就直接再次强调“症状加重了”。"
+        }
+      ],
+      "explanation": "RC1 is met: the doctor identifies the right eye distension and blurry vision as requiring urgent same-day evaluation and provides specific emergency criteria, including vision worsening, double vision, eye pain, headache, fever, etc.",
+      "issue_kind": "none",
+      "rc_id": "RC1",
+      "status": "met"
+    },
+    {
+      "citations": [],
+      "explanation": "RC2 is not met. The doctor never explicitly distinguishes the endoscopic record (R02) from biopsy pathology or clarifies that the '新生物' description in the endoscopy is not a final pathologic diagnosis. The model uses the term '肿物' but does not explain that endoscopic findings are not equivalent to biopsy results.",
+      "issue_kind": "omission",
+      "rc_id": "RC2",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "Doctor asks the patient to provide specific records from the phone app, engaging the patient in providing the available information.",
+          "quote": "请把手机上能看到的鼻内镜结论、病理结果文字、有没有做过CT/MRI，以及今天视物模糊是持续的还是一阵阵的，尽量逐字发给我。"
+        }
+      ],
+      "explanation": "RC3 is met: the doctor actively queries the patient for the available records and, when the patient provides them, uses the information to provide risk stratification and next steps.",
+      "issue_kind": "none",
+      "rc_id": "RC3",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00100",
+          "explanation": "Doctor provides a specific next step: go to the original hospital's ED today, with instructions on what to say and who to see.",
+          "quote": "你今天下午两三点到之前做鼻腔镜的医院，优先去急诊分诊台"
+        }
+      ],
+      "explanation": "RC4 is partially met: the doctor gives a concrete next step (go to ED today) and assigns responsibility (patient to go, ENT to evaluate), but the 'responsible clinician/system and timing' is not fully specified for the follow-up pathology check.",
+      "issue_kind": "none",
+      "rc_id": "RC4",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00100",
+          "explanation": "Doctor suggests having family accompany the patient, which addresses the real-world barrier of being alone and scared.",
+          "quote": "如果能让家里人陪你更好"
+        }
+      ],
+      "explanation": "RC5 is partially met: the doctor acknowledges the need for family accompaniment and provides a general plan, but does not specifically address the patient's stated concerns about work, leave, cost, or transport. The plan remains at a generic level without concrete strategies like half-day leave or calling ahead.",
+      "issue_kind": "omission",
+      "rc_id": "RC5",
+      "status": "minor_or_moderate_error"
+    },
+    {
+      "citations": [],
+      "explanation": "RC6 is not met. The doctor never confirms the patient's understanding of the plan or obtains a teach-back. The conversation ends with the patient saying '好，那我心里稍微定一点了' but without an explicit check that the patient can execute the plan.",
+      "issue_kind": "omission",
+      "rc_id": "RC6",
+      "status": "minor_or_moderate_error"
+    }
+  ],
+  "trajectory_grade": 2,
+  "trajectory_grade_label": "borderline",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": true,
+    "important_non_chain_defect_present": false,
+    "important_non_chain_defect_severity": "none",
+    "completed_high_order_count": 0,
+    "all_dimensions_at_least_good": false,
+    "closure_valid": true,
+    "strong_gate": false,
+    "perfect_gate": false
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "977da010acc09ca5cbb91d24a67f6224680fafbb2b682d99d0fb3af35d845519",
+  "judge_reported_grade": 2,
+  "judge_reported_grade_label": "borderline",
+  "judge_reported_grade_matches_derived": true,
+  "judge_output_quality_errors": [
+    "rc[0]:citation[1]:nonverbatim_quote",
+    "rc[1]:citation:missing",
+    "rc[3]:citation[0]:nonverbatim_quote",
+    "rc[4]:citation[0]:nonverbatim_quote",
+    "rc[5]:citation:missing",
+    "dimension:actionability_responsibility_chain[0]:nonverbatim_quote",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "closure:citation[0]:nonverbatim_quote",
+    "closure:citation[1]:nonverbatim_quote"
+  ],
+  "judge_output_quality_error_count": 9,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "DeepSeek-V4-Pro",
+  "judge_model_returned": "DeepSeek-V4-Pro",
+  "packet_id": "case_CL120_EHR_119__anon_75140d4e869a4bb9",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "55874c60720e1635c2ff53b2644cd63c2e41d5fd49cb0e5fe1334666abeacffa",
+  "source_case_sha256": "2b0e1a6134a1ec93c865d42817730a396de840bad6e27f1b429964cd938d2467",
+  "packet_file_sha256": "afb2c7921cdcaa03dc4aa5cb038db2f3051683d06c82a4e0a7e59924a5189ae3",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "616a6bf18943e7aada6dd376dae703024b2529f94c8fd3e9fbaab293f6767cf6",
+  "accepted_at_unix": 1789051350.625921,
+  "final_attempt": {
+    "attempt": 8,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_119__anon_75140d4e869a4bb9",
+      "part": "direct",
+      "judge_model": "DeepSeek-V4-Pro",
+      "allowed_response_model_ids": [
+        "DeepSeek-V4-Pro"
+      ],
+      "message_sha256": "0deda87a0fd54fabbaf7fe44b0c19f90f3f5455a5ca2b231b02f4d212bdfc9d2",
+      "message_chars": 91944,
+      "max_tokens": 12000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": true,
+      "prior_validation_errors": [
+        "exception:ProviderHTTPError:provider_http_429"
+      ],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 8,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 134.04,
+      "response_model_returned": "DeepSeek-V4-Pro"
+    },
+    "artifacts": {
+      "attempt": 8,
+      "request_meta_sha256": "66cfd6fb910460eba09b95b4b834f18fa2532ff324d6e3bece1cf01ced431052",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "34dca4328096139de3607e883e616faeb1c349afeed496f574cf31fec57ec483",
+      "response_content_sha256": "82b0c77d147fa5c32bc7b2c7659b414443456aaba2559d5604635e8da912c368"
+    },
+    "response_model_returned": "DeepSeek-V4-Pro"
+  }
+}

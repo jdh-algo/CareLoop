@@ -1,0 +1,710 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "08bc52958da79a541c8adff0513a417b300e37f959d8dce873cea203936929f3",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_041__anon_bc6b33676d99a2bc",
+    "packet_sha256": "e8abb2f476729cb056308529e104e737e53af736f0e391a4540adc5a0a56b7c8"
+  },
+  "case_id": "case_CL120_EHR_041",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "8",
+    "contract_complexity_level": "high",
+    "disease_domain": "renal_urology",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "result_return",
+    "target_problem": "renal_function_abnormality_warning_and_result_followup",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属已执行分流：带老人到原医院急诊分诊，并把“肾功能不全、乏力、吃不下、尿可能少”等重点告知护士和急诊医生。",
+      "第一轮结果回流并被行动化：肌酐约180多、尿素氮约13、钾约3.2、钠136、氯101、随机血糖约12；现场医生判断暂不需立即透析，安排急诊留观、记录尿量、低速补液、谨慎补钾、数小时后复查。",
+      "AI医生解释了肌酐/尿素氮升高和低钾的意义，强调不要自行大量饮水或自行补钾，需按留观医生方案并复查趋势。",
+      "第二轮复查及外部接管证据：家属把尿量纸交给护士/急诊医生，现场确认不是完全无尿；第二轮肌酐未继续明显升高，尿素氮约12点几，钾约3.4，血糖仍约11点多；现场计划继续急诊留观、低速补液、按复查谨慎补钾、次晨复查。",
+      "最后家属teach-back：今晚不走、继续纸记尿量、不乱吃补钾、不逼老人猛喝水、按现场医生输液补钾；重点盯叫不醒、喘憋、心慌乱跳、一直吐、尿突然没了，异常就按铃喊护士医生。"
+    ],
+    "if_continued_next_focus": "若继续模拟，下一节点应是次晨复查结果和急诊/病房团队处理决定；但这属于已交接后的后续留观流程，不是当前闭环的必要前提。",
+    "rationale": "本案目标是围绕“肾功能不全提示/乏力后的结果回流与安全分流”完成一个有限的患者端照护闭环，而不是治愈肾功能异常或完成全部住院诊疗。目前家属已真实到达原医院急诊并被留观接管；第一轮和第二轮肾功能、电解质、血糖结果均已由现场医生查看并形成处理方向，AI医生也基于家属读回结果解释了肌酐、尿素氮、低钾、尿量监测和暂不需紧急透析的意义。夜间执行计划已明确：继续急诊留观、低速补液、谨慎补钾、记录尿量、次晨复查肾功能/电解质/血糖，按趋势决定继续留观/转病房/调整治疗。家属最后完成了可接受的teach-back：不离开、不自行补钾或猛喝水、继续记尿量、识别叫不醒/喘憋/心慌乱跳/持续呕吐/突然无尿等红旗并按铃找急诊医护。因此本次线上责任单元已安全闭合；残余肾功能异常、低钾和次晨复查属于急诊留观团队已接管的有owner、有时间窗、有升级路径的bounded residual，不再是当前CareLoop必须继续主动追踪到治愈的阻断项。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：肾功能异常尚未治愈，需次晨复查肾功能/电解质/血糖；owner为急诊留观/后续病房团队，due window为次晨，按趋势决定继续留观、转病房或调整治疗。",
+      "bounded_residual_followup：血钾仍偏低或接近低限，需在尿量和复查基础上由现场医生谨慎补钾；家属已知道不要自行补钾或自行高钾饮食。",
+      "bounded_residual_followup：尿量仍需持续记录，若突然无尿或明显少尿伴病情变化需立即按铃；当前已非完全无尿，且现场团队已查看尿量纸。",
+      "global/background：乏力、胃口差及原住院期间神经内科/MR等其他病因评估仍可能继续，但当前肾功能/电解质急诊安全分流任务已有明确责任链。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Doubao-Seed-2.0-lite",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "乏力住院后看到肾功能不全提示，家属担心要不要马上处理",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家里人这阵子一直没劲，后来住进去查了一堆，手机上突然看到写着肾功能不全，还说要看神经内科、做头颅MR之类的。我不是一直在旁边，老人自己也讲不清，只记得有输液、白蛋白、补钾。现在人还是没什么力气，我想问这是不是肾出问题很急？要不要马上回去找医生？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内本次住院的入院出院记录、肾功能相关检查结果、头颅MR申请记录、所有用药记录以及住院时间线，帮我梳理当前可查的资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内已授权可访问的本次住院病历、出入院记录、肾功能相关检查结果、头颅MR申请记录和已有的用药记录，帮我梳理这次发病治疗的时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00016",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "感谢您的提问，我理解您现在比较担心老人的情况。目前我还没有调取到这次住院的病历和检查结果，麻烦您先帮我确认几个细节：\n1. 老人这次住院出院多久了？现在除了没力气，有没有腿肿、尿量变少、恶心呕吐或者意识不清楚的情况？\n2. 您说手机上能看到检查结果，能不能把肾功能相关的具体数值或者报告结论告诉我？如果方便的话也可以把已经同步到CareLoop的报告授权我查看。\n我先帮您判断风险，再告诉您是否需要尽快回医院处理。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "当前工作台可见病历和医嘱记录，但未见结构化检验结果。若需判断肾功能风险，请继续调取肾功能、电解质、尿常规/尿量记录，或让家属上传完整报告。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00036",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10min",
+      "text": "医生，我刚又问了老人、也翻了手机App。老人现在还是说没力气，胃口也不好，吃不下多少。暂时没看到他喘不上气，也没有糊涂叫不醒那种，没一直剧烈吐。腿肿我看不太出来，感觉不算特别明显。\n\n尿量这个我真没量，今天好像比平时少一点，但不是完全没尿，具体几次多少我说不准。出院多久我也有点乱，好像是刚从住院那边出来不久，流程是不是全办完我得再问家里人。\n\n手机上我只能读到这些字：诊断那里有“肾功能不全、2型糖尿病、脑梗死个人史”。医嘱/记录里看到“补液补钾、白蛋白、营养神经、完善头颅MR、神经内科会诊”。但您说的肌酐、尿素氮、钾钠氯这些数值，我翻了半天没找到，不知道在哪一栏，可能我看的不是化验单。\n\n这种情况下老人还这么乏力、尿好像少一点，您看是现在就回医院急诊/病区找医生，还是我先打电话问住院病区把肾功能数值问出来？我怕等着耽误。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00041",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+10min",
+      "text": "我先调取CareLoop联合医疗网络中已授权同步的本次住院病历、医嘱记录、已有的肾功能和电解质检查结果，以及出院小结资料。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00043",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00045",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+10min",
+      "text": "我需要调取CareLoop联合医疗网络内本次住院的全部已授权资料，包括出入院记录、肾功能电解质相关检验结果、用药记录，获取具体肌酐数值和电解质水平，帮我判断风险。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00051",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00053",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+10min",
+      "text": "我调取CareLoop联合医疗网络内已授权的本次住院病历、出入院记录、肾功能电解质相关检验报告、用药记录，查看具体的肾功能指标、血钾结果和出院状态。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00055",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00057",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+10min",
+      "text": "我调阅CareLoop联合医疗网络内本次住院的出入院记录、医嘱单、已同步的肾功能、电解质、血糖检验报告和用药记录",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+10min",
+      "text": "我需要调取CareLoop联合医疗网络内本次住院的出院小结、医嘱记录、所有肾功能、电解质、血糖的检查检验结果，以及目前的用药清单，请帮我提取这些已授权可见内容。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00069",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10min",
+      "text": "结合您描述的情况，老人目前虽然没有昏迷、严重呕吐、喘憋这些特别紧急的危险表现，但本身已经有肾功能不全，又伴随持续乏力、尿量减少、胃口差，而且我们现在看不到具体的肾功能和电解质指标，没法准确评估轻重，这种情况建议您直接带老人回医院急诊或者原住院病区找医生评估，不要只打电话咨询了。到医院后可以直接复查肾功能、电解质，明确目前肾脏的情况，也能及时对症处理，比先找数值更稳妥，避免耽误病情。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00085",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+45min",
+      "text": "医生，我们已经在收拾出门了，叫了另一个家里人一起扶他，身份证、医保卡、手机App里那些记录都带上了，准备回原来住院那个医院。\n\n老人现在还是没劲、吃不下，走路得扶着慢慢走。暂时还没有叫不醒、明显喘不上气、一直吐这种变化。尿我还是说不准，感觉可能比平时少点，但没量。\n\n我想再确认一下：我们到医院是先直接去急诊分诊说“肾功能不全、乏力吃不下、尿少，刚住院回来要复查肾功能电解质”这样吗？还是到了先去原来住院的病区护士站找他们？如果在路上他更没劲、站不住或者叫他反应变慢，是不是就别自己开车了，直接打120？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00091",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+45min",
+      "text": "您的准备很稳妥，我给您明确一下：\n1. 现在老人生命体征还算平稳，您可以先直接去原住院病区找主管医生评估，带好所有资料会更方便医生对接；如果病区医生看了之后判断需要紧急处理，会直接帮您走急诊流程。\n2. 如果路上老人确实出现站不住、叫他反应明显变慢、呼吸困难这些加重的情况，立刻停车拨打120，不要自己继续开车运送，保证安全。\n3. 到了医院您就把现在乏力、吃不下、尿量可能减少这些情况如实告诉医生，提醒医生先复查肾功能和电解质，明确情况后再处理就可以。祝老人一切顺利，有结果之后您也可以随时再和我沟通。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00105",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+75min",
+      "text": "医生，我们刚把老人扶上车，真的比想的慢，下楼、等车都折腾了半天，现在还没到医院。老人还是很没劲，吃不下东西，上车前又尿了一次，但就一点点，我也没法量。\n\n现在叫他还能应，没看到明显喘不上气，也没有一直吐，就是虚得厉害，走路要两个人扶。我听您的，先往原来住院病区去。想再确认一下：如果到了医院病区没人接或者让我们等，我们是不是就直接去急诊分诊？我到那边第一句就说“老人肾功能不全，出院后乏力吃不下、尿少，想尽快复查肾功能和电解质”，这样行吗？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00111",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+75min",
+      "text": "您说得对，如果到病区找不到医生或者需要排队等很久，直接去急诊分诊就可以，不用一直等。您准备说的这句话非常清楚准确，医生一听就能快速抓住重点，会优先安排复查肾功能和电解质的。\n\n路上您多留意老人的反应，如果出现意识变差、呼吸困难这种情况，随时联系120。祝老人尽快明确情况，得到合适的处理，等您拿到结果也可以再来找我。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00126",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+100min",
+      "text": "医生，我们已经到原医院了，没在病区门口等，直接走急诊分诊了。我把“肾功能不全、没力气、吃不下、尿可能少”这些跟护士和急诊医生说了。\n\n现在老人还清醒，问他能回答，就是很虚，想躺着；暂时没看到明显喘不上气，也没一直吐。急诊这边说先抽血查肾功能、电解质这些，刚抽完，在等结果，还没数值。\n\n我现在想问您一下，等结果这会儿我们家属主要盯什么？是不是看他有没有突然叫不醒、喘、吐、胸闷、尿完全没有这种？另外等化验单出来，我要重点把哪些数值发给您？我记得有肌酐、尿素氮、钾钠氯，血糖要不要也看？如果现场医生说要补液或者补钾，我是不是要特别提醒他们老人尿量少、我们没量准？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00133",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+100min",
+      "text": "您家属观察得很仔细，我给您明确一下：\n1. 等结果这段时间，您盯的方向是对的，重点观察老人有没有叫不醒、反应变慢、呼吸困难、胸闷、持续呕吐、完全没尿这些情况，如果出现这些变化，马上告诉急诊医生就可以。\n2. 等结果出来，您把肌酐、尿素氮、血钾、血钠、血氯这几项的数值发给我就可以，您说得很对，血糖因为老人有糖尿病史，也一起看一下更好，也可以把血糖数值一起发给我。\n3. 您一定要提醒一下现场医生：老人目前尿量比平时少、具体量没法准确估计，这点对医生判断补液和补钾的方案很重要，您提醒后医生会根据结果调整用量，不用担心。\n您先放宽心，有了结果随时和我说。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00149",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+135min",
+      "text": "医生，又等了半个多小时，结果还没到我们手里，急诊这边还是让继续等化验。我刚才按您说的，又跟护士那边说了一遍：老人尿比平时少，但我们没量准，不是完全没尿。\n\n老人现在还是清醒的，叫他能回话，就是很乏力，一直想躺着，没什么胃口。暂时没看到喘不上气、胸闷、一直吐、叫不醒这些。\n\n我现在有点怕等太久耽误。要是再等一会儿还没结果，我是不是可以去护士站问一下有没有出来、请医生先看？还有如果现场医生在结果没完全出来前说先补液或者补钾，我们家属就配合就行吗？除了再提醒“尿少、没量准”，还要不要问他们先看钾和肌酐这些？哪些变化我必须马上喊医生，不能坐这儿等？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00155",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+135min",
+      "text": "您完全可以主动去护士站询问化验结果是否已经出来，请医生先提前看，不用一直干等，这是很合理的。\n\n如果现场医生在结果出来前判断需要先补液，您配合就可以；但如果结果还没出来就说要补钾，您可以请医生先等血钾结果出来再定，因为肾功能异常、尿量少的时候补钾需要非常谨慎，提前补可能会有高钾风险。\n\n除了您已经知道的“尿少、没量准”，也可以直接和医生说您担心肾功能和血钾的问题，请他们优先排查这两项，医生会理解的。\n\n一旦出现下面这些情况，您必须马上喊医生，不能等结果：\n1. 老人叫不醒、喊他反应明显变慢，甚至胡言乱语认不清人\n2. 出现喘不上气、呼吸困难、胸闷胸痛不能缓解\n3. 持续呕吐不止，或者完全排不出尿\n4. 脉搏变得很快或者很慢，站不起来甚至跌倒\n您现在先去问结果，有任何变化或者拿到结果随时告诉我。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00170",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+200min",
+      "text": "医生，我刚去护士站问过了，也跟急诊医生又说了一遍我们担心肾功能和血钾。护士说血已经送去查了，不是漏掉，就是机器排队，还要大概半小时到一小时才能出那个生化、电解质、血糖结果。\n\n现在老人已经挪到急诊留观这边躺着了，旁边给了尿壶/接尿的，让我们开始记尿量。急诊医生说先观察，可能低速补液、监测，血钾没出来前先不补钾。我听着是这个意思，具体输的什么、速度多少我没问清。\n\n老人现在还是清醒的，叫他能答，就是很乏力、没胃口，一直想躺着。尿量才刚开始记，还没累计多少。\n\n我想提前问一下，等结果一出来我怕我看不懂，我是不是先把肌酐、尿素氮、钾、钠、氯、血糖这几个数抄给您？如果到时候血钾低，现场医生说补钾，是不是也要看他尿量和肌酐再决定？如果肌酐很高，是不是就说明肾这次又坏得厉害了？我主要怕我们家属没听懂耽误处理。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00176",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+200min",
+      "text": "您准备这么做非常稳妥，我给您明确说明一下：\n1. 等结果出来后，您确实把肌酐、尿素氮、钾、钠、氯、血糖这几个数值抄给我就可以，我帮您一起看。\n2. 如果最后复查发现血钾确实低，现场医生说补钾，一定会先看目前的尿量和肌酐水平再决定方案的——尿量如果足够，才会更安全地补钾；要是肌酐明显升高、尿量少，补钾就会非常谨慎，避免高钾风险，您提醒这点对医生很有帮助。\n3. 肌酐升高确实提示肾功能受到了影响，但也不一定就是“肾坏得很厉害”，有些情况下比如摄入不足、脱水、容量不够引起的肾前性肾功能异常，及时补液后还有机会好转恢复，所以我们先看具体数值，再结合尿量一起判断。\n\n现在老人已经在留观监测了，您不用太紧张，等结果出来把数值发给我，我们一起帮老人把握下一步处理就好。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00194",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+240min",
+      "text": "医生，结果出来了，我是从手机备忘录里抄的，可能单位我说不全：\n\n肌酐大概180多，尿素氮大概13，血钾3.2，钠136，氯101，随机血糖大概12。\n\n急诊医生看电脑后说，暂时不像马上要透析或者立刻抢救那种，但肾功能确实不好，钾偏低，血糖也高一点。现在安排继续留观，开始用尿壶记尿量，低速补液；他说如果后面尿量还可以，再谨慎补钾，几个小时后还要复查肾功能、电解质和血糖。\n\n老人现在还能叫醒，能回答，就是很虚、想躺着，吃不下。我暂时没看到明显喘憋、一直吐或者叫不醒。尿量才刚开始记，不是完全没尿，但还没累计出多少。\n\n我想问您三个事：  \n1. 这个肌酐180多、尿素氮13算很严重吗？是不是急性肾损伤那种，还是还要看复查能不能降？  \n2. 钾3.2不是低吗，为什么还不能马上多补，要等尿量和复查？我怕低钾会不会也危险。  \n3. 接下来这几个小时留观，我们家属最该盯什么？除了尿量、清醒不清醒、喘不喘、吐不吐，还有没有什么一变化就要马上喊医生的？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00200",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+240min",
+      "text": "我来给您一个个说清楚，您不用太着急：\n1. 您家老人这个肌酐180μmol/L、尿素氮13mmol/L确实比正常值高，提示肾功能受损，但从目前结果看还没有到必须立刻透析抢救的程度，急诊医生判断得没错。大部分这种程度的异常，如果是最近才发生的急性肾损伤，比如容量不足、摄入不够引起的，经过规范补液等处理后，肌酐还有希望下降恢复，所以一定要等几个小时后复查，看指标的变化才能判断严不严重、是不是急性的。\n2. 血钾3.2mmol/L确实是轻度低钾，为什么不马上补？这是因为老人现在肾功能已经不好，尿量还没有稳定记录，要是贸然补钾，很容易让血钾在短时间内升得太高，高钾血症比轻度低钾风险更大，会影响心脏跳动，甚至有生命危险。现在等尿量稳定、复查之后再谨慎补钾，是更安全的做法；轻度低钾几个小时内一般不会有致命危险，您不用太担心这个。\n3. 接下来留观这几个小时，您已经说的“尿量、意识状态、有没有喘憋、呕吐”都是要盯的重点，还要再加2个需要立刻喊医生的情况：\n① 如果老人出现心慌、心跳乱，或者手脚麻木无力越来越重\n② 尿量突然完全停止，或者四个小时加起来不到100ml\n只要出现上面这两种，或者您之前说的叫不醒、喘不上气、持续吐、意识明显变差，都马上找医生，不能等。\n现在老人已经在规范监测了，您配合留观，按要求记好尿量，等复查后我们再看结果调整就可以。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00216",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+260min",
+      "text": "医生，我们现在按护士说的开始用尿壶记了，刚才就接了一次，量不多，我看刻度大概几十毫升吧，时间太短还看不出“四小时”。老人还是清醒的，叫他会答，就是没劲想睡，没说心慌，也没喘、没一直吐。\n\n我有个地方怕记错：您说四小时不到100ml，这个四小时是从现在开始用尿壶记的时间算，还是从开始输液算？我现在就在纸上写“几点几分、多少毫升”这样行不行？\n\n还有复查结果出来前，我们就继续观察、别自己给他猛喝水，也别吃补钾片、香蕉这些，对吧？如果后面医生说要补钾，我就提醒一句“尿量刚记、肌酐180多”，让他们看尿量和复查再定。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00222",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+260min",
+      "text": "我给您把这些问题说清楚，您记起来就好：\n1. “四小时累计尿量不到100ml”这个四小时，是从您现在开始用尿壶记录的时间算起，您现在在纸上写“几点几分、对应多少毫升”这样记录就完全可以，非常清楚准确。\n2. 您说的没错，复查结果出来之前，继续按目前的安排就可以：不用刻意猛喝水，也不要自己额外吃补钾片、吃香蕉这类高钾食物，就按留观医生安排的补液来。如果之后讨论补钾，您这么提醒医生是对的，帮医生更安全地制定方案。\n3. 您现在已经做的很到位了，继续按这个节奏观察记录就好，等到四个小时累计完，或者复查抽血的时候，把尿量情况告诉现场医生和我就可以。如果期间真的累计不到100ml，也第一时间告诉医生。\n您不用太紧张，老人目前状态还算平稳，咱们一步步观察就好。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00237",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+430min",
+      "text": "医生，过了快三个小时了，我有点困，先简单跟您说下。\n\n尿量我按纸记了几次，写得不太规整，合起来大概一百多毫升上下吧，不算多，但也不是一点没有。我还没敢说特别准，等会儿我把纸给现场医生看。\n\n老人现在还是叫他能答，就是很没劲、想睡，没看到叫不醒、喘得厉害、一直吐、说心慌这些。我们也没给他猛喝水，没吃补钾的。\n\n护士刚才已经来抽第二次血了，说还是查肾功能、电解质、血糖那些，结果还没给我们，现场医生那边电脑上会先看到。现在等结果这段时间，我是不是继续盯尿量和人清不清醒就行？这个尿量大概这样，要不要我现在就再去护士站提醒一下，还是等复查结果一起给医生看？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00243",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+430min",
+      "text": "您做得非常稳妥，现在继续盯着尿量和老人的意识状态就可以。目前累计一百多毫升尿量已经比少尿的标准要好一点，您可以现在就去护士站提醒一下医生目前的尿量情况，让医生提前有数，不用等复查结果出来再说，这样更有助于医生提前安排。\n\n除了继续观察之前说的那些情况，您如果觉得累也可以换着休息一下，保持精力盯好关键变化就可以：只要还是叫得醒、没有喘憋心慌、没有完全没尿，就不用太慌，等复查血结果出来我们再一起看就好。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00259",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+505min",
+      "text": "医生，我按您说的把尿量纸拿给护士和急诊医生看了，他们看了一下，说不是完全没尿，累计大概一百多毫升，但还是继续记。\n\n第二次血结果刚才现场医生在电脑上看了，我只抄到几个，可能不全：肌酐好像是170多还是180上下，反正他说没有继续明显升高；尿素氮12点几；钾大概3.4，比前面3.2高一点，但他说还是偏低或接近低限；血糖还是11点多。钠氯我没抄清。\n\n急诊医生的意思是现在还不到马上透析，继续留观，低速补液，按医嘱小剂量补钾，尿量继续记，晚一点或者明天再复查趋势。老人还是清醒，叫他会答，就是很乏力、想睡、吃不下，我没看到喘憋、一直吐、心慌乱跳、叫不醒或者完全没尿。\n\n我现在稍微放心一点，但还是怕听漏了：这种肌酐没再升、钾从3.2到3.4，是不是说明方向还算可以？他们说慢慢补液、谨慎补钾，这样是不是合理？我们现在是继续急诊留观等趋势，还是应该主动问能不能转病房观察？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00265",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+505min",
+      "text": "从您给我的数值来看，目前的变化确实提示治疗方向是对的：肌酐没有继续明显升高，血钾也在慢慢回升，说明现在的低速补液、谨慎补钾方案是合理的，暂时不需要紧急透析处理，您不用太担心。\n\n老人目前意识平稳，没有急症表现，先继续在急诊留观监测、复查趋势是没问题的，如果床位允许，转去病房持续观察当然会更方便，但不用着急主动要求转，先让医生把今晚的肾功能和电解质趋势看稳了再安排会更稳妥。\n\n接下来您还是继续按现在的节奏：记好尿量，观察老人的意识、有没有喘憋心慌这些变化，继续不要自己额外补钾或猛喝水，配合医生今晚的复查就好。如果有刚才说过的那些紧急变化，随时喊医生就行。目前整体趋势在往好的方向走，您也别太焦虑，安心等明天复查再看就可以。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00279",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+517min",
+      "text": "医生，我大概明白了，护士刚才也差不多这样交代的：今晚先不走，就在急诊留观；尿量我继续用纸写着，不自己给他乱吃补钾的，也不逼他猛喝水，就按这边医生输液和补钾来。\n\n我现在主要盯他叫不叫得醒、喘不喘、有没有心慌乱跳、一直吐，还有尿是不是突然没了。要是这些不对我就直接按铃喊护士医生，不等明早。\n\n我实在有点撑不住了，准备靠椅子眯一会儿，按铃、尿壶和记录纸都放手边，老人现在还叫得醒。明早复查结果出来我再来问您。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_041__Doubao-Seed-2.0-lite",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2.75,
+    "aggregate_median": 2.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7853571071357126,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 11
+}

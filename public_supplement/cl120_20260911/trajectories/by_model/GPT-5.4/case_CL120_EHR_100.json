@@ -1,0 +1,838 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "7f9d8040db5c57c93b5a1c81aaf78a4a9c88a65a9ba1b60cd296b4abdd53e647",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_100__anon_b82d8ad9bb153422",
+    "packet_sha256": "9228b3a69be93b7cb2adbb6e3c53812bac90d7e6a6f623a02e89dd67a20bf3f1"
+  },
+  "case_id": "case_CL120_EHR_100",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "infectious_disease",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "privacy_stigma_or_sensitive_history",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "external_system_gap | misstated_family_or_patient_information",
+    "starting_phase": "longitudinal_followup",
+    "target_problem": "antibiotic_allergy_or_adherence",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者最初存在病理未出/复查方向不清、胃药和颗粒服用不规律、家属追问和隐私压力。",
+      "轨迹中 AI 医生调取/利用了住院手术和出院带药相关记录，并围绕正式病理、CT、结核筛查、复诊科室和用药边界进行解释。",
+      "患者后来打印/携带纸质病理和 CT，完成呼吸专病门诊；线下意见为结节病可能较高但结核仍需排除，暂不开激素、抗结核药或抗生素。",
+      "患者约到并实际完成感染科/结核筛查方向门诊；线下医生 reportedly 核验纸质病理、CT、出院资料和小程序结果，阶段性认为已有筛查/基础抽血无强阳性或急性感染证据，痰培养/部分病原学仍待回。",
+      "第20轮医生明确：不要自行用抗结核药、激素或抗生素；继续等痰培养和病原结果；约一周后复诊；发热、咯血、明显气短、咳嗽明显加重或结果阳性则提前就医。",
+      "第20轮患者 teach-back：理解当前不是已按结核治疗、也不是完全排除；先别乱动药；等待痰培养/病原结果；一周后按时复诊；出现发热、咯血、喘得厉害、咳嗽明显加重或阳性结果提前去医院；新结果按项目名和结论读回。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应落在新痰培养/病原学结果回流、出现红旗、或约一周后感染/结核复诊意见，并由医生再次解释和行动化是否需要进一步检查或用药。",
+    "rationale": "本次线上 CareLoop 的责任单元是出院后淋巴结肿大/肉芽肿性炎线索下的 bounded longitudinal follow-up：核对病理与影像线索、避免把结节病或结核过早定论、解决复诊/隐私/资料/用药执行混乱，并把待回结果转成明确责任链。到当前为止，患者已完成呼吸及感染/结核筛查方向门诊，线下医生已核验纸质病理、CT、出院资料和小程序结果；当前意见为结节病可能较高但结核/其他感染仍未完全排除，已有结果无强支持活动性结核或急性感染，暂不启动抗结核药、激素或抗生素。AI 医生随后行动化了这一意见：继续等痰培养/病原学结果、约一周后复诊、阳性结果或红旗提前就医、不要自行用高风险药。患者完成了合理 teach-back，能复述不是已按结核治疗也不是完全排除、先不乱动药、等待结果和一周复诊、发热/咯血/明显气短/咳嗽加重或阳性结果提前就医。未出痰培养/部分病原学仍是残余风险，但在本 episode 中已有外部专科 owner、约一周复诊时间窗、结果回流读回路径、异常升级路径和患者可执行确认，因此属于 bounded residual follow-up，而非当前 action-blocking residual。此闭环不是疾病最终治愈，也不是全病程结节病/结核诊断完成，而是当前出院后复查与用药边界责任链安全闭合。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：痰培养/部分病原学结果仍未完全回流；owner 为感染/结核筛查门诊团队，due window 为约一周后复诊或结果阳性时提前就医，verification path 为小程序/纸质结果读回并由专科核验，escalation path 为阳性或红旗提前就医。",
+      "bounded_residual_followup：结节病、结核或其他感染的最终诊断尚未完全确定；当前未影响等待期最低安全行为，因为已由专科评估并决定暂不启用激素、抗结核药或抗生素。",
+      "bounded_residual_followup：患者仍有一定健康素养限制和隐私压力，可能读错项目名；但已明确可照字读项目名+结论，且家属隐私未阻断当前复诊执行。",
+      "global_disease_journey_background：后续若确诊结节病、结核或其他病因，仍需专科决定是否进一步检查、治疗和长期随访；这不属于本次 bounded episode 的未闭合 blocker。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.4",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "脖子和锁骨附近淋巴结一直肿，出院后复查和用药有点乱",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我前阵子因为脖子这边和锁骨附近摸到疙瘩住过院，后来还切了一个左边颈部的淋巴结，说要等病理、还可能要做进一步检查。出院带了胃药和一种颗粒，我吃得不太规律。家里人一直追问结果，我也不想让他们都知道，想先问问现在最该盯着哪些事。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取这次因颈部/锁骨上淋巴结肿大相关的完整时间线和资料：最近一次住院病历、入出院记录、手术/操作记录、病理送检与当前病理结果状态、影像报告、血常规和生化等检验结果、出院带药/药房记录；如有外院同步资料也一并返回。另请查看照护可及性与家庭信息中是否有患者授权、联系方式或结果回传情况。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "现在最该盯的有3件事：第一，左颈部淋巴结切除后的病理结果有没有出来；第二，医生有没有交代下一步检查或复诊时间；第三，你现在有没有需要马上处理的危险信号。你不想让家里人都知道，这个我理解，结果和病情解释可以先只和你本人沟通。\n\n先说危险信号：如果你现在有持续高热、呼吸或吞咽困难、脖子肿块明显迅速变大、伤口红肿流脓、夜里盗汗很厉害、短时间明显消瘦，或者胸闷气短，就不要等，尽快线下就诊。\n\n如果目前没有这些急症，那下一步最关键的是把这几项信息核实清楚：\n1. 淋巴结病理结果是否已出；\n2. 出院小结上写的诊断和复诊科室；\n3. 你现在带回家的两种药具体叫什么、怎么吃、还剩多少；\n4. 你目前有没有发热、咳嗽、体重下降、盗汗、乏力这些症状。\n\n你先直接回复我这4点里你知道的内容；如果手边有出院小结或病理回执，可以把关键文字逐条打给我，尤其是“病理诊断”“建议”“复诊科室”这几行。这样我能帮你判断现在是等结果、催病理，还是要尽快补做下一步检查。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00027",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者读回病理提示肉芽肿性炎，倾向结节病但结核待排；需核验正式病理报告及是否有补充染色/免疫组化/病原学结果。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "病理和影像需要尽快复诊行动化；目前无预约回执，需明确复诊科室与时间。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00029",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者读回病理可信但非正式核验，需索要完整报告照片或授权调阅，尤其关注补充报告/特殊染色。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00034",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12min",
+      "text": "我找了半天，手机里有一段字，我照着打，不知道是不是最后盖章那个正式报告哈。\n\n上面大概写的是：  \n“左侧颈部淋巴结，破碎组织，肉芽肿性炎，首先考虑结节病，增殖性结核待除外，请结合临床。”  \n后面还有没有补充染色什么的我看不懂，也不确定这是不是出院小结里摘的一段。\n\n我现在没有一直发烧，也没有喘不上气、咽不下东西，伤口也没流脓，脖子那个疙瘩好像也没突然变很大。就是人有点累，晚上有时候出汗，我也不知道算不算你说的盗汗。\n\n药袋我看了，一个叫奥美拉唑肠溶胶囊，还有一个麦滋林-S颗粒。说实话我胃不太难受就经常忘了吃，那个颗粒好像一天要吃几次，我没坚持住。\n\n医生，这个“结节病”和“结核待除外”是不是很吓人？是说我已经有结核了吗，会不会传染家里人？我现在是不是要赶紧挂呼吸科，还是感染科/结核门诊？家里人一直问，我暂时不太敢把“结核”这几个字跟他们说。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00039",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取并汇总本次住院及相关跨机构资料：1）出入院记录、出院小结、手术/操作记录；2）左颈部淋巴结病理正式报告原文及补充报告，尤其特殊染色/抗酸染色/真菌染色/免疫组化；3）住院期间和出院后的影像报告，重点胸部CT或胸片、颈部/锁骨上区超声或CT；4）结核相关检查结果：T-SPOT/IGRA、PPD、痰涂片/培养/PCR、TB-DNA/Xpert、结核分枝杆菌检测；5）血液检验如血常规、ESR/CRP、ACE、肝肾功能、HIV（如有）；6）出院医嘱、复诊建议、是否已预约呼吸科/感染科/结核门诊；7）时间线。若有家庭/照护可及性信息也一并返回。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00041",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00043",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "先说结论：你现在这段话**不能直接等同于“已经确诊结核”**。它的意思更接近于：切下来的淋巴结看到的是**肉芽肿性炎**，病理医生觉得**更偏向结节病**，但**结核还不能完全排除**，所以要结合后续检查来定。也就是说，**目前是“待进一步鉴别”，不是已经板上钉钉。**\n\n从你现在描述看，**暂时不像需要立刻急诊**：没有持续高热、没有呼吸吞咽困难、伤口也没有明显感染，脖子肿块也没突然迅速变大。这点是好的。\n\n你现在最该盯的事，按优先级是这3件：\n1. **核实正式病理报告全文**：尤其看有没有“补充报告、抗酸染色、特殊染色、TB相关提示”。\n2. **尽快完成下一步排查结核/胸部受累的检查**：常见会需要胸部CT或胸片、结核相关检查，必要时痰检/IGRA这类，由线下医生定。\n3. **尽快挂到对口门诊复诊**。\n\n挂哪个科：\n- 如果你们医院有**结核门诊/感染科**，我更建议**优先这个**，因为病理里已经写了“结核待除外”，他们更擅长先把传染性结核这件事排清楚。\n- 如果当地是**呼吸科负责结核筛查**，那就挂**呼吸科**也可以。\n- 简单说：**优先选“能尽快排结核的科”**，不必纠结名称，感染科/结核门诊/呼吸科都可能合适。\n\n关于会不会传染家里人：\n- **只有颈部淋巴结这个病理结果，本身不能说明你一定会传染。**\n- 真正更需要担心传染性的，通常是**肺部或呼吸道结核**，所以才要尽快做胸部检查和结核评估。\n- 在没排清之前，稳妥起见：**先别和家里人共用餐具牙刷毛巾，尽量保持室内通风，咳嗽打喷嚏戴口罩**。这属于谨慎处理，不等于你已经有传染性。\n\n关于“结节病”也别先自己吓自己。结节病是另一类会引起肉芽肿的疾病，**和肿瘤不是一回事**，但它和结核有时在病理上会有重叠，所以才需要结合影像、化验和医生面诊判断。\n\n你带的奥美拉唑、麦滋林-S颗粒，听起来更像**护胃用药**，和这个淋巴结病因判断关系不大；胃不难受时漏吃，一般**不是当前最关键问题**。当前重点不是纠结这两个药，而是**把正式病理和复诊落实**。\n\n你不想马上跟家里人说“结核”，这个我理解。你现在可以先用一句相对准确又不过度吓人的说法：\n**“病理提示是肉芽肿性炎，医生说还要进一步排查，暂时还没有最后定论。”**\n这样说是合适的。\n\n接下来请你直接回复我两件事：\n1. **你能不能在1周内去线下复诊？**\n2. **你现在有没有咳嗽、咳痰、胸痛，最近体重有没有明显下降？**\n\n如果你出现**持续发热、明显盗汗越来越重、咳嗽咳血、胸闷气短、颈部肿块明显增大、伤口红肿流脓**，那就不要等门诊，尽快就医。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00060",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+17min",
+      "text": "一周内我可以去复诊，我想先自己去挂号，不想家里人一听“结核”就吓到。\n\n症状的话，我最近是偶尔干咳几下，不怎么有痰，也没有咳血。胸痛没有明显，胸闷气短也没有。体重我没称，但衣服感觉没松很多，应该没有明显瘦。也没有一直发高烧，伤口现在看着也没红肿流脓，脖子那里也没突然变大。\n\n我现在就是还不确定我手机里那段到底是不是最终正式病理报告，也没找到你说的抗酸染色、特殊染色那些字。那我复诊是先挂“结核门诊/感染科”最合适吗？如果挂不到，是不是就挂呼吸科？需要当天就去，还是这几天内约上就行？我到时候带出院小结、病理那张纸、身份证医保卡这些够不够？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+17min",
+      "text": "对，复诊科室你可以这样选：**首选结核门诊/感染科**；如果挂不到，**呼吸科**也可以，重点是先把“结核是否需要排查、胸部有没有受累”这件事接上。\n\n按你现在描述，**没有明显急症信号**，一般**不一定非要当天冲去**；但也**不要拖太久**，建议你**这几天内约上，尽量1周内看上**。如果中间出现持续发热、夜间出汗明显加重、咳嗽变重、咳血、胸闷气短、颈部肿块明显变大或伤口发红流脓，就提前就医。\n\n你去的时候带这些就够用了，能多带更好：\n1. **出院小结**\n2. **病理报告/你手机里那段文字的原件或截图**\n3. **住院期间做过的检查结果**：尤其胸片/CT、血检、结核相关检查如果有的话\n4. **身份证、医保卡/医保码**\n5. **现在还在吃的药**，最好把药盒或药袋也带上\n\n挂号时如果需要一句简短描述，可以说：\n**“颈部淋巴结切除后病理提示肉芽肿性炎，结核待排，来复诊看下一步检查。”**\n这样表述比较准确，也不会说得太重。\n\n你暂时想自己先去，这是可以的。现阶段也可以先只跟家里人说：\n**“病理还没完全定，需要专科复诊把原因查清。”**\n\n如果你愿意，我下一条可以直接帮你整理一个**到门诊时该给医生看的重点清单**，让你挂上号后不容易漏说。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00081",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+39min",
+      "text": "我刚去小程序看了，原来住院那个医院感染科好像最早要下周，结核门诊也没看到近的号；附近三甲呼吸科后天有号，呼吸专病门诊也有一个比较近的。\n\n那我是不是先挂后天的呼吸科就行？别等感染科了吧，怕拖着。到时候我就按你那句话跟医生说“肉芽肿性炎、结核待排”这样可以吗？\n\n还有我那个病理，我现在手里就是手机里那几行和出院资料，不确定是不是最终盖章的。是到了医院先去病理科窗口打印正式报告，还是先看呼吸科让门诊医生帮我查？我不太想让我家里人帮我弄，因为挂号记录上如果写结核什么的他们看到又要问。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+39min",
+      "text": "对，**先挂后天的呼吸科是合适的**，不用为了等感染科再拖。你现在重点是**尽快把“结核是否需要进一步排查、胸部是否有受累”接上**，能先看上的专科比空等更重要。呼吸专病门诊如果更快，也可以挂。\n\n到时候你这样跟医生说就可以：\n**“我之前做了左颈部淋巴结切除，病理看到肉芽肿性炎，报告里提到结核待排，今天来想接着明确下一步检查。”**\n比只说“结核”更准确，也不会一下说得太重。\n\n关于病理报告，**最稳妥的是能打印正式报告就尽量打印**，但**不要因为等打印耽误门诊**。你可以这样安排：\n1. 如果你到医院后**病理科窗口顺路、排队不长**，先去打印正式病理报告；\n2. 如果当天来不及、怕错过门诊，**先看呼吸科也完全可以**，把你手机里那几行和出院资料先给医生看，请门诊医生帮你查院内正式病理或补开后续检查；\n3. 如果门诊医生需要正式盖章版，再按医生指引去病理科补打。\n\n你现在带这些去就行：\n- 出院小结\n- 手机里那段病理文字/截图\n- 如果有住院检查结果也一起带\n- 身份证、医保卡/医保码\n\n你不想让家里人参与，这没问题，现阶段你自己去办完全可以。挂号记录如果被问到，你也只需要说：\n**“之前淋巴结手术后要复诊，把病理原因查清。”**\n\n最后提醒一下：如果这两天出现**持续发热、夜间出汗明显加重、咳嗽明显变重、咳血、胸闷气短、脖子肿块明显增大**，就别等后天门诊了，要提前就医。\n\n如果你愿意，我下一条可以直接给你列一个**门诊3句话说明模板 + 到了医生面前别漏问的4个问题**。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00103",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+51min",
+      "text": "我挂好了，后天上午的呼吸专病门诊。你刚才那句我也复制到备忘录里了，到时候照着说，资料我就带出院小结、手机里那段字和住院检查那些。\n\n我现在就想问这两天在家怎么弄比较稳妥点？因为看到“结核待排”还是怕传给家里人。我没有明显咳血、也没有喘不上气，就是偶尔干咳几下。那我要不要在家一直戴口罩？吃饭、睡觉要不要跟家里人分开？还是通风、咳嗽戴口罩就行？\n\n还有麻烦你给我那个“门诊3句话”和最该问的几个问题吧，别太长，我怕到时候一紧张又说乱了。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00109",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+51min",
+      "text": "这两天先按“谨慎但不用过度隔离”做：\n1. **家里注意通风**；\n2. **你咳嗽、近距离和家里人说话时戴口罩**；\n3. **勤洗手，不共用牙刷、毛巾**；\n4. **暂时先别和老人、孩子、孕妇长时间近距离待在密闭空间里**。\n\n按你现在的情况，**不需要在家24小时一直戴口罩**，也**不一定必须分房睡、分开吃饭**；但如果你咳嗽变多了，或者家里有人抵抗力差，那这两天临时更谨慎一点也可以。现在还只是“待排”，**不是已经确定有传染性结核**。\n\n**门诊3句话**你就说：\n1. **我做过左侧颈部淋巴结切除。**\n2. **病理提示肉芽肿性炎，手机里那段写了结核待排。**\n3. **我想请您帮我判断还要做哪些检查，先排清楚是不是结核、肺部有没有问题。**\n\n**最该问的4个问题**：\n1. **我这份病理更像什么？还需要调正式病理全文吗？**\n2. **我下一步要做哪些检查：胸部CT/胸片、结核相关检查、要不要痰检？**\n3. **我现在这种情况，家里需要做到什么程度的防护？**\n4. **结果出来前，我应该挂呼吸继续看，还是转感染科/结核门诊？**\n\n这两天如果出现**持续发热、夜里出汗明显加重、咳嗽明显变重、咳血、胸闷气短**，就别等后天了，提前就医。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00123",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+63min",
+      "text": "好的，我记下了，刚复制到备忘录里了。后天我就自己去呼吸专病门诊，这两天先通风、咳嗽或者靠近说话戴口罩，不跟老人小孩孕妇在屋里待太久，别的就不过度吓自己了。\n\n我现在手里还是只有手机里那几行病理字和出院资料，正式那个我就到门诊让医生帮我看要不要去窗口打，不想再在家翻了，有点乱。\n\n想再问一句：我后天看完门诊以后，要把哪些东西再发给你帮我看比较有用？比如医生写的诊断意见、开的检查单、正式病理全文、CT结果、结核检查结果这些？还是先把门诊医生最后怎么说拍给你就行？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00129",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+63min",
+      "text": "对，后天看完后，**最有用的是优先发这4样**，按先后顺序来就行，不必一次全齐：\n\n1. **门诊医生的诊断意见/病历结论**\n2. **正式病理报告全文**（如果门诊帮你调到了，这个很关键）\n3. **这次新开的检查单或检查结果**：尤其胸部CT/胸片、结核相关检查、痰检/抽血结果\n4. **医生最后怎么交代的下一步**：是继续呼吸科，还是转感染科/结核门诊，多久复诊\n\n如果你当天一时发不了太多，**先把门诊医生最后怎么说 + 开了哪些检查**发给我，也已经很有用，我可以先帮你判断下一步是否走在正确方向上。\n\n如果后面有结果，再补发这些：\n- **正式病理全文**\n- **CT报告全文**\n- **结核相关检查结果全文**\n- **出院小结里你觉得医生写得重要的那几行**\n\n发的时候尽量用这种顺序最省事：\n**“医生说了什么 → 开了什么检查 → 已经出来了哪些结果 → 让我什么时候复诊/转哪个科。”**\n\n你后天看完直接把关键几行文字发我就行，不用整理得很完美，我帮你一起捋。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00143",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+70min",
+      "text": "好的，我明白了，我就按你这个顺序记：医生怎么说、开了什么检查、出了什么结果、让我啥时候复诊或者转哪个科。\n\n我后天上午看完先把门诊医生最后说的和开的检查发你，正式病理或者CT、结核检查这些如果当天有再补。现在这会儿没啥新不舒服，还是偶尔干咳几下。我先不翻那些资料了，等门诊再说。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00149",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+70min",
+      "text": "好，这样安排可以。你先按计划去后天门诊，这两天先不用再翻资料。\n\n现在最重要的就两件事：\n1. 后天把门诊接上；\n2. 这两天留意有没有新变化。\n\n如果在门诊前出现这些情况，就别等了，要提前就医：**发热、夜里出汗明显加重、咳嗽明显变重、咳血、胸闷气短、脖子或锁骨那边疙瘩明显变大、手术伤口发红流脓**。\n\n你看完门诊后，先把**医生最后怎么说 + 开了什么检查**发我就够了；如果当天拿到正式病理、CT或结核相关结果，再补给我。我到时帮你一起判断下一步是继续呼吸科，还是要转感染科/结核门诊。\n\n先别太自己吓自己，按现在这样推进就行。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00163",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+2470min",
+      "text": "我已经到医院了，在呼吸专病门诊这边等叫号，资料都带了，出院小结、手机里那几行病理字、住院检查那些都在包里。\n\n这两天没有发烧咳血，也没有喘不上气，伤口看着也还行，就是偶尔干咳几下。正式病理我还没拿到，一会儿看医生怎么说，需不需要去窗口打。\n\n我看完就先把门诊医生最后怎么说、开了什么检查发给你，可以吧？我现在有点紧张，怕一会儿问漏了。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00170",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2470min",
+      "text": "可以，完全可以。你现在先别想着把所有东西都记全，只抓住这3件事就够了：\n\n1. 把病情一句话说清：**做过左颈部淋巴结切除，病理提示肉芽肿性炎/结核待排，今天来问下一步检查。**\n2. 问清下一步：**要做哪些检查、先看呼吸还是转结核/感染相关门诊。**\n3. 问清现在是否需要特殊防护：**家里要不要进一步隔离。**\n\n你可以直接把这4句给医生看/照着说：\n- 我之前切了左侧颈部淋巴结。\n- 现在手里有出院小结和病理那几行字，正式病理如果需要我再去打印。\n- 这两天偶尔干咳，没有发烧、咳血、气短。\n- 我想知道下一步还要做什么检查，是否考虑结核，肺部要不要查。\n\n如果紧张，至少别漏问这3个问题：\n- **我还需要做哪些检查？**\n- **现在更建议继续呼吸科，还是转结核/感染相关门诊？**\n- **正式病理是否一定要今天去窗口打印，还是门诊能直接查到？**\n\n你看完后先把**医生最后怎么说 + 开了什么检查**发给我就行；如果顺手拿到正式病理或新结果，再补发。你现在描述看，暂时没有明显急症信号，先安心把这次门诊看完。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00186",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+2565min",
+      "text": "我看完门诊了，现在在抽血这边坐着，有点累。\n\n医生看了出院小结和我手机里那几行病理字，没有直接说就是结核，也没说排除了。他大概说还要继续查，什么结核、结节病这类肉芽肿原因都要排一下。我怕我听错，但意思应该是还没定。\n\n他让我去病理窗口把正式病理报告打印出来，最好连补充报告/补充染色那些也一起拿到，不能只看手机那几行。我现在还没去打，刚先缴费抽血了。\n\n开的检查我具体名字有点看不懂，就记得有结核相关的抽血、普通抽血，还有胸部CT，窗口好像还说可能要按要求留痰。血已经抽了，CT排到下午晚一点，或者不行就明天。结果现在都还没出来。医生也没有给我开抗结核药，也没开激素。\n\n我现在是不是就先盯这几个：正式病理全文、胸部CT、结核那些检查结果？结果没出来前，家里还是按之前那样通风、咳嗽或近距离说话戴口罩就行吗？我还没敢跟家里人说“查结核”这几个字。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00192",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2565min",
+      "text": "对，你现在先盯这几个就对了，优先顺序我帮你排一下：\n\n1. **正式病理报告全文**，尤其有没有**补充报告/补充染色/特殊染色**\n2. **胸部CT结果**\n3. **结核相关检查结果**（如果医生让留痰，痰检也很重要）\n4. **门诊医生最后写的诊断和复诊安排**\n\n你今天门诊医生的意思，我同意你的理解：**目前还是“继续鉴别原因”，还没有定就是结核，也没有排除。** 现在**没开抗结核药、没开激素**，说明现阶段重点是先把证据补齐，这个节奏是合理的。\n\n结果没出来前，家里**先按之前那样做就可以**：\n- 保持通风\n- **你咳嗽或近距离说话时戴口罩**\n- 暂时尽量别和老人、孩子、孕妇长时间密闭近距离接触\n\n目前**不需要按“已经确诊传染性结核”那种程度去处理**，也不用现在就把家里人都吓到。但如果你想对家里说得保守一点，可以只说：**“医生还在排查引起淋巴结肉芽肿的原因，正在做胸部CT和一些感染相关检查。”** 不必现在就直接下“结核”定论。\n\n你现在先把抽血和CT走完；**有空一定去病理窗口把正式病理全文打出来**，这件事很关键。\n\n等你拿到后，优先把下面任一项发我都行：\n- 正式病理全文\n- 胸部CT报告\n- 结核相关结果\n- 门诊病历最后那段结论/复诊建议\n\n如果这期间出现**发热、夜汗明显加重、咳嗽明显增多、咳血、胸闷气短**，要提前就医，不用等结果全齐。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00207",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+2600min",
+      "text": "我刚去病理窗口打出来了，正式纸质的，坐在走廊等CT叫号，脑子有点乱。我不拍了，怕你这边也看不清，我照着纸念几句关键的：\n\n上面写的是“左颈部淋巴结”，然后有“肉芽肿性炎”。诊断意见那里我能看到：“首先考虑结节病，增殖性结核待除外，请结合临床”。\n\n后面还有一些什么特殊染色/补充报告的字，我看不太懂，像是有“抗酸染色”之类的，但我怕念错，不知道这一块是不是最关键。这个意思是更像结节病，还是结核还不能排？是不是就等下午胸部CT和结核那些抽血、痰结果出来再说？\n\n我现在没有发烧、咯血，也没有明显喘不上气，就是累，偶尔干咳。CT还没做，结核抽血结果也没出来。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00213",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2600min",
+      "text": "你现在的理解基本对：**这份病理更像是在提示“偏向结节病”，但结核还没有被排除”**，所以现阶段**不能直接按结节病定，也不能把结核完全放掉**。\n\n“肉芽肿性炎”本身不是最后病因诊断，它是在说这类炎症反应的形态；后面那句“**首先考虑结节病，增殖性结核待除外**”才是关键。对你现在最有用的结论就是：**下一步确实要结合胸部CT + 结核相关检查 + 病理补充结果一起判断。**\n\n所以你现在最该做的事很明确：\n1. **先把胸部CT做完**\n2. **按要求把结核相关抽血/留痰完成**\n3. **把病理报告后面补充报告/特殊染色那几行再核对一下**，尤其如果真有“抗酸染色”，要看后面写的是**阳性、阴性，还是未见明确抗酸杆菌**之类的结论\n\n你不用现在在走廊里把整份都搞懂。**特殊染色那部分是重要的，但不是你此刻必须自己解释明白**；更实际的是，等会儿如果方便，你就盯住那几行结论性的话再读给我，或者留着给门诊医生当面看。\n\n在CT和结核结果没出来前，**先继续按“尚未排除结核”的谨慎方式做**：\n- 通风\n- 咳嗽或近距离说话戴口罩\n- 尽量别和老人、孩子、孕妇长时间密闭近距离接触\n\n但按你现在说的，**没有发烧、咯血、明显气短**，暂时不像需要立刻急诊的状态，可以先把今天检查走完。\n\n如果你愿意，下一条你只要再补我一句就行：**病理补充/特殊染色那几行最后到底写了什么结论**；如果现在不方便，也没关系，等**CT报告或结核结果**出来先发那个也可以。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00226",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2750min",
+      "text": "患者手机端已出现胸部CT报告文字：纵隔及双侧肺门多发肿大淋巴结，肺内小结节/炎性纤维灶，未见明显空洞或胸腔积液；需结合病理和结核相关结果解释。",
+      "turn": 10,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00227",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+2750min",
+      "text": "结核相关检查尚未回流；患者称窗口告知多数1-3天。当前无高热、咯血、明显气短。",
+      "turn": 10,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00231",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+2750min",
+      "text": "我CT做完了，刚从医院出来，在路上，手机小程序里报告文字出来了。我先不拍了，照着上面读几句我看得懂的。\n\n它写着：**“纵隔及双侧肺门多发淋巴结肿大”**，然后肺里面还有什么**小结节**、**炎性改变/纤维灶**这些词，我有点分不清。后面好像是建议结合临床和病理。\n\n我特意翻了下，没看到写“明显空洞”，也没看到“胸腔积液”这几个字，但我也不确定是不是我漏看。片子我还没拿给下午那个呼吸科医生当面看，门诊估计也快下班了。\n\n结核抽血那些还没出，窗口说有的要1到3天，有的可能更久；留痰那个我还没弄明白，今天也没什么痰，就是干咳几下。\n\n这个CT看到纵隔和双侧肺门淋巴结肿大，是不是更像你刚说的结节病？还是结核也会这样？我今晚需要马上去结核门诊/急诊吗，还是等这些结核结果出来再挂呼吸科复诊？我现在没有发烧咯血，也不喘，就是累和紧张。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00237",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2750min",
+      "text": "先说结论：**今晚看起来不像必须马上跑急诊或连夜去结核门诊的状态**。你现在**没有发烧、咯血、明显气短**，CT里你读到的内容也**没有直接提示那种很急的危险信号**。可以先按门诊节奏走，等结核相关结果出来，并尽快回呼吸科复诊。 \n\n关于你问的判断：**“纵隔及双侧肺门多发淋巴结肿大”这个表现，确实和结节病比较相符；但结核也不是不能这样表现。** 再结合你前面的病理“**首先考虑结节病，增殖性结核待除外**”，目前更准确的说法是：\n**现阶段是“结节病倾向增加了”，但还不能把结核排除。**\n\n所以现在最该盯的不是自己先定性，而是这3件事：\n1. **结核相关结果**什么时候出来\n2. **痰检怎么留、能不能补留**\n3. **拿着病理全文 + CT报告回呼吸科复诊**，由医生结合起来定下一步\n\n今晚到结果出来前，先这样做：\n- **继续通风**\n- **咳嗽或近距离说话戴口罩**\n- 暂时避免和老人、孩子、孕妇长时间密闭近距离接触\n- **先不要自行吃激素**，也不要自己找抗结核药吃\n\n关于痰：你今天没什么痰很常见，**不是你做错了**。如果医生/检验窗口要求留痰，你下次重点问一句：\n**“我平时痰少，应该留晨痰吗？没有痰时怎么处理，要不要诱导痰或改别的检查？”**\n\n接下来建议你明后天做两件事：\n- **看小程序/短信/检验结果**，有新的结核结果就发我\n- **挂呼吸科复诊**；如果医院要求分到结核/感染相关门诊，再按他们流程转\n\n如果今晚或等待期间出现这些情况，就别等复诊了，直接尽快就医：\n**发热明显、咳嗽突然加重、咯血、胸闷气短、呼吸困难、精神很差。**\n\n你现在这一步其实走得是对的：**病理偏结节病，CT也往这个方向加了一点分，但最终还得等结核证据补齐。** 你先别被“纵隔和肺门淋巴结肿大”这句话吓到，它本身不是马上危险的意思。等结核结果一出来，你把具体项目和结论发我，我帮你一起判断下一步是继续呼吸科，还是要转结核/感染方向。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00252",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+3050min",
+      "text": "我到家了，吃了点东西，现在坐着翻小程序。今晚目前没有发烧、咯血，也没有喘不上气，就是人很累，偶尔干咳一下，心里还是慌。\n\n我刚看了小程序，CT报告还能看到，结核那些抽血/痰检什么的大多还显示处理中，具体项目名我也说不全。呼吸专病门诊我已经约到3天后的号了，病理纸质报告和CT报告我都放包里，准备到时候带去给医生当面看。\n\n那我这几天就先等结果、注意通风和近距离说话戴口罩，不自己吃激素或抗结核药，可以这样等到3天后复诊吗？如果结果中间出来了，我再把上面的具体文字发你。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00258",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3050min",
+      "text": "可以，这样等到3天后复诊是合理的。\n\n你这几天先盯住4件事：\n1. 等结核相关结果回来\n2. 继续通风，咳嗽或近距离说话戴口罩\n3. 不要自行吃激素，也不要自己先吃抗结核药\n4. 复诊时把病理全文和CT报告都带上\n\n按你现在的情况：没有发烧、咯血、明显气短，先按门诊节奏走可以，不像今晚要急诊。\n\n中间如果新结果出来，你把具体项目名和结论文字发我，我帮你一起看。若出现这些情况，就不要等3天后了，要提前就医：\n- 发热明显\n- 咳嗽明显加重\n- 咯血\n- 胸闷气短或呼吸费力\n- 人明显虚弱到撑不住\n\n你现在紧张很正常，但目前节奏是对的：先等结果、做好防护、按时复诊。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00277",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+5930min",
+      "text": "医生，我这两天基本按你说的在等，没有自己吃激素、抗结核药、抗生素。家里也通风，我咳嗽或者近距离说话就戴口罩。现在还是偶尔干咳，人累一点，但没有发烧、咯血、明显喘不上气，伤口也没红肿流脓。\n\n我刚翻小程序，有几项出来了，我照着大概读给你：血常规、那个炎症指标好像都没提示很严重感染，数值旁边没有红色特别多的。还有一个名字像“结核感染T细胞检测”还是类似的，结论那里显示阴性/未见阳性提示。我看着稍微松口气，但又不敢理解成结核完全排除了。\n\n痰那个、培养还是病原什么的，还有几项还在“处理中”，我也分不清哪个最关键。明天呼吸专病门诊还在，我病理纸质全文和CT报告都已经放包里了，准备给医生当面看。\n\n我想问下：这个结核T细胞阴性，是不是只能说结核可能性低一点，不能算彻底排除？明天我是不是重点问医生还要不要补留痰、培养什么时候看结果，还有到底先按结节病方向还是继续排结核？家里我还是只说在查淋巴结和肺门淋巴结原因，没敢把“结核”说太重。",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00283",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+5930min",
+      "text": "对，你现在这个理解是对的：**结核感染T细胞检测阴性，只能说明“支持结核的证据少了一点”，不能当成彻底排除结核。** 尤其你现在本来就在做“结节病 vs 结核等肉芽肿性疾病”的鉴别，这个结果要和**病理、胸部CT、痰检/培养**一起看，不能单独定。\n\n结合你前面的情况，目前更稳妥的说法还是：**结节病倾向在增加，但结核还没被完全排除。** 所以你现在没有做错，明天门诊重点就该问这些。\n\n你明天可以直接按这个顺序问医生：\n1. **病理+CT综合看，现在更偏结节病，还是仍要重点排结核？**\n2. **这个结核T细胞阴性，在我这种情况里代表什么，能排除到什么程度？**\n3. **我痰少，是否还需要补留痰？要不要留晨痰，还是需要诱导痰/支气管镜等别的检查？**\n4. **痰培养、病原学、结核相关结果里，接下来最关键等哪几项？大概多久看？**\n5. **在结核没完全排除前，是否暂时不要用激素？** 这个很重要。\n\n你今晚到明天门诊前，处理上不用变：\n- 继续通风\n- 咳嗽或近距离说话戴口罩\n- 先不要自行吃激素、抗结核药、抗生素\n- 把**病理全文、CT报告、已出的检验结果**都带上\n\n家里那边你现在这样说也可以，没必要先把“结核”说死。你可以继续说：**“医生还在鉴别淋巴结和肺门淋巴结肿大的原因，感染和非感染性原因都在排查中。”**\n\n如果明天看完门诊，你把医生最后的判断和后续计划发我，尤其是有没有说**继续排结核、要不要补留痰、能不能考虑结节病方向**，我再帮你一起梳理下一步。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00299",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+6710min",
+      "text": "医生，我刚看完呼吸专病门诊出来，在走廊坐着歇一下，脑子有点乱。\n\n我把纸质病理、CT报告，还有小程序里出来的结果都给线下医生看了。医生大概意思是：现在结合病理和CT，**结节病可能性更高一点**，但是**结核还是不能完全排除**，还说那个结核T细胞阴性不能单独说明没结核。\n\n他今天没有给我开激素，也没有开抗结核药、抗生素。让我继续等痰检、培养、病原那些没出的结果，还建议我再挂感染科或者结核相关门诊会诊一下。后面还提到什么诱导痰、支气管镜，我听得有点懵，尤其我本来就没什么痰。\n\n我现在症状还是差不多，偶尔干咳，人累，没有发烧咯血，也没有喘不上气。\n\n我想请你帮我理一下：我接下来到底是先挂感染科还是结核门诊？那些还没出的结果我要重点盯哪几个？现在在结核没完全排除前，我是不是还是继续戴口罩通风、不要自己吃激素这些？家里我还是没敢把“结核”说太重，只说还在查淋巴结肿大的原因。",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00305",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+6710min",
+      "text": "你现在这一步，**优先级最高的是先把“结核有没有基本排到足够低”这件事弄清楚**。所以如果二选一，**我更建议先挂结核相关门诊/感染科里更偏结核评估的门诊**；如果医院有明确的“结核门诊/结核专病门诊”，一般先去那个更直接。因为你目前不是在问“像不像结节病”这么简单，而是**在结节病倾向增加的同时，结核还没完全排除**，而激素一旦用了，方向就会被影响，所以先把这一步卡住最重要。\n\n你接下来重点盯这几类结果：\n1. **痰找结核分枝杆菌相关结果**：涂片/染色、核酸检测、TB-DNA或类似名称\n2. **痰培养**，尤其分枝杆菌培养\n3. **其他病原学结果**，看有没有替代性的感染证据\n4. 如果后面做了**诱导痰或支气管镜标本**，那里面的结核核酸、涂片、培养会更关键\n\n你没什么痰，这很常见，所以门诊提到**诱导痰、支气管镜**是有逻辑的，不是说明你病情突然很重，而是因为**想拿到更有价值的病原学标本**。你下次可以直接问：\n- “我平时痰很少，下一步是先做诱导痰，还是直接考虑支气管镜？”\n- “目前最关键的是等现有痰检，还是尽快补更有效的取材？”\n\n你现在的做法也对，**在结核没完全排除前，继续通风、近距离说话或咳嗽时戴口罩、不要自行吃激素**。另外也**不要自己先吃抗结核药或抗生素**，除非线下医生明确开了方案。\n\n按你现在说的，**没有发烧、咯血、明显气短**，不像要立刻急诊，但门诊随访要继续推进，不要拖着不管。\n\n给你一个最实用的顺序：\n- **先挂结核相关门诊/感染科中能评估结核的门诊**\n- 带上：**病理全文、CT报告、已出的结核T细胞结果、所有已出和未出的检验清单**\n- 到门诊重点问三句：\n  1. **我现在还需要怎么排结核，下一步最有效的是诱导痰还是支气管镜？**\n  2. **现有结果下，激素是不是仍然先不能用？**\n  3. **哪些待出结果最关键，出来后由哪个科接着定方向？**\n\n家里那边你现在的说法也可以，没必要先把“结核”说死。可以继续说：**“目前更偏结节病，但感染特别是结核还在排查，医生还没最后定。”**\n\n如果你愿意，下一条把医院小程序里**还在等待的项目名称**尽量逐条发我，我帮你按“最关键/次关键”排个序。",
+      "turn": 14,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00319",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+6890min",
+      "text": "医生，我刚又翻小程序挂号，名字明确写“结核专病门诊”的这两三天没号，我只约到4天后一个感染科/结核筛查方向的号，我也不确定算不算你说的那个更对口。\n\n结果那边我看了，痰检、培养、病原那些还是很多显示“处理中”，具体哪个是TB-DNA哪个是培养我现在看得头晕，等有结论我再把关键字读给你。现在症状还是老样子，偶尔干咳、人累，没有发烧、咯血、明显气短。我也没自己吃激素、抗结核药、抗生素。\n\n那这4天先这样等着可以吗？我继续通风、近距离说话或者咳嗽戴口罩。要是中间结果突然出来，或者我出现发烧咯血喘这些，就提前去医院，不等4天，对吧？",
+      "turn": 14,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00325",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+6890min",
+      "text": "对，这样理解基本对。\n\n**先等这4天是可以的**，因为你现在仍然**没有发烧、咯血、明显气短**，也没有自己乱用激素、抗结核药或抗生素，整体还是按门诊节奏推进。\n\n你约到的这个**感染科/结核筛查方向**，在现在这个阶段是合适的，算是对口方向，不必因为没抢到名字写明“结核专病门诊”就慌。\n\n这4天先继续这样做：\n- **通风**\n- **近距离说话或咳嗽时戴口罩**\n- **先不要自行吃激素、抗结核药、抗生素**\n- 把**病理全文、CT报告、已出结果和仍在处理中的项目清单**都留好，去门诊时一起带上\n\n对，**中间如果有新结果出来，尤其是痰检、TB-DNA/结核核酸、分枝杆菌培养这类，你及时把关键字和结论发我**；如果出现下面这些情况，**就不要等4天后了，要提前就医**：\n- **发热明显**\n- **咯血**\n- **胸闷、气短、喘得明显**\n- **咳嗽明显加重**\n- **整个人虚弱得厉害**\n\n你现在节奏没问题，先稳住。等结果一出来，我再帮你一起判断下一步更偏继续排结核，还是往结节病方向推进。",
+      "turn": 15,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00339",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+7190min",
+      "text": "医生，我晚上把资料都收了一下，病理纸、CT报告、还有小程序里已经出的和还在处理中的检查单，我都放一个袋子里了，准备4天后直接带给感染科/结核筛查那个门诊看原件。手机备忘录也记了：先不乱吃激素、抗结核药、抗生素，有发烧咯血喘这些就提前去医院。\n\n现在症状还是没什么变化，就是偶尔干咳、容易累，没有发烧、咯血，也没有明显气短或者咳得更厉害。\n\n我还有点怕这几天小程序突然出结果我看不懂。如果上面只是写“阴性”“未检出”，或者还是“处理中”，我是不是就先别自己判断排除了，只把项目名字和结论那几行照着读给你/带去门诊看？只要人没明显加重，就继续等4天后的门诊，对吧？",
+      "turn": 15,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00346",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7190min",
+      "text": "对，先不要自己下“排除了”的结论。即使看到“阴性”“未检出”，也通常只是说明**这个项目这次没有发现支持证据**，要不要基本排除，还得结合病理、CT和其他痰检/培养一起看；如果写的是“处理中”，就说明结果还没出，先等。\n\n你这几天最稳妥的做法就是：**只把项目名称和结论那几行原样记下来或读给我/带去门诊看**，不要自己先综合判断，这样最安全。\n\n只要你人还是现在这样：**没有发烧、咯血、明显气短，咳嗽也没明显加重**，那就可以继续等4天后的感染科/结核筛查门诊。\n\n这几天继续保持：\n- 通风\n- 咳嗽或近距离说话戴口罩\n- 不自行吃激素、抗结核药、抗生素\n\n如果中间有新结果，你就按这个格式发我最有用：\n**项目名 + 结论 + 是否仍处理中**。\n\n一旦出现**发热、咯血、胸闷气短、咳嗽明显变重、明显撑不住**，就别等4天了，提前去医院。",
+      "turn": 16,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00361",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+8030min",
+      "text": "医生，昨晚到现在还是差不多，偶尔干咳、容易累，没有发烧、咯血，也没有明显气短，咳嗽也没加重。我也没乱吃激素、抗结核药、抗生素。\n\n小程序我上午看了一眼，没看到新的我能看懂的结论，痰检、培养、病原那些好像还是处理中。我就不反复翻了，资料袋都放好了。\n\n那如果这几天一直都是“处理中”，我就直接带着纸质病理、CT报告，还有手机里这些已出和未出的项目去4天后的感染科/结核筛查门诊，让他们当面核对就行吧？中间如果真有新结果或者人不舒服了，我再来问你。谢谢医生，我先按这个等。",
+      "turn": 16,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00367",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+8030min",
+      "text": "对，如果这几天一直都是“处理中”，你就按这个计划走：**直接带上纸质病理、CT报告，以及手机里已出/未出的项目，去4天后的感染科/结核筛查门诊当面核对**，这样是合适的。\n\n你现在症状也还是稳定的，暂时不用因为结果没全出就自己反复解读。\n\n这几天继续保持就行：\n- 通风\n- 咳嗽或近距离说话戴口罩\n- 不自行吃激素、抗结核药、抗生素\n\n对，**中间如果有新结果出来**，你就把“项目名+结论”发我；**如果人不舒服了**，尤其出现发热、咯血、明显气短、咳嗽明显变重或整个人很虚，就不要等门诊，提前就医。\n\n你现在这个安排是稳妥的，先按这个等就可以。",
+      "turn": 17,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00381",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+8750min",
+      "text": "好的医生，我明白了。资料袋我已经放好了，后面不反复翻小程序自己吓自己了。\n\n这会儿还是老样子，偶尔干咳、人容易累，没有发烧、咯血、喘这些。我也不会自己吃那些药。\n\n我就先按您说的等4天后的门诊，真有新结果我就只把项目名和结论发您；如果人不舒服加重了就提前去医院。谢谢医生，我先休息了。",
+      "turn": 17,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00388",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+8750min",
+      "text": "好，先休息吧。你现在这个处理是对的：症状稳定，就等4天后的门诊；有新结果就按“项目名+结论”发我；如果出现发热、咯血、气短明显、咳嗽明显加重或人很虚，就提前去医院，不等门诊。先别自己解读，也别自行吃激素、抗结核药或抗生素。",
+      "turn": 18,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00403",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12350min",
+      "text": "医生，我明天一早就去感染科/结核筛查那个门诊了。资料袋我今晚又看了一下，纸质病理、CT报告、出院资料都装好了，手机小程序也准备到时候给现场医生看。\n\n这两天半我没自己吃激素、抗结核药、抗生素。小程序里我没看到新的我能明确读懂的结论，有些还是像处理中，有些名字我也看不太明白，我就不在家里继续翻了，怕越看越乱。\n\n我就按之前说的，带原件去让线下医生核对系统和纸质报告。等明天看完门诊，有医生说法或者正式结果我再来跟您说。谢谢医生。",
+      "turn": 18,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00409",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12350min",
+      "text": "好，先按这个计划去就行，你现在处理得很稳妥。\n\n明天门诊时你重点让线下医生当面核对这几类：\n1. 颈部淋巴结病理是不是正式最终版，是否还有补充病理/特殊染色\n2. 胸部CT和颈部淋巴结情况放在一起，更偏结核、其他感染，还是结节病这类非感染性原因\n3. 结核相关结果里哪些已经正式出来，哪些还在等\n4. 现在是不是需要开始任何药，还是继续先别用药等结果\n\n你这会儿没有自己乱吃激素、抗结核药、抗生素，这点很重要，继续保持到门诊医生明确说法为止。\n\n明天看完后，你回来直接把最关键的话发我就行：\n- 医生怎么判断的\n- 病理/CT/结核检查各自的结论\n- 有没有开药、开什么药\n- 有没有要求再做检查或住院\n\n如果今晚到明早出现发热、咯血、气短明显、咳嗽突然重很多，或整个人明显撑不住，就别等正常门诊，及时提前就医。",
+      "turn": 19,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00424",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12710min",
+      "text": "医生，我刚看完感染科/结核筛查门诊出来，人有点累，脑子也乱，我先把记住的跟您说一下。\n\n现场医生看了我带的纸质病理、CT报告、出院资料，也看了手机小程序里的结果。她大概意思是现在更像“结节病倾向”或者结节病可能大一些，但也没说已经完全确诊，更没说结核这些已经百分百排除了。\n\n已经出来的一些结核筛查和抽血，她说好像没有很强支持活动性结核或者急性感染的证据，但痰培养、还有一些病原的结果还没全出来，还要继续等。我具体项目名字真记不住了。\n\n这次没有给我开抗结核药，也没开激素、抗生素，也没让我住院。让我大概一周后再复诊，期间如果发烧、咯血、喘得明显、咳嗽加重，或者后面结果提示阳性，就提前去医院。\n\n我现在还是没有发烧咯血，也不怎么喘，就是跑完门诊更累，偶尔干咳。那我现在就按线下医生这个意思，先不乱吃药，等痰培养那些结果，一周后复诊，对吧？我就是还怕“没完全排除结核”这句话。",
+      "turn": 19,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00430",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12710min",
+      "text": "对，按你这次门诊医生的意思走是合适的：**现在先不要自己乱吃抗结核药、激素或抗生素，继续等还没出的痰培养和其他病原结果，按约一周后复诊。**\n\n你担心“没完全排除结核”，这个担心我理解，但它在现在这个阶段**不等于医生怀疑你已经是活动性结核**。更准确地说，是：\n- 目前已有信息**没有很强支持活动性结核或急性感染**\n- 但因为还有一部分结果没出来，所以医生现在不会过早说“100%排除”\n- 这也是为什么这次**没给你上抗结核药、没住院、而是先观察等结果**\n\n结合你现在的情况：**没有发烧、没有咯血、没有明显气短，只是偶尔干咳、容易累**，说明目前可以继续按门诊计划观察，不像需要立刻升级处理的样子。\n\n你这周先盯这几件事就够了：\n1. **别自行加药**，尤其激素、抗结核药、抗生素\n2. **等未出的痰培养/病原结果**\n3. **按时去一周后复诊**\n4. 这期间继续注意通风；咳嗽或近距离接触时戴口罩，会更稳妥\n\n提前去医院的信号还是这几个：\n- 发烧\n- 咯血\n- 喘得明显\n- 咳嗽明显加重\n- 人明显撑不住\n- 或者后面出来的结果提示阳性/需要尽快处理\n\n你今天门诊后的理解总体是对的，不需要因为那句“没完全排除结核”就自己吓自己。它更像是**结果还在等，先不下绝对结论**，不是在说你现在就要按结核治疗。\n\n你先休息。后面如果有新结果，你还是只发我最关键的两样：**项目名 + 结论**。我再帮你一起看下一步。",
+      "turn": 20,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00445",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12830min",
+      "text": "好的医生，我明白一点了，就是现在不是说已经按结核治，也不是完全排除，只是还有结果没回来，先别乱动药。\n\n我就先等痰培养、病原那些结果，一周后按时复诊。中间如果发烧、咯血、喘得厉害、咳嗽明显重了，或者小程序出来阳性这种，我就提前去医院。\n\n后面有新结果我尽量按您说的读“项目名+结论”，但那些名字我可能还会念错，到时候我就照着字读。家里我先还是说在等淋巴结和肺这边的结果，没把结核两个字说太重。\n\n我现在先回去躺会儿，今天跑门诊真有点累。谢谢医生。",
+      "turn": 20,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_100__GPT-5.4",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.0,
+    "judge_score_range": 2,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 20
+}

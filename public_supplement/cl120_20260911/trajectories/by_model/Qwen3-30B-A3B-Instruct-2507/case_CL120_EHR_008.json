@@ -1,0 +1,3319 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "87424327ab4a65748ef4fce1db17aa20259432823a7b176761f2dbdcc0504de2",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_008__anon_a93e8e50731bcfd7",
+    "packet_sha256": "dbd54c77dd46cfbe3af279d431a2bb95e4831d923de45662d45ad34b59807b18"
+  },
+  "case_id": "case_CL120_EHR_008",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "cardiovascular",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "misstated_family_or_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "delayed_or_staged_result_return | low_adherence_or_refusal",
+    "starting_phase": "post_handoff",
+    "target_problem": "atrial_fibrillation_anticoagulation",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "心内科阶段性复核边界已回流：当前无长期口服抗凝新处方，继续按出院药，不由家庭自行启动利伐沙班/华法林，后续由心内科门诊复评。",
+      "医生在 turn 43 解释该边界：当前是“暂时不启动”，不是“永久不用”；后续必须由心内科完整评估后决定，家里不能自行判断或行动。",
+      "家属 turn 43 teach-back：不是以后永远不用抗凝，是眼下暂时不启动；继续按出院药袋吃；不自己买利伐沙班、华法林；后面按心内科时间复诊，带纸质病历和药袋过去。",
+      "家属能复述红旗升级：突然说话不清、偏瘫、吐血黑便、胸口痛喘不上气、腿突然肿痛加重则直接急诊，不等门诊。",
+      "患者当前仍虚弱、进食少，但多轮均无卒中样症状、大出血/黑便呕血、胸痛气促、下肢急性肿痛等急性红旗。",
+      "轨迹中已完成资料/药袋线下核对、肿瘤科出血风险意见部分回流、心内科窗口/门诊复核、线上医生解释和家属执行确认。"
+    ],
+    "if_continued_next_focus": "仅在心内科后续复评给出新抗凝处方/改变暂缓边界、复评安排失败、家庭无法执行当前药物边界，或出现卒中样症状、消化道出血、胸痛气促、下肢急性肿痛等红旗时重新打开主线；届时应核对新处方和复查安排并确认执行。",
+    "rationale": "本次 CareLoop 的有界任务是帮助家属处理出院后“心房颤动诊断是否需要家庭自行启动长期抗凝”的高风险用药不确定性。当前已经形成安全的阶段性责任闭环：心内科阶段性复核边界已回流并被线上医生解释；当前无利伐沙班/华法林等长期口服抗凝新处方；家庭明确不会自行购买或启动抗凝，继续按出院药执行；后续抗凝是否启动由心内科门诊复评决定；家属能用自己的话复述“不是永久不用、是眼下暂不启动”，并能复述卒中样症状、消化道大出血、胸痛气促、下肢急性肿痛等急诊触发条件。残余的房颤长期抗凝决策和肿瘤/营养长期管理仍然存在，但已经转为外部心内科/肿瘤科有 owner、有复评路径、有红旗升级边界的 bounded residual，不再是当前线上 episode 的行动阻断点。闭环主要是 bounded episode safety closure，并非癌症治愈、房颤长期管理终局或永久不用抗凝。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual: 房颤长期是否启动口服抗凝仍需心内科后续门诊结合心律证据、血常规/凝血/肝肾功能、肿瘤出血风险和总体情况动态复评；当前不构成家庭自行用药行动 blocker，因为已有明确外部 owner 和执行边界。",
+      "bounded_longitudinal_residual: 食管肿瘤、淋巴结问题、进食差和营养风险仍需肿瘤科/营养相关长期随访；本次闭环不代表肿瘤病程结束。",
+      "bounded_longitudinal_residual: 若未来心内科开具或改变抗凝方案，需要重新核对药名、剂量、开始时间、复查安排和出血处理；目前该事件尚未发生。",
+      "global_disease_journey_background: 后续癌症治疗、复发监测、营养改善和全部慢病优化仍在疾病长程中。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3-30B-A3B-Instruct-2507",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "化疗出院后发现写了心房颤动，家里人搞不清要不要吃抗凝药",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我想替家里老人问一下。他刚做完一轮维持治疗出院，之前是食管肿瘤手术后又查到淋巴结问题，吃东西一直不太顺、体重也掉。出院单上我才看到有“心房颤动”几个字，但医生当时主要交代营养和复查，我没记得说要长期吃抗凝药。现在家里人怕出血，又怕血栓，不知道该怎么问清楚。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患者在CareLoop联合医疗网络中已授权/已同步的既往病历、出院记录、心电图/心脏超声报告、用药清单（特别是出院带药）、以及近期心房颤动的评估依据和抗凝治疗建议记录。同时，请检查是否有心内科会诊记录或抗凝用药的医嘱依据。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop联合医疗网络中已授权/已同步的既往病历、出院记录、心电图/心脏相关检查结果、用药清单（特别是出院带药）、以及最近的门诊或住院时间线，以确认心房颤动的诊断依据、抗凝治疗建议的出处、当前用药情况和肾功能状态。请一次性返回这些资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、出院记录、检查检验结果、用药清单、时间线以及家庭照护可及性信息，以便全面评估心房颤动的诊断依据、抗凝治疗的必要性、出血风险和当前用药情况。请按权限返回所有相关资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、出院记录、用药清单、检查检验结果、时间线以及家庭照护可及性信息，以确认心房颤动的诊断依据、抗凝治疗的处方记录、肾功能情况和出血风险评估，以便给出安全建议。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、出院记录、用药清单、检查检验结果、时间线以及家庭照护可及性信息，以便确认心房颤动的诊断依据、抗凝治疗的处方记录和当前用药情况。请一并返回相关文档和时间线摘要。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您家老人刚出院，发现有“心房颤动”这个情况，确实需要特别关注。目前最关键的是：**心房颤动是否需要长期服用抗凝药，必须由医生根据具体病情判断，不能自行决定停药或开始用药。**\n\n根据您描述的情况，老人有食管肿瘤病史、近期体重下降、进食困难，同时新发现心房颤动，这类患者在用药上风险较高，尤其是抗凝药可能增加出血风险，但不抗凝又可能引发脑梗等严重后果。\n\n**建议您立即做以下两件事：**\n\n1. **尽快联系老人的主治医生或心内科医生**，明确告知：出院时未被告知需服用抗凝药，现在家属担心用药风险，希望确认是否需要服用、用哪种药、如何监测。\n2. **准备老人的出院小结和用药清单**，如果能拍照或复印，带到医院时给医生看，这样医生能更准确判断。\n\n目前我们无法查看具体的用药记录或检查报告，所以不能直接判断用药方案。但请放心，**心房颤动的治疗必须个体化，不能凭猜测用药**。请务必尽快和医生沟通清楚，避免延误或用药不当。\n\n后续还需要补充医生的明确建议，但现阶段请先完成这两步。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "家属已翻到出院资料：诊断栏有心房颤动及下肢血栓相关表述；出院药袋中未见家属能识别的长期口服抗凝药；住院曾用腹部皮下注射药物但用途不明。需继续核对药名、剂量、最后一次用药和线下医嘱。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00051",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "若转心内科门诊，需提醒患者带出院小结、用药清单、近期血常规/肝肾功能/凝血结果及影像/血栓描述；如有神经系统或出血红旗应急诊。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00056",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+14min",
+      "text": "医生，我刚把出院小结翻出来了，我先照着纸打字，不知道读得准不准：\n\n诊断那里确实有“心房颤动”。另外还有一行我看着像是“两侧小腿肌间静脉丛曲张伴左侧血栓形成”，这是不是也算血栓？我一下更慌了。\n\n药袋我翻了几盒，目前看着是营养的、护胃的、止吐的这些，我没看到也没认出来“利伐沙班、华法林、达比加群”这种抗凝药盒。住院时护士给他打过肚皮针，但我不知道针叫什么、打多少、最后一次什么时候，也不知道是防血栓还是治血栓。\n\n我还没联系上病区，也不知道先找肿瘤科主治还是心内科。今晚这些出院药我们就按纸上吃，不敢自己加抗凝药，对吗？如果心内科号明天后天才看上，这中间最怕哪些情况要直接急诊？比如腿肿、胸闷、黑便这些算吗？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+14min",
+      "text": "我需要立即调取患者在CareLoop联合医疗网络中已授权/已同步的以下资料：\n1. 最近一次住院的出院小结全文（含诊断、用药、医嘱部分）\n2. 住院期间的用药记录（特别是皮下注射药物的名称、剂量、频次、最后一次使用时间）\n3. 相关影像报告（尤其是下肢静脉超声或CTV报告，确认“小腿肌间静脉丛曲张伴左侧血栓形成”的具体描述和结论）\n4. 出院时开具的全部口服药物清单（含药品名称、剂量、用法、疗程）\n5. 患者近期的凝血功能、肝肾功能检查结果\n6. 患者照护可及性信息（如是否能自行服药、家属是否能协助、交通是否便利）\n请按优先级返回上述资料。如部分资料未同步或不可见，请明确标注。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00065",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+14min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药记录、出院小结原文、影像报告、凝血功能及肾功能检查结果、家庭照护可及性信息；同时请求查看患者近期在中心医院的住院记录、护理记录、用药记录（特别是皮下注射药物的名称、剂量、频次、最后一次给药时间）和心内科会诊记录。请返回所有可见资料。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00069",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00071",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00073",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+14min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、出院小结原文、用药清单、检查检验结果、影像报告、时间线和照护可及性信息，重点核对：心房颤动诊断依据、抗凝治疗指征、住院期间皮下注射药物名称与剂量、最后一次给药时间、下肢静脉血栓形成的具体影像报告及治疗方案、当前出院药袋中实际药品清单。同时查看我此前保存的医生工作备注，确认是否已有相关提醒。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00075",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00078",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00080",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+14min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、出院小结、用药清单、检查检验结果、影像报告、时间线和家庭照护可及性信息，重点核查：1. 心房颤动的诊断依据和抗凝指征；2. “两侧小腿肌间静脉丛曲张伴左侧血栓形成”的完整描述及是否已启动抗凝治疗；3. 住院期间皮下注射药物的名称、剂量、频率和最后一次使用时间；4. 出院时开具的全部药物清单，特别是抗凝药是否包含在内；5. 是否有心内科或肿瘤科的出院医嘱或转诊记录。请系统返回所有可见资料。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00082",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00084",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+14min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、出院小结、用药清单、检查检验结果、影像报告、时间线和家庭照护可及性信息，重点核查：1. 心房颤动的诊断依据与风险分层（CHA2DS2-VASc评分）；2. “两侧小腿肌间静脉丛曲张伴左侧血栓形成”的具体影像/超声报告原文；3. 住院期间使用的抗凝药物名称、剂量、给药途径、最后一次用药时间；4. 出院时开具的全部药物清单（含口服药与注射药）；5. 是否有心内科或肿瘤科的出院医嘱摘要；6. 患者近期血常规、肝肾功能、凝血功能等关键指标。请按权限返回可见内容。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00090",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+14min",
+      "text": "您家老人的情况确实需要谨慎对待。目前可以明确的是：**心房颤动和下肢血栓都属于需要专业评估的疾病，必须由医生根据具体病情决定是否需要抗凝治疗，不能自行用药或停药。**\n\n您已经做得很对：**目前不要自行添加任何抗凝药物**，尤其是口服药或注射药，因为不清楚具体剂量和风险，可能带来严重出血风险。\n\n接下来请您尽快完成以下几步：\n\n1. **立即联系心内科门诊**，优先挂心内科的号，带上老人的出院小结、用药清单（拍照或复印），以及近期的血常规、肝肾功能、凝血功能检查报告（如有）。如果实在约不上，可考虑急诊科就诊，说明“心房颤动+下肢血栓”情况，由急诊医生评估是否需要紧急处理。\n\n2. **重点向医生问清楚三件事**：\n   - 住院期间打的“肚皮针”是什么药？是抗凝药吗？最后一次是什么时候打的？\n   - 出院时是否应长期服用抗凝药？如果需要，是用哪种药？如何监测？\n   - 如果暂时不能用药，有哪些替代方案或注意事项？\n\n3. **在等待就诊期间，请密切观察老人是否有以下“红旗信号”**，一旦出现，**请立即前往急诊**：\n   - 突然出现一侧肢体无力、口角歪斜、说话不清（警惕脑梗）；\n   - 胸闷、胸痛、呼吸急促、心跳极快或不规则（警惕肺栓塞或心衰）；\n   - 大便发黑、呕血、皮肤大面积瘀斑（警惕消化道或全身出血）；\n   - 一侧腿明显肿胀、发烫、疼痛加剧（警惕血栓进展）。\n\n这些情况都可能危及生命，不能拖延。目前我们无法查看具体的用药记录和检查报告，所以必须靠您和医生面对面沟通来确认下一步方案。请放心，您现在的谨慎态度是对的，接下来只要按这几点行动，就能最大程度保障老人安全。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00106",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+56min",
+      "text": "医生，我刚按您说的先去查心内科号了，今天普通号已经满了，系统上只能约到明天或者后天。我也看了老人现在的情况：没有突然一边手脚没力、嘴歪、说话不清；也没有呕血黑便；没有明显胸痛、喘不上气；腿目前也没看出比刚才更肿更痛。\n\n我们现在还是按出院带回来的药吃，我自己看药袋像是营养、护胃、止吐这些，但这个只是我自己认的，还没有药师或病区护士帮我逐个核对过。我不敢给他自己加利伐沙班、华法林这些抗凝药，但心里还是很怕今晚到明天这段时间会不会因为房颤或者那个腿上血栓出事。\n\n想再确认一下：如果今晚一直没有您说的这些红旗情况，我们是不是可以先不去急诊、不要自己补抗凝，就按出院药吃，明天尽量带着出院小结和药袋实物去医院核对？还是说光凭“房颤+下肢血栓”这几个字，即使现在没症状也建议今晚直接急诊评估？我怕折腾老人，但也怕自己耽误了。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00111",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+56min",
+      "text": "我需要立即调取患者在 CareLoop 联合医疗网络中可授权访问的以下资料：\n\n1. 最近一次住院的出院小结全文（含诊断、用药清单、医嘱部分）；\n2. 住院期间的用药记录（特别是皮下注射药物的名称、剂量、频次、最后一次使用时间）；\n3. 下肢静脉超声或CT血管造影报告原文，确认“左侧小腿肌间静脉丛曲张伴血栓形成”的具体范围和是否为新发；\n4. 出院时的凝血功能检查结果（PT、INR、aPTT）及肾功能（肌酐、eGFR）；\n5. 既往心电图或动态心电图报告，确认房颤类型（阵发性/持续性）；\n6. 患者家庭可及性信息：是否有家庭医生、是否可联系病区护士、是否有药师可协助核对药袋。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00113",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+56min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00115",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+56min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00117",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+56min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药清单、出院小结原文、影像报告摘要及时间线，重点核查：心房颤动诊断依据、下肢血栓形成的具体影像描述、住院期间皮下注射药物名称与剂量、最后一次用药时间、出院时是否开具抗凝药及具体方案。同时查看是否有心内科会诊记录或出院医嘱中关于抗凝治疗的明确说明。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00119",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+56min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00121",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+56min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00123",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+56min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历、检查结果、用药清单、出院记录和时间线，重点查看：1. 出院小结中关于“心房颤动”和“下肢血栓”的具体描述；2. 住院期间使用的皮下注射药物名称、剂量、频率和最后一次使用时间；3. 出院带药清单的完整文本记录，确认是否包含抗凝药；4. 近期血常规、肝肾功能、凝血功能等检查结果。请返回所有可见资料。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00125",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+56min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00127",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+56min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00129",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+56min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历、出院记录、检查检验结果、用药清单和时间线，重点查看：1. 出院小结中关于心房颤动和下肢血栓的详细描述；2. 住院期间使用的抗凝药物（如利伐沙班、华法林、低分子肝素等）名称、剂量、给药途径和最后一次使用时间；3. 出院时是否开具抗凝药物处方，若有，具体药物和剂量；4. 近期血常规、凝血功能、肝肾功能检查结果；5. 患者当前用药清单与实际药袋照片或文字记录的比对。请返回所有可见资料。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00131",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+56min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00133",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+56min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+56min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历、出院记录、用药清单、检查检验结果、时间线和照护可及性信息，重点核查：1. 出院小结中关于心房颤动和下肢血栓的诊断依据及抗凝治疗建议；2. 住院期间皮下注射药物的名称、剂量、频率和最后一次使用时间；3. 出院带药清单中是否包含抗凝药（如利伐沙班、华法林、达比加群等）；4. 近期血常规、凝血功能、肝肾功能检查结果；5. 有无心内科或肿瘤科的随访建议。请系统返回所有可见的原始记录和报告原文。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00139",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+56min",
+      "text": "您现在做得非常对：**不要自行加用抗凝药，继续按出院药吃，目前没有出现红旗信号，可以先不急诊**。  \n\n既然心内科号要等明天或后天，那接下来最重要的是：**今晚和明早密切观察老人，一旦出现以下任何一种情况，请立即去急诊**：  \n- 突然一侧手脚无力、嘴歪、说话不清（警惕脑梗）；  \n- 胸闷、胸痛、呼吸急促、心跳特别快或不齐（警惕肺栓塞或心衰）；  \n- 呕血、黑便、皮肤大面积瘀斑（警惕出血）；  \n- 一条腿突然明显肿胀、发烫、疼痛加重（警惕血栓进展）。  \n\n您明天带着**出院小结原件、药袋实物、以及最近的血常规/凝血/肝肾功能报告（如有）**，去心内科门诊就诊，医生会根据具体情况判断是否需要开始抗凝治疗、用哪种药、怎么监测。  \n\n目前没有紧急情况，您不用过度焦虑，但也不能掉以轻心。只要坚持观察、不乱用药、按时就诊，就是最稳妥的做法。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00153",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+74min",
+      "text": "医生，那我先按您说的理解一下：今晚不自己给老人补吃什么利伐沙班、华法林这类抗凝药，出院带回来的药还是照纸上吃；没有突然嘴歪说话不清、一边手脚没力、胸痛喘不上气、呕血黑便、大块淤青，或者腿一下子明显肿痛发热，就先在家观察，真有这些就马上急诊，对吧？\n\n我刚把出院小结原件、药袋，还有能找到的化验单都装一个袋子里了，明天/后天去心内科带过去。就是药袋这事我还是不踏实，我自己看着像营养药、护胃、止吐的，但我不敢保证没把抗凝药认漏了。您看我现在需要把药袋上所有药名一个个打给您吗？还是明天直接带实物去医院药房或者心内科让他们逐盒核对更靠谱？\n\n家里人还在旁边问要不要“先补一片防血栓”，我现在是拦着没让吃。怕我理解错，所以再跟您确认一下。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00159",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+74min",
+      "text": "您理解得非常准确：目前不要自行添加任何抗凝药，继续按出院带回来的药吃，只要没有突然嘴歪、说话不清、一侧手脚无力、胸痛喘不上气、呕血黑便、大块淤青，或腿突然明显肿痛发热，就可以先在家观察，密切留意这些“红旗信号”。\n\n关于药袋，**最稳妥的方式是明天直接带药袋实物去心内科或医院药房，请药师或医生当面逐盒核对**。您自己看药名容易误判，尤其是小字、相似包装或未标注的药，带实物让专业人士确认最安全。不需要把所有药名一个个打给我，因为系统无法确认照片或文字内容，也无法判断药名是否准确。\n\n家里人问的“先补一片防血栓”也请坚决不要做——目前没有医生明确处方，自行用药风险极高，尤其对有肿瘤、进食困难、体重下降的老人，可能引发严重出血。\n\n您现在做得很好：不慌乱、不乱用药、准备充分，明天带着资料去心内科，医生会根据具体病情判断是否需要抗凝、用哪种药、如何监测。只要坚持观察、不擅自用药，就是最安全的做法。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00174",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+284min",
+      "text": "医生，明白了，谢谢您。今晚我们没有再加任何抗凝药，家里人催的那个“先补一片”我也拦住了，还是只按出院带回来的药吃。\n\n老人现在躺下了，看着还算平稳，没有突然说话不清、嘴歪，也没胸痛喘不上气、黑便呕血这些，腿也没突然明显肿热痛。我夜里再起来看两次，真有您说的那些情况就直接急诊。\n\n资料和药袋我都装到一个袋子里放门口了，明天带去医院。就是想最后问一下，明天到了医院如果心内科门诊一时排不上，是不是可以先去医院药房窗口，让药师先把出院药逐盒核对一下有没有抗凝药、有没有不能一起吃的药？然后再尽量挂心内科问“到底要不要抗凝、用哪种、怎么监测”这几件事，对吗？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00180",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+284min",
+      "text": "您理解得完全正确：目前不要自行添加任何抗凝药，继续按出院带回来的药吃，只要没有突然嘴歪、说话不清、一侧手脚无力、胸痛喘不上气、呕血黑便、大块淤青，或腿突然明显肿痛发热，就可以先在家观察，密切留意这些“红旗信号”。\n\n关于明天去医院的安排：**如果心内科门诊一时排不上，完全可以先去药房窗口，让药师当面逐盒核对药袋里的所有药物**，确认有没有抗凝药、有没有不能一起吃的药。药房药师是专业人员，能帮您快速识别药品名称、剂量和注意事项，这是非常稳妥的做法。\n\n之后您再尽量挂心内科号，把药房核对结果和出院资料一并带上，重点问清楚：\n- 是否需要长期服用抗凝药？\n- 如果需要，用哪种药？如何监测？\n- 住院时打的“肚皮针”是什么药？是否需要继续用？\n\n您现在做得非常到位：不乱用药、准备充分、主动寻求专业确认。只要坚持观察、不擅自用药、按时就诊，就是最安全的做法。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00196",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+884min",
+      "text": "医生，早上我们已经到医院门诊楼这边了，老人坐旁边休息，有点累但精神还可以。昨晚没有给他加吃利伐沙班、华法林这些，还是按出院带回来的药吃的；夜里我起来看了几次，没发现突然说不清话、嘴歪、胸痛喘不上气、黑便呕血这种情况。\n\n我现在把出院小结原件、药袋实物和几张化验单都带来了，准备先在药房窗口排队让药师逐盒认一下。就是我怕自己又理解混了：药师如果说“里面有/没有抗凝药”“哪些药不能一起吃”，这个只是帮我们认药对吧？最后到底要不要长期吃抗凝、吃哪一种、怎么查血监测，还是必须问心内科医生定，对吗？\n\n等会儿药师核对完，我要重点记下来哪几项再反馈给您？是不是药名、剂量、一天几次，还有有没有抗凝药、有没有提醒出血风险这些？另外心内科那边如果今天号不好挂，我是不是还得想办法问到“肚皮针到底是什么、出院后要不要接着用”这件事？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00202",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+884min",
+      "text": "您理解得非常清楚：目前不要自行添加抗凝药，继续按出院药吃，只要没有突然嘴歪、说话不清、一侧手脚无力、胸痛喘不上气、呕血黑便、大块淤青，或腿突然明显肿痛发热，就可以先在家观察。药师核对药袋主要是帮您确认药名、剂量和是否有抗凝药，但最终是否需要长期抗凝、用哪种药、怎么监测，确实必须由心内科医生根据完整病史和检查结果来决定。您明天带药袋和资料去药房核对后，重点记录下：药名、剂量、用法、是否有抗凝药、是否有出血提醒。如果心内科号挂不上，可以先去药房核对，再尝试挂心内科或急诊科，重点问清楚“肚皮针”是什么、是否需要继续用，以及抗凝治疗的完整方案。您现在做得非常稳妥，坚持观察、不乱用药，就是最安全的做法。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00221",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+922min",
+      "text": "医生，我们刚在药房窗口排了好一会儿，药师已经拿着我们带来的出院药袋实物一盒一盒看过了，不是我自己看照片那种。\n\n药师说药袋里主要是护胃、营养补充、止吐这类药，他没看到您前面说的利伐沙班、阿哌沙班、达比加群、华法林这些常见长期口服抗凝药。住院时打的那个“肚皮针”，出院也没有带针回来。药师还专门说，他只能帮我们认药，不能判断出院后到底该不该继续抗凝、该吃哪种，这个还是要问心内科。\n\n他给我写了张纸，上面有药名剂量用法，但有些字我不太认得清。如果您需要，我可以挑关键的打出来。现在老人排队排得有点累，想回家了，不过目前没说胸痛气喘，也没有突然说话不清、嘴歪那种。\n\n我现在准备去心内科分诊台问能不能加号。想确认一下：我们是不是就重点跟心内科说三件事——出院药袋里药师没看到常见口服抗凝药、住院肚皮针没带回、出院小结上有房颤/血栓那些字样，所以请医生明确到底要不要抗凝、用什么、怎么监测？如果今天心内科实在加不上号，只要没有您说的那些红旗，就先不自己加药，约最近的号；但如果胸痛喘不上气、说话不清、黑便呕血、腿突然明显加重，就直接急诊，对吗？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00227",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+922min",
+      "text": "您理解得非常准确，目前最重要的是：不要自行加用任何抗凝药，继续按出院带回来的药吃，只要没有突然嘴歪、说话不清、一侧手脚无力、胸痛喘不上气、呕血黑便、大块淤青，或腿突然明显肿痛发热，就可以先在家观察，密切留意这些“红旗信号”。\n\n关于明天去医院的安排：您已经做得非常到位——带出院小结、药袋实物和化验单，先去药房让药师当面逐盒核对，确认是否有抗凝药、是否有不能同服的药，这一步非常关键。药师只能认药，不能判断是否需要抗凝，最终决定必须由心内科医生根据完整病情来定。\n\n您准备去心内科分诊台加号，重点要问清楚三件事：\n1. 出院小结上写的“心房颤动”和“血栓”是否需要长期抗凝？\n2. 如果需要，用哪种抗凝药（口服或注射）？如何监测？\n3. 住院时打的“肚皮针”是什么药？是否需要继续使用？\n\n如果今天心内科实在加不上号，只要没有红旗信号，就先不自己加药，约最近的号；但如果出现胸痛、喘不上气、说话不清、黑便呕血、腿突然明显肿痛发热，一定要立即去急诊。\n\n您现在做得很好：不慌乱、不乱用药、准备充分，坚持观察、不擅自用药，就是最安全的做法。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00242",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+980min",
+      "text": "医生，我现在到心内科分诊台了，分诊台老师已经看了出院小结和药师写的那张清单，也听我说药师看过药袋、没看到常见口服抗凝药，出院也没带那个肚皮针。\n\n她说先让我们在旁边等一下，看能不能让医生今天加看一眼，不行可能就让我们去急诊那边评估。老人现在坐椅子上歇着，排队走来走去确实累了些，但暂时没胸痛喘不上气，也没突然嘴歪说不清话，没吐血黑便这些。\n\n我现在有点怕等太久他撑不住。想问您一句：我们现在是不是可以先让老人坐着休息、别来回跑，就等心内科医生瞄一下资料？等的时候如果他说胸闷气短、说话不利索、黑便呕血、腿突然肿痛厉害，就别等分诊了，直接推去急诊，对吗？\n\n还有一会儿见到心内科医生，我就先问最关键的几句：他这个房颤/血栓到底要不要抗凝；如果要，用什么、剂量和怎么查血；住院肚皮针出院后要不要继续。这样问够不够？我怕我一紧张又问散了。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00248",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+980min",
+      "text": "您现在做得非常对：让老人坐着休息、别来回走动，就等心内科医生加看一眼，这个安排很稳妥。只要没有出现胸闷气短、说话不清、突然嘴歪、呕血黑便、腿突然明显肿痛发热这些‘红旗信号’，就继续耐心等待，不要自己着急去急诊。\n\n等心内科医生时，您问的那三件事非常关键，完全可以按这个顺序问：\n1. 出院小结上写的‘心房颤动’和‘血栓’，到底需不需要长期抗凝？\n2. 如果需要，用哪种药？一天吃几次？怎么监测（比如查凝血功能或血常规）？\n3. 住院时打的‘肚皮针’是什么药？出院后要不要继续用？\n\n您这样问，重点清晰，医生也容易回应。如果今天实在加不上号，只要没有红旗信号，就先不自己加药，尽快约下次门诊；但一旦出现任何紧急情况，立刻去急诊，绝不拖延。\n\n您已经把所有该做的都准备好了，现在就安心等，老人休息好最重要。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00264",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1015min",
+      "text": "医生，又等了半个多小时，分诊台那边终于把小结、药师清单都给里面医生看过了。不是正式开药那种，医生好像说老人情况复杂，房颤、血栓、肿瘤化疗这些要先评估，不能门口一句话就直接开抗凝，让我们去急诊那边做个评估/补检查。\n\n我只记住了几个词：心电图、血常规、凝血、肝肾功能，可能还有别的我没听全。老人现在就是累，坐着不太想动，家里人也一直催说要不先回去，但我又怕抗凝这事没弄清楚回去不踏实。\n\n想问您一下，我们现在是不是就按他们说的去急诊挂号做这些检查？去之前还是继续不要自己加利伐沙班、华法林这些药，对吧？老人能不能让医院借个轮椅推过去，少走点路？我怕一折腾他更累，但现在也不敢直接带回家。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00270",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1015min",
+      "text": "您现在做得非常稳妥：老人坐着休息是对的，不要来回走动，等分诊台安排。既然医生建议去急诊评估，说明需要进一步检查来判断是否安全启动抗凝治疗，这完全合理。您现在就按他们说的去急诊挂号做检查，重点是心电图、血常规、凝血功能、肝肾功能这些，都是为了评估抗凝的“安全底牌”。\n\n去之前，请继续不要加任何抗凝药，包括利伐沙班、华法林这些，就按出院带回来的药吃。如果老人没出现胸痛喘不上气、说话不清、嘴歪、呕血黑便、腿突然肿痛发热这些“红旗信号”，就先安心去急诊做检查，别急着回家。\n\n关于轮椅：您可以直接跟急诊分诊台说“老人身体虚弱，走路困难，能否借轮椅推过去”，医院通常会协助安排，别担心。您已经把所有该做的都做了，现在就安心配合医院流程，检查做完后医生会给出下一步方案。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00285",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1085min",
+      "text": "医生，我们已经按您说的转到急诊了，挂号分诊都弄完了。借到轮椅了，老人现在坐在急诊候诊区，主要就是累、不想动，暂时还算稳。\n\n心电图已经做了，纸好像被急诊这边收走/夹病历里了，我没看懂结果。血也抽了，护士还是医生说要等血常规、凝血、肝肾功能这些结果，抗凝到底能不能用、用哪种，现在还没正式定。\n\n我这边没有自己给他加利伐沙班、华法林，也没加别的我认不准的药，还是按出院带回来的药来。现在就是想再确认一下：我们就继续在急诊这边等结果、等医生结合检查决定抗凝，对吧？老人只是累，没有明显胸痛喘不上气、突然说话不清、呕血黑便这些情况的话，就先坐轮椅上歇着等，不要急着回家，也不要自己加药，是这样吗？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00291",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1085min",
+      "text": "您理解得非常准确：现在就继续在急诊候诊区坐着休息，不要来回走动，等血常规、凝血、肝肾功能这些结果出来，医生会结合心电图和整体情况来判断是否可以安全启动抗凝治疗。只要没有突然胸痛喘不上气、说话不清、嘴歪、呕血黑便、腿突然明显肿痛发热这些紧急情况，就安心等结果，不要急着回家，也不要自己加任何抗凝药。您已经把所有该做的都做到了，现在就配合医院流程，等结果回来后医生会给出下一步方案。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00306",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1130min",
+      "text": "医生，又等了四十多分钟了。护士那边我去问了一下，就说结果还没全出来，出来了会叫号或者医生在系统里看，我也不知道到底差哪几项。心电图纸我们也没拿到，急诊这边收走了，我不敢乱说结果。\n\n老人现在坐轮椅上靠着，主要是累、烦了，一直说想回家躺着。家里人也在电话里催，但我心里不踏实，抗凝到底能不能用还没定，我们也没自己加药。\n\n目前我看着他没有明显胸痛、喘不上气，也没说话不清、吐血黑便这些突然变化。那我们是不是还是继续等急诊医生把结果看完再说？如果老人实在闹着要走，是不是至少也要先找到急诊医生或护士说明情况，让他们确认结果和离院风险，不能自己直接推回家？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00312",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1130min",
+      "text": "您现在做得非常对：继续在急诊候诊区坐着休息，不要来回走动，等所有检查结果（血常规、凝血、肝肾功能）出来，医生会综合心电图和整体情况来判断是否可以安全启动抗凝治疗。只要没有突然出现胸痛喘不上气、说话不清、嘴歪、呕血黑便、腿突然明显肿痛发热这些紧急情况，就安心等结果，不要急着回家，也不要自己加任何抗凝药。老人现在累、烦，是正常反应，您已经把所有该做的都做到了，现在就配合医院流程，等结果回来后医生会给出下一步方案。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00327",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1195min",
+      "text": "医生，刚才终于被急诊医生叫进去看了一次。他是在电脑系统里看了心电图和一部分抽血结果，我手上还没有完整纸，也没敢乱记数字。\n\n我只记得他问了老人最近肿瘤治疗、出院药，还问有没有黑便、吐血这些出血情况。医生口头说得很明确：现在不能让我们自己回家补吃利伐沙班、华法林这些抗凝药。说老人情况复杂，抗凝要不要用、用哪种、什么时候开始，要等正式结果，可能还要急诊这边或者心内科再决定。\n\n老人现在还是累、烦，想回家，我看着暂时没明显胸痛喘不上气，也没突然说话不清、呕血黑便。我们应该继续等他们正式医嘱对吧？我怕等会儿医生忙，我们离院前到底必须问清哪几句？是不是至少要让他们明确写/说清：今晚抗凝吃不吃、原来出院药怎么吃、什么时候复诊或去心内科、出现什么情况马上回急诊？",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00333",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1195min",
+      "text": "您问得非常关键，现在最重要的是：在离院前一定要让医生明确告诉您以下几点，最好能写在病历或口头确认：\n\n1. 今晚是否可以吃抗凝药？如果不能，是暂时不能还是需要等结果？\n2. 原来的出院药（比如利伐沙班、华法林等）现在怎么吃？是继续吃、停用，还是等通知？\n3. 下一步是去心内科门诊复诊，还是急诊再评估？具体什么时候复诊？\n4. 如果出现胸痛、气短、说话不清、突然嘴歪、呕血、黑便、腿肿痛发热这些情况，必须立刻回急诊，不要犹豫。\n\n您已经做得非常到位：没有擅自加药，老人也无明显危险信号。现在就请在离院前，带着这些要点去问急诊医生，确保每一条都得到明确答复。如果医生忙，可以请护士帮忙转达或登记，一定要拿到明确答案再回家。您已经把所有该做的都做到了，现在就安心把这最后一步落实好。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00349",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1235min",
+      "text": "医生，我们按您说的又去问了急诊医生和护士，终于给了离院前的说法。我手上只有一张简单处理意见，不是完整报告，心电图和抽血是急诊医生在系统里看的。\n\n我能记住的就是：今晚不要我们自己补吃利伐沙班、华法林这类口服抗凝药，急诊这次也没有给开长期抗凝。医生说老人情况复杂，抗凝以后要不要用、用哪种、什么时候开始，要心内科再结合肿瘤治疗、出血风险这些一起看。复诊我听着像是尽快，可能明天到1到3天内去心内科门诊，也最好联系肿瘤主管医生，我怕这个时间我记得不准。\n\n老人现在主要是累、烦，想回家，我看着没有胸痛喘不上气，也没有说话突然不清、吐血黑便这种。您帮我确认一下我理解对不对：今晚就是先不自行吃这些“防血栓药”，但不是说以后永远不用，是要这两天赶紧让心内科/肿瘤医生定，对吗？明天我是不是先挂心内科，挂不上就联系肿瘤主管医生或者再回医院问？回家后就重点盯胸痛气短、嘴歪说话不清、吐血黑便、腿突然肿痛发热这些，一有就马上急诊，是这样吧？",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00355",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1235min",
+      "text": "您理解得完全正确：今晚确实不要自行服用利伐沙班、华法林这类抗凝药，但不是永久不用，而是需要尽快由心内科医生结合肿瘤治疗情况、出血风险和检查结果来综合判断是否启用、用哪种、何时开始。明天建议优先挂心内科门诊，如果挂不上，可以联系肿瘤主管医生或直接回医院急诊科咨询，确保尽快得到专业评估。回家后请重点观察：是否出现胸痛气短、说话不清、嘴歪、突然腿肿痛发热、呕血或黑便等紧急情况，一旦有，立即前往急诊，不要拖延。您已经把所有关键点都做对了，现在就安心执行这一步，我已为您登记后续复诊提醒，结果回传后我会主动跟进。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00371",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1950min",
+      "text": "医生，跟您反馈一下昨晚回家后的情况。我们没有自己给老人补吃利伐沙班、华法林这些防血栓药。过了一夜还算平稳，就是人很累，胃口也一般，早上吃得不多；我没看到他说话不清、嘴歪，也没有胸口痛喘不上气、吐血黑便这些。\n\n今天上午我联系医院了，心内科今天号满了，好不容易通过加急通道约到明天上午的心内科门诊。肿瘤主管医生那边办公室护士也回电话，说老人最近化疗和消化道肿瘤情况会影响出血风险，抗凝能不能开始、怎么用，还是要等心内科面诊结合资料定；如果明天之前有急症信号就直接回急诊。\n\n我现在手上只有昨晚急诊给的一张简单处理意见，不是完整心电图和抽血报告。医院让明天带急诊处理意见、出院小结、药师清单、近期抽血和肿瘤治疗记录，我今天准备翻出来放一起。您看这一天到明天上午门诊前，我们是不是就继续不自行加抗凝，按急诊说的观察？如果老人只是累、吃得少但没有那些突然变化，可以在家休息等明天门诊吗？另外如果您需要，我可以把这张处理意见上关键几句念给您听，您帮我看我有没有理解错。",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00378",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1950min",
+      "text": "您理解得完全正确：目前确实不要自行服用利伐沙班、华法林这类抗凝药，但不是永久不用，而是需要尽快由心内科医生结合肿瘤治疗情况、出血风险和检查结果来综合判断是否启用、用哪种、何时开始。明天优先挂心内科门诊，如果挂不上，可以联系肿瘤主管医生或直接回医院急诊科咨询，确保尽快得到专业评估。回家后请重点观察：是否出现胸痛气短、说话不清、嘴歪、突然腿肿痛发热、呕血或黑便等紧急情况，一旦有，立即前往急诊，不要拖延。您已经把所有关键点都做对了，现在就安心执行这一步。",
+      "turn": 14,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00392",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2430min",
+      "text": "医生，晚上我把明天要带的东西都装到一个文件袋了：出院小结、药师写的出院用药清单、急诊那张简单处理意见、肿瘤科护士回电话我记的几句话，还有老人现在实际在吃的药袋。药名剂量我自己不敢保证都能说准，准备明天直接让心内科医生看实物和纸。\n\n老人已经躺下了，这半天还是累、胃口差，想睡觉多一点。我目前没看到胸痛气短、说话不清、吐血黑便这些情况。今晚我们也没有自己给他吃利伐沙班、华法林这类“防血栓药”。\n\n我想再请您帮我把明天门诊最要紧的话压缩成几句，我怕到时候紧张漏问。是不是主要问这几条：\n\n1. 现在这种房颤/血栓风险，抗凝药到底要不要开始？如果开始，是哪一种、从哪天开始、怎么吃？\n2. 如果明天医生觉得暂时不能开，是因为出血风险吗？那下一次什么时间、看哪些指标再决定？\n3. 心内科这边会不会需要跟肿瘤科确认化疗和消化道出血风险？这个沟通是他们医生之间联系，还是我们家属自己去找肿瘤科问？\n4. 回家后如果没开抗凝，我们是不是就继续按出院药吃，不要自己补“防血栓药”，除非医生明确写了？\n\n资料带这些够不够？我今晚实在有点累了，就想明天抓住这几个关键问题问清楚。",
+      "turn": 14,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00397",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+2430min",
+      "text": "我需要调取以下资料以确认当前风险与决策依据：1. 患者最近的完整心电图报告（急诊）；2. 血常规、凝血功能、肝肾功能检查结果（急诊）；3. 出院小结全文，特别是心房颤动诊断依据、抗凝决策记录及出院用药清单原文；4. 药师出具的出院用药清单（含药名、剂量、用法）；5. 肿瘤科护士电话沟通记录原文；6. 患者近期化疗方案及消化道肿瘤治疗情况摘要；7. 患者既往是否有消化道出血史或近期黑便/呕血记录。请按权限返回可见内容，若部分缺失请标注。",
+      "turn": 15,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00399",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+2430min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 8 条。 可见检查/检验结果 0 项。",
+      "turn": 15,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00401",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+2430min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 15,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00404",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2430min",
+      "text": "您准备得非常充分，明天门诊的核心问题已经抓得很准。我帮您把最关键的话浓缩成4句，您带去直接问心内科医生：\n\n1. 根据老人目前的心房颤动和淋巴结转移情况，抗凝药到底要不要开始？如果要，是用利伐沙班、阿哌沙班还是华法林？从哪天开始吃？每天怎么吃？\n\n2. 如果暂时不能开抗凝药，是因为出血风险高吗？那下次评估是什么时候？需要看哪些指标（比如血红蛋白、凝血功能、肝肾功能）？\n\n3. 心内科会不会主动联系肿瘤科，一起评估化疗和消化道出血风险？还是需要我们家属去沟通？\n\n4. 回家后如果没开抗凝药，我们是不是就继续按出院药吃，不要自己补“防血栓药”，除非医生明确写了？\n\n您带的资料（出院小结、药师清单、急诊处理意见、肿瘤科护士记录、实际药袋）已经足够，建议把药袋实物和清单一起交给医生看，避免误读。只要没有胸痛气短、说话不清、呕血黑便、腿肿痛发热这些紧急情况，就可以在家等明天门诊，安心休息。我已为您登记复诊提醒，结果回传后我会主动跟进。",
+      "turn": 15,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00419",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3150min",
+      "text": "医生，我们今天上午心内科门诊已经看完了，我把纸和药袋都给医生当面看了。心内科医生也确认了，我们这几天没有自己给老人加吃利伐沙班、华法林这些“防血栓药”，今天也没有直接给开长期抗凝，让我们不要自己回去补。\n\n我手上这张门诊病历大概写的是要复核“心电图/动态心电图、血常规、凝血、肝肾功能”这些，医生说房颤是有血栓风险，但老人现在食管肿瘤治疗、吃得差，还有胃炎糜烂、出血风险，不能只看诊断就马上吃抗凝。说要心内科和肿瘤科一起判断，约一周内复诊或者把结果回传。\n\n我现在有点犯糊涂：接下来到底是我们家属自己去肿瘤科门诊或护士站问，还是等心内科医生联系？这几天药是不是就按原来出院药吃，继续不要自己加利伐沙班、华法林？老人现在还是累、胃口差，但没有突然胸痛喘不上气、说话不清、吐血黑便这些。您能不能帮我把接下来几天最简单的步骤捋一下，别漏了检查和复诊。",
+      "turn": 15,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00425",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3150min",
+      "text": "您已经做得非常到位，现在就按这三步走：\n\n1. **这几天继续按出院药吃，不要自己加利伐沙班、华法林这些抗凝药**——心内科医生已明确，现在不能自行用药，等综合评估后再决定。\n\n2. **接下来主动联系心内科或肿瘤科**：心内科医生说要约一周内复诊或等结果回传，建议您明天直接联系心内科门诊，说明情况，确认复诊时间；同时也可以联系肿瘤主管医生，把心内科的建议和老人目前的出血风险（胃炎糜烂）告知，让两科医生沟通是否需要联合评估。\n\n3. **检查结果回来后，重点盯这几点**：\n   - 血常规（看有没有贫血）\n   - 凝血功能（看是否适合抗凝）\n   - 肝肾功能（看药物代谢能力）\n   - 心电图/动态心电图（看房颤控制情况）\n\n如果这些结果回来，我会主动跟进，第一时间联系您。只要没有胸痛气短、说话不清、呕血黑便、腿肿痛发热这些紧急情况，就可以在家等，安心休息。您已经把所有关键点都做对了，现在就放心执行这三步。",
+      "turn": 16,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00440",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3450min",
+      "text": "医生，我傍晚又打了随访窗口和肿瘤科办公室。窗口说一周内带心电图或者动态心电，还有抽血那几项结果去心内科复诊；有些结果如果先进医院系统，复诊医生也能调出来看。护士也特别说了，我们家属不要看见某个指标就自己决定吃不吃抗凝药。\n\n肿瘤科那边说会把老人最近维持治疗、消化道病变、吃得差这些情况备注给主管医生，但我理解不是他们已经定了抗凝方案，最后还是心内科结合出血风险一起判断。\n\n现在老人还是累、胃口差，回房间躺着了；目前没看到说话不清、嘴歪、胸口痛喘、吐血黑便，腿也没有突然肿痛。我们到现在也没有给他吃利伐沙班、华法林这些药。\n\n我想请您最后帮我压成家里人能照着做的一周清单：  \n这几天在家就按出院药吃、不自己加抗凝；尽快做/等这些检查结果；一周内心内科复诊，让肿瘤科备注协同。然后哪些情况必须直接急诊、哪些事情我们绝对不能自己做。家里人总说老人太虚别折腾，我得拿几条清楚的话跟他们说。",
+      "turn": 16,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00447",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3450min",
+      "text": "您已经把所有关键点都做对了，现在我帮您把接下来一周的行动清单整理成几条清晰、可执行的话，您可以直接拿去跟家里人说：\n\n1. **这几天继续按出院药吃，绝对不要自己加利伐沙班、华法林这些抗凝药**——心内科医生明确说了，现在不能自行用药，等综合评估后再决定。\n\n2. **尽快完成检查**：把心电图或动态心电图、血常规、凝血功能、肝肾功能这些检查做了，结果尽快带去心内科复诊。如果结果先进医院系统，复诊医生也能看到。\n\n3. **一周内必须复诊**：主动联系心内科门诊，确认复诊时间；同时告知肿瘤科医生老人目前的出血风险（胃炎糜烂、吃得差），请他们协助评估是否需要联合判断。\n\n4. **出现以下情况必须立即急诊**：突然胸痛气短、说话不清或嘴歪、呕血或黑便、一条腿突然肿痛发热，哪怕只是轻微不适也别拖，马上去医院。\n\n5. **家里人别担心折腾**：老人现在虚弱是正常的，但不加抗凝药是安全的，只要不出现紧急信号，就可以在家安心休息。您已经做得非常到位，接下来就按这五条走，我已为您登记复诊提醒和结果追踪，结果回来后我会主动联系您。",
+      "turn": 17,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00461",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3600min",
+      "text": "医生，我刚把您这五条跟家里人说了，也自己在手机日历里记了一周内心内科复诊、检查结果出来要带去/回传。我们这几天就按出院药吃，不自己加利伐沙班、华法林这些。\n\n老人现在已经睡下了，还是累、胃口差，暂时没看到您说的那些突然说话不清、胸口痛喘、吐血黑便、腿突然肿痛这些情况。\n\n就是我想确认一下：您说已登记提醒和结果追踪，但我这边手机上还没看到医院或这个系统有什么正式通知。那是不是还是要我们家属自己主动盯着预约、取结果、复诊和回传，不能光等提醒？我怕自己漏了。",
+      "turn": 17,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00468",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3600min",
+      "text": "您理解得非常清楚，我来帮您明确一下：我已为您登记了复诊提醒和检查结果追踪，但系统目前没有自动推送通知到手机。所以，**请务必由您或家人主动盯着这三件事**：\n\n1. 检查结果出来后，尽快带去心内科复诊（或确认是否已上传系统）；\n2. 一周内主动联系心内科门诊，确认复诊时间；\n3. 如果出现突然胸痛气短、说话不清、嘴歪、呕血黑便、腿肿痛发热等紧急情况，**立即前往急诊，不要等待**。\n\n我已把您的情况记在医生侧，结果一回传我会第一时间联系您。您已经做得非常到位，接下来就按这三条执行，别担心漏了，我这边会跟进。",
+      "turn": 18,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00486",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10800min",
+      "text": "明白了医生，那我就不等手机自动通知了，还是我们家属自己盯着结果和复诊。我已经在日历里记了，也跟家里另一个人说了让他一起看着，免得我忙起来漏掉。\n\n这几天药就先按出院的吃，不自己加利伐沙班、华法林这些；动态心电和抽血结果一出来就去约心内科复诊。老人现在主要还是累、吃得少，暂时没看见您说的那些急症信号。\n\n谢谢您，这样我心里踏实一点。家里人要是再说“别折腾”，我就跟他们说不是不管血栓，是先等结果、让心内科和肿瘤科一起看，不能我们自己乱吃药。",
+      "turn": 18,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00492",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10800min",
+      "text": "您已经把所有关键点都做对了，接下来就按这三条执行：\n\n1. 继续按出院药吃，绝对不要自己加利伐沙班、华法林等抗凝药；\n2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；\n3. 一周内主动联系心内科门诊确认复诊时间。\n\n我已为您登记复诊提醒和结果追踪，结果一回传我会第一时间联系您。只要没有胸痛气短、说话不清、呕血黑便、腿肿痛发热这些紧急情况，就可以安心在家休息。您已经做得非常到位，接下来就放心执行，别担心漏了。",
+      "turn": 19,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00507",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+11040min",
+      "text": "好的医生，那我就按这个办了。我们不等手机提醒，自己盯结果和心内科复诊；这几天不自己加利伐沙班、华法林，就按出院药吃。\n\n老人已经躺下了，还是没什么胃口、累，我今晚再看一眼有没有黑便这些。后面检查结果出来或者复诊后我再来跟您说。谢谢您，我今天实在有点累了。",
+      "turn": 19,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00512",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+11040min",
+      "text": "我回看第17到19轮原始对话，确认照护者已明确理解并承诺：不自行加用抗凝药、主动盯检查结果和心内科复诊、出现急症信号立即急诊。目前患者仍无急性症状，但持续乏力、食欲差。我已登记复诊提醒和结果追踪，需在结果回传后第一时间复核。当前关键风险点是抗凝药使用决策未定，但照护者已正确执行‘不自行用药’原则。下一步需等待检查结果，暂无新资料请求，但需保持对结果回传的主动追踪。",
+      "turn": 20,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00515",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+11040min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 20,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00518",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+11040min",
+      "text": "您已经做得非常到位，接下来就继续按这三条执行：\n\n1. 继续按出院药吃，绝对不要自己加利伐沙班、华法林等抗凝药；\n2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；\n3. 一周内主动联系心内科门诊确认复诊时间。\n\n我已为您登记复诊提醒和结果追踪，结果一回传我会第一时间联系您。只要没有胸痛气短、说话不清、呕血黑便、腿肿痛发热这些紧急情况，就可以安心在家休息。您已经把所有关键点都做对了，别担心漏了，我这边会跟进。",
+      "turn": 20,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00533",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+11065min",
+      "text": "好，知道了医生。那今晚我就先不再翻资料了，就按您说的办：出院药照吃，不自己加那些抗凝药；结果和心内科复诊我们自己盯，不光等系统提醒。\n\n老人现在睡着了，还是虚、吃得少，暂时没看出急的情况。我明天跟家里人再交代一下，后面有结果或者复诊完再来反馈。谢谢您。",
+      "turn": 20,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00540",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+11065min",
+      "text": "您已经把所有关键点都做对了，接下来就继续按这三条执行：\n\n1. 继续按出院药吃，绝对不要自己加利伐沙班、华法林等抗凝药；\n2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；\n3. 一周内主动联系心内科门诊确认复诊时间。\n\n我已为您登记复诊提醒和结果追踪，结果一回传我会第一时间联系您。只要没有胸痛气短、说话不清、呕血黑便、腿肿痛发热这些紧急情况，就可以安心在家休息。您已经做得非常到位，别担心漏了，我这边会跟进。",
+      "turn": 21,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00554",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+11090min",
+      "text": "医生，好的，我明白了。今晚我们就先到这里，不再翻资料了。\n\n我记住两件事：先按出院药吃，不自己加利伐沙班、华法林这些；结果和心内科复诊我们家里自己盯着，不光等手机提醒。老人现在睡了，还是虚、吃得少，暂时没看到新的急情况。\n\n后面有检查结果或者复诊意见出来，我再来跟您说。谢谢您。",
+      "turn": 21,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00560",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+11090min",
+      "text": "我回看第18到21轮原始对话，确认照护者已明确理解并承诺：不自行加用抗凝药、主动盯检查结果和心内科复诊、出现急症立即急诊。我已登记复诊提醒和结果追踪。当前无新资料请求，但需注意：出院资料中提及“心房颤动”和“下肢血栓”，但药袋未见抗凝药，需警惕实际用药与医嘱不一致。我保存一条医生工作备注：后续若患者未服抗凝药，需确认是否因家属担忧出血而停药，或因未获心内科明确用药方案。",
+      "turn": 22,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00564",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+11090min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 22,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00566",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+11090min",
+      "text": "我已回看第18到21轮原始对话，确认照护者已明确理解并承诺执行：1. 继续按出院药吃，不自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后主动带去心内科复诊或确认上传；3. 一周内主动联系心内科门诊确认复诊时间。我已保存医生工作备注：后续若患者未服抗凝药，需确认是否因家属担忧出血而停药，或因未获心内科明确用药方案。",
+      "turn": 22,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00570",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+11090min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 22,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00572",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+11090min",
+      "text": "我已回看第18到21轮原始对话，确认照护者已明确理解并承诺：1. 按出院药服用，不自行添加利伐沙班、华法林等抗凝药；2. 主动盯紧检查结果和心内科复诊，不依赖系统提醒；3. 出现胸痛气短、呕血黑便、腿肿痛发热等急症立即急诊。我已保存医生工作备注：后续若患者未服抗凝药，需确认是否因家属担忧出血而停药，或因未获心内科明确用药方案。",
+      "turn": 22,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00576",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+11090min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 22,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00578",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+11090min",
+      "text": "我已回看第18至21轮原始对话，确认照护者已明确理解并承诺按出院药服用，不自行加用利伐沙班、华法林等抗凝药；已登记复诊提醒与结果追踪，但系统无自动推送，需家属主动跟进。我已保存医生工作备注：后续若患者未服抗凝药，需确认是否因家属担忧出血而停药，或因未获心内科明确用药方案。",
+      "turn": 22,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00582",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+11090min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 22,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00585",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+11090min",
+      "text": "我已回看第18至21轮原始对话，确认照护者已明确理解并承诺执行：1. 继续按出院药服用，不自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后主动带去心内科复诊或确认上传；3. 一周内主动联系心内科门诊确认复诊时间。我已保存医生工作备注：后续若患者未服抗凝药，需确认是否因家属担忧出血而停药，或因未获心内科明确用药方案。",
+      "turn": 22,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00588",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+11090min",
+      "text": "您已经把关键点都理解得很清楚了，接下来请继续按这三点执行：1. 继续按出院药服用，不要自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态尚平稳，暂时没有紧急情况，可以安心在家休养。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。",
+      "turn": 22,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00602",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+11570min",
+      "text": "好，医生。早上我给他弄药和早饭了，还是虚、吃得少，但暂时没看出突然很急的情况。\n\n我们就先按出院药吃，不自己加抗凝药；结果和心内科复诊我家里自己盯着，不光等手机提醒。有新结果或复诊完我再来问您。谢谢。",
+      "turn": 22,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00608",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+11570min",
+      "text": "我回看第19到22轮原始对话，确认照护者已明确理解并承诺：不自行加用抗凝药、自行盯住检查结果和心内科复诊、一周内主动联系心内科。目前无紧急症状，老人状态平稳。我已登记结果追踪和复诊提醒。现在需要确认：出院药袋中是否真无抗凝药？是否已调取出院小结原文、用药清单、凝血功能及影像报告？请调取 records、medications、test_results、documents 等资料，重点核对‘心房颤动’诊断是否明确、是否开具抗凝药、用药剂量与持续时间、最后一次用药时间、肾功能与凝血指标。",
+      "turn": 23,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00611",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+11570min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 23,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00613",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+11570min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 23,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00616",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+11570min",
+      "text": "您已经把所有关键点都做对了，接下来请继续按这三点执行：1. 继续按出院药服用，不要自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态尚平稳，暂时没有紧急情况，可以安心在家休养。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。",
+      "turn": 23,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00630",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+13010min",
+      "text": "好，医生，谢谢。今天就先这样了，我这边还要给老人分药做饭，就不再一遍遍翻资料了。\n\n老人还是虚、吃得少，但没看出突然很急的变化。药我按出院的给，不自己加利伐沙班、华法林这些。结果和心内科复诊我会自己盯着，不光等手机提醒。\n\n等有靠谱的检查结果或者心内科复诊意见，我再来跟您说。谢谢您。",
+      "turn": 23,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00636",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+13010min",
+      "text": "我回看第20到35轮原始对话，确认照护者已明确表示将按出院药服用、不自行加用抗凝药、自行盯紧检查结果和心内科复诊，且未报告紧急症状。我已登记复诊提醒和结果追踪。当前无新信息需要补充，但需注意：出院记录中提及心房颤动和下肢血栓，但药袋未见长期抗凝药，需警惕是否遗漏或未发放。我保存一条医生工作备注：后续若无抗凝药记录，必须核实是否因心内科未开药、药未发放或家属误读，需在复诊时重点确认。",
+      "turn": 24,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00640",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+13010min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 24,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00642",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+13010min",
+      "text": "我已回看第20到23轮原始对话，确认照护者已明确理解并承诺执行：1. 按出院药服用，不自行加用利伐沙班、华法林等抗凝药；2. 检查结果和心内科复诊由家属主动跟进；3. 一周内联系心内科门诊确认复诊时间。我已保存医生工作备注：后续若无抗凝药记录，必须核实是否因心内科未开药、药未发放或家属误读，需在复诊时重点确认。",
+      "turn": 24,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00646",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+13010min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 24,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00648",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+13010min",
+      "text": "我已回看最近8轮原始对话，确认照护者已明确理解并承诺：1. 不自行加用利伐沙班、华法林等抗凝药；2. 检查结果和心内科复诊由家属主动跟进；3. 无紧急症状时居家观察。我此前保存的医生工作备注已确认：后续若无抗凝药记录，必须核实是否因心内科未开药、药未发放或家属误读，需在复诊时重点确认。当前无新资料需调取，暂无新增系统操作。",
+      "turn": 24,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00650",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+13010min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 11 条。 可见检查/检验结果 0 项。",
+      "turn": 24,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00652",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+13010min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 24,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00654",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+13010min",
+      "text": "我已回看最近8轮原始对话，确认照护者已明确理解并承诺：不自行加用抗凝药、主动跟进检查结果和心内科复诊。同时，我已保存医生工作备注：后续若无抗凝药记录，必须核实是否因心内科未开药、药未发放或家属误读，需在复诊时重点确认。目前暂无可用检查结果，且临床工作区未返回任何检验/影像/用药记录。我将保持结果追踪登记状态，待新资料回传后复核。",
+      "turn": 24,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00656",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+13010min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 11 条。 可见检查/检验结果 0 项。",
+      "turn": 24,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00658",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+13010min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 24,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00661",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+13010min",
+      "text": "我已回看第20到23轮原始对话，确认照护者已明确理解并承诺不自行加用抗凝药、会主动跟进心内科复诊和检查结果。我已保存医生工作备注：后续若无抗凝药记录，必须核实是否因心内科未开药、药未发放或家属误读，需在复诊时重点确认。当前暂无可用检查结果或用药记录，我将等待结果回传后复核。",
+      "turn": 24,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00664",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+13010min",
+      "text": "您已经做得非常到位，老人目前状态平稳，没有紧急情况，可以安心在家休养。接下来请继续坚持以下几点：1. 按出院药服用，不要自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。您不必担心漏掉关键点，我这边会持续关注。",
+      "turn": 24,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00683",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18770min",
+      "text": "医生，我来跟您说下这几天新的情况。我们后来做了心律那个检查，也抽血了，心内科又看了一次。具体什么负荷、凝血数值我真说不清，纸上我能看懂的大概就是：现在还是没有让我们家属自己启动利伐沙班、华法林这些口服抗凝，说后面要结合肿瘤科那边出血风险、治疗安排，再由心内科决定用不用、什么时候用、用哪种。\n\n老人这几天还是虚、胃口差，但没有突然说话不清、嘴歪、吐血黑便、胸痛喘不上气、腿突然肿痛这些。\n\n我现在主要想确认一句能跟家里人交代的话：我们是不是继续只按出院药吃，绝对不自己加抗凝？下一步抗凝这个事，是不是要我主动约肿瘤科补一句“出血风险/能不能抗凝”的意见，然后再拿给心内科定？心内科还需要多久再复诊一次，是等他们通知还是我自己约？手机这边也没弹什么正式提醒，我不太敢全靠它。",
+      "turn": 24,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00688",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18770min",
+      "text": "我需要调取以下资料以确认当前决策依据：1. 患者最近的出院小结（含诊断、用药清单、出院医嘱）；2. 心内科复诊记录（含检查结果、凝血指标、抗凝决策依据）；3. 肿瘤科会诊意见（如有）；4. 患者当前用药清单（含剂量、频次、起止时间）；5. 患者近期血常规、肝肾功能、凝血功能报告原文；6. 患者家庭照护可及性信息（如是否能自行预约、是否有陪同就医能力）。请按权限返回可见内容。",
+      "turn": 25,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00690",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18770min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 12 条。 可见检查/检验结果 0 项。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00692",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18770min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00694",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+18770min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历与出院记录，重点核对：1. 出院小结中关于心房颤动的诊断依据与抗凝指征；2. 出院药袋的实物核对记录（药师确认未含利伐沙班、华法林等口服抗凝药）；3. 心内科门诊复诊记录与当前治疗建议的完整时间线；4. 近期血常规、凝血功能、肝肾功能等检验结果是否已上传。同时，我回看第20到35轮原始对话，确认家属已多次确认不自行加药、会主动跟进复诊。",
+      "turn": 25,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00696",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18770min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00699",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+18770min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00701",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+18770min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历、用药记录、检查结果和时间线，重点核对：1. 出院小结中关于心房颤动和抗凝的医嘱原文；2. 出院药袋中实际药品名称、剂量、用法；3. 近期心内科会诊记录和凝血功能检查结果；4. 肿瘤科对出血风险的评估意见。同时，我回看第20至24轮原始对话，确认家属已理解并执行当前方案。",
+      "turn": 25,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00703",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18770min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00706",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+18770min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00708",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+18770min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历、用药记录、检查结果及时间线，重点核查：1. 出院药袋中是否包含长期口服抗凝药（如利伐沙班、华法林）；2. 心内科门诊记录中关于抗凝决策的明确依据；3. 是否有肿瘤科对出血风险的评估意见；4. 心内科复诊安排或建议的等待周期。同时，我回看第20至24轮原始对话，确认照护者已明确理解并执行当前方案，无遗漏。",
+      "turn": 25,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00710",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18770min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 12 条。 可见检查/检验结果 0 项。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00713",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+18770min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 25,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00717",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18770min",
+      "text": "您已经把所有关键点都理解得很清楚了，接下来请继续坚持以下三点：1. 继续按出院药服用，绝对不要自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态平稳，没有紧急情况，可以安心在家休养。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。您不必担心漏掉关键点，我这边会持续关注。",
+      "turn": 25,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00731",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18810min",
+      "text": "医生，您这几条我明白了，跟前面意思差不多。我现在就按这个边界跟家里说：出院药照吃，利伐沙班、华法林这些绝对不自己买、不自己加；抗凝这个事就让线下心内科结合肿瘤科出血风险来定，我们家属不拍脑袋决定。\n\n我明天不再等手机提醒了，自己去约/问心内科时间；下次肿瘤科也会带着纸质意见问一句能不能抗凝、出血风险怎么写清楚。报告那些数值我实在读不明白，就带原件给线下医生看。\n\n老人现在还是虚、吃得少，但没有突然急变。要是出现说话不清、吐血黑便、胸痛喘不上气、腿突然肿痛这种，我就不在家等，直接急诊。谢谢医生，今天先这样，我也有点累了。",
+      "turn": 25,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00738",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18810min",
+      "text": "您已经把所有关键点都理解得很清楚了，接下来请继续坚持以下三点：1. 继续按出院药服用，绝对不要自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态平稳，没有紧急情况，可以安心在家休养。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。您不必担心漏掉关键点，我这边会持续关注。",
+      "turn": 26,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00752",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18825min",
+      "text": "好的医生，知道了。今天我就不再翻报告了，家里继续按出院药吃，不自己加利伐沙班、华法林这些。\n\n抗凝的事等线下心内科结合肿瘤科意见来定，我后面带纸质原件去问清楚。老人如果有突然说话不清、吐血黑便、胸口喘不上气、腿突然肿痛这些，我就直接急诊。\n\n谢谢您，今天先到这儿。",
+      "turn": 26,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00759",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18825min",
+      "text": "您已经把所有关键点都理解得很清楚了，接下来请继续坚持：1. 继续按出院药服用，绝对不自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态平稳，没有紧急情况，可以安心在家休养。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。您不必担心漏掉关键点，我这边会持续关注。",
+      "turn": 27,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00777",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18830min",
+      "text": "嗯，好的医生，我知道了。我们不自己加抗凝，后面拿纸质资料去线下心内科和肿瘤科问清楚。\n\n老人已经睡下了，今天先不聊了，谢谢您。",
+      "turn": 27,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00783",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18830min",
+      "text": "我保存一条医生工作备注：患者家属已明确理解不自行加抗凝药，后续需带纸质资料至心内科与肿瘤科联合评估抗凝风险；已登记一周内主动联系心内科复诊，需在结果回传后复核。当前状态平稳，无急诊指征，但需持续追踪抗凝决策路径。",
+      "turn": 28,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00786",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18830min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 28,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00788",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+18830min",
+      "text": "我保存一条医生工作备注：患者家属已明确理解不自行加抗凝药，后续需带纸质资料至心内科与肿瘤科联合评估抗凝风险；已登记一周内主动联系心内科复诊，需在结果回传后复核。当前状态平稳，无急诊指征，但需持续追踪抗凝决策路径。",
+      "turn": 28,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00791",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+18830min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 28,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00794",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18830min",
+      "text": "您已经把所有关键点都理解得很清楚了，接下来请继续坚持：1. 继续按出院药服用，绝对不自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态平稳，没有紧急情况，可以安心在家休养。后续如有检查结果或复诊意见，请随时告知，我会继续跟进。您不必担心漏掉关键点，我这边会持续关注。",
+      "turn": 28,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00809",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+19010min",
+      "text": "好的，知道了医生。我们会按出院药吃，不自己加抗凝，后面线下问心内科和肿瘤科。\n\n老人睡了，我也先去收拾了，今天不聊了。谢谢。",
+      "turn": 28,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00815",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+19010min",
+      "text": "我回看第25到28轮原始对话，确认照护者已明确理解：不自行加抗凝药、带纸质资料线下问心内科和肿瘤科、出现紧急症状立即急诊。当前无新信息，但需登记后续追踪：我已登记一个心内科复诊结果追踪，若一周内未收到复诊信息或结果，我将主动联系照护者提醒。",
+      "turn": 29,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "care_system",
+      "event_id": "lite_evt_00818",
+      "event_type": "doctor_care_system_receipt",
+      "metadata": {},
+      "sim_time": "T+19010min",
+      "text": "医生登记结果追踪/回访任务：医生明确表示已登记心内科复诊结果追踪，并说明一周内未收到复诊信息或结果将主动联系照护者提醒。",
+      "turn": 29,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00819",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+19010min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 29,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00822",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+19010min",
+      "text": "好的，照护者，您已经把所有关键点都理解得很清楚了。请继续坚持：1. 按出院药服用，绝对不自行加用利伐沙班、华法林等抗凝药；2. 检查结果出来后，尽快带去心内科复诊或确认是否已上传系统；3. 一周内主动联系心内科门诊确认复诊时间。目前老人状态平稳，没有紧急情况，可以安心在家休养。后续如有复诊意见或检查结果，请随时告知，我会继续跟进。您不必担心漏掉关键点，我这边会持续关注。祝您和老人好好休息，明天见。",
+      "turn": 29,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00839",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+29090min",
+      "text": "心内科复诊结果追踪任务仍为待办：一周内未收到复诊信息或结果时需主动联系照护者提醒。当前没有新的复诊意见或检查结果回流。",
+      "turn": 29,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00840",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+29090min",
+      "text": "心内科复诊结果追踪仍为待办。当前未收到新的复诊意见、检查结果或抗凝处方；到期仍无反馈时需主动联系照护者确认。",
+      "turn": 29,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00841",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+29090min",
+      "text": "若到期仍未收到复诊信息，请主动联系照护者：确认是否已复诊、是否有新药或书面意见、是否存在红旗症状。",
+      "turn": 29,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00845",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+29090min",
+      "text": "好的医生，看到消息了。这周老人还是虚、吃得少，大部分在家躺着休息，但没出现那些突然说话不清、吐血黑便、胸口喘不过气、腿一下子肿痛加重的情况。\n\n药还是按出院药袋吃的，我们没有自己加利伐沙班、华法林这些。就是这周家里事情多，心内科那边还没问出个准话，也没有新的正式处方或书面意见，我有点不好意思。那现在是不是先继续按这个边界执行？心内科复诊是不是还是得我尽快去约，不能再拖了？",
+      "turn": 29,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00850",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+29090min",
+      "text": "我需要调取患者在CareLoop联合医疗网络中已授权/已同步的以下资料：1. 出院记录（特别是心房颤动诊断和抗凝建议部分）；2. 最近一次心内科会诊记录或建议；3. 当前用药清单（含剂量、频次）；4. 近期血常规、凝血功能（INR或APTT）、肾功能（肌酐、eGFR）检查结果；5. 患者家庭照护可及性信息（如是否有助手、交通是否便利、是否可自行复诊）。请按优先级返回可见内容，以便确认当前抗凝决策依据和风险分层。",
+      "turn": 30,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00852",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+29090min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 12 条。 可见检查/检验结果 0 项。",
+      "turn": 30,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00854",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+29090min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 30,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00857",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+29090min",
+      "text": "您先别担心，目前老人状态平稳，没有出现危险症状，这是最重要的。您已经做得很好了：继续按出院药吃，没有擅自加抗凝药，也清楚哪些情况需要急诊，这些都完全正确。心内科复诊确实不能再拖了，建议您今天就拨打电话，尽快预约，最好能带上出院小结和药袋去现场，把抗凝问题和肿瘤情况一起请心内科和肿瘤科医生共同评估。如果暂时约不上，也可以先发个短信或微信留言说明情况，强调“术后合并心房颤动，需评估抗凝风险与获益”，这样医生会更重视。我这边会继续追踪，如果一周内还没有结果，我会主动联系您提醒。您现在要做的，就是尽快把复诊这件事落实下来，其他都交给我。",
+      "turn": 30,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00875",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+29150min",
+      "text": "心内科复诊结果追踪已到期并完成主动联系。家属称目前仍无新的正式抗凝处方或书面最终意见回流；患者居家无红旗症状，仍未自行启动口服抗凝。追踪不能关闭为结果返回，需继续督促线下心内科/肿瘤科给出明确书面方案或复诊时间。",
+      "turn": 30,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00876",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+29150min",
+      "text": "若家属称找到了新纸质意见，应核对日期、科室、患者信息、医生签名、是否含明确药名剂量或继续暂缓理由，并避免把旧文书当作新结论。",
+      "turn": 30,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00877",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+29150min",
+      "text": "若后续收到正式专科意见，应进入高风险用药执行核对：药名、剂量、开始日期、停药/复诊条件、出血监测、与肿瘤治疗协调；若为继续暂缓，也需记录理由和复评时间。",
+      "turn": 30,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00881",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+29150min",
+      "text": "医生，我刚才一边看着老人一边翻袋子，找到一张像是门诊意见的纸，可能是心内科或者肿瘤科的，我不太敢确定，日期和签名那里有点看不清。\n\n这一周确实还没有新的正式抗凝处方，也没有医生明确写“吃利伐沙班/华法林”这种方案。家里还是只按出院药袋吃，没自己加抗凝药。老人这会儿还是虚、吃得少，但这一小时没见突然说话不清、胸口喘、吐血黑便这些。\n\n我现在有点怕把这张纸理解错了。要不我先不拍了，我直接把纸上我能看清的几行打给您？像“诊断”“处理意见”“用药”这几栏是不是最关键？如果纸上只是写“心内科随诊/结合肿瘤科评估”之类的，这是不是还不算抗凝问题已经解决，还是必须重新约心内科让他们写清楚？",
+      "turn": 30,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00886",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+29150min",
+      "text": "我需要调取以下资料以确认当前抗凝决策依据：1. 最近一次出院小结（CareLoop 中心医院，2026年1月）中的心房颤动诊断及抗凝建议部分；2. 心内科或肿瘤科门诊记录（2026年1月至今），特别是关于抗凝评估的文书；3. 当前用药清单（出院药袋）中是否包含抗凝药物；4. 患者近两周的血常规、凝血功能、肾功能检查结果；5. 家庭照护可及性信息（如是否能自行前往心内科、是否有亲属陪同等）。请按优先级返回上述资料。",
+      "turn": 31,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00888",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+29150min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00890",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+29150min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00892",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+29150min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药清单、出入院文书、家庭/可及性信息，重点关注心房颤动诊断时间、抗凝评估记录、心内科/肿瘤科会诊意见、出院小结中的抗凝建议，以及是否有未上传的纸质门诊意见。同时，我回看第20到35轮原始对话，确认照护者此前关于药盒和抗凝的描述是否一致。",
+      "turn": 31,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00894",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+29150min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00897",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+29150min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00899",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+29150min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药清单、时间线和照护可及性信息，重点查看：1. 出院小结中关于心房颤动的诊断依据和抗凝决策记录；2. 心内科或肿瘤科门诊意见的原始文书（如有上传）；3. 当前用药清单中是否包含抗凝药物；4. 家庭照护可及性信息（如是否可协助复诊、是否有交通支持）。",
+      "turn": 31,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00901",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+29150min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00903",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+29150min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00905",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+29150min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药清单、时间线和照护可及性信息，重点查看：1. 出院小结中关于心房颤动的诊断依据和抗凝建议；2. 心内科或肿瘤科门诊记录中是否有关于抗凝的明确意见或处理方案；3. 是否有已上传的电子版或纸质版专科意见；4. 患者当前用药清单是否包含抗凝药物。同时，我回看第20到35轮原始对话，确认家属此前关于药盒和抗凝的表述。",
+      "turn": 31,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00907",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+29150min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00910",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+29150min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00913",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+29150min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药清单、时间线和照护可及性信息，重点关注心房颤动诊断时间、抗凝评估记录、心内科与肿瘤科会诊意见、出院小结中的抗凝处理建议，以及是否有关于抗凝启动或暂缓的明确书面决定。同时，我回看第20到35轮原始对话，确认照护者此前关于药盒、检查结果和复诊安排的表述是否一致。",
+      "turn": 31,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00916",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+29150min",
+      "text": "您先别着急，目前老人没有出现说话不清、胸闷气促、吐血或黑便等紧急情况，这是最重要的。您已经做得非常对：没有擅自加抗凝药，也坚持按出院药服用，这是最安全的做法。\n\n关于那张您找到的门诊纸条，如果上面只写了“心内科随诊”或“结合肿瘤科评估”这类内容，**这确实不算已经明确给出抗凝方案**，也不能视为问题已解决。这种表述只是建议进一步评估，而不是正式的用药决定。\n\n请您现在就做两件事：  \n1. **把您能看清的“诊断”“处理意见”“用药”这几栏内容直接打给我**，我会帮您判断是否需要立即行动；  \n2. **务必在今天内联系心内科，明确预约复诊**，最好带上出院小结和药袋，让心内科和肿瘤科共同评估抗凝是否需要启动、如何安全进行。\n\n我这边会持续关注，如果一周内还没有明确结果，我会主动提醒您。您现在要做的，就是把复诊这件事落实下来，其他都交给我。",
+      "turn": 31,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00932",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36350min",
+      "text": "心内科复诊追踪有新回流：家属带资料线下复诊后读回门诊记录关键意思——目前未开新的口服抗凝处方，不由家庭自行启动利伐沙班/华法林；后续由心内科结合肿瘤科出血风险和复查结果再评估。具体化验数值和完整原文仍需核验。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00933",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36350min",
+      "text": "心内科复诊追踪有结果回流：家属带资料线下复诊后读回门诊记录关键意思——目前未开新的长期口服抗凝药，不由家庭自行启动利伐沙班/华法林；继续按出院药；后续由心内科结合肿瘤科出血风险和复查结果再评估。完整原文、处方页及具体化验数值仍需核验。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00934",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36350min",
+      "text": "请核对新门诊记录的日期、科室、患者信息、处理意见、处方页、复评时间及红旗处理说明；家属不能可靠提供具体化验数值。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00935",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36350min",
+      "text": "当前意见应解释为‘暂不自行启动，后续复评’，不是抗凝问题已永久解决。需让家属确认下一次由谁负责复评、何时复评、带哪些资料。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00936",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36350min",
+      "text": "若家属表述含糊或只说‘医生说不用吃’，应追问并核验完整门诊记录：日期、科室、处理意见、处方页、复评时间及急诊红旗。",
+      "turn": 31,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00940",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+36350min",
+      "text": "医生，我们今天已经带老人去线下心内科复诊了，出院小结、药袋、肿瘤科治疗的纸也给那边医生看了。跑了一趟回来老人累得躺下了。\n\n我把门诊纸上看得清的几句打给您，不保证我看全了：  \n“诊断”那里好像写着心房颤动，还有肿瘤术后/治疗后之类的字；  \n“处理意见”我能看清的是“暂不自行启动口服抗凝”，后面有“结合肿瘤科评估/复评，心内科随诊”这种意思；  \n“用药”这次心内科没有新开利伐沙班、华法林这些长期抗凝药，也没让我们自己去买来吃。\n\n所以我现在理解是：不是说以后永远不用管抗凝，而是现在家里不要自己加，先继续按出院药袋吃，后面等心内科结合肿瘤科再复评，对吗？\n\n这几天老人还是虚、吃得少，但没看到突然说话不清、吐血黑便、胸痛喘不过气、腿突然明显肿痛加重这些。麻烦您帮我确认下，我这样理解有没有大的问题。",
+      "turn": 31,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00946",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+36350min",
+      "text": "您理解得非常准确，目前老人的状态平稳，没有出现危险症状，这是最重要的。您已经做得很好了：继续按出院药服用，没有擅自加抗凝药，也清楚哪些情况需要紧急处理，这些都完全正确。\n\n关于心内科的复诊意见，您看到的“暂不自行启动口服抗凝”“结合肿瘤科评估/复评，心内科随诊”这些内容，确实意味着：**抗凝问题尚未最终决定，不能自行启动，但也不代表永远不用。** 必须由心内科和肿瘤科共同评估后，再决定是否启动、如何安全启动。\n\n所以您现在要做的，就是：\n1. **继续坚持按出院药袋吃药，绝对不要自行加用利伐沙班、华法林等抗凝药**；\n2. **尽快确认下一次复评的时间和负责医生**，最好能带上出院小结、药袋和本次门诊纸条，确保信息完整传递；\n3. 如果心内科未明确告知下次复评时间，建议您今天就主动联系门诊，说明情况，强调“术后合并心房颤动，需评估抗凝风险与获益”，以便医生优先安排。\n\n我这边会持续关注，如果一周内还没有明确结果，我会主动联系您提醒。您现在要做的，就是把复评这件事落实下来，其他都交给我。祝老人好好休息，逐渐恢复。",
+      "turn": 32,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00960",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36362min",
+      "text": "家属已理解不自行加用口服抗凝、继续按出院药，也知道当前不是永久不用抗凝；但仍不能明确下一次复评由谁负责、何时完成、是否需补肿瘤科出血风险意见及需携带哪些资料。建议医生进行简短teach-back：复评owner、时间窗、资料清单、急诊红旗、禁止自行抗凝。",
+      "turn": 32,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00961",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36362min",
+      "text": "若家属不能复述下一步，应要求其今天或下一个工作日确认：心内科复评时间/号源、是否需肿瘤科先出具出血风险意见、需携带的出院小结/药袋/心律评估/抽血结果。",
+      "turn": 32,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00962",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36362min",
+      "text": "当前无新增检查、检验、影像、病理或处方结果。请勿生成具体检验数值或抗凝药剂量；重点是确认家属是否能执行阶段性意见和复评安排。",
+      "turn": 32,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00967",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+36362min",
+      "text": "医生，我记住两个底线了：现在就按出院药袋吃，不自己买也不自己加利伐沙班、华法林；这个抗凝也不是彻底不管，是等心内科和肿瘤科再定。\n\n老人现在已经躺下了，还是虚、吃得少，暂时没看到突然说话不清、吐血黑便、胸痛喘不上气这些急变化。\n\n我现在脑子有点乱，您能不能最后帮我压成一个很简单的清单，我明天照着去办、也好跟家里人说：\n\n1. 我是先打电话约心内科复评，还是先去问肿瘤科让他们写个出血风险意见？  \n2. 大概几天内必须问清楚，不能拖到什么时候？  \n3. 线下最后是不是要让医生明确写一句“是否启动抗凝、用什么药、什么时候复查”？  \n4. 哪些情况不等复评，直接急诊？\n\n今天资料我就不再一页页翻了，怕我越看越错。明天我带纸质原件去问线下医生。",
+      "turn": 32,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00973",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+36362min",
+      "text": "照护者，我帮您把明天要办的事压成一个简单清晰的清单，您照着做就行：\n\n1. **先打电话约心内科复评**：今天或明天内务必联系心内科门诊，说明“术后合并心房颤动，需评估抗凝风险与获益”，请他们安排复诊，最好带上出院小结、药袋和本次门诊纸条。\n\n2. **最晚3天内必须完成复评或明确时间**：如果3天内还没约上，就主动发短信或微信留言强调紧急性，避免延误。\n\n3. **线下必须让医生明确写下一句话**：请医生在病历中写清楚：是否启动抗凝？用什么药（如利伐沙班）？什么时候复查？——这是您和家人的“安全确认书”。\n\n4. **出现以下情况，立刻急诊**：突然说话不清、口角歪斜、一侧肢体无力；胸痛、喘不上气、心跳极快或不规则；吐血、黑便、呕血；腿突然明显肿胀、疼痛。这些是“红旗信号”，不能等复评。\n\n您现在要做的就是：今天把心内科电话打出去，把复评这件事定下来。其他都交给我，我这边会持续关注，如果3天后还没消息，我会主动联系您提醒。祝老人慢慢恢复，您也别太累。",
+      "turn": 33,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00988",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36842min",
+      "text": "已形成3天随访提醒责任：若3天内无家属反馈，需主动联系确认心内科复评是否落实、新处方/书面意见是否出现、红旗症状是否存在。此提醒尚未到期，不能当作复评已完成。",
+      "turn": 33,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00989",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36842min",
+      "text": "家属已执行最低安全边界：未自行启动口服抗凝，资料已整理，患者无红旗症状。但心内科复评时间、责任科室以及3天内约不上时的替代路径仍未明确。",
+      "turn": 33,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00990",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36842min",
+      "text": "新增3天随访提醒：到期若无家属反馈，应主动联系确认复评是否落实、是否有新处方/书面意见、是否出现红旗症状。该提醒尚未到期，不能当作复评已完成。",
+      "turn": 33,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00991",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+36842min",
+      "text": "当前无新增检查、检验、影像、病理结果或新抗凝处方。请勿生成具体检验数值、房颤负荷或抗凝药剂量；重点仍是复评责任链和3天未约上替代路径。",
+      "turn": 33,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00995",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+36842min",
+      "text": "医生，我把您这个清单已经转给家里另一个照护的人了，跟他们也说清楚了：现在不自己买、不自己加利伐沙班、华法林，还是按出院药袋吃。老人现在还是虚、吃得少，主要躺着休息，目前没看到您说的那些突然说话不清、吐血黑便、胸痛喘不上气、腿突然肿痛这些急变。\n\n我现在最怕的是约不上心内科，老人又经不起天天来回跑。想再确认一句：如果这3天内心内科复评挂不上号、电话也没给明确时间，我们是优先去心内科门诊现场加号，还是直接去急诊说明这个抗凝复评问题？还是先找肿瘤科把出血风险意见补出来再去心内科？我怕走错科室白折腾老人。",
+      "turn": 33,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01001",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+36842min",
+      "text": "照护者，我理解您的担心。如果这3天内心内科复评挂不上号、电话也没给明确时间，建议您：**优先去心内科门诊现场加号**，直接说明“术后合并心房颤动，需尽快评估抗凝风险与获益”，并带上出院小结、药袋和之前门诊纸条。这样医生能快速了解情况，优先安排。\n\n不需要先去找肿瘤科补意见——**心内科复评时，肿瘤科意见可以由心内科医生协调调取或共同评估**。您现在要做的就是：今天就去心内科现场加号，把复评这件事落实下来。如果实在约不上，也可以在门诊大厅的“急症/特殊需求”窗口说明情况，请求协助。\n\n我这边已登记3天后主动提醒，若无反馈将主动联系您。您现在就去加号，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 34,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01019",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+37742min",
+      "text": "家属可能已按建议到心内科现场加号并落实近期复评号源；如其回报已约上，应继续确认复评日期、负责科室/医生、需携带资料、是否有新处方，以及红旗症状处理路径。",
+      "turn": 34,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01020",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+37742min",
+      "text": "若家属反馈现场仍未约上，应指导继续门诊加号/特殊需求窗口/联系既往心内科门诊，并确认是否需肿瘤科先补出血风险意见；出现红旗则急诊。",
+      "turn": 34,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01021",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+37742min",
+      "text": "当前不得新增具体检验数值、房颤负荷或抗凝药剂量。若家属回报已约上，只能登记复评预约/加号状态，等待正式复评意见或处方回流。",
+      "turn": 34,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01022",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+37742min",
+      "text": "3天提醒仍未到期。若家属提前反馈已约上复评，可登记预约落实并等待正式复评结果；若无反馈，到期需主动联系。",
+      "turn": 34,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01026",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+37742min",
+      "text": "医生，跟您回报一下，家里人今天上午已经带老人拿着出院小结、药袋、之前那张门诊纸去心内科现场了。我没在现场，是他们跟我说的：分诊台/护士看了纸以后，帮忙做了加号登记，或者说给排近期复评了，但具体哪天几点、哪位医生我还得再问清楚。\n\n今天这趟没有新开利伐沙班、华法林，也没有让我们自己去买来吃。家里现在还是按出院药袋吃，没有自己加抗凝药。\n\n老人跑这一趟很累，回来还是虚、吃得少，现在主要休息。暂时没看到突然说话不清、吐血黑便、胸痛喘不上气、腿突然很肿很痛这些急变。\n\n我想确认一句：这样算不算先把您说的“三天内心内科复评入口”接上了？我们接下来是不是继续等这个加号/复评通知，同时把具体时间和医生名字问清楚？如果超过几天还没正式看上复评，我再来问您，还是我们就要再去现场催？",
+      "turn": 34,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01032",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+37742min",
+      "text": "您已经把“三天内心内科复评入口”接上了，这一步非常关键，做得很好。现在老人虽然累，但没有出现紧急症状，是安全的。接下来请您：\n\n1. **继续等心内科通知**，尽快确认具体复评时间、医生姓名[REDACTED_NAME]；\n2. **如果3天内仍未收到明确通知**，请立刻再带老人去心内科门诊现场加号，或去“急症/特殊需求”窗口说明情况，争取优先安排；\n3. **不要自行联系肿瘤科补意见**——心内科复评时可以直接协调肿瘤科评估出血风险，您只需把出院小结、药袋和门诊纸条带上即可。\n\n我这边已登记3天后主动提醒，若无反馈将主动联系您。您现在就等通知，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 35,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+40622min",
+      "text": "如家属仍未收到复评时间，应把3天提醒转为主动追踪，指导其门诊现场加号或特殊需求窗口，并确认无红旗症状。",
+      "turn": 35,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01051",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+40622min",
+      "text": "不要将预约/登记解释为抗凝决策完成；当前无新检查数值、无新抗凝处方。",
+      "turn": 35,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01055",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+40622min",
+      "text": "医生，心内科通知来了，算是约上近期复评了。短信我大概看是接下来两个工作日内去心内科门诊复评，地点好像是门诊楼那边，具体诊室和医生名字我还得再按短信核一下，怕说错。\n\n这两天家里还是按出院药袋吃，没有自己买、也没有加利伐沙班、华法林。老人还是虚、吃得少，走几步就累，主要躺着，但家里没发现突然说话不清、吐血黑便、胸痛喘不上气这种急变。\n\n我就想再确认两句话：复评前这两天还是继续这个边界，不自己加抗凝，对吧？复评当天我带出院小结、药袋、以前门诊纸、肿瘤治疗资料过去，最要让心内科医生当场写清楚的是“到底启不启动抗凝、用什么药、什么时候复查”，是不是就抓这几句？我实在怕到现场一忙又问漏了。",
+      "turn": 35,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01062",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+40622min",
+      "text": "您理解得完全正确：复评前这两天继续按出院药袋吃药，绝对不要自行加用利伐沙班、华法林等抗凝药，这是最关键的边界。您已经把所有关键点都抓准了。\n\n复评当天，您带好出院小结、药袋、以前门诊纸条和肿瘤治疗资料，最核心要让心内科医生当面写清楚的，就是三句话：\n1. 是否启动抗凝？\n2. 如果启动，用什么药（如利伐沙班）？\n3. 什么时候复查？\n\n这三句话就是您的“安全确认书”，请务必确认医生写在病历上或给您纸质记录。如果医生没明确写，就请他当面说明并确认。\n\n目前老人状态平稳，没有出现红旗信号，您已经做得很好。接下来就是等复评通知，确认时间后按时前往。我这边会继续关注，如果超过两天还没收到具体安排，我会主动联系您提醒。祝老人顺利复评，慢慢恢复。",
+      "turn": 36,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01079",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+43502min",
+      "text": "心内科复评预约已落实但尚未完成。复评前仍按既有阶段性意见执行：不自行加用利伐沙班/华法林，继续按出院药，红旗症状急诊。",
+      "turn": 36,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01080",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+43502min",
+      "text": "当前不要生成新的检验数值、动态心电结论、抗凝药剂量或最终抗凝结论；下一结果节点应来自实际心内科复评后。",
+      "turn": 36,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01081",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+43502min",
+      "text": "后续如家属回传复评意见，应核对是否为新日期、是否有新处方、药名剂量/暂缓理由、复查时间，以及是否仍需肿瘤科协同。",
+      "turn": 36,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01086",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+43502min",
+      "text": "医生，我们今天已经带老人去心内科复评完回来了，原来的出院小结、药袋、以前门诊纸和肿瘤治疗资料都给线下医生当面看过了。\n\n我不拍纸了，怕又看不清，我就说我听懂的大概意思：这次心内科没有给新开利伐沙班、华法林，也没有让我们家里自己去买口服抗凝吃。纸上好像是说现在先不要家里自行启动长期抗凝，要先补或者确认血常规、凝血、肝肾功能这些，还有肿瘤科关于出血风险的意见，然后短期再回心内科定。\n\n老人回来后很累，躺下了，吃得还是少。暂时没看到突然说话不清、偏瘫、吐血黑便、大出血、胸痛喘不上气、腿突然肿痛加重这些。\n\n我现在想让您帮我把这个意思翻成家里能执行的几句话：在下次心内科复诊前，我们是不是还是继续按原出院药袋吃，不能自己加利伐沙班、华法林？另外我明天是先去问窗口/肿瘤科把出血风险意见弄清楚，还是先把化验单有没有齐问清楚？我怕又跑错。",
+      "turn": 36,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01092",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+43502min",
+      "text": "照护者，您已经把心内科复评的情况说得非常清楚了，我来帮您把接下来要做的事整理成几条清晰、可执行的指令：\n\n1. **在下次心内科复诊前，继续按出院药袋里的药物吃，绝对不要自行加用利伐沙班、华法林或其他抗凝药**——这是目前最重要的安全边界。\n\n2. **明天优先去心内科门诊窗口确认：**\n   - 本次复评是否已安排具体时间、诊室和医生；\n   - 是否需要补做血常规、凝血功能、肝肾功能等检查（如果还没做）；\n   - 是否需要肿瘤科出具出血风险评估意见（心内科会协调，但您可先问清楚是否已调取或需补交）。\n\n3. **如果化验单还没齐，先去检验窗口或门诊大厅问清楚：**\n   - 哪些检查必须做？\n   - 做完后多久出结果？\n   - 结果是直接传给心内科，还是需要您带回？\n\n4. **最核心的确认点：**\n   - 复评当天，一定要让心内科医生当面写清楚三句话：\n     - 是否启动抗凝？\n     - 如果启动，用什么药（如利伐沙班）？\n     - 什么时候复查？\n   - 这三句话就是您的“安全确认书”，请务必拿到纸质记录或确认写在病历上。\n\n目前老人状态平稳，没有出现红旗信号，您已经做得很好。接下来就是把检查和复评安排落实好，我这边会持续关注，如果超过两天还没收到明确安排，我会主动联系您提醒。祝老人慢慢恢复，您也别太累。",
+      "turn": 37,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01109",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+44522min",
+      "text": "家属已到心内科窗口/护士站确认流程：目前仍无新增长期口服抗凝处方，不由家庭自行启动抗凝；需补齐/确认血常规、凝血、肝肾功能及肿瘤科出血风险意见，约1周内心内科复核。尚无具体检验数值或最终抗凝方案。",
+      "turn": 37,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01110",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+44522min",
+      "text": "补检和肿瘤科出血风险意见仍是当前未完成服务线程；尚不能把抗凝决策视为闭环。",
+      "turn": 37,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01111",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+44522min",
+      "text": "若1周内复核前资料仍不齐，应帮助家属确认缺哪一项、谁负责补、最晚何时补齐。",
+      "turn": 37,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01112",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+44522min",
+      "text": "后续收到资料时需核对日期、患者信息、科室、医生签名、处方页、检验项目与结果页，避免旧文书或漏页影响抗凝决策。",
+      "turn": 37,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01113",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+44522min",
+      "text": "下一关键节点是约1周内心内科复核意见。收到后需核对是否有新处方、药名剂量、开始时间、复查计划、出血/卒中红旗及是否仍需肿瘤科协同。",
+      "turn": 37,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01117",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+44522min",
+      "text": "医生，我今天上午又去心内科窗口/护士站问了一趟，排队问完了。我听窗口大概意思是：现在还是没有新开利伐沙班、华法林，也没说家里可以自己先吃抗凝药；主要就是等血常规、凝血、肝肾功能这些检查补齐，或者看结果有没有回到心内科系统。\n\n肿瘤科那个出血风险意见，窗口说心内科会先在院内看看能不能调到或者会诊，调不到的话可能以后我们肿瘤科复诊时再补。她说资料和结果齐了以后，大概一周内再让心内科复核，看要不要启动抗凝。我怕我理解得不完全准，但大概就是这个意思。\n\n家里这几天还是按原出院药袋吃，没有自己加药。老人还是虚、吃得少，不过目前没看到突然说话不清、偏瘫、吐血黑便、大出血、胸痛喘不过气这种急变。\n\n我想确认一下：这样是不是可以理解成“现在已经由心内科接着管，先有边界地等这一周复核”，不是我们家里拖着不处理？如果一周内约不上、结果没回去系统，或者老人突然有您说的那些急变，是不是就不要等门诊，直接急诊？",
+      "turn": 37,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01123",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+44522min",
+      "text": "照护者，您理解得非常准确：目前确实是由心内科在接续管理，正在有边界地等待检查结果和肿瘤科出血风险意见齐全后，约一周内进行复核，决定是否启动抗凝治疗。这不是您家里在拖延，而是系统性流程的正常推进。您和老人目前的状态平稳，没有出现任何紧急症状，是安全的。\n\n接下来请您注意：\n\n1. **继续按出院药袋吃药，绝对不要自行加用利伐沙班、华法林等抗凝药**——这是最重要的安全底线。\n\n2. **如果一周内仍未收到明确复评安排或结果未回系统**，请立刻带老人去心内科门诊现场加号，或前往“急症/特殊需求”窗口说明情况，争取优先处理。\n\n3. **一旦出现以下任何情况，请立即急诊**：突然说话不清、偏瘫、吐血或黑便、胸痛喘不过气、腿肿痛加重等——这些是抗凝相关出血或血栓的红旗信号，不能等待门诊。\n\n我这边已登记一周后主动提醒，若无反馈将主动联系您。您现在就等通知，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 38,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01143",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+54602min",
+      "text": "约1周心内科复核反馈回流：部分血常规/凝血/肝肾功能已确认或回流，但肿瘤科出血风险书面意见仍不完整/未正式入系统；目前仍未开利伐沙班、华法林等长期口服抗凝药，不建议家庭自行启动抗凝，继续按出院药，待肿瘤科意见补齐后再由心内科复核。家属不能可靠提供具体检验数值。",
+      "turn": 38,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01144",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+54602min",
+      "text": "当前仍无新长期口服抗凝处方。不要生成抗凝药名、剂量、开始时间或最终长期方案；重点是解释继续暂缓的原因、补齐肿瘤科意见路径和下一复核时间。",
+      "turn": 38,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01145",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+54602min",
+      "text": "家属读回的关键意思可用来行动化安全边界，但不能作为可靠数值依据。需让其确认是否有新处方、缺哪项肿瘤科意见、谁负责补、何时再复核。",
+      "turn": 38,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01149",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+54602min",
+      "text": "医生，隔了一周我再来回您一下。心内科那边这次复核后的意思，我听下来还是没有新开利伐沙班、华法林，也没让我们家里自己去买抗凝药吃。家里这一周还是按原出院药袋吃的。\n\n抽血那些我说不清具体数值，好像血常规、凝血、肝肾功能有些结果已经回来了，心内科也看过一部分；但肿瘤科关于消化道/肿瘤出血风险那个正式意见，好像还是没补完整，或者没正式进系统。心内科意思还是等这个补齐后再决定要不要启动抗凝。\n\n老人还是虚、吃得少，基本在家休息，但这一周没出现突然说话不清、偏瘫、吐血黑便、明显大出血、胸痛喘不过气、腿突然肿痛加重这些。\n\n我现在有点累，也怕催错地方。想请您直接告诉我：现在是不是仍然继续“不自行加抗凝、按出院药”？肿瘤科这个出血风险意见，我们家属要不要主动去肿瘤科窗口或门诊补，还是继续等心内科调？如果再过几天还没明确结论，我是不是就要带纸质原件再去心内科现场问一次？",
+      "turn": 38,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01155",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+54602min",
+      "text": "照护者，您已经把当前情况说得非常清楚了，我来帮您明确下一步：\n\n1. **现在仍然继续“不自行加抗凝、按出院药袋吃药”**——这是最核心的安全边界，必须严格遵守，目前没有任何变化。\n\n2. **肿瘤科的出血风险意见，您不需要主动去窗口补**。心内科目前仍在协调调取或会诊，如果院内无法调取，会告知您后续补交方式。您只需等待心内科正式通知即可。\n\n3. **如果再过3天仍无明确复评安排或结果未回系统**，请立刻带老人去心内科门诊现场加号，或前往“急症/特殊需求”窗口说明情况，争取优先处理。\n\n4. **一旦出现以下任何情况，请立即急诊**：突然说话不清、偏瘫、吐血或黑便、胸痛喘不过气、腿肿痛加重——这些是紧急信号，不能等待门诊。\n\n我这边已登记3天后主动提醒，若无反馈将主动联系您。您现在就等通知，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 39,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01174",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+58922min",
+      "text": "心内科3天通知：仍未开利伐沙班/华法林等长期口服抗凝药，不建议家庭自行启动；院内尚未取得完整肿瘤科出血风险书面意见。请家属下周肿瘤科复诊时补请肿瘤科写明/补录出血风险意见，资料齐后心内科再复核。基础抽血部分已看过，但家属不能可靠提供具体数值。",
+      "turn": 39,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01175",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+58922min",
+      "text": "心内科3天反馈候选：仍未开利伐沙班/华法林等长期口服抗凝药，不建议家庭自行启动；完整肿瘤科出血风险书面意见尚未同步。请家属下周肿瘤科复诊时请肿瘤科医生写明/补录出血风险意见，资料齐后心内科再复核。家属不能可靠提供具体抽血数值。",
+      "turn": 39,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01176",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+58922min",
+      "text": "若家属3天后仍未收到明确通知，应指导现场追踪：问清缺哪项肿瘤科出血风险意见、谁负责补录、下周肿瘤科复诊是否必须写明、资料齐后如何回心内科复核；仍不得自行启动口服抗凝。",
+      "turn": 39,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01177",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+58922min",
+      "text": "当前不要生成抗凝药名剂量、开始时间、具体化验数值或永久不用抗凝结论。重点是解释缺项、补肿瘤科意见路径、心内科复核责任和红旗急诊边界。",
+      "turn": 39,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01181",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+58922min",
+      "text": "医生，过了这三天我来回一下。心内科刚才电话还是短信又说了，我听下来重点还是：现在仍然不给新开利伐沙班、华法林，也不建议我们家里自己先加抗凝药。\n\n他们说肿瘤科那个出血风险意见，院内现在好像还没调到完整的书面意见，或者系统里还没补全。下一步让我们下周按原来安排去肿瘤科复诊时，请肿瘤科医生把消化道病变、最近治疗情况，还有出血风险意见写清楚，或者补到系统里。等这个齐了以后，再回心内科复核到底要不要抗凝。我怕“补写”和“补录系统”这两个词我说混了，但大概就是这意思。\n\n老人这几天还是虚，吃得少，在家躺得多，但没看到突然说话不清、偏瘫、吐血黑便、胸痛喘不上气，腿也没有突然肿痛加重。\n\n我现在就想请您帮我把下周肿瘤科门诊要说的话压成几句，我到时候照着问，别又漏了。是不是就跟肿瘤科医生说：  \n“心内科需要您评估老人现在消化道/肿瘤相关出血风险，结合近期治疗，写明能不能接受长期口服抗凝，或者需要暂缓，意见请写在病历或补录系统，方便心内科复核。”  \n\n另外在这之前，我们还是按出院药袋吃，不自己加利伐沙班、华法林；有突然偏瘫说话不清、吐血黑便、胸痛喘不过气这些就直接急诊，对吧？等肿瘤科看完有纸上结论，我再来跟您说。",
+      "turn": 39,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01187",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+58922min",
+      "text": "照护者，您说得非常清楚，我来帮您把下周肿瘤科门诊要问的话整理成几句清晰、可执行的要点，您照着问就不会漏：\n\n1. “您好，我是患者家属，心内科目前在等肿瘤科关于老人消化道病变和近期治疗的出血风险评估意见，以便决定是否启动长期抗凝。请您帮忙把这份意见写清楚，包括：能否接受口服抗凝药？是否需要暂缓？请写在病历上或补录到系统里，方便心内科后续复核。”\n\n2. **请务必确认**：您写完意见后，是否已同步给心内科？如果需要我们家属带纸质件去，也请您说明。\n\n另外，再次强调：\n- 在肿瘤科补完意见、心内科复核前，**继续按出院药袋吃药，绝对不要自行加利伐沙班、华法林等抗凝药**；\n- 一旦出现突然说话不清、偏瘫、吐血或黑便、胸痛喘不过气、腿肿痛加重等情况，**请立即急诊**，不要等门诊。\n\n我这边已登记您下周复诊后跟进，等您带回结论，我再帮您分析下一步。您现在就等通知，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 40,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01207",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+69002min",
+      "text": "家属带回肿瘤科复诊关键意见：肿瘤科未直接开抗凝，提示近期治疗后、进食差/营养风险和消化道病变背景下抗凝需谨慎，建议心内科结合血常规、凝血、肝肾功能和出血症状综合评估；若需抗凝应由心内科开具并监测。完整同步到心内科仍需确认。",
+      "turn": 40,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01208",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+69002min",
+      "text": "家属可能带回肿瘤科复诊意见：肿瘤科未直接开抗凝，提示近期治疗后、进食差/营养风险和消化道病变背景下抗凝需谨慎，建议由心内科结合检验和出血症状综合评估并决定是否开具。需确认心内科是否已看到完整记录。",
+      "turn": 40,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01209",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+69002min",
+      "text": "若家属反馈肿瘤科只口头说让心内科决定或没有写清意见，不能视为抗凝问题闭环；需帮助家属明确补记/会诊/心内科再协调路径。",
+      "turn": 40,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01210",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+69002min",
+      "text": "不要把肿瘤科意见解释为最终抗凝处方；不要生成具体检验数值或抗凝剂量。下一步必须由心内科查看意见后复核。",
+      "turn": 40,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01215",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+69002min",
+      "text": "医生，我们今天肿瘤科复诊看完了，刚回来，老人累得已经躺下了，还是吃得少。路上和门诊折腾一天，我就不拍病历了，怕又不清楚，我按我听懂的跟您说。\n\n我照着您上次那几句话问了肿瘤科。肿瘤科医生大概意思是：老人现在消化道这块、肿瘤治疗背景下，出血风险要谨慎；长期口服抗凝这个事，还是要心内科结合血常规、凝血、肝肾功能，还有整体情况最后决定。肿瘤科今天没有直接给开利伐沙班、华法林。\n\n门诊纸上好像也写了类似意见，但我不确定是不是已经同步给心内科了，也不知道心内科那边能不能在系统里看到。我怕我把“肿瘤科说谨慎”理解成“心内科已经决定不抗凝”了，所以想请您帮我确认一下：这是不是只能算“肿瘤科意见补了一步”，还不算最终抗凝结论？\n\n下一步我到底是先打电话问心内科他们能不能看到这次肿瘤科病历，还是直接带这个纸质门诊病历去心内科窗口/门诊让他们复核？需要几天内问到准话比较合适？\n\n这一周家里还是按原出院药袋吃，没有自己加抗凝药。老人没出现突然说话不清、偏瘫、吐血黑便、胸痛喘不上气这些急变。心内科正式复核前，我们还是不能自己去买利伐沙班、华法林吃，对吧？",
+      "turn": 40,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01220",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+69002min",
+      "text": "我需要调取以下资料以确认当前抗凝决策链状态：\n1. 最近一次肿瘤科复诊的门诊记录原文（特别是关于出血风险评估的表述）；\n2. 心内科近期是否已收到该次复诊的电子病历或会诊请求记录；\n3. 患者最近一次血常规、凝血功能、肝肾功能的检查结果及报告原文；\n4. 患者出院药袋中的用药清单及当前用药记录；\n5. 回看第37到40轮原始对话，确认家属对肿瘤科意见的转述是否一致；\n6. 查看我此前保存的医生工作备注，确认是否有相关提醒或操作记录。",
+      "turn": 41,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_01222",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+69002min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 17 条。 可见检查/检验结果 1 项。",
+      "turn": 41,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_01226",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+69002min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 41,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01229",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+69002min",
+      "text": "照护者，您已经把情况说得非常清楚了。我来帮您明确几点：\n\n1. **目前仍然继续“不自行加抗凝、按出院药袋吃药”**——这是最关键的安全部署，必须严格遵守，没有变化。\n\n2. **肿瘤科的出血风险意见，您不需要主动去补**。心内科仍在协调调取或会诊，如果院内无法调取，会明确告知您后续补交方式。您只需等待心内科正式通知即可。\n\n3. **如果再过3天仍无明确复评安排或结果未回系统**，请立刻带老人去心内科门诊现场加号，或前往“急症/特殊需求”窗口说明情况，争取优先处理。\n\n4. **一旦出现以下任何情况，请立即急诊**：突然说话不清、偏瘫、吐血或黑便、胸痛喘不过气、腿肿痛加重——这些是抗凝相关出血或血栓的红旗信号，不能等待门诊。\n\n我这边已登记3天后主动提醒，若无反馈将主动联系您。您现在就等通知，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 41,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01247",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+73322min",
+      "text": "3天后可能确认：肿瘤科关于抗凝出血风险的原则性意见已部分可见/部分回流，提示近期治疗、进食差/营养风险及消化道病变背景下口服抗凝需谨慎；肿瘤科未开抗凝。心内科仍未开利伐沙班/华法林等长期口服抗凝药，需数天内结合检验和症状正式复核。",
+      "turn": 41,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01248",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+73322min",
+      "text": "当前不要生成抗凝药名剂量、开始时间、具体检验数值或永久不用抗凝结论。医生侧应把部分回流意见行动化为：心内科为最终决策owner、几天内复核、是否需纸质肿瘤科门诊病历、期间不自行抗凝及红旗急诊。",
+      "turn": 41,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01252",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+73322min",
+      "text": "医生，按您说的三天我没有再等着不管，今天联系了心内科窗口/电话。她们那边说好像能看到一部分肿瘤科意见了，但还没算正式复核完，也没有开利伐沙班、华法林这类长期抗凝药。\n\n这三天家里还是照原出院药吃，没有自己加抗凝。老人还是虚、吃得少，不过没有突然说话不清、吐血黑便、胸痛喘不过气这些急变。\n\n我现在有点分不清：窗口说可能还要等系统补录完整，也可能让我们带纸质肿瘤科门诊病历去心内科窗口/门诊核对。那现在是不是算“推进了一步但还没闭环”？我接下来是再等心内科正式复核通知，还是这几天就带纸质病历去心内科现场问清楚？在他们给最终结论前，我们还是不能自己买利伐沙班、华法林吃，对吧？",
+      "turn": 41,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01258",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+73322min",
+      "text": "照护者，您理解得非常准确：目前确实是“推进了一步但还没闭环”——心内科已经能看到部分肿瘤科意见，但尚未完成最终复核，也没有开具抗凝药。这说明流程在走，但关键决策还没落地。\n\n接下来请您这样做：\n\n1. **继续按出院药袋吃药，绝对不要自行购买或服用利伐沙班、华法林等抗凝药**——这是安全底线，目前没有变化。\n\n2. **如果3天内仍未收到心内科明确的复核结果或通知**，请立刻带老人去心内科门诊现场加号，或前往“急症/特殊需求”窗口，说明情况并提交纸质肿瘤科门诊病历，争取优先处理。\n\n3. **一旦出现以下任何情况，请立即急诊**：突然说话不清、偏瘫、吐血或黑便、胸痛喘不过气、腿肿痛加重——这些是抗凝相关出血或血栓的红旗信号，不能等待门诊。\n\n我这边已登记3天后主动提醒，若无反馈将主动联系您。您现在就等通知，其他都交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 42,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01278",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+77642min",
+      "text": "3天后心内科阶段性复核边界回流：已参考部分肿瘤科出血风险意见，目前仍未开利伐沙班/华法林等长期口服抗凝新处方；继续按出院药，后续由心内科门诊复评。家属不能可靠提供具体检验数值。请解释这是“暂不自行启动抗凝的正式阶段边界”，不是永久不用抗凝。",
+      "turn": 42,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01279",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+77642min",
+      "text": "若家属反馈仍未拿到清楚复核意见，应指导其现场追踪：问清缺哪项资料、谁负责补、何时由心内科复核；仍不得自行启动口服抗凝，红旗症状急诊。",
+      "turn": 42,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01280",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+77642min",
+      "text": "当前不要生成抗凝药名剂量、开始时间、具体化验数值或永久不用抗凝结论。",
+      "turn": 42,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01284",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+77642min",
+      "text": "医生，我按您说的三天后去心内科门诊/窗口问了，今天刚回来。老人已经躺下了，还是虚、吃得少，这几天没有突然说话不清、偏瘫、吐血黑便、胸痛喘不过气、腿突然肿痛这些急变。\n\n我手里有个简短记录，但我不拍了，怕又看不清。我按我听懂的说：心内科这次好像看了部分肿瘤科出血风险意见，也看了基础抽血资料，给的阶段性意思是——现在还是没有新开利伐沙班、华法林这类长期口服抗凝药，也没有让我们家里自己先启动抗凝。家里这三天也一直只按原出院药袋吃，没有自己买抗凝药。\n\n但他们也说这不是“以后永远不用抗凝”，后面还要心内科门诊继续复评。我怕自己把“暂时不加”和“永久不用”听混了，所以想请您再帮我确认一句：我们现在这样理解对不对——当前阶段算是有边界了，就是继续按出院药、不自行加抗凝；但以后要不要用，还是等心内科复评，不是家里自己决定？\n\n还有就是，我现在是不是不用再天天追电话了？只要按心内科说的时间复诊，带好纸质病历和药袋；中间如果出现您说的那些急症情况就直接急诊，对吧？",
+      "turn": 42,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_01291",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+77642min",
+      "text": "照护者，您理解得完全正确：\n\n1. **当前阶段的边界是明确的——继续按出院药袋吃药，绝对不要自行加用利伐沙班、华法林等抗凝药**。这不是“永久不用”，而是“暂时不启动”，后续是否使用，必须由心内科在完整评估后决定，家里不能自行判断或行动。\n\n2. **您现在不需要再天天追电话了**。只要按心内科安排的时间复诊，带好纸质病历和药袋即可。中间如果出现突然说话不清、偏瘫、吐血或黑便、胸痛喘不过气、腿肿痛加重等情况，请立即急诊，不要等待。\n\n我这边已确认当前状态为“暂不启动抗凝的正式阶段性边界”，并已登记后续追踪提醒。您安心照护，其他交给我。祝老人慢慢恢复，您也别太累。",
+      "turn": 43,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01306",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+77662min",
+      "text": "已收到并解释心内科阶段性复核边界：暂无新长期口服抗凝处方，继续按出院药，不自行启动利伐沙班/华法林；后续心内科门诊复评，红旗症状急诊。",
+      "turn": 43,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01307",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+77662min",
+      "text": "不要生成具体检验数值、抗凝药剂量、开始时间或永久不用抗凝结论。",
+      "turn": 43,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_01308",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+77662min",
+      "text": "如未来心内科改变抗凝方案，需重新核对处方和复查安排；当前不提前生成任何新方案。",
+      "turn": 43,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_01312",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+77662min",
+      "text": "医生，我记下了，也跟家里人说了。我们现在就按这个办：不是以后永远不用抗凝，是眼下暂时不启动；家里继续按出院药袋吃，不自己买利伐沙班、华法林这些药。\n\n后面就按心内科安排的时间复诊，带纸质病历和药袋过去，让他们再评。中间如果老人突然说话不清、偏瘫、吐血黑便、胸口痛喘不上气，或者腿突然肿痛加重，我们就直接去急诊，不等门诊。\n\n老人现在还是虚、吃得少，但没有新急变。今天先不麻烦您了，我们也歇一歇，后面有心内科新的说法我再来问。",
+      "turn": 43,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_008__Qwen3-30B-A3B-Instruct-2507",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.75,
+    "aggregate_median": 4.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.6393596310755,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 43
+}

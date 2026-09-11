@@ -1,0 +1,943 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "6166fa397141e275834dc49cb81fc291f6f178f4e372131915876ab519a72e47",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_089__anon_37523bdb8812621d",
+    "packet_sha256": "45c92478e3ed57dd44903f63c23154eec1df7efe0ab3038e6bcbdef6114886b0"
+  },
+  "case_id": "case_CL120_EHR_089",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "oncology_hematology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "cost_transport_or_work_barrier",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "low_adherence_or_refusal | external_system_gap",
+    "starting_phase": "longitudinal_followup",
+    "target_problem": "anemia_bleeding",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_handoff_closed",
+    "evidence": [
+      "患者已在原治疗医院血液科病房住院，病房团队多次查房查看院内CBC趋势，并决定继续住院保护性监测。",
+      "已完成红细胞支持后Hb暂稳，完成血小板输注且短期未见明显急性输注反应；后续PLT仍低但由病房按趋势决定是否追加输注。",
+      "WBC/ANC仍低但无发热寒战；家属理解若发热或寒战立即按病房中性粒细胞减少发热流程/按铃处理。",
+      "家属明确复述：不自行准备出院、不自行加药、不催着乱用升白针或抗感染药，输血/升白/抗感染由血液科按复查结果决定。",
+      "家属已完成换班交接：起身/上厕所先按铃，有发热寒战、出血、胸闷喘、意识异常或明显变虚立即叫护士，不自行判断。",
+      "医生没有凭家属不可靠数字或照片作具体数值决策，而是承认趋势信息来自院内系统和线下医护口头解释，并把责任边界交给血液科病房。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应只在出现新高影响节点时推进：下一次CBC趋势导致输血/升白/抗感染策略改变，出现发热寒战或活动性出血，或进入出院前计划制定；否则无需反复重复红旗和等待。",
+    "rationale": "本次线上CareLoop的核心任务是ALL化疗后出院居家复查血象、贫血/出血/感染风险分层与可执行就医路径。轨迹已从居家不确定，推进到复查血象发现高危骨髓抑制风险、转入原治疗医院血液科病房、完成红细胞和血小板支持治疗、连续住院观察无发热寒战/活动性出血/输血反应，并由血液科病房持续复查CBC和决定输血、升白、抗感染及出院标准。家属已能teach-back：不自行出院、不自行加药或催用升白/抗感染，起身按铃，发热/寒战/出血/胸闷气短/意识改变等立即叫护士。残余的血小板低、ANC低和后续CBC趋势仍有临床风险，但它们已由血液科住院团队接管，具备当前责任人、监测窗口和升级路径；不需要线上医生继续作为主要责任链持有者。此闭环是安全交接/外部接管下的当前episode闭合，不代表白血病治愈或骨髓抑制风险解除，也不应把外部病房的后续治疗完全归功于AI医生。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_longitudinal_thread: ALL化疗后骨髓抑制仍未解除，PLT和WBC/ANC仍需连续CBC趋势监测；当前owner为血液科病房，due window为住院期间按病房计划夜间/次晨/查房复查，escalation为发热寒战、出血或血象恶化时立即病房处理。",
+      "bounded_residual_longitudinal_thread: 是否再次输红细胞/血小板、是否使用升白针或启动抗感染，仍需血液科结合血象、症状和化疗方案决定；家属已知不可自行加药或催用。",
+      "global_disease_journey_background: 急性淋巴细胞白血病后续疗程、复查、感染预防和出院后随访仍将长期持续，但不阻断本次居家复查/急性风险转入专科住院责任链的闭合。",
+      "not_blocking_current_episode: 家属没有完整纸质报告和具体CBC数值；因院内系统和血液科查房已解释并接管治疗决策，当前不构成线上episode阻塞。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "化疗后回家复查血象，路远又怕贫血出血",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我爸前阵子因为急性淋巴细胞白血病做完一轮化疗刚出院，医生让密切复查血象。今天看他人还行，就是走几步有点没劲，我妈又说牙龈刷牙时有点出血，不知道是不是紧张想多了。家里去血液科不太方便，能不能先问问哪些情况必须马上去？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者本轮化疗的住院及出院记录、化疗方案与日期、最近及出院时血常规（重点中性粒细胞、血小板、血红蛋白）、凝血与肝肾功能、出院用药及复查安排，并查看家庭采血、就近急诊和交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "不是想多了：化疗后乏力和牙龈出血可能提示贫血或血小板降低，需要今天就近查血常规（含白细胞分类/中性粒细胞和血小板），不必一定先跑血液科；结果出来立即发来或联系原血液科。现在先量体温，避免刷硬毛牙刷、抠鼻、用力排便和磕碰；不要自行吃阿司匹林、布洛芬等止痛药。\n\n以下任何一种都要马上急诊，必要时拨120：体温一次≥38.0℃（化疗后发热不要在家等，也不要先自行吃退烧药掩盖）；牙龈或鼻出血持续按压10–15分钟仍不停、血量增加；呕血、黑便/血便、血尿；突然剧烈头痛、意识异常、视物不清；明显气短、胸痛、晕厥、心跳很快或乏力到走不了。\n\n请告诉我：现在体温、牙龈是否仍在出血及能否止住、有没有皮肤出血点/大片淤青或其他出血，以及出院日期和最近一次血常规数值。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00030",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+125min",
+      "text": "若家属上传报告，可进入血常规结果解释与是否急诊/血液科处理节点。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00035",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+125min",
+      "text": "医生，我们已经带我爸到就近医院抽了血，血常规报告现在拿到了，但我看不太懂这些英文缩写和上下箭头。\n\n刚才体温量的是36.7左右，没有发烧。早上刷牙那个牙龈出血已经自己停了，不是一直流；目前我没看到鼻血、黑便、血尿或者大片淤青。他现在坐着休息，还是走路没劲，但能慢慢走。\n\n他是大概两天前刚出院的。出院前那次血常规我现在说不准，只记得好像有红细胞还是血红蛋白偏低，有向下箭头。\n\n这个报告我可以拍给您，也可以照着读。您先让我读哪几项最要紧？是不是白细胞、血红蛋白、血小板，还有那个中性粒细胞？我怕看错耽误，要不要现在就联系原来的血液科或者直接往大医院去？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00041",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+125min",
+      "text": "对，先逐字读这几项的“结果＋单位”（不要只读箭头）：①血小板 PLT；②血红蛋白 HGB/Hb；③白细胞 WBC；④中性粒细胞绝对值 ANC，报告上也可能写 NEUT#、NEU# 或 GRAN#。如果没有绝对值，再读中性粒细胞百分比 NEUT% 和分类中是否有幼稚细胞/原始细胞提示；同时告诉我采血时间。最好把报告整页清晰拍来，但若图片无法读取，就按上面逐项读。\n\n目前36.7℃、出血已停且能行走，暂不一定直接去大医院；但化疗后血象可能很低，先在就近医院不要离开，等我看具体数值，并建议现在就把结果联系原血液科确认后续输血或复查安排。若PLT＜20×10⁹/L，或ANC＜0.5×10⁹/L，或Hb＜70 g/L，请让就近医院医生立即评估并联系血液科；若PLT＜10、任何持续/明显出血，或体温≥38.0℃，直接急诊处理。出现胸痛、气短、晕厥、意识异常或剧烈头痛也立即急诊。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00056",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+130min",
+      "text": "家属读回血常规：PLT约32×10^9/L，Hb约76 g/L，WBC约1.1×10^9/L，ANC/NEUT#约0.38×10^9/L；体温仍正常，牙龈出血已止，乏力仍在。来源为家属读回纸质报告，需核对单位。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00060",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+130min",
+      "text": "医生，我照着纸质报告念，怕有的缩写读错，采血时间是今天的。\n\n报告上写的：\n- PLT 血小板：32 ×10^9/L\n- HGB 还是 Hb：76 g/L\n- WBC 白细胞：1.1 ×10^9/L\n- 我找到一个像 NEUT# 的，中性粒细胞绝对值：0.38 ×10^9/L\n\n中性粒细胞百分比我还没太找准，报告上我没看到写“原始细胞”或者“幼稚细胞”这种字样，可能也有我看漏的。\n\n他现在体温还是36.7左右，牙龈没有再流血，就是人还是很乏力，走路要我扶一下。这个 NEUT# 0.38 是不是已经算您说的很低了？我们现在还在就近医院没走，是马上让这里医生看、同时打电话给原血液科吗？需要急诊输血或者升白吗？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+130min",
+      "text": "是的，NEUT# 0.38×10^9/L属于重度中性粒细胞减少（低于0.5），感染风险明显升高。请你们先不要离开：现在就把整张报告交给就近医院医生评估，同时立即联系原血液科/化疗团队，告知今天的PLT 32、Hb 76、WBC 1.1、ANC 0.38及乏力、曾有牙龈出血；外出全程戴好口罩、避免人群和生食。\n\n是否输血或“升白”不能只凭单个数值在线决定：Hb 76且走路需扶，需现场测血压、脉搏、血氧并评估症状；有气短、胸痛、心悸、头晕欲晕或生命体征异常时，应急诊评估红细胞输注。PLT 32通常在出血已止时不一定立即输血小板，但化疗方案、下降趋势及再次出血会改变决定。升白针需由血液科结合化疗日期、方案和既往计划决定，不要自行注射。\n\n从现在起每4小时及任何发冷不适时测体温；一次≥38.0℃、寒战或突然明显不适，即使只有一次也按中性粒细胞减少伴疑似感染立即进急诊，先采血培养并尽快抗感染，不能在家等或自行吃退烧药。再次持续出血、黑便/血尿、剧烈头痛或意识异常也立即急诊。请让现场医生看过后告诉我生命体征、医生处理意见，以及原血液科是否要求转院或留观。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00081",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+160min",
+      "text": "医生，就近医院医生已经看过报告了，也给量了血压、血氧这些。体温还是36点多，没有发烧，牙龈现在也没再出血。血氧他说还可以，血压好像也还行，脉搏我没记住具体数，好像有点快，我等会翻分诊单再看。\n\n这里医生的意思是先别回家等，让我们联系原来治疗的血液科，最好去原医院急诊或者血液科处理。他们这边还没说一定马上输红细胞、血小板或者打升白针，说要看血液科意见。我按您说的打了原血液科电话，但现在还没打通，不是人家明确不收，是还没联系上能安排的人。\n\n我爸现在坐着还行，但站起来走路还是要扶，路去原医院有点远。那现在原血液科联系不上，我们是应该继续在这个就近医院急诊先留着观察、让他们帮忙联系，还是直接叫车往原治疗医院急诊走？路上除了戴口罩、不去人多地方，还要不要让他躺着、备点什么？我怕路上折腾出事，也怕在这里等又耽误。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+160min",
+      "text": "现在不要回家，也不建议你们在未完成现场交接的情况下自行坐普通车长途赶过去。最稳妥的是继续留在就近医院急诊，由现场医生再次确认脉搏和其余生命体征，并请他们直接联系原治疗医院血液科或急诊，明确接收地点和转运方式。因为他ANC 0.38、Hb 76且站立行走需扶，途中存在感染、晕厥或症状加重风险。\n\n如果原医院确认接收，而且现场医生判断生命体征稳定、允许家属转送，可用私家车/出租车：让他全程坐着或半躺，系安全带，不要自行走动，至少一名家属陪同；带齐血常规原件、出院记录、化疗方案/用药清单、医保和证件，带口罩、体温计、饮水和手机充电设备。不要自行服退烧药、阿司匹林或布洛芬，也不要自行打升白针；避免生食和磕碰，不需要自行准备输血用品。\n\n若脉搏持续很快、站立头晕欲晕、胸痛、气短、意识异常，或血压/血氧异常，就不要普通车转运，应由当前急诊处理并安排医疗转运，必要时拨120。途中若体温≥38.0℃、寒战、突然明显不适或再次明显出血，就近进入最近急诊，不要硬撑到原医院。现在请把分诊单上的血压、血氧、脉搏具体数值告诉我，并请现场医生明确一句：是否适合普通车转院，还是需要救护车/先在这里处置。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00103",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+180min",
+      "text": "医生，我刚又去找这边急诊医生复测了，我边看单子边打字，血压好像是120多/70多，血氧98%，脉搏104左右，体温还是36点多。现场医生也看了血常规纸，说生命体征目前算稳定，没有发烧、没有晕厥气短这些，牙龈也没再流。\n\n他们这边医生说血象低，肯定不能回家，说如果原医院那边还联系不上正式床位，暂时可以我们家属普通车尽快送去原治疗医院急诊/血液科，但路上如果发热、寒战、晕倒、气短、再出血或者明显不舒服，就立刻就近急诊或者打120。他们护士也帮忙通过总机问了，还没问到原血液科病区明确接收。\n\n那我们现在是不是就叫车去原医院？到那边是先去急诊挂号说化疗后血象低，还是直接去血液科病房门口找医生？还有我爸有糖尿病，平时药我妈在收，但剂量我不太清楚，路上能不能给他吃点东西、喝水？降糖药要不要照吃，我怕低血糖也怕乱吃出问题。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00109",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+180min",
+      "text": "可以按现场急诊医生意见，现在由家属普通车尽快送往原治疗医院；不要先回家，也不要等到联系上床位才出发。到院先走急诊分诊/挂号，不要直接在血液科病房门口等待。明确说：“急性淋巴细胞白血病化疗后两天，今天ANC 0.38、Hb 76、PLT 32、WBC 1.1，乏力走路需扶，曾有牙龈出血。”请戴口罩、坐着或半躺、全程有人陪，带报告原件、出院资料和全部药物/药盒。\n\n若他清醒、吞咽正常且没有恶心呕吐，可以少量喝水；若路程较长、目前没有医院要求空腹，可吃少量熟食，如面包、粥或饼干，避免生冷食物。最好现在测一次血糖，途中备葡萄糖片或含糖饮料；若血糖＜3.9 mmol/L或出现出汗、手抖、心慌、意识异常，先按低血糖处理并尽快就医。\n\n由于降糖药名称、剂量、是否已服及当前血糖都不清楚，路上不要凭印象补服或重复服药，也不要自行追加胰岛素；把药物原包装带到急诊，由医生结合血糖决定。如果能马上从药盒确认药名、剂量、今天是否已吃和当前血糖，可以再告诉我。途中一旦发热≥38℃、寒战、晕厥、气短胸痛、意识异常或再次明显出血，立即去最近急诊或拨120，不要坚持赶原医院。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00126",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+250min",
+      "text": "医生，我们已经到原治疗医院急诊预检分诊这里了，按您教的那句话跟护士说了：急淋化疗后，ANC 0.38、Hb 76、PLT 32、WBC 1.1，走路要扶，之前牙龈出血。护士让他口罩戴好，少在人多地方待，说会通知急诊医生或者血液科会诊。\n\n路上没有发烧寒战，也没晕倒、胸闷气短、意识不清，牙龈也没再明显出血，就是人还是很没劲，现在坐轮椅/椅子上，清醒。车上我测了一次指尖血糖，不是低血糖，是偏高一点，具体数我得翻一下机器；我没给他凭印象补吃降糖药，也没追加胰岛素。\n\n药盒、出院资料、血常规纸都带来了，但药盒小字我怕念错。现在还在等医生和血液科过来，这会儿我们最该盯着他哪些变化？如果药盒交给急诊护士，是不是直接说“糖尿病药我不确定今天吃没吃全，请医生现场核对后再决定”？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00133",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+250min",
+      "text": "对，就把全部药盒和出院资料交给急诊护士，并明确说：“糖尿病药名、剂量和今天是否吃全都不能确定，途中没有补药或追加胰岛素，请现场核对用药记录和血糖后决定。”在医生确认前不要自行补服；把血糖仪里的具体数值和测量时间也告诉护士。\n\n等待时让他继续坐轮椅、戴口罩，不要自行走动。重点盯：体温≥38.0℃或寒战；突然更虚弱、嗜睡/意识异常；胸闷胸痛、气短、心慌、头晕欲晕；牙龈/鼻出血不止、血尿黑便；剧烈头痛、呕吐或视物异常。任何一项出现，立即告诉分诊护士，不要继续安静排队。若只是目前这种持续乏力，也要向接诊医生强调“走路需扶”。暂时不要自行吃退烧药、阿司匹林或布洛芬，也不要打升白针；饮食和降糖方案听现场医生安排。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00145",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+305min",
+      "text": "原治疗医院急诊和血液科已初步接诊：生命体征暂平稳、无发热或活动性大出血，但仍乏力；已安排急诊留观、复查血常规分类/生化/凝血/感染指标、交叉配血，并申请血液科收治评估。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00146",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+305min",
+      "text": "急诊护士已接收药盒并做药物核对：糖尿病药名大致可确认，但当天剂量/时点仍不清，院内将结合血糖和进食情况决定，未让家属自行补服或追加胰岛素。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00150",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+305min",
+      "text": "医生，现在原治疗医院急诊医生和血液科会诊医生都已经来看过了，护士把出院资料、血常规纸和那袋药盒都拿去核对了，我也照您那句话说了糖尿病药不确定、路上没补药没打胰岛素。\n\n现在量下来体温36.8左右，血压血氧医生说还可以，脉搏还是有点快。我爸清醒，没寒战、没胸闷气短，也没再出血，就是还是很乏力，站起来走还是得扶。现场医生说这种化疗后骨髓抑制期不能回家观察，已经安排急诊留观，抽血复查血常规分类、肝肾电解质、凝血、感染指标这些，还说做交叉配血，申请收血液科。\n\n现在结果还没出来，输不输红细胞/血小板、要不要升白针或者抗感染药都还没定。我听得有点乱，想问您等复查出来后，我们家属最该盯哪几个指标？是不是主要看血红蛋白、血小板、中性粒细胞，还有感染指标？如果医生说等床位，这中间除了您刚说的发烧、寒战、出血、胸闷气短、意识不清这些，我还要特别催问什么吗？我怕自己漏听，糖尿病药这块现在就先完全听现场医生安排，不自己加药对吧？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00157",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+305min",
+      "text": "对，先重点看四组：①血红蛋白及变化趋势，并结合乏力、心率、胸闷气短决定是否输红细胞；②血小板及是否仍下降、有没有活动性出血；③中性粒细胞绝对值（ANC），尤其是否仍＜0.5×10^9/L；④体温和感染评估，包括感染指标、医生查体及必要时培养。肝肾功能、电解质、凝血和血糖也会影响输血、抗感染及用药选择。感染指标正常也不能完全排除重度中性粒细胞减少期感染，临床变化更重要。\n\n等床期间可向医生确认三件事：复查结果何时回报、结果出来后由谁复核；输红细胞/血小板和升白针的判断计划；若出现发热或病情变化，是否已按中性粒细胞减少患者预留及时培养和抗感染流程。交叉配血是提前做准备，不等于一定要输血。不要只盯床位；若体温≥38℃、寒战、出血、胸痛气短、头晕欲晕、意识变化、剧烈头痛，或乏力明显加重，立即叫护士重新评估。\n\n糖尿病药方面理解正确：当前不要自行补服、重复服药或追加胰岛素，由现场医生根据药物核对、即时血糖、进食情况和肝肾功能安排；同时确认急诊留观期间有定时血糖监测。复查数值出来后，把血红蛋白、血小板、ANC、肌酐/电解质、凝血和医生最终处理意见告诉我，我再帮你逐项核对。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00172",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+360min",
+      "text": "原治疗医院急诊复查结果已由血液科会诊初步解释：仍为明显化疗后骨髓抑制，拟输红细胞；血小板低但暂无活动性出血，先观察趋势/出血再决定血小板；ANC仍低，发热即按中性粒细胞减少流程处理；继续留观并申请收入血液科。家属转述数值可能不精确。",
+      "turn": 7,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00176",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+360min",
+      "text": "医生，复查结果陆续出来了，血液科医生刚跟我们讲了，说还是化疗后骨髓抑制很明显，血象还是低。我手上单子有点多，我怕小数点看错，医生口头说血红蛋白低，再加上他乏力、心跳有点快，已经在准备安排输悬浮红细胞了，还不是已经输完。\n\n血小板也低，但他们说现在没有明显活动性出血，牙龈鼻子这些都没大出血，所以先观察有没有出血、后面复查趋势，再看要不要输血小板。中性粒细胞那个也还是很低，医生一直强调防感染，说一发热就马上做培养、抗感染那套流程。\n\n我爸现在还在急诊留观，床位还没下来，但急诊和血液科都在管。现在体温没发烧，没有寒战，也没胸闷气短、意识不清，就是人还是很虚，站起来还要扶。糖尿病药我们也没自己乱补，护士说院内看血糖和吃东西情况来弄。\n\n我想问您，这样先输红细胞、血小板暂时观察，算是合理的吗？输红细胞前后我们家属要盯什么，比如发冷发热、皮疹、胸闷这些是不是要马上叫护士？还有血小板低但现在不输，会不会突然出血很危险，我们需要怎么防着？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00183",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+360min",
+      "text": "总体上，这个处理思路是合理的：血红蛋白低且有明显乏力、心率快，输悬浮红细胞常有依据；血小板是否立即输，不只看“低”，还要结合具体数值、下降趋势、是否发热/感染及有无活动性出血。现在由急诊和血液科共同留观，比回家安全。\n\n输红细胞开始后尤其前15分钟要密切观察。若出现发冷寒战、发热、皮疹瘙痒、脸唇肿、胸闷气短、喘鸣、胸背痛、心慌头晕、恶心呕吐、尿色突然变深，或输液处疼痛肿胀，立即叫护士，不要自行调输血速度或拔针。输后若新出现发热、气促、咳嗽或水肿，也马上报告。护士会核对血袋、身份并监测生命体征，家属主要负责及时发现变化。\n\n血小板低确有突然出血风险，但并非所有低值都必须马上输。防护上：让他继续坐轮椅、起身有人扶，避免跌倒磕碰；软毛牙刷轻刷，不抠鼻、不用牙签、不用力擤鼻；避免便秘和用力排便；不要自行服阿司匹林、布洛芬等药，也不要按摩、拔牙或肌肉注射。若鼻血/牙龈出血持续不止、血尿、黑便或鲜血便、大片快速增多的瘀斑，立即叫护士；突发剧烈头痛、呕吐、视物异常、嗜睡或意识变化要按急症马上处理。\n\n可以请现场医生明确告诉你们本次血小板具体数值和复查时间；若数值继续快速下降、出现出血或发热感染，输血小板的判断会随时调整。体温达到38.0℃或出现寒战，也要立刻叫护士，不要先自行吃退烧药。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00199",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+435min",
+      "text": "医生，红细胞现在已经开始输了，不是输完了。护士刚才两个人核对了名字、腕带和血袋，开始输得挺慢的，也量了几次体温血压脉搏，说目前还行。\n\n现在大概输了二三十分钟吧，我爸清醒，还是很没劲，但暂时没有发冷寒战、皮疹痒、胸闷气短、胸背痛，也没说尿颜色突然变深，针口这里我看着也没有明显肿痛。体温护士量着也没发烧。\n\n今晚他们说至少还要留观，可能争取转血液科病房，床位还没定，但不是让我们回家。血液科医生好像说输完后或者明早还会复查血常规，我有点没听准是马上查还是明早查。血小板和中性粒细胞低这个还是没解决，医生也说一发烧到38度或者寒战，就马上叫护士按感染那套处理。\n\n折腾一天了我怕夜里漏看，麻烦您再帮我确认一下：从现在输血到明早复查前，我们家属最主要就盯输血反应、发烧寒战、出血、意识变化这几类对吧？我是不是还应该主动问护士一句“复查血常规具体什么时候、血小板低到什么情况会输”？糖尿病药盒已经交给护士核对了，我们没自己补药。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00206",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+435min",
+      "text": "对，今晚家属重点盯这几类就够了：①输血反应——寒战发热、皮疹瘙痒、脸唇肿、胸闷气短、胸背痛、明显心慌头晕、恶心呕吐、尿色变深或针口肿痛；②感染——体温≥38.0℃或任何寒战；③出血——鼻腔/牙龈持续出血、血尿、黑便或鲜血便、瘀斑迅速增多；④神经和循环变化——突然嗜睡、意识异常、剧烈头痛、呕吐、晕厥或乏力明显加重。出现任何一项立即按铃叫护士，不要自行调输血速度、拔针或先吃退烧药。\n\n建议现在主动问清并记下来：输血预计何时结束、生命体征监测安排、血常规是输后多久查还是明早查，以及夜间出现发热或出血由谁立即处理。也可以问血小板目前具体数值和趋势、在他这个情况下哪些触发条件会输；是否输血小板通常综合数值、活动性出血、发热感染、下降趋势和是否要做操作决定，并非只有一个固定界值。\n\n目前输血二三十分钟且生命体征稳定、没有不适，是好现象，但输血全程及结束后仍需观察。糖尿病药继续由院内结合血糖和进食安排，你们不自行补药是正确的。夜里不用一直叫醒他，但护士测生命体征时配合；家属发现呼吸、面色、反应或出血有变化就马上叫人。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00220",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+545min",
+      "text": "医生，这袋红细胞现在已经输完了，护士中间和输完后都来量过体温、血压、脉搏、血氧，没让我们自己动针。现在我爸清醒，还是虚，但比输之前好像能多说两句话。暂时没有发冷寒战、发烧、皮疹痒、胸闷气短、胸背痛，尿颜色也没听他说突然变深，针口我看着也没明显肿起来。\n\n我刚按您说的问了护士，她说今晚还是急诊留观，定时测，有发热、寒战、出血或者输血不舒服就按铃，急诊医生会处理，也会联系血液科值班。血常规复查她说可能输完后过几个小时，也可能明早，我夜里有点听糊了，反正他们说会安排，不是让我们回家。\n\n我现在最怕的还是血小板和那个中性粒细胞低，输红细胞只是让贫血好一点，这两个低还没解决对吧？那我夜里就主要盯发烧寒战、有没有出血、精神反应变差、还有刚才那些输血后不舒服；他睡着的话不用一直叫醒，只要护士来量和我看着呼吸脸色就行，是这个意思吧？糖尿病药那边护士已经拿去核对了，我们没自己补。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00227",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+545min",
+      "text": "对，你理解得准确：红细胞主要改善贫血，不能直接纠正血小板和中性粒细胞减少；这两项仍需靠复查趋势、是否出血或发热，以及血液科评估决定后续处理。\n\n今晚不用反复叫醒他。让他休息，配合护士定时监测；你顺便观察呼吸是否平稳、面色和反应有无明显变化即可。若体温≥38.0℃或寒战，任何持续/明显出血，突然叫不醒或意识异常、剧烈头痛呕吐，胸闷气短、胸背痛、皮疹脸肿、尿色明显变深，立即按铃。起身务必有人扶，避免跌倒。\n\n目前输血结束后生命体征稳定、没有不适且精神稍有改善，是好现象。复查时间由现场安排即可，明早交班时再确认血常规结果，重点问血红蛋白、血小板、ANC及下一步计划。糖尿病药继续不要自行补服或重复用药。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00241",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+845min",
+      "text": "医生，明白了。现在熬到快天亮了，夜里护士来了几次量体温血压这些，我爸睡了一阵，整体还算平稳，没有发烧寒战，也没再明显出血、胸闷气短、皮疹脸肿这些，叫他也有反应，就是还是虚，不过比输血前稍微好一点。\n\n新的血常规我这边还没拿到数值，也不知道是已经抽了等结果，还是等早上交班后再抽，我等会儿医生护士来就重点问：血红蛋白有没有升一点、血小板多少、那个中性粒细胞/ANC多少，然后问要不要输血小板、能不能转血液科病房或者继续急诊留观怎么安排。\n\n糖尿病药我们还是没自己给，听医院安排。您看我早上就抓这几件问就行吧？我怕困糊涂了漏听重点。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00247",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+845min",
+      "text": "对，早上抓这几件就够了。建议直接记成清单：①血常规何时抽、结果是否已出；②血红蛋白、血小板、ANC各是多少，与昨晚相比怎么变化；③是否还需输红细胞或血小板，以及下一次复查时间；④继续急诊留观还是转血液科病房；⑤血糖和糖尿病药今天怎么安排。\n\n再补问一句：如果仍是重度中性粒细胞减少，今天的防感染和升白治疗计划是什么。医生回答时可以用手机记数字和计划，没听清就请对方写下来，不必靠困倦时硬记。夜间至交班前仍按原标准观察；若发热≥38℃、寒战、明显出血、呼吸困难或反应变差，立即叫护士。你们目前处理得很稳妥。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00263",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+935min",
+      "text": "医生，早上交班后已经抽了复查血常规，结果在他们系统里出来了。血液科接班医生刚才过来口头说了一下，我手机记了几个数字，但我一夜没睡，怕小数点和单位记错，就先说趋势。\n\n他说红细胞输完以后，血红蛋白比昨晚升了一些，贫血算是有改善，所以我爸现在比输血前稍微能说几句话，还是很乏力但清醒。没有发热、寒战，也没看到鼻血牙龈大出血、黑便血尿这些，胸闷气短和意识不清也没有。\n\n但医生也说血小板还是低，那个中性粒细胞/ANC还是很低，感染和出血风险还没解除。现在没有让我们回家，还是继续急诊留观，等血液科病房床位。抗感染那块他说因为现在不发热，所以暂时不是一上来就用“发热感染那套”，但如果发热或者寒战就马上按中性粒细胞减少发热流程处理。我怕我理解成“暂时不用抗感染”会不会不等于不用防感染。\n\n血小板要不要输，他说要看数值趋势和有没有出血，目前先严密观察。我没听清下一次血常规到底几点再查，也没听准升白针或者防感染药今天具体怎么安排，等下我准备再问护士或医生让他们写一下。\n\n您帮我确认一下：现在血红蛋白升了是不是只能说明贫血暂时好一点，但血小板和中性粒低还危险，所以不能回家、继续留观等床是对的？接下来我们家属主要还是盯发烧/寒战、出血、精神反应变差、胸闷气短这些，一有就按铃，对吧？糖尿病药我们还是没自己给，医院按血糖和吃饭情况处理。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00269",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+935min",
+      "text": "对，你理解正确。血红蛋白回升只说明输红细胞后贫血暂时改善，不代表血小板或中性粒细胞已恢复；目前继续急诊留观、等待血液科床位是稳妥的，不要自行回家。\n\n“不启动中性粒细胞减少发热流程”不等于“不做防感染”。是否需要预防性抗菌/抗真菌药、升白针，要结合ANC具体数值、预计持续时间、化疗方案及原血液科计划决定，请现场医生写清今天的安排，不要自行加药。家属注意手卫生、少接触有感冒发热的人，不吃生冷或未熟食物，也不要自行测肛温、灌肠或使用肛门栓剂。\n\n继续观察：体温≥38.0℃或寒战、任何持续或明显出血、黑便血尿、瘀斑快速增多、剧烈头痛呕吐或反应变差、胸闷气短，立即按铃；不要先自行吃退烧药。请再确认并写下下一次血常规时间、血小板和ANC准确值及趋势、输血小板触发条件、升白和防感染计划。糖尿病药继续由医院按血糖和进食处理，不自行补服或重复用药。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00284",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1010min",
+      "text": "医生，刚才血液科医生和护士又来交代了一遍，和您说的基本一样：今天还是不让回家，继续急诊留观，血液科病房床位在等。\n\n红细胞他说暂时不再加了，因为输完后血红蛋白好些，我爸也比昨晚能说一点话，但还是虚，起身还得扶。血小板还是低，不过现在没明显出血，所以先观察，不是马上一定输血小板。那个中性粒细胞还是很低，但目前没发烧没寒战，所以他们说一到38度或者打寒战就马上按铃处理。\n\n下一次血常规我记得是下午或傍晚，或者如果病房接收了再查，我没敢说死，等护士来我再让她写一下。糖尿病药我们没自己给，还是他们按血糖和吃饭弄。\n\n我现在就想跟您确认我这样理解行不行：现在是在医院里暂时稳住观察，但风险还没过去，不能因为血红蛋白升了就觉得安全；我们家属马上要按铃的主要就是发烧到38、寒战、出血、精神反应变差、胸闷气短、头痛呕吐这些，对吧？有没有还有特别容易漏掉的？",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00291",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1010min",
+      "text": "对，你理解完全正确：目前只是暂时稳定，贫血改善不等于血小板和中性粒细胞恢复，继续留观等血液科床位，不自行离院。\n\n你列的按铃情况已经抓住重点。再补几个容易漏掉的：鼻血或牙龈出血压迫后仍不停、黑便/血尿或瘀斑迅速增多；突然站不住、晕厥或乏力明显加重；呼吸变快、血氧下降或心慌胸痛；尿量明显减少、尿色突然很深；输血后延迟出现皮疹、发热或腰背痛。任何寒战即使当时体温不到38℃也要按铃。\n\n起身和上厕所必须有人扶，避免跌倒、碰撞；不要用力擤鼻、抠鼻、剔牙，也不要自行吃退烧药、阿司匹林或布洛芬。下一次血常规时间让护士写下来即可，你们现在的处理是对的。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00306",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1160min",
+      "text": "医生，收到。护士刚又来量了一遍体温血压这些，目前还稳，我爸在床上躺着休息，还是虚，上厕所我都扶着，不敢让他自己走。\n\n下午复查血常规的时间护士好像写在旁边了，我现在脑子有点木，等会儿再看一眼，不敢背错。反正他们也说了没让我们走，急诊和血液科都在管，继续等血液科床位。\n\n我就先按您说的盯着：一发烧、打寒战，或者出血、突然更虚站不住、胸闷气短、尿色很深这些就马上按铃，不自己给退烧药，也不自己给糖尿病药。等下午结果出来，我就先问血红蛋白、血小板、ANC这几个数，还有要不要输血小板、升白针和防感染药今天到底怎么安排。结果出来我再把关键几项照着读给您，免得我自己记错。",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00313",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1160min",
+      "text": "好，就按这个安排。现在生命体征平稳、人在医院持续观察，可以让他休息；上厕所继续全程搀扶，你也尽量轮换休息一下，不必强记时间和数字。\n\n下午结果出来后，直接照报告读血红蛋白、血小板、白细胞及中性粒细胞绝对值（ANC，连同单位），再告诉我现场医生对输血小板、升白针、防感染药和下一次复查的明确安排。期间若体温≥38℃、任何寒战、明显出血、突然更虚或站不住、胸闷气短、意识变化，马上按铃即可。",
+      "turn": 14,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00330",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1250min",
+      "text": "医生，跟您说一下新进展：刚才血液科病房通知有床，我们已经从急诊留观转到血液科病房了。护士核对了腕带、身份、带来的出院资料和药盒，也量了体温血压，听着目前还算平稳。我爸现在清醒，在床上躺着休息，还是很虚，起身我还得扶。\n\n下午那个复查血常规结果我现在还没拿到，也不知道是已经出在系统里还没跟我们说，还是病房这边接手后再安排。糖尿病药和原来的药盒已经给病房护士核对了，我们没自己给。\n\n我现在稍微踏实一点，但也怕自己一放松就漏事。转到血液科病房是不是说明责任算接上了，但血小板和中性粒低的风险还是不能放松？在下午结果出来前，我还是继续主要盯发烧到38、寒战、出血、突然更虚站不住、胸闷气短、意识不对这些就按铃，对吗？等病房医生来，我优先问血常规那几个数、要不要输血小板、升白针、防感染药、下一次复查时间，这几件够不够？",
+      "turn": 14,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00337",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1250min",
+      "text": "对，转入血液科病房说明住院照护责任已经顺利接上，但血小板和中性粒细胞低的风险仍未解除，继续观察完全正确。体温≥38℃、任何寒战、明显或持续出血、突然站不住或乏力加重、胸闷气短、剧烈头痛呕吐、意识或反应异常，都立即按铃；起身仍要搀扶，药物继续全部由病房核对后给。\n\n病房医生来时优先确认：①血红蛋白、血小板、白细胞及ANC的准确数值和趋势；②输血小板的判断与触发条件；③升白针及预防性抗感染药计划；④下一次血常规时间。再补问一句：当前饮食、活动和感染防护有没有特殊要求。这样就够了，不必自己扛着记，最好请医生写在纸上或病房交代单上。",
+      "turn": 15,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00353",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1430min",
+      "text": "医生，病房值班医生刚才已经来看过系统里的复查血常规了，我没拿到纸质报告，他说的几个数字我怕夜里听错，就不乱报了。大概意思是血象还是要严密观察，血小板、白细胞/中性粒这些风险还没过去，今晚还是住院监测，有发热、寒战、出血或者人突然不对就马上按铃。\n\n我爸现在清醒，躺着休息，还是很乏力，上厕所我继续扶着。目前我这会儿没看见发烧、打寒战、明显出血、胸闷气短或者意识不清。糖尿病药也都是病房护士核对后处理，我们没自己给。\n\n我准备等护士或医生不忙的时候，请他们把血红蛋白、血小板、白细胞/ANC，还有下一次查血和要不要输血小板、升白针、防感染药这些写给我，我再照着读。今晚我就先按病房安排守着、主要盯您说的那些红旗，这样可以吧？我现在实在有点怕自己把数字记错。",
+      "turn": 15,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00360",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1430min",
+      "text": "这样做完全可以。数字没核实前不报，比凭记忆报更安全；今晚最重要的是按血液科病房安排监测，不需要你把每个数都背下来。\n\n目前清醒、没有发热寒战、明显出血、胸闷气短或意识变化，可以继续休息，上厕所全程搀扶。若体温≥38℃、任何寒战、出血不止或黑便血尿、突然明显乏力/站不住、胸闷气短、剧烈头痛呕吐或反应异常，立即按铃，不要等着联系我，也不要自行给退烧药或其他药。\n\n等方便时请医护把血红蛋白、血小板、白细胞和ANC（含单位），以及下一次复查和输血小板、升白针、防感染药安排写下来；拿到后照着读给我即可。你已经守得很仔细了，也尽量轮换休息。",
+      "turn": 16,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00377",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1970min",
+      "text": "医生，早上查房后护士给我在纸上写了几项，我照着她写的和医生说的给您说一下，单位我真不敢保证。\n\n昨晚在血液科病房里算平稳，没有发烧打寒战，也没看见明显出血，输血后也没闹什么反应。我爸现在清醒，就是还是虚，起身我还扶着。\n\n早上他们看了系统里的血常规，说血红蛋白比输血前好一些，暂时先不再加红细胞；血小板还是低，但现在没出血，就先观察，不是马上输；白细胞/那个ANC还是很低，没发热就先保护性监测。今天继续住血液科病房，不让回家，后面还会再查血常规，血小板输不输、升白针和防感染药怎么用，病房医生说按后面趋势和症状定。糖尿病药也是护士按血糖和吃饭情况处理，我们没自己给。\n\n我想再确认一下：现在是不是只能算贫血这块先顶住一点，不代表风险解除了？我们家属今天最主要还是盯体温、寒战、出血、精神反应、呼吸胸闷，还有起身别摔倒，对吗？那个“防感染药”和“一发烧就抗感染流程”我还有点分不清，我们现在没发烧，是不是就按病房的监测来，不用自己催着一定马上上药？",
+      "turn": 16,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00384",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1970min",
+      "text": "对，理解得准确：输红细胞后血红蛋白改善，只说明贫血暂时得到支持，并不代表血小板低和中性粒细胞低的风险解除；继续住血液科监测是必要的。\n\n家属今天重点观察体温、任何寒战、牙龈/鼻腔等出血或黑便血尿、精神反应、胸闷气短，以及乏力突然加重；起身和上厕所继续搀扶防跌倒。出现体温≥38℃、寒战（即使体温暂不到38℃）、明显或持续出血、剧烈头痛呕吐、呼吸困难或意识异常，立即按铃。\n\n“防感染药”通常指医生根据中性粒细胞低的程度、预计持续时间及既往情况决定的预防用药；“一发烧就抗感染流程”是出现发热或寒战后，立即评估、留取培养并尽快开始经验性抗感染治疗，两者不是一回事。现在没有发热寒战，就按病房方案保护性监测，不必自行催着一定马上用药，也不要自行吃抗生素或退烧药；但可以请查房医生明确一句：目前是否符合预防性抗感染用药指征，以及出现什么情况会启动发热性中性粒细胞减少流程。",
+      "turn": 17,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00398",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2150min",
+      "text": "明白了医生。那我就按这个理解：现在不是说安全了，就是贫血先撑住一点，血小板和中性粒还得在病房继续盯。\n\n刚才护士也说下午或者傍晚还会再抽血查一次，具体输不输血小板、打不打升白针、要不要预防用感染药这些，都等他们看后面的血常规和有没有发烧寒战再定，我们家属不自己给药、不自己催着乱用药。糖尿病药也还是让病房按血糖和吃饭来。\n\n我爸这会儿人清醒，就是没劲，上厕所我还扶着。目前我没看见发烧、寒战、出血这些。等下午结果出来或者医生再来，我就主要问一句现在是否需要预防性抗感染药、什么情况启动那个发热流程；平时就盯体温、寒战、出血、精神反应和胸闷气短，有不对马上按铃。这样应该就行了吧？我现在确实有点累，怕自己想多了。",
+      "turn": 17,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00405",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2150min",
+      "text": "对，这样就够了，你没有想多，也不需要一直绷着。现在人在血液科病房、情况暂稳，监测和用药决定由医护负责；你只需继续搀扶防跌倒，留意体温、寒战、出血、精神反应和胸闷气短。有任何异常马上按铃，不必先判断严重程度。\n\n下午结果出来后问清预防性抗感染药和发热流程即可。你现在可以让家人轮换，自己吃点东西、休息一会儿；不需要一直盯着他不睡。",
+      "turn": 18,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00422",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2450min",
+      "text": "医生，我刚吃了几口饭回来，病房这边下午复查血常规已经出来了，是值班医生和护士看系统后跟我们说的，我没有正式纸质报告，护士只给我写了几句，我照着大概说。\n\n他们说血红蛋白输红细胞后暂时还算稳，这次不再加红细胞了；但是血小板还是低，结合之前牙龈出过血，准备给他输血小板。我爸现在清醒，就是还是很乏力，上厕所还得我扶着，我这会儿没看见明显出血、胸闷气短或者人糊涂。\n\n白细胞/中性粒那个还是很低，但现在没有发热、也没打寒战，病房说暂时不启动发热后那套抗感染流程；如果体温到38度左右或者寒战，就马上按铃，他们按流程处理。糖尿病药还是护士按血糖和吃饭情况安排，我们没自己给。\n\n我现在最紧张的是等会儿输血小板。麻烦您帮我再确认一下：输血小板的时候和输完后，我们家属最该盯哪些反应？是不是发冷发抖、发热、起皮疹痒、胸闷气短、腰背痛、脸色不对、出血变多，或者人突然不对，就马上按铃？还有输完以后我是不是还要继续重点盯牙龈鼻子、尿便有没有血、体温和精神反应？",
+      "turn": 18,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00428",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2450min",
+      "text": "对，你列的基本都对。输注开始后尤其前15分钟要留意：发冷发抖、发热、皮疹瘙痒或面唇肿胀、胸闷气短/喘、胸背或腰痛、恶心呕吐、突然烦躁或反应异常、脸色明显改变。出现任何一种，或原有出血突然增多，都立即按铃，并让他保持原位，不要自行拔针、调输注速度或给退烧药/抗过敏药，由护士停输并评估。\n\n输完后仍继续看牙龈鼻腔出血、皮肤新出血点/淤斑、血尿、黑便或便血、体温、寒战、呼吸和精神反应；剧烈头痛、呕吐、意识变化也要立刻按铃。血小板输完不代表风险马上解除，仍要搀扶防跌倒，避免用力刷牙、抠鼻和碰撞，也不要自行服阿司匹林、布洛芬等药。病房通常会按计划复查血小板，确认输注效果。你不必自己判断是不是输血反应，有一点不对就按铃即可。",
+      "turn": 19,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00442",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2525min",
+      "text": "医生，血小板已经接上输了，护士刚才核对了腕带和那袋血小板，也交代我们别自己动速度、不舒服就按铃。现在大概输了二三十分钟吧，我爸目前还清醒，就是还是虚，没看见发冷发抖、发热、皮疹痒、胸闷喘不上气或者腰背痛这些，牙龈也暂时没继续流。\n\n我就按您说的理解：前面这会儿没反应也不能算后面一定没事，输着和输完后夜里还得继续看体温、寒战、出血、呼吸和人是不是突然不对；有一点不对我就直接按铃，不自己判断，也不自己给药。\n\n我现在有点困了，怕夜里睡过去漏看。等输完以后是不是主要就等病房按计划复查血常规，看血小板有没有升？夜里如果他只是一直虚、想上厕所，我扶着慢慢去；如果突然更站不住、头痛吐、人糊涂或者出血，就马上按铃，对吧？",
+      "turn": 19,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00448",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2525min",
+      "text": "对，理解正确。输完后按病房计划复查血常规/血小板，并由医生结合有无出血判断效果和后续处理；不是只看数值，也不代表输完立刻完全安全。\n\n你不用整夜独自盯着，可以告诉护士你很困、请他们按病房监测安排巡视，有条件就和家人轮换。夜间不要让他自己下床；想上厕所先按铃，请护士协助或按病房建议用床旁便器，比你困着单独搀扶更安全。\n\n持续乏力但没有加重可先休息；若突然明显更虚或站不住、头痛呕吐、意识异常、出血、发热寒战、胸闷气短，立即按铃。现在输注中情况平稳，你也可以安心靠一会儿，不必强撑着一直醒着。",
+      "turn": 20,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00463",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2620min",
+      "text": "医生，血小板这次已经输完了。护士刚又来量了体温、血压、脉搏，也看了我爸，说现在先这样观察，后面等病房安排再复查血常规/血小板。我这边没拿到新结果。\n\n我爸现在人清醒，还是没劲，但没有突然更差。我目前没看见发冷发热、皮疹、胸闷喘、腰背痛这些，也没看见牙龈又明显流血，尿便暂时也没发现有血。\n\n我已经跟护士说我实在困得不行了，怕夜里撑不住。护士说她们会按病房安排来看看；我也记住了，他要上厕所就先按铃，不让我一个人迷糊着硬扶，必要时用床旁那个。\n\n那我现在是不是就可以靠一会儿，主要等夜里或者明早复查结果？还有他这个中性粒低，夜里除了别乱走、少接触人、注意体温和寒战这些，我们家属还需要特别做什么吗？",
+      "turn": 20,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00469",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2620min",
+      "text": "可以，你现在可以靠一会儿，主要由病房继续巡视，并等夜里或明早按计划复查；不需要家属整夜盯着不睡。他要起身或上厕所仍先按铃。\n\n中性粒细胞低时，家属再做好几件事即可：进出病房和接触他前认真洗手；有感冒、发热、腹泻或其他感染症状的人不要探视；按病房要求戴口罩、少聚集；不要带生食、半生食或未经病房允许的外食，不共用餐具；不要自行塞肛测温、灌肠或使用肛门栓剂，也不要自行给抗生素、退烧药。\n\n若体温达到38℃左右、出现寒战，即使只有一次也立即按铃；咳喘、咽痛、口腔溃疡明显加重、腹泻腹痛、排尿痛，或精神状态突然变化，也要及时告诉护士。除此之外就让他休息，你也安心休息。",
+      "turn": 21,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00485",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3160min",
+      "text": "医生，昨晚我就按您说的没硬撑着一直盯，护士也有来看，他上厕所也是按铃让护士帮的。夜里总体还算平稳，没有发烧打寒战，也没看到牙龈鼻子又出血、黑便血尿这些，人也清醒，就是还是很乏力。\n\n今天早上查房，血液科医生在系统里看了早上抽血结果，我没拿到完整报告，也不敢凭记忆报数字。医生大概意思是：血小板比输之前有改善，但还是低，所以今天先不再输血小板，还得继续住院观察；血红蛋白目前还算稳，也暂时不再输红细胞。白细胞/中性粒还是低，因为现在没发烧寒战，就暂时没走那个发热后的抗感染流程。升白针他们说还要结合化疗方案和后面趋势看，不是我们自己要求就打。\n\n我现在稍微放心一点，但也不敢觉得能回家。今天我们就继续按病房要求洗手、戴口罩、少探视，不带乱七八糟外食，他起来就按铃，糖尿病药也不自己给。想再跟您确认一下：这种情况是不是说明输血小板有点反应，但血小板和中性粒还没安全，继续住院观察是对的？今天家属最主要还是盯体温寒战、出血、人突然不对和呼吸这些，有情况马上按铃就行吧？",
+      "turn": 21,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00492",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3160min",
+      "text": "对，你的理解基本准确：按查房医生的描述，输注后血小板有所回升，说明有一定反应，但仍偏低；中性粒细胞也仍低，因此出血和感染风险尚未解除，继续住院观察、按趋势决定是否再输注或使用升白针是合适的，暂时不要自行考虑出院。\n\n今天继续重点留意：体温达到病房警戒值（通常约38℃）或寒战；牙龈鼻腔出血、血尿、黑便/便血、新增大片淤斑；剧烈头痛、呕吐、嗜睡或意识异常；胸闷气短；以及乏力突然明显加重。任何一项都立即按铃，不必等下一次查房。继续防跌倒、做好手卫生和少探视，药物由病房统一安排即可。单纯乏力但没有突然加重，可以休息并继续观察。",
+      "turn": 22,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00506",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3640min",
+      "text": "医生，傍晚这边值班医生/护士又来看了一下，是口头跟我们说的，我没有新的纸质报告，也不敢报血常规数字。\n\n白天到现在总体还算平稳，我爸人清醒，就是还是乏力。没发烧打寒战，我也没看到牙龈鼻子明显出血、黑便血尿，没说胸闷喘不上气，也没有头痛呕吐或者人糊涂。上厕所还是按铃让护士帮，没有让他自己下床，也没摔。\n\n傍晚病房意思是继续住院观察，暂时不追加红细胞和血小板；升白针、抗感染那些，还有糖尿病用药，还是他们按体温、趋势、吃饭和血糖来安排，我们没自己给。下一次血常规可能夜里或者明早再查。\n\n我现在理解就是：白天没出事只能说暂时稳一点，但血小板和中性粒这些风险还没解除，所以还是要在病房等复查、不能想着回家，对吗？我们今晚继续按铃、防跌倒、看体温寒战和有没有出血、人突然不对这些就行吧？",
+      "turn": 22,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00513",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3640min",
+      "text": "对，你理解得对。现在只能说明截至傍晚临床暂时平稳，不能说明血小板和中性粒细胞已经恢复到安全范围；继续住院等复查、由血液科根据血象趋势和症状决定输注、升白及抗感染处理是合适的，不要自行准备出院或加药。\n\n今晚继续按铃协助起身、防跌倒，并观察体温或寒战、任何新出血、胸闷气短、乏力突然明显加重，以及剧烈头痛、呕吐、嗜睡或意识异常；出现任何一项立即叫护士，不等抽血或查房。若只是原有乏力、没有加重，就让他休息，你们也可以轮流休息，等夜里或明早复查结果。",
+      "turn": 23,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00529",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+4300min",
+      "text": "好的医生，我明白了。那我就不再想着今天能不能回家了，还是听血液科病房这边继续住院看复查和趋势。\n\n今晚我让家里人来换一会儿，我实在有点熬不住了。他现在还是老样子乏力，但人清醒，没有突然更差。上厕所我们还是按铃，不自己扶着硬走；药也都交给护士医生，不自己加。\n\n我就重点盯这几样：发烧或打寒战、哪里又出血、胸闷喘、人突然糊涂/叫不醒、头痛吐、或者一下子比现在虚很多。有这些我马上按铃，不等查房。要只是原来那种没劲，就让他休息，我们也轮着睡一会儿。谢谢您，您这么说我心里踏实点。",
+      "turn": 23,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00536",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+4300min",
+      "text": "这样安排很稳妥。你已经抓住了今晚需要观察的重点，也不必一个人硬撑；交接时把这些情况和“起身必须按铃”告诉来换班的家人即可。现在病情没有突然变化，你先安心休息。若出现你列出的任何情况，立即按铃；否则继续等病房复查和血液科评估。",
+      "turn": 24,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00554",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+4840min",
+      "text": "好的医生，我跟来换班的家里人也说清楚了：不要自己扶他下床，上厕所先按铃；有发烧打寒战、出血、胸闷喘、人突然不清楚或者一下子虚很多，就马上叫护士，不等我们自己判断。\n\n现在就还是按血液科病房安排继续住院等复查，贫血那块暂时稳一点也不代表板和中性粒安全了，这个我记住了。升白针、抗感染、输不输血这些都让病房医生看结果决定，我们不自己催着乱用药。\n\n我先去眯一会儿，手机给换班的人也看了，万一有变化我们就先按铃再说。谢谢医生。",
+      "turn": 24,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00561",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+4840min",
+      "text": "不客气，你们交接得很清楚，处理也稳妥。现在由病房团队继续监测和复查，你先安心休息；如有变化，换班家属直接按铃叫护士即可。",
+      "turn": 25,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00576",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+5320min",
+      "text": "嗯，好的医生，那我就按这个来。现在主要就交给病房这边继续看血象复查，我们家属不自己加药、不催着乱用升白针或者抗感染药。\n\n我跟换班的人说了，有变化先按铃叫护士，不在这儿自己判断。现在他还是休息着，我也去靠一会儿。谢谢您。",
+      "turn": 25,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_089__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 5,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 5
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 5
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 0.0,
+    "judge_score_range": 0,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 25
+}

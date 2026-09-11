@@ -1,0 +1,38 @@
+{
+  "schema_version": "careloop.friction_score.v0_2_formative_six_domain",
+  "status": "posthoc_formative_secondary_endpoint",
+  "frozen_before_v0_2_result_analysis": true,
+  "frozen_ordinal_rubric_unchanged": true,
+  "construct": "Response to prospectively authored real-world friction opportunities, reported as six capability domains and a safety-gated 0-1 summary.",
+  "high_order_credit": {
+    "not_triggered": 0.0,
+    "not_completed": 0.0,
+    "partial": 0.5,
+    "complete_without_both_active_and_meaningful": 0.75,
+    "complete_active_meaningful": 1.0
+  },
+  "domains": {
+    "information_repair": {"ho_types": ["hidden_state_discovery", "patient_misinformation_correction", "false_positive_or_false_negative_verification"], "ho": 0.8, "clinical_reasoning_direction": 0.2},
+    "constraint_navigation": {"ho_types": ["real_world_constraint_navigation"], "ho": 0.7, "patient_family_realworld_adaptation": 0.2, "closure_executable": 0.1},
+    "dynamic_reprioritization": {"ho_types": ["dynamic_reprioritization"], "ho": 0.7, "clinical_reasoning_direction": 0.15, "medical_safety_risk_recognition": 0.15},
+    "execution_loop_repair": {"ho_types": ["responsibility_chain_repair"], "ho": 0.6, "actionability_responsibility_chain": 0.2, "closure_executable": 0.1, "closure_traceable": 0.1},
+    "state_sensitive_communication": {"ho_types": ["patient_state_sensitive_communication"], "ho": 0.7, "patient_family_realworld_adaptation": 0.3},
+    "bounded_closure_continuity": {"ho_types": ["safe_bounded_closure"], "ho": 0.55, "continuity_memory_focus": 0.25, "closure_process": 0.2}
+  },
+  "domain_composite_weights": {
+    "information_repair": 0.2,
+    "constraint_navigation": 0.2,
+    "dynamic_reprioritization": 0.15,
+    "execution_loop_repair": 0.2,
+    "state_sensitive_communication": 0.1,
+    "bounded_closure_continuity": 0.15
+  },
+  "missing_domain_policy": "renormalize weights over domains with at least one authored HO in the case",
+  "clinical_error_gate": {
+    "no_serious_or_minor_error": 1.0,
+    "minor_or_moderate_error_present": 0.75,
+    "serious_error_present": 0.35
+  },
+  "primary_new_outputs": ["six_ungated_domain_scores", "friction_capability_composite", "careloop_real_world_robustness"],
+  "required_parallel_outputs": ["frozen_ordinal_grade", "Judge_specific_values", "median_of_four", "mean_of_four", "leave_one_Judge_out"]
+}

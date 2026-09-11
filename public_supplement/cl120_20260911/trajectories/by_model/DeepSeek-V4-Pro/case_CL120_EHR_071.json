@@ -1,0 +1,607 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "8297a7968377f59c7b219472c3d8150c2c4f787eaf880455b7a1bbcc76dac770",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_071__anon_8b64d9e9af9a8107",
+    "packet_sha256": "9084c0505474c78a2ae7f4fd8bdb038d07327f1e65116a00449831a97e4141d5"
+  },
+  "case_id": "case_CL120_EHR_071",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "2",
+    "contract_complexity_level": "low",
+    "disease_domain": "obstetrics_gynecology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "short",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "pre_handoff",
+    "target_problem": "pregnancy_med_safety",
+    "temporal_burden_level": "low",
+    "temporal_burden_score": "0",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_handoff_closed",
+    "evidence": [
+      "患者已到医院，产科门诊分诊护士查看B超原件后未要求住院部处理，而是安排高危产科/产前诊断团队加号候诊。",
+      "患者回报线下医生查看B超原件和产检本后，未说今天住院或马上引产，而是建议后续遗传咨询/产前诊断评估，羊穿需遗传咨询后决定。",
+      "窗口确认胎儿超声心动图已约下周上午，产前诊断复诊/遗传咨询也有下周前后安排；羊穿尚未预约、未执行。",
+      "医生将下一步行动具体化：按短信和预约单报到，携带B超原件、产检本、身份证医保卡、既往唐筛/无创等资料，并在遗传咨询时询问羊穿/检测利弊和时效。",
+      "患者已整理单子和产检本，能复述：下周做胎儿心超和产前诊断/遗传咨询，羊穿不是今天做，也不是今天决定引产。",
+      "患者回家后向丈夫复述计划，丈夫暂未继续催促住院；患者能复述急诊红旗：阵发腹痛/宫缩、出血、破水样流水、胎动明显减少、发热明显不适等去有产科的急诊。",
+      "当前患者无腹痛、阴道流血、阴道流液，胎动未明显减少，主要为疲惫焦虑。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应进入下周胎儿超声心动图和产前诊断/遗传咨询执行节点：核对是否按时到诊、结果/建议是否回流、是否决定羊穿或替代检测，并继续监测出血、流水、规律宫缩、发热、明显胎动减少等产科红旗。",
+    "rationale": "本案评估契约定义的是“胎儿异常发现后的 bounded pre_handoff 任务”，可接受闭环包括安全移交/安全交接，而不是要求完成整个产前诊断、羊穿、胎儿心超和妊娠决策链条。当前轨迹已满足最低安全闭环：患者从信息混乱状态转入线下高危产科/产前诊断团队初步接管，纸质B超和产检本已被线下人员查看；线下医生明确未要求当天住院或立即引产，安排下周胎儿超声心动图和产前诊断/遗传咨询路径；患者/家属已确认羊穿尚未预约、需遗传咨询后知情决定；患者回家后能复述下一步、资料携带、红旗急诊条件，家属不再催当天住院/引产。当前无腹痛、阴道流血、流液、发热或明显胎动减少等产科急症信号。残余的胎儿心超、遗传咨询、羊穿决策和后续妊娠管理是重要但已有外部专科 owner、时间窗和升级路径的 bounded longitudinal residual，不阻断本次 pre-handoff episode 的安全移交闭环。需注意：这不是胎儿异常长期管理闭环，也不是疾病治愈；闭环主要依赖线下产科/产前诊断团队接管，AI医生贡献应由后续评分单独审计。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual: 胎儿超声心动图尚未执行、无结果；已有下周预约、外部专科/检查路径和患者执行计划。",
+      "bounded_longitudinal_residual: 产前诊断/遗传咨询尚未完成，羊穿/染色体或CMA等检测尚未决定；已有下周遗传咨询/复诊安排，患者理解需知情后决定。",
+      "bounded_longitudinal_residual: 胎儿唇裂伴牙槽突裂、双侧脉络丛囊肿的综合风险分层和妊娠去留决策尚未完成；已交由线下高危产科/产前诊断团队继续评估。",
+      "bounded_longitudinal_residual: AI医生未直接获得完整结构化B超全文，但纸质原件已由线下分诊和专科医生查看，当前移交任务不再被该资料不完整阻断。",
+      "global_disease_journey_background: 若后续选择继续妊娠，需要产检、复查影像、分娩医院和新生儿修复团队衔接；若选择终止妊娠，需要引产/流产后母体安全复查。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V4-Pro",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "复查发现胎儿唇裂和脉络丛囊肿后，家里拿不准下一步",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我今天复查产检B超，医生说宝宝可能有右侧唇裂，还提到牙槽什么裂、两边脑室有囊肿，让我们再做产前诊断。我脑子一下乱了，单子也在家人那边，医生说话我没完全记住。现在肚子不痛，也没出血，就是不知道要不要马上住院或做羊穿，之前还听到过“引产”两个字，吓到了。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取患者在 CareLoop 联合医疗网络内已授权可访问的病历记录索引、本次/近期产科超声报告原文、既往产检记录、相关检查结果、用药/药房记录、以及家庭/照护可及性信息；同时请回看本轮之前全部原始对话，并查阅我此前保存的医生工作备注。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00009",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中该患者已授权/已同步的既往病历、本次产检B超报告原文、最近检查检验结果、用药记录、孕产时间线和照护可及性信息，同时回看更早的原始对话，并保存一条初步医生工作备注：本次需先确认胎儿结构异常的客观报告内容、孕周、是否已完成产前诊断遗传咨询和超声会诊，再讨论下一步住院指征、羊穿指征和引产相关前提条件。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00019",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我先仔细看一下刚才调回来的 CareLoop 中心医院 5 条记录原文，特别关注这几条：R01–R05 分别是什么时间、什么科、什么文书类型、内容和孕周/胎儿结构描述、以及是否有更早的产检基线（NT、系统超声、无创或血清学筛查），同时查询有没有产科/产前诊断/超声科的检查结果与报告。另外，请把记录原文逐条返回，我好核对关键信息，不做概括。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00025",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "调取CareLoop联合医疗网络内本患者当前可见的全部产科/产检/超声/胎儿医学相关记录、本次孕期既往就诊记录（包括建档、NT、系统超声、产前诊断咨询、遗传咨询记录）、以及时间线中与本次妊娠和胎儿结构异常相关的关键事件。同时调取她提到的本次复查产检B超的原报告（若已上传或网络内已同步）、以及家庭/照护可及性信息（包括是否有可联系的家属、交通/距离医疗资源情况）。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00027",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00029",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00032",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取 CareLoop 联合医疗网络内该患者已授权/已同步的既往产科病历、本次产检B超报告原文和影像描述（如有）、以及该机构内与本孕周相关的产前诊断转诊记录。同时请拉取记录索引中 R01–R05 的完整内容，并查看时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00035",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您先别慌，我先把最重要的事说清楚：现在肚子不痛、也没出血，说明您本人目前没有需要马上住院的急症情况，暂时不需要因为“胎儿问题”立刻去急诊或住院。\n\n您今天复查B超提到的几个发现——右侧唇裂、可能还有牙槽裂、两侧脑室有囊肿——都是需要产科和产前诊断团队一起评估的影像学线索，但单靠B超的几句话，还不能直接判断宝宝整体情况有多严重，更不能直接决定要不要羊穿或引产。引产是医学上很严肃的决定，必须有明确的产前诊断依据和充分的遗传咨询，不是发现一项异常就直接做的，所以您听到的那两个字只是家人或旁边的零碎对话，先把它们放一边。\n\n接下来对您最实际的有几件事：\n\n1. **让家人赶紧把今天的产检B超报告单/手写记录拍给您或带到身边**，您自己先看到完整的文字描述：具体写着“右侧唇裂”“牙槽裂”的用词是什么，有没有提到“唇腭裂”或“牙槽突裂”；两侧脑室的囊肿具体叫什么，是“脉络丛囊肿”还是其他表述，有无大小、两边对称性、有无合并其他结构的描述。这些文字比口头记忆准确，才有办法往下讨论。\n\n2. **尽快回到给您安排产检的产科或产前诊断门诊**，把这份报告给医生看，并明确问三件事：\n   - 现在的孕周是多少周。\n   - 根据这些超声发现，是否建议做**羊膜腔穿刺（羊穿）＋染色体微阵列/必要时全外显子测序**，以及具体在多少周安排。\n   - 是否需要加做**胎儿超声心动图**和**胎儿磁共振（MRI）**来更清楚看唇腭裂范围、脑室囊肿及其他结构。\n\n3. 如果报告上还提到“牙槽裂/唇腭裂”，产前诊断门诊通常还会建议请**整形外科/口腔颌面外科、新生儿科、遗传咨询**一起做一次多学科会诊，您可以把这件事主动提出来，请他们帮您预约。\n\n4. 您自己这边继续观察：只要没有腹痛、没有阴道流血、没有破水，就不是需要去急诊的紧急情况；但如果突然出现规律腹痛、出血或流水，不管几点都要直接去有产科的医院急诊。\n\n后续等产前诊断的会诊安排和羊穿指征明确之后，我们才能一起判断是否需要“住院评估”、是否需要在什么孕周做更详细的胎儿检查，以及是否具备做产前诊断的条件。您先别一个人往里钻“引产”那两个字，先把报告拿到手、再去门诊把这几件事一件一件问清楚。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00051",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "目前不能视为已完成羊穿或已取得遗传学结果；需核实产前诊断门诊是否已安排具体日期和检测项目。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00052",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "胎儿心超/MRI目前只是可能需要的进一步评估项目，尚无执行或结果回传。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00057",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12min",
+      "text": "我刚让我家人照着单子读了几行，我记得不一定准。他说上面好像写的是“胎儿唇裂伴牙槽突裂”，还是“牙槽什么裂”，不是很确定；还有一句是“胎儿双侧侧脑室脉络丛囊肿”，我听着就是两边脑室有囊肿。别的大小啊合并什么他没给我读明白。\n\n家人说门诊医生让去产前诊断门诊咨询，可能要问羊穿。然后他们又说如果不做产前诊断、家里坚持不要孩子，就要走住院产科流程，我现在听混了，是不是不是今天就直接住院啊？\n\n我现在还是没有肚子痛，也没出血、没流水。那我今天应该先去挂产前诊断门诊对吗？如果挂不到，是去产科门诊问，还是住院部也可以问？羊穿是不是要今天马上做，还是先让产前诊断医生看完报告再说？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "我先在联合医疗网络内尽量确认患者本次超声报告的文字信息。请帮我调取以下资料：1）患者近期产检B超或超声报告原文，特别是提到“唇裂”“牙槽突裂/牙槽裂”“双侧侧脑室脉络丛囊肿”的记录；2）本次就诊的门诊记录或产前诊断转诊建议；3）既往产检记录和孕周信息，帮我确认当前孕周；4）既往用药清单和过敏史，以防后续操作前需要排除禁忌；5）此外也帮我查一下她在我方网络内的照护可及性，包括目前是否已挂本院或外院产前诊断门诊、产科门诊可及性、交通和家庭陪同情况。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00066",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00068",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "我先在本次请求中一次性调取 CareLoop 联合医疗网络内你当前可授权看到的既往产科/产检记录、本次 B 超报告原文、既往检查/检验结果、用药/叶酸等记录、孕周时间线，以及家庭照护可及性（交通、陪同、是否已有产前诊断门诊预约记录）。然后我会回看第 0 到 1 轮原始对话，并保存一条医生工作备注，用于后续追踪胎儿结构异常的评估节奏。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00070",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00074",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00077",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "您现在没有肚子痛、没出血、没流水，这是最重要的安全底线，说明您本人今天不需要直接去住院部或者按“要引产”紧急入院，那个说法不适合您现在的情况。您听得没有错，“不是今天就直接住院”是对的。\n\n您刚才让家人读出来的两句话，我帮您把关键信息整理一下，也让您脑子里清楚一些：\n- 报告上写的大概是“胎儿唇裂伴牙槽突裂”，这个“牙槽突裂”就是牙槽骨上的裂隙，属于唇腭裂里牙槽那一部分，但具体范围还要看报告本身有没有提到“腭裂”或者“完全性/不完全性”这些词。\n- “胎儿双侧侧脑室脉络丛囊肿”意思是两边侧脑室里都有脉络丛囊肿，这是一种B超上常见的软指标，很多宝宝会在孕晚期自己吸收，但需要结合有没有其他结构异常、囊肿大小和孕周一起判断。\n\n您现在最重要的事，不是去猜字，而是去挂对号看病。\n\n您今天最合理的第一站确实是 **产前诊断门诊**。如果今天挂不到号，可以按顺序试着这样走：\n- 先问产前诊断门诊是否接受当场加号，把今天这份B超报告带过去给医生看。\n- 实在没有号，就去 **产科门诊**，告诉分诊护士或医生您手里有明确的“胎儿唇裂伴牙槽突裂、双侧脉络丛囊肿”的B超报告，问他们能不能帮您转接产前诊断团队，或者在产科诊室先做一次初步评估，然后安排后续产前诊断的会诊和羊穿时间。\n- 住院部不是您今天去问这个的入口，这是给已经决定好要终止妊娠或者已经出现产科急诊情况的人才走的流程，您不符合。\n\n羊穿的问题，您理解得也对：**羊穿不是今天马上做，而是先让产前诊断医生看完报告后，和您一起决定**。羊穿有严格的孕周窗口、也必须有详细的超声检查和遗传咨询前评估，不能插队到自己挂号的当天就直接做。所以您今天去门诊把报告给医生看，然后问清楚这三件事：\n1. 我现在的孕周到底是几周。\n2. 综合目前B超发现，是否建议做羊膜腔穿刺+染色体微阵列/必要时全外显子，具体安排在哪一天。\n3. 是否需要加做胎儿超声心动图和胎儿磁共振来看唇腭裂范围和脑室囊肿细节。\n\n如果产前诊断医生评估后建议羊穿，他们会给您定一个具体日期、做术前检查、签知情同意书，不是今天临时就做的。\n\n另外，您和家属心里可能还在转“引产”两个字。我先跟您说清楚：**引产是需要有明确的产前诊断依据、经过多学科讨论和遗传咨询，确认胎儿有严重且不可治疗的异常，并且由您和家人自主做决定之后才走的流程**，不是今天拿到一句B超报告就能启动的。您今天先把所有力气放在去门诊看报告、问清楚下一步，不要自己掉进那个可怕的字里。\n\n您出门前记得带上这份B超报告单，如果现在肚子不痛、没出血，按您这边的产科急诊安全距离出门，不用叫救护车。如果期间出现规律腹痛、阴道流血或大量流水，不管在哪儿，直接去最近有产科的医院急诊。您先去医院问，我等您从门诊回来后告诉我结果，我们再一起往下走下一步。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00093",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+30min",
+      "text": "医生，我又跟家里拿单子的人打了电话，他这次把结论和建议栏读得完整一点，还发了几行字给我。结论就是写的“胎儿唇裂伴牙槽突裂”，还有“胎儿双侧侧脑室脉络丛囊肿”。有没有写腭裂、大小那些我还是没太听明白，可能得明天拿原件给医生看。\n\n今天他们没挂上产前诊断门诊，也没有做羊穿、没有住院，也没用什么药，就是家里人还一直说要不要去问住院和引产流程，我听了又慌。\n\n我现在还是没有肚子痛、没有出血、没有流水。那我按您说的，明天一早先挂产前诊断门诊，对吧？如果挂不到就去产科门诊找分诊护士/医生帮忙转产前诊断，不去住院部。明天我让家人把B超原件、产检本、之前抽血唐筛/无创那些单子都带上可以吗？还要不要带身份证医保卡这些？我是不是也可以先跟家里说，先别再问引产，等产前诊断医生看完再说？我现在最怕他们一下把我带去住院那边。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00099",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+30min",
+      "text": "您说得都对，我帮您把明天每一步理清楚，不让任何人把您带偏。  \n\n1. **明天先去哪里**  \n   - 第一选择是**产前诊断门诊**，一早去挂。  \n   - 如果挂不到，就去**产科门诊**，把这份B超报告给分诊护士或医生，告诉他们上面写着“胎儿唇裂伴牙槽突裂、双侧侧脑室脉络丛囊肿”，请他们帮忙转接到产前诊断团队。  \n   - **不是去住院部，也不是去问引产**。您没有腹痛、没有出血、没有流水，住院和引产都不是您现在该走的路。  \n\n2. **要带的东西**  \n   - B超报告原件、产检本、之前唐筛/无创等抽血报告。  \n   - 身份证和医保卡也带上，挂号和建档案会用得到。  \n   - 如果方便，让家人把今天医生写的“建议”栏也尽量读给您或记下来，就诊时给医生看。  \n\n3. **跟家人怎么说**  \n   您完全可以说：“我们先按医生讲的，明天一早挂产前诊断门诊，让医生看完报告再说下一步。现在不要自己去问住院和引产的事，那不适用于我们现在的情况。”这句话您说出去是有依据的，也对您最安全。  \n\n4. **到了门诊要问清楚的事**  \n   见到产前诊断医生，把报告给他看，然后问：  \n   - 我现在到底是多少孕周。  \n   - 根据这些超声发现，是否需要羊膜腔穿刺+染色体微阵列/必要时全外显子测序，安排在什么孕周做。  \n   - 是否需要加做胎儿超声心动图和胎儿磁共振，进一步看清唇腭裂范围和脑室囊肿。  \n   - 如果医生认为需要，请帮您预约**多学科会诊**，包括整形外科/口腔颌面外科、新生儿科和遗传咨询。  \n\n5. **您自己的安全底线**  \n   继续按现在这样观察：没腹痛、没出血、没破水，就正常生活。如果突然出现规律腹痛、阴道流血或大量流水，不管几点都要直接去有产科的医院急诊，不要等。  \n\n您明天先去门诊把这几件事跑一遍，回来后把医生怎么说告诉我，我再帮您一起往下理。您现在已经把方向抓住了，很对。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00115",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+930min",
+      "text": "医生，我已经到医院了。产前诊断的正式号满了，我们先去了产科门诊分诊台，把B超原件给护士看了。护士看完没叫我去住院部，她说先等高危产科还是产前诊断团队加号，我现在就在候诊区等。\n\n我今天还是没有肚子痛、出血、流水，羊穿也还没做，没住院。家里人在旁边还一直小声说后面会不会要羊穿、会不会严重，我听着又紧张。\n\n我现在这样继续等加号是对的吧？等会儿见到医生，我是不是就先问孕周、要不要羊穿、还要不要做胎儿心超/MRI这几句？我怕一紧张又问乱了。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00122",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+930min",
+      "text": "你这一步走得完全对。护士看了B超原稿、没收你去住院部、让等加号，说明她也认为你没有产科急诊情况，需要的是门诊评估，不是住院。你今天继续等加号是安全的，也恰恰是应该走的路径。\n\n你紧张的原因不只是羊穿，而是“不知道到底有多严重”。我等会儿帮你把见到医生怎么问整理好，你不用背，心里有个顺序就行。\n\n等会儿见到医生，你就把B超原稿给他看，然后问这几件事，按顺序问：\n\n1. 请您先核实我现在确切的孕周是多少周。\n2. 根据这次B超的“胎儿唇裂伴牙槽突裂”“双侧侧脑室脉络丛囊肿”，您建议接下来是做羊膜腔穿刺+染色体/全外显子测序吗？如果建议，大概安排在哪个孕周做。\n3. 需不需要同时安排胎儿超声心动图和胎儿磁共振，把唇腭裂范围和脑室囊肿看得更清楚。\n4. 如果这些检查有异常，有没有多学科会诊可以帮我们一起评估，包括整形外科/口腔颌面外科、新生儿科和遗传咨询。\n\n还有一句，你也可以直接跟医生说：“我家里人很紧张，一直在问要不要引产，我想请您根据这次B超和后续检查的判断，先给我们一个初步的风险和方向。”这句话好比把最怕的词摆在桌上让专业医生拆掉，而不是你们自己在下面猜。\n\n你在候诊区等的时候，继续按你身体信号判断：只要不疼、不出血、不破水，就是产科安全状态，不需要自己跑去住院部。今天门诊看完后如果医生给了具体孕周和羊穿的日期，或者给了心超/MRI的单子，你再回来告诉我，我继续帮你一起走下一步。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00139",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1025min",
+      "text": "医生，我看完出来了，等了好久，脑子有点糊。\n\n医生是看了我B超原件和产检本的，她没说今天住院，也没说马上引产，说现在还不能一下定论，要后面再查。她说羊穿要去遗传咨询那边再决定，好像也给我开了几个预约单。\n\n我手里单子上能看清的有“产前诊断复诊/遗传咨询”这种字，还有一个像“胎儿超声心动图”，日期我看着好像是下周，具体几号我得再去窗口问一下。还有一个是不是系统超声我也不太确定。MRI她好像没说今天必须做，可能等后面看情况？\n\n我现在还是不疼，也没出血没流水。就是我老公他们出来后还一直问：那是不是很严重、羊穿会不会把孩子弄掉、如果结果不好是不是还要引产。我现在也不知道怎么跟他们说。是不是我可以跟他们讲：今天只是先排检查和遗传咨询，不是已经决定引产，羊穿也不是今天就做，对吗？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00145",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1025min",
+      "text": "你理解得完全正确，而且现在可以用这几句话直接跟家人说，不用再让他们乱猜。\n\n你可以这样讲给他们听：\n\n“今天医生看了B超原件和产检本，没说现在住院，也没说马上要引产。医生说的是现在还没法一下下定论，需要后面再查。羊穿也不是今天就做，是要去遗传咨询那边再决定。今天只是帮我们排了几个检查——下周先做胎儿超声心动图，还有一个产前诊断复诊或遗传咨询。这一步一步走完，才能决定后面要不要羊穿、结果是什么，才谈到后面更远的事。”\n\n你还可以补一句：“所以现在不要再问是不是严重、是不是要引产，因为这些事都还没有结论，我们先把检查做完再说。”\n\n你老公问的“羊穿会不会把孩子弄掉”这件事，你也可以直接跟他说：羊膜腔穿刺确实有很小的流产风险，但这个风险是在产前诊断和遗传咨询医生完整评估之后，医生会把风险和好处一起讲清楚，那时才轮到我们做决定。不是现在没有评估就硬上的。\n\n你现在的任务很清晰：\n1. 去窗口把胎儿超声心动图和产前诊断复诊/遗传咨询的预约单日期和时间都确认清楚，拍到或者记下来。\n2. 回家后继续看住你自己：不疼、不出血、不破水，就是安全状态。\n3. 把预约单的时间告诉我，我帮你把下一次去看医生前还要带什么、问什么理好。\n\n你先去窗口问具体日期，问清楚后告诉我，我们一起往下走。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00161",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1053min",
+      "text": "医生，我去窗口问过了，不是我自己猜的。窗口的人看了单子说胎儿超声心动图已经约好了，是下周上午，具体我这会儿看单子有点眼花，好像是上午报到，回去我再按短信和纸上时间走。\n\n那个“产前诊断复诊/遗传咨询”也有安排，也是下周前后，工作人员说到时候按单子或短信去报到。羊穿还没有约、也没做，说要等遗传咨询那边医生讲清楚再决定。\n\n今天医院这边确实没人让我住院，也没人说马上引产，我听您这么说心里稍微稳一点。我现在就是站久了累，肚子不疼，也没出血、没流水。\n\n那我下周去是不是就带今天这些单子、B超原件、产检本、身份证医保卡，还有之前唐筛/无创那些报告？到遗传咨询我主要问羊穿风险和要不要做、结果要等多久，对吗？我老公还在旁边问，我就按您刚才那段跟他说：先检查和咨询，不是现在做决定。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1053min",
+      "text": "你做得很好，这一步真的把事都问清楚了。我帮你把下周的要点理好，你照着走就不会乱。\n\n1. 带什么\n- 今天这张B超原件、产检本、身份证医保卡。\n- 之前唐筛/无创那些抽血报告也带上。\n- 胎儿超声心动图、产前诊断复诊/遗传咨询的预约单和短信，按上面时间提前到。\n\n2. 到了遗传咨询，主要问这几句\n- 根据超声和后面的检查结果，做羊膜腔穿刺的风险到底有多大，和我们不做的风险比，哪个更重。\n- 如果建议做，具体安排在哪个孕周，术前要查什么，结果要等多久才能出来。\n- 羊穿结果出来后，如果确实有异常，接下来是多学科会诊还是怎么个流程。\n\n3. 对你老公\n你就继续说你现在那句：“今天是先排检查和遗传咨询，不是现在就做决定。医生没让住院、没让引产，我们先把下周的心超和遗传咨询做完再说。”你老公听到你说这句，也会慢慢稳下来。\n\n4. 你自己的安全线\n继续这样守着：不疼、不出血、没破水，就是安全的。站久了累就坐着歇，别硬撑。下次从门诊回来，把医生怎么说告诉我，我再帮你往下理。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00185",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1078min",
+      "text": "好，医生，我现在把单子和产检本都放一个袋子里了，先回家了，实在站不动了。\n\n我大概记住了：下周按短信和纸上时间，先去做那个胎儿超声心动图，还有产前诊断/遗传咨询；羊穿现在还没约，也不是今天就做，要等遗传咨询医生把风险、要不要做讲清楚再说。B超原件、产检本、身份证医保卡、以前唐筛无创那些报告我都一起带着。\n\n我刚也跟我老公说了，今天不是决定引产，也没让住院，先把下周检查咨询做完。他现在没再催去住院部了，就是还是有点怕。\n\n我现在还是没有肚子痛、没出血、没流水，就是腰酸腿累。医生我再确认一下，除了这几个——肚子一阵阵痛、见红出血、流水像破水——还有没有什么情况也要马上去急诊？比如胎动少这种我现在这个孕周要不要特别数？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00194",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1078min",
+      "text": "对，你问得很关键，胎动这件事确实要加上去。我把你现在要记住的几条都列清楚，你和家人都好判断：\n\n1. **除了腹痛、见红、破水之外，什么情况要去急诊**\n   - 规律腹痛，一阵一阵越来越密，哪怕没见红没流水。\n   - 阴道流血，不管量多量少，只要是鲜红色或像月经那样。\n   - 任何一次“哗”一下流水，或者内裤一直湿、有清亮或淡黄色液体流出，不要等，直接去有产科的急诊。\n   - **胎动明显减少或消失**：你现在这个孕周胎动已经应该有规律了。如果感觉宝宝半天甚至一天不怎么动，或者比平时少很多，也要去急诊，不要光靠数次数，关键是跟平时比。\n   - 如果突然发烧、寒战、头晕眼花、视物模糊、上腹持续痛，也去急诊。\n\n2. **你现在要不要专门数胎动**\n   可以，但别把自己数焦虑。每天找一个固定时间，侧躺休息，数到10次明显胎动，大概在1-2小时内出现就行。如果一天下来怎么也感觉不到平时那个动法，就先侧躺、吃点东西再感受；还是不对劲就去急诊。不用一天到晚盯着手机数，但“比平时明显少”就是要去查的信号。\n\n3. **你现在腰酸腿累怎么办**\n   站久了累就侧躺休息，别平躺太久，也别一直站着或坐着不动。只要不疼不硬不出血不流水，腰酸本身不是急诊信号，是孕周大了的正常负担。\n\n你把这些告诉老公，就说：“医生说了，除了肚子疼、出血、破水，胎动突然变少也要去。我们这几天正常看住宝宝动就行，不是整天数数吓自己。”你现在做的每一步都是对的，下周检查做完我们再一起往下走。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00208",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1133min",
+      "text": "医生，我已经到家了，路上歇了一会儿，现在坐着，还是累但比医院排队时好点。\n\n我跟我老公说了：下周按短信和预约单去做胎儿心超，还有产前诊断/遗传咨询；羊穿现在还没约，不是今天就做，也不是今天就决定引产。这个他听了，没再催我去住院了。\n\n急诊的我也大概记住了：肚子一阵阵疼、出血、像破水那样流水，或者胎动明显比平时少，还有发烧很不舒服，就去有产科的急诊。胎动我就每天找个时间侧躺感受一下，不整天数到自己吓自己。\n\n我现在没有肚子痛、没出血、没流水，胎动也没觉得少，就是腰酸腿累。那我现在先侧躺休息，等下周检查，可以吧？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_071__DeepSeek-V4-Pro",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.5,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 7
+}

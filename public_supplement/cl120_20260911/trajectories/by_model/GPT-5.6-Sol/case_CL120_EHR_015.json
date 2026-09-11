@@ -1,0 +1,729 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "8a675edb8d15205ac39dc9b57fe479e5d66bc369442de15418b2289326b21703",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_015__anon_a381c6e2a7f154b1",
+    "packet_sha256": "f9cd13689063d26634583a250a16efdb8ce708143380d7b6b5e34f86a778774c"
+  },
+  "case_id": "case_CL120_EHR_015",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "10",
+    "contract_complexity_level": "high",
+    "disease_domain": "respiratory",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "long",
+    "friction_burden_level": "high",
+    "friction_burden_score": "2",
+    "friction_intensity": "heavy",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "delayed_or_staged_result_return",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "medication_confusion_or_execution_failure | caregiver_conflict_or_fatigue",
+    "starting_phase": "result_return",
+    "target_problem": "suspected_pulmonary_embolism_result_and_anticoagulation_followup",
+    "temporal_burden_level": "high",
+    "temporal_burden_score": "2",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "病区外部医生/护士/药师已把最后一针低分子肝素、今晚20:00利伐沙班15mg bid起始、后续20mg qd维持及漏服/重复服用处理写入宣教单并当面核对。",
+      "家属在出院前到药房窗口逐盒核对，15mg和20mg规格已分开放并标注起止日期，药师确认今天不再补打肝素。",
+      "医生在第18轮给出“贴冰箱清单”：首剂时间、15/20mg防混淆、单人给药打勾、复查复诊项目、出血/气促胸痛等红旗急诊路径。",
+      "家属第18轮反馈：清单已贴冰箱，家里人不碰药盒，今晚由其负责；20点左右已服第一片利伐沙班15mg，确认不是20mg，随晚饭后服用，且未再打肝素。",
+      "家属同时反馈患者清醒，无咯血、黑便血尿、出血不止、晕倒糊涂、突然更喘或胸痛加重等当前红旗。"
+    ],
+    "if_continued_next_focus": "若继续模拟，可做一次短期随访确认次日/数日内15mg bid是否持续正确执行、无出血/呼吸恶化，并核对复查复诊是否按日期完成；但这些属于后续纵向随访，不阻断本次出院抗凝衔接闭环。",
+    "rationale": "本病例的目标是可疑肺栓塞/肺部感染出院前后“结果回流—抗凝衔接—执行与安全网”的 bounded episode，而不是证明肺栓塞永久治愈或完成全部疗程。当前核心高风险线程已形成安全闭环：线下病区/药师已明确抗凝方案和桥接时间，家属已取药并分开放置15mg/20mg，医生将方案压缩为可执行清单，家属反馈首剂利伐沙班15mg已在20:00随餐正确服用、未误拿20mg、未再打低分子肝素，且当前无出血或肺栓塞恶化红旗。复查血常规/血小板/肝肾功能及呼吸科复诊已有出院单日期、责任路径和急诊/病区电话安全网。残余的诊断不确定性、疗程复评和长期抗凝管理属于有owner和时间窗的后续随访，不再阻断当前出院抗凝衔接episode闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_longitudinal_thread: 肺栓塞仍为可疑/可能左下肺动脉分支肺栓塞，后续确诊程度、总疗程和是否调整抗凝需呼吸科/线下团队复评。",
+      "bounded_residual_longitudinal_thread: 需按出院单日期复查血常规、血小板、肝肾功能，并携带出院小结、CT资料和药盒复诊；已有责任人、时间窗和升级路径。",
+      "global_disease_journey_background: 肺部感染恢复、抗凝期间迟发出血风险、复发/进展风险仍存在，但当前已有红旗识别和急诊路径。",
+      "nonblocking_residual: CT报告全文未由线上医生逐字核验，但关键诊疗已由线下病区团队结合住院检查解释并形成出院方案，当前不改变首剂抗凝执行。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "CT说可能有肺栓塞，留观时检查还没全回来",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我妈52岁，前几天因为肺部感染住进去，后来CT又说左下肺动脉有个分支像是栓塞，还让结合临床。现在人还在急诊留观，说要继续打针、抗凝，可心超和腿部血管B超好像还没排上。我们听着有点慌，也不知道这种情况等结果会不会耽误。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取本次肺部感染及疑似肺栓塞相关的急诊/住院时间线、生命体征和吸氧情况、胸部CT/CTPA完整报告及影像科结论、血气、D-二聚体、肌钙蛋白、BNP、血常规、凝血和肝肾功能；查看目前抗感染、抗凝药物名称剂量与开始时间、是否有出血或抗凝禁忌，以及心脏超声、下肢静脉超声的医嘱和排期状态。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "能理解你们担心。若目前血压、血氧和意识稳定，医生已按疑似肺栓塞开始抗凝，通常不必等心超或腿部超声做完才治疗；这两项主要用于判断右心负荷、寻找血栓来源和风险分层。现在请马上向留观医生确认：血压、血氧是否稳定，CT是不是肺动脉增强检查，抗凝药名称及是否已开始。若出现明显气促加重、胸痛、咯血、晕厥、意识异常、血压下降或血氧持续下降，立即按铃要求医生床旁评估。也请把CT报告全文（尤其“所见/结论”）、目前生命体征和实际用药逐字发我，我帮你们判断风险及检查是否需要加急。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+15min",
+      "text": "家属反馈：留观护士称患者目前生命体征相对稳定，低流量氧下血氧约96%，血压约126/78mmHg，心率约92次/分；低分子肝素0.4ml每日一次已打，抗生素仍在输。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00029",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+15min",
+      "text": "心脏超声暂未排上，暂无报告。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00030",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+15min",
+      "text": "下肢血管超声申请已在系统中，护士称可能上午加做，但尚未确定；暂无结果。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+15min",
+      "text": "CT报告全文仍未由家属逐字提供，需继续索取所见和结论部分。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00036",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+15min",
+      "text": "医生您好，我刚按您说的去护士站问了一下，护士看了床边记录跟我说：我妈现在人是清醒的，血压大概126/78，心率92左右，吸着氧的时候手指血氧大概96%。护士也说最近没有刚发生晕倒，也没有明显咯血。\n\n她现在还是咳嗽、胸口闷，但我看着没有比刚才明显更厉害。药我还是分不太清，抗生素现在还在挂。护士说低分子肝素已经打了，昨晚和今天早上都按医嘱打了，好像是皮下注射“0.4毫升一天一次”。\n\n心超还是没排上，没说具体什么时候。腿部血管B超护士说申请好像在系统里了，可能上午能临时加做，但现在还没确定，也还没有结果。CT报告全文我现在还没拿到，我只记得上面大概写左下肺动脉一个分支可疑栓塞、请结合临床，等会儿我再想办法让护士或医生把所见和结论给我读一下。\n\n想问您：按现在这些血压血氧，算不算暂时还稳？心超一直没排上我们要不要继续催医生加急？还有这个肝素针已经打了，我们家属在床边主要要盯哪些出血或者危险情况？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00042",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+15min",
+      "text": "按目前信息，她意识清楚、血压126/78、心率92，吸氧时血氧96%，症状未明显加重，也没有晕厥或明显咯血，暂时属于生命体征相对稳定，但仍需留观监测，不能据此排除肺栓塞或右心负荷。\n\n心超建议继续请主管医生协调尽快做，用于风险分层；但她目前稳定且已经抗凝，通常不是“必须等心超才能治疗”。若胸闷/气促加重、血氧下降、心率明显增快或血压下降，应立即要求床旁评估并加急心超。腿部超声也按申请尽快完成。\n\n低分子肝素“0.4毫升”仅是体积，不能据此判断药名和剂量是否足够，请让护士核对具体名称、每支多少单位或毫克、实际每日次数；家属不要自行加减或漏打。床边重点观察：咯血增多、呕血、黑便或鲜血便、血尿、鼻牙龈持续出血、针眼压不住、大片或迅速增加的淤青，以及突发剧烈头痛、嗜睡意识改变、明显腹痛/腰背痛、脸色苍白出冷汗。出现任何一项立即按铃。避免揉搓注射处、碰撞和自行使用阿司匹林、布洛芬等药。\n\n另外请把CT“所见、结论”逐字读来，并问清是否为肺动脉增强CT；最好同时核对血常规血小板、血红蛋白、肾功能和凝血结果。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00058",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+150min",
+      "text": "医生，我妈刚才已经被推去做完双下肢血管超声了，现在回到留观床上，还是吸着氧，有咳嗽、胸口闷，但我看着没有突然变重。\n\n我从护士站那边看到/听到报告结论，大概就这几句，我照着读给您：  \n“左侧小腿肌间静脉血流瘀滞”；  \n“两侧下肢大动脉无明显异常发现”；  \n还有备注说“急诊超声检查提供信息有限，请酌情参考”。  \n\n我不懂这个“肌间静脉血流瘀滞”算不算已经有血栓？还是只是血流慢？它会不会就是肺里那个可疑栓塞的来源？报告又写大动脉没问题，我有点搞混了，动脉没问题是不是也不能说明静脉就没事？\n\n肝素针我也又问了护士，她口头核对说现在是低分子肝素皮下注射，0.4ml，一天一次，昨晚和今天早上都按医嘱打了。每支多少单位或者多少毫克我还是没搞清，护士也没让我们自己调，只说有出血就按铃。\n\n心超还没做，护士说下午继续排，如果血氧、血压、心率或者气喘胸闷变差会再加急。我想问下，现在这个腿部超声结果出来后，抗凝是不是还是继续按他们医嘱打？心超我们还要继续催吗？还是主要盯着有没有加重和出血？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+150min",
+      "text": "你理解得对：\n\n1）“左侧小腿肌间静脉血流瘀滞”通常表示静脉血流较慢或淤滞，本身不等同于已经看见明确血栓；若确认血栓，报告一般会写“静脉血栓形成、管腔内回声、不能压闭或血流充盈缺损”等。但报告提示急诊检查信息有限，因此不能仅凭这几句完全排除小腿深静脉血栓，也不能确定它就是肺里可疑栓子的来源。\n\n2）“两侧下肢大动脉无明显异常”说的是给腿供血的动脉，与静脉血栓是两套血管系统；动脉正常不能证明静脉没有血栓。建议请医生确认这次是否完整检查了双下肢深静脉、是否可压闭，以及结论中是否明确写“未见血栓形成”。\n\n3）目前不要因为这个结果自行停抗凝，也不要自行加量。既然医生按疑似肺栓塞已开始低分子肝素，应继续按留观医生医嘱注射；但0.4 ml一天一次到底是治疗剂量还是预防剂量，取决于具体药名、每支毫克/单位、体重、肾功能和出血风险，请让主管医生今天明确核对，而不是家属自行调整。\n\n4）心超仍建议下午继续协调尽快完成，用于观察右心负荷和风险分层；目前看没有突然恶化，可以按现有队列等待，但若胸闷气促加重、血氧持续下降、心率明显升高、血压下降、晕厥或咯血，立刻按铃床旁评估并加急。\n\n现在主要同时盯病情恶化和出血；另外继续索取肺动脉CT报告全文，以及血红蛋白、血小板、肾功能和凝血结果。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00078",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+180min",
+      "text": "医生，我刚才拿着您说的点又去问了护士和床旁医生，医生在电脑里看了她今天的抽血，说现在我妈整体还算稳：吸氧的时候血氧大概95到96，血压没低，心率90多，人也清醒。咳嗽和胸闷还是有，但我看着没有突然更喘。\n\n出血这块我也问了，他们说目前没看到明显出血，没有明显咯血、黑便、牙龈鼻子出血，打针的地方也没有大片淤青。抽血那些我没记住具体数字，医生就说血红蛋白、血小板、肌酐这些暂时没有到必须停抗凝的程度，说“暂时能打”。\n\n低分子肝素还是按留观医嘱，0.4ml一天一次，医生特别说让我们家属不要自己加量也不要停，后面要不要调看体重、肾功能和复查结果。我还是不清楚这一支到底多少毫克多少单位。\n\n心超还没做，还在排队。床旁医生说如果血氧掉、心率明显上去、血压低、晕过去、咯血，或者胸痛气喘突然加重，就马上按铃加急。\n\n我现在稍微踏实一点，但还是怕0.4ml一天一次不够，会不会耽误肺栓塞？这个剂量问题我还需要一直追着问主管医生吗，还是他们已经核过就先听他们的？另外我们在床边盯出血，是不是主要看咳血、黑便血尿、鼻牙龈出血、针眼压不住和突然头痛嗜睡这些？有没有最要命、最容易漏掉的信号您再帮我强调一下。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+180min",
+      "text": "目前床旁医生已结合体重、肾功能和复查结果来评估，并明确先按医嘱继续，因此先听他们的，不要自行加量或停药。0.4 ml只是体积，不知道具体制剂浓度就无法判断是不是足量；不同低分子肝素不能直接按毫升比较。无需反复追问，但今天交接或主管医生查房时再明确一次即可：药物全名、每支多少mg/抗Xa单位、当前按治疗还是预防方案、为何一天一次。若仍说不清，可请护士直接从医嘱或针盒逐字核对。\n\n你列的出血信号基本正确。最要命、也容易漏掉的是：①突发剧烈或不同寻常的头痛，伴呕吐、嗜睡、意识改变、说话含糊或一侧肢体无力；②突然晕厥、脸色苍白、冷汗、心慌、血压下降，即使看不到外出血；③持续或加重的腹痛、腹胀、腰背痛，可能提示内出血；④大量咯血、呕血、黑便/鲜血便、明显血尿，或针眼持续压不住。出现任一项立即按铃。\n\n同时若胸痛气喘突然加重、吸氧后血氧仍持续下降、心率明显加快、血压下降或晕厥，也要立刻按铃，这是肺栓塞恶化警讯。目前指标相对稳定，可以在持续监测和抗凝下等心超，但仍应按队列尽快完成。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00100",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+240min",
+      "text": "医生，我明白了。刚又过了差不多一小时，我妈这边目前没有突然变坏：人还是清醒，吸着氧血氧大概95、96，血压护士说没低，心率还是90多。咳嗽、胸口闷还有，但我看着没有突然更喘，也没看到咯血、黑便血尿，针眼也没有一直流。\n\n下午交接/查房后床旁医生说心超已经排到下午稍晚的床旁来做，但现在还没来，也没有结果，具体几点我也问不出来。他们说如果中间血氧、血压、心率或者胸闷气喘变差，会提前按急的处理。\n\n我把您说的按铃信号写纸上放床边了：喘憋胸痛加重、血氧掉、血压低、心率很快、晕倒、咯血、黑便血尿、突然剧烈头痛或者人糊涂嗜睡这些要马上按铃。腹痛、腹胀、腰背痛这个我刚才差点漏了，是不是也算很重要的内出血信号，也要马上按铃？\n\n现在既然心超有窗口了，我们是不是就先按这个等着，不要一直催到护士医生烦，只要情况没变坏就等；还是隔一会儿还要再去问一下有没有提前？我有点怕等着等着耽误。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00106",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+240min",
+      "text": "是的，抗凝期间如果出现新发、持续或加重的腹痛、腹胀、腰背痛，尤其同时有脸色苍白、冷汗、头晕心慌、乏力或血压下降，要警惕内出血，马上按铃，不必等看到便血或血尿。\n\n目前她意识、血压、心率和吸氧后血氧都相对稳定，症状也未加重，心超已有下午床旁安排，可以先按队列等待，不需要频繁催问。到预计时段仍未做，可在下一次护士巡视或交接时礼貌确认一次即可；如果今天一直未完成，再请床旁医生说明新的时间和是否影响处置。等待期间继续抗凝和监测；一旦胸痛气喘加重、吸氧后血氧持续下降、心率明显增快、血压下降、晕厥或任何出血警讯，立即按铃，此时不等心超排队。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00122",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+330min",
+      "text": "医生，心超医生刚才终于推机器到床边给我妈做完了。正式报告还没到我们手里，我也没看到具体数字，只是床旁医生口头跟我们说了几句，我听着好像没有说什么明显右心扩大、严重右心负荷、心包积液这种要马上升级抢救的情况。\n\n我妈现在还是低流量吸氧，血氧大概95、96，心率90多，人清醒，咳嗽和胸口闷还在，但没看出突然更喘。护士也没提示血压低。肝素和抗感染他们还是让继续按医嘱走，没让我们自己停或者改。\n\n我想确认一下：这个心超口头说法是不是只能说明暂时没看到特别危险的右心问题，风险可能低一点，但不能说肺栓塞就没事了、也不能停抗凝，对吗？正式报告没出来前，我们是不是就继续按留观医生的抗凝、吸氧、监测来，不要自己动药？\n\n另外正式报告出来后，我应该重点让医生给我解释哪几项？是不是右心有没有扩大、肺动脉压力、心功能这些？我现在有点累，怕到时候听一堆数字又抓不住重点。还有如果接下来要不要转病区、继续留观，是不是主要看正式心超、血氧血压心率、出血情况和他们对肺栓塞风险的判断？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00128",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+330min",
+      "text": "对，你理解得基本准确。床旁口头未提示明显右心扩大或严重右心负荷，只能说明目前未见高危心超表现的可能性较大，结合血压稳定、心率90多、吸氧后血氧95%–96%、意识清楚，短期风险可能相对低一些；但这不能否定肺栓塞，也不能单凭心超决定停抗凝。正式报告出来前继续按留观医生医嘱抗凝、吸氧、抗感染和监测，不自行停药或改剂量。\n\n正式报告只抓这几项问：①右心室是否扩大、右心收缩功能是否受损；②有没有室间隔受压或右心负荷增高征象；③估测肺动脉收缩压及是否提示肺动脉高压；④左心室射血分数和整体心功能；⑤有无明显瓣膜异常、心包积液。还可直接问一句：“综合心超，她有没有右心功能不全，属于什么风险层级？”\n\n去病区、继续留观还是需要更高级监护，确实要综合血压、血氧及需氧量、心率和症状趋势、正式心超、出血风险，以及CT是否确认肺栓塞；医生通常还会结合心肌损伤指标等检查。现在生命体征稳定并不等于可以回家，肺部感染、仍需吸氧且正在抗凝，通常仍需要医院继续观察和制定后续方案。若血氧下降或需氧量增加、胸痛气喘突然加重、心率明显升高、血压下降、晕厥，或出现明显出血，立即按铃。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00143",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+385min",
+      "text": "医生，正式心超报告现在已经回到他们急诊留观系统里了。刚才晚间查房前后，留观医生在电脑上看了报告，跟我说的大意是：没有明显右心扩大，也没有严重右心收缩功能不全，好像也没看到大量心包积液这种要马上升级抢救的情况。具体肺动脉压力、射血分数这些数字我真没记全，我自己也没把报告整张看明白。\n\n医生也特别跟我们说了，这个心超不能排除CTPA上那个“左下肺动脉分支可疑栓塞”，不能因为心超还可以就停抗凝或者回家。今晚还是继续留观，或者等床位转病区，肝素、吸氧、抗感染这些都按他们医嘱走，我们家属不能动。\n\n我妈现在还是低流量吸氧，血氧大概95、96，心率90多，人清醒，咳嗽和胸口闷还在，但我看着没有突然加重。护士也没说血压低。目前我没看到明显出血警讯。\n\n我想再确认一下：现在这个正式心超是不是只能说明“暂时不像高危肺栓塞那种右心已经受影响很重”，所以比刚才稍微放心一点，但还不是说肺栓塞没事了，对吧？今晚继续急诊留观/等转病区，这样安排合理吗？\n\n还有我明早或者等主管医生来，最应该追问的是不是就一句话：综合CTPA、心超、血氧和抽血，我妈现在肺栓塞算什么风险，抗凝准备怎么接下去、多久复查、什么时候能从留观转病区或考虑出院？我怕我问太多项目又听乱了，您帮我压成最关键几句就行。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00149",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+385min",
+      "text": "对，你理解正确：正式心超未见明显右心扩大或严重右心功能不全，结合目前血压稳定、心率90多、低流量吸氧后血氧95%–96%，说明暂时不像已经出现明显右心受压的高危肺栓塞，可以稍放心一些；但不能排除CTPA提示的分支肺栓塞，也不代表可以停抗凝或回家。今晚继续留观、等床位转病区，并按医嘱抗凝、吸氧、抗感染和监测，是合理的。\n\n明早只问主管医生三句：\n1. “综合CTPA、心超、血压血氧，以及肌钙蛋白等抽血，她目前属于什么风险层级，CT上的栓塞是否基本确认？”\n2. “现在用的抗凝药全名和剂量是什么，按治疗还是预防方案？后续准备换什么药、预计抗凝多久？”\n3. “转病区和以后出院分别要达到哪些条件，何时复查血常规、血小板、肾功能及相关影像？”\n\n出院时间不必先追一个固定日期，重点看能否稳定脱氧或需氧明显下降、生命体征和症状稳定、无出血、抗凝方案明确且能在家安全执行。今晚若胸闷气喘或胸痛突然加重、吸氧后血氧持续下降、血压低、心率明显加快、晕厥，或出现咯血、黑便血尿、剧烈头痛/意识异常、腹腰背痛等，立即按铃。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00163",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+490min",
+      "text": "医生，夜里护士交班了，我刚听了一遍，她们说今晚还是按急诊留观医嘱继续：肝素那个针、吸氧、消炎，还有监测血压血氧这些。有床位就转病区，没床位就先在这边等明早主管医生查房。我们没有自己停药改药。\n\n我妈现在看着还算稳，吸氧下血氧还是95、96左右，心率90多，人清醒。咳嗽、胸口闷还有，但这一个多小时没看出突然更喘。护士也没说血压低，我也没看到明显出血或者突然变糊涂那种情况。\n\n您刚才给的明早三句我已经记到手机备忘录了，就是怕明早医生讲得快，我又困又紧张会听乱。能不能再帮我压成“听回答时最不能漏的3个判断点”？比如我是不是只要抓住：第一，肺栓塞到底算不算基本确认、风险高不高；第二，抗凝现在到底是治疗量还是预防量，后面换什么药、吃多久；第三，什么时候能转病区或以后出院，要看哪些复查和条件。这样理解行吗？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00170",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+490min",
+      "text": "对，就抓住这3个判断点：\n1. **诊断和风险**：CT上的肺栓塞是否基本确认？综合心超、血压血氧和抽血，属于低、中还是高风险？\n2. **抗凝方案**：现在是不是治疗量抗凝？药名、剂量和用法是什么？以后换什么药、预计用多久？\n3. **下一步门槛**：转病区、出院分别需要满足什么条件？出院前后要复查哪些项目、何时复查？\n\n听不全数字没关系，务必记住医生对这三项的“结论”。若回答含糊，就分别追问一句：“所以风险等级是什么？”“所以现在是治疗量吗？”“所以目前不能转病区或出院的主要卡点是什么？”\n\n你们今晚的处理是对的：继续按医嘱治疗和监测，不自行改药。目前状态相对稳定，可以休息、等查房；若喘憋胸痛突然加重、吸氧后血氧持续下降、血压低、晕厥、意识异常或明显出血，立即按铃。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00185",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+970min",
+      "text": "医生，早上主管医生查房了，我按您说的那三点问了，但他说得挺快，我熬了一夜脑子有点乱，只记了个大概，不是我自己看完整报告原件。\n\n他大意是：CTPA那个左下肺动脉分支还是“可疑/不能完全排除”肺栓塞，D-二聚体好像是偏高但不是特别吓人；心超没有明显右心负荷，下肢B超也没报明确深静脉血栓，昨晚血压血氧这些都还稳，所以他说目前不像高危肺栓塞。但也强调不能说就没事了，还是按可疑肺栓塞加肺部感染继续治。\n\n现在还是低分子肝素那个针、抗感染、吸氧和监测，我们没有自己停药改药。夜里我妈没晕倒，没突然胸痛气喘加重，吸氧下血氧还是差不多95、96，也没看到明显出血。\n\n我想确认一下我这样理解对不对：现在只是“暂时风险没那么高、不像高危”，不是肺栓塞排除了，所以抗凝还得继续，后面换不换口服药、吃多久、复查什么，要等住院/呼吸科医生定，对吗？\n\n还有出院前我是不是一定要让他们写清楚：抗凝药名、剂量、一天几次、吃多久，什么时候复查血常规/血小板/肾功能，还有什么情况要马上急诊？现在还在等床位，我不再纠结这个，就是怕到时候说可以走了，我们家属没把抗凝这块问明白。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00191",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+970min",
+      "text": "对，你理解得基本准确：目前生命体征稳定、心超无明显右心负荷、下肢超声未见明确深静脉血栓，提示暂时不像高危肺栓塞；但下肢没发现血栓不能排除肺栓塞，CTPA仍是“可疑/不能完全排除”，所以不能自行停低分子肝素。是否继续抗凝、换口服药及疗程，要由主管团队结合CTPA原文、出血风险、肾功能等最终明确。\n\n出院前务必拿到书面方案：①最终诊断是确诊、疑诊还是排除；②抗凝药全名、每次剂量、每天次数、首次/末次时间和预计疗程；③漏服怎么办、哪些药或保健品要避免；④何时复查血常规/血小板、肾功能，何时门诊复评及是否复查影像；⑤肺部感染和吸氧的后续安排。若最终仍只是疑诊，也请医生写明为何继续或停止抗凝及复核计划。\n\n出现气喘或胸痛突然加重、晕厥、吸氧后血氧持续下降，或咯血明显、黑便/血尿、止不住的出血、剧烈头痛或意识异常、明显腹痛腰背痛，应立即急诊。你们现在继续等床位并按医嘱治疗是合适的。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00205",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1045min",
+      "text": "医生，我刚才又趁护士有空，让她看电脑医嘱给我读了一下。她说现在还是低分子肝素0.4ml，qd，皮下注射，我理解大概就是一天一次？另外抗感染、低流量吸氧、监测这些都继续。这个不是我自己看懂处方，是护士照电脑读给我的。\n\n主管医生刚也补了几句，说现在先按可疑/可能的分支肺栓塞处理，不算高危，但还不能排除，所以抗凝不能我们自己停。要是今天能转到病区，后面还打不打低分子肝素、换不换口服药，让病区医生接着定；如果从留观出院，他们会先把诊断倾向、抗凝药怎么用、复查血常规血小板肾功能、什么时候门诊复评写清楚。\n\n我妈这会儿还算稳，吸氧下血氧95、96，心率90多，人清醒，咳嗽胸闷还在但没突然加重，也没看到明显出血。\n\n我现在脑子有点发木，怕等下转病区或者出院交代时又听漏。您能不能帮我再压成几句，我好教给家里人：现在我们是不是就记住——不能自己停抗凝；出院前必须拿到写清楚的抗凝和复查方案；在医院就盯着喘憋变重、血氧掉、晕倒和明显出血这些，马上按铃/急诊？还有没有一句最关键的我别漏了？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00211",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1045min",
+      "text": "对，给家里人记住4句就够：\n1. 目前按“可疑分支肺栓塞”治疗，暂不像高危，但没有排除。\n2. 抗凝不能自行停、减量或改时间；qd通常表示每日一次，但“0.4 ml”只代表体积，不能据此判断具体药名、毫克数或是不是治疗量，交接时要核对药物全名和剂量。\n3. 转病区时当面交接；若出院，必须拿到书面诊断倾向、抗凝药名/剂量/每天次数/疗程，以及血常规、血小板、肾功能和门诊复评时间，没写清先问清再走。\n4. 喘憋或胸痛突然加重、吸氧后血氧持续下降、晕厥/意识异常，或明显咯血、黑便血尿、止不住的出血，马上按铃；出院后则立即急诊。\n\n最关键别漏的一句就是：不仅要问“打不打”，还要确认这支低分子肝素到底是治疗量还是预防量，以及下一针或改口服药从什么时候开始，避免漏用或重复抗凝。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00225",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1075min",
+      "text": "医生，我照您这4句已经写到床边那张纸上了，也转给家里人了。我跟他们说的就是：现在还按可疑分支肺栓塞处理，不是排除了；肝素针不能我们自己停、少打或者改时间；如果转病区要当面问清，出院前一定让医生把药名、剂量、一天几次、打到什么时候、下一针或者换口服药时间，还有血常规血小板肾功能复查写清楚。\n\n我确实还是判断不了这个0.4ml到底是治疗量还是预防量，这个我就不自己猜了，准备等主管医生或者病区医生明确写下来再算数。\n\n我妈这半小时看着还差不多，吸氧下血氧95、96，心率90多，人清醒，没有突然更喘，也没晕，没看到明显出血。那我们现在是不是就先这样等床位/等查房，药一律按他们医嘱走，不自己乱动；如果血氧掉、胸闷喘憋突然重、晕倒或者出血，就马上按铃？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00232",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1075min",
+      "text": "对，现在就按这个方案：继续留观等床位/查房，吸氧、抗感染和抗凝都严格按院内医嘱执行，不自行增减或改时间；0.4 ml先不要自行判断是否治疗量，等主管或病区医生书面确认。\n\n若胸闷、胸痛或喘憋突然加重，吸氧后血氧持续下降（尤其低于目前水平或低于医护设定目标）、晕厥/意识异常，或出现明显咯血、黑便、血尿、止不住的出血，立即按铃。她目前吸氧下95%–96%、心率90多且清醒、症状无突变，可以继续密切观察；任何变化也以床旁医护即时评估为准。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00247",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1195min",
+      "text": "医生，我妈现在已经从急诊留观转到病区了，刚才推床搬东西一通忙，我人有点懵，但总算有床了。\n\n转过来前后她看着没有突然变坏，还是低流量吸氧，血氧大概95、96，心率90多，人清醒。咳嗽、胸闷还在，但我没看出突然更喘、胸痛明显加重，也没看到咯血、黑便血尿或者针眼一直流血这些。\n\n病区护士和医生刚交接完，口头跟我们说还是按肺部感染加可疑/可能分支肺栓塞处理，继续吸氧、消炎、低分子肝素针和监测。说入病区后还要抽血复查血常规、血小板、肾功能、感染指标。至于后面要不要换口服抗凝、打多久、什么时候能出院，还没正式定，要等主管医生再看CTPA原文和复查结果。\n\n这些都是我听他们口头说的，不是我自己看懂完整报告。那现在转进病区是不是只能说明暂时相对安全一点、有人接着管了，但还不是说肺栓塞排除了？接下来我是不是主要盯三件事：她喘憋血氧有没有变差、有没有出血；还有等医生把抗凝药到底怎么用、复查和出院方案写清楚？",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00254",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1195min",
+      "text": "对，你理解得准确。转入病区主要说明目前生命体征相对稳定、可以继续常规住院监测和治疗，并不代表肺栓塞已经排除；是否确诊及抗凝疗程仍要结合CTPA原文和复查结果确定。\n\n接下来就盯这3件事：\n1. 呼吸和循环：喘憋/胸痛是否突然加重、吸氧后血氧是否持续下降、有无晕厥或意识变化；有变化马上按铃。\n2. 出血：明显咯血、黑便、血尿、持续鼻牙龈出血、针眼压迫后仍流血，或突发剧烈头痛、腹痛/腰背痛，都要立即告知医护。\n3. 方案落地：请主管医生明确低分子肝素的药名和毫克剂量、属于治疗量还是预防量；是否及何时换口服药、总疗程；复查血常规/血小板/肾功能和门诊时间。出院前拿到书面方案，并核对最后一针与第一剂口服药的衔接，避免漏用或重复。\n\n目前她吸氧下95%–96%、心率90多、清醒且没有症状突变，可以先按病区医嘱治疗并等查房，不自行调整抗凝。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00269",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1555min",
+      "text": "医生，明白了。刚才病区主管医生也查过房了，跟您说的差不多：还是按肺部感染加可疑/可能分支肺栓塞处理，说暂时不算高危，但也不是排除了。现在护士已经按医嘱继续打低分子肝素、消炎、吸氧，也抽血复查了，好像有血常规、血小板、肾功能、感染指标这些。\n\n我妈这会儿还是低流量吸氧，血氧95、96左右，心率90多，人清醒，咳嗽胸闷还在，但没有突然更喘、胸痛加重、晕倒或者糊涂。我也没看到咯血、黑便、血尿、针眼一直流血这些明显出血。\n\n我现在就按您的意思理解：住院期间药都交给病区医嘱，我们家属不要再自己纠结0.4ml到底够不够、也不能自己停药改时间，对吧？我只负责帮着盯她有没有喘憋血氧变差、晕倒糊涂、明显出血这些，出事马上按铃。\n\n还有出院前我准备盯住让医生写清楚这几样：低分子肝素到底药名和毫克剂量、是治疗量还是预防量；要不要换口服抗凝、从什么时候开始、总共用多久；血常规/血小板/肾功能什么时候复查；门诊什么时候复诊。最后一针肝素和第一顿口服药怎么接上，这个我刚才差点忘了，也要问清楚。这样抓重点可以吗？",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00276",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1555min",
+      "text": "对，重点抓得很准。住院期间抗凝、抗感染和吸氧都按病区医嘱执行，家属不要根据“0.4 ml”自行判断够不够，也不要停药、加减量或改时间。\n\n你们现在主要观察呼吸/血氧、意识和出血，有突然变化立即按铃。出院前把你列的内容落实成书面方案，尤其核对：最终诊断倾向、药物全名和毫克剂量、治疗量还是预防量、是否换口服药及总疗程、最后一针与第一剂口服药的准确衔接时间，以及血常规/血小板/肾功能复查和复诊日期。还要问清漏服或误服怎么办、出现哪些情况需立即停下活动并急诊；但抗凝药本身不要自行停。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00291",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1915min",
+      "text": "医生，晚上复查血的结果病区医生刚才口头跟我们说了一下，我没拿到完整化验单，具体数字也没记住。\n\n他说大概意思是：血小板、肾功能、血红蛋白现在看着还没有到必须马上停低分子肝素的情况，所以肝素针暂时继续按医嘱打；感染指标比前面有下降，但还没完全正常，消炎药还要继续。\n\n我妈现在还是低流量吸氧，血氧大概95、96，心率90多，人清醒。她自己说咳嗽、胸闷比之前稍微缓一点，但还没好。我这会儿没看到咯血、黑便、血尿、针眼止不住、大片淤青，也没有突然头痛、肚子痛、腰背痛、晕倒糊涂或者突然更喘。\n\n我现在理解就是：住院期间继续按病区医嘱，低分子肝素、抗感染、吸氧和监测都不要我们自己动；我继续盯血氧、喘憋、意识和出血这些。至于出院前换不换口服抗凝、总共用多久、最后一针和第一顿口服药怎么接、复查和门诊时间，都还没写正式方案，病区医生说等明天查房再定。那我现在这样理解对吧？今晚如果没有这些变化，就先让她休息、我别反复折腾医生护士问太细数字了？",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00297",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1915min",
+      "text": "对，你理解正确。按目前口头反馈和她现在的状态，今晚继续按病区医嘱治疗、让她休息即可，不必反复追问每个化验数字；明天查房时再请医生把关键结果和正式抗凝方案写清楚。\n\n今晚按病区要求监测就行，不需要自己频繁测到影响休息。若突然更喘或胸痛、吸氧后血氧持续下降、晕厥/意识改变，或出现咯血、黑便、血尿、止不住的出血、大片迅速增多的淤青，以及突发剧烈头痛、腹痛或腰背痛，立即按铃。除此之外有拿不准的变化也可以正常叫护士，不算折腾。抗凝、吸氧和消炎药都不要自行调整。",
+      "turn": 14,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00312",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2515min",
+      "text": "医生，昨晚按您说的没再一直折腾她，夜里总体还算稳，没有突然更喘、胸痛明显加重、晕倒糊涂，也没看到黑便血尿、咯血、针眼止不住这些。今天上午查房后，主管医生又说了一遍：还是按肺部感染合并可疑/可能左下肺动脉分支肺栓塞处理，暂时不算高危，但不是已经排除。\n\n我听他们口头说，昨晚复查的血小板、血红蛋白、肾功能目前还可以继续抗凝，感染指标也有下降。现在我妈低流量吸氧下血氧还是95、96左右，心率90多，人清醒，咳嗽胸闷比刚来时缓一点，但没完全好。\n\n医生说如果下午到明早继续稳定、氧气能往下调，可能考虑出院或者换成口服抗凝。我现在最怕的就是这个药接错。我熬了一夜脑子有点糊，口服药名、几毫克、一天几次、第一顿什么时候吃，我都没记准，也还没拿到正式出院方案。\n\n您能不能再帮我压成一张“出院前必须让病区写清楚”的单子？我准备等他们写方案时就照着问，尤其是：最后一针低分子肝素和第一顿口服抗凝怎么接、复查血常规血小板肾功能哪天做、挂哪个门诊复诊，还有漏服或吃重了怎么办。这几件如果没写清楚，是不是最好先别急着办出院？",
+      "turn": 14,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00318",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2515min",
+      "text": "可以，直接照这张单子逐项核对并要求写进出院医嘱：\n\n1. 最终诊断：肺栓塞是“确诊、可能还是待排”？肺部感染如何继续治疗？尚未完成的心超、下肢超声是否必须住院做，还是可门诊补做、谁追结果？\n2. 抗凝药：通用名、每片多少毫克、每次几片、每天几次；是否分起始强化期和后续维持期，各阶段起止日期；预计总疗程及何时重新评估。\n3. 衔接时间：最后一针低分子肝素的准确日期和时刻；第一剂口服抗凝的准确日期和时刻。请医护明确写出，避免漏用或重叠，家属不要自行推算。\n4. 其他药：抗感染药及其他出院药的剂量、次数、疗程；哪些止痛药、感冒药或保健品不能自行加用。就诊和买药时主动说明正在抗凝。\n5. 复查：血常规（含血红蛋白、血小板）、肾功能分别在哪一天查；是否还需肝功能等。结果异常由谁联系、去哪里复核。\n6. 复诊：具体日期、医院和科室（可由病区结合本院流程明确呼吸科/血栓相关门诊等）；影像和未完成检查由哪个门诊统一复核。\n7. 漏服/误服：针对所开药物写清漏一剂怎么办、疑似重复服用怎么办及联系电话。不同抗凝药处理不同，未拿到药名和书面指示前不要套用通用办法；误服后不要自行催吐、补服或停药，应立即联系病区/药师，出现出血或不适就急诊。\n8. 回家标准与警报：是否可以不吸氧或家中氧疗怎么安排、活动建议；出现明显咯血、黑便、血尿、止不住的出血，突发剧烈头痛、腹痛/腰背痛，或突然更喘、胸痛、晕厥时立即急诊。\n\n对：如果药名剂量、第一剂时间、漏服/误服处理，以及必要复查和复诊去向仍没写清，建议先请医生或药师当面核对并补成书面方案，再办出院；不是必须等所有检查都完成，但未完成项目必须写清是否影响出院、何时做以及谁负责追踪。拿到正式用药单后，把文字逐项发我，我可以再帮你核对衔接。",
+      "turn": 15,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00335",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2815min",
+      "text": "医生，我照着现在这个出院医嘱草案和我自己记的念给您听，不知道有没有抄错。她这几个小时还算稳，氧气调少一点血氧大概95、96，心率90多，人清醒，咳嗽胸闷比前面轻点但还没好。还没正式出院，药也没取，第一顿口服抗凝还没吃。\n\n草案上诊断写的是“肺部感染，左下肺动脉分支肺栓塞？/可能”，医生口头说暂时不算高危，心超没明显右心负荷，下肢超声没说有明确血栓。\n\n我现在记到的最关键药是：口服抗凝好像是“利伐沙班片”，规格写着15mg，我看护士给我指的是“每次1片，每日2次，饭后”，说先吃一段时间，后面可能改成20mg一天一次，这个后面改的日期我有点怕抄漏了。住院低分子肝素最后一针，护士说是今天上午8点多已经打过；第一顿利伐沙班写的是今晚8点开始。她们说不要我们自己再打针，也不要自己提前吃。\n\n复查我记的是出院后大概3到7天查血常规、血小板、肾功能，好像还有肝功能；门诊写的是一周左右呼吸科复诊，带CT片和出院小结。抗生素那些我先没完全抄，等取药时让药师再给我指一遍。\n\n我现在卡住两点：第一，漏服或者万一家里人重复给吃了，单子上只是写“联系医生/急诊”，没有写具体找病区电话还是药师电话；第二，后面那个从15mg一天两次改到20mg一天一次的具体日期，我怕我记错。您看就这些文字，能不能算安全？还是我必须让病区把“今晚几点第一顿、吃到哪天改剂量、漏服误服找谁”这三行补清楚，再去办出院？",
+      "turn": 15,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00341",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2815min",
+      "text": "对，建议先不要办完出院，必须让病区把这三项写清并由医生或药师当面核对：\n1. 今晚第一剂利伐沙班的准确时间；\n2. 15 mg每次1片、每日2次具体吃到哪一天，哪一天起改为20 mg每日1次（最好直接写成日历日期，而不是“吃21天后”）；\n3. 漏服、重复服用分别联系哪个电话，夜间联系不到时去哪里急诊。\n\n你目前念出的方案符合利伐沙班治疗急性肺栓塞时常见的“15 mg每日2次随餐21天，之后20 mg每日1次随餐”，但我不能据此替病区推算换药日期，因为还要确认他们如何计算住院期间已用低分子肝素及最终处方。今天上午8点多已打针、计划今晚8点开始口服，也不要由家属自行提前、补打或改时间。\n\n另外取药时把抗生素及全部出院药逐一核对；复查请写成具体日期，并确认肝肾功能结果适合该剂量。若发生重复服用，不要催吐、不要自行补药或再停几天，立即联系病区/开药医生或急诊；如有明显出血、黑便血尿、剧烈头痛、突然气促胸痛或晕厥，直接急诊。",
+      "turn": 16,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00360",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2875min",
+      "text": "医生，我按您说的先没办完出院，刚才护士帮我叫了主管医生和值班药师，他们当面把这几行补写了，我现在照宣教单读给您听一下，怕我理解错。\n\n他们说今天上午8点多那针低分子肝素就是住院最后一针了，家属不要再自己补打，也不要提前吃口服药。第一顿利伐沙班写的是今晚20:00开始，15mg，每次1片，每日2次，随餐或者饭后吃。后面强化期到纸上写的那个日期结束，然后改成20mg每日1次随餐，具体日期他们画在单子上了，我等会儿再让药师在药盒上也圈一下，免得我把15和20搞混。\n\n漏服、吃重了这块，药师说白天联系病区电话或者开药医生，夜里联系不上就去急诊；如果重复吃了不要催吐，也不要自己再补药或者停几天。明显出血、黑便血尿，或者突然气促胸痛、晕倒这些就直接急诊。\n\n我妈现在还在病区，药还没领，今晚第一片还没吃。人还是清醒，血氧大概95左右，心率90多，咳嗽胸闷比前面缓一点，没有看到咯血、黑便、血尿、针眼止不住这些。\n\n我现在准备先去药房领药，拿到实物后让药师按这张单子逐盒指给我看，抗生素那些也让他画圈。您看我这样理解是不是可以：今晚8点随饭吃第一片15mg，之后先按纸上日期吃15mg一天两次，到写的日期再改20mg一天一次；不要再打肝素针，也不要自己改时间。出院前还需要我再问病区医生哪一句吗？",
+      "turn": 16,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00366",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2875min",
+      "text": "对，你现在的理解基本正确：按书面医嘱今晚20:00随餐/饭后服利伐沙班15 mg 1片，之后按单上注明的日期维持15 mg每日2次，再于明确日期改为20 mg每日1次随餐；今天上午那针是最后一针，不再自行补打，也不要提前、延后或自行改量。\n\n出院前再让病区确认并写清两点就够了：①15 mg阶段“最后一次”的日期和时间，以及20 mg“第一次”的日期和时间，避免换挡当天多吃或漏吃；②血常规、血小板、肝肾功能复查和呼吸科复诊的具体日期，并确认未完成检查由谁追踪。领药后请药师核对药盒规格与片数，15 mg和20 mg分开放、贴上起止日期；抗生素也逐盒标清。\n\n目前状态尚稳定，可以继续按流程办出院，但若离院前气促或胸痛突然加重、血氧明显下降、晕厥，或出现咯血、黑便、血尿及止不住的出血，立即告知病区，不要直接离院。",
+      "turn": 17,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00383",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3025min",
+      "text": "医生，我们已经办完出院了，现在在回家路上/刚到家。按您刚才说的，我没再靠拍照看，直接拿纸质医嘱和宣教单去药房窗口让药师当面逐盒核对了。\n\n利伐沙班15mg和20mg两盒已经分开放了，药师在外盒上贴了起止日期，也指给我看了：15mg先按每日2次随餐吃，后面到盒子上标的日期再换20mg每日1次随餐。今天上午8点多那针低分子肝素，病区和药师都确认是最后一针，回家不再补打；今晚20:00才吃第一片15mg，随晚饭或者饭后吃。现在还没吃到第一片。\n\n我妈离院时还算稳，人清醒，血氧大概95%左右，心率90多，咳嗽胸闷比前面缓一些但没全好。目前没看到明显胸痛加重、晕倒、咯血、黑便血尿、针眼止不住或者大片瘀斑这些。\n\n我现在脑子真的有点累，怕家里其他人也拿药弄乱。您能不能最后帮我压成一张特别短的贴冰箱清单，就写几条就行：今晚第一片怎么吃、15mg换20mg那天怎么避免吃重、复查复诊别漏、夜里出现哪些情况直接急诊。日期我就按药盒和纸上贴的，不让您替我推算。",
+      "turn": 17,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00390",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3025min",
+      "text": "【贴冰箱清单】\n1. 今晚20:00：利伐沙班15mg 1片，随晚饭或饭后吃；不再打肝素针。\n2. 之后严格按药盒日期：15mg每日2次随餐；换药当天看清“15mg最后一次”和“20mg第一次”，由一人负责给药并每次打勾，绝不两盒同服。\n3. 复查/复诊：按出院单日期查血常规、血小板、肝肾功能，并去呼吸科复诊；带出院小结、CT资料和全部药单。\n4. 夜间直接急诊：突然明显气促或胸痛、晕倒/意识异常、血氧明显持续下降；明显咯血、黑便、血尿、出血止不住；突发剧烈头痛、腹痛或腰背痛。\n5. 漏服或疑似吃重：不要自行补吃、催吐或停药，立即联系病区/开药医生；夜间联系不上就去急诊。",
+      "turn": 18,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00406",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3255min",
+      "text": "医生，我把您这几条贴冰箱上了，也跟家里人说先别碰药盒，今晚我负责。\n\n我妈刚才20点左右已经吃下第一片利伐沙班15mg了，我看着她拿的是15mg那盒，不是20mg，随晚饭后吃的。今天回家后也没有再打那个肝素针。现在刚吃完一会儿，她人清醒，没有咯血、黑便血尿，也没见哪里出血止不住，没有晕倒糊涂，也没有突然更喘或者胸痛加重。\n\n我就再确认一句：如果半夜没这些情况，就不用额外做什么，继续观察就行？明早那一片15mg我就按早饭后/随早饭吃，对吧？后面复查复诊日期我按出院单上的日子来，不再自己推算。",
+      "turn": 18,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_015__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 5,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 5
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 5
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 0.0,
+    "judge_score_range": 0,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 18
+}

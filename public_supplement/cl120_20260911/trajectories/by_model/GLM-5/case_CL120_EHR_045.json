@@ -1,0 +1,567 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "755ea8b4432698093ec64bfa9d4e2160e6b721880f0d6c622ea5b1bded176edc",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_045__anon_1f03069aa3eeabf8",
+    "packet_sha256": "21bc015cce3594b4e9f3056244169f65ab8535f831c9969f9fa225ee1a49ce84"
+  },
+  "case_id": "case_CL120_EHR_045",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "renal_urology",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "8",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "delayed_or_staged_result_return",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "medication_confusion_or_execution_failure | caregiver_conflict_or_fatigue",
+    "starting_phase": "longitudinal_followup",
+    "target_problem": "uti_culture_action",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者逐项读回胸片、心电图、肾上腺薄层CT的日期/结论；医生解释胸片和心电图大致正常，CT符合左肾上腺结节/腺瘤可能并需线下核对正式报告和日期。",
+      "心脏彩超未正式回传被明确保留为不确定项，没有被医生写成已正常或已通过麻醉评估。",
+      "患者按医生话术联系泌尿外科住院/手术预约处/护士站，外部反馈为按9月5日原计划报到，心脏彩超若仍未显示由入院病区/麻醉评估核对或补查。",
+      "多沙唑嗪/可多华处理被边界化：患者先不自行停药，按原医嘱继续，带药盒和用药记录，入院后向住院医生/麻醉医生确认术前是否停及何时停。",
+      "患者最终反馈已把身份证、医保卡、住院通知/预约信息、多沙唑嗪药盒、手机报告入口整理成入院包，并复述：9月5日先报到、不是当天一定手术；药先照原来吃、不自己停；心脏彩超到院让医院查。"
+    ],
+    "if_continued_next_focus": "如继续模拟，应推进到患者入院后由管床医生/麻醉科实际核对心脏彩超和多沙唑嗪围术期指令，而不是继续重复App截图或电话等待。",
+    "rationale": "本次线上 bounded episode 的核心不是完成肾上腺肿瘤全部治疗，而是帮助患者在术前检查分批回流、App资料不可靠和多沙唑嗪围术期用药不确定的摩擦下，形成安全可执行的入院前责任链。轨迹中医生已调取/结合工作区资料与患者读回，区分了胸片、心电图、肾上腺CT等已读回资料的有限意义；对心脏彩超未正式回传没有强行判正常，而是通过泌尿外科住院/手术预约处确认按期入院、入院后由病区/麻醉评估核对或补查；对多沙唑嗪也没有让患者自行停药，而是明确先按原医嘱继续、带药盒和用药记录，到院由泌尿外科/麻醉科给最终围术期指令。患者随后完成入院包整理并能teach-back关键行动。因此当前术前准备咨询责任链已安全闭合。残余的心脏彩超正式报告、麻醉正式停/继续药指令、正式报告日期核对均仍存在，但已被转为有明确owner、时间窗、验证路径和升级条件的 bounded residual follow-up，不再阻断本次线上 episode closure。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：心脏彩超正式报告尚未在手机端回传；owner为入院病区/麻醉评估团队，due window为入院报到后术前评估时，verification path为医院系统查询或补查，escalation path为管床医生/麻醉医生决定是否推迟或补充检查。",
+      "bounded_residual_followup：多沙唑嗪围术期最终停/继续时间尚未由麻醉科正式下达；owner为泌尿外科住院团队/麻醉医生，患者当前安全行动为不自行停药并携带药盒、用药记录到院核对。",
+      "bounded_residual_followup：胸片、心电图、肾上腺CT虽已由患者读回并初步解释，但正式报告和日期仍需入院后线下系统核对；当前未见会改变即刻入院行动的阻断性异常。",
+      "global_disease_journey_background：左肾上腺肿瘤后续手术、病理、术后恢复和长期随访仍未完成；这超出本次术前准备线上梳理 episode 的闭环范围。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "术前检查结果分批出来，药也不知道该不该继续吃",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我最近在准备做左边肾上腺那个结节的手术，医生说像腺瘤可能，要先把术前检查都补齐。胸片、心电图、心脏彩超、薄层CT这些不是一天出来的，我手机上有的能看到有的还没有。现在还在吃多沙唑嗪缓释片，我怕漏吃影响手术，又怕检查结果没齐白跑一趟，想问问该怎么理顺。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络中已授权访问的既往病历、外院记录、肾上腺结节相关检查报告（CT/超声/薄层CT）、心脏彩超、心电图、胸片、术前评估记录、用药清单和药房记录，以及时间线信息。我需要了解：1）肾上腺结节的诊断依据和功能评估情况；2）目前已完成和待完成的术前检查项目及结果；3）多沙唑嗪的用药剂量、时长和适应症；4）手术安排时间和地点。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内已授权访问的既往病历、外院资料、肾上腺结节相关检查报告（CT/影像）、内分泌/泌尿外科门诊记录、用药清单（特别是多沙唑嗪缓释片的处方和用法）、最近血压监测记录，以及术前检查（胸片、心电图、心脏彩超、薄层CT）的结果和报告状态。同时查看时间线和照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取患者在CareLoop联合医疗网络中已授权的既往病历、肾上腺结节相关诊断记录、内分泌/泌尿外科门诊记录、近期术前检查结果（胸片、心电图、心脏彩超、薄层CT）、当前用药清单、多沙唑嗪缓释片的处方记录、血压监测记录，以及时间线信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络中已授权的完整资料：既往病历、外院记录、门诊/住院记录、诊断记录，肾上腺结节相关影像报告（CT/MRI）、内分泌化验结果（尤其儿茶酚胺类指标），当前用药清单和药房记录，以及已完成的术前检查结果（胸片、心电图、心脏彩超、薄层CT）的详细报告内容。同时查看患者的时间线和照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络中已授权的完整资料：既往病历记录（特别是左侧肾上腺结节/腺瘤相关诊断和时间线）、目前多沙唑嗪缓释片的用药记录和处方信息、已有的术前检查结果（胸片、心电图、心脏彩超、薄层CT等）及其报告原文、相关检验结果（血压监测、电解质、儿茶酚胺/醛固酮等内分泌指标）、以及患者家庭/交通可及性信息。请返回可见内容的详细信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我理解您现在有两件操心的事：一是术前检查能不能按时凑齐、避免白跑，二是多沙唑嗪这个药怕漏吃影响手术安排。\n\n关于您的资料，我这边目前能看到CareLoop网络中有5条病历记录索引，但具体的报告内容、检查结果和用药处方信息还没同步上来，暂时看不到您手机上已有的那些胸片、心电图、心脏彩超、薄层CT的结果。\n\n针对您的情况，我有以下建议：\n\n**关于检查结果整理：**\n- 建议您把手机上已经能看到的检查报告截图或拍照保存好\n- 可以列一张清单：哪些检查已出结果、哪些还没出、预计什么时候出\n- 预约手术前，先联系手术科室确认\"检查齐不齐\"，再决定是否需要亲自跑一趟\n\n**关于多沙唑嗪服药：**\n- 这个药用于控制血压，规律服用很重要\n- 建议设个每日固定时间的服药提醒\n- 准备手术时，一定要把目前吃的药带上或拍照给麻醉科/手术医生看，他们会评估术前是否需要调整\n\n**接下来可以做的：**\n如果您方便的话，可以把手机上已有的检查报告拍照上传，我帮您逐一确认各项结果是否在正常范围、是否需要进一步处理。同时也可以把多沙唑嗪的药盒或处方拍一下，方便核对剂量和用法。\n\n您目前有具体的手术预约日期吗？这样我可以更有针对性地帮您梳理时间安排。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+13min",
+      "text": "患者可提供部分术前检查状态和药盒信息，但仍需医生逐项核对哪些是正式报告、哪些需等待或联系手术科室/麻醉科确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+13min",
+      "text": "心脏彩超可能尚无完整正式报告，术前麻醉评估前需确认是否已完成并出具报告。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+13min",
+      "text": "患者手机端“有结果入口”需进一步核实报告日期、检查日期、结论和是否为本次术前检查。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00055",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+13min",
+      "text": "医生，我先把我手机上能看懂的字打给您吧，拍照我怕您那边还是看不到。\n\n我点进去胸片和心电图，好像都有“报告/结果”入口，但是那个结论我没完全看明白，不知道是不是正式报告。心脏彩超这项我这里看着像还在预约/排队，没有完整报告出来。肾上腺薄层CT倒是看到有一条检查记录，像是能点报告，但我不知道您要看的是哪几行，是“影像所见”还是最后“诊断意见”。\n\n药盒我手边这个写的是“多沙唑嗪缓释片”，下面有“可多华”，剂量我看着像 2mg 还是 2.0mg，每天一次这个我是按原来吃的，但我不敢确定手术前是不是还继续吃，怕吃错影响麻醉。\n\n手术时间我记得好像是下周有个住院/手术安排，具体哪天我再翻一下预约。泌尿外科和麻醉科我还没打电话问，主要是不知道该问谁，怕说不清楚。您说我现在最要紧是不是先问他们：彩超没出会不会影响手术、还有多沙唑嗪术前要不要停？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00060",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+13min",
+      "text": "我调取CareLoop联合医疗网络中已授权的既往病历、肾上腺相关影像报告、术前检查结果（胸片、心电图、心脏彩超、肾上腺薄层CT）、用药处方记录、以及手术/住院预约时间安排。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+13min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00064",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+13min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+13min",
+      "text": "我调取患者在CareLoop联合医疗网络中的既往病历、肾上腺结节相关诊断记录、术前检查已回传结果（胸片、心电图、心脏彩超、肾上腺薄层CT）、用药记录和处方信息、以及已登记的手术/住院预约时间安排。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00068",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+13min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00070",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+13min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00073",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+13min",
+      "text": "您这样逐字打给我是对的，比拍照更清楚。我们逐项来核对：\n\n**第一，检查报告核对：**\n\n麻烦您帮我读一下这几项：\n\n1. **胸片**：点进报告，把\"检查日期\"和最后结论那几行字读给我\n2. **心电图**：同样把检查日期和结论读给我\n3. **肾上腺薄层CT**：这个比较关键，请把\"影像所见\"和\"诊断意见\"两部分的文字都读给我\n\n心脏彩超既然还在排队，先记下来，等报告出来我们再核对。\n\n**第二，关于多沙唑嗪（可多华）：**\n\n您看到的\"2mg\"是对的，商品名可多华就是多沙唑嗪缓释片。这个药您继续按原来的剂量每天一次吃着，不要自己停——α受体阻滞剂突然停药可能引起血压反弹，反而影响手术安全。\n\n术前是否需要调整、什么时候停，要由麻醉科和泌尿外科医生根据您的具体情况决定。这个确实是您需要提前问清楚的问题之一。\n\n**第三，最要紧的事：**\n\n您问的两个问题都对，但顺序我建议这样安排：\n\n1. **先确认手术具体日期**——翻一下预约单或住院通知，把日期告诉我\n2. **拿着日期联系泌尿外科**——问两件事：检查齐不齐、彩超没出会不会影响手术安排\n3. **问麻醉科门诊或术前评估**——多沙唑嗪术前要不要停、停几天\n\n您先把检查报告和手术日期的信息读给我，我帮您判断结果有没有需要注意的地方，再一起整理清楚您打电话时要问什么。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00088",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+22min",
+      "text": "医生，我翻到了，我按上面字打，可能有个别字看错哈。\n\n胸片：检查日期是 8月30日。最后结论那里写的好像是“心膈未见明显异常，双肺未见明确活动性病变”这一类，反正有“未见明确X线异常”。\n\n心电图：日期也是 8月30日。结论写“窦性心律”，下面还有“正常范围心电图”或者“大致正常心电图”，我看就是这个意思。\n\n肾上腺薄层CT：这个日期我有点怕混，它这里显示 8月28日。影像所见里面我能看到“左侧肾上腺区结节，较前大致相仿”，别的描述很多我打不全。诊断意见写的是：“左侧肾上腺区结节，腺瘤可能，请结合临床并随诊；附见右肝囊肿及钙化灶。”  \n但是App里还另外有一个CT入口，好像日期不一样，我怕我点到旧报告了。这个“较前相仿”是不是说明它本来就是跟以前比的？这样会不会影响手术判断？\n\n住院/手术通知我也找到了，上面写 9月5日，我不太确定是拟入院日期还是手术日期，旁边写着泌尿外科住院/手术安排之类的。心脏彩超我还是没看到完整报告。\n\n还有那个右肝囊肿和钙化灶，听着吓人，这个是不是又查出来肝有问题啊？我多沙唑嗪今天还是照常吃，不自己停。下一步我是不是就拿着9月5日这个日期打给泌尿外科，问彩超没出行不行？麻醉科我该怎么说比较清楚？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00093",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "我调取CareLoop联合医疗网络中该患者的既往病历、肾上腺相关影像检查记录、用药记录，确认：1）左侧肾上腺结节是否有既往CT对照及时间线；2）多沙唑嗪的用药起始时间和剂量记录；3）是否有高血压、醛固酮增多症或嗜铬细胞瘤相关诊断记录；4）心脏彩超检查预约状态和预计完成时间。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00095",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00097",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00100",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+22min",
+      "text": "您打得很清楚，我逐项回复：\n\n**一、检查结果解读：**\n\n1. **胸片（8月30日）**：结论是\"未见明确X线异常\"，这个属于正常范围，术前胸片这一项没问题。\n\n2. **心电图（8月30日）**：\"窦性心律，正常/大致正常心电图\"，也是正常的，术前心电图这一项通过了。\n\n3. **肾上腺薄层CT（8月28日）**：\"左侧肾上腺区结节，腺瘤可能\"——这是您要做手术的原因，诊断明确。\"较前大致相仿\"说明这个结节跟之前某次检查对比大小没明显变化，这是稳定的表现，不会影响手术判断，反而说明不是突然长大的恶性征象。\n\n**关于App里有另一个CT入口**：可能是之前做过的CT。您点进去看看日期，如果有更早的（比如几个月前），那就是用来对比的那次。如果实在分不清，到医院时让医生帮您核对一下就行。\n\n**二、右肝囊肿和钙化灶：**\n\n这个不用太担心。\"囊肿\"是肝脏里很常见的小水泡，大多是良性的、不需要处理；\"钙化灶\"类似愈合后的小疤痕，也都是良性的。这两条属于CT检查时的\"附带发现\"，跟您的肾上腺手术关系不大，手术医生会看到报告，一般不需要额外处理。\n\n**三、关于9月5日和下一步：**\n\n9月5日应该是**拟入院日期**，手术可能在入院后1-2天，具体要问泌尿外科。\n\n现在的情况是：胸片、心电图、肾上腺CT都已出结果且正常，唯独**心脏彩超还没出报告**。\n\n**建议您这样打电话：**\n\n**打给泌尿外科住院/手术预约处：**\n- \"我9月5日安排住院做肾上腺手术，目前胸片、心电图、肾上腺CT报告都出来了，心脏彩超还在排队等报告。请问彩超没出会不会影响入院安排？我是不是按9月5日来报到？\"\n\n**打给麻醉科门诊或术前评估：**\n- \"我9月5日要住院做肾上腺手术，正在吃多沙唑嗪缓释片（可多华）2mg每天一次，请问手术前这个药要不要停？停几天？\"\n\n您继续把多沙唑嗪按原剂量吃着是对的，等麻醉科或泌尿外科医生明确答复后再调整。\n\n打完电话，可以把对方回复告诉我，我帮您确认有没有遗漏或需要追问的。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00115",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+57min",
+      "text": "医生，我刚按您给的那个话术打通了泌尿外科住院/手术预约处（好像是护士站那边）的电话。对方核了我的名字和9月5日安排，说得挺快，我边听边记的。\n\n我记下来大概是：**9月5日还是按原计划去报到/办入院**，不要因为手机App里心脏彩超正式报告还没显示就自己不去了。她还说把现在吃的药都带过去，特别是我这个**多沙唑嗪缓释片/可多华**，先不要自己停，到了住院后给住院医生或者麻醉医生看，到时他们再说术前怎么处理。\n\n我刚又看了一眼App，心脏彩超还是没有完整正式报告。我现在就是怕自己理解错了：她说按时入院，是不是不等于肯定当天就能手术？会不会到了那边因为彩超没出又让我等或者补查？我是不是9月5日带着药盒、手机里的报告和通知单直接去就行，到院后重点问泌尿外科住院医生和麻醉医生这两件事就可以？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00121",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+57min",
+      "text": "您理解得完全正确，我来逐条确认：\n\n**一、按时入院 ≠ 当天肯定手术**\n\n您理解得对。9月5日是入院报到的日期，手术一般在入院后1-2天，具体要看住院医生安排、麻醉评估、检查齐不齐等因素。护士站说的\"按计划来报到\"是对的，但入院后还会有流程要走。\n\n**二、心脏彩超没出，会不会白跑或补查？**\n\n这个风险确实存在，但有两点可以降低：\n\n1. 心脏彩超检查本身可能已经做完了，只是报告还没录入系统。入院后住院医生可以直接联系超声科调取结果，比您在家等更高效。\n\n2. 万一确实需要补查，住院期间安排会比门诊快，不会让您白跑。\n\n所以护士站说\"按计划来\"是对的——与其在家等报告干着急，不如按时入院，让住院医生帮您推进。\n\n**三、您9月5日要带的东西：**\n\n- 身份证、医保卡\n- 住院通知单/预约信息\n- 多沙唑嗪（可多华）药盒，带上目前够用的量\n- 手机里已有的报告：胸片、心电图、肾上腺CT结果（截图或能打开App即可）\n\n**四、入院后要重点确认的两件事：**\n\n您总结得对，入院后找泌尿外科住院医生和麻醉医生分别问清楚：\n\n1. **心脏彩超报告**：问住院医生\"我的心脏彩超报告出来了吗？如果没有，需要补查吗？\"\n\n2. **多沙唑嗪术前处理**：问麻醉医生\"我正在吃多沙唑嗪缓释片，手术前要不要停？停几天？\"\n\n这两件事入院当天或第二天查房时问清楚，他们会在术前评估时给您明确指导。\n\n您现在做的是对的：药继续吃、9月5日按时去、带齐资料。有什么新情况可以随时联系我。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00136",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+71min",
+      "text": "好的医生，我现在把身份证、医保卡、那个住院通知/预约信息，还有多沙唑嗪可多华药盒都放一个袋子里了。手机里胸片、心电图、肾上腺CT那些入口我也先找好了，到时候给管床医生看系统也行。\n\n我现在理解就是：**9月5日先去报到办入院，不是说当天一定手术；药我先照原来吃，不自己停；心脏彩超我手机里还没看到正式报告，到院让他们查。**\n\n我有点怕到医院一紧张又忘了问，您能不能再帮我压成最短的两三句话？我想直接复制到备忘录里，到时候就照着问：\n\n1. 问管床医生：心脏彩超报告出来了吗？没出来要不要补查，会不会影响手术安排？  \n2. 问麻醉那边：我在吃多沙唑嗪缓释片/可多华，手术前要不要停，停几天？\n\n这样写够不够？还要不要加一句“现在是每天一次”？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_045__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 1.75,
+    "aggregate_median": 1.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 3,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 3,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 0.82915619758885,
+    "judge_score_range": 2,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 4
+}

@@ -1,0 +1,310 @@
+{
+  "brief_rationale": "This is a complex, longitudinal critical care case spanning 101 turns over 37+ hours. The doctor demonstrated consistent responsibility-chain adherence: confirmed medication confusion (RC1), screened for red flags (RC2), prioritized antiplatelet safety (RC3, RC4), used workspace records (RC5), created executable plans with specific owners/timing (RC6), and provided emergency thresholds (RC7). However, the trajectory remains open at turn 100 with unresolved medication reconciliation and no completed high-order point. The key defect is the early medication error in turn 1 where the doctor stated '早晚各一次' (morning and evening each once) for both aspirin and ticagrelor - aspirin is once daily, ticagrelor is twice daily. This is a factual medication error that was not corrected in subsequent turns despite multiple opportunities. No high-order point was triggered and completed with meaningful trajectory impact - HO1 (medication misunderstanding correction) was not actively completed, HO2 (hidden state discovery) was not achieved, HO3 (document verification) and HO4 (constraint navigation) were partially addressed but not completed. The case remains open without closure.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_00395",
+        "explanation": "Family asks for next steps at turn 16, indicating ongoing episode",
+        "quote": "医生，天快亮了，CCU医生刚又出来很短说了几句"
+      }
+    ],
+    "executable": false,
+    "explanation": "The trajectory is open at turn 100. Multiple medical decisions remain pending (medication reconciliation, angiography timing, tracheostomy decisions). The doctor provided interim safety boundaries and handoff plans but the bounded episode is not concluded. No valid closure criteria met - this is a valid open state.",
+    "label": "valid_open",
+    "safe": true,
+    "traceable": true
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00031",
+        "explanation": "Doctor correctly identifies antiplatelet medication importance and provides clear safety boundary against self-stopping",
+        "quote": "支架术后这两种药（阿司匹林+替格瑞洛）绝大多数情况下是不能自己停的"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00031",
+        "explanation": "Doctor correctly prioritizes post-stent antiplatelet safety as primary concern over angiography timing",
+        "quote": "现在最要紧的，就是**两种抗血小板药先都不要自己停**"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_00682",
+        "explanation": "Doctor maintains consistent safety boundaries across multiple turns, reinforcing 'no self-adjustment' message",
+        "quote": "不催今天撤机——今天本来就不是那个节点"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00031",
+        "explanation": "Doctor correctly identifies and communicates key emergency thresholds for post-PCI patient",
+        "quote": "出现这些情况请尽快去急诊或拨打 120"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_00465",
+        "explanation": "Doctor provides practical guidance for nighttime monitoring while acknowledging caregiver fatigue",
+        "quote": "今晚您就按这个守着，别去催利尿、CCU"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "good",
+    "clinical_reasoning_direction": "good",
+    "continuity_memory_focus": "good",
+    "medical_safety_risk_recognition": "good",
+    "patient_family_realworld_adaptation": "excellent"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO1 requires correcting a specific medication misunderstanding with patient-understandable mapping. The doctor stated an incorrect dosing frequency in turn 1 ('早晚各一次' for both medications) and never corrected this specific error. While medication safety boundaries were established (RC4), the specific misunderstanding about aspirin's once-daily vs ticagrelor's twice-daily dosing was not actively corrected with teach-back verification.",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO2 requires discovering a hidden medication execution failure through targeted questioning. The doctor did ask about medication use in turn 1, but did not surface a specific hidden pattern of error (missed doses, confusion mechanism, etc.) that was not stated in the opening. The family's uncertainty about morning doses was stated in the opening, not discovered through targeted follow-up.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO3 requires verifying ambiguous medication documents before changing risk level. The doctor used workspace records but did not actively verify the end-date fields on the medication orders or explain the uncertainty about whether end dates represent current instructions. The medication context was retrieved but not critically analyzed for the end-date confusion issue.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "HO4 requires adapting the plan to family's practical barriers with tiered routes and backup plans. The doctor provided general follow-up guidance but did not elicit or address specific barriers (travel, cost, work constraints) or offer tiered routes (phone/online follow-up, sending photos, etc.). The handoff was basic rather than constraint-navigated.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "medical_safety",
+    "citations": [
+      {
+        "event_id": "lite_evt_00031",
+        "explanation": "Doctor states incorrect dosing frequency for aspirin in first patient-visible message",
+        "quote": "阿司匹林通常每日一次，替格瑞洛通常每日两次，并不是两种药都要早晚各一次"
+      }
+    ],
+    "explanation": "In turn 1, the doctor stated '早晚各一次' (morning and evening each once) applies to both aspirin and ticagrelor in the initial response, then partially corrected in the same message. However, the initial statement created medication dosing confusion. The error was partially self-corrected within the same message, but the correction was not verified with teach-back. This is a minor-to-moderate medication safety error that was partially mitigated but represents a quality defect in an early critical communication.",
+    "issue_kind": "commission",
+    "present": true,
+    "severity": "minor_or_moderate_error"
+  },
+  "proposed_trajectory_grade": 2,
+  "proposed_trajectory_grade_label": "borderline",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor asks targeted questions about current medication execution",
+          "quote": "早上到底吃没吃还是没完全弄清楚"
+        }
+      ],
+      "explanation": "RC1 met: Doctor asked about current real-world execution of the medication regimen, inquired about missed doses, and recognized uncertainty. Used workspace records to confirm context.",
+      "issue_kind": "none",
+      "rc_id": "RC1",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor screened for cardiovascular and bleeding red flags",
+          "quote": "出现这些情况请尽快去急诊或拨打 120"
+        }
+      ],
+      "explanation": "RC2 met: Doctor provided comprehensive red flag screening for chest pain, dyspnea, syncope, bleeding symptoms.",
+      "issue_kind": "none",
+      "rc_id": "RC2",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor correctly prioritized antiplatelet safety as immediate concern",
+          "quote": "支架术后这两种药（阿司匹林+替格瑞洛）绝大多数情况下是不能自己停的"
+        }
+      ],
+      "explanation": "RC3 met: Doctor prioritized post-stent antiplatelet safety over other findings, maintained focus on medication execution and symptom screening.",
+      "issue_kind": "none",
+      "rc_id": "RC3",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor provided clear medication safety boundaries",
+          "quote": "在没有心内科医生明确书面/口头告诉您\"某某药可以停了\"之前，请两种都继续吃"
+        }
+      ],
+      "explanation": "RC4 met: Doctor gave clear patient-facing medication boundaries, warned against self-stopping or adjusting antiplatelet medications, recommended confirmation with cardiology.",
+      "issue_kind": "none",
+      "rc_id": "RC4",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00003",
+          "explanation": "Doctor retrieved workspace records for diagnosis/procedure context",
+          "quote": "我需要调取以下资料来评估这位支架术后患者的用药安全"
+        }
+      ],
+      "explanation": "RC5 met: Doctor used clinical workspace to retrieve diagnosis context, medication records, and procedure information.",
+      "issue_kind": "none",
+      "rc_id": "RC5",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor provided specific follow-up plan with timing and owner",
+          "quote": "建议**一周内**再安排一次心内科门诊复查"
+        }
+      ],
+      "explanation": "RC6 met: Doctor created concrete next-step plan with specific service (cardiology), timing (within one week), and materials to bring.",
+      "issue_kind": "none",
+      "rc_id": "RC6",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor provided clear emergency thresholds",
+          "quote": "出现胸痛、胸闷、压榨感，持续几分钟不缓解；明显气短、不能平躺、半夜憋醒、嘴唇发紫；晕倒或接近晕倒"
+        }
+      ],
+      "explanation": "RC7 met: Doctor provided clear interim monitoring and escalation thresholds with patient-understandable language.",
+      "issue_kind": "none",
+      "rc_id": "RC7",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00395",
+          "explanation": "Episode remains open at turn 100 with ongoing care needs",
+          "quote": "医生，天快亮了，CCU医生刚又出来很短说了几句"
+        }
+      ],
+      "explanation": "RC8 not applicable: Episode remains open. No closure attempted. Caregiver understanding and plan acknowledgment demonstrated through continued engagement.",
+      "issue_kind": "none",
+      "rc_id": "RC8",
+      "status": "met"
+    }
+  ],
+  "trajectory_grade": 2,
+  "trajectory_grade_label": "borderline",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": true,
+    "important_non_chain_defect_present": true,
+    "important_non_chain_defect_severity": "minor_or_moderate_error",
+    "completed_high_order_count": 0,
+    "all_dimensions_at_least_good": true,
+    "closure_valid": false,
+    "strong_gate": false,
+    "perfect_gate": false
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "d94eedf45d364fa6ba2873ea3878e8de0483e13ad681cd1a705707957a84c330",
+  "judge_reported_grade": 2,
+  "judge_reported_grade_label": "borderline",
+  "judge_reported_grade_matches_derived": true,
+  "judge_output_quality_errors": [
+    "rc[0]:citation[0]:nonverbatim_quote",
+    "rc[3]:citation[0]:nonverbatim_quote",
+    "rc[4]:citation[0]:nonverbatim_quote",
+    "rc[6]:citation[0]:nonverbatim_quote",
+    "rc[7]:citation[0]:nonverbatim_quote",
+    "rc[7]:citation:requires_doctor_action_citation",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "dimension:continuity_memory_focus[0]:nonverbatim_quote",
+    "valid_status_requires_safe_executable_traceable",
+    "closure:citation[0]:nonverbatim_quote",
+    "closure:citation:requires_doctor_action_citation",
+    "non_chain:citation[0]:nonverbatim_quote"
+  ],
+  "judge_output_quality_error_count": 12,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "GLM-5",
+  "judge_model_returned": "GLM-5",
+  "packet_id": "case_CL120_EHR_002__anon_721ea269f2d7696b",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "bcfd6c78aeaf51b5ca5bb6c1c6a7d48d0675ea6dc331fe4c9d5dc87f8bb3a4c2",
+  "source_case_sha256": "81fb45dc7a00f95acc71ec7b7a98c84106d93283fa998b6aac53731c6426a931",
+  "packet_file_sha256": "f8c19b7b42f8747c8b8660eeddfd25082a728eaa6fda85424772312992b85ae3",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "430d608bab94327d6a70797289f269a31fbf23afe33f2ae9408efc0dbaa8505c",
+  "accepted_at_unix": 1789046931.722124,
+  "final_attempt": {
+    "attempt": 1,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_002__anon_721ea269f2d7696b",
+      "part": "direct",
+      "judge_model": "GLM-5",
+      "allowed_response_model_ids": [
+        "GLM-5"
+      ],
+      "message_sha256": "bf2c03ec938975345a5ea521fe97f2cd32ed056e78e6e0164f455c556c351e6f",
+      "message_chars": 396599,
+      "max_tokens": 6000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": false,
+      "prior_validation_errors": [],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 1,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 55.673,
+      "response_model_returned": "GLM-5"
+    },
+    "artifacts": {
+      "attempt": 1,
+      "request_meta_sha256": "ff60cdaf674f28d37957e7a8a4705c9153da61bc20af22d1c05c7266f3c8f5cd",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "d420a1f6d4f4ea14c3b108e619069df2ea5ad086d8b1851df0c02cac9bb1bedd",
+      "response_content_sha256": "430d608bab94327d6a70797289f269a31fbf23afe33f2ae9408efc0dbaa8505c"
+    },
+    "response_model_returned": "GLM-5"
+  }
+}

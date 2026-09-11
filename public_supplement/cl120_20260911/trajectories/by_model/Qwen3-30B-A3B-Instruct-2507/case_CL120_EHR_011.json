@@ -1,0 +1,880 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "019f8b2b7b5b28e32b5cb939cd802276773cd05cf82696b79cea4d158e3bb38b",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_011__anon_31ed2bebfeb8eeae",
+    "packet_sha256": "148850f5006ca9de9f34a8fbe4cdac77e7111ae0ee017a730e7f9b587d8cbcde"
+  },
+  "case_id": "case_CL120_EHR_011",
+  "case_metadata": {
+    "blocking_residual_risk_count": "4",
+    "closure_coordination_burden_level": "low",
+    "closure_coordination_burden_score": "0",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "cardiovascular",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "chest_pain_acs_dissection",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属后续已拨打120，患者被转运至急诊并进入胸痛区，完成生命体征、心电图和心肌相关抽血评估。",
+      "急诊/心内科多轮口头反馈：暂未见需立即导管室或急诊介入证据，但因老人年龄大和胸闷隐痛持续，继续留观/短住院观察。",
+      "患者已完成心内科留观/短住院过夜，夜间无明显恶化，次日上午复查心电图和心肌相关抽血后，午后心内科评估稳定，可带边界出院观察。",
+      "出院前家属按医生建议到药房窗口和护士站逐条核对出院药，并在药盒上标注早晚、饭前饭后等用法；家属能识别阿司匹林、他汀，其他剂量细节由外部处方系统/药房护士站核对承担。",
+      "白内障手术已明确延期；术前地西泮、复方托吡卡胺散瞳药、左氧氟沙星眼药水均明确不自行恢复，需携带心内科出院意见联系眼科重新评估改期。",
+      "安全网已形成：若再出现持续胸痛/胸闷或伴大汗、气短、晕厥、意识异常等，立即返急诊。"
+    ],
+    "if_continued_next_focus": "如继续模拟，重点应是家属回家后是否按药盒执行、是否成功预约近期心内科复诊、是否携带心内科意见联系眼科改期，以及是否出现胸痛/胸闷复燃等红旗需要返急诊。",
+    "rationale": "本次 bounded episode 的核心不是白内障本身治愈，而是在白内障术前家庭用药混乱中识别并处理突发老年胸痛/胸闷，以及把眼科术前药物和手术延期边界行动化。当前患者已完成120转运、急诊胸痛流程、心内科留观/短住院过夜、连续复查后由心内科评估可带边界出院；出院药物已由药房/护士站按处方系统外部核对并标注药盒，红旗返院边界已被线下人员和AI医生反复强调；白内障手术延期、术前地西泮/散瞳/左氧氟沙星不自行恢复也已由线下医护核对实物并明确。残余的心内科门诊复诊未预约、眼科改期未完成、AI端未掌握完整药名剂量属于有明确责任链的后续事务，不再阻断当前急性安全 episode 闭合。需要保留早期医生对老年胸痛分诊升级不够明确的 critical safety event，后续虽被纠偏并由外部系统接管缓解，但仍应作为医生表现评分证据。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：近期心内科门诊复诊尚未真正预约，但线下心内科已给出近期复诊要求，家属知道需要回去挂心内科号；该事项影响后续长期风险分层，不改变当前可出院观察的安全边界。",
+      "bounded_residual_followup：眼科白内障手术改期尚未完成，但手术已暂停，术前镇静/散瞳/抗菌眼药均不自行恢复，后续由眼科结合心内科出院意见重新评估。",
+      "bounded_residual_followup：AI医生端没有完整出院处方药名剂量文本；但当前执行不依赖AI自行重构剂量，已由药房/护士站按出院处方系统核对并标注药盒。若后续要由AI精确复核，仍需逐字读回或结构化记录。",
+      "global_disease_journey_background：老年胸痛/冠心病等长期心血管风险未被永久排除，需要门诊进一步评估；这不是本次急性家庭执行失败 episode 的未闭合 blocker。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3-30B-A3B-Instruct-2507",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "做白内障手术前在家用药没弄清，突然胸口不舒服",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家老人准备做白内障手术，之前让回家点左氧氟沙星眼药水，还说手术前要吃一片安定、再点散瞳的药。我们把单子拍得不全，现在又说胸口有点疼、发闷，我不知道是不是紧张，还是药能不能照常用。家里离能看急诊的地方不近，想先问问该怎么办。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络中已授权/已同步的既往病历、最近检查结果、用药清单、手术准备单（含眼药水、安定、散瞳药）、时间线和照护可及性信息，确认患者当前用药、心脏状况及手术前准备细节。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、最近的检查检验结果、用药清单、手术前评估记录、时间线和家庭照护可及性信息，以确认左氧氟沙星眼药水、安定片和散瞳药的使用指征，以及当前胸痛是否与心血管风险相关。请返回所有可授权访问的资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 4 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、最近的检查检验结果、用药清单、手术时间线，以及家庭照护可及性信息，以便评估当前胸痛症状与术前用药的关联性。请按权限返回所有可授权访问的资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 4 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、最近检查结果、用药清单、手术前评估记录、家庭照护可及性信息，以及时间线和家庭背景资料，以评估当前胸痛症状与术前用药的关联性。请一次性返回所有可见的记录、文档、检验结果、用药、时间线和家庭/可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、最近的检查检验结果、用药清单、手术前评估记录、时间线以及家庭照护可及性信息，以确认左氧氟沙星眼药水、安定片和散瞳药的使用依据，同时评估胸口发闷是否与用药或基础疾病相关。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，根据您描述的情况，老人在准备白内障手术期间出现胸口发闷，这种情况需要谨慎对待。目前无法确认是否与用药（如安定片）或基础疾病有关，因为尚未获取完整的病史和检查资料。\n\n建议您立即暂停使用安定片和散瞳药物，暂时不要继续按原计划用药。胸口发闷可能是心脏问题的信号，尤其在老年人中不可轻视，即使您觉得可能是紧张引起，也建议尽快就医评估。\n\n由于您家距离急诊较远，建议您先联系当地社区医院或家庭医生进行初步评估，若条件允许，可尽快前往最近的急诊科就诊，以便及时排除心肺相关问题。后续在明确病因前，手术安排需暂缓，待医生评估后再决定是否继续。\n\n请务必重视这一症状，及时就医是当前最重要的一步。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+15min",
+      "text": "暂无急诊检查或转诊结果回传；患者仍未到达急诊系统，需明确推动急性胸痛急诊/120路径。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+15min",
+      "text": "存在先走基层电话咨询或社区绕行的可能，需避免急性胸痛评估延误。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00055",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+15min",
+      "text": "医生，我们按您说的，安定那片没给他吃，散瞳的也没再点了。老人坐着歇了有十几二十分钟吧，胸口中间还是闷闷的、隐隐疼，没有完全缓过来。他自己一直说“没那么疼，别折腾去医院”，但我看他好像有点憋，脸色也不太好，我也说不准。\n\n我们这边离急诊确实不近，社区那边现在也不知道能不能马上来。现在是不是不要再等熟人医生或社区回复了，直接打120比较稳？白内障手术和左氧氟沙星眼药水是不是先都放一边？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+15min",
+      "text": "照护者您好，根据您最新的描述，老人胸口持续发闷、隐隐作痛，伴有呼吸不适和脸色不好，这些症状已经持续超过20分钟，且休息后未缓解，这属于急性胸痛的警示信号，尤其在老年人中，不能排除心脏问题（如心绞痛或心肌缺血）的可能性。\n\n您已经暂停了安定和散瞳药，这是正确的。但目前情况已不适宜再等待社区或熟人医生回复，也不建议继续拖延。\n\n我强烈建议：立即拨打120，启动急诊转运。不要自行前往医院，因为路上可能出现病情恶化，需要专业急救支持。\n\n白内障手术和左氧氟沙星眼药水必须全部暂停，直到完成心肺评估、排除急性心血管事件后，再由医生重新评估是否可以继续。\n\n请立刻行动，现在就打120。我会在您拨打电话后，为您登记急诊转运追踪，确保后续有专人跟进。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00078",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+43min",
+      "text": "医生，我已经打了120，接线那边问了地址和胸口闷的情况，说派车过来，应该快到了。身份证、医保卡，还有眼科那个药袋、手术前的单子我都装门口了。\n\n安定没吃，散瞳药没点，左氧氟沙星眼药水也先停了。老人现在还是说胸口闷、隐隐疼，自己还嘴硬说“没那么疼，不想去医院”，但我看他脸色还是不太好，有点憋的样子。\n\n我现在等救护车这会儿该让他坐着还是躺着？能不能喝水、吃点东西？要不要扶他去厕所，还是别让他走动？眼科那些药就继续全停着，等急诊医生看完再说对吧？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+43min",
+      "text": "照护者您好，救护车已经派出了，这是个正确的决定。现在等车期间，请让老人保持半坐位或稍微靠在沙发上，不要平躺，这样呼吸会更舒服。不要给他喝水、吃东西，也不要扶他走动，包括去厕所，尽量让他安静休息，减少心脏负担。所有眼科用药（包括左氧氟沙星眼药水、安定片、散瞳药）都继续暂停，等急诊医生评估后再决定是否恢复。您已经把身份证、医保卡和相关资料放在门口，这很好，方便救护人员快速交接。请保持电话畅通，救护车到达后他们会立即开始处理。我会为您登记急诊转运追踪，确保后续有专人跟进。请放心，现在最重要的是让老人稳定等待，不要担心其他细节。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00100",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+59min",
+      "text": "医生，120已经到家里了，现在急救人员在客厅给他量血压、夹手指那个测血氧，问他胸口怎么疼。老人还是说胸口发闷、隐隐痛，嘴上还说不想去医院，但急救人员已经在劝他，说要送急诊做心电图、抽血。\n\n我没听清具体数字，只听他们说血压有点高，血氧好像还可以。身份证医保卡和眼科药袋、手术单子我都拿着准备上车了。那现在我就完全听120安排上车对吧？眼科那些药继续先不管，等急诊医生看完再说？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00106",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+59min",
+      "text": "照护者您好，现在120急救人员已经在您家，老人胸口发闷、隐隐痛，且有呼吸不适表现，情况属于急性胸痛，必须立即送医评估。您已经把身份证、医保卡、眼科药袋和手术单放在门口，非常到位。\n\n请完全听从急救人员的安排上车，不要犹豫。他们会在转运途中进行心电图、血氧、血压等监测，必要时会进行急救处理。所有眼科用药（包括左氧氟沙星眼药水、安定片、散瞳药）继续暂停，等急诊医生评估后决定是否恢复。\n\n现在最重要的是让老人稳定、安全地转运到医院，您只需配合急救人员，保持电话畅通。我会为您登记急诊转运追踪，确保后续有专人跟进。请放心，您已经做了正确的决定。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00119",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+89min",
+      "text": "患者已由120送达急诊，急诊已按胸痛流程启动心电图和抽血；目前没有正式心电图或化验结果回传。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00124",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+89min",
+      "text": "医生，我们已经跟120到急诊了，现在在胸痛这边等着。护士和急诊医生已经接手了，刚才给他重新量了血压、血氧这些，现在在做心电图，血也抽了，说是查心脏那个、是不是心梗相关的血。\n\n老人一路上到现在还是说胸口闷、隐隐痛，不是完全好了，就是他还嘴硬，说“是不是白跑一趟，明天眼睛手术怎么办”。我现在也没拿到心电图结果，抽血结果也没出来，医生说等结果。\n\n我身份证、医保卡，还有眼科药袋和白内障手术单实物都带来了，等会儿给急诊医生看。现在是不是就继续在急诊等心电图和抽血结果，不要自己走？白内障手术今天/明天是不是肯定先暂停，安定、散瞳药、左氧氟沙星眼药水都先别用？等结果这会儿我还需要特别盯着他什么，比如疼得更厉害、出汗、喘不上气这种马上叫护士对吧？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00131",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+89min",
+      "text": "照护者您好，现在老人已经在急诊，心电图和抽血检查已经启动，这是正确的处理流程。请继续在急诊室等待结果，不要自行离开，等医生给出明确诊断后再决定下一步。\n\n白内障手术必须暂停，所有相关用药（包括安定片、散瞳药、左氧氟沙星眼药水）也请继续暂停，直到急诊医生评估后明确告知可以恢复。目前老人仍有胸口闷、隐隐痛，说明症状未缓解，需要密切观察。\n\n请您特别留意：如果老人出现疼痛加重、大汗、呼吸急促、意识模糊或无法平卧等情况，请立即叫护士或急诊医生。这些是病情加重的警示信号，需要紧急处理。\n\n我会为您登记急诊结果追踪，等心电图和血液检查结果回传后，我会第一时间复核并联系您。请保持电话畅通，安心等待。您已经做了非常正确的决定，现在请放心配合急诊团队。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00146",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+117min",
+      "text": "医生，刚才第一张心电图急诊医生看过了，他口头跟我们说目前不像那种马上要推进去做介入、抢救的典型样子，但也说不能光凭这个就排除心脏问题，还要等抽血里查心梗/心肌那个结果，必要时再复查心电图。\n\n我们现在还在胸痛区等，正式报告和数值我都没拿到。老人胸口还是闷、隐隐痛，没有完全好，暂时我没看见他突然大汗、昏过去或者喘不上气那种。就是他有点烦了，一直念叨明天白内障手术是不是耽误了。\n\n那我们就继续在这边等抽血结果、不走对吧？如果一直只是闷痛没加重，也要等医生说能走才能走是吧？白内障手术我是不是现在就该联系眼科那边说先延期，安定、散瞳药、左氧氟沙星眼药水继续都别用？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00152",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+117min",
+      "text": "照护者您好，您已经做了非常正确的决定：继续在急诊等待心电图和抽血结果，不要自行离开。目前老人仍有胸口闷、隐隐痛，且症状未缓解，这说明需要持续观察和评估。您提到的“白内障手术是否延期”“用药是否暂停”等问题，我明确回复：\n\n✅ 白内障手术必须暂停，等急诊医生明确排除心脏问题后，再由眼科医生评估是否可以恢复。\n✅ 所有相关用药（安定片、散瞳药、左氧氟沙星眼药水）请继续暂停，不要自行使用，等医生确认后再决定是否恢复。\n✅ 请特别留意：如果老人出现疼痛加重、大汗、呼吸急促、意识模糊或无法平卧等情况，请立即叫护士或急诊医生。\n\n我已为您登记急诊结果追踪，等心电图和血液检查结果回传后，我会第一时间复核并联系您。请保持电话畅通，安心等待。您已经做得很好，现在请继续配合急诊团队。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00166",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+162min",
+      "text": "医生，刚才急诊医生又过来了一下，说第一轮抽血结果出来了，大概意思是现在还没看到那种马上要送导管室抢救的明确证据。我没拿到纸，也没记住他说的那个心肌指标具体叫什么、多少数值，他就是口头说“暂时不是马上抢救那种，但不能说完全没事”。\n\n老人胸口闷和隐隐痛还是没完全消，急诊这边不让走，说还要再复查心电图，再抽第二轮那个查心梗/心肌的血。我现在就理解为：第一轮没大事不等于排除心梗，还得等第二轮，对吧？\n\n还有眼科这边，急诊医生已经把我带来的白内障手术单和药袋实物看过了，明确说今天手术先不做了，安定、散瞳药、左氧氟沙星眼药水这些术前药也先不要自己恢复。我等会儿找个空给眼科打电话改期，但现在不敢离开胸痛区太久。\n\n这会儿等第二次心电图和抽血的时候，他能不能喝点水或者吃东西？能不能自己下床去厕所？还是都先叫护士问一下再动？我现在主要就盯着他疼痛有没有加重、出汗、喘不上气、迷糊这些，有了就马上喊护士，对吧？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00172",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+162min",
+      "text": "照护者您好，您理解得非常对：第一轮抽血结果没有明确需要立即抢救的证据，但并不能完全排除心梗，所以需要等第二轮抽血和复查心电图的结果，这是非常标准的评估流程。目前老人仍有胸闷、隐隐痛，说明心脏问题仍需持续观察，必须继续在急诊等待，不能自行离开。您已经做得很好，现在请继续配合急诊团队。\n\n关于您问的饮食和活动问题：\n- ✅ 可以少量喝水（如果护士允许），但不要吃东西，尤其是固体食物，以免影响后续可能的检查或治疗。\n- ❌ 不要自行下床去厕所，包括走动或如厕，必须先请护士评估是否安全。如果需要如厕，应由护士协助或使用床边便器。\n- ✅ 请继续密切观察：如果出现疼痛明显加重、大汗、呼吸急促、喘不上气、意识模糊、无法平卧等情况，请立即呼叫护士或急诊医生，这些是需要紧急处理的警示信号。\n\n白内障手术今天必须暂停，所有术前用药（安定片、散瞳药、左氧氟沙星眼药水）也请继续暂停，等急诊医生明确排除心脏问题后，再由眼科医生评估是否可以恢复。您等会儿可以联系眼科改期，但请务必先等急诊医生的最终评估结果。\n\n我已为您登记第二次心电图和抽血结果的追踪，结果回传后我会第一时间复核并联系您。请保持电话畅通，安心等待。您已经做得非常到位，现在请放心，继续在急诊配合医生就好。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00187",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+272min",
+      "text": "医生，第二轮心电图和第二次抽血也做完了，急诊医生刚才口头跟我们说了一下，我没拿到纸，也记不住那个心肌指标具体数值。他大概意思还是：目前没看到要马上送导管室抢救的明确证据，但也不是说老人完全没事。\n\n老人现在胸口还是有点闷、隐隐痛，跟前面差不多，没有明显更厉害。我也没看到他大汗、昏过去、喘不上气那种。急诊医生说因为年纪大、症状还没完全消，不让我们马上回家，可能还要继续留观，或者叫心内科来看一下，看看要不要短住院观察。\n\n我现在有点累也有点拿不准：这种“暂时不用马上抢救但不能走”，是不是就说明还得听急诊安排，留下来比较安全？留观和短住院我也没太明白，反正只要他们建议住/留，我是不是就别劝老人回家？他一直烦，说眼睛手术耽误了，但急诊这边已经看过药袋和手术单，白内障手术和安定、散瞳药、左氧氟沙星眼药水都继续先停着。现在主要还要盯着胸痛加重、出汗、喘不上气、迷糊这些对吧？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00193",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+272min",
+      "text": "照护者您好，您已经做得非常到位了。目前老人仍有胸闷、隐隐痛，虽然第二轮心电图和抽血结果仍没有明确需要立即抢救的证据，但因为年纪大、症状未完全缓解，急诊医生建议继续留观或请心内科会诊评估是否需要短住院观察，这是非常合理且安全的安排。\n\n✅ 您现在要做的就是：完全听从急诊医生的建议，不要劝老人回家。只要他们建议留观或住院，就请配合，这是为了确保安全，避免病情突然加重。\n\n关于您提到的“留观和短住院”：\n- 留观是继续在急诊观察，随时监测症状变化；\n- 短住院是可能转入心内科病房，进行更全面的评估和治疗。\n两种方式都是为了更稳妥地排查心脏问题，您不必担心，这是专业判断，不是“小题大做”。\n\n白内障手术今天必须暂停，所有术前用药（安定片、散瞳药、左氧氟沙星眼药水）也请继续暂停，等心脏问题完全排除、医生明确告知后，再由眼科评估是否可以恢复。\n\n您现在要重点盯着的是：如果老人出现疼痛明显加重、大汗、呼吸急促、喘不上气、意识模糊或无法平卧等情况，请立即叫护士或急诊医生。这些是需要紧急处理的信号。\n\n我已为您登记结果追踪，等心内科会诊意见或后续检查结果回传后，我会第一时间复核并联系您。请保持电话畅通，安心等待。您已经做得很好，现在请继续配合急诊团队，别担心，一切都在正确轨道上。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00208",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+317min",
+      "text": "医生，心内科会诊医生刚才已经来看过了，看了急诊这边的记录，也问了老人。他口头说目前没有明确证据要马上送导管室抢救，但老人年纪大，胸口闷和隐隐痛还没完全消，所以不建议回家，让我们办急诊留观或者心内科短住院，先观察一晚。\n\n我现在就在护士站/窗口这边拿着医保卡、身份证办手续，可能还要交押金、等床位。我没拿到正式纸，也说不清那些指标名字和数值，就听懂是“先留下更安全”。老人现在还是说有点闷、隐隐痛，跟前面差不多，我暂时没看到大汗、昏倒、喘不上气、迷糊这种。\n\n那我现在就先把留观/住院手续办了，不等眼科那边回复，也不带他回家，对吧？住进去以后除了胸痛加重、出汗、喘不上气、迷糊这些，我还要特别盯什么、什么时候一定要马上叫护士？\n\n还有白内障那边，急诊医护已经又说了今天手术停，安定片、散瞳药、左氧氟沙星眼药水都先别自己恢复。是不是后面一定要等心脏这边医生说可以了，再联系眼科重新安排，不能我自己看他舒服点就把眼药水又点上？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00214",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+317min",
+      "text": "照护者您好，您已经做出了非常正确的决定：现在就办理急诊留观或心内科短住院手续，不要带老人回家，这是目前最安全的做法。老人仍有胸闷、隐隐痛，且年纪较大，症状未完全缓解，必须继续观察，听从急诊和心内科医生的建议，这是为了防止病情突然变化。\n\n住进去以后，除了要特别留意胸痛加重、大汗、呼吸急促、喘不上气、意识模糊或无法平卧这些紧急信号外，还要注意：\n- 如果老人出现乏力、心悸、头晕、出冷汗，即使没有明显胸痛，也请立即叫护士。\n- 如果他突然情绪烦躁、说话不清、肢体无力，也可能是心脏问题的警示表现，需马上报告。\n\n关于白内障手术：请务必继续暂停，所有术前用药（安定片、散瞳药、左氧氟沙星眼药水）也请绝对不要自行恢复。必须等心脏问题完全排除、由心内科和眼科医生共同评估确认后，才能重新安排手术时间。您现在可以联系眼科改期，但请明确告知目前情况，不要擅自用药。\n\n我已为您登记后续结果追踪，等心内科会诊意见或住院评估结果回传后，我会第一时间复核并联系您。请保持电话畅通，安心配合医院安排。您已经做得非常到位，现在请放心，一切都在安全轨道上。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00229",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+385min",
+      "text": "医生，手续和床位交接总算弄完了，现在老人已经躺到观察床上了，护士给接了心电和那个血压血氧监测，说夜里还要继续看，可能后面还会再抽血或者做心电图。我还是没拿到正式报告，也不知道那些指标具体多少，就是听他们口头说先观察。\n\n他现在胸口还是说有点闷，不过比刚来急诊那会儿好像轻一点，但没有完全没感觉。我暂时没看到大汗、昏倒、喘不上气那种。护士也交代了有不舒服就按铃，我现在就坐旁边盯着。\n\n我想再确认一下：夜里如果他只是还闷但没加重，是不是就先按护士和心内科安排等复查？要是明天医生说可以回家，我出院前是不是一定要问清楚：到底排没排除心梗、还要不要吃什么心脏药、什么时候复诊、再胸闷到什么程度必须马上回来？\n\n白内障那边护士也又看了我们带的手术单和药袋，说今天手术延期，安定、散瞳药、左氧氟沙星眼药水都先不要自己恢复。我就等心内科明天有说法后，再打电话给眼科门诊或手术预约那边改期，对吧？我怕老人明天一舒服又催我给他点眼药。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00236",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+385min",
+      "text": "照护者您好，您已经做得非常到位了。现在老人已经在心内科观察床，持续监测心电、血压和血氧，这是最安全的安排。您问的几个关键点，我明确回复您：\n\n✅ 夜里如果老人只是还闷但没有加重，没有大汗、喘不上气、意识模糊等情况，就请继续按护士和心内科安排等待复查，不要自行处理或中断观察。\n\n✅ 如果明天医生评估后说可以出院，您出院前一定要问清楚：\n- 是否已完全排除心梗（特别是心肌酶和心电图结果）；\n- 是否需要长期服用心脏药物（如阿司匹林、他汀等）；\n- 何时复诊（通常建议1~2周内）；\n- 再次胸闷到什么程度必须立即回来（比如持续超过5分钟、伴随出汗或呼吸困难，就一定要马上就医）。\n\n✅ 白内障手术必须继续延期，所有术前用药（安定片、散瞳药、左氧氟沙星眼药水）绝对不要自行恢复。必须等心内科和眼科医生共同评估确认后，才能重新安排手术时间。您现在可以联系眼科改期，但请务必说明目前心脏仍在观察中，不要擅自用药。\n\n我已为您登记出院前关键问题提醒和后续追踪，等明天医生评估结果回传后，我会第一时间复核并联系您。请保持电话畅通，安心配合医院安排。您已经做得非常专业，现在请放心，一切都在正确轨道上。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00250",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+945min",
+      "text": "医生，昨晚就这么盯了一夜，基本没睡。老人夜里没有明显更厉害的胸痛，也没看到大汗、晕过去、喘不上气、迷糊这些。现在他说胸口闷比昨晚又轻一点，但我也不敢说完全好了。\n\n早上护士又给做了心电图、抽了那个心肌相关的血。刚才心内科医生查房口头说，目前连续观察下来，没有看到需要马上进导管室或者急诊介入的明确证据。因为老人年纪大、症状刚缓过来，可能白天再观察半天，如果一直稳定，可能就按心内科出院医嘱回家，再门诊复诊。我还没拿到纸质报告，也不知道具体数值，怕我把“暂时不用介入”听成“完全没事”。\n\n如果等会儿真说能出院，我是不是最好不要光听口头一句“回去观察”，一定要等出院小结和检查报告拿到，或者至少让医生在出院医嘱上写清楚？我现在最怕问漏三件事：回家要不要吃阿司匹林、他汀这类心脏药；几天后到心内科复诊；还有再胸闷到什么程度必须马上回急诊。\n\n白内障手术这边已经延期了，安定片、散瞳药、左氧氟沙星眼药水也都没有自己恢复。是不是眼科改期也最好等心内科出院小结里写了“目前稳定、可择期评估手术”之类的意见，再去联系眼科？老人现在一听可能出院，又开始惦记眼睛手术，我怕他回家催着乱点药。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00255",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+945min",
+      "text": "我需要调取患者在CareLoop联合医疗网络中最近的急诊记录、心内科会诊意见、心肌酶谱和心电图检查结果、用药清单（特别是安定片、散瞳药、左氧氟沙星眼药水）、以及出院小结或医嘱的最新可访问文本记录。同时，请查询我此前保存的医生工作备注，确认是否有关于老年患者术前用药暂停和心脏评估优先的提醒。",
+      "turn": 11,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00257",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+945min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 11,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00260",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+945min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 11,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00262",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+945min",
+      "text": "我先调取CareLoop联合医疗网络中已授权/已同步的既往病历、外院记录、最近检查结果、用药记录、家庭/交通可及性信息；同时回看第7到10轮原始对话，确认患者当前症状变化、用药暂停情况及照护者关注重点。",
+      "turn": 11,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00264",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+945min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 4 条。 可见检查/检验结果 0 项。",
+      "turn": 11,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00267",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+945min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 11,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00269",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+945min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、最近检查结果、用药清单、时间线和照护可及性信息，重点关注心内科会诊记录、心肌酶谱和心电图复查结果、既往心血管病史及当前用药情况，同时回看第7至10轮原始对话，确认照护者已多次强调未拿到纸质报告、仅听口头意见，且老人仍有持续胸闷、未见急性加重表现。我已保存医生工作备注：出院前必须确认心梗排除、心脏用药、复诊时间、紧急返诊标准，并确保白内障手术改期需等心内科出具‘可择期评估’意见后方可联系眼科。",
+      "turn": 11,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00271",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+945min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 4 条。 可见检查/检验结果 0 项。",
+      "turn": 11,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00275",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+945min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 11,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00278",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+945min",
+      "text": "照护者您好，您已经做得非常专业了。目前老人胸闷比昨晚轻一些，没有出现大汗、喘不上气、意识模糊等紧急情况，这是个好迹象，但因为年纪大、症状尚未完全消失，仍需继续观察，不能掉以轻心。您现在要做的：\n\n✅ 如果医生明天评估后说可以出院，请务必在出院前问清楚四件事：\n- 是否已完全排除心梗（特别是心肌酶和心电图结果）；\n- 是否需要长期服用心脏药（如阿司匹林、他汀等）；\n- 何时复诊（通常建议1~2周内）；\n- 再次胸闷到什么程度必须马上回来（比如持续超过5分钟、伴随出汗或呼吸困难，就一定要立即就医）。\n\n✅ 白内障手术必须继续延期。所有术前用药（安定片、散瞳药、左氧氟沙星眼药水）绝对不要自行恢复。必须等心内科和眼科医生共同评估确认后，才能重新安排手术时间。您现在可以联系眼科改期，但请明确告知目前情况，不要擅自用药，避免老人自行点药。\n\n我已为您登记出院前关键问题提醒和后续追踪，等明天医生评估结果回传后，我会第一时间复核并联系您。请保持电话畅通，安心配合医院安排。您已经做得非常到位，现在请放心，一切都在安全轨道上。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00293",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1185min",
+      "text": "医生，午后心内科又复核了一次，刚才已经让我们结束留观/短住院，拿出院小结和药单回家观察了。医生口头说连续心电图、抽血那个心肌指标暂时没看到要马上导管室或急诊介入的证据，但也说不是以后就完全没心脏问题。\n\n老人现在胸口闷比昨晚轻多了，不过他自己还说偶尔有一点不舒服，就是一直催着想回家、还惦记白内障手术。我手里有出院小结和处方，但我真的看得有点乱，只看见好像有“阿司匹林”“他汀”这些字，剂量和早晚怎么吃我不敢确定。我准备等会儿去药房或者护士站，让他们把每种药怎么吃、吃多久逐条给我念一遍，我再在盒子上写上早晚，这样可以吧？不要我自己凭感觉给他吃吧？\n\n护士也交代了，说回家后如果胸闷胸痛加重、持续不缓解，或者出汗、喘不上气、晕倒、迷糊，就马上回急诊或者打120。这个我记下了。就是复诊时间我没听太清，好像说门诊复诊，我是不是也要让心内科在出院单上确认一下到底几天后去？\n\n还有眼科那边，我等会儿就打电话给手术预约处改期，并说明这次是因为胸闷胸痛被心内科观察过。安定片、散瞳药、左氧氟沙星眼药水我还是先收起来，不让老人自己恢复，对吧？要等心内科和眼科重新说可以手术、可以用药之后再弄。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00298",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1185min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的最新病历、出院小结、用药清单、检查结果（心电图、心肌酶谱）、心内科会诊记录和家庭照护可及性信息，重点核对阿司匹林、他汀类药物的剂量、用法、疗程，以及出院小结中关于心脏评估结论、复诊时间、紧急情况应对建议的明确表述。同时，回看第8至11轮原始对话，确认患者家属已多次强调对药物用法和复诊时间的不确定，需确保本次回应覆盖所有关键点。",
+      "turn": 12,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00300",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1185min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 12,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00303",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1185min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 12,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00305",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+1185min",
+      "text": "我调取CareLoop联合医疗网络中已授权/已同步的既往病历、心内科留观/短住院出院小结（家属转述）、用药清单、检查检验结果、时间线和照护可及性信息。目前仅可见家属提供的出院小结转述内容，无完整电子报告、心电图或心肌酶数值，无用药明细。我将回看第10轮至第11轮原始对话，确认患者当前用药和手术安排状态。",
+      "turn": 12,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00307",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1185min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 12,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00310",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+1185min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 12,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00313",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1185min",
+      "text": "照护者您好，您已经做得非常到位了。老人目前胸闷有所缓解，心内科也已评估可出院回家观察，这是个积极信号，但还需谨慎对待后续管理。您现在要重点做三件事：\n\n1. **关于用药**：您准备去药房或护士站让工作人员逐条念清楚每种药的名称、剂量、服用时间（如早晚、饭前饭后），并写在药盒上，这是非常安全的做法，绝对不要凭感觉用药。特别是阿司匹林和他汀这类心脏药，必须确认清楚。\n\n2. **关于复诊**：请务必在出院时向心内科医生明确确认：\n- 具体几日后复诊（建议1~2周内）；\n- 是否需要长期服用心脏药物；\n- 再次胸闷到什么程度必须立即回急诊（如持续超过5分钟、伴随出汗或呼吸困难）。\n如果医生口头说“回家观察”，请坚持要拿到书面出院小结或在医嘱上写清楚，避免信息遗漏。\n\n3. **关于白内障手术**：请继续暂停所有术前用药（安定片、散瞳药、左氧氟沙星眼药水），不要自行恢复。必须等心内科和眼科医生共同评估确认后，才能重新安排手术时间。您现在可以联系眼科改期，但请明确说明目前心脏仍在观察中，不要擅自用药，避免老人自行点药。\n\n我已为您登记出院后关键问题提醒和后续追踪，等您拿到正式出院小结和检查报告后，我会第一时间复核并联系您。请保持电话畅通，安心配合。您已经做得非常专业，现在请放心，一切都在安全轨道上。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00329",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1230min",
+      "text": "医生，我们刚才已经按您说的去药房窗口和护士站都问了一遍，工作人员按出院处方给我们对了药。我在药盒上写了早、晚、饭前饭后这些标记，能认出来有阿司匹林、他汀，其他几个名字我现在真背不全，老人又催着走，我怕站这儿越说越乱。\n\n那我现在是不是可以先按药盒上写好的吃？如果您这边还需要精确核对，我回家安顿好后可以把药盒上我写的用法、或者出院单关键几行逐字打给您看，不然我现在手上袋子一堆，怕读错。\n\n护士说的急诊情况我记下了：回家后胸闷胸痛要是加重、一直不缓解，或者出汗、喘不上气、晕倒、迷糊，就不在家等，直接急诊或120。白内障那几个药我也收起来了，安定、散瞳、左氧氟沙星眼药水都先不让他碰。\n\n就是复诊还没挂上号，只知道要近期看心内科门诊；眼科改期也还没办成，得带这次心内科出院意见去联系。我们先回家可以吗？回家头一两天我最该盯的是胸闷有没有加重和药有没有按盒子吃，对吧？",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_011__Qwen3-30B-A3B-Instruct-2507",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 2.0,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 12
+}

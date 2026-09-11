@@ -1,0 +1,428 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "6694cc6767226f4f82fedf808c03e36533fbb0495fabb40e8dcd706a4fb534fc",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_063__anon_e6feb1aa47fdd6b8",
+    "packet_sha256": "f9a1ca698e7972749632b23ddeddbaa792dfbba0b626cae5013f13492baf3639"
+  },
+  "case_id": "case_CL120_EHR_063",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "neurology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "caregiver_conflict_or_fatigue",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "9",
+    "secondary_frictions": "privacy_stigma_or_sensitive_history | incomplete_patient_information",
+    "starting_phase": "result_return",
+    "target_problem": "headache_red_flag",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者已完成左前臂软组织肿物切除，标本送病理；病理尚未返回，未被误判良恶性。",
+      "术后连续观察显示切口附近疼、紧、轻微麻稳定，无手指发冷发紫发白、活动变差、麻木扩大、明显渗血或快速肿胀；护士和主管/主刀团队均已床旁复核，认为暂不需急处理。",
+      "医生多次将风险告知单解释为术前风险告知而非已发生坏结果，并指导家属核对病理查询、复诊解释、异常联系路径。",
+      "turn 9 家属反馈：护士已在出院交代单上圈出三处——病理查询方式、结果出来后回原手术团队/相关专科门诊解释、查不到或异常时联系病区/门诊电话。",
+      "turn 9 家属复述：病理现在还没出，没有良恶性结论；约3-7个工作日先查一次；不能自己看完就算数，需要找医生解释；若查不到、异常、伤口明显红肿流脓发热，或手指发冷发紫发白、活动变差、麻木扩大、疼痛突然加重、渗血多/肿得快，就按圈出的电话联系或回医院。"
+    ],
+    "if_continued_next_focus": "无需继续重复术前告知单或照片摩擦；若继续模拟，应等待病理真实返回或逾期/异常/新红旗出现后，再进行病理字段解读、复诊行动化和必要专科转诊。",
+    "rationale": "本次线上 CareLoop 的责任单元是围绕左前臂软组织肿物手术前后风险告知、术后早期症状分层，以及病理结果未回时的随访责任链建立。当前已经完成：术前误解被纠正，手术已完成且术后早期多轮观察/护士/主刀查房均未见血供、活动、渗血、快速肿胀等红旗；出院前病理仍未出但已被明确标为未定事项，并由护士/宣教人员在出院交代单上圈出查询方式、复诊团队/门诊、逾期或异常联系电话。家属已能复述病理不能自行解读、3-7个工作日先查、异常或查不到联系病区/门诊、以及手指发冷发紫发白、麻木扩大、活动变差、疼痛突然加重、明显渗血或快速肿胀等需及时回医院/联系病区的安全网。病理未出仍是重要后续问题，但在当前 bounded episode 中已成为有 owner、时间窗、验证路径和升级路径的 bounded residual follow-up，而不是当前必须由线上医生继续追踪到结果返回才可关闭的 action-blocking residual。不能判为治愈或长期疾病旅程结束；只是当前术后/出院前责任链安全闭合。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual: 病理结果尚未返回，不能判断肿物良恶性或后续是否需专科/再次治疗；但已有查询时间窗、查询方式、解释责任团队和异常/逾期联系路径。",
+      "bounded_longitudinal_residual: 术后感染、血供/神经问题、血栓等并发症仍有未来风险；当前无红旗，家属已获得具体安全网和回院/联系路径。",
+      "global_disease_journey_background: 若病理提示恶性或需进一步处理，后续诊疗、分期/会诊/再手术等属于病理返回后的新决策节点，不应被本次闭环表述为已完成或治愈。",
+      "doctor_performance_caveat: 医生未使用 clinical_workspace.query 调取可用 EHR 记录，闭环主要依赖家属线下询问和病区出院交代反馈；这不阻断当前责任链闭合，但应供最终评价医生工作质量时单独审计。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.4",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "前臂肿块准备手术，家里对风险单看法不一",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家人左前臂有个包块，听他说差不多一年里变大了，现在住进去准备切掉。今天医生让看术前那些说明，写着感染、血栓、肺栓塞、感觉差、可能还要再手术，我看得有点慌。老人自己倒说没事，家里人又催我问清楚，到底这些算不算结果不好？现在要不要先拖一拖？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00004",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "先别被这张说明单吓到。你看到的这些，主要是手术前依法必须告知的“已知风险”，不是说这些一定会发生，也不等于医生判断结果不好。任何切除手术都可能写到感染、出血、血栓、肺栓塞、伤口感觉变化、切不净后需再次手术这些内容，目的是让家属提前知道并配合观察。 \n\n单从你现在说的情况——左前臂包块、1年里变大、已经住院准备切——我不建议因为看到风险提示就自行拖一拖。相反，\"逐渐增大\"本身就是应该认真处理、尽快明确性质的理由。拖延的风险有时反而比按计划评估和手术更大。\n\n但有两件事值得你们今天就当面问清楚：\n1. 医生目前判断这个包块更像什么：脂肪瘤、囊肿、神经鞘瘤，还是其他软组织肿物？\n2. 这次是“直接完整切除”，还是先做穿刺/冰冻病理/术中再决定范围？如果病理提示边界不够，才可能需要再手术。\n\n你可以直接用这几句问主管医生：\n- 这个包块目前最可能是什么？有没有恶性可能？\n- 为什么建议现在切，不切的风险是什么？\n- 术前影像做了什么？边界清不清楚？和血管神经近不近？\n- 术后最常见会影响什么：活动、麻木、疼痛还是外观？\n- 什么情况下需要二次手术？概率大概高不高？\n- 术后病理多久出来，出来后谁给我们解释？\n\n如果老人现在没有发热、包块破溃流脓、手指发紫发冷、进行性麻木无力、剧痛这些急情况，一般不需要因为说明单本身临时叫停。更稳妥的做法是：按计划和手术医生把上述问题问明白，再决定。 \n\n如果你愿意，我也可以继续帮你把“术前告知单里的每一条风险”翻成家属能听懂的话；或者你把医生目前说的诊断、做过的彩超/核磁结果、手术名称发给我，我可以更具体帮你判断这次手术值不值得按计划做。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00019",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+45min",
+      "text": "患者家属已向病房医生追问术前问题并获得口头解释，但未拿到新报告；病理回报时间、解释责任人及异常结果处理路径仍需明确。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00020",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+45min",
+      "text": "当前不能生成病理结果；建议在术前明确术后病理报告预计时间、领取/查看方式、解释医生和异常结果联系路径。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+45min",
+      "text": "家属可能未完整理解病理追踪安排，建议要求其复述：报告几天出、在哪里查、谁解释、异常时联系谁。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00026",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+45min",
+      "text": "我刚才按您说的去病房问了，等了一会儿，医生挺忙，就口头说了几句，没给我新的报告。\n\n他说术前检查准备基本差不多了，暂时没说有什么不能手术的；还是按左前臂这个软组织肿物、就是那个包块来切，切下来送病理，最后到底是什么要等病理。这个听完我稍微放心点，不是现在已经说是坏东西。\n\n但他又说这个地方要注意周围血管神经，术后可能会麻、疼、感觉差这些。我听着又有点害怕，是不是意思就是容易伤到神经？还是只是告知有这个可能？\n\n现在老人本人在旁边有点不耐烦，说医生都说能做了就别问来问去了。家里人又一直问我到底能不能签字，我怕我签了以后万一有事都怪我。像这种线下医生说检查基本过关、按计划切了送病理的情况，是不是一般就可以先签字按计划手术？\n\n还有病理几天出来、在哪里看、谁负责解释，我刚才没问清楚。如果病理结果不好，后面是找原来这个手术医生复查，还是要转别的科？我现在最怕的就是切完没人给我们说清楚下一步。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00032",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+45min",
+      "text": "你现在听到的这段话，整体上更像是**标准而负责任的术前告知**，不等于医生在暗示“很容易伤到神经”或“结果不好”。\n\n左前臂这种部位本来就有血管、神经经过，只要包块靠得近，医生术前就必须把**术后可能麻、疼、感觉差**这些风险提前说明。意思是：**有这个可能，需要你们知情**；不等于已经判断一定会发生。\n\n按你目前带回来的信息——\n1. 术前检查基本过关；\n2. 暂时没有说不能手术；\n3. 方案是切除后送病理明确性质；\n这类情况下，**一般是可以按计划签字并做手术的**，不建议仅仅因为告知单上写了风险就先拖着。对一个已经一年内变大的软组织包块，尽快切下来明确性质，通常比继续拖延更稳妥。\n\n关于你担心“签字是不是要背责任”，你可以这样理解：\n**签字主要是确认你们已经被告知手术目的、方案和风险，并同意医生按这个方案治疗；不是说一旦有并发症就都算家属责任。** 关键前提是：你们对主要问题已经问明白，且老人本人也同意。\n\n你现在最值得在手术前再补问清楚的，不用很多，就4句：\n1. **这个包块和神经血管是“贴着”“压着”还是“能分开”？**\n2. **术后麻木/疼痛多数是暂时刺激，还是有永久影响的可能？**\n3. **病理大概几天出来？**\n4. **病理出来后由谁给我们解释：主管医生、手术医生，还是门诊复诊看？**\n\n你可以直接对病房医生或护士说：\n**“我们同意按计划做，但想在手术前确认一下：病理几天出、在哪里看、谁负责给我们解释；如果结果不好，下一步是回原手术医生复诊，还是转肿瘤/骨肿瘤/手外或其他专科？”**\n\n一般流程上：\n- **先找原手术医生/主管团队看病理**，因为他们最清楚术中情况和切除范围；\n- 如果病理提示只是良性，通常就是看伤口、拆线、复查；\n- 如果病理提示边界不够或性质不好，**通常也是先由原手术团队告诉你们结果，再决定是否转到更合适的专科**，而不是你们自己盲目找下家。\n\n病理时间各医院不完全一样，常见是**术后几天到1周左右**，如果要做更复杂的免疫组化，可能更久一点。所以最重要的不是你现在猜几天，而是把**“几天出、哪里查、谁解释、异常联系谁”**这四件事问到明确答案。\n\n如果你愿意，我可以现在直接帮你整理成一段**适合你马上去病房复述的简短问法**，让你两三句话就把这几个关键点问全。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00044",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+100min",
+      "text": "家属再次在病房确认后获知：手术仍按计划，标本术后送病理；常规病理多为术后数个工作日，复杂检查可能延长；结果通常由原手术团队或复诊门诊解释，异常再转相关专科。神经血管具体关系仍未被正式文本说明，需主刀/术中判断。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00048",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+100min",
+      "text": "我又按您说的去问了一轮，主要是护士帮忙叫了一下医生，医生很忙，就口头回了几句，还是没有新的书面报告。\n\n他说手术目前还是按计划，暂时没说术前检查有什么明显不能做的。包块切下来会送病理，病理不是当天就知道，好像是几个工作日到一周左右，复杂的话可能还要久一点。病理出来后大概是先找原来这个手术团队或者复诊门诊看，他们再解释；如果结果不好或者还要别的处理，再由他们建议转别的科。我是这样听的，可能有些词没记准。\n\n血管神经那个，我只问到医生说术前看着要注意，具体是不是贴得很紧、能不能分开，可能还要主刀看或者术中才知道。他没有说一定会伤神经，但我心里还是有点怕麻木疼痛这个事。\n\n现在老人已经有点烦了，说别再折腾，签了做就是了；家里人还在微信上问我有没有问清。我现在想法是倾向于按计划签字做，不因为告知单上那些风险拖了。您帮我再把把关：像现在这样口头确认手术按计划、病理有后续，一般就可以签了吧？\n\n另外我是不是还要在出院前一定让他们写清楚或者问清楚这几件事：病理哪里查、几天后查、挂哪个医生复诊、如果病理不好联系谁？这个要不要写在出院小结上才稳一点？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00054",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+100min",
+      "text": "可以，我帮你把关：按你们现在已经确认到的信息，**一般可以按计划签字手术**，不需要因为告知单里那些并发症条目就特意拖延。\n\n你们目前已经有了几个关键点：\n1. 术前检查暂时没有提示明显不能做；\n2. 手术方案明确：切除包块并送病理；\n3. 病理出来后有后续解释路径；\n4. 神经血管风险目前属于“需要注意、可能术中进一步判断”，**不是已经明确一定会伤到神经**。\n\n你现在担心的“麻木、疼痛、感觉差”，更像是这类部位手术必须提前告知的风险。意思是**有可能发生**，尤其当包块离神经血管近时；但不等于已经判断结果不好，也不等于不该做。对一个已经逐渐增大的前臂包块，拖着不处理，通常并不比按计划切除更稳。\n\n所以我同意你现在这个方向：**可以签字做。**\n\n你后面那个想法也对：**出院前最好把病理追踪和复诊路径问清楚，能写进出院小结当然更稳。** 至少尽量落实这4件事：\n- 病理大概几天能出\n- 在哪里查结果\n- 挂哪个医生/哪个门诊复诊解释\n- 如果病理结果不好或需要进一步处理，先联系谁\n\n如果能写进出院小结、出院记录、病区交代单或复诊单，当然最好；如果一时写不进去，至少你自己把这几项记清楚，最好让护士或医生口头再确认一遍。\n\n你可以直接用一句很短的话问：\n**“我们同意按计划做，麻烦出院前帮我们确认一下：病理几天出、哪里查、挂哪个门诊复诊、如果结果异常先联系谁；如果方便，写在出院小结或复诊交代里更好。”**\n\n再补一句，真正需要暂缓、立刻再问医生的情况，一般是这几类：\n- 术前突然说检查不过关\n- 老人本人其实并不同意手术\n- 出现发热、明显感染、手部发紫发冷、进行性无力麻木加重等新情况\n\n如果没有这些情况，你现在按计划配合是合理的。等手术做完后，你把**手术名称、出院小结或病理回报安排**再发给我，我可以继续帮你盯后面的病理和复诊路线。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00069",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+145min",
+      "text": "我刚从护士站回来，又按您那句短话问了一下。护士说手术还是按计划做，切下来的包块会送病理，现在肯定还没有结果。病理大概就是几个工作日，复杂的可能久一点，这个我没敢再追着问太细。\n\n她还在一个复诊交代/出院提醒上写了几句，大概意思是病理结果出来后要回来复诊看，由原来手术团队或者复诊门诊解释，如果有异常再联系、再安排。我分不清这算不算正式出院小结，护士说出院时候还会再交代。\n\n老人现在同意签字做了，就是嫌我问太多，有点烦。我这边比刚才踏实点了，准备就按计划签字等手术，不再因为告知单那些风险拖着。\n\n我想再确认下，接下来术前是不是主要就等安排就行？等术后我们重点盯什么：是不是伤口出血肿胀、手指发紫发冷、越来越麻或动不了、发烧这些？如果只是有点疼或者轻微麻，是不是先按病区医生处理观察？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00076",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+145min",
+      "text": "对，术前这一步通常就是按病区安排等手术，配合禁食禁饮、签字、术前检查和护士交代就行；如果医生临时说有检查不过关、发热感染、或手部突然发紫发冷/明显无力麻木加重，再马上提出来。\n\n术后你们重点盯这几类：\n1. 伤口明显渗血、肿得越来越快、绷得很紧；\n2. 手指发紫、发白、发冷，和对侧差很多；\n3. 麻木越来越重，或者新出现明显动不了、抓不住；\n4. 疼痛越来越厉害，按病区处理后仍明显不缓解；\n5. 发热、伤口红肿热痛、流脓；\n6. 胸闷、气短、小腿突然肿痛这种少见但要紧的情况。\n\n如果只是术后有点疼、轻微麻、局部不舒服，很多时候可以先按病区医生处理和观察，因为术后早期本来就可能有疼痛、肿胀或短暂感觉异常。**关键看是不是越来越重、越来越不对劲。**\n\n你可以简单记一句：\n**轻度、稳定、在缓解的，先观察；明显、进行性加重，或者手指颜色温度活动异常的，立刻叫医生。**\n\n另外别忘了出院前再确认一次：病理大概何时出、在哪里看、挂哪个门诊复诊、异常联系谁。你们现在按计划做，是合理的。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00094",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+475min",
+      "text": "医生，手术已经做完回病房了，左前臂那个包块切掉送病理了，现在还没有结果，病区也没说良性恶性这些。\n\n现在胳膊包得挺厚的，护士让垫高。老人说切口附近疼、绷得紧，还有一点麻。我刚按您之前说的看了下，手指颜色跟另一只差不多，摸着也没有明显发凉，手指还能动一点，就是他嫌我老问，有点不耐烦。\n\n护士刚才也来看过，说先抬高观察，按医嘱止痛；如果疼得更厉害、手指发冷发紫、活动变差，或者渗血多，就马上叫医生。\n\n我现在有点分不清，这种刚术后“疼、紧、有点麻”是不是算正常可以先观察？还是只要麻就说明可能碰到神经了？我们在病房里不好意思一直按铃，但又怕错过情况。您帮我再确认一下：现在这种手指颜色温度活动看着还行的情况下，是不是先按护士说的观察；如果后面出现哪些变化，我就不要犹豫，直接叫病区医生？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00100",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+475min",
+      "text": "对，在你现在描述的这个情况——**手指颜色、温度、活动目前都还可以**，护士也刚看过——**先按护士说的抬高、止痛、观察，是合理的。**\n\n刚做完前臂手术后，出现一些**疼、发紧、轻度发麻**，不一定就是神经出了问题，也常见于术后肿胀、包扎压迫感、局部组织受刺激后的早期反应。**不是只要一麻就一定代表碰坏了神经。** 关键不是“有没有一点麻”，而是看它是不是**越来越重**，以及手的血运和功能是不是变差。\n\n你现在重点盯这几条，**一旦出现就别犹豫，直接叫病区医生**：\n1. **疼痛明显加重**，按医嘱止痛后还是越来越厉害；\n2. **手指发冷、发紫、发白**，跟另一只手差很多；\n3. **手指越来越难动**，或者新出现明显无力、伸屈不了；\n4. **麻木范围扩大或迅速加重**，不只是切口附近一点点；\n5. **包扎处渗血明显增多**，或者前臂肿得越来越快、越来越紧；\n6. 之后如果出现**发热、伤口红肿热痛明显**，也要报告。\n\n如果目前只是：\n- 疼但还能忍，止痛后能缓一些；\n- 有点紧、有点麻，但**没有越来越重**；\n- 手指颜色温度正常，能活动；\n那就可以先继续观察。\n\n你不用因为“怕打扰”而硬扛。病房里这种术后观察本来就是该随时叫医生护士的，尤其是**颜色、温度、活动、疼痛突然变差**的时候。\n\n你可以自己记一句最简单的判断：**现在稳定就观察；只要出现越来越痛、越来越麻、手指变冷变紫、动得更差、渗血变多，就立刻叫医生。**\n\n如果你愿意，过一会儿你再告诉我：麻木是在切口周围一点，还是整只手/几个手指都有，我可以再帮你判断得更细一点。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00114",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+625min",
+      "text": "医生，我们又观察了大概两个多小时，刚才护士晚上巡视也来看了一下。\n\n现在疼痛比刚回病房那会儿稍微缓一点，按了止痛、胳膊垫高后没越来越厉害，就是老人还说切口附近疼、紧，有一点麻。麻我问他，他不太耐烦，但他说主要就是切口周围那一块，不像整只手麻，也不是几个手指都麻。\n\n我看手指颜色跟另一边差不多，摸着也没有明显变凉，手指还能动。包扎外面没看到新渗很多血，前臂也没突然肿得很快。护士看了也说目前继续抬高观察就行，跟您说的差不多：如果疼痛突然加重、麻木扩大、手指变冷变紫或者渗血多，就马上叫医生。\n\n我现在比刚才踏实一点，就是夜里怕睡过去漏看。我们是不是就按这几个最明显的变化盯着，不用因为切口周围还有一点麻就反复叫医生？另外病理现在肯定还没出，等出院前我再确认一遍哪里查、几天查、找谁解释，这样可以吧？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00120",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+625min",
+      "text": "对，现在看起来可以按这几个最明显的变化来盯着，**不用因为切口周围一点点麻、而且没有加重，就反复叫医生。**\n\n你们目前这个情况更像是：\n- 疼痛在缓解；\n- 麻木局限在切口附近；\n- 手指颜色、温度、活动都还可以；\n- 没有明显新渗血、没有快速肿胀；\n这时继续抬高、按医嘱止痛、正常观察就行。\n\n夜里最实用的做法不是一直折腾老人，而是**睡前和夜里醒来时各看一遍重点**。主要就盯这几条：\n1. 疼痛是不是突然明显加重；\n2. 麻木是不是从切口附近扩大到整只手或几个手指；\n3. 手指有没有变冷、变紫、变白；\n4. 手指是不是比之前更难动；\n5. 渗血有没有明显变多，前臂有没有突然绷得更厉害、肿得更快。\n\n**只要没有这些“突然变坏”的变化，就继续观察。**\n如果出现其中任何一条，或者你直觉觉得“明显不对劲了”，就直接叫病区医生，不用犹豫。\n\n病理这件事你说得对，**等出院前再确认一遍**：\n- 大概几天出\n- 在哪里查\n- 找哪个医生/门诊解释\n- 如果结果异常先联系谁\n这样就可以了。\n\n你们今晚的处理是稳的。明早如果情况还是这样平稳，通常就是按病房节奏继续恢复。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00135",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1105min",
+      "text": "医生，过了一夜目前还算平稳。我也不是一直盯着，就是睡前和半夜醒的时候按您说的看了看：没有突然更疼，还是切口附近有点疼、紧、轻微麻，老人说差不多，没说麻到整只手或者几个手指。\n\n我早上又看了下，手指颜色跟另一边差不多，摸着不明显凉，还能动一动。包扎外面也没看到新鲜血渗出来多，胳膊没突然肿得很快。清晨护士交接巡视也床边看了，说现在看着还平稳，白天等主管医生还是主刀医生查房再正式看伤口和手功能，我有点记不清她说的是哪个医生。\n\n我现在困得脑子有点乱，怕等会儿查房一紧张问漏。您能不能帮我把白天要问医生的几句话整理短一点？我想主要问两块：  \n1. 现在伤口包扎、手指活动和这个轻微麻，医生看下来算不算术后稳定，后面在病房/回家还要重点注意什么；  \n2. 病理大概几天出，在哪里查，出来后找谁解释，如果结果异常我们先联系哪个医生或门诊。\n\n这样问够不够？还有没有一句必须问的？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00141",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1105min",
+      "text": "够了，我帮你压成3句，查房时照着念就行：\n\n**第一句：**\n“医生您好，老人昨晚到现在切口附近有点疼、紧、轻微麻，但没有明显加重，手指颜色温度和活动目前还可以。您看现在整体算不算术后稳定？这个麻和包扎、肿胀是不是先观察就行？”\n\n**第二句：**\n“接下来在病房和回家后，我们重点要盯哪几个变化？哪些情况一出现就要马上回医院或马上联系你们？”\n\n**第三句：**\n“这次病理大概几天出、在哪里查、出来后找哪位医生或哪个门诊解释？如果结果有异常，我们第一时间联系谁？”\n\n**再加一句必须问的：**\n“我们出院后大概什么时候复诊，复诊是挂主刀团队还是普通门诊？”\n\n你如果怕紧张，就记成4个词：\n**稳不稳、盯什么、病理找谁、何时复诊。**\n\n按你现在描述，今早看起来还是偏平稳的；白天主要就是让医生正式看一下伤口、手功能和感觉情况。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00156",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1255min",
+      "text": "医生，刚才查房医生来了，我就按您给的那几句问了，虽然我说得可能没那么顺。\n\n他看了包扎外面，也问老人疼不疼、麻不麻，还让他动了动手指。医生口头说现在术后早期看着算偏平稳：疼、紧、轻微麻没有明显加重，手指颜色、温度、活动都还可以，包扎外面也没有明显新鲜大量渗血，所以暂时不用马上拆包或者急处理。\n\n关于麻，他说不一定就是神经坏了，可能跟术后肿胀、包扎、局部牵拉，或者表浅感觉神经受刺激有关系，先观察。还是那几条：如果麻木范围扩大、越来越重，手指变冷变紫、动得更差，或者疼痛、渗血、肿胀明显加重，就马上叫医生，回家后就马上回医院。\n\n病理他说现在肯定还没出，标本已经送了，现在不能判断良性恶性。大概我听着是3到7个工作日，复杂的可能更久。复诊他说到时候看出院交代，回原手术团队或者相关门诊解释病理，但我还没完全弄清楚是挂主刀号还是普通门诊。\n\n我现在想确认一下：出院前我是不是一定要让他们把“病理哪里查、几天后查、挂哪个门诊、异常联系谁、什么时候复诊”这些写清楚？还有这个轻微麻如果回家后一直有但不加重，是等复诊说，还是也要提前联系他们？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00163",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1255min",
+      "text": "对，**出院前最好一定让他们把这几件事交代清楚**，最好能落实到出院小结、出院告知单或你们自己当场记下：\n1. **病理大概几天出**；\n2. **在哪里查**；\n3. **出来后挂哪个门诊/找哪个医生解释**；\n4. **如果结果异常先联系谁**；\n5. **什么时候复诊**；\n6. 最好多问一句：**如果到预计时间还查不到病理，应该联系哪个科室/电话。**\n\n你现在可以直接这样问一句：\n**“请您把病理查询方式、预计时间、复诊门诊、异常结果联系路径，尽量给我们写清楚或口头确认清楚，我们怕回家后记混。”**\n\n至于这个**轻微麻**：\n- 如果只是**切口附近轻微麻，范围不扩大、不越来越重，手指颜色温度活动都正常**，一般可以先观察，**复诊时再重点告诉医生**；\n- 但如果出现**麻木加重、范围扩大到手指/整只手、手指变冷变紫、活动变差、疼痛或肿胀明显加重**，那就不要等复诊，要**提前联系手术团队或直接回医院**。\n\n你们现在这一步总体是对的：**稳定的轻微症状先观察，进行性变坏就提前处理。**\n\n如果你愿意，我可以再帮你把“出院前最后一定要确认的 5 句话”压成一个超短清单，方便你直接照着问。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00179",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1555min",
+      "text": "医生，现在到办出院交代这一步了，我跑了护士站两趟，脑子有点木了。\n\n我按您那句话去问了，护士和住院医生大概说：病理现在还没出，也没说良恶性；大概是3到7个工作日后查，复杂的可能还要久一点。出来以后要回原手术团队或者相关专科门诊让医生解释，具体挂主刀团队还是哪个门诊，我还没完全记牢，说是看出院单上写的。\n\n如果到时间查不到，或者报告有异常，好像可以联系病区或者门诊，电话、科室名称应该在出院交代单上，但我现在还没看清楚哪一行是关键的。等会儿我准备直接让护士站把“病理查询、复诊门诊、联系电话”给我圈出来，免得回家后找不到。\n\n老人这边现在还是切口附近疼、紧、轻微麻，跟之前差不多，没有明显加重。我看手指颜色、温度、能动这些也没变差，包扎外面没看到大量新鲜渗血，胳膊也没突然肿起来。他现在累了，一直催着想回家，不太愿意我反复问。\n\n我这样理解行不行：病理没出之前先不自己猜，回家后就按出院单查，查到后一定挂回他们说的门诊解释；轻微麻如果不扩大、不加重就等复诊说，如果麻到手指/整只手、手指冷紫、动不了、疼肿渗血加重，就直接联系他们或回医院？还缺不缺哪句我必须现在在护士站问清楚的？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00185",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1555min",
+      "text": "你这样理解是对的，而且已经问到关键处了。现在看，**最重要的不是再猜病理，而是把回家后的“查、挂、联系”路径拿准。**\n\n你现在在护士站**最后再确认1句就够了**：\n**“请帮我把出院单上这3处指给我：病理怎么查、复诊挂哪个门诊/团队、查不到或有异常时打哪个电话。”**\n\n如果对方愿意，再顺手补半句：\n**“预计几天后先查一次？”**\n\n你们目前回家前的理解可以定成这版：\n1. **病理没出前先不自己猜良恶性**；\n2. **按出院单写的时间和方式去查病理**；\n3. **查到后按指定门诊/团队去解释报告**，不要自己只看结论；\n4. **轻微麻如果局限在切口附近、没有扩大加重，就复诊时说**；\n5. **如果麻扩到手指/整只手，或手指出现冷、紫、白、动不了，或者疼痛/肿胀/渗血明显加重，就不要等复诊，直接联系他们或回医院。**\n\n你现在不用再和老人来回掰扯很多细节了，抓住这3样带走就行：\n**病理查询方式、复诊地点、联系电话。**\n\n如果你拿到出院单后，愿意把上面关于这三项的文字发给我，我可以再帮你快速看一遍你有没有理解偏。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00200",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1590min",
+      "text": "医生，我刚又照您那句问了，护士已经在出院交代单上给我圈了三处。我可能念得不全，但我记的大意是：\n\n1. **病理现在还没出**，也没有良性恶性的结论。让我们大概 **3到7个工作日后先查一次**，复杂的可能还要久。查询方式是医院公众号/门诊系统/病理查询窗口这一类，具体我就按单子上圈的那行来。\n\n2. **结果出来以后不能我们自己看完就算了**，要挂出院单上写的那个原手术团队或者相关专科门诊，让医生解释。具体门诊名字我怕说错，回家就照纸上圈的挂。\n\n3. 如果到时间查不到，或者报告提示异常，就按单子上圈的病区电话/门诊电话先联系；如果老人回家后手指发冷、发紫发白、活动变差，或者麻木范围变大，疼痛肿胀渗血明显加重，就不要等复诊，直接联系他们或者返院。\n\n老人现在还是切口附近疼、紧、轻微麻，和前面差不多，手指颜色温度活动没明显变差，包扎外也没看到大量新鲜渗血。他一直催我赶紧走，我也确实有点累了。\n\n医生，按我这版理解，是不是可以先带他回家，后面就按出院单圈的地方执行？病理没出来前我们就不再自己猜了，对吧？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_063__GPT-5.4",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.5,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 9
+}

@@ -1,0 +1,1012 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "f16e125b4c2e07eee99ee304c0047e5796dd60927cb4609a2912e2f8c43c3b61",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_008__anon_289853ddfc495b90",
+    "packet_sha256": "5432ab06c3ff5ddf286faf1514348b0136ba448b696e133c8d60a45e89bfd649"
+  },
+  "case_id": "case_CL120_EHR_008",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "cardiovascular",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "misstated_family_or_patient_information",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "delayed_or_staged_result_return | low_adherence_or_refusal",
+    "starting_phase": "post_handoff",
+    "target_problem": "atrial_fibrillation_anticoagulation",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "初始问题是家属发现出院单有“心房颤动”，但未记得医生交代长期抗凝，担心出血和血栓，不知道如何问清楚。",
+      "家属翻出出院药袋和小结，未看到华法林、利伐沙班、阿哌沙班、达比加群或出院后继续低分子肝素等明确长期抗凝药；工作区记录也未显示明确长期抗凝带药。",
+      "病区回电转述：不要自行去买或先吃抗凝药，需结合出院小结、心电图、凝血等到门诊复核。",
+      "家属按建议挂到次日上午原治疗医院相关门诊，并实际带老人、出院小结和药袋到院；夜间无吐血黑便、卒中样表现、完全不能饮水或明显少尿等红旗。",
+      "门诊团队看了资料和药袋后未直接开长期抗凝，安排心电图、血常规、凝血、肝肾功能、营养相关化验。",
+      "部分结果回流：家属转述心电图大字写“心房颤动”，门诊医生也说确有房颤表现；抽血被线下医生扫视后暂未提示需要马上处理的明显危险，但具体数值未被 CareLoop 结构化核验。",
+      "医生在结果回流后行动化：明确今天仍不要自行买/吃利伐沙班等抗凝药，带完整报告1-2天内找心内科或原主管科评估，说明若黑便吐血、出血不止、卒中样症状、不能进水、明显少尿或意识变差需急诊。",
+      "家属最后 teach-back：今晚不自己买也不吃抗凝药，明天或最迟后天带心电图、抽血报告、出院小结和药袋去心内科或原主管科正式定抗凝；吞咽问题也已问过线下门诊医生，后续追原主管科看是否造影/胃镜，若完全喝不下、吐血黑便、尿少发蔫、嘴歪手脚无力就急诊。"
+    ],
+    "if_continued_next_focus": "若继续运行，最有价值的下一节点是1-2天内心内科/原主管科复评结果：正式抗凝启停决策、具体药名剂量/禁忌或暂缓理由、血常规/凝血/肝肾功能关键数值解释，以及吞咽营养评估预约是否落实。",
+    "rationale": "本次 bounded post-handoff episode 的核心问题是：出院单写有心房颤动、家属不清楚是否应自行启动长期抗凝，且伴肿瘤治疗后吞咽困难/营养风险。到当前节点，抗凝用药的即时安全边界已经形成：家属核对药袋未发现抗凝带药，病区/门诊均提示不要自行购买或启动抗凝；患者已实际到原治疗医院门诊，心电图提示房颤，基础抽血部分回流且线下医生看过纸质报告和药袋后仍明确“今天不加药”，并要求1-2天内由心内科或原主管科正式决定是否抗凝。家属最后完成了可执行 teach-back：今晚不买不吃利伐沙班等抗凝药，明天或最迟后天带心电图、抽血报告、出院小结、药袋去心内科/原主管科复评，并知道吞咽/营养红旗需急诊。吞咽堵、体重下降、是否需造影/胃镜及最终长期抗凝决策仍未彻底完成，但这些已转入外部门诊/专科责任链，有明确责任人、时间窗、需携带资料和升级条件；它们是 bounded residual follow-up，而不是当前线上责任链的未闭合 blocker。此闭环主要是安全 episode 边界与外部责任链建立，不代表房颤长期管理或肿瘤/吞咽问题全部终结，也不应被表述为疾病治愈。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：最终是否长期抗凝、何时启动及复查计划仍需心内科/原主管科在1-2天内结合心电图、血常规/凝血、肝肾功能、肿瘤治疗和出血风险正式决定；当前安全边界是不自行加药。",
+      "bounded_residual_followup：心电图是否有缺血、长间歇等详细内容，以及血小板、INR/PT/APTT、肝肾功能具体数值未被线上医生可靠结构化核验；但纸质报告已由线下门诊查看，并被要求带给专科复评。",
+      "bounded_residual_followup：吞咽堵、体重下降和营养风险尚未完成造影/胃镜或确定原因，需近期消化/胸外/原主管科/营养支持评估；红旗升级路径已明确。",
+      "global_disease_journey_background：食管恶性肿瘤、淋巴结继发病变和维持治疗后的长期肿瘤管理仍继续，不属于本次抗凝用药困惑 episode 的完全终结。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V4-Pro",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "化疗出院后发现写了心房颤动，家里人搞不清要不要吃抗凝药",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我想替家里老人问一下。他刚做完一轮维持治疗出院，之前是食管肿瘤手术后又查到淋巴结问题，吃东西一直不太顺、体重也掉。出院单上我才看到有“心房颤动”几个字，但医生当时主要交代营养和复查，我没记得说要长期吃抗凝药。现在家里人怕出血，又怕血栓，不知道该怎么问清楚。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中这位老人的近期病历、出院记录、诊断列表、用药清单、最近一次检查结果（尤其心电图、心脏超声、凝血、营养相关实验室）、维持治疗相关记录（肿瘤、淋巴结、营养与体重），以及照护可及性（家里照顾能力、交通、最近急诊可及性）。同时看一下是否有心房颤动的既往诊断和抗凝相关记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取 CareLoop 联合医疗网络内这位患者已授权的病历、出院记录、检查报告、用药清单、既往病史和照护可及性信息，重点关注食管肿瘤手术史、淋巴结转移情况、最近一次住院的出院小结全文、心房颤动的诊断记录和抗凝相关处置，以及营养和体重变化的时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取 CareLoop 联合医疗网络中该患者已授权/已同步的既往病历、出院记录、检查/检验结果、用药清单、时间线和照护可及性信息，优先获取食管肿瘤手术、淋巴结问题、维持治疗出院记录以及心房颤动相关的记录和报告。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络内这位老人的出院记录、既往病历、用药清单、检查/检验结果、照护可及性和家庭情况。重点关注：1）食管肿瘤手术及淋巴结问题的具体诊断、手术日期、维持治疗内容；2）心房颤动的诊断依据、首次记录时间、是否做过心电图或超声心动图；3）出院时是否已有抗凝处方或抗凝建议，以及是否有出血风险评估记录（如 HAS-BLED）；4）体重和营养状况的客观记录；5）照护者联系方式和住址距离医疗机构的可及性。请一并检索最近的门诊或住院检查结果，包括心电图、超声心动图、凝血功能、血常规、肝肾功能和营养指标。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中这位老人的完整病案资料。请一并返回：最近一次住院的入院记录、出院小结、病程记录；出院带药清单；既往食管肿瘤手术相关记录；最近的心电图或心电监测报告；最近的凝血功能、血常规、肝肾功能、营养相关检查；以及病历中有无心房颤动的诊断记录和抗凝/抗血小板用药记录。同时请返回照护可及性信息（家庭照护能力、交通、就近医疗资源）。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "好的，照护者，我理解您的担心。老人刚做完针对食管肿瘤和淋巴结问题的维持治疗出院，出院单上又出现了“心房颤动”这个新诊断，同时面对进食困难、体重下降、出血和血栓风险，确实会让人感到不知所措。我现在根据目前能看到的病历信息，给您一条清晰的回复。\n\n首先，关于“心房颤动”和抗凝问题，目前我手头的病历记录里，**没有看到明确的抗凝/抗血小板长期用药处方，也没有查到最近的心电图或凝血功能检查结果**。这意味着，您需要尽快做以下几件事来帮老人理清风险：\n1.  **联系主管医生团队确认**：直接带着出院小结，联系负责他维持治疗的肿瘤科或外科医生，询问“出院记录上的心房颤动，目前是否需要抗凝治疗？是阵发性的还是持续性的？之前有没有做过脑梗/出血风险评估？”这是最关键的一步，不能仅凭猜测。\n2.  **完善关键检查**：如果医生判断需要评估，最需要尽快补查的是**心电图（或24小时动态心电图）**和**凝血功能（包括PT、APTT、INR）**。同时，因进食困难，营养指标和肝肾功能是调整药量的基础，也需要一并复查。\n3.  **家庭观察和行动**：在等待医生回复期间，请密切观察老人有没有**牙龈出血、皮肤瘀斑无故增多、黑便、呕血或突然说看不清、一侧手脚无力**这些危险信号，出现任何一个应立即去急诊。同时，因为进食困难且体重掉，一定要维持他能接受的营养（如安素、速愈素等口服营养补充剂），分次小口慢慢喝，不要强喂，这背后可能合并有食管狭窄或术后结构改变，但营养是抗凝安全和后续治疗的基础。\n\n对于体重下降和进食不顺，这不是单纯“没胃口”，必须同步处理。建议尽快安排**上消化道造影或胃镜检查**，看看食管和吻合口有没有狭窄、水肿或复发堵住的食物通道，这个检查不能拖。\n\n现在，您可以用接下来一两天的时间，拿着出院小结去联系医生，同时落实我上面说的检查和家庭观察。如果联系不上或者有紧急情况，直接去急诊。后续如果有新的检查结果出来，或者拿到了药物清单，您可以随时再来找我，我会继续帮您梳理。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+35min",
+      "text": "心电图、凝血、血常规、肝肾功能/营养指标目前只是建议，尚无检查 receipt 或结果。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+35min",
+      "text": "吞咽困难/体重下降评估尚未进入检查流程；需线下开单预约，若不能进食或脱水应急诊。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00053",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+35min",
+      "text": "我刚按您说的翻了家里的出院药袋，没看到写“华法林、利伐沙班、阿哌沙班、达比加群”这些名字的药，也没看到说回家还要继续打低分子肝素那种针。药袋里主要像是营养、护胃、止吐这些，我不敢保证每个名字都看懂了，您要是需要我可以把盒子上药名一个个念给您听。\n\n我也打了出院单上的电话，护士站接的，让我留了老人姓名、床号，还有“心房颤动要不要抗凝”这个问题，说等主管医生或随访护士回电话，现在还没正式回。\n\n我就是还卡在一点：住院时他好像每天打过“防血栓的针”，所以家里人怕是不是出院漏了药。但我们现在也不敢自己去买抗凝药吃。老人目前没有吐血、黑便，也没有嘴歪、说话含糊、一边手脚没劲这些，就是吃东西还是堵，体重掉这个问题还在。\n\n想问您，在等病区回电话这段时间，我们最低要守住什么？如果下一通电话接到主管医生，我最该直接问哪几句话，别漏掉重点？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+35min",
+      "text": "我先查一下 CareLoop 联合医疗网络里这位老人已授权的病历、出院记录、住院期间的用药和检查结果，重点关注：1）出院小结原文里关于心房颤动的描述、出院用药清单和抗凝/抗血小板医嘱；2）住院期间的心电图、凝血功能、血常规和肝肾功能/营养指标最近的报告；3）吞咽困难相关检查（如胃镜或上消化道造影）和体重下降的记录；4）家庭照护可及性和交通情况。看完后我会整理成一条精简的工作备注，方便后续回顾。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00060",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+35min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+35min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+35min",
+      "text": "我需要先理清这张出院单里“心房颤动”的上下文，以及住院期间抗凝/抗血栓策略的真实记录。请调取 CareLoop 联合医疗网络中该患者的：1）最近一次出院小结/出院记录文书（尤其是诊断列表、出院带药、出院医嘱部分）；2）最近一次住院期间的用药记录（包括住院时每日给药的药名、剂量、给药途径、起止时间，重点关注“防血栓的针”到底是低分子肝素还是其他）；3）最近一次住院期间的护理记录或临时医嘱，看是否能解释住院期间每日注射的那针；4）最近一次心电图或24h动态心电图报告（如有）；5）最近一次凝血功能检查结果（PT、APTT、INR等）；6）肿瘤科/外科最近一次的门诊或住院病程记录中关于心房颤动的描述（是阵发性/持续性、有无提及 CHA2DS2-VASc 或抗凝指征）。另外也请拉出该患者的用药清单全览（包括当前在院和已出院的用药）。如果这些资料有缺，请标明哪些没有、哪些未上传/未同步。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+35min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00068",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+35min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00070",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+35min",
+      "text": "我先调取 CareLoop 联合医疗网络中老人已授权/已同步的完整病历和出院相关文书：包括既往病史、入院记录、出院小结/出院单全文、最近一次住院期间的医嘱/用药记录（特别是住院期间使用的抗凝或抗血小板药、防血栓注射剂记录）、心电图或心电监测记录、凝血功能和其他相关检验结果、以及当前出院带药清单。同时请调取家庭照护可及性资料，包括家属是否可送诊、是否住得离急诊/可接诊医院近、以及是否有居家血压/体重监测条件。另外也请给我看最近两轮原始对话中照护者提到的药盒原话。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00072",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+35min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00075",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+35min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00077",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+35min",
+      "text": "调取 CareLoop 联合医疗网络内该患者的既往病历/出院记录/住院期间用药记录/出院带药清单，以及最近一次心电图和凝血功能检查结果（如有）。重点关注：1）出院记录中关于心房颤动的具体描述（阵发/持续、是否提及抗凝指征、CHA₂DS₂-VASc 评分或出血风险评估）；2）住院期间使用的\"防血栓的针\"的具体药名（低分子肝素？依诺肝素？磺达肝癸钠？）及出院时是否明确交代停用或续用；3）最近的营养评估和吞咽相关检查记录。同时查询照护可及性信息（家庭照护能力、交通、复诊可及性）。如果出院记录中有主管医生姓名[REDACTED_NAME]，一并查看。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00079",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+35min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00081",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+35min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+35min",
+      "text": "我先调取 CareLoop 联合医疗网络内老人本次住院及既往的关键病历文书、出院总结、用药记录、住院期间凝血/心电图/血常规/肝肾功能检查结果、出院带药清单，以及家庭照护可及性和最近一次营养评估/体重记录；同时回看第一轮照护者原话中关于“防血栓的针”的具体描述和上一轮我给的建议原文，核对是否存在遗漏的线索。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+35min",
+      "text": "好的，您做的这几件事非常关键，也很冷静，我先帮您理清现在的状况。\n\n首先，关于您最担心的“住院时每天打的防血栓针”，从目前能看到的病历记录里，**没有查到明确的抗凝/抗血小板长期用药处方，也没有看到最近的凝血功能或心电图复查结果**。所以，我不认为这是“出院漏了药”，住院期间打的“防血栓针”大概率是围手术期或住院期间用于预防深静脉血栓的常规处理，这和是否需要长期口服抗凝药是两回事。您翻遍药袋没找到那些名字的药，也侧面印证了这个判断，**千万不要自己去买抗凝药给老人吃**。\n\n在等病区回电话这段时间，您需要守住的最底线是这两条：\n1. **安全观察**：您已经做得很好了。继续保持，重点看老人有没有**牙龈出血止不住、身上突然大片瘀青、黑便、呕血、突然口齿不清或一侧手脚抬不起来**。有任何一个出现，不要等电话，直接打120或去最近急诊。\n2. **营养和体重**：吃东西堵和体重掉这个情况本身就是一个风险信号，背后可能合并有食管或吻合口的狭窄。在能进食的前提下，继续分次小口地给他喝营养液，不要强喂。如果连水都喝不进去，或者出现了脱水表现（比如尿极少、嘴唇干、精神很差），这也是需要去急诊的指征。\n\n如果下一通电话接到主管医生或随访护士，您最该直接问的几句话，您可以拿笔记下来，直接问：\n- “出院记录上写了心房颤动，这次住院期间的心电图和凝血结果能帮我调出来看一下吗？是阵发性的还是持续性的？”\n- “现在需不需要长期吃抗凝药？如果需要，是选哪一种药（比如华法林还是新型口服抗凝药），还是先观察不用药？”\n- “如果不用药，什么时候需要复查心电图和凝血来重新评估？”\n- “他吃东西堵、体重一直掉，这个情况需不需要尽快安排一个上消化道造影或胃镜看看食管和吻合口的情况？”\n\n这几句话问完，基本就把血栓风险、抗凝决策和进食障碍三个核心问题都覆盖了，不会漏掉重点。后续如果拿到了新的检查结果或药物方案，您可以随时再来找我，我帮您一起梳理下一步。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00102",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+110min",
+      "text": "医生，病区后来回电话了，但我怕我听漏，只能按我记得的说：电话里大概意思是让我们**不要自己去买或先吃抗凝药**，说这个心房颤动要结合出院小结、心电图、凝血这些去门诊再复核，看出血风险后再决定。没有给我们开新的抗凝药，也没告诉我新的心电图或凝血结果。\n\n老人现在还算平稳，没有吐血黑便，也没有牙龈止不住出血、大片青紫，嘴也没歪，说话和手脚也没有突然不对。就是吃东西还是堵，小口喝了点营养液可以，但不敢多喂，体重掉这个我还是很担心。\n\n我这样理解对吗：现在先不自行抗凝，尽快带出院小结和药袋去门诊复核？那我们挂号应该先挂哪个更要紧——心内科先看房颤抗凝，还是肿瘤科/消化或外科先看吃东西堵？如果老人后面变成喝水也堵，或者一天尿很少、没精神，是不是就不要等门诊，直接急诊？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00108",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+110min",
+      "text": "您理解得完全正确，而且这几个问题问得非常到位，我帮您一条条梳理清楚。\n\n第一，关于抗凝药：病区电话里让您**不要自己买、不要先吃**，这和我的判断一致。您现在的任务就是**不带任何新的抗凝药回去自行服用**，而是尽快带着出院小结和家里现有的药袋，去门诊让医生结合心电图、凝血结果正式评估。您目前做得很好，没有出血或中风的危险信号，暂时不要自行加药。\n\n第二，关于挂号顺序：老人现在最主要的矛盾是两个——**进食梗阻和体重下降**，以及**新发现的心房颤动需要评估抗凝**。如果非要排个优先级，我建议您**先挂肿瘤科或消化科/外科**（就是原来管他食管问题的那个科室），因为吃东西堵、体重掉这个情况，背后可能是食管或吻合口的狭窄、水肿或复发，直接关系到他能不能继续进食、能不能安全活下去，这个比房颤抗凝更紧迫。同时，您可以在同一个门诊里，把房颤抗凝评估的需求提出来，请主管医生协调心内科会诊或替您开出心电图和凝血检查。如果挂不到原来的肿瘤科/消化科，再考虑直接挂心内科，但要跟心内科医生讲清楚“同时合并食管肿瘤术后进食梗阻和体重下降”，让他们别只盯着房颤。\n\n第三，关于急诊指征：您判断得非常准确。如果老人接下来出现**喝水也堵、一天尿很少、精神很差、或者出现前面说过的那些出血或中风信号**，任何一条，都不要等门诊，直接去急诊。这些情况提示可能存在严重的消化道梗阻、脱水或急性心脑血管事件，门诊等不起。\n\n我现在就帮您把最关键的几个行动定下来：请您现在就整理好出院小结和所有药袋，按上面说的顺序去约门诊。在去门诊之前，继续维持他能喝进去的营养液，小口分次，不要强喂，同时守住我前面说的安全观察底线。如果门诊约得太晚或者老人情况有变，随时联系我或直接去急诊。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00123",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+350min",
+      "text": "医生，我们后来按您说的去约了，号源挺紧张的，但通过原来医院那边随访护士提醒，挂到了明天上午原治疗团队相关的门诊，我说不太清到底算消化还是胸外/肿瘤窗口，反正是让我们明早带出院小结和所有药袋过去给医生看。护士也说到时医生看情况再开不开心电图、凝血、血常规、肝肾功能这些，可能还要心内科会诊。\n\n我现在正在把出院小结、检查单、药袋都装一袋。抗凝药我们今晚肯定不自己买也不先吃了，这个我已经跟家里人说了。\n\n老人下午到现在还是吞咽堵，营养液和温水只能小口喝，半瓶都不一定喝完，我也没硬喂。尿好像还有，不是完全没有；目前也没看到吐血、黑便，嘴歪手脚没劲那种也没有。我就是怕夜里突然喝不下水或者脱水，明天还没到医院就出事。\n\n想再麻烦您帮我确认两件事：今晚在家是不是就按“小口水和营养液、别强喂、看尿和精神”这样守着？如果夜里变成水也下不去、尿明显很少、人发蔫，或者出血/说话手脚不对，就直接急诊，不等明早，对吧？\n\n还有明天我一紧张怕说漏，见医生第一句话能不能这样说：“老人食管肿瘤治疗后现在吞咽堵、体重掉，出院单还有心房颤动，但没有带抗凝药，病区让门诊结合心电图凝血评估。请您先帮我们看吃不下的问题，同时别漏了房颤抗凝要不要做检查。”这样讲够不够？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00130",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+350min",
+      "text": "您理解得非常到位，我现在帮您把这两件事确认清楚。\n\n第一，今晚守护计划：就按您说的做——\"小口水和营养液、别强喂、看尿和精神\"。能喝进去半瓶营养液和温水，说明目前还不是完全梗阻，这是好的信号。但一定要守住底线：如果连水都喝不进去、尿明显减少到半天没尿、人越来越蔫，或者在目前稳定的基础上突然出现吐血、黑便、嘴歪、一侧手脚无力这些，任何一条出现都不要等明早，直接去急诊。这个判断您做得对。\n\n第二，明天见医生的第一句话：您准备的那段话非常好，简洁、准确，把最重要的问题都点到了。我建议您再稍微调整一下，让它更紧凑，医生一听就能抓住核心：\n\n\"老人食管肿瘤治疗后现在吞咽堵、体重掉。出院记录上有心房颤动，但没有带抗凝药，病区说需要门诊结合心电图和凝血再看。请您先帮我们看吃不下的问题，同时别漏了房颤要不要抗凝。\"\n\n这样把\"心电图凝血评估\"和\"抗凝决策\"放在一起，既强调了安全问题，又给了医生明确的处理方向。同时，您把出院小结和所有药袋都带上，医生一看就明白。如果医生没提肝肾功能和营养指标，您可以补一句：\"体重掉了很多，要不要也查一下营养指标和肝肾功能？\"\n\n您今天晚上的任务就是把东西装好，继续守着，记住急诊底线。明天见医生时，您一定不会说漏。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00143",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1250min",
+      "text": "次日上午门诊初评：线下团队未让患者自行购买抗凝药，已安排心电图、血常规、凝血、肝肾功能和营养相关化验；抗凝决策待结果及可能心内科会诊，吞咽堵/体重下降仍需进一步处理。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00148",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1250min",
+      "text": "医院这边有点吵，我先说重点。昨晚按您说的守了一夜，老人小口喝水和营养液，没有硬喂，夜里没有吐血黑便，也没出现嘴歪、一边手脚没劲、半天没尿或者人突然很蔫那种情况。\n\n今天上午已经带到原治疗医院门诊了，线下医生看了出院小结和药袋，我也把“吞咽堵、体重掉、出院记录有房颤但没带抗凝药”都说了。医生没有让我们自己买抗凝药，也没当场定长期吃抗凝。我理解是先等心电图和抽血结果，可能还要心内科再看。\n\n现在开了心电图和抽血，检查单上我记得有血常规、凝血、肝肾功能，还有营养相关的指标，具体我怕念不全。老人今天在医院排队有点累，吞咽堵和体重掉还是老问题，目前没看到新的出血或者中风样表现。\n\n我想趁等结果问您两句：等下结果出来，我最应该盯哪几个结果、哪几个异常要马上找医生？还有如果门诊医生说得比较含糊，我是不是就直接问这几句：  \n1. 现在这个房颤到底要不要抗凝，还是先不吃？  \n2. 如果不吃，什么时候复查心电图/凝血再决定？  \n3. 吃不下和体重掉这件事，今天要不要安排造影、胃镜或者营养处理，不能只让回家观察吧？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00154",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1250min",
+      "text": "我先快速查看 CareLoop 联合医疗网络内已授权/已同步的既往病历、检查结果、用药记录、时间线和照护可及性信息；同时回看第1到4轮原始对话，确认照护者之前关于药盒的原话、病区回电内容、以及门诊开单的完整描述。然后我会保存一条医生工作备注，并把我之前登记过的检查、随访或追踪回执状态查一次，以便给患者一个精确的“等结果时盯哪几个、问哪几句”的方案。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00156",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1250min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "care_system",
+      "event_id": "lite_evt_00160",
+      "event_type": "doctor_care_system_status_result",
+      "metadata": {},
+      "sim_time": "T+1250min",
+      "text": "医生主动查询系统状态：回执 0 项，pending 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00161",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1250min",
+      "text": "临床工作区已处理 4 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00163",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+1250min",
+      "text": "我先做三件事：1）调取 CareLoop 联合医疗网络中该患者已授权/已同步的病历、出院小结、用药记录、检查/检验结果、时间线和照护可及性信息；2）回看第1到第4轮原始对话，确认照护者关于药袋、住院期间“防血栓针”、病区回电和门诊开单的原话；3）查询我此前是否有保存的医生工作备注。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00165",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1250min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00169",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+1250min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+1250min",
+      "text": "我先调取 CareLoop 联合医疗网络中已授权的既往病历、出院小结、最近的门诊/住院记录、检查结果、用药清单和时间线，同时查看我此前保存的医生工作备注。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00173",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1250min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00176",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+1250min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00178",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+1250min",
+      "text": "我调取 CareLoop 联合医疗网络内该患者的既往病历、出院小结原文、最近一次心电图/凝血/血常规/肝肾功能/营养指标报告、当前用药清单，以及时间线和照护可及性信息。同时回看第1到4轮原始对话中照护者关于“防血栓针”“药袋里没看到抗凝药”“病区回电话说不让先吃抗凝药”的原话，确认是否有我此前未注意到的关键差异。我另保存一条医生工作备注：本次门诊已开立心电图、血常规、凝血、肝肾功能和营养相关化验，抗凝决策待结果和心内科会诊；吞咽/体重问题仍需明确结构和功能评估，后续需紧盯吞咽造影或胃镜安排，以及营养支持方案是否落地，不能只停留在“回家观察”。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00180",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1250min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00184",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+1250min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00188",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1250min",
+      "text": "您问得非常准，而且今天已经在线下把最关键的安全步骤走完了——没让老人自己吃抗凝药，先等心电图和抽血结果，这是对的。我现在帮您把等结果期间要盯什么、以及万一医生说得含糊怎么问，梳理清楚。\n\n等结果出来后，您最该盯的是这几组：\n\n**1. 凝血功能**——这是抗凝决策的“开关”。重点看 PT、APTT、INR，如果 INR 明显延长或血小板很低，说明出血风险偏高，抗凝可能要先搁置或选更安全的方案。\n**2. 心电图**——确认房颤是阵发还是持续，有没有合并其他传导问题。如果心电图报的是“心房颤动”，但没有看到“血栓前状态”或“左房血栓”这些字，医生可能仍要结合出血风险打分再决定。\n**3. 血常规**——血红蛋白和血小板直接关联出血风险，也反映营养状况和有没有慢性失血。\n**4. 肝肾功能和营养指标**——抗凝药（尤其新型口服抗凝药）很多要经过肝肾代谢，肝肾功能不好会影响选药和剂量。营养指标（白蛋白、前白蛋白等）也会回答“体重掉”这件事到底是摄入不够还是消耗过快。\n\n哪几个异常要马上找医生？一个简单的记忆法：\n- **凝血明显异常、血小板很低** → 马上找医生，这是抗凝安全的最直接红线。\n- **心电图除了房颤还报了严重心动过缓、长间歇或明显缺血改变** → 马上找医生，可能涉及起搏或抗心律失常处理。\n- **肝肾功能严重异常** → 马上找医生，因为后续不管选什么药都要调剂量。\n- **血红蛋白掉得很明显、白蛋白极低** → 马上找医生，说明可能还在慢性失血或重度营养不良，需要住院或急诊营养干预。\n\n如果门诊医生说得比较含糊，您准备的那三句问得很好，我帮您稍微再调整一下，让它更紧凑、更具体：\n\n1. “现在这个房颤，根据心电图和凝血结果，是建议开始抗凝，还是先不用药？如果先不用药，是暂时观察，还是需要短期复查心电图？\"\n2. “如果不抗凝，下一次什么时候复查心电图和凝血来重新评估？是几周还是几个月？还是等营养和体重稳住再查？\"\n3. “他吃不下、体重一直掉，今天要不要安排一个上消化道造影或胃镜看看食管和吻合口的情况？或者至少给一个营养支持方案（比如营养液、管饲评估），不能只让回家观察。\"\n\n这三句话问出去，基本就把抗凝决策、复查节点和进食梗阻的结构评估都覆盖了。医生如果含糊，您就追问他“那是等几周复查，还是等体重稳住”，让他给出具体时间。\n\n您今天在医院，老人虽然累但没出现危险信号，这是好的。结果出来前，继续守住小口喝、别强喂、看尿和精神这条线。拿到报告后随时找我，我帮你一起读。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00204",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1430min",
+      "text": "医生，结果出来一部分了，我手机快没电，我先按我能看懂的说。\n\n心电图纸上大字写着“心房颤动”，门诊医生也说确实有房颤表现，但我看不懂后面还有没有什么“缺血、长间歇”那些专业字。抽血医生扫了一眼，说血小板和凝血这块暂时没看到特别危险到马上处理的样子，INR、PT、APTT 具体数字我没记住，报告在老人手里那沓纸里，现场太乱我怕念错。\n\n线下医生看了我们带来的出院小结和药袋，还是说现在不是我们自己去补抗凝药的时候，要等心内科或者原主管科结合这些结果再定。我理解就是今天仍然不要自己买利伐沙班那些药先吃，对吧？\n\n老人现在排队累得很，还是吞咽堵，只能小口喝点，暂时没吐血黑便，也没嘴歪、一边手脚没力、完全没尿这些。现在我最卡的是：如果今天心内科加不上号，我们能不能带着报告先回家等复评？还是说已经有房颤了，今天必须想办法让心内科看一眼才踏实？另外吃不下这个，门诊如果只让回家喝营养液，我是不是还得追着问造影/胃镜或者营养支持，不然怕拖坏了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00209",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1430min",
+      "text": "我需要先补全这轮判断的关键信息：调取 CareLoop 联合医疗网络内已有的授权资料，重点看 1）最近一次出院小结中关于心房颤动的记录、住院期间心电图和凝血结果；2）今天门诊已做的检查报告原文（心电图描述、血常规、凝血全套、肝肾功能、营养指标）；3）既往食管肿瘤手术/放化疗记录和最近一次吞咽/体重相关影像或内镜报告；4）当前用药清单和药房记录；5）照护可及性（交通、陪护、是否方便返院）。同时回看第1到5轮原始对话中照护者关于病历/报告的具体原话，确认哪些内容是照护者口头读出、哪些是线下医生口头告知。如果报告尚未同步到我这里，我会在工作区注明当前可见资料缺口，并在后续给照护者的建议中明确哪些判断必须等报告核对、哪些可以基于现有信息先给出安全分层。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00211",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1430min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 8 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00214",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1430min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00216",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+1430min",
+      "text": "我先调取 CareLoop 联合医疗网络中已授权可及的近期病历、出院小结、检查结果、用药记录，以及今天门诊开立的检查报告原文（心电图、凝血、血常规、肝肾功能、营养指标），同时查看照护可及性和家庭情况。另外帮我回看第5轮照护者关于报告和门诊现场的原话，我需要精确对比她口头说的和实际可能有的报告内容。如果系统里有今天门诊的检查结果文本，也一并拉出来。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00218",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1430min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00221",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+1430min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00223",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+1430min",
+      "text": "我需要把本轮判断最关键的信息缺口一并补全：1）调取CareLoop联合医疗网络中已授权/已同步的病历记录、出院小结、最近一次住院相关文书和门诊记录，特别是关于食管肿瘤术后、淋巴结问题、维持治疗、心房颤动、吞咽困难和体重下降的部分；2）调取最近的门诊心电图报告原文和凝血/血常规/肝肾功能/营养指标等检查结果，如果系统中有凝血INR/PT/APTT、血小板、血红蛋白、白蛋白等具体数值，以及心电图报告中关于房颤类型、缺血、长间歇、传导异常的完整描述；3）调取用药/药房记录，包括住院期间防血栓针的医嘱和出院带药清单，以及目前是否有任何抗凝/抗血小板长期用药或临时用药的登记；4）调取照护可及性和家庭支持信息（交通、有无其他照护者、能否持续看护老人）；5）回看第4轮我给出的门诊问诊三句话和第5轮患者/家属给我的原话，特别是关于心电图纸“心房颤动”、抽血医生口头说凝血安全、以及老人目前吞咽堵、体重掉、无出血/中风急症信号的细节。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00225",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1430min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00228",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+1430min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00230",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+1430min",
+      "text": "我先把本轮最关键的信息整理一下，然后调取目前可见的联合医疗网络记录、电子病历索引、既往档案、用药记录、检查结果，以及照护可及性和家庭环境信息。同时回看第5轮到当前的原始对话，确认照护者关于报告原话和线下医生反馈的准确表述。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00232",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1430min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 8 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00235",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+1430min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00239",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1430min",
+      "text": "您手机快没电还帮我把关键信息传回来，已经很不容易了。我先直接回答您最卡住的几个问题，您一个一个来。\"\n\n先确认您理解得没错：**今天仍然不要自己买利伐沙班那些药先吃。** 线下医生看了结果和药袋说“现在不是我们自己去补抗凝药的时候”，这和我从病区电话到现在的判断一致——您家里没有漏掉必须吃的抗凝药，今晚和明早也千万不要自己加。\n\n接下来是您现在最担心的两个节点：\n\n**1. 如果今天心内科加不上号，能不能先带报告回家？**\n\n在您目前描述的这个情况下——房颤已经心电图确认，但抽血医生初步说血小板和凝血这块没看到特别危险的、老人也没有吐血黑便、没有嘴歪或一侧手脚没力、没有突然完全没尿——**可以先带着报告回家等复评，不是必须今天让心内科当场看一眼才踏实。**\n\n但是，回家不是“无限期等”。回家有几个硬条件，您必须牢牢守住：\n\n- 老人回家后如果突然出现**一侧手脚没力、嘴歪、说话不清、或者吐血、黑便、牙龈出血止不住、大量瘀青**，任何一条，不要等复评，直接打120或去最近急诊。  \n- 同时，您明天或最迟后天，要主动把**心电图和凝血报告**拿去找原主管科或心内科，让他们正式给一个“抗凝或不抗凝、什么时候复查”的结论。这个不能拖成几周没人管。  \n- 如果这两天连水都喝不进去、尿明显减少到半天没尿、人发蔫，也要立刻去急诊，不能在家硬扛。\n\n**2. 吃不下这个，门诊如果只让回家喝营养液，我该不该追着问造影或胃镜？**\n\n**该追。** 您不是“多事”，是必须问清楚。  \n今天门诊如果只给了一个“继续喝营养液”就打发回家，您可以直接问一句：“他现在小口喝都费劲，体重一直掉，这样只靠口服营养液能顶多久？今天要不要安排一个上消化道造影或胃镜看食管和吻合口，不然我怕拖出问题。” 如果医生还是让回家观察，您就追问：“那如果连水都喝不进去，或体重再往下掉，我们什么时候该再来、该走急诊？请您给我一个具体的底线。”  \n如果今天门诊能直接开造影或胃镜预约，那更好。但如果没约到，也要明确“喝不进去水或体重再掉就急诊”这个底线。\n\n您现在在排队，老人累但暂时没有危险信号，这是今天能安全回家的基础。您把上面几条记住，心里就有谱了：今天不自己买药吃、凝血没大问题就先回家等复评、吃不下的事要继续追医生要方案、守住急诊底线四条。  \n等手机有电，如果还有报告上没念到的字，或者医生又说了什么让您拿不准的，随时找我。\"\n\n（注：以上回答基于您提供的口头信息和既往对话，我这边没有看到心电图原图或凝血报告原文，如果您手机恢复后能把心电图上除了“心房颤动”之外的具体描述和凝血/血小板数值发来，我再帮您做更精确的风险分层和复评时间建议。）\"",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00254",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1505min",
+      "text": "医生，我按我听懂的记下来了：今晚不自己买也不吃利伐沙班这类抗凝药，明天或者最迟后天带心电图、抽血报告、出院小结和药袋去找心内科或原主管科，让他们正式定要不要抗凝、什么时候复查。\n\n刚才我又回去问了线下门诊医生，他看了纸质报告和药袋，也是这个意思，没有让我们今天加药。吃不下这块我也问了，他让后面继续追原主管科看要不要造影/胃镜这些，今天老人实在排队累了，我们准备先带回家。\n\n急诊底线我也记着：水都喝不进去、尿明显少、人发蔫，或者吐血黑便、嘴歪、一边手脚没力、说话不清，就不等门诊直接急诊/120。现在暂时还没这些，就是吞咽堵还在，只能小口喝。我怕自己明后天又问漏，反正就抓住“抗凝正式结论”和“吃不下要不要检查/营养方案”这两件事，对吧？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_008__DeepSeek-V4-Pro",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 2.0,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 6
+}

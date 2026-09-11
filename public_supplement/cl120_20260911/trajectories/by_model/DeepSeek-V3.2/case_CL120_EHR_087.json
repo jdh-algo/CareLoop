@@ -1,0 +1,691 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "2fd12302ac45a63efd9f713c4fc6a58852f533cd754d847af754426f75632e75",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_087__anon_f107a7d064ee4972",
+    "packet_sha256": "a12a26e8e4cb59eb1d4a2d19df0ec9cce2ef8183fc67cee8b9fa3d06abf450b5"
+  },
+  "case_id": "case_CL120_EHR_087",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "low",
+    "closure_coordination_burden_score": "0",
+    "contract_complexity_index": "2",
+    "contract_complexity_level": "low",
+    "disease_domain": "oncology_hematology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "external_system_gap",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "document_or_image_quality_problem | delayed_or_staged_result_return",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "new_mass_staging",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者已完成右乳 BI-RADS 4B 定位结节切除术，术中未因冰冻当场扩大手术，术后早期生命体征和切口观察平稳。",
+      "正式病理在术后约8-9天回流，患者逐字读回关键字段：右乳肿物切除标本为乳腺导管内乳头状瘤、普通型增生、局灶硬化性腺病，未见明确恶性。",
+      "AI 医生在病理回流后解释“未见明确恶性”含义，并建议携带病理和出院资料到乳腺外科门诊复诊确认下一步。",
+      "患者随后反馈已到原手术医院乳腺外科术后门诊，外部乳腺医生查看病理和切口后确认按良性病变术后随访处理，不用再住院、再切一刀或去肿瘤内科。",
+      "门诊医生确认切口无明显感染、血肿、出血，安排继续门诊换药/后续拆线；患者仍有胀痛牵拉但无当前红旗。",
+      "后续乳腺影像复查、甲状腺/头颈外科或内分泌外科复核、肺微小磨玻璃结节年度 CT 随访均已被归入后续责任链。"
+    ],
+    "if_continued_next_focus": "若继续，应只做最终教回确认：患者能否复述乳腺换药/拆线和数月影像复查、甲状腺专科复核、肺年度 CT 随访的 owner、时间窗和红旗升级路径；不应再重复低收益等待或无依据新增肿瘤支线。",
+    "rationale": "当前 bounded episode 已从最初“多个结节和资料混乱、不知道先处理哪个”的执行失败，推进到乳腺主线完成手术、正式病理回流、AI 医生初步解释、并由原手术医院乳腺外科门诊复核确认按良性术后随访处理。术后切口已由外部医生检查，无明显感染、血肿或活动性出血；不需再次住院、扩大手术或肿瘤内科治疗。甲状腺伴钙化结节和肺微小磨玻璃结节仍需后续专科/年度 CT 随访，但它们已被明确分流为非当前急性阻断事项，有责任科室和随访方向，不再阻断本次乳腺术后/病理解释 episode 的闭合。闭环很大程度依赖外部乳腺外科真实复诊接管与确认；这支持患者医疗责任链安全闭合，但 AI 医生贡献应与外部系统贡献分开评价。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_longitudinal_residual：乳腺术后仍需按门诊单数月后复查影像，继续换药/拆线；目前有外部乳腺外科作为 owner，且不改变当前良性术后处理边界。",
+      "bounded_longitudinal_residual：甲状腺右侧伴钙化结节需另挂甲状腺/头颈外科或内分泌外科复核超声分级；当前未被证实为急症或乳腺手术阻断因素。",
+      "bounded_longitudinal_residual：左肺上叶胸膜下微小磨玻璃结节按既往建议年度 CT 随访；当前无证据提示转移、肺癌确诊或急症。",
+      "global_disease_journey_background：未来乳腺、甲状腺、肺结节的长期筛查和复诊仍需持续管理，但不属于当前已闭合 episode 的 active terminal blocker。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V3.2",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "乳腺结节要活检还是手术，甲状腺和肺部小结节也不知道怎么排",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我最近检查出来右边乳腺有个结节，报告上写着BI-RADS 4B，医生说可能要活检或切掉看病理。可我手机里只有几张拍得不太清楚的报告，还看到甲状腺也有结节、右边带钙化，另外CT写了肺里小磨玻璃结节建议一年复查。我现在有点乱，不知道先处理哪个。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的该患者相关的全部病历、影像及病理报告、检查结果、用药记录，重点关注乳腺、甲状腺和肺部结节的检查报告原文、检查日期、以及相关的临床处置记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的既往病历、外院记录、所有相关影像检查报告（特别是乳腺超声/钼靶、甲状腺超声、胸部CT的报告原文），以及近期的用药记录。另外，请提供患者的基本情况（如年龄、基础疾病史）、家庭/交通可及性信息，以及一个按时间线排列的检查记录索引，以便我理清事件的先后顺序和紧急程度。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络内可授权访问的该患者所有关于乳腺、甲状腺和肺部结节的检查报告、影像学报告（如超声、钼靶、CT）、病理报告（如有）、门诊/住院病历摘要，以及用药记录。同时，请提供与这些发现相关的时间线，以理清检查顺序。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我调取在 CareLoop 联合医疗网络内可授权访问的既往病历、外院记录、最近检查结果（特别是乳腺、甲状腺、肺部相关影像及病理报告）、用药记录，并查看家庭/交通可及性信息。请提供具体时间线、报告原文和评估。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取患者在CareLoop联合医疗网络内可授权访问的全部病历记录，包括任何与乳腺结节、甲状腺结节、肺部结节相关的影像报告（超声、CT、MRI等）、病理报告、实验室检查结果，以及患者当前用药清单。同时，查看有无家庭或交通可及性信息，以协助制定后续行动计划。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，理解您看到多个结节报告时的心情，确实容易感到困惑和无从下手。我先基于您描述的情况给您一个清晰的行动建议。\n\n首先，优先级最高的是右侧乳腺的BI-RADS 4B类结节。**这是需要优先处理、也是最可能建议进行活检的情况。** BI-RADS 4B意味着有中度恶性可能，通常需要病理学检查（如穿刺活检）来明确性质。您手上的报告不清晰，这会妨碍我们为您做出更精准的判断。所以，当前最关键的步骤是：**请您将乳腺超声（或钼靶）的正式纸质报告、以及CT报告中关于肺结节的详细描述页，尽量清晰地拍照或扫描上传。** 这样我才能看到影像的具体描述、结节的大小、形态等关键信息，为您分析下一步的必要性和紧迫性。\n\n其次，关于甲状腺结节和肺部磨玻璃结节：这两个情况根据您的描述（“建议一年复查”），通常提示风险相对较低，属于常规随访观察范畴。但它们的具体性质也需要结合清晰报告来判断，例如甲状腺结节的TI-RADS分级、肺部结节的具体大小和密度。您可以把这两份报告一并上传。\n\n在您上传报告之前，我的建议是：\n1.  **立即着手联系您的乳腺科医生，预约或讨论活检事宜。** 不要因为等待而延误BI-RADS 4B结节的评估。\n2.  **同时，整理好您提到的所有检查报告（乳腺、甲状腺、肺部CT），通过系统上传给我。**\n3.  在获得清晰报告后，我们可以一起制定一个兼顾所有问题的、分步走的随访和检查计划。\n\n请您先完成报告上传，我们根据具体内容再深入沟通。别太焦虑，我们一步一步来梳理。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+65min",
+      "text": "患者来电核对原医院乳腺外科安排后反馈：明日上午拟入乳腺外科病区，计划右乳定位结节切除并术中冰冻，最终病理待术后报告。患者仍困惑是否应先穿刺活检及甲状腺、肺小结节是否影响手术。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+65min",
+      "text": "目前仅有手术计划，未有乳腺病理结果。需要提醒患者术中冰冻和正式病理的区别，并安排后续结果追踪。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00052",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+65min",
+      "text": "医生，我刚让我爱人打电话问了原来医院乳腺外科护士站/住院那边，他们查了说我明天上午去乳腺外科病区报到，带身份证、医保卡、检查报告这些。照片我这边还是乱，我准备明天把原件都带过去。\n\n电话里我听到好像说是“右乳结节切除”，手术中可能做“冰冻”，最后还要等正式病理。我就更糊涂了：那我这种还要不要先做穿刺活检？还是他们安排切掉就等于活检了？“冰冻”和正式病理是不是一回事，冰冻要是没事是不是就没事了？\n\n还有我报告上那个BI-RADS 4B，是不是已经基本就是癌了？我现在一想到明天住院就心慌。甲状腺右边带钙化、肺里小磨玻璃写一年复查，这些会不会影响明天乳腺手术啊？您能不能给我说个简单点的，明天去之前我主要注意带什么、问主管医生哪几句话就行。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+65min",
+      "text": "收到。电话里确认了明天上午住院、计划手术，这是个重要的进展，也让你的问题变得更具体了。我帮你把问题拆开，用最简单的话说清楚，让你明天心里有底。\n\n**关于你最大的几个困惑：**\n\n1.  **“还要不要先做穿刺活检？切掉就等于活检吗？”**\n    是的。医院安排的“右乳结节切除”，并做术中“冰冻”，这本身就是一种活检方式，叫做“切除活检”或“手术活检”。意思是：把结节整个切下来，立即送去做快速病理检查（就是“冰冻”），半小时左右出结果。这和你担心的“穿刺活检”目的一样，都是取组织看病理。区别在于，穿刺是用针取一点组织，而手术是直接切掉。既然已经安排住院切除，通常就不需要再额外做穿刺了。\n\n2.  **“冰冻和正式病理是一回事吗？冰冻没事是不是就没事了？”**\n    **不是一回事，这是最关键的一点。** 术中冰冻是快速初步判断，主要用于指导医生在手术台上当场决定：如果是良性的，手术可能就到此为止；如果是恶性的，医生会根据情况决定是否扩大手术范围（比如同时做淋巴结清扫）。\n    **但是，最终的诊断必须依靠“正式病理”（也叫石蜡病理）**，这个需要把组织进一步处理、染色，过程要几天时间。正式病理报告才是最终的金标准。所以，**即使术中冰冻报告是良性的，也绝不能大意，必须等正式病理结果**。正式病理有可能和冰冻结果不同。\n\n3.  **“BI-RADS 4B是不是基本就是癌了？”**\n    不是。4B的意思是“中度可疑恶性”，恶性可能性大概在10%-50%之间。也就是说，它可能是癌，也可能只是长得比较“丑”的良性结节。这正是为什么必须做病理检查（无论是穿刺还是手术切除）来明确的原因。不要自己吓自己，把它看作是“一个需要尽快明确身份”的警报信号。\n\n4.  **“甲状腺和肺里的结节会影响明天手术吗？”**\n    通常**不会**。甲状腺结节（哪怕是带钙化）和肺里建议一年复查的小磨玻璃结节，绝大多数是低风险的，需要的是长期随访观察，一般不影响明天乳腺手术的麻醉和进行。**但是，你明天一定要把这些所有报告（乳腺、甲状腺、肺部CT）的原件带给主管医生看**，这是为了让你全身情况更完整，医生可以综合评估。\n\n**给你一个明天去之前的“极简清单”：**\n\n**要带什么？**\n- 身份证、医保卡（必须）。\n- **所有检查报告的原件**：重点是乳腺超声/钼靶报告（写BI-RADS 4B的那份）、甲状腺超声报告、肺部CT报告。如果还有别的检查（比如血常规、心电图），也一起带上。\n\n**见到主管医生，问清楚哪三句话？**\n1.  **“医生，我这个手术是只切结节，还是根据冰冻结果可能要扩大？”**（了解手术范围）。\n2.  **“正式病理报告大概多久能出来？我怎么拿到结果？”**（确认后续流程）。\n3.  **“我甲状腺和肺上的结节，对这次手术和麻醉有影响吗？我需要特别注意什么？”**（确保医生掌握你的全部情况）。\n\n你现在心慌很正常，但你已经走在最正确的处理路径上了：住院、手术、送病理。今晚好好休息，明天带齐资料，把上面的问题问清楚。我会在系统里为你登记，追踪你术后的正式病理结果。等你拿到结果，我们再一起看下一步。别怕，一步一步来。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00073",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+110min",
+      "text": "医生，我们刚把东西都装到一个文件袋里了，身份证医保卡、乳腺那张写 BI-RADS 4B 的、甲状腺、胸部CT，还有能找到的单子都放一起了。明天上午去乳腺外科病区报到。\n\n我大概明白了：明天这个切除也算取出来看病理，不一定还要先穿刺；冰冻只是当时快看一下，最后还是要等正式病理。就是我怕明天一紧张又问乱了。\n\n您能不能把明天我见主管医生要说的话再压成几句，我照着念那种？比如：\n“我这个是只切结节，还是冰冻不好就可能扩大？”\n“正式病理几天出，在哪里拿，出来后找谁看？”\n“甲状腺钙化和肺小磨玻璃，对麻醉手术有没有影响？”\n\n这样问够不够？还有正式病理出来以后，我是不是把报告上的关键几行发给您，再问下一步就行？家里人催我睡了，但我心里还是悬着。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00079",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+110min",
+      "text": "你准备得非常充分，资料带齐了，问题也总结得很好。你列出的那三句话，完全可以照着问。我再帮你提炼成三句更简洁的口头禅，你写在纸条上或记在手机备忘录里，紧张时就照着念：\n\n1.  **“医生，手术范围是只切结节，还是冰冻结果不好可能要扩大切？”**\n2.  **“正式病理报告大约几天出？我该去哪里取？拿到后该找哪位医生看？”**\n3.  **“我甲状腺和肺上也有结节，这些会影响今天的麻醉和手术安全吗？”**\n\n这样问非常清楚，足够了。\n\n**关于术后：** 是的，正式病理报告出来后，请你把报告上最关键的部分（比如诊断结论：是“某某型癌”还是“良性病变”等等）发给我，我们就可以一起讨论后续的复查、治疗或随访计划了。\n\n现在最重要的是休息。你已经在正确的处理轨道上，明天按部就班去办手续、问清楚就好。心里悬着是正常的，但请相信专业的医疗团队会为你妥善处理。先安心睡觉，保存体力。我这边会为你登记，追踪你的后续进展。祝你明天一切顺利。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00094",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+890min",
+      "text": "医生，我现在已经到乳腺外科病区了，护士站给办了入院登记，我和我爱人把那个资料袋也交给他们了，身份证医保卡，还有乳腺BI-RADS 4B那张、甲状腺、胸部CT报告都给护士/病区医生复核了。\n\n现在还没手术，也还没有什么冰冻、正式病理结果。我就坐在病区这边等主管医生过来，昨晚睡是睡了一会儿，但还是老醒。\n\n我手机备忘录里存了您给我的三句话，准备一会儿照着问：手术是只切结节还是冰冻不好会扩大；正式病理几天出、哪里拿、找谁看；甲状腺和肺结节会不会影响麻醉手术。这样我现在就先不用再问别的复杂的了吧？我怕医生一讲快了我又听不懂，尤其听到“扩大切”我就慌。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00101",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+890min",
+      "text": "很好，你已经顺利入院，资料也都交给了护士站，这是最关键的一步。你备忘录里的三句话准备得很到位，待会儿主管医生来查房时，就照着这个问，完全够用了。\n\n现在既然还没手术，也没有病理结果，你的任务就是安心等待并和主管医生沟通。听到“扩大切”心慌很正常，但记住，这只是一个可能的预案，而且是在你麻醉、没有任何痛苦的情况下进行的。如果冰冻结果不好需要扩大，恰恰说明处理得更彻底，对长远是好事。\n\n在你和主管医生谈话后，如果你愿意，可以告诉我沟通的结果，比如手术大概安排在什么时候，或者医生对甲状腺和肺结节有什么特别的嘱咐。\n\n别太紧张，你已经做得非常好了。现在先放松一下，等待医生过来。祝你沟通顺利。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00117",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+980min",
+      "text": "医生，主管医生刚才来查房了，我照着您那几句问了，但他说得挺快，我只记了个大概。\n\n他说这次主要就是处理右乳那个 BI-RADS 4B 的定位结节，应该是做右乳结节切除，具体今天还是明天还要看手术排台。术中可能做冰冻，但是冰冻只是当时先看一下，最后还是要等正式病理，正式病理好像是几个工作日到一周，要是还要加做什么免疫组化、会诊就更久。\n\n甲状腺那个和肺里小磨玻璃，他说现在不算挡这次麻醉和乳腺手术的原因，但出院后还要分别复查。我没听清是挂哪个科、什么时候挂，可能后面再问。\n\n我现在最想确认一下：是不是到现在为止，还只是“怀疑、需要切下来查”，不能因为 4B 就算已经确诊癌？还有如果术后护士或者医生跟我说“冰冻不好”或者“冰冻考虑恶性”，我当时最该追问哪一句？是不是问“现在手术范围做了哪些，最终还要等正式病理对吗”？我一听到冰冻不好、扩大切这些字就脑子空。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00122",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+980min",
+      "text": "我先调取患者在CareLoop联合医疗网络中可授权访问的既往病历、外院记录、最近检查结果（尤其是乳腺、甲状腺、肺部的影像和病理报告）、用药记录，以及家庭/交通可及性信息。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00124",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+980min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00126",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+980min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00129",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+980min",
+      "text": "你问的这两个问题非常关键，也确实是当前最核心的。我给你一个明确的回复。\n\n**第一，关于确诊：** 是的，到目前为止，BI-RADS 4B **仅仅是影像学上的“高度怀疑”，绝非确诊**。确诊癌症的金标准是病理诊断，也就是把组织切下来在显微镜下看。所以，这次手术切除并送病理，正是为了拿到这个最终的诊断。你的理解完全正确——在最终病理报告出来之前，这只是一个“需要查明的怀疑对象”。\n\n**第二，关于术中冰冻结果出来时该怎么问：** 你设想的那个问题非常准确，完全可以作为你脑子空白时的“安全提问句”。如果你听到“冰冻不好”或“考虑恶性”，可以深吸一口气，然后问医生：\n**“医生，那根据这个情况，现在手术范围做了哪些调整吗？最终诊断还是要等正式病理报告对吗？”**\n\n这句话的作用是：\n1.  帮你确认当前已经完成的操作（比如是否做了淋巴结活检或扩切），让你对现状有个把握。\n2.  再次强调并和医生确认，最终的决定（比如是否需要后续放疗、化疗、内分泌治疗）必须等待正式病理。这能避免你因为术中初步结果而过度恐慌，把决策焦点拉回到最终依据上。\n\n你已经做得非常好了，主管医生的解释也和我们的预期一致。现在你需要做的就是安心等待手术排台，保存体力。甲状腺和肺部结节的复查计划，我们可以在你出院前或拿到乳腺正式病理后，再一起详细安排。别怕，一步一步来，我在线上，有问题随时联系。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00146",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1340min",
+      "text": "医生，我手术做完回病房了，人还有点晕，打字慢。右边乳房这边包着纱布，胀胀疼，胳膊也不太敢动。护士说血压心跳还可以，暂时没说什么大出血。\n\n我爱人刚才去听医生说的，我自己没太听清。他说好像是“冰冻没有让当场扩大切”，没有改成那种大范围手术，但正式病理还没出来，要等几天到一周。我现在是不是可以理解成：只是暂时稍微松口气，不能说肯定没事，对吧？\n\n我现在脑子有点糊，想等医生查房时问几句最要紧的。是不是就问：\n1. 今天实际切了哪些，有没有动淋巴结或者扩大切？\n2. 伤口如果出血、肿起来、疼得厉害，什么情况要马上叫护士？\n3. 这个胳膊到底能不能动，能动到什么程度？\n4. 正式病理几天出、去哪拿、拿到找谁看？\n\n还有我现在切口这种胀痛牵拉感算正常吗？我怕不敢动胳膊又怕以后活动不好。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00152",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1340min",
+      "text": "首先恭喜你手术顺利完成，安全回到了病房。手术刚做完感到头晕、切口胀痛、胳膊不敢动，这些感受在术后早期是**非常常见且正常的**。护士监测生命体征平稳，这是很好的第一步。\n\n你理解得非常准确：“冰冻没有让当场扩大切”是一个积极的术中信号，意味着快速初步检查没有发现需要立即扩大手术范围的依据。但这**的确不等于最终没事**，最终结论必须等待正式病理报告，这个原则我们之前沟通过，你记得很清楚。\n\n你现在列出的4个问题，是在术后查房时最应该问、也最能让你安心的内容，非常清晰实用。我帮你稍微组织一下语言：\n1.  “医生，今天手术具体切除了哪些范围？有没有清扫或检查淋巴结？”\n2.  “切口出现什么情况（比如纱布完全湿透、有新鲜血液不断流出、突然剧烈肿胀或疼痛难忍）需要我马上按铃叫护士？”\n3.  “我这边的胳膊从什么时候开始可以活动？比如手腕、手肘能动吗？可以举到什么程度？”\n4.  “正式病理报告大概还需要几天？我应该去哪里取？拿到报告后是找您看，还是需要挂门诊？”\n\n关于你现在的胀痛和牵拉感，这完全正常。手术区域的组织会有水肿，缝合线也会带来牵拉感。这通常在术后1-2天内最明显，之后会慢慢缓解。**早期在疼痛可忍受的范围内，适当活动手腕、手肘（比如握拳、伸手指、轻轻屈肘）非常重要**，可以促进血液循环，预防肿胀和深静脉血栓，也对后期功能恢复有好处。如果因为怕疼完全不动，反而可能导致关节僵硬和肌肉萎缩。\n\n你现在最需要做的是：好好休息，按医嘱使用止痛药（如果需要），把上面的问题记下来，等医生查房时问清楚。我会在系统里为你登记，追踪你的正式病理结果。等结果出来，我们再一起解读和规划下一步。别担心，最难的一关已经过去了。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00167",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1940min",
+      "text": "医生，早上护士又来看了，说血压心跳还稳，纱布没有很快湿透，也没说有血肿，我现在就稍微放心一点。查房医生也说目前就按右乳结节切除后护理观察，没说因为冰冻当场扩大成大手术。\n\n但我还是有点害怕正式病理，医生也说要等几天到一周，可能更久。我理解的是：现在只能算暂时没发现要马上扩大切的情况，不能当成最后没癌，对吧？\n\n还有胳膊这里，我按护士说的试着握拳、伸手指、手腕动一动、肘子轻轻弯，肩膀我不敢抬高。这样做应该不会把伤口撑开吧？如果今天纱布不湿、没有突然鼓起来，是不是就继续观察，等病理和出院前再问清楚去哪里拿报告、挂谁的号？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00173",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1940min",
+      "text": "你的理解完全正确。“冰冻没有当场扩大切”是一个积极的术中信息，说明初步判断没有发现需要紧急扩大手术范围的证据。但这确实不意味着最终结论，最终诊断必须等待正式病理报告。你现在这种“暂时松一口气，但知道还没到终点”的心态是非常合理和清晰的。\n\n关于你现在的活动：你做的非常好。按护士指导的，轻轻活动手腕、手指、手肘，**不但不会撑开伤口，反而是非常必要的**。这种轻柔的活动能促进血液循环、减轻水肿、防止关节僵硬，对术后恢复至关重要。只要避免突然、用力地抬高肩膀或做大幅度的外展动作，就不会牵扯到胸部的伤口。继续保持这种温和活动是安全的。\n\n对，今天如果纱布没有湿透、伤口没有突然鼓起（血肿）、疼痛没有剧烈加剧，就按目前计划继续观察。你在出院前，一定要像你计划的那样，问清楚三个关键点：\n1.  **正式病理报告预计何时出？**\n2.  **去哪里取报告？（是病案室、病理科还是医生办公室？）**\n3.  **拿到报告后，我该找哪位医生（主管医生、门诊医生）看结果，并制定后续计划？**\n\n我会在系统里为你登记，追踪你的正式病理结果。一旦报告出来，请你把报告的关键结论部分（诊断是什么）发给我，我们就可以一起解读，并规划下一步的复查或治疗了。你现在需要的是耐心和休息，最难的一步已经完成，做得很好。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00188",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+2240min",
+      "text": "医生，下午护士和住院医生又给我和我爱人交代了一遍，我现在人有点累，就记个大概。\n\n他们说正式病理还没出来，差不多几天到一周，要是还加做免疫组化、会诊这些可能更久。出来以后不是我自己看看就完了，要拿给乳腺外科门诊或者主管医生看。我爱人帮我记下了，但我还是怕到时候流程弄错。\n\n现在伤口纱布还没很快湿透，也没鼓包，疼是胀痛牵拉那种，没有突然特别厉害。护士让我手指手腕肘子轻轻动，肩膀别大抬，我就照着做。\n\n我想再确认一下：我现在这样等正式病理出来再找乳腺医生复诊，是安全的吧？甲状腺右边带钙化那个、还有肺小磨玻璃，是不是先不抢在乳腺病理前面处理，等乳腺这个结果清楚后再按科室随访？我就怕把顺序排错了。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00194",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2240min",
+      "text": "你问的这两个问题非常重要，尤其是关于处理顺序，我非常理解你的担忧。\n\n**首先，关于安全性和流程：**\n是的，你现在的处理方式是完全安全的。等待正式病理报告，然后拿着报告去乳腺外科门诊复诊，这是标准且正确的流程。护士和住院医生的交代非常清晰。请放心，等病理出来再决定下一步，这是最稳妥的做法。你不用现在就焦虑流程问题，到时候只要记住“拿报告、挂乳腺外科门诊号、让专科医生解读”这三步就可以。\n\n**其次，关于处理顺序：**\n你的判断非常正确。甲状腺和肺部的结节，应该等到乳腺的病理结果明确后，再根据具体诊断和医生的整体建议，分别去对应的科室（通常是内分泌科/甲状腺外科、呼吸科/胸外科）进行规律随访。\n\n**为什么这样安排是合理的？**\n1.  **病情优先级不同**：右乳的BI-RADS 4B结节是当前最需要明确诊断（良恶性）并处理的问题。它的结果（是良性、原位癌还是浸润癌）将直接影响你后续的整体治疗和随访策略，甚至可能影响其他两个结节的处理紧迫性。\n2.  **避免信息干扰**：如果同时处理多个结节，信息会变得复杂，不利于集中精力解决最主要的问题。\n3.  **专科管理**：甲状腺和肺部小结节通常属于慢性、惰性问题，短期（几周到几个月）内进行随访复查，风险是可控的。等乳腺问题告一段落，我们会有更清晰的思路来规划它们。\n\n所以，你现在的顺序是对的：**第一步（当前）**：安心恢复，等待并获取乳腺正式病理报告。**第二步（拿到报告后）**：乳腺外科门诊复诊，制定后续治疗/随访计划。**第三步（之后）**：根据乳腺的情况和医生建议，再分别安排甲状腺和肺结节的专科随访。\n\n你目前伤口的情况听起来也在正常恢复范围内。继续保持温和的手部活动，注意观察纱布。最难、最关键的一步你已经完成了，现在就是耐心等待结果。等你拿到正式病理报告，把上面的“病理诊断”结论告诉我，我们可以一起解读，并帮你规划清晰的下一步。好好休息。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00210",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+5120min",
+      "text": "医生，我已经出院回家两天了。现在主要还是右边切口这边胀痛、扯着疼，胳膊不太敢大动。我爱人看了纱布，没有一下子湿透，摸着也不像突然鼓了一个大包，我也没发烧那种。\n\n刚才家里人打电话问了病区/病理那边，说正式病理还没出来，还在什么制片、审核，估计还要等几个工作日。还说如果要加做免疫组化或者复核，就会更久。我听到“审核”“加做”这些字又开始慌了，这个是不是只是流程上可能会这样，不代表已经查出来不好了吧？\n\n那我现在是不是就按您说的：伤口没突然出血、鼓包、发烧、疼痛猛加重，就在家休息等病理；报告一出来就挂乳腺外科/找主管医生看？甲状腺和肺那个小结节我先不折腾，等乳腺病理出来后再排，是这样对吗？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00216",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+5120min",
+      "text": "我完全理解你听到“审核”“加做”这些词时的不安。请先放宽心，这完全是标准病理流程中的常规环节，不代表已经查出来不好的结果了。\n\n正式病理报告的制作需要多个步骤：先是“制片”，就是把组织切成薄片、染色；然后是“审核”，由病理科医生在显微镜下观察、分析、撰写报告。如果初步的常规染色无法给出明确的诊断（这在乳腺病理中很常见，比如区分是导管原位癌还是浸润癌，或者细胞不太典型时），就需要“加做免疫组化”——这是一种特殊的染色技术，用来检测细胞表面的特定蛋白标记物，帮助判断肿瘤的类型、分型等。所以，“加做”完全是出于诊断精准性的需要，是一个非常普遍的操作，和你个人结果的好坏没有直接关系。\n\n你目前的计划完全正确，我会帮你再梳理一下：\n1.  **伤口恢复**：胀痛、牵拉感在术后几天内很正常。继续观察，只要纱布没有短时间内大量浸湿（湿透）、伤口没有突然鼓起大包、体温正常、疼痛没有剧烈加重，就说明恢复平稳。可以继续温和地活动手腕、手指和手肘，避免肩膀大幅抬高。\n2.  **等待病理**：在家安心休息，耐心等待。这个过程需要时间。\n3.  **后续步骤**：一旦正式病理报告出来，请立刻挂乳腺外科的门诊号，找你的主管医生或门诊医生看结果、制定后续计划。\n4.  **其他结节**：对的，甲状腺和肺部的结节，目前处理顺序排在后面。等乳腺病理明确后，我们再根据情况，由相应专科（内分泌科/甲状腺外科、呼吸科/胸外科）来安排规律的复查随访，这样是安全且合理的。\n\n你已经做得非常好，最难的手术关已经过了。我会在系统里为你登记，追踪病理结果。一旦报告出来，请你把报告上“病理诊断”那一栏的结论文字发给我，我可以先帮你初步解读，为你去门诊做准备。\n\n别慌，我们一步一步来。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00231",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+5360min",
+      "text": "医生，我跟我爱人把您说的记到手机备忘录了。现在我右边切口还是胀痛、扯着疼，纱布没有很快湿掉，也没摸到突然鼓个包，我量着也没发烧。\n\n病理还没通知出来，所以现在也没报告能给您看。我理解就是：没有这些吓人的情况我就在家休息等；要是纱布很快湿透、突然肿起来、发烧，或者疼得明显厉害，就联系病区或者去急诊。等报告出来，我重点看“病理诊断”那栏，把字发给您，再挂乳腺外科/找主管医生看。\n\n甲状腺和肺那个小结节先放后面，不急着现在折腾。医生，我这样记没有漏大事吧？我现在主要就是怕自己到时看报告看错栏。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00238",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+5360min",
+      "text": "你的记录非常完整、清晰，没有漏掉任何大事。你已经把“如何安全等”和“拿到报告后该做什么”这两大块的关键点都抓住了，而且把“病理诊断”这一栏圈出来，这是最最核心的信息，你看得非常准。\n\n请你放心，正式病理报告的结构通常很清晰，结论就在最显眼的“病理诊断”或者“诊断意见”栏目里，你不会看错的。即使到时你拿不准，拍张照发给我，我帮你确认也可以。\n\n你现在恢复的情况听起来都在正常范围内。胀痛、牵扯感会慢慢减轻，可能要持续一两周。只要没有你备忘录里记的那些“报警信号”，就在家好好休息、适当活动手腕和手肘，耐心等待。\n\n做得很好，就这么办。报告一出来，随时联系我。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00253",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+9680min",
+      "text": "系统提示：右乳结节切除术后正式病理报告已可查询。患者可能只能读出“病理诊断/诊断意见”关键行，需核对报告文本可靠性后解释并安排乳腺外科复诊/后续处理。",
+      "turn": 10,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00257",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+9680min",
+      "text": "医生，病理今天出来了，我手有点抖，我按“病理诊断”那一栏给您照着打，我不敢保证有没有漏字：\n\n“右乳肿物切除标本：乳腺导管内乳头状瘤，伴导管上皮普通型增生，局灶硬化性腺病，未见明确恶性。”\n\n后面好像还有一行是什么“结合临床随诊”之类的，我爱人说看不太懂。这个“未见明确恶性”是不是就不是癌啊？那“乳头状瘤”“增生”“硬化性腺病”听着也吓人，还要不要再住院或者再切一次？\n\n我伤口这两天还是胀痛牵拉，但没有突然鼓包，也没发烧。乳腺外科门诊我还没挂上，明天去挂可以吗？我去门诊主要要问医生哪些话？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00263",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+9680min",
+      "text": "我先帮你解读一下你读出的这份病理结果。首先，最关键的是 **“未见明确恶性”**。是的，你的理解完全正确，这**意味着在显微镜下，病理科医生没有看到明确的癌细胞**。这是一个非常重要的好消息。\n\n接下来解释一下那几个听起来复杂但实际上是良性描述的词：\n- **“导管内乳头状瘤”**：可以想象成乳腺导管内壁长了一个小小的、类似“小肉揪”的良性肿瘤。它本身不是癌，但有非常低的概率未来可能发生改变，所以需要规律复查。\n- **“导管上皮普通型增生”** 和 **“硬化性腺病”**：这是乳腺组织在微观层面上常见的、良性的结构改变或增生，它们本身不是肿瘤，也意味着组织更活跃一些，但同样是良性的。\n- **“结合临床随诊”**：这是标准的病理报告结语，意思是“结合你整个人的情况，建议定期随访复查”。这恰恰证明了结果是良性的，所以下一步是观察，而不是再次手术。\n\n**综合来说，这份报告是一个良性的病理诊断，不是你担心的癌症，也**不需要再次住院或再切一次**。你需要做的是去乳腺外科门诊复诊，由医生根据这个最终病理结果，制定后续的复查计划。\n\n你的伤口情况听起来正常，明天去挂门诊完全可以。这是你手术后的第一次复诊，非常重要。去见医生时，你可以主要问以下几个问题，我来帮你梳理：\n1.  **切口恢复**：我的伤口愈合怎么样？什么时候可以拆线/换药？洗澡有什么注意事项？多久能恢复正常活动，比如开车、做家务、锻炼？\n2.  **病理报告解读与确认**：（把报告给医生看）想请您再确认一下，这个“未见明确恶性”是不是意味着完全排除了恶性肿瘤？这个“乳头状瘤”我需要特别注意什么吗？\n3.  **下一步随访计划**：根据这个良性的病理结果，我后续需要多长时间回来复查一次？复查是做乳腺彩超还是钼靶？我需要特别注意哪些症状（比如发现新肿块、乳头溢液等）？\n4.  **其他健康问题**：借此机会，可以跟医生提一下你的甲状腺结节和肺小结节，咨询一下乳腺的良性结果出来后，处理这些结节的优先顺序和大概的时间建议。\n\n这样你去门诊就有了清晰的目标。这个结果是个好消息，先不用太紧张了。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00281",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+10640min",
+      "text": "医生，我们今天上午已经去原来做手术那个医院乳腺外科门诊看过了，我和我爱人把病理报告、出院资料都带去了。门诊医生也看了切口，说这个病理目前按良性的术后随访处理，不用再住院，也不用再切一刀，更不用去肿瘤内科。听到这个我是真松了一口气。\n\n切口医生看了说没有明显感染、血肿、出血这些，让我继续按门诊换药，后面拆线。我现在还是右边胀痛、扯着疼，胳膊不敢抬太高，医生也说近期别大幅度拉扯右胳膊。\n\n但门诊讲得有点快，我怕我又记混了。乳腺这边好像是几个月后复查乳腺彩超，具体日期我得翻门诊单；甲状腺右边带钙化那个，医生说要另外挂甲状腺/头颈外科还是内分泌外科复核超声分级，我没太分清挂哪个；肺那个小磨玻璃结节说不是现在急事，按一年复查胸部CT。\n\n医生，您帮我把这几件事排个顺序行吗？我现在理解是：先按时换药拆线，乳腺按单子复查；然后再约甲状腺专科；肺结节放到年度CT随访。这样对不对？还有“良性随访”是不是不是说永远不用管了，只是现在不用再手术治疗？",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_087__DeepSeek-V3.2",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.5,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 11
+}

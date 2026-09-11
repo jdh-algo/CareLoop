@@ -1,0 +1,691 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "fd23f28b5544949a4913636f5539d66339170076ba9aaa13a9b52b176af85d8a",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_081__anon_dacadbd8d83bc68a",
+    "packet_sha256": "6e8c7f8cb9ba7a9419a5a9a1bf7800bc1df820d2d4e91cdcb97e003bda87e20b"
+  },
+  "case_id": "case_CL120_EHR_081",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "pediatrics",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "6",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "discharge_transition",
+    "target_problem": "short_stature_growth_hormone_deficiency_and_scoliosis_followup",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属已读回并确认：10天后小儿内分泌号不退不改、按时就诊。",
+      "家属已确认父亲负责复诊前1-2天去原医院窗口补打 GH峰值/激发试验完整报告、骨龄报告、脊柱角度/Cobb角相关报告。",
+      "医生明确说明资料若补不全也先带现有资料按时就诊，不因缺少报告耽误门诊。",
+      "医生和家属均确认康复科/骨科随访不是取消，而是内分泌复诊后或约2-3周内作为第二步安排。",
+      "孩子当前稳定：精神可，无发热、背痛、腿麻无力、大小便异常等急性红旗。",
+      "家属最终回复表示号会保留、会补打资料、复诊照常、康复科后续安排，并计划拿到报告或门诊有新说法后再咨询。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应跳到复诊前资料补打执行反馈，或10天后小儿内分泌门诊结果回流；重点核对GH激发试验、骨龄、IGF-1/IGFBP-3、脊柱Cobb角，并把专科治疗/观察决定行动化。",
+    "rationale": "本次 case 的目标是儿童矮小症/生长激素缺乏合并脊柱侧弯的出院过渡导航，而不是完成整个长期内分泌和脊柱侧弯管理。轨迹中医生已结合可获得病历/家属读回信息，完成急症红旗排查、解释主次顺序、把模糊的出院建议转化为可执行计划，并取得家属 teach-back 与最终确认：10天后小儿内分泌号已锁定，父亲负责复诊前1-2天补打 GH 激发试验完整报告、骨龄报告、脊柱X线/Cobb角等资料；资料不全也不退号、不延误复诊；康复科/骨科不是取消，而是放在内分泌复诊后或2-3周内落实；孩子目前稳定且家属知道红旗时提前就医。因此当前 bounded discharge-transition episode 责任链已安全闭合。未完成的内分泌诊断确认、治疗决策、Cobb角分层和长期随访属于有 owner、时间窗和升级路径的后续专科管理残余，不阻断本次出院过渡闭环；但不能判为 durable_longitudinal_management。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：GH激发试验完整结果、骨龄、IGF-1/IGFBP-3、脊柱X线/Cobb角尚未真实补打或回流；但已有父亲负责、复诊前1-2天窗口补打、10天后内分泌门诊核验的路径。",
+      "bounded_residual_followup：小儿内分泌复诊尚未发生，是否启动生长激素治疗、剂量、监测和费用等仍待专科决定；这属于下一阶段专科责任，不是当前出院导航 episode 的阻断项。",
+      "bounded_residual_followup：康复科/骨科尚未预约和评估，Cobb角及侧弯风险分层未明确；但已被明确为内分泌后或2-3周内落实，且红旗提前就医。",
+      "global_disease_journey_background：儿童矮小症/生长激素缺乏和脊柱侧弯需要跨月/跨年的生长速度、治疗副作用和侧弯进展监测，当前闭环不代表长期管理完成。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3.8-Max",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "孩子偏矮复查后还要不要赶着去康复科",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "你好，我想问下我家孩子最近因为长得慢住院查了一圈，出院单上写了矮小症、生长激素缺乏，还说胸片看着有点脊柱侧弯，要去康复科门诊随访。我们家里人听得有点乱，孩子现在精神还行，也不发烧，就是不知道这些检查结果到底急不急，下一步该先看哪个科。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取该患儿在CareLoop联合医疗网络内最近一次住院的出院记录/出院小结、胸片报告原文、生长激素激发试验或相关内分泌检查结果、目前用药清单，以及时间线。同时查看家庭照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取该患儿在CareLoop联合医疗网络内的具体病历记录详情（R01到R05的完整内容，包括出入院记录、病程记录）、所有检查检验结果（特别是生长激素激发试验、骨龄片、脊柱X线/胸片报告）、用药清单和住院时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请帮我调取该患儿在CareLoop联合医疗网络内的完整住院病历、出院小结/出院记录原文、生长激素激发试验结果、甲状腺功能等内分泌相关化验、胸片或脊柱影像报告及结论、当前用药清单，以及按时间排列的就诊时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请调取该患儿在CareLoop联合医疗网络内已授权/已同步的以下资料：1. 最近一次住院的出院记录/出院小结（重点关注诊断、出院医嘱、随访建议）；2. 生长激素相关检查结果（如生长激素激发试验、IGF-1、骨龄片报告）；3. 胸片或脊柱影像报告原文（明确脊柱侧弯的描述和Cobb角等细节）；4. 当前用药清单；5. 患儿基本信息（年龄、性别、身高体重）。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请调取记录R01到R05的详细内容，包括出院小结、病历记录原文；同时查询该患儿所有已同步的检查检验结果（特别是生长激素激发试验、IGF-1、甲状腺功能、骨龄片报告、胸片/脊柱影像报告）、用药记录和住院时间线。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，理解您和家人的担心。孩子住院查了一圈，出院单上写了几个诊断，确实容易让人心里没底、不知道先顾哪头。\n\n首先给您吃颗定心丸：孩子目前精神好、不发烧，说明**没有需要立刻去急诊的紧急情况**，您可以稍微松一口气，我们按部就班来安排门诊随访就好。\n\n关于“先看哪个科”和“急不急”，我帮您理一理顺序：\n\n**第一步：小儿内分泌科（建议优先预约）**\n出院单提到的“矮小症、生长激素缺乏”属于这个科室的专业范围。这通常不是急症，但**有时间窗**——因为孩子的骨骼是在不断生长的，如果确诊需要打生长激素，越早规范干预效果越好。所以这个不用连夜跑急诊，但建议在出院后1-2周内尽快挂上号。\n\n**第二步：康复科或小儿骨科（按出院医嘱时间随访即可）**\n胸片提示的“脊柱侧弯”，很多孩子在快速生长期会有轻度表现。出院单建议去康复科随访，您按照上面写的建议时间去就行。医生可能会让孩子拍一个专门的“全脊柱X光片”来评估弯曲的角度，再决定是只需要做体态锻炼，还是需要戴支具。\n\n---\n\n**为了让我能更准确地帮您把关，需要麻烦您做一件事：**\n\n我这边目前只能看到孩子有住院记录，但具体的检查数值还没有同步过来。**请您把出院小结（特别是上面写的生长激素激发试验结果、IGF-1水平、骨龄报告）以及胸片的报告单，拍成清晰的照片发给我看一下。** \n\n有了这些具体数据，我才能帮您判断：\n1. 生长激素缺乏的程度如何？\n2. 脊柱侧弯大概是什么程度？需不需要提前看骨科？\n\n**在带孩子复诊前，您可以在家先做这几件事：**\n1. **整理资料**：把这次住院的所有纸质报告、片子按时间排好，装进一个文件袋，复诊时直接带给专科医生看，避免重复抽血化验。\n2. **观察体态**：让孩子脱掉上衣自然站立，从背后看看两边肩膀是不是一样高、后背有没有一边明显凸起，如果有，可以拍个照片，到时候给康复科医生看。\n3. **日常注意**：保证孩子充足的睡眠（晚上9点半前尽量入睡，有利于自身生长激素分泌），正常均衡饮食，暂时不要盲目给孩子吃任何号称能“长高”的保健品。\n\n您先把出院小结和关键报告的照片发上来，我们一步步来，别着急。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者家属已提供部分出院资料，能确认诊断和康复随访建议，但关键检查数值和脊柱侧弯角度仍缺失/不可读，建议要求补拍或请家属逐项读回。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "小儿内分泌随访尚未形成已预约事实，需下一轮询问家属是否能挂到1-2周内号源及是否有交通/请假困难。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "脊柱侧弯随访未完成，现有资料不足以判断角度；需家属带原片/报告就诊或补充清晰报告。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00054",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我刚才发了两张出院小结和一张化验单，不知道您那边能不能看清。我自己这边只能看懂上面写着“矮小症”“生长激素缺乏症”，还有一行好像是“脊柱侧弯”，出院医嘱那里写了“康复科门诊随访”。\n\n但是您说的那个生长激素激发试验峰值、IGF-1、IGFBP-3、骨龄，我翻了半天没找到，可能在别的页，也可能我不认识。胸片还是脊柱片我也有点分不清，只记得住院医生说“有点侧弯”，现在这张纸上我没看到角度。\n\n孩子现在精神还可以，不发烧，吃饭跟平时差不多。我们现在最担心的是小儿内分泌号还没挂上，如果只能挂到一两周后，会不会耽误长高治疗？康复科能不能先往后放一放，先看内分泌？如果照片不清，您告诉我该把哪几行字读给您，我照着念。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取该患儿在 CareLoop 联合医疗网络内已授权可访问的最近一次住院病历、出院小结原文、检查检验结果（特别是生长激素激发试验、IGF-1、IGFBP-3、骨龄报告、胸片或脊柱X光报告）、用药清单和时间线。同时查看是否有康复科或小儿内分泌科的门诊预约记录。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "您好，您发来的资料我这边收到了。因为有些检查项目名字比较专业，您在出院小结上没找到很正常，别着急。\n\n先回答您最担心的两个问题：\n\n1. 一两周后才挂上小儿内分泌科，会不会耽误长高？\n不会的。生长激素缺乏症的评估和治疗是一个按“月”来规划的慢病管理过程，不是急症。晚一两周复诊不会影响最终的身高改善效果，您可以放心等号，不用因此焦虑。\n\n2. 康复科能不能往后放一放，先看内分泌？\n完全可以。孩子目前精神好、不发烧、吃饭正常，脊柱侧弯在住院时医生只说“有点”，通常提示是轻度的可能性大。在没有明显疼痛或体态快速变化的情况下，优先看小儿内分泌科是对的。康复科门诊可以等内分泌看完、或者号源宽裕了再安排，推迟两三周一般没有风险。\n\n为了让我更准确地帮您把关，既然照片里有些字不好认，麻烦您拿着出院小结和化验单，帮我逐字念一下这几行内容（如果某一行实在找不到，就告诉我没看到，千万别猜）：\n\n第一组：关于生长激素的\n- 找一找有没有写“激发试验”、“GH峰值”或者“生长激素峰值”的字样，后面跟着的数字是多少？单位一般是 ng/mL 或 μg/L。\n- 化验单上有没有英文缩写 IGF-1 或 IGFBP-3？后面的数字和单位是什么？\n\n第二组：关于骨头的\n- 有没有一张报告写着“骨龄”或者“左手腕正位片”？上面写的骨龄相当于几岁几个月？\n- 关于脊柱侧弯，报告标题是“胸部X线/胸片”还是“全脊柱X线”？结论里除了“侧弯”两个字，有没有写类似“Cobb角”多少度，或者“约XX度”的数字？如果没有数字也没关系，把那句话原原本本念给我就行。\n\n第三组：孩子的基本信息\n- 孩子现在的实际年龄、性别、身高（厘米）和体重（公斤），麻烦也一并告诉我。\n\n您照着念给我之后，我就能大致判断孩子目前的严重程度，以及后续治疗大概会怎么安排。这段时间继续让孩子早睡（尽量9点半前）、好好吃饭、正常活动即可，暂时不要买任何“增高保健品”。我们一步步来，我在这里陪您一起理清楚。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00082",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+22min",
+      "text": "医生，我按您说的翻出来几张，先照着念，可能有的标题我看混了。\n\n出院小结上诊断那里写的是：**矮小症、生长激素缺乏症、脊柱侧弯**。出院医嘱那边有一句是：**可至康复科门诊随访**，差不多就是这个意思。\n\n化验单上我看到两个英文的：\n- **IGF-1：126.00 ng/mL**，后面参考范围我看着有好几行年龄段，我不太会对；\n- **IGFBP-3：3.78 μg/mL**，这个也是不知道算不算低。\n\n您说的“GH峰值/生长激素峰值”我还是没找到明确数字。我只在一页上看到好像写着用了**可乐定片**，像是做检查过程的，但没有看到“峰值多少”那一行。骨龄或者左手腕正位片报告，手边这个文件袋里也没翻到。脊柱这块只看到结论类似“脊柱侧弯明确”，没有看到 Cobb角，也没看到多少度，我也分不清是不是全脊柱片。\n\n孩子是**女孩，9岁多一点**，身高我刚量大概**120厘米出头**，体重**22公斤左右**。现在人在家里正常玩，没说背疼。\n\n我现在挂号App里看到小儿内分泌最早大概**10天后**有号，还没付款。您看我是不是先把这个号锁了？缺的那个 GH峰值、骨龄、Cobb角，是不是等去复诊前我再回原来住院医院窗口打印出来带过去？康复科我就先不急着挂，等内分泌看完再说，可以吗？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "请调取该患儿在CareLoop联合医疗网络内已授权可访问的最近一次住院记录，包括：出院小结全文、生长激素激发试验（可乐定激发）完整报告及GH峰值数值、骨龄/左手腕正位片报告、脊柱相关影像学报告（胸片或全脊柱X线，含Cobb角）、以及IGF-1和IGFBP-3化验单原文。同时查看是否有门诊用药记录或既往随访时间线。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00089",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 7 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00091",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00093",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+22min",
+      "text": "请帮我调取该患儿在CareLoop联合医疗网络内的住院病历、出院小结原文、生长激素激发试验（含可乐定激发）完整结果及GH峰值数值、IGF-1和IGFBP-3检验报告、骨龄评估报告（左手腕正位片）、脊柱X线或全脊柱片报告（含Cobb角），以及当前用药清单和时间线。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00095",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00097",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00099",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+22min",
+      "text": "请帮我调取该患者在CareLoop联合医疗网络内的所有已授权病历记录、出院文书原文、检查检验结果（特别是生长激素激发试验/GH峰值、IGF-1、IGFBP-3、骨龄/左手腕正位片报告、脊柱X线/Cobb角）、用药记录和住院时间线。同时查看家庭照护可及性信息。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00101",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 7 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00103",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00105",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+22min",
+      "text": "请调取该患者在CareLoop联合医疗网络内最近一次住院的全部记录详情，包括：1. 所有病历记录（records R01-R05及另外2项）的完整内容；2. 所有出院文书/文档（documents）原文；3. 住院期间全部检查检验结果（test_results），特别是生长激素激发试验（含可乐定激发）各时间点GH数值和峰值、IGF-1、IGFBP-3、骨龄/左手腕正位片报告、胸片或全脊柱X线报告及Cobb角；4. 住院期间用药清单（medications）；5. 按时间排列的住院时间线（timeline）。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00107",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+22min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 7 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00109",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+22min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+22min",
+      "text": "请帮我调取该患儿在CareLoop联合医疗网络内的住院病历、出院小结原文、生长激素激发试验（可乐定激发）完整结果（含各时间点GH数值和峰值）、IGF-1和IGFBP-3检验报告、骨龄评估报告（左手腕正位片）、脊柱X线或胸片报告（含Cobb角等描述）。同时查看患儿基本信息：性别、年龄、身高、体重记录。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00115",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+22min",
+      "text": "您好，您念得非常清楚，这几项关键信息对我判断孩子的情况很有帮助。您整理得很用心，辛苦了！\n\n我先直接回答您最关心的三个问题，给您吃颗定心丸：\n\n**1. 小儿内分泌科10天后的号，要不要先锁住？**\n**一定要锁，现在就付款把号挂上。** 就像我之前跟您说的，矮小症和生长激素缺乏症的评估是按“月”来规划的慢病管理，等10天完全不会耽误长高治疗。但如果现在不锁，过几天可能就要等更久，所以先把这个号拿下来最重要。\n\n**2. 缺的GH峰值、骨龄、Cobb角报告怎么办？**\n**您的想法非常对。** 建议您在带孩子去复诊前的一两天，带上就诊卡或医保卡，回原来住院医院的病案室或打印窗口，把这3样东西补打出来，和现在的资料装进同一个文件袋里带给内分泌科医生。具体要补打的清单我写在下面，您可以截图保存：\n- **生长激素激发试验完整报告**（上面有吃可乐定后各个时间点抽血的生长激素数值，以及最后的最高峰值）；\n- **骨龄报告**（左手腕正位片及骨龄评估结果）；\n- **脊柱X线报告**（最好能看清是全脊柱片还是胸片，报告上如果有Cobb角度数最好，如果没有也没关系，原报告带过去即可）。\n\n**3. 康复科是不是先不急着挂？**\n**是的，完全可以先放一放。** 孩子现在精神好、不背疼、正常玩，说明脊柱侧弯目前没有引起急性不适。优先看小儿内分泌科是对的。等内分泌科复诊结束，或者过两三周号源宽裕了，再按出院医嘱去康复科门诊随访就可以。\n\n---\n\n接下来，我用大白话帮您把目前的情况理一理，您心里就有底了：\n\n**关于身高和体重：**\n9岁女孩标准身高中位数大概在134厘米左右，咱家孩子120厘米出头，确实偏矮不少（低于同龄第3百分位），这也是为什么住院会明确诊断“矮小症”。体重22公斤相对她的身高是匀称的，说明营养吸收没有大问题，主要矛盾还是在生长激素分泌不足上。\n\n**关于化验单上的 IGF-1 和 IGFBP-3：**\n这两个指标是反映体内生长激素整体水平的“晴雨表”。9岁女孩的IGF-1一般在150~300 ng/mL以上，咱家孩子是 126.00 ng/mL，确实是偏低的；IGFBP-3 3.78 μg/mL 大致在正常偏低范围。这两个数字配合出院小结上的“生长激素缺乏症”诊断，方向是一致的。\n但是，最终决定能不能打生长激素、怎么打，**必须要看您还没找到的那个“GH峰值”**。如果激发试验峰值确实很低（一般小于10 ng/mL），医生就会启动生长激素治疗方案。这就是为什么那张报告极其重要，一定要去医院补打出来。\n\n---\n\n**总结一下，您接下来的行动清单（按顺序做就行）：**\n\n1. **今天/明天：** 在挂号App上把10天后的小儿内分泌科门诊号付款锁定。\n2. **复诊前1-2天：** 跑一趟原来住院的医院，补打出“激发试验完整报告”、“骨龄报告”和“脊柱X线报告”，装进文件袋。\n3. **这段时间在家：** 继续让孩子晚上9点半前入睡，正常吃饭，多跳绳或摸高，**绝对不要买任何增高保健品或偏方**。\n4. **观察脊柱：** 既然确诊了侧弯，虽然不急，但平时可以留意一下孩子站立时两边肩膀是不是一样高、弯腰时后背有没有一边明显鼓起来。如果发现突然加重或者孩子喊背痛，就提前去骨科看，不用等。\n\n您现在的思路已经非常清晰了，一步步按这个计划走就不会乱。等您拿到补打的报告，如果还有看不懂的地方，随时发给我，我再帮您把关。别太焦虑，咱们一起陪着孩子把这件事处理好。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00130",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+35min",
+      "text": "医生，我刚刚切到挂号App里把那个**10天后的小儿内分泌号付款挂上了**，预约成功的截图我也存好了，这下心里稍微踏实点。\n\n您刚才列的那三样报告——**生长激素激发试验完整报告、骨龄报告、脊柱X线/Cobb角那个报告**，我也截图保存了。不过现在手头文件袋里还是没有这几张，我准备复诊前一两天去原来住院医院补打。\n\n我想再确认两件事：\n\n1. **康复科我现在先不挂，等内分泌看完再说，这样可以吧？** 孩子现在还在家正常玩，没发烧，也没喊背疼。\n\n2. 补打报告这个事，**能不能让孩子爸爸去办？** 他带孩子的就诊卡、医保卡，还有我俩身份证或者户口本这些去病案室/打印窗口行不行？还是必须孩子本人也去？我怕复诊当天资料不全又白跑一趟。  \n如果到时候窗口只补到其中一两张，比如GH峰值那张没打出来，内分泌门诊还能先看吗？还是一定要三张都齐了才有用？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+35min",
+      "text": "您好，号挂好了、截图也存了，您做得非常棒！这几步安排得很扎实，我心里也跟着踏实了不少。\n\n针对您问的两个问题，我给您明确答复：\n\n**1. 康复科先不挂，等内分泌看完再说，可以吗？**\n完全可以。孩子现在精神好、正常玩、没喊背疼，说明脊柱侧弯目前没有引起急性不适或压迫症状。优先看小儿内分泌科是完全正确的顺序。等内分泌复诊结束，或者过两三周你们时间宽裕了，再按出院医嘱去康复科随访就行，推迟这段时间不会影响孩子的安全。\n\n**2. 补打报告能不能让孩子爸爸一个人去办？需要带什么？孩子必须去吗？**\n一般情况下，打印既往住院报告和病历是不需要孩子本人到场的，爸爸代办完全可以。他带上这些资料通常就够了：\n- 孩子的就诊卡、医保卡；\n- 孩子的身份证或户口本（证明患者身份）；\n- 代办人（爸爸）的身份证；\n- 最好把出院小结也带上，方便窗口工作人员快速定位是哪次住院。\n不过不同医院病案室的具体规定可能略有差别，建议爸爸出发前先打一下原来住院医院的总机或病案室电话确认一句“家属代打住院检查报告需要带哪些证件”，这样最稳妥，避免白跑。\n\n**3. 如果到时候只补到一两张，比如GH峰值那张没打出来，内分泌门诊还能先看吗？**\n能看，一定要按时去，千万别因为缺一张报告就把好不容易挂上的号退掉或往后推。\n我帮您理一理这三张报告的优先级：\n- **最重要的一张是“生长激素激发试验完整报告”（含GH峰值）**。因为医生要决定能不能开始打生长激素、怎么定剂量，主要靠它。如果这张实在没打出来，您可以让爸爸在窗口问一下能不能查到电子版，或者请窗口写个说明。万一真拿不到，内分泌科医生也能先看现有的IGF-1、IGFBP-3结果和孩子的体格情况，必要时指导您后续怎么补查，不会让您白跑一趟。\n- **第二重要的是骨龄报告**。这关系到评估孩子还有多少生长空间，对制定方案也很关键。\n- **第三是脊柱X线/Cobb角报告**。因为这次首诊是看内分泌，脊柱报告主要是带去给医生留个底，评估侧弯有没有影响整体发育，所以即使暂时缺这一张，也完全不影响内分泌科医生先看身高和激素的问题。\n\n总结一下：三张都齐了当然最理想，但就算缺一张，尤其是缺脊柱那张，内分泌门诊照样能先看。只有激发试验报告最关键，尽量争取补到。\n\n您现在的计划已经非常周全了：号锁好了，清单记下了，谁去跑腿也安排好了。这几天就让孩子在家好好吃饭、早点睡觉、正常玩耍。等爸爸去补打完报告，拿到手之后如果有看不懂的字眼，随时发给我，我再帮您把关。咱们一步步稳稳地走。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00151",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+43min",
+      "text": "好的医生，我怕自己记错，最后跟您对一下：那个10天后的小儿内分泌号我们不退、不改，按时去看；孩子爸爸复诊前一两天去原来医院窗口问清楚，尽量补打那个GH峰值完整报告、骨头年龄那张，还有脊柱角度那张。要是有一两张没打出来，也先带现有资料去门诊，不因为这个耽误号。\n\n康复科我理解就是：现在可以先不挂，等内分泌看完，或者过两三周再按出院单去随访，不是说以后完全不用管脊柱侧弯，对吧？孩子现在还是正常玩，没说背疼，也没有腿麻这些。那我就先按这个安排了，谢谢您，今天总算理顺一点了。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00161",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+43min",
+      "text": "您总结得非常准确，每一条都对了，我给您最后确认一下：\n\n1. 小儿内分泌科的号不退不改，10天后按时带孩子去看。\n2. 复诊前一两天让孩子爸爸带齐证件去原来医院窗口，尽量把生长激素激发试验完整报告、骨龄报告和脊柱X线报告补打出来；万一有缺的，也先带现有资料按时就诊，绝不因为少一张纸耽误看诊。\n3. 康复科现在先不急着挂。等内分泌科看完，或者过两三周再按出院单去随访就行。不是不管脊柱侧弯，而是孩子现在没有背疼、腿麻，精神也好，说明目前没有急性风险，我们把它放在第二步处理是安全合理的。\n\n您今天做得特别好，从挂号到整理资料、安排谁去跑腿，每一步都很扎实。接下来这几天就让孩子正常吃饭、早点睡觉、开心玩耍，不用额外限制活动。\n\n我就在这里，后续不管是爸爸补打完报告需要帮您看看，还是复诊后有新问题，随时来找我。祝孩子一切顺利！",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00175",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+48min",
+      "text": "好的医生，那我就不再翻资料打扰您了。号我们留着，过几天让她爸爸带证件去窗口补打，能补多少先补多少，复诊还是按时去。\n\n康复科这边我也记住了，不是取消，就是放到内分泌后面再安排。孩子这几天我们就让她正常吃睡、正常玩。后面爸爸拿到报告，或者门诊看完有新的说法，我再来问您。谢谢您，今天真的安心多了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_081__Qwen3.8-Max",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2.5,
+    "aggregate_median": 2.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 5
+}

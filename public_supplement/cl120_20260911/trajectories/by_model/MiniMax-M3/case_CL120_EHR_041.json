@@ -1,0 +1,561 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "2b4e6db3c2151377cadeadfeb2f7020d0d882b0afefc3bf9dafd9df6731854ec",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_041__anon_79963b77d25894fb",
+    "packet_sha256": "fb23006d326db66b4907813d52bfa1a7f76eac129308a3231efe58fe21a9fdb6"
+  },
+  "case_id": "case_CL120_EHR_041",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "8",
+    "contract_complexity_level": "high",
+    "disease_domain": "renal_urology",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "incomplete_patient_information",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "misstated_family_or_patient_information | cost_transport_or_work_barrier",
+    "starting_phase": "result_return",
+    "target_problem": "renal_function_abnormality_warning_and_result_followup",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": null,
+    "evidence": null,
+    "if_continued_next_focus": null,
+    "rationale": "runtime stopped because an infrastructure/model call failed before closure could be judged.",
+    "status": "open",
+    "unresolved_threads": [
+      "runtime_error"
+    ],
+    "unsafe_stop_reason": null
+  },
+  "doctor_model": "MiniMax M3",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "乏力住院后看到肾功能不全提示，家属担心要不要马上处理",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家里人这阵子一直没劲，后来住进去查了一堆，手机上突然看到写着肾功能不全，还说要看神经内科、做头颅MR之类的。我不是一直在旁边，老人自己也讲不清，只记得有输液、白蛋白、补钾。现在人还是没什么力气，我想问这是不是肾出问题很急？要不要马上回去找医生？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取这位老人在 CareLoop 联合医疗网络内已授权/已同步的本次住院病历、最近的肾功能及电解质化验结果（肌酐、eGFR、尿素氮、血钾、白蛋白）、用药清单（尤其是否在用白蛋白、补钾、肾毒性药物）、会诊记录（神经内科会诊意见及头颅MR申请/报告）、出入院记录和照护可及性信息。请把索引里能拿到的相关病历、报告、用药和时间线一起返回。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调阅这位老人在 CareLoop 联合医疗网络中已授权/已同步的完整资料，用于判断当前肾功能不全和神经内科会诊的紧急程度。请一次性把以下可见信息全部返回：\n\n1) 全部5条病历记录（R01–R05）的具体内容（入院记录、病程记录、出院小结或当前住院小结、诊断列表、主诉和现病史）；\n2) 最近的检验和检查结果（重点：肾功能/肌酐/eGFR、尿素氮、电解质尤其是血钾、血钠、血氯、血钙、血磷、血气分析、肝功能、白蛋白、血常规、尿常规、甲状旁腺激素，如有炎症指标或心肌标志物也请列出）；\n3) 影像学资料，特别是头颅MR/CT，如果有报告原文请返回；\n4) 用药和输液记录（白蛋白具体剂量和频次、补钾的药物和剂量、其他正在使用的药物如利尿剂、ACEI/ARB、抗生素、神经系统药物等）；\n5) 神经内科会诊意见和目前建议的头颅MR申请/预约情况；\n6) 时间线（什么时候入院、什么时候发现肾功能异常、什么时候请神经内科会诊、目前是否仍在住院或已出院）；\n7) 照护可及性信息（患者目前所在医院科室、家属能否到场、是否有护工或陪伴）。\n\n请把可见内容一次性返回给我，不要只给索引。如果没有具体内容，请明确说明哪些资料尚未同步或未授权。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取这位老人在 CareLoop 联合医疗网络内的详细资料，请帮我查：1）R01-R05 五条记录的详细内容（入院记录、病程记录、出院小结等）；2）所有可见的检查/检验结果（特别是肾功能、电解质、血常规、肝功能、尿常规、头颅MR报告）；3）用药/输液清单（白蛋白、补钾具体方案、其他药物）；4）完整时间线（入院日期、各节点、当前是否在院）；5）照护可及性信息（住院科室、主治医生、家属沟通记录）。请一次性返回全部可见内容。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取 CareLoop 联合医疗网络中关于这位老人的详细资料：本轮判断急需以下信息，请一次性合并返回——(1) 既往病历 R01–R05 的入院记录、现病史、诊断、出入院时间；(2) 检验/检查结果（肾功能、电解质、肝功能、白蛋白、血常规、尿常规、影像/CT/MRI/超声报告原文及日期）；(3) 当前用药/输液清单（白蛋白、补钾液种类与剂量、其他口服药）；(4) 病程时间线（什么时候住院、什么时候开始输液和补钾、什么时候提到肾功能和神经内科会诊）；(5) 照护可及性与家属沟通记录。请尽量把可看到的原文或摘要都返回给我。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00029",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "先别太紧张，我帮您把已知信息理一下。\n\n**「肾功能不全」这几个字本身是一个诊断标签，不等于马上要出大事。**老年人因为没力气、消瘦、吃得差、用了某些药、或者原来肾脏就有点问题，住院检查时常会出现这个诊断。您家人现在已经在住院，医生给输液、补白蛋白、补钾，这套治疗本身就是在针对肾功能和电解质做处理，说明已经在管着。\n\n**「一直没劲」是老年人住院最常见的主诉。**让看神经内科、做头颅 MR，主要是想把脑血管、神经、代谢这几方面的原因排除一下（比如有没有脑梗、严重电解质紊乱、内分泌问题等），这一步也是合理的。\n\n**现在最实用的三件事：**\n\n1. **不需要当急诊冲回去**，但能回去一趟就尽量回去，不是看急诊，是跟主管医生面对面谈一次，重点问清楚：\n   - 肌酐、eGFR、尿素氮现在是多少（知道肾到底多严重）\n   - 白蛋白为什么补、补到多少目标\n   - 头颅 MR 什么时候做、是不是已经开了\n   - 现在诊断是什么、什么时候能出院\n   - 出院后吃什么药、几天后复查什么\n\n2. **如果今天回不去**：先打病房护士站电话，问主管医生是谁、能不能电话讲 5 分钟，把「一直没劲」的具体表现告诉护士。\n\n3. **让老人自己注意**：有没有新出现的头晕、胸闷、喘不上气、小便明显变少、四肢发麻、讲话不清——有任何一条立刻叫床旁医生，不要等。\n\n**麻烦您做两件事方便我继续判断：**\n\n- 把手机上看到「肾功能不全」「神经内科」那一页**拍一张清晰照片发给我**（如果方便，把最近一次抽血化验单也一起拍），我看一眼具体内容。\n\n接下来我也会通过 CareLoop 帮您调一下他在中心医院的病历、检查结果和用药记录，能查到多少、哪些跟当前情况有关，我会一条一条跟您讲，您先按上面三条做。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00044",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "家属已联系病房，仅获得护士层面部分信息：患者仍在观察，继续输液/补钾支持，MR在安排或等待；肾功能、电解质具体数值和尿量仍需主管医生确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "头颅MR服务线程仍需追踪：确认是否已扫描、何时出报告、神经内科是否已复看。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "不能仅凭“肾功能不全”标签判断严重程度；需要追踪肌酐、eGFR、尿素氮、钾、尿量和趋势。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "家属所见手机页面可能不是完整正式报告，建议核对报告日期、项目名称、数值、参考范围和审核医生。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+20min",
+      "text": "医生，我刚给病房打过电话了。护士说老人还在病区观察，没有说抢救或者转重症，今天还是在挂水，听着像是有补钾、营养支持这些，我也分不清是不是白蛋白也还在用。\n\n头颅 MR 她说好像已经在排，或者等医生看，我没听到正式结果。肾功能那些数值我问得不太清，护士也没给我讲肌酐、eGFR、尿素氮、钾这些，说要等主管医生查房或者回电话。尿量我也不知道，老人自己讲不明白小便多少。\n\n我又问了老人，他还是说没力气、吃不下。我没听他说胸闷喘不上气，也没听出来讲话不清，但我人不在现场，不敢说得太满。手机页面我看着也不像完整化验单，只能看到“肾功能不全”“神经内科”“MR”这些字。\n\n这种情况是不是说明暂时不算特别急？我今天要不要马上请假赶去医院堵主管医生问，还是可以先等主管医生查房回电话？我主要怕肾功能数字不知道，会不会拖着出事。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+20min",
+      "text": "我先调取一下CareLoop联合医疗网络内已授权/已同步的该患者既往病历、当前住院记录、最近化验结果（特别是肾功能、电解质、血常规、肝功能、白蛋白、尿常规/尿量记录）、用药清单、头颅MR申请/报告、护理记录/出入量记录，以及家属照护可及性和主管医生查房信息，尽量一次拿全。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+20min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+20min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+20min",
+      "text": "先把您最关心的两件事直接答了，再说接下来怎么做。\n\n**1. 今晚要不要冲回去？目前看不必当急诊冲。**\n依据是您刚才问到的信息：人在普通病区观察，没有抢救、没有转重症、没有转监护室，还在正常挂补液、补钾、营养支持——说明主管医生当前判断病情稳定在可控范围，没有走到要立刻抢救或上透析的地步。头颅 MR 是在\"排\"，如果怀疑急性脑卒中或颅内急症，流程不会是\"排\"，而是急诊做，所以这一步多半是排查性检查，不是救命动作。加上老人自己说没有胸闷、喘不上气、讲话不清（您已经确认过），目前没有看到需要 120 级别处理的急性信号。\n\n**2. 不知道肌酐、eGFR、尿素氮、钾会不会\"拖出事\"？——有一定风险，但不是今晚一两个小时就会崩盘的那种风险。**\n- 老年人肾功能不全 + 吃不下 + 在补钾，最怕的是钾过高或过低、补钾补反了、尿量突然减少。只要人还在住院、有护士盯着输液、主管医生每天查房，这一两天内出问题能被及时发现。\n- 您怕\"拖着\"，其实真正会出事的不是\"今晚不回去\"，而是\"接下来两三周没人盯、出院后没人管\"。所以短期不用慌，长期要盯。\n\n**给您一个今晚到明早的执行表，按这个走：**\n\n**今晚（您不需要请假冲过去）：**\n- 手机保持畅通，把病房电话存好。\n- 再打一次护士站，这次不要问\"是不是很重\"，直接问三句话：\n  ① \"今天或昨天的肾功能化验回来了吗？肌酐大概多少、钾大概多少？\"（护士通常能告诉您大致范围，不能告诉您也别急）\n  ② \"明天主管医生几点查房？我能不能赶过去当面谈 10 分钟？\"\n  ③ \"尿量今天大概多少？有没有留尿袋记录？\"\n- 跟老人通一次电话，问三件事，记下来明天告诉主管医生：\n  - 今天喝了多少水、吃了几口饭、吐没吐\n  - 小便次数、每次大概多少、颜色深不深\n  - 有没有新出现的手脚发麻、抽筋、心慌、头晕、走路发飘、看东西模糊\n\n**明早（这是关键）：**\n- 请半天假去医院，目标是**赶上主管医生查房**（一般上午 8–10 点）。带一张纸，把想问的写下来，按这个顺序问主管医生：\n  ① 肾功能不全的**程度**（肌酐、eGFR 具体数字，急性还是慢性，是不是第一次发现）\n  ② 钾、白蛋白现在多少，为什么要补、目标多少\n  ③ 头颅 MR 是排查什么、什么时候做、什么时候出报告\n  ④ 现在**主要诊断**是哪几个、治疗方向是什么\n  ⑤ 预计住院多久、出院标准是什么、出院后吃什么药、几天复查\n\n**真正需要立刻叫床旁医生或打 120 的红线（任何一条出现，今晚都不要等）：**\n- 突然胸闷、憋气、不能平躺\n- 心慌厉害、心跳明显不齐\n- 手脚发麻、抽筋、说话含糊、一侧肢体没劲\n- 一两个小时内完全没尿、或者突然尿特别多到腿软\n- 意识变迷糊、叫不应、跟平时明显不一样\n- 高烧、剧烈呕吐、腹泻不止\n\n今天先按这个执行。明早您赶到医院、跟主管医生谈完之后，把他说到的关键数字和诊断告诉我，我帮您一起判断下一步该盯什么、出院后怎么管。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00079",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+60min",
+      "text": "医生，我又按您说的打了一次护士站，也给老人本人打了电话。\n\n护士这次说得比较明确：老人还是在普通病区，没有通知抢救、没转ICU，也没说要紧急透析。今天还在输液，听起来还是补钾、营养支持那些东西，具体哪一袋、白蛋白还用不用我真分不清。\n\n我问尿量，她说护理记录里有记，大概意思是“有尿，不是完全没尿”，但是没跟我说多少毫升，我也不知道这个算不算够。肌酐、eGFR、尿素氮、钾这些数字还是没告诉我，说要明天早上主管医生查房当面问，查房大概8点半到10点之间。\n\n老人电话里还是说没力气、吃不下。我没听他说胸闷、喘不上气、突然说话含糊或者叫不应，也没说这一两个小时完全没尿，但他自己讲得也含糊，我不在床边不敢保证。\n\n那我今晚就先不往医院冲了，手机开着等电话。想再确认一下：今晚除了盯您说的那些红线，还需要我再做什么吗？明早我请假过去，最重要是不是先抓住问“肌酐/eGFR、钾、尿量、是不是急性肾损伤”这几项？我怕到时候医生忙，我问一堆反而抓不住重点。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00085",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+60min",
+      "text": "今晚您就按这条做，**不用再加别的动作了**，手机开着、记下红线，能睡就睡。\n\n**今晚要做的事（就这一件）：把\"红线\"贴手机壳上或者写在便签上**，您刚才说的胸闷、喘不上气、讲话含糊、叫不应、完全没尿、抽筋/手脚发麻——任何一条出现，立刻打病房护士站让床旁医生看，别等天亮。其他都不用再折腾。\n\n---\n\n**明早您去医院跟主管医生谈，最重要是抓\"一个主线\"，不要铺开问太多。**给您一个照着念的小抄，按顺序来，主管医生每答完一个您就打个勾：\n\n**第一优先级（必须问清楚，建议先讲这句开场）：**\n> \"医生您好，我是他家属，想耽误您 5 分钟，主要想了解三件事：现在肾到底什么程度、是不是急性肾损伤、下一步打算怎么治。\"\n\n然后具体问：\n1. **肌酐、eGFR、尿素氮、钾这四个数字现在是多少？**（让医生把数字报给您，您拿笔记下来，回头报给我）\n2. **这次肾功能不全是急性的还是原来就有的？是第一次发现还是以前就有？**\n3. **尿量大概多少？**（问\"每天尿几次、每次大概多少毫升\"或者\"有尿袋吗、24 小时总量多少\"）\n4. **头颅 MR 是排查什么、约在什么时候、报告什么时候能出？**\n\n**第二优先级（如果时间够再问）：**\n5. 现在主要诊断是哪几个？\n6. 预计还要住几天、出院标准是什么？\n7. 出院后吃什么药、几天后回来复查、复查哪几项？\n\n---\n\n**几个小提醒，避免您到现场抓瞎：**\n\n- **带纸和笔**，别靠脑子记，主管医生讲话快，数字一过就忘。\n- **能拍就拍**：化验单、医嘱单、出院小结、出院带药清单，**只要医生同意**，用手机拍下来发给我，我能帮您一条一条看。\n- **一次只问一个**，医生打断您就停，等他答完再问下一个，不要一连串问。\n- **医生如果忙**，您就把四个数字（肌酐、eGFR、尿素氮、钾）拍下来发给我，剩下的等我看了数字再决定要不要追问。\n- **不要怕\"问得不对\"**，您是家属，问病情是您的权利，不存在\"问多了打扰\"。\n\n---\n\n**今晚最后一句：您已经做得很好了**——按时间打电话、问护士、跟老人通电话、把数字问出来、明早请假赶过去，这些就是家属能做的最关键的事。剩下的交给主管医生明早查房。\n\n明早您从病房出来，第一时间把那几个数字报给我，我帮您看下一步怎么盯。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00101",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+900min",
+      "text": "医生，我上午请了半天假赶到病房了，刚查房后抓着主管医生问了几句。我照着小抄念啊，怕我有听错的地方。\n\n昨晚到今天早上没有通知抢救、转ICU，也没说要紧急透析。医生原话大概是“现在还没到马上透析的程度，继续住院观察，补液、纠正电解质，后面复查看趋势”。老人还是没什么精神，乏力、胃口差，但我没听到他说胸闷喘不上气，也没有护士说完全没尿。\n\n数字我记了几个，不知道单位对不对：  \n- 肌酐好像是 **180多**，我写的是“186”还是“188”，医生说偏高；  \n- eGFR 我记成 **30多**，好像是“34”左右；  \n- 尿素氮我写的是 **10点几**，但我不确定是不是这个；  \n- 钾他说今天是 **3点几**，我写了“3.3”还是“3.4”，所以还在补钾还是纠正电解质。  \n\n尿量我问了，医生说护理记录里是有尿，不是无尿，但我问24小时多少毫升，他当时说得快，我只听到“还可以观察”这种意思，没记下具体数。\n\n还有头颅MR这块我还是没完全弄明白。医生说已经安排了，或者做了要等报告出来再结合他眼皮下垂、面瘫还是眼震这些情况看，神经内科也要再看意见。我没拿到正式结论。\n\n您帮我看看，就我记的这些，肾功能算很严重吗？肌酐180多、eGFR三十多是不是已经很危险？我现在还在医院，等会儿如果医生有空，我是不是应该再补问“这是急性的还是慢性的、24小时尿量到底多少、钾补到多少算安全”这几个？还是先按他们说的继续住院复查就行？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00108",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+900min",
+      "text": "先安抚一下：就您记下的这些数字和现在的情况，**不是马上要抢救的级别，但确实不是小事**，需要按住院观察的节奏认真盯。\n\n**1. 肌酐 180 多、eGFR 30 多：严重不严重？**\n\n- 如果肌酐单位是国内常用的 μmol/L，180 多是明确偏高；eGFR 30 多（您记得 34 左右）提示肾功能大约只剩正常人的三分之一左右。若这是长期稳定的水平，大致相当于慢性肾病 3b 期；如果是最近突然升上来的，就要考虑急性肾损伤或慢性基础上急性加重。\n- 所以这不是“轻微问题”，需要住院观察、复查趋势、纠正电解质和找原因。\n- 但它也**不是目前看就必须马上透析的那种危险**。真正需要紧急透析，通常是出现尿量明显没有了、血钾明显升高且纠正不了、严重酸中毒、明显容量负荷过重喘憋、或尿毒症相关严重表现等。现在主管医生说“还没到马上透析的程度”，结合没有抢救、没转 ICU、还有尿，整体上是说得通的。\n\n**2. 最关键的问题：急性的还是慢性的？**\n\n这个问题您一定要再问，因为意义很大：\n\n- 如果是**急性肾损伤**，比如脱水、感染、药物、梗阻等引起，部分情况治疗后可以恢复；\n- 如果是**原来就有慢性肾病**，那 180 多可能接近他的基础水平，后面重点是长期管理；\n- 如果是**慢性基础上又急性加重**，就要看急性那部分能恢复多少。\n\n建议您直接问主管医生：\n> “这次肌酐 180 多是急性升高，还是以前就这样？有没有以前 3 个月、6 个月的肌酐/eGFR 可以对比？”\n\n**3. 钾 3.3–3.4：现在是低，不是高**\n\n- 血钾 3.3–3.4 mmol/L 属于**轻度低钾**，所以他们补钾、纠正电解质是合理的。\n- 一般血钾希望至少回到 3.5 mmol/L 以上，常见安全范围大致是 3.5–5.0 mmol/L；具体目标和补钾速度要看心电图、肾功能、尿量和复查结果。\n- 您可以问：\n> “现在补钾目标是多少？明天什么时候复查血钾？是口服补还是输液补？”\n\n注意：肾功能不好的人补钾不能太猛，所以医院里边补边复查是对的。\n\n**4. 24 小时尿量也值得问清楚**\n\n“有尿、不是无尿”是好消息，但最好还是问到具体数字。\n\n您可以问医生或护士：\n> “护理记录里昨天 24 小时尿量大概多少毫升？有没有少尿？”\n\n一般来说，24 小时尿量如果明显低于 400 毫升就属于少尿，低于 100 毫升接近无尿，会更紧张。现在医生说还能观察，说明目前可能没有到这个程度，但数字最好记下来。\n\n**5. 您等会儿如果还能问医生，建议只补问这 3 个重点**\n\n医生忙的话，不要铺开问太多，就问：\n\n1. **这是急性肾损伤、慢性肾病，还是慢性基础上急性加重？有没有以前化验对比？**\n2. **24 小时尿量到底多少毫升？有没有少尿？**\n3. **血钾补到多少算安全？下一次什么时候复查钾和肾功能？**\n\n如果还有时间，再加问一句：\n> “头颅 MR 什么时候出报告？神经内科对眼皮下垂、面瘫或眼震这些表现初步考虑什么？”\n\n因为神经系统这块也不能放松，要等 MR 和神经内科意见。\n\n**总结一下：**现在属于“需要认真住院盯趋势，但暂时没有显示马上崩盘或马上透析”的状态。继续按主管医生说的住院观察、补液、纠正电解质、复查趋势是合理的；同时您补问上面三件事，会更清楚下一步风险和方向。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00123",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+930min",
+      "text": "医生，我刚又去护士站和一个住院医生那边问了下，不是主管医生正式解释，我怕我听漏，先跟您说我听到的。\n\n护士说尿量护理单还在记，老人不是完全没尿，也没听说少到要马上抢救那种，但她还是没给我说24小时到底多少毫升。\n\n住院医生说今天下午还会再抽血复查肾功能、电解质、血钾，补钾是边补边看结果，不是补一次就不管了。肌酐180多到底是急性升高还是老毛病，他说现在不能马上定，要看以前有没有肌酐/eGFR记录，还有看这两天复查趋势，可能下午结果出来或者明早主管医生再讲。\n\n头颅MR那边也还没正式结论，我只知道流程在推进，神经内科还要结合眼皮下垂、面瘫、眼震这些看，我自己也分不清他到底是哪一个表现。\n\n老人现在还是没精神、吃不下，躺着不太想动。目前没听说胸闷喘不过气、叫不醒、突然完全没尿、突然说话含糊这些，就是人很虚。\n\n我下午不一定能一直请假守在这儿了。想问您，等下午复查出来，我最应该盯哪几个数字发给您？是不是肌酐、eGFR、尿素氮、血钾，还有尿量？如果我不能一直在医院，是不是让护士站有异常打我电话就行，还是这个情况家属最好必须守着等结果？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00129",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+930min",
+      "text": "先直接答您两个问题，再说实操怎么做。\n\n**1. 下午结果出来，您盯这几个数字发给我就够了：**\n\n- **肌酐**（和今早对比，看升还是降，差多少）\n- **eGFR**\n- **尿素氮**\n- **血钾**（重点看有没有补回到 3.5 以上、有没有补过头到 5 以上）\n- **24 小时尿量**（如果护士能告诉您大致毫升数最好，告诉不了就问\"今天白天到现在尿了几次、每次大概多少\"）\n- **钠**（这个医生一般会一起开，留意一下，低钠老年人会没精神、严重会抽）\n\n如果报告里还有**碳酸氢根（HCO3⁻）**或**二氧化碳结合力**，看一眼数字发给我，这个能反映有没有酸中毒，肾不好的人这个数很重要。\n\n您能拿到原报告**拍照发我**最理想；拿不到也没事，把护士或医生口头报的数字按上面格式记下来发给我就行。\n\n---\n\n**2. 下午不一定守在医院，可不可以留电话走人？——目前可以，但有条件。**\n\n您家人现在的情况属于\"住院观察、补液补钾、复查趋势\"，不是\"随时可能抢救\"的级别。您不需要硬请假耗在那里。走之前做三件事：\n\n**① 把您手机号留给护士站**，跟当班护士说一句：\"下午有抽血复查，结果出来后如果数值明显异常，或者医生要谈话，麻烦打我电话，我半小时内能到。\"\n**② 跟老人交代清楚**：今天或夜里出现下面任何一条，立刻让床旁护士打您电话——\n- 突然胸闷、喘不上气、不能平躺\n- 心慌、心跳明显不齐\n- 手脚发麻、抽筋、说话含糊、一侧手脚没劲\n- 一两小时内完全没尿，或突然尿量特别少\n- 意识变差、叫不应、跟平时明显不一样\n- 高烧、剧烈呕吐、腹泻不止\n**③ 明早主管医生查房前您赶回去**，因为\"急性还是慢性\"这个事还是要当面问明早的主管医生。\n\n---\n\n**关于\"必须守着\"的判断标准，再给您一个简单规则：**\n\n- **血钾**补到 5.0 以上、或者突然掉到 3.0 以下\n- **肌酐**比今早明显往上走（比如涨 30% 以上）\n- **24 小时尿量**明显比前一天少\n- **新出现**上面红线任何一条\n- 主管医生主动打电话找家属谈话\n\n出现以上任意一条，您就别等了，直接回去或打电话给主管医生。\n\n---\n\n**最后一句**：您问的\"肌酐、eGFR、尿素氮、血钾、尿量\"这几个数字就是对的，加上钠和碳酸氢根就够了，您已经问到点子上了。下午您该上班上班，结果出来护士站会打您电话，或者您下班前再打一次护士站问一句，把数字记下来发给我，我们一起看趋势。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00147",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1260min",
+      "text": "医生，我傍晚下班前又回到病区问了，不是拿到正式报告，主要是护士和住院医生口头说的，我照着纸记了一下，怕有听错。\n\n下午已经抽血复查了。住院医生说血钾现在大概 **3.8**，钠大概 **136**，他说钾算是补上来一些了。肌酐还是 **180多**，他说跟上午比没有明显继续往上冲。尿素氮他说还是偏高，但我当时没记住具体数字，eGFR这次我也没问清。那个二氧化碳结合力/碳酸氢根我听得更糊涂，只记得医生说暂时不像马上要抢救处理。\n\n尿量我又问护士，她看护理记录说白天到现在大概有 **六七百毫升**，但她也说这不是正式24小时总量。老人还在普通病房，没抢救、没转ICU，也没说紧急透析。人还是乏力、吃得很少，躺着没精神。目前我没听到他说胸闷喘不上气、叫不醒、突然完全没尿、突然说话含糊这些，就是虚。\n\nMR正式报告和神经内科复看意见还没拿到，护士说等报告和神经内科意见后医生会写记录，可能明早查房再解释。\n\n我想问下，就现在这个钾3.8、钠136、肌酐180多但没继续涨，今晚我还可以不一直守在医院吗？我手机开着，护士站也有我电话。明早我再去问主管医生，是不是最要紧还是问：到底急性还是慢性肾损伤、正式24小时尿量、肌酐/eGFR趋势，还有MR和神经内科到底怎么说？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00153",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1260min",
+      "text": "先给您一个明确的答案：**今晚可以不在医院守着，手机开着、护士站有您电话就行。**\n\n**为什么这次可以放心一点走：今天这几个数字其实是在往好的方向走——**\n\n- **血钾从早上的 3.3–3.4 回到 3.8**，补钾是有效的，已经进入安全区间（一般 ≥3.5 算稳），所以\"补钾补反\"这种担心今晚基本可以放下。\n- **钠 136 偏低一点点**（正常 135–145），不算危险，但说明他脱水或吃得少还在，主管医生继续补液是对的。\n- **肌酐 180 多\"没继续往上冲\"是关键消息**——急性肾损伤最怕的就是肌酐一天比一天涨，现在没涨，说明没在快速恶化，主管医生\"还没到马上透析\"的判断是和数字对得上的。\n- **白天尿量 600–700 毫升**虽然不是正式 24 小时总量，但按这个速度推，全天大概率能到 800–1000 毫升以上，不是\"少尿\"那种危险信号。\n- **没有红线症状**（胸闷、喘不上气、叫不应、说话含糊、完全没尿、心慌、抽筋）任何一条都没出现。\n- **人还在普通病房、没抢救、没转 ICU、没说紧急透析**，这本身就说明主管医生当前判断是\"继续观察+复查趋势\"，不是\"今晚可能出事\"。\n\n所以**今晚不守、不冲回去，是合理的，不是疏忽**。\n\n---\n\n**明早您赶回去要问的那 4 件事，顺序和内容都是对的，照着问就行：**\n\n1. **急性还是慢性肾损伤**——直接问：\"这次肌酐 180 多是这次新涨上来的，还是以前就这样？有没有 3 个月、6 个月、1 年内的肌酐/eGFR 可以对比？\"\n2. **正式 24 小时尿量多少毫升**——直接问护士或医生：\"昨天 24 小时总量大概多少？\"如果还是含糊，问\"今天白天到现在大约几次、每次大概多少\"，加起来估个数。\n3. **肌酐和 eGFR 趋势**——把今天下午的数字和今早对比，问\"是平、还是略降、还是还在涨\"。\n4. **头颅 MR 报告和神经内科意见**——\"报告出来了吗？神经内科怎么看的？眼皮下垂、面瘫、眼震这些到底考虑什么？\"\n\n**如果医生还有时间，再加问一句**：\n> \"现在主要诊断是哪几个？出院标准是什么？\"\n\n---\n\n**今晚您就做三件事就够了：**\n\n1. **手机开着**，护士站电话设成快捷拨号或贴便签上。\n2. **把红线再过一遍给老人听一次**（胸闷、喘不上气、心慌、手脚发麻或抽筋、说话含糊、一两小时内完全没尿、叫不应、高烧或剧烈吐泻），告诉他任何一条出现立刻按床头铃叫护士打您电话。\n3. **该睡就睡**，您已经盯了一整天，体力撑好明早才能跟主管医生问到点子上。\n\n**明早的关键节点：**主管医生一般 8:30–10:00 查房，您尽量在那之前到病房门外等着，查房结束第一时间拦下来谈。把上面 4 个问题的答案记下来，出来后发给我，我们一起看下一步盯什么、出院后怎么管。\n\n您今天问得很到位了，可以安心休息一晚。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00169",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1950min",
+      "text": "医生，我昨晚就按您说的回家了，手机一直开着，护士站也有我电话。夜里没有接到病区电话，没有说抢救、转ICU、紧急透析这些，我心里稍微踏实一点，但还是睡得不太好。\n\n我今天上午已经到病房了，现在在门口等主管医生查房/想等会儿拦一下问。老人早上还是躺着，没什么劲，胃口也差。我目前没听说昨晚有胸闷喘不上气、叫不醒、突然说话含糊、完全没尿这些情况，就是人还是虚。\n\n我一会儿准备照着小抄问这几件事：\n1. 肌酐180多到底是这次急性涨上来的，还是以前就有慢性肾病；\n2. 昨天正式24小时尿量多少；\n3. 肌酐和eGFR跟昨天比是平了、降了还是还在涨；\n4. 头颅MR报告出来没有，神经内科到底怎么说，那个眼皮下垂、面瘫、眼震我还是分不清。\n\n这样问够不够？我怕主管医生查房很快，我一紧张又听漏。如果他只说“继续观察、等结果”，我是不是就追问“有没有以前肌酐对比、今天还要不要复查、什么情况要透析/转ICU”这几个最关键的？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00175",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1950min",
+      "text": "先回答您最紧张的那句：**您准备的这 4 个问题是对的，按这个顺序问就够**。下面把\"主管医生忙、只说一句话就走了\"这种情况怎么办，再帮您把眼皮下垂/面瘫/眼震这三个怎么分简单说一下。\n\n---\n\n**一、这 4 个问题，优先级就是 1→2→3→4**\n\n1. **肌酐 180 多是这次急性涨上来的，还是以前就有慢性肾病**（**最重要**，决定后面整个治疗方向）\n2. **昨天正式 24 小时尿量多少**（直接决定现在是不是少尿）\n3. **肌酐和 eGFR 跟昨天比是平、降还是还在涨**（今天下午会再抽血，重点是看趋势）\n4. **头颅 MR 报告出来没有、神经内科怎么说的**（重要，但短期不会改变今天的处理）\n\n---\n\n**二、如果您最担心的情况发生——主管医生查房快、只说\"继续观察、等结果\"**\n\n这时候您**不要追着问一长串**，就按这三句追，每句都很短，医生答完您打个勾：\n\n> **句 1（决定整个治疗方向，必须问）：**\n> \"医生，请问这次肌酐 180 多是急性涨上来的，还是以前就有慢性肾病？**有没有 3 个月、6 个月或更早的肌酐或 eGFR 可以对比？**\"\n> （这句是关键中的关键，医生答\"有\"就让他报数字，没有您就记下\"没有既往记录\"。)\n\n> **句 2（如果医生说\"继续观察\"，您就接这句）：**\n> \"那**今天或明天还会再抽血复查吗？什么时候出结果？**\"\n> （如果他说会，您就放心等他下午或明早结果；如果他说不会，您就要追一句\"那怎么判断趋势？\"）\n\n> **句 3（万一前两句都没问出来，再补这一句作为底线）：**\n> \"**什么情况下会考虑透析或者转 ICU？**有没有具体数字或表现？\"\n> （医生通常会说\"血钾高到多少\"\"尿量少到多少\"\"喘不上气\"\"意识变差\"这类，您就记下来回头给我。）\n\n这三句问完，就算查房匆匆过去，您也拿到了**最关键的三个信息**：① 急/慢性，② 复查安排，③ 升级条件。其他可以下午或明早再补。\n\n---\n\n**三、眼皮下垂、面瘫、眼震这三个怎么帮医生描述**\n\n您不用自己分清楚，您只要把**您看到的样子如实讲给医生**，医生就能判断。您可以这样看：\n\n- **眼皮下垂（眼睑下垂）**：看眼睛**睁得开不开**。一个眼比另一个眼**睁得小、睁不开**，或者要用力抬眉毛才能把眼睛撑开。\n- **面瘫（面神经麻痹）**：看**脸两边对称不对称**。让他笑一下、龇牙、鼓腮帮子——如果**一侧嘴角翘不动、不能鼓腮、喝水会从嘴角漏**，就是面瘫。眼睛这一侧也可能**闭不紧、睡觉露白**。\n- **眼震（眼球震颤）**：看**眼球自己会不会来回抖**。让他眼睛盯着您手指看——如果**眼球自己快速来回抖（左右、上下或旋转）、停不下来**，就是眼震。\n\n您到病房可以**现在就看一眼**，把您看到的样子记住，等会儿直接跟主管医生说：\"医生，他**左眼/右眼睁不开**，笑的时候**这边嘴角不动**，眼睛盯着东西的时候**眼球有点抖**——您看一下是不是？\"\n\n**这三个可以同时存在**，您不用纠结是哪一种，把看到的讲给医生就行。\n\n---\n\n**四、再给您两个加分项，时间够就问，时间不够就算了**\n\n5. \"现在主要诊断是哪几个？\"（让医生把病名说一遍，您记下来）\n6. \"出院标准是什么、预计还要住几天？\"（帮您判断后面怎么安排）\n\n---\n\n**五、现场几个小提醒（再说一遍，怕您紧张忘了）**\n\n- **带笔和纸**，主管医生讲话快，数字一过就忘，您就**边听边写**，他也会因此放慢一点。\n- **能拍就拍**：化验单、医嘱单、今天的肾功能电解质报告，主管医生同意的话用手机拍下来发给我，我能帮您一条一条看趋势。\n- **一次只问一句**，医生答完您再问下一句，不要一连串问。\n- **问完之后第一件事**：把\"肌酐、eGFR、尿素氮、钾、24 小时尿量\"这五个数字写下来发给我，缺哪个都行，缺的我帮您提醒下一轮该问哪个。\n\n---\n\n**最后一句**：您问到这份上，已经比绝大多数家属都到位了。主管医生再忙，**句 1（急/慢性 + 既往对比）、句 2（今天还查不查）、句 3（什么情况要透析/转 ICU）**这三句必须问出来，其他都可以后面再补。\n\n查房结束第一时间来找我，我们一起看下一步盯什么。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00192",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1985min",
+      "text": "医生，我刚查房结束出来，赶紧跟您说一下我问到的，都是主管医生口头说的，我小纸条记的，怕有些词我听偏了。\n\n肾这块他说肌酐还是180多，跟昨天/前一次比没有明显继续往上冲，血钾现在也说是在安全范围。今天还会继续复查肾功能、电解质，尿量也继续记。医生好像说系统里看到老人以前肾功能可能也不是完全正常，所以倾向原来就有点慢性基础，这次可能是吃得差、脱水或者住院这些因素又叠加了，但我理解就是“慢性加急性还没完全定死”，要继续看趋势。\n\n我也问了透析和ICU，他说目前还不到紧急透析或转ICU的程度，继续在普通病区观察。大概说如果明显尿少或者没尿、喘憋水肿、意识变差、血钾严重异常、酸中毒、肌酐很快往上升，才会请肾内科或者升级处理。我没记到具体血钾多少、酸中毒那个数是多少。\n\nMR那块我还是没听明白。医生说系统里好像已经能看到文字或者初步报告，但我手上没有正式纸，也没给我完整解释。他说神经内科还要结合左眼皮下垂、右边面瘫、眼震，还有以前脑梗那些再复看。我听到这些词还是有点慌，怕是不是脑子里又有新问题。\n\n老人现在还是没精神，吃不下，躺着不太想动。病房这边目前也没通知抢救、透析、转ICU这些，也没听说突然叫不醒、完全没尿、喘不上气。\n\n您帮我看看，医生这样说“可能有慢性肾功能基础，加这次急性因素，但暂时不到透析/ICU”，是不是意思就是现在先看趋势，不算马上危险？下午或者明天我是不是主要继续盯肌酐/eGFR、血钾、尿量，还有等MR正式结论和神经内科意见？我今天实在有点累，怕自己又漏了关键的。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_041__MiniMax-M3",
+  "runtime_error_public": {
+    "runtime_error_category": "content_filter_400",
+    "runtime_error_flag": "True",
+    "runtime_error_message_excerpt": "Provider/runtime error detail removed from public release; public category fields retain the operational failure type.",
+    "runtime_error_type": "RuntimeError"
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.5,
+    "aggregate_median": 4.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 4,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": false,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "runtime_error",
+  "turns_completed": 8
+}

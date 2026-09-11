@@ -1,0 +1,516 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "f13684d1c1d599ada10e47d2733d343cc79614779b1bc84d08a13a25d43076dc",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_054__anon_872240e9471957fb",
+    "packet_sha256": "ddfc17f68b0c8485067784800550a9a371e32f7b8ef35e8c5fbfd20601a8f581"
+  },
+  "case_id": "case_CL120_EHR_054",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "low",
+    "closure_coordination_burden_score": "0",
+    "contract_complexity_index": "4",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "gastro_hepatology",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "document_or_image_quality_problem",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "incomplete_patient_information | medication_confusion_or_execution_failure",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "gi_bleeding",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "医生调取/使用工作区信息，R03 显示氯化钾、浓氯化钠、0.9%氯化钠等为住院期间 st ivgtt 且有结束时间的药品医嘱线索，支持不要让家属按模糊照片在家执行静滴。",
+      "家属回报孩子清醒、叫她能答、能简单交流，体温不高，无抽搐、叫不醒、发热、呕吐、呼吸困难、发青等红旗；短暂重复言语未升级。",
+      "医生明确允许正常睡觉，不需整夜盯守，要求睡前确认、夜里看一两次、早上再问，持续异常或红旗时急诊。",
+      "医生给出次日核对路径：打原病区/药房，若打不通且无紧急情况，可带出院单到门诊/窗口核对。",
+      "家属最终复述并确认：已在手机备忘录写观察记录，今晚不再折腾糊单子，不会在家弄氯化钾、氯化钠、葡萄糖静滴，孩子困了让她睡，定闹钟夜里看一两次，明天联系原病区/药房或去门诊核对。"
+    ],
+    "if_continued_next_focus": "若继续运行，下一步最有价值的是次日确认家属是否联系到原病区/药房或门诊窗口，并把真实出院用药、复诊时间、观察记录进一步核对；若出现红旗则转急诊/原住院团队接管。",
+    "rationale": "本案目标是出院后家庭执行失败/资料模糊场景的有限照护闭环，不是要求完成孩子全部精神/神经系统诊断旅程。当前主要风险已经被合理边界化：孩子短时居家观察稳定、无急诊红旗；模糊单据中氯化钾/氯化钠/葡萄糖等静滴记录已被解释为不能在家自行执行，家属多次确认不会自行输液/补钾补钠；医生给出夜间观察方式、急诊触发条件、次日联系原病区/药房或门诊核对的路径，家属已按手机备忘录记录并复述执行计划。仍有次日线下核对出院用药/复诊安排的后续事务，但它已有责任人、时间窗、替代路径和红旗升级条件，属于 bounded residual follow-up，不再阻断本次 home_execution_failure episode 的安全闭合。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup: 次日仍需由家属联系原病区/药房，或带出院单去门诊/窗口核对是否有真正的出院用药、复诊科室和时间；但当前已有 owner、due window、替代路径和急诊升级条件。",
+      "bounded_residual_followup: 孩子仍可能有短暂重复言语/解离样发作，需继续记录次数、持续时间、是否能唤回及伴随症状；若频率增加、持续延长、持续混乱、抽搐、发热呕吐、呼吸异常、叫不醒等需急诊。",
+      "global_disease_journey_background: 既往住院原因、精神卫生科/儿科后续诊断及长期随访尚未完成，但超出本次家庭执行失败纠偏 episode 的终局要求。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3-30B-A3B-Instruct-2507",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "孩子出院后老是重复说话，我看不清单子该怎么观察",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我家孩子前阵子因为晚上做噩梦、白天容易紧张，还突然一阵一阵重复说同样的话、不太知道自己在说什么，住过院。出院时给了几张检查和注意事项的单子，但拍得有点糊，我只看懂要观察生命体征，还像是有药水记录。现在在家我不知道哪些情况要马上回去，能帮我理一下吗？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患儿在CareLoop中心医院的既往住院病历、出院小结、最近的检查报告（尤其是神经精神评估、脑电图、头颅影像）、用药清单（包括出院带药和剂量）、以及家庭照护可及性信息。请按时间顺序返回这些资料的文本记录，特别是与症状、用药和出院指导相关的部分。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患者在CareLoop中心医院的既往住院病历、出院小结、检查检验报告（尤其是脑电图、头颅影像、血液检查）、用药清单（包括出院带药和用药时间）、以及家庭照护可及性信息。请按时间线整合所有已授权/已同步的资料，重点查看出院时的诊断结论、注意事项和紧急情况处理建议。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患者在CareLoop中心医院的既往病历、出院记录、检查检验结果、用药清单、时间线和家庭照护可及性信息，以便明确出院时的诊断、治疗方案和紧急情况判断标准。请按权限返回所有已授权、已同步的资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患者在CareLoop中心医院的既往病历、出院记录、检查检验结果、用药清单、时间线和家庭照护可及性信息，以便明确出院后的关键观察点和紧急返院指征。请按权限返回所有可授权访问的资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患者在CareLoop中心医院的既往病历、出院记录、检查检验结果、用药清单、时间线和家庭照护可及性信息，以便明确当前症状的潜在风险和紧急返院指征。请按权限返回所有已授权、已同步的资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，根据您描述的情况，孩子之前有夜间噩梦、白天紧张、重复言语和意识模糊的表现，且曾因这些症状住院治疗，目前在家照护，您最担心的是哪些情况需要立即返院。\n\n虽然我们暂时无法调取完整的既往病历和检查结果（系统显示资料尚不完整），但结合您提到的“药水记录”和症状特点，以下情况需要您特别警惕，一旦出现，请立即带孩子前往医院急诊或联系主治医生：\n\n1. **出现抽搐、意识丧失或肢体僵硬**：这可能是神经系统问题的警示信号，需紧急处理。  \n2. **持续重复说同样的话、无法回应提问或行为混乱**：如果这种状态持续超过10分钟，或反复出现，说明精神状态可能不稳定。  \n3. **体温突然升高（超过38.5℃）或出现呕吐、头痛加剧**：可能提示感染或颅内压增高。  \n4. **呼吸急促、脸色发青、心跳过快或难以唤醒**：这是生命体征异常的紧急信号，需立即就医。\n\n目前您已掌握的“观察生命体征”是正确的第一步。建议您每天定时测量并记录孩子的体温、心率、呼吸频率，并注意是否有新的行为变化。\n\n后续还需要补充查看孩子的**出院小结、用药清单、脑电图或影像学检查报告**，才能更准确判断是否需要调整药物或进一步评估。请您尽快将拍得清晰的出院单据或药盒照片上传，或联系医院门诊协助调取资料，以便我们进一步指导。\n\n请务必保持警惕，如有上述任何紧急情况，请立即前往最近的急诊科。您不是一个人在面对，我们始终在这里支持您。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "家属可反馈：孩子现在清醒、能叫应，无抽搐昏迷发热呕吐，生命体征大致平稳；仍有短暂重复言语发作，持续约1–2分钟内自行缓解。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+20min",
+      "text": "家属仍询问氯化钾/氯化钠/葡萄糖等“药水记录”是否出院后要继续。工作台 R03 显示这些为住院药品医嘱，含 st、ivgtt、结束时间等特征；需向家属说明不要在家自行按模糊单据输液或补钾补钠，若有真正出院口服药需逐项核对药盒/出院带药清单或联系原病区。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00051",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+20min",
+      "text": "医生，我刚按您说的又看了一遍孩子。她现在是清醒的，叫她会答应，也能正常回答我问的事。体温量着36度多，脉搏我自己数大概八九十下，呼吸看着不急，没有抽搐、叫不醒、发烧、呕吐，也没有脸色发青那种。\n\n就是刚才又有一小段重复说同一句话，我估计不到一两分钟，后面又能正常跟我说话了。这个算不算您说的“反复出现”需要今天马上去急诊？还是只要不超过10分钟、能叫应、没有发热抽搐，就先在家盯着？\n\n还有那个单子我这边还是糊，不想再一直拍了，我只能看出几个字像“氯化钾、氯化钠、葡萄糖、静滴”。我没在家给她输液，也没给什么看不懂的药水。我就是怕这个是不是出院后还要继续用的？这种静滴的东西是不是绝对不能在家自己弄，明天我再打原来住院的病区或者药房问清楚？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00056",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+20min",
+      "text": "我需要调取该患者在CareLoop联合医疗网络中已授权的既往病历、出院小结、用药清单、脑电图及影像学检查报告、家庭可及性信息，并回看第0到1轮原始对话，以确认出院时的诊断、治疗方案和后续随访要求。同时，我需要查询我此前保存的医生工作备注，确认是否已有相关提醒。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+20min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+20min",
+      "text": "临床工作区已处理 3 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+20min",
+      "text": "我调取 CareLoop 联合医疗网络中 CareLoop 中心医院的既往记录、出院小结、用药清单、检查报告和家庭照护可及性信息，重点关注孩子住院期间的诊断、出院时的用药医嘱、脑电图/影像学结果及出院指导。同时，我回看第0到1轮原始对话，确认照护者已描述当前症状变化和单据模糊问题。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+20min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00069",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+20min",
+      "text": "临床工作区已处理 2 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00072",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+20min",
+      "text": "您好，根据您刚才的观察和描述，孩子目前清醒、能回应、生命体征平稳，没有抽搐、发热、呕吐或呼吸困难等紧急情况，这是好消息。您提到的“重复说一句话”持续不到一两分钟，之后能恢复正常交流，这种情况如果只是偶尔发生，且没有持续恶化，目前可以先在家密切观察，不需要立即去急诊。但请注意：如果这类发作变得频繁（比如一天超过3次）、持续时间延长（超过10分钟），或出现意识模糊、无法回应、肢体僵硬等情况，必须马上带孩子去医院。目前最重要的是避免自行处理“静滴药水”类医嘱——您看到的氯化钾、氯化钠、葡萄糖等，是住院期间的静脉用药，**绝对不能在家自行输液或补液**。这些药物使用有严格指征和剂量要求，家庭环境无法安全执行。请您明天务必联系孩子住院时的病区或药房，确认出院后是否需要口服药物、是否需要继续输液、是否需要复诊。我们已为您登记了“出院用药与治疗方案核对提醒”，一旦您拿到清晰资料，欢迎随时上传或告知，我会立即为您解读。请保持警惕，但不必过度焦虑，我们一直在您身边。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00086",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+30min",
+      "text": "医生，过了这十来分钟孩子还是清醒的，我叫她她都能答，刚才没有再抽搐、发烧、吐、叫不醒或者喘不上气。我也没有给她弄任何静滴药水，那个糊单子我先放一边了，今晚不折腾了。\n\n我想再确认一下今晚具体怎么记：  \n1. 您说一天超过3次算频繁，是从现在开始数到明天这个时候吗？如果她睡着了我没看见，中间有没有发作我不知道，这个怎么办？  \n2. 每次重复说话我是不是就记“几点开始、几点结束、说了什么、叫她能不能答应、有没有抽搐/发烧/呕吐/僵硬”这几样就够了？如果只重复几十秒又好了，也算一次吗？  \n3. 如果晚上出现超过10分钟、叫不应、抽搐、发热呕吐、肢体僵硬或者人乱了，我就直接急诊，不等明天电话了，对吧？\n\n明天我准备打原来住院病区或者药房问，但我怕我问不清。是不是就这样问：  \n“孩子出院后到底有哪些口服药，药名和一天几次？出院后需不需要继续输液？什么时候复诊、挂哪个科？这些氯化钾氯化钠葡萄糖是不是只是住院用过的，不是带回家用的？”  \n\n如果明天电话一直没人接，孩子又还算稳定，是先带出院单去门诊问，还是也要去急诊？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00092",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+30min",
+      "text": "您好，根据您今晚的观察和问题，我来帮您理清楚几个关键点：\n\n1. **关于“频繁发作”的判断**：您说的“一天超过3次”确实是从现在开始算起，到明天同一时间为止。如果孩子在您睡觉时发作，您没看到，这种情况我们建议：**只要孩子醒来后能正常交流、没有持续异常，就不算紧急，但您可以在第二天早上汇总昨晚的观察情况，记录下大概的发作次数和表现**。如果连续几天都出现类似情况，哪怕每次时间短，也建议尽快复诊。\n\n2. **记录内容建议**：每次发作时，您记下“几点开始、几点结束、说了什么、叫她能不能答应、有没有抽搐/发烧/呕吐/僵硬”这些就够了。**即使只重复几十秒又好了，也建议记录一次**，因为频繁的小发作可能提示病情波动，对后续评估很重要。\n\n3. **紧急情况处理**：如果晚上出现以下任一情况，**请立即带孩子去急诊**：\n   - 发作持续超过10分钟不缓解；\n   - 意识不清、叫不应；\n   - 抽搐、肢体僵硬、呼吸急促或脸色发青；\n   - 发热、呕吐或行为明显混乱。\n   这些都是必须立刻就医的信号，不要等明天。\n\n4. **明天问药房/病区的问法**：您准备问的那句话非常清楚，可以直接用：\n   > “孩子出院后到底有哪些口服药？药名和一天几次？出院后还需要继续输液吗？什么时候复诊、挂哪个科？这些氯化钾、氯化钠、葡萄糖是不是只是住院用的，不能带回家自己用？”\n   这样问，对方能快速理解您的重点。\n\n5. **如果电话没人接**：如果明天打不通，孩子又稳定，建议您**带上出院单直接去门诊**（优先挂原住院病区或神经内科/儿科门诊），不要去急诊，除非孩子出现紧急症状。门诊可以帮您查出院带药清单、复诊安排，以及确认是否需要继续输液。\n\n请您放心，我们已为您登记了“出院用药与治疗方案核对提醒”，等您拿到清晰资料或联系上医院后，欢迎随时上传或告知，我会第一时间帮您解读。今晚继续密切观察，有任何变化，随时联系。您做得很好，孩子有您在身边，很安心。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00106",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+40min",
+      "text": "好的医生，我大概听明白了。孩子现在还在旁边醒着，叫她也答，我就先不往急诊跑了，也绝对不在家弄那些氯化钾、氯化钠、葡萄糖的静滴单子。\n\n我今晚就按您说的记，短的也记一次。就是我想确认最后一句：如果她等会儿困了，是可以让她正常睡觉的吧？我不用一整夜不睡死盯着她？我打算睡前再看看她能不能正常说话，夜里我可能定个闹钟起来看一两次，早上醒了再问她几句，如果都能正常交流就先记录观察。\n\n明天我先打原来病区/药房，打不通的话，只要她没有您说的那些超过10分钟、叫不醒、抽搐僵硬、喘不好发青、发烧吐、人明显乱这些情况，我就带出院单去门诊或原科室核对，不直接去急诊。这样理解对吧？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+40min",
+      "text": "您好，您理解得完全正确。孩子如果现在困了，可以让她正常睡觉，不需要整夜盯着。您睡前确认一次她能正常说话，夜里定个闹钟起来看一两次，早上再问几句，如果都能正常交流，就按计划记录观察，这样安排很稳妥。\n\n明天如果打不通原病区或药房，只要孩子没有出现您说的那些紧急情况（持续超过10分钟、叫不醒、抽搐僵硬、呼吸困难或发青、发烧呕吐、行为明显混乱），就带出院单去门诊或原科室核对，不需要去急诊。\n\n请放心，我们已为您登记了“出院用药与治疗方案核对提醒”，等您拿到清晰资料或联系上医院后，随时可以上传或告知，我会第一时间帮您解读。您现在做得非常好，孩子有您在身边，很安心。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00127",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+75min",
+      "text": "医生，我睡前又叫了孩子一下，她能答应，也能简单跟我说两句，刚才没再明显重复很久。摸着也不烫，没有吐、抽搐、喘不上气或者叫不醒这些。\n\n我已经在手机备忘录里写了怎么记，今晚就不再折腾那些糊单子了，也不会在家弄什么氯化钾、氯化钠、葡萄糖静滴。孩子困了我就让她睡了，我定个闹钟夜里起来看一两次。\n\n明天我再打原病区/药房，实在打不通就带单子去门诊核对。今晚如果真有您说的那些严重情况，我就直接去急诊。谢谢医生，我先按这个办。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_054__Qwen3-30B-A3B-Instruct-2507",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2.5,
+    "aggregate_median": 2.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 1,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 4
+}

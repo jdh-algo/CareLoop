@@ -1,0 +1,933 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "8d0afdb3e1e933020c02cda0e0b478bb3b3217abb3f8450d8915e5b99148442b",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_039__anon_6039a021fbf82c6a",
+    "packet_sha256": "18dda03a23aca68328af04698ffacbbe51b234415a421f994346d2132362f11b"
+  },
+  "case_id": "case_CL120_EHR_039",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "2",
+    "contract_complexity_level": "low",
+    "disease_domain": "renal_urology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "cost_transport_or_work_barrier",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "5",
+    "secondary_frictions": "low_adherence_or_refusal | external_system_gap",
+    "starting_phase": "post_handoff",
+    "target_problem": "ckd_med_reconciliation",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者最初明确困惑：百令片、氯沙坦、哌嗪片哪些继续，以及是否复查肾功能和左肾结节。",
+      "医生使用工作台/既往资料辅助判断，但承认未见完整出院带药清单，因此采用最低安全用药边界：氯沙坦按既往血压条件继续，百令和疑似哌唑嗪先暂停等待线下核对。",
+      "患者执行反馈：已把百令和疑似哌唑嗪单独放置，未自行混吃；氯沙坦按既往 50mg 且血压不低时继续。",
+      "患者在附近医院完成尿常规和肾功能采样；尿常规读回红细胞约10-15/HPF、尿蛋白阴性或±、白细胞不高；肾功能读回肌酐78、尿素氮5.6、钾4.1、eGFR未见降低。",
+      "医生已解释：当前无急性肾损伤迹象，轻度镜下血尿在术后近期可观察，但需结合红旗变化和泌尿外科复诊。",
+      "患者最后 teach-back：今晚看血压和头晕决定氯沙坦；百令和哌唑嗪先不碰，等泌尿外科或药房当面看药袋；资料已装袋；明天家属继续挂手术医院泌尿外科，挂不到则先去附近医院泌尿外科/药房窗口；出现发热、腰痛明显加重、尿里血块多、尿量明显减少、头晕乏力则直接急诊。"
+    ],
+    "if_continued_next_focus": "如继续模拟，最有价值的下一步是让线下泌尿外科/药房窗口完成药袋核对并确认左肾结节影像随访时间；但当前线上交接与最低安全执行链已可闭合。",
+    "rationale": "本次 bounded post-handoff episode 的核心问题是术后回家后用药混淆、是否需要复查肾功能/尿常规、以及左肾结节/泌尿外科复诊如何转化为患者可执行行动。轨迹中医生已基于工作台和患者读回信息完成初步药物边界、指导并促成附近医院复查，肾功能和尿常规结果已回流并被解释行动化；患者随后完成了较具体的 teach-back：今晚氯沙坦按血压/头晕边界继续，百令和哌唑嗪不自行恢复，资料已装袋，明日由家属继续挂手术医院泌尿外科，挂不到则先去附近医院泌尿外科/药房窗口当面核药，并知道发热、腰痛加重、大量血块、尿量明显减少、头晕乏力等红旗不等门诊直接急诊。尚未完成的泌尿外科正式复诊、药师/门诊最终核药和左肾结节影像随访属于有 owner、due window、verification route 和 escalation path 的 bounded residual follow-up；它们仍是后续医疗责任，但不再阻断当前线上交接任务的安全闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：百令和疑似哌唑嗪仍未由线下泌尿外科/药房最终核定；但当前安全边界是患者不自行恢复，明日携带药袋当面核对。",
+      "bounded_residual_followup：手术医院泌尿外科复诊尚未实际挂号成功；但已有家属负责、明日继续挂号，失败时去附近泌尿外科/药房窗口先核药的替代路径。",
+      "bounded_residual_followup：左肾结节/疑似错构瘤或血管平滑肌脂肪瘤尚未完成正式影像随访方案；但已被纳入泌尿外科复诊需携带旧CT/B超片子当面确认的后续任务。",
+      "global_disease_journey_background：乳糜尿术后长期恢复、复发风险和远期影像随访仍需线下泌尿外科管理；这不等于疾病永久治愈。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "术后回家后药和复查安排没弄明白",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我前阵子因为尿像米汤一样发白，还出过血块，后来做了左边肾周围淋巴管结扎的手术，说手术还顺利，已经让回家了。出院时交代得挺快，我只记得之前吃过百令片、氯沙坦、哌嗪片，现在不知道哪些还要继续，也不知道要不要复查肾功能或那个左肾结节。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内可授权访问的：1）本次住院病历和出院小结（特别是左肾周围淋巴管结扎手术记录、出院医嘱）；2）术前和术后最近一次肾功能检查结果、尿常规、尿蛋白定量；3）住院期间及出院带药清单；4）影像报告（提到左肾结节的相关超声或CT报告）；5）既往病史时间线和诊断记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络中已授权的：住院病历和出院小结（特别是左肾周围淋巴管结扎手术记录）、出院医嘱和用药清单、既往肾功能/尿常规/影像学检查报告、关于左肾结节的相关记录，以及出院时间和随访安排。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内可授权访问的：住院病历（含出入院记录、手术记录、出院小结）、门诊病历、近期检查检验结果（尤其肾功能、尿常规、尿蛋白/乳糜尿相关、影像学报告）、用药记录和处方信息、时间线，以及患者家庭照护和交通可及性信息。重点关注：左肾周围淋巴管结扎术的手术日期、术中情况、病理结果；左肾结节的具体描述和随访建议；出院带药及医嘱；百令片、氯沙坦、哌嗪片的用药指征和是否需要继续。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00022",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "你好，我了解到你刚做完左侧肾周围淋巴管结扎手术，已经出院回家，但对后续用药和复查安排不太清楚，这确实需要帮你梳理一下。\n\n你提到的几个问题很关键：\n1. 出院后哪些药需要继续吃、怎么吃\n2. 肾功能是否需要复查、什么时候查\n3. 左肾结节的情况和随访安排\n\n我现在需要先调取你在联合医疗网络内的住院病历、手术记录、出院小结、出院带药清单，以及术前术后的检查结果和影像报告。这些资料能帮我了解你具体的诊断、手术情况、肾功能基线、结节性质，以及医生当时交代的随访计划。\n\n请你稍等，我查阅后会告诉你接下来用药和复查的具体建议。另外，你现在手头有出院小结或出院带药单吗？如果有的话可以先发给我，方便核对。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00036",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者可读回部分出院小结和药袋内容，但处方边界仍需结合院内记录、出院带药单或药房记录进一步核对。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00037",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "当前工作台未见结构化出院带药清单；建议继续调取 medications/出院处方/药房发药记录，或请患者读出药袋标签上的开具日期、用法用量、疗程。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00038",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "尚无新的术后肾功能复查结果或预约回执；如需复查，应明确项目、时间窗、就诊地点及结果回传方式。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00039",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "左肾结节随访尚未见预约或新影像报告；需在用药核对后明确泌尿外科复诊和影像随访时间。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00044",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12min",
+      "text": "我翻到出院小结了，我怕照片您那边也看不清，我先给您念我能看懂的几行。\n\n出院诊断这里写的是“左侧乳糜尿、左肾结节”。住院经过那一大段我看不太全，大概意思是手术过程顺利，术后恢复可以，然后予出院。复诊提示那栏我只看明白好像是“泌尿外科门诊复查”，但是没看到明确哪一天，也没看懂要查哪些。\n\n药袋我这边翻出来有百令片、氯沙坦、还有哌嗪片这几个，但有的像是以前门诊剩的，有的可能是这次带回来的，我分不清。现在我最怕就是吃错药，您能不能先跟我说一下，这几个在没核对清楚前哪些先别乱吃？还有那个左肾结节是不是肿瘤啊，要不要很快去查？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "我调取患者在CareLoop联合医疗网络内的本次住院病历、手术记录、出院小结原文、出院带药清单/处方记录、术前术后肾功能及尿常规检查结果、左肾结节相关影像报告（超声/CT）及报告原文，以及既往门诊用药记录，以便核对当前用药和明确结节性质。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00051",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00053",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00055",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的住院病历、手术记录、出院小结原文、出院带药处方/药房发药记录，以及术前术后的肾功能检查、尿常规、影像报告（尤其是左肾结节相关CT/超声/MRI）。同时查看该患者既往门诊用药记录，核对百令片、氯沙坦、哌嗪片的处方历史和开具日期。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的住院病历、手术记录、出院小结原文、出院带药清单/处方、药房发药记录，以及术前术后的肾功能检查、尿常规、影像报告（特别是左肾结节相关CT/超声/静脉肾盂造影）。同时查看患者既往门诊用药记录，核对百令片、氯沙坦、哌嗪片的历史开具情况。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00065",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00068",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "我理解你的担心。在我查阅具体病历和处方记录之前，先回答你最紧迫的问题：\n\n**关于这三个药，在核对清楚前：**\n- **氯沙坦**：这是降压/保护肾脏的药。如果你一直在吃、血压稳定，突然停药可能引起血压波动。建议今天先按原来的剂量继续，但需要尽快核对是否需要调整。\n- **百令片**：中成药，常用于肾脏保护。如果不确定是不是这次出院带的，可以先暂停，等我核对后再决定。\n- **哌嗪片**：我需要确认具体药名。你说的可能是「哌唑嗪」或「氢氯噻嗪」？这两种用途不同，请你把药袋上的完整药名、剂量、用法念给我，或者拍一张清楚的标签照片。\n\n**关于左肾结节：**\n结节不等于肿瘤，很多结节是良性的，比如囊肿、血管平滑肌脂肪瘤等。但既然出院诊断里提到了，就需要随访观察。具体随访时间和检查方式，我需要看你的术前影像报告和医生交代，才能判断是否需要尽快复查。\n\n现在请你帮我做两件事：\n1. 把三个药袋上的标签逐字念给我，包括药名、剂量、用法、开具日期\n2. 出院小结上「出院带药」或「出院医嘱」那一栏，能看懂多少就念多少\n\n我会同时调取你的住院病历、手术记录、用药记录和检查报告，尽快帮你核对清楚。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00082",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+19min",
+      "text": "我按您说的一个个看了，先念我能看清的，不一定完全准啊。\n\n第一个药袋写的是“氯沙坦钾片”，后面规格像是“50mg”，用法写“一日一次，一次一片”吧。日期我看着不像今天出院开的，好像是住院前门诊那天的，具体是几号我有点看花了。\n\n第二个是“百令胶囊”，也可能写的百令片，我这袋上写“一次几粒、一日三次”那个几粒我看着像4粒，但不敢保证。这个日期也像以前门诊开的，不像今天新给的。\n\n第三个我刚才可能说错了，不是哌嗪片，我现在仔细看更像“哌唑嗪片”。规格那里太小了，好像是1mg还是2mg，用法那行像“睡前一次”或者“一日一次”，我真不敢乱认。这个药我今晚是不是先别吃？\n\n出院小结我又翻了一遍，“出院医嘱”那里我只看见“泌尿外科门诊复查”，还有什么“注意休息”之类的，没找到明确写几天后，也没看到写肾功能、尿检或者左肾结节做什么检查。那我今晚是不是就只按原来吃氯沙坦，百令和这个哌唑嗪都先停？氯沙坦如果血压不高也要吃吗？还有肾结节这个最晚多久要查，我怕拖久了。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+19min",
+      "text": "我需要调取该患者在CareLoop联合医疗网络内的以下资料：1.本次住院的病历、手术记录、出院小结原文；2.术前术后的检查结果，特别是肾功能、尿常规、尿乳糜试验；3.术前影像报告（超声/CT）关于左肾结节的描述和结论；4.门诊和住院期间的用药记录、处方记录、药房发药记录，重点关注氯沙坦、百令、哌唑嗪的开具时间和用法；5.患者的基础疾病史，特别是高血压、肾病史。请尽可能一次性返回这些资料，帮助我判断术后用药安排和随访计划。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00089",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+19min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00091",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+19min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00093",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+19min",
+      "text": "我需要调取该患者在CareLoop联合医疗网络内的完整资料：1）住院病历、手术记录、出入院小结原文；2）术前术后的检查检验结果，特别是肾功能、尿常规、尿乳糜试验；3）术前影像报告（超声、CT或MRI）中关于左肾结节的描述和结论；4）门诊和住院期间的用药记录、处方和药房发药记录；5）患者既往诊断记录，确认氯沙坦、百令、哌唑嗪的用药原因和起始时间。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00095",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+19min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00097",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+19min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00099",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+19min",
+      "text": "我需要调取该患者在 CareLoop 联合医疗网络内的以下资料：\n\n1. 本次住院的完整病历：入院记录、手术记录（左侧肾周围淋巴管结扎术）、出院小结原文、出院带药处方/医嘱\n2. 门诊处方记录和药房发药记录：查看氯沙坦、百令胶囊/片、哌唑嗪的历史开具情况\n3. 术前术后检查结果：肾功能（血肌酐、尿素氮、eGFR）、尿常规、尿乳糜试验、相关血液检验\n4. 左肾结节的影像报告：超声、CT或MRI报告，了解结节性质描述和随访建议\n5. 既往病史：高血压病史及其他合并症、长期用药清单\n6. 本次住院的时间线：入院日期、手术日期、出院日期",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00101",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+19min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00103",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+19min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00105",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+19min",
+      "text": "我需要调取这位患者在 CareLoop 联合医疗网络内的所有可用资料，包括：1）住院病历、出入院记录、手术记录；2）术前术后的检查检验结果，特别是肾功能、尿常规、尿乳糜试验；3）影像报告（泌尿系超声、CT 或 MRI），尤其关注左肾结节的描述和结论；4）用药/药房记录，包括门诊和出院带药清单；5）门诊病历和随访安排记录。请尽可能返回完整资料。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00107",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+19min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00109",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+19min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+19min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的住院病历、手术记录、出院小结原文、出院带药处方、术前术后肾功能和尿检结果、左肾结节相关影像报告和诊断记录。需要核对：1.出院医嘱的具体随访时间和检查项目 2.出院带药清单的药名、剂量、用法 3.左肾结节的性质描述和随访建议 4.患者既往用药史和诊断背景",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00115",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+19min",
+      "text": "你提供的药袋信息很有帮助。目前工作台能调取到的记录有限，还没看到完整的出院带药清单和检查结果，所以我只能基于你刚才念的内容给出谨慎建议：\n\n---\n\n**今晚用药建议：**\n\n1. **氯沙坦钾片 50mg，一日一次**：如果这是你住院前就在规律吃的药，今晚可以先继续吃一片。氯沙坦不仅是降压药，对肾脏也有保护作用。但**明后天需要测量一下血压**，如果血压偏低（比如低于90/60mmHg）或有头晕，要及时告诉我或线下就诊。\n\n2. **百令胶囊**：你提到这袋日期也像以前门诊开的，出院小结上也没明确写要继续吃。**今晚可以先暂停**，等你下次复诊时让医生确认是否需要继续。\n\n3. **哌唑嗪片**：这个药通常用于降压或改善排尿症状，剂量调整需要比较谨慎。既然你不确定规格和用法，出院医嘱也没写清楚，**今晚先不要吃**，等复诊时确认。\n\n---\n\n**关于复查和左肾结节：**\n\n出院小结只写了\"泌尿外科门诊复查\"，没有明确时间和项目，这确实让你不好办。我的建议是：\n\n- **肾功能、尿常规**：术后1-2周内复查一次比较稳妥，可以评估手术对肾脏的影响、乳糜尿是否改善。\n- **左肾结节**：需要看术前影像报告才能判断性质和随访紧迫程度。一般良性结节可以3-6个月复查，但如果性质不明确，可能需要更早复查。\n\n---\n\n**下一步建议：**\n\n1. **尽快预约泌尿外科门诊复诊**，把出院小结、药袋都带上，让医生帮你核对出院带药、开复查单。\n2. 如果你有**术前检查报告或影像片子**（比如CT、B超），可以拍照或下次带去复诊。\n3. 如果出现**腰痛加重、尿液明显异常（持续乳白色、血块）、发热**等情况，不要等复诊，及时去急诊。\n\n你今晚先按上面的建议处理用药，有不舒服随时联系。你方便的时候告诉我一下你平时的血压大概多少，以及住院前这三个药哪些是每天都在吃的，我帮你进一步判断。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00129",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+28min",
+      "text": "那我先按您说的办。我刚把百令胶囊和那个哌唑嗪片都单独放一边了，今晚先不吃，不是说以后都不用了吧？就是等门诊核对了再说，对吗？\n\n氯沙坦我想起来了，是住院前降压那个药，我平时多数日子都有吃，不是新药。刚才在家测了一下血压，大概130/80左右，我现在没有头晕。那今晚就吃原来那一片50mg可以吧？\n\n现在也没有发烧，腰也没有比出院时更疼，尿里暂时没看到一直有血块，就是尿这个情况我还是怕反复。明天我是不是就该先预约泌尿外科门诊？肾功能和尿常规是等差不多一周去查，还是明天门诊就让医生开？还有左肾结节这个，如果我一时约不到很近的号，会不会耽误？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00134",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+28min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的住院病历、手术记录、出院小结、出院带药清单/药房发药记录、术前术后肾功能和尿常规结果、术前影像报告（特别是左肾结节相关CT/超声报告），以及住院前后的门诊用药记录。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+28min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00138",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+28min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00141",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+28min",
+      "text": "你理解得完全正确，我再来逐条确认：\n\n**关于停药的理解：**\n- 百令胶囊和哌唑嗪片今晚暂停，**不是以后都不用了**，而是等门诊医生核对后再决定要不要继续、怎么吃。你放一边的做法是对的。\n- 氯沙坦50mg今晚可以继续吃一片。你血压130/80、没有头晕，说明目前耐受良好，继续吃是合理的。\n\n**关于复诊安排：**\n- **明天就可以开始预约泌尿外科门诊**，不用等一周。挂号后让医生开肾功能、尿常规检查单，当场或当天就能抽血留尿。术后一周左右复查是比较合适的时机。\n- **左肾结节**：多数结节是良性的，如果术前影像没有高度可疑恶性特征，短期内几周的延迟一般不会耽误病情。但既然诊断里提到了，复诊时要主动跟医生提这件事，让医生看术前片子、判断多久后需要复查超声或CT。\n\n**关于病情观察：**\n你目前没有发热、腰痛没加重、尿里没有持续血块，这是好现象。乳糜尿（米汤样尿）术后可能有反复，但如果再次出现明显的乳白色尿、血块增多，或者腰痛明显加重、发热，要及时去急诊，不要等门诊。\n\n你明天预约到门诊后，可以告诉我一下预约的时间，如果方便的话把术前检查报告也找出来。还有其他问题吗？",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00156",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+34min",
+      "text": "好的，我大概明白了。今晚我就把百令和那个哌唑嗪单独放着先不碰，氯沙坦50mg按原来一片吃，明天再量血压看看。\n\n明天我让家里人帮我挂泌尿外科，出院小结、药袋，还有能找到的以前那个CT/B超报告和片子我都先装一起带过去。要是发烧、腰疼厉害、尿又很白或者血块多，我就不等门诊，直接去急诊。\n\n我现在就还有一个事拿不准：如果手术那个医院明天挂不到号，肾功能和尿常规是不是一定要在手术医院开单查？还是我可以先去家附近医院抽血验尿，拿着结果再去泌尿外科看也行？我怕跑错地方耽误。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00162",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+34min",
+      "text": "这个问题很实际，我来帮你说清楚：\n\n**肾功能和尿常规，不需要必须在手术医院查。**\n\n你完全可以先去家附近方便的医院抽血、验尿，拿到结果后再带去泌尿外科门诊看。这两项是常规检查，任何医院都能做，结果通用。这样做反而省时间——你挂上号的时候已经有结果在手，医生可以当场判断。\n\n**具体建议：**\n\n1. **如果明天能挂上手术医院的泌尿外科号**：直接让医生开肾功能、尿常规，当天在医院查就行。\n\n2. **如果手术医院挂不到号、要等几天**：可以先去家附近医院查肾功能、尿常规，把结果留着。同时继续约泌尿外科的号，拿到结果一起带过去。检查结果一般一周内都有参考价值。\n\n3. **关于左肾结节**：这个需要看术前影像片子才能判断随访方案，建议优先选择能让你带上既往片子去就诊的医院。如果手术医院挂不到，也可以先去家附近医院的泌尿外科，带上你找到的CT/B超报告和片子，让医生先看一眼结节的性质，再决定后续随访是在哪家医院做。\n\n**小结一下你的计划：**\n- 今晚：氯沙坦50mg一片，百令和哌唑嗪先放一边\n- 明天：预约泌尿外科，能挂上就去挂号、让医生开检查；挂不上就先在家附近查肾功能和尿常规，同时继续约号\n- 带齐：出院小结、药袋、既往CT/B超报告和片子\n- 有发热、腰痛明显加重、尿又变白或血块多：直接去急诊\n\n你明天预约到门诊后，可以告诉我时间和地点，我帮你确认还需要注意什么。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00177",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+814min",
+      "text": "医生，我来跟您说一下进展。昨晚还算平稳，没有发烧，腰也没比出院时更疼，尿里没看到很多血块，就是尿颜色我还是有点担心。\n\n今天早上家里人帮我挂手术医院的泌尿外科，没挂到合适的号，我们就先来了家附近这个综合医院。普通门诊给我开了抽血查肾功能，还有验尿，刚才血也抽了、尿也留了，现在坐在检验科这边等，说下午到晚上可能陆续出结果。\n\n药我昨晚就只吃了氯沙坦50mg一片，百令和那个哌唑嗪还是放一边没吃。那今天如果血压不低，氯沙坦还是照吃一片对吧？百令和哌唑嗪继续先不碰，等泌尿外科或者药房窗口核对了再说？\n\n还有结果出来我怕看不懂，到时候我是不是重点把那个肌酐、尿蛋白、红细胞这些读给您听？左肾结节这事附近医院医生也说最好带原来的片子给泌尿外科看，我手里袋子里有旧CT/B超片子和出院小结，但今天还没正式看上泌尿外科。这个是不是还是尽量要回手术医院看一次更稳？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00182",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+814min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的住院病历、手术记录、出院小结、术前术后肾功能和尿常规检查结果、影像报告（尤其左肾结节相关CT/B超）、用药记录和出院带药处方。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00184",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+814min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00186",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+814min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00189",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+814min",
+      "text": "你今天做得很好，行动很果断——没挂上手术医院的号，就直接在家附近把检查做了，这个思路完全对。现在就安心等结果出来。\n\n**关于今天的用药：**\n- **氯沙坦50mg**：如果今天测血压不低（没有头晕、乏力），可以继续照吃一片。这个药你已经规律吃了一段时间，突然停反而不好。\n- **百令和哌唑嗪**：继续先放一边，等你正式看上泌尿外科、让医生核对后再决定。\n\n**关于结果回报：**\n结果出来后，你重点读这几项给我听就行：\n1. 肾功能：**肌酐**、尿素氮（有的话也读一下）\n2. 尿常规：**尿蛋白**（结果可能是阴性、+、++等）、**红细胞**（可能写「红细胞计数」或「镜检红细胞」）、**白细胞**\n3. 如果报告上还有其他异常标注（比如有箭头、写「异常」），也一并读出来\n\n你读给我后，我帮你判断各项指标意味着什么、下一步该怎么办。\n\n**关于左肾结节和回手术医院的问题：**\n附近医院医生说得对，左肾结节最好带上原来的片子让泌尿外科医生看。你现在手里有旧CT/B超片子和出院小结，这很好。\n\n我的建议是：\n- **优先挂手术医院的泌尿外科复诊**，因为手术医生更了解你术中情况、淋巴结清扫范围，对术后随访方案判断更连贯。\n- 如果手术医院短期内实在挂不到，可以先在家附近医院的泌尿外科就诊，把片子带上，让医生先看一眼结节的性质，至少心里有个底。之后有机会再回手术医院复查。\n\n**今天等结果期间的观察重点：**\n- 如果出现**发热（体温超过38℃）、腰痛明显加重、尿又变成明显的乳白色或有较多血块**，不要等结果，直接去急诊。\n\n结果出来后随时联系我，我帮你解读。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00205",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+934min",
+      "text": "医生，我又等了差不多两个小时，手机上报告还没全出来，只看到有些项目在刷新/审核中，肾功能和尿常规还没有完整数值，所以肌酐、尿蛋白、红白细胞这些我现在还读不出来。\n\n我现在没有发烧，腰也没觉得明显更疼，尿里没看到很多血块，就是尿色还是有点浑，不像清水那样，我心里还是不踏实。这个是不是可能就是报告没出完，不代表结果不好吧？\n\n我想问下，如果到晚上手机还刷不出完整报告，我是继续等明天，还是要去检验科窗口问？今天晚上药还是按您刚才说的：血压不低就氯沙坦50mg一片，百令和哌唑嗪先不吃，对吗？\n\n还有如果晚上尿更浑、又变白，或者开始有血块/发热/腰疼加重，我就直接急诊，不用等报告，是这样吧？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00211",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+934min",
+      "text": "你的理解全部正确，我来逐条确认：\n\n**关于报告还没出完：**\n检验科部分项目审核时间确实会比较长，肾功能和尿常规有时需要几小时甚至更久，\"显示在审核中\"只是说明还没走完流程，**不代表结果有问题**。你不必因此过度担心。\n\n**如果到晚上还刷不出完整报告：**\n- 可以先去检验科窗口问一下，工作人员能帮你确认是否已经出结果、是否可以打印纸质报告\n- 如果窗口也查不到，那就等明天再取，不会耽误病情判断\n\n**今晚用药：**\n是的，按之前说的执行——\n- 氯沙坦50mg：如果血压不低、没有头晕，今晚照吃一片\n- 百令和哌唑嗪：继续先不吃，等复诊核对后再决定\n\n**急诊指征——你记对了：**\n如果今晚出现以下情况，不用等报告，直接去急诊：\n- 尿又明显变白、像米汤一样\n- 血块增多\n- 发热（体温超过38℃）\n- 腰痛明显加重\n\n目前你没有发烧、腰痛没加重、尿里没有大量血块，这些都是平稳的信号。尿色稍微有点浑在术后近期可能是残留现象，继续观察就好。\n\n等报告出来后随时读给我，我帮你解读。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00226",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+994min",
+      "text": "医生，我刚按您说的去检验科窗口问了，尿常规已经审核好了，我打印了纸的单子。肾功能/生化那边还没签发，窗口说大概要傍晚，晚的话明天早上再取或者手机上看。\n\n我这边低头看尿常规，能看清几个：红细胞好像写的是 **10-15/HPF**，旁边有个箭头；尿蛋白那里我看着像“阴性”还是“±”，这个字有点小我不太敢确定；白细胞我没看到明显高，好像不高。\n\n我现在还是没有发烧，腰也没比刚才更疼，尿里没看到很多血块，就是尿色还是有点浑，所以看到红细胞高我又紧张了。这个红细胞10-15算不算危险？是不是术后会这样，还是说明里面还在出血/肾有问题？肾功能还没出之前，我今晚就先按您说的观察可以吗？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00232",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+994min",
+      "text": "你做得很好，主动去窗口问、把尿常规结果读给我，这些信息很有价值。我来帮你解读：\n\n**关于红细胞 10-15/HPF：**\n这个数值确实高于正常范围（正常一般<3/HPF），但在你刚做完肾周围淋巴管结扎手术的背景下，**这个程度的镜下血尿在术后近期是可以预期的**，不算危险信号。手术对肾脏及周围组织有一定扰动，术后几周内尿里可能有少量红细胞，随着创面愈合会逐渐减少。\n\n**什么情况说明出血在加重、需要警惕：**\n- 尿色变成明显红色或洗肉水样\n- 出现较多血块\n- 伴有腰痛明显加重或发热\n你目前没有这些情况，红细胞10-15属于轻度升高，不需要过度紧张。\n\n**关于尿蛋白：**\n你看着像\"阴性\"或\"±\"，这个范围问题不大。±是微量，可能是术后一过性的，等肾功能报告出来后一起评估更完整。\n\n**今晚的观察计划——可以按我之前说的执行：**\n1. 继续观察：有没有发热、腰痛加重、尿变白或血块增多\n2. 氯沙坦50mg：血压不低就照吃一片\n3. 百令和哌唑嗪：继续先不吃\n\n**肾功能报告：**\n傍晚或明早出来后，把肌酐、尿素氮数值读给我，我帮你判断肾功能有没有受影响。\n\n目前你的症状稳定，尿常规结果在术后可接受范围内，今晚按计划观察就好。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00246",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1129min",
+      "text": "附近医院肾功能/生化报告已由患者读回：肌酐约78 μmol/L、尿素氮约5.6 mmol/L、钾约4.1 mmol/L，eGFR未见明显降低；患者无发热、明显腰痛加重、大量血块或头晕乏力。请解释并行动化。",
+      "turn": 8,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00251",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1129min",
+      "text": "医生，肾功能那个生化报告现在终于签发了，我照着手机和纸单给您念一下，不知道有没有漏掉小字，您别当成已经看清原图哈。\n\n我看到：肌酐是 **78 μmol/L**，尿素氮 **5.6 mmol/L**，钾 **4.1 mmol/L**。那个 eGFR 旁边我看着是正常的，没看到向下的箭头。\n\n我现在人有点累，但没有发烧，腰也没明显更疼，尿里没看到血块。尿色还是有点浑，不过比以前那种米汤一样白要轻一些。\n\n这个肌酐78是不是就说明肾功能暂时没受影响？那今晚药还是按前面说的：血压不低就吃氯沙坦50mg一片，百令和那个哌唑嗪继续先不吃，等泌尿外科或药房当面核对，对吧？\n\n还有我手术医院泌尿外科号还没挂上，左肾结节的旧片子和出院小结我都在袋子里了。像我这个情况，复诊最迟这几天要约上比较稳？如果手术医院一直挂不上，我先去附近医院泌尿外科看结节和药，也可以吗？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00257",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1129min",
+      "text": "你读得很清楚，这个肾功能结果是个好消息。\n\n**肌酐78 μmol/L、eGFR正常，说明目前肾功能确实没有受到影响**，尿素氮和钾也在正常范围内。结合你之前尿常规的红细胞10-15/HPF、尿蛋白阴性~±，目前看手术对肾脏的冲击是可控的，没有急性肾损伤的迹象。\n\n**今晚用药确认：**\n- 氯沙坦50mg：血压不低就照吃一片\n- 百令和哌唑嗪：继续先不吃，等复诊核对\n你理解得完全正确。\n\n**关于复诊时间：**\n你刚做完肾周围淋巴管结扎手术，术后一周左右复诊是比较稳妥的窗口。你现在已经完成了肾功能和尿常规检查，接下来关键是：\n- **泌尿外科复诊最迟建议在一周内约上**（也就是出院后7-10天内）\n- 如果手术医院短期内挂不到号，**可以先去家附近医院的泌尿外科**，带上你袋子里的旧CT/B超片子、出院小结、今天的化验报告\n- 让附近医院的医生先评估：左肾结节性质、术后用药方案是否需要调整\n\n**复诊时要确认的事：**\n1. 左肾结节的随访方案（是否需要复查影像、多久复查）\n2. 百令和哌唑嗪是否需要继续吃、剂量多少\n3. 氯沙坦是否需要调整\n\n目前你症状稳定——没有发热、腰痛没加重、尿里没有大量血块、尿色在好转，这是好迹象。继续保持观察，有变化随时联系我。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00271",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1154min",
+      "text": "好的医生，我明白了，听您这么说我心里松一点。\n\n我怕自己记漏，再跟您对一下：今晚我就看血压和有没有头晕，血压不低就吃氯沙坦50mg一片；百令和哌唑嗪先不碰，等泌尿外科或者药房当面看药袋再说。\n\n资料我已经都装一个袋子里了：出院小结、今天尿和肾功能报告、旧CT/B超片子、药袋。明天让我家里人继续帮我挂手术医院泌尿外科，挂不到的话就先去附近医院泌尿外科，把左肾结节和这几个药问清楚。\n\n急诊我记的是：如果发烧超过38度、腰疼明显加重、尿又像米汤一样白，或者尿血明显/血块变多，就不等门诊直接去急诊。这样理解对吧？我今天确实有点累了，今晚就先按这个观察休息。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_039__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7853571071357126,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 9
+}

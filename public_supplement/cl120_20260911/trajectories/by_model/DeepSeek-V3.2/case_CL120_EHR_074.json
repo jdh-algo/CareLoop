@@ -1,0 +1,730 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "5015318f0dd7980d9267c7e1ff05396d3fc3d0226ceee332aab4c8a94b9911e8",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_074__anon_f1026e0d227baceb",
+    "packet_sha256": "e20af238fb118c90eaa4a4f6cca6a6318e95e7595f2b0786e1b82667afc8080a"
+  },
+  "case_id": "case_CL120_EHR_074",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "2",
+    "contract_complexity_level": "low",
+    "disease_domain": "obstetrics_gynecology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "document_or_image_quality_problem",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "6",
+    "secondary_frictions": "incomplete_patient_information | medication_confusion_or_execution_failure",
+    "starting_phase": "result_return",
+    "target_problem": "gynecologic_mass_pathway",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者最初的核心问题是B超单和药单模糊、不清楚先兆流产是否稳定以及黄体酮针和达芙通如何继续。",
+      "医生使用工作区/病历线索识别到住院记录中有先兆流产、宫腔积液、黄体酮针、达芙通等背景，并没有单纯依赖模糊照片。",
+      "患者多轮症状反馈均为少量褐色分泌物、偶有坠感，无鲜红大量出血、持续/加重腹痛、流液、发热或组织样物排出。",
+      "医生要求不要凭旧的模糊药单自行到社区注射黄体酮，而应带材料到原医院产科门诊/服务台核对。",
+      "患者实际到达原医院产科门诊，完成加号面诊；线下产科医生查看材料和院内记录后给出正式用药和复查安排。",
+      "患者回传线下方案：达芙通/地屈孕酮片每8小时1片、一天三次；黄体酮针按当天门诊新开单和指定注射路径执行；约1周后产科复诊复查B超；红旗直接急诊。",
+      "患者随后到同院注射室，护士按门诊新医嘱和电脑系统核对黄体酮针，已完成当日注射，避免了凭旧模糊药单自行注射。",
+      "丈夫再次拿小票和门诊单到注射室窗口核对，确认后续黄体酮针按今日门诊新医嘱在同院注射室连续执行至单上截止日期。",
+      "患者注射后无头晕、心慌、皮疹，腹痛和出血无明显加重，并能复述红旗急诊边界。"
+    ],
+    "if_continued_next_focus": "不必继续重复照片/挂号摩擦；若继续，只需在约1周复诊B超后处理新结果，或若出现鲜红出血增多、持续/加重腹痛、流液、发热、组织样物排出等红旗则立即转入产科急诊评估。",
+    "rationale": "本案目标是早孕先兆流产出院后、B超/药单模糊导致的结果与用药执行断点的 bounded result_return episode。当前主要责任链已闭合：症状经多轮确认暂无急性红旗；模糊照片未被强行当作可靠依据，而是通过原住院产科面诊、院内系统和注射室护士核对完成外部验证；达芙通用法、黄体酮针执行路径、后续注射地点/疗程依据和约1周产科复诊复查B超均已有明确责任人和时间窗；患者/丈夫已回传执行结果，并能说出红旗急诊阈值。残余的早孕流产风险、宫腔积液/肌瘤/息肉及后续B超结果属于已交给产科随访的 bounded residual，不再阻断本次线上用药/复查导航闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：约1周后产科复诊并复查B超，需由原医院产科开单/复查并解释胎心、宫腔积液变化等；当前已有owner、due window和红旗升级路径。",
+      "bounded_residual_followup：黄体酮针具体每日支数/截止日期未由AI直接读取原单，而是由丈夫和注射室护士按院内系统确认；当前可接受，因为执行主体是同院注射室/护士，患者不自行按模糊药单操作。",
+      "bounded_residual_followup：宫颈息肉、子宫肌瘤、瘢痕子宫、乙肝合并妊娠等高危妊娠长期问题仍需产科持续管理，但不属于本次线上result_return用药执行断点的未闭合 blocker。",
+      "global_disease_journey_background：早孕先兆流产本身仍有自然流产风险，不能解释为妊娠已安全结束或疾病治愈。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "DeepSeek-V3.2",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "早孕出血后拿到B超单，保胎药和复查时间没弄清",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我刚怀孕不久，前几天有点出血住过院，说是先兆流产，还提到宫腔有积液、子宫肌瘤和宫颈息肉。我手里只有一张拍得有点糊的B超单和出院时的药单，医生让注意腹痛、流血、胎心，但我没听明白现在算不算稳定，黄体酮针和达芙通该怎么接着用。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取你在 CareLoop 联合医疗网络内可授权访问的本次住院记录、出院小结、B超报告原文、用药清单、以及宫腔积液、子宫肌瘤、宫颈息肉的具体描述和出院建议。另外，也请查阅你当前的家庭和交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取 CareLoop 联合医疗网络中可授权访问的既往病历、出入院记录、B超报告原文、用药记录和出院小结。同时，请提供最近的血常规、血HCG和孕酮等检验结果，以及患者的孕周、用药方案和家庭/交通可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取在CareLoop联合医疗网络内可授权访问的本次先兆流产相关住院记录，包括出院小结、相关B超报告（如可能）、用药清单（特别是黄体酮针剂和达芙通（地屈孕酮）的具体用法用量）以及妇科既往史摘要。同时查看患者提到的宫腔积液、子宫肌瘤、宫颈息肉的详细记录和孕周。另外，请查看关于家庭监测和交通就医可及性的信息，以及是否有后续随访安排。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者近期的所有住院病历、出院小结、相关超声报告、以及出院用药记录。如果可能，请一并查看她在联合医疗网络内授权可访问的相关孕产检查记录和时间线。此外，请了解患者的基本信息，如当前孕周、年龄等。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请调取 CareLoop 联合医疗网络中可授权访问的本次先兆流产住院相关病历记录，包括出院小结、最新的B超报告原文、住院期间的用药清单（特别是黄体酮和达芙通的用法用量）、以及关于宫腔积液、子宫肌瘤、宫颈息肉的具体描述。同时，请查看患者出院后至今的用药记录和任何新的检查结果。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好。根据您描述的情况，我尝试从网络系统中调取了您本次先兆流产住院的相关记录。目前系统中虽然能查到有5条记录条目，但具体的出院小结、B超报告原文、详细的用药清单和宫腔情况描述等核心资料，在这次查询中暂时未能直接获取，可能因为系统间同步或您就诊医院的资料上传需要一点时间。\n\n基于您提供的信息，我现在能给您以下初步的答复和建议：\n\n1.  **关于“算不算稳定”**：先兆流产的“稳定”是指住院期间医生处理后，阴道出血基本停止或显著减少，腹痛等症状消失或很轻微，复查B超确认胚胎/胎儿发育与孕周基本相符、胎心搏动良好。**最重要的判断依据是您出院后的症状和B超复查结果。** 如果您现在阴道出血已经完全停止，没有明显的腹痛，那么病情是在向好的方向发展。但最终确认需要结合B超。\n\n2.  **关于黄体酮针和达芙通（地屈孕酮）的用法**：这两种都是保胎常用药。\n    *   **黄体酮针**：通常是肌肉注射，具体剂量（比如每天20mg还是40mg）和疗程（比如需要用到孕几周）**必须严格遵照您出院时医生的医嘱**，因为这是根据您当时的具体情况和B超结果制定的。我暂时没有看到您的具体出院医嘱。\n    *   **达芙通（地屈孕酮片）**：是口服药，同样需要按出院医嘱的剂量（通常是每日2-3次，每次1片）和疗程服用，一般是在出血停止、情况稳定后，医生会指导逐步减量，不能突然停药。\n\n**接下来您需要做的几件事：**\n\n1.  **药物执行**：**请立即拿出您的出院药单或出院小结（如果有的话），严格按照上面写的用法用量来执行，不要自行更改或停药。** 这是目前最关键的一步。\n2.  **上传资料**：为了能给您更精确的指导，**请您把手里那张有些模糊的B超单和出院药单的照片，尽量清晰地拍下来，上传给我。** 我需要看到上面具体的文字描述（如孕囊大小、胎心、积液量、肌瘤大小等）和药物的具体用法。\n3.  **症状观察**：正如您住院时医生嘱咐的，请继续密切观察。如果再次出现**鲜红色或量增多的阴道流血、持续或加剧的腹痛**，或者感觉有东西掉出来，**请立即就近前往医院急诊**。\n4.  **后续安排**：先兆流产保胎后，通常需要在**1-2周后返回产科门诊复查B超**，评估胚胎发育和宫腔积液吸收情况。请您联系您的产科医生，预约好复查时间。\n\n请您先完成第一步，按医嘱用药，并上传清晰的照片。我们根据更详细的资料，再来看下一步如何调整用药和安排复查。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+9min",
+      "text": "患者暂无法提供清晰B超/药单照片，可口头读回药单关键内容；当前症状暂稳，但今日黄体酮针未执行，需核对医嘱并明确是否需联系产科或注射点。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+9min",
+      "text": "复查B超目前没有预约回执，需提醒患者落实产科门诊/原住院科室复查安排，并说明急诊症状不等待预约。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00052",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+9min",
+      "text": "医生，我又拍了一下，但我自己放大看小字都糊，怕您这边也看不清。我直接把药单上能看见的念给您听吧，可能有的数字我也不太确定。\n\n现在我没有鲜红的血了，就是偶尔内裤上一点褐色的，肚子没有一直疼，就是有时候坠一下。\n\n药单上我看到有一行写“黄体酮针”，后面好像是“2支”，再后面有“qd im”；还有一行像是“st im”，我不知道这个 st 是不是只打一次的意思。今天这针我还没敢去打，怕该停了我又打了，或者该打我没打耽误了。\n\n达芙通盒子是“地屈孕酮片”，药单上我看着像写“q8h po”，我就理解成早中晚一天三次，每次一片吃了，这样对吗？是不是一定要隔8小时吃？\n\n还有B超复查我还没挂号，是现在就去复查，还是等出院后一周再去？社区打针我老公说人家可能要看清楚医嘱，手机照片糊他们不一定给打。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+9min",
+      "text": "我查阅 CareLoop 联合医疗网络中该患者本次先兆流产住院的出院小结、详细用药清单（医嘱）、B超报告原文、以及宫腔积液、子宫肌瘤、宫颈息肉的具体描述。同时，请调取患者在本网络内的既往孕产史记录（如有）。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+9min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+9min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00063",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+9min",
+      "text": "我调取/查阅患者在 CareLoop 联合医疗网络内可授权访问的：1. 本次先兆流产的住院病历（特别是出院小结）全文；2. 最近的B超检查结果原文（包括孕周、胎心、积液、肌瘤、息肉描述）；3. 出院带药/用药记录/药房记录（含黄体酮和地屈孕酮的具体用法用量）；4. 产科门诊复诊预约或建议；5. 家庭/社区可及性信息（如附近是否有注射点、交通情况）。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+9min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00067",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+9min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00069",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+9min",
+      "text": "我调取CareLoop联合医疗网络内可授权访问的本次先兆流产住院相关的所有资料，包括但不限于：出院小结/记录、具体的B超报告原文（特别是关于孕囊、胎心、宫腔积液、子宫肌瘤、宫颈息肉的描述）、详细的用药医嘱/药房记录（特别是黄体酮和地屈孕酮的剂量、用法、频次、疗程）、以及与家庭/交通照护可及性相关的信息。请根据时间线或最近事件索引调取。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00071",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+9min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00073",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+9min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00075",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+9min",
+      "text": "我保存一条医生工作备注：患者先兆流产保胎中，症状（褐色分泌物、偶有坠感）较前好转但未完全稳定。口头读出药单关键信息需复核：黄体酮针疑似'2支 qd im'，另有疑似'st im'；地屈孕酮片疑似'q8h po'。社区打针可能因医嘱不清受阻，需核实具体剂量、用法和是否需要继续。需指导患者确认/联系产科，并明确B超复查时机。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00078",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+9min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00081",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+9min",
+      "text": "我保存一条医生工作备注：患者先兆流产保胎，症状改善（无鲜红血、偶有褐色、坠感），药单口头信息：黄体酮针疑似‘2支 qd im’和‘st im’需澄清；地屈孕酮片‘q8h po’；社区打针和B超复查待指导。\n\n现在我需要通过临床工作区调取患者最近住院的出院小结、B超报告原文、详细用药清单和医嘱。同时查看患者是否在CareLoop联合医疗网络中有可授权访问的外院记录、家庭/交通可及性信息，以帮助联系注射点和安排复查。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+9min",
+      "text": "您好。根据你描述的“没有鲜红的血、偶尔褐色分泌物、肚子偶尔坠一下”来看，症状确实比住院时有所好转，这是积极的信号，但病情尚未完全稳定，需要继续密切观察和用药。\n\n关于你最关心的用药问题，根据你念出的药单信息，我帮你逐一分析，但**前提是这些解读必须由你和你的主治医生最终核对确认**：\n\n1.  **黄体酮针**：“qd im”意思是每日一次肌肉注射。“2支”是单次剂量，每支通常是20mg（总计40mg），但具体含量要看你药盒或原医嘱。“st im”很可能代表“立即执行一次”，通常是入院或出院时的一次性注射，**正常情况下不作为每日常规医嘱**。你今天不敢打是对的。**请立即联系你上次住院的产科病房或你的产科门诊医生**，向他们确认：出院后黄体酮针是否要继续每日打？打多少剂量（40mg还是20mg）？要打到什么时候？社区打针也必须凭医生开具的清晰、有盖章的纸质处方或医嘱单，光凭模糊照片通常不行。\n\n2.  **达芙通（地屈孕酮片）**：“q8h po”确实是每8小时口服一次，也就是一天三次。你理解的一天三次吃一片，从字面看是正确的。为了保证血药浓度平稳，**最好尽量做到每隔8小时吃一次**（比如早8点、下午4点、晚12点），如果难以做到，早中晚各一次也可以接受，重点是**不要漏服**。\n\n3.  **B超复查**：对于先兆流产保胎后，通常在**出院后1-2周内**需要复查B超，观察胚胎发育、胎心以及宫腔积液吸收情况。你暂时没有出现大量鲜红血或剧烈腹痛等急诊情况，所以**建议你尽快预约产科门诊**（通常是你的主治医生），让医生评估后开具B超检查单。**不要等足一周才去挂号**，现在就可以着手预约。如果预约等待时间过长，或期间出现腹痛加剧、出血增多等情况，则需随时去急诊。\n\n**请你接下来的操作是**：\n*   **第一步（最关键）**：立即**联系你的产科医生或上次住院的科室**，明确黄体酮针的后续用法，并请他们提供一份可以用于社区注射的清晰纸质医嘱。\n*   **第二步**：严格按药单字面信息（每日三次，每次一片）服用达芙通，尽量不要漏服。\n*   **第三步**：预约产科门诊，安排近期（一周内）的B超复查。\n*   **第四步**：继续观察症状。**如果出现腹痛加剧、出血量增多（如超过月经量）、或感觉有组织物排出，请立即去最近医院的急诊。**\n\n由于我暂时无法直接看到你的完整出院医嘱和B超报告原文，以上分析是基于你提供的信息。所有治疗决策，特别是药物的调整和停用，最终必须由你的线下主治医生结合你的复查结果来做出。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00098",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+36min",
+      "text": "医生，我刚才按您说的给原来住院的产科病区打电话了。护士等了一会儿帮我查，说我住院期间记录里确实有黄体酮针，也有达芙通/地屈孕酮片的医嘱，不是我完全看错。\n\n但是她说电话里不能替主治医生定出院后针还要不要继续、打几支打多久，也不能给我开社区打针的证明。她让我今天或者明天上午带出院小结、药盒和那个药单去产科门诊，或者原病区服务台核对；如果鲜红血变多、肚子明显疼、流液、发热或者掉出像肉一样的东西，就直接去急诊产科。\n\n我现在还是没有鲜红大量出血，就是偶尔一点褐色，肚子有点坠但不是一直疼。那我今天是不是先不要自己拿那个糊药单去社区打黄体酮针？达芙通我先继续一天三次一片吃着可以吗？然后今天能挂上号就去门诊，挂不上就明早带材料去服务台/门诊核对，再让医生给我开B超单，这样顺序对不对？我就是怕今天少打一针会不会耽误。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00104",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+36min",
+      "text": "护士的回答非常符合常规流程，电话里确实无法做出任何治疗决策或开具证明。你做得很好。\n\n**关于今天是否要打黄体酮针：**\n**是的，在用药方案明确前，今天先不要拿着模糊的药单去社区打针。** 在没有清晰、有效医嘱的情况下自行注射，或使用剂量、疗程不明确的处方，风险很高。你今天少打这一针，在目前症状稳定（仅有少量褐色分泌物、偶有下坠感）的情况下，导致严重后果的可能性极低。**但关键是今天或明天一定要去线下完成核对和续针。**\n\n**关于达芙通：**\n**是的，请继续按一天三次、每次一片（q8h）服用。** 这是目前可以确定且安全的保胎基础治疗，不要漏服。\n\n**关于你的行动顺序，完全正确：**\n1.  **今天**：如果可以挂上产科门诊的号（哪怕是加号），就今天带齐材料（出院小结、药盒、药单）去门诊，让医生核对并明确后续方案，同时开具B超复查单和清晰的注射证明。\n2.  **如果今天挂不上**：明早直接带材料去产科病区服务台（护士提到的地方），他们可以帮你联系医生或转诊到门诊，完成同样的核对和开具证明的流程。之后再凭新开的证明去社区打针。\n\n**不要焦虑今天这一针**。从住院治疗过渡到院外维持治疗，出现1天的用药空窗在临床上是常见的，尤其是在需要明确后续方案时。优先确保方案正确，比盲目执行一个不确定的医嘱更重要。\n\n请现在就尝试挂号，并把要带的材料（出院小结、药盒、药单）准备好。如果出现护士提醒的那些紧急症状，就按她说的立即去急诊。有任何新的情况可以随时联系我。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00118",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+83min",
+      "text": "医生，我刚查了医院小程序，今天产科普通号已经满了，但是提示下午可以去门诊服务台申请加号或者现场分诊。我老公已经请了半天假陪我去，我把出院小结、药盒、药单都装好了，准备下午直接去原医院。\n\n我早上达芙通已经吃了一片，黄体酮针上午还是没打，先等医院医生当面核对。现在还是一点点褐色分泌物，肚子偶尔坠一下，没有变成鲜红很多，也没有一直疼。\n\n我想再确认一下：下午就按这个服务台加号/分诊去可以吧？如果现场等号时间长，中午/下午达芙通我还是照一天三次一片继续吃，黄体酮针就等医生当面说清楚再打，对吗？如果路上或者等的时候突然红血多了、肚子明显疼了，我就不排队直接去急诊产科，是这样吗？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00124",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+83min",
+      "text": "你的计划非常好，非常清晰。我来逐一确认你的问题：\n\n1.  **就诊途径**：下午直接去原医院，到产科门诊服务台申请加号或现场分诊，是完全可行的路径。带齐你准备好的所有材料（出院小结、药盒、药单）。\n\n2.  **用药安排**：完全正确。\n    *   **达芙通（地屈孕酮片）**：中午、下午以及晚上的那一片，请严格按照一天三次、每次一片的节奏继续服用。\n    *   **黄体酮针**：**就等医生当面核对并开具清晰、有效的医嘱后，再根据新医嘱执行。** 今天上午这一针没打是安全的决策。\n\n3.  **紧急情况处理**：完全正确。如果**在途中或等待期间**出现以下任何一种情况，请立即放弃排队，直接前往该医院的**急诊产科**：\n    *   阴道流血**明显增多**，变成鲜红色，或量接近甚至超过平时月经量。\n    *   **腹痛加剧、持续不缓解**，或疼痛性质改变。\n\n你现在症状（仅少量褐色分泌物，偶有下坠感）是稳定的，可以按计划前往。出门注意安全，让家人陪同。到了医院有任何新变化可以随时联系我。祝你顺利。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00139",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+158min",
+      "text": "医生，我已经到原来住院这个医院的产科门诊服务台了，我老公陪我来的。出院小结、药盒、药单还有那张小B超单都带来了，护士刚才简单看了一下，给我登记了下午加号/分诊，现在在外面等叫号，还没正式见到产科医生。\n\n现在还是一点褐色的，没有鲜红一下子多起来，肚子就是偶尔坠一下，不是一直疼，也没流水、发烧。护士也说如果等的时候红血多了、肚子疼厉害了或者掉出像组织的东西，就直接去急诊产科。\n\n中午达芙通我按您说的吃了，一天三次一片先不断。黄体酮针到现在还没打，等产科医生当面看完再说。护士这边看过材料让我等号，这样我就先安心等着可以吧？等会儿医生面诊完，如果开了新的用法或者B超单，我再把医生说的重点发给您帮我核对一下行吗，我怕我又听漏。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00146",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+158min",
+      "text": "你做得非常好，流程完全正确。现在已经在医院，护士也看过了材料并帮你登记了加号，你可以安心等待叫号。\n\n目前褐色分泌物少量、无剧烈腹痛，表明情况暂时稳定，但确实需要医生当面评估后才能最终确定后续治疗方案，特别是黄体酮针的具体用法。\n\n是的，达芙通请继续按一天三次一片服用，不要漏服。黄体酮针就等医生看过再决定。\n\n完全没问题，等会儿医生面诊结束，你把医生说的要点（比如新的用药方案、复查B超的时间、还有需要注意什么）发给我，我帮你一起梳理核对一下。这样你也能更放心。\n\n等待期间，如果出现刚才护士和你我反复提醒的那些紧急情况，请立即去急诊。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00161",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+218min",
+      "text": "医生，我看完加号出来了。产科医生看了我带的出院小结、药盒、药单，还在电脑里核了一下，说我现在还是少量褐色、偶尔坠一下，暂时没让我去急诊。\n\n她说达芙通/地屈孕酮片继续吃，按每8小时一片，也就是一天三次，不要漏。\n\n我最怕听漏的是黄体酮针这块：医生说不能再拿之前那张糊的旧药单自己去社区打，要按今天门诊重新开的那个单子和她说的指定地方去打。但我有点没记踏实，是今天就要补打，还是明天开始，还有到底每天去哪里打。我现在手里有新单子，不想再拍了，怕还是看不清。您看我是不是应该直接去注射窗口/护士那边，让他们按新单子给我确认“今天打不打、打几支、打几天、在哪打”这几句？\n\n另外医生说大概一周后回来产科复诊、复查B超。她也说如果鲜红血明显多了、肚子一直疼厉害了、流水、发烧，或者掉出来像组织一样的东西，就直接急诊产科。这样我理解对不对？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00168",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+218min",
+      "text": "你的理解和处理都非常到位，我们来逐一确认：\n\n1.  **紧急情况的理解完全正确**：如果出现鲜红血明显增多、持续剧烈腹痛、流水、发烧或组织样物排出，就立即去急诊产科，不要等待。这是最高优先级的预警信号。\n\n2.  **达芙通的用法确认**：一天三次，每8小时一片，不要漏服。好的。\n\n3.  **最关键的一步：黄体酮针的执行核对**\n    你的思路非常对，也是目前最安全高效的做法：**现在不要凭自己去理解新单子，而是拿着它直接去医院的注射室/治疗室/护士站（就是医生提到的“指定地方”）。**\n    \n    到那里后，把你刚才担心的几个问题直接问窗口/护士：\n    *   “医生新开的这个单子，**今天需要打吗？还是从明天开始？**”\n    *   “**每天打几支？**”（比如是1支还是2支）\n    *   “**一共打几天？**”（比如打到哪天为止）\n    *   “**每天都是在这里打吗？还是之后可以去社区？**”\n    \n    让执行者根据医嘱单当面确认，这是最准确的，也能避免你自己看错或记错。如果他们说今天该打，你就在那里打；如果他们说从明天开始，你就确认好时间地点，明天再来。\n\n4.  **随访计划**：好的，一周后产科复诊、复查B超，这个时间点很合适。\n\n你现在就在医院，这是最好的时机去把黄体酮针的执行细节当场落实。等你从注射室/护士那里问清楚了，可以再告诉我一下最终的安排，比如“今天打了/没打，从哪天开始、每天几支、在哪里打”，我帮你做最后的记录和核对。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00182",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+240min",
+      "text": "医生，我按您说的去注射室了，护士是按今天门诊新开的单子和电脑里的医嘱核对的，不是看以前那张糊的。她说今天要打一针黄体酮，我这会儿刚打完，在外面坐着歇一下，我老公拿着小票。\n\n后面她口头说好像还要按这个门诊单连续来打几天，具体打到哪天我有点晕，单子上小字我也怕看错。我记住的就是：黄体酮针按门诊新单来，达芙通还是每8小时一片、一天三次继续吃。\n\n现在还是一点褐色，没有鲜红血多起来，肚子偶尔坠一下，没有流水发烧，也没掉出来什么东西。您能不能帮我整理成最简单的几条：我接下来每天要记住哪几件事、B超复查大概怎么安排、什么情况直接急诊？我怕今天跑一天又听漏。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00187",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+240min",
+      "text": "我调取患者在 CareLoop 联合医疗网络内可授权访问的本次就诊相关记录：1. 出院小结（含诊断、主要处理）；2. 最近一次（本次或住院期间）的B超报告原文；3. 用药记录（包括住院期间和本次门诊新开具的黄体酮及达芙通处方详情）；4. 门诊新开的注射单/医嘱单文本记录（包括黄体酮针的具体用法、频次、总量、注射地点要求）。同时，如果有任何关于先兆流产、宫腔积液、子宫肌瘤、宫颈息肉的既往记录，也一并提供。",
+      "turn": 7,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00189",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+240min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 7,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00191",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+240min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 7,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00194",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+240min",
+      "text": "你今天执行得非常清晰，现在黄体酮针已经打完第一针，这是最关键的一步。我来为你整理成最简单的几条，帮你稳住阵脚。\n\n**一、每天要记住的三件事（从现在开始）**\n1.  **达芙通（地屈孕酮片）**：每8小时吃一片，一天三次，按时服用。这是口服保胎的基础，不要漏服。\n2.  **黄体酮针**：请让你老公看一下门诊新开的单子或小票，上面会写明 **每天打几支、一共打几天**。如果看不明白，我们一会儿想办法确认。接下来的几天，请按照医嘱单上规定的时间和地点（应该是医院的注射室）每天去注射。\n3.  **症状观察**：继续留意阴道分泌物（是褐色还是变鲜红、量是否明显增多）、腹部感觉（坠胀感是偶尔还是持续加重）。\n\n**二、B超复查安排**\n产科医生建议 **一周后复诊并复查B超**。这个时间点很常规。建议你今天就通过医院小程序或服务台，**预约一周后的产科门诊号**（可以约普通号或医生指定的复诊号）。拿到B超申请单后，最好也同时预约好一周后的B超检查时间，避免到时候排不上队。如果预约有困难，可以随时联系我。\n\n**三、什么情况直接去急诊（不要等）**\n如果出现以下任何一种情况，请立即去最近医院的**急诊产科**，不用等复诊时间，也不用再联系我确认：\n- **阴道流血**：褐色变成**鲜红色**，并且**量明显增多**，像月经量或多于月经量。\n- **腹痛**：从偶尔坠一下变成**持续性的绞痛或剧痛**，休息不缓解。\n- **其他紧急信号**：阴道有**液体突然涌出**（怀疑破水）、**发烧超过38.5℃**、或**有肉样组织物排出**。\n\n为了确保黄体酮针后续几天不出错，我们需要立刻明确单子上的具体天数。你有两个选择：\n1.  **最推荐**：让你老公现在拍一下门诊新单子或小票上关于黄体酮用量的部分（尽量拍清楚），发给我，我帮你解读。\n2.  如果拍不了或看不清楚，就请你老公拿着单子，现在折返回注射室窗口，再问护士一句：“**护士您好，麻烦再确认一下，这个单子上黄体酮是每天打几支？一共需要连续打几天？**” 问清楚后，你告诉我结果。\n\n我们先把这个关键信息敲定，你就能安心回家了。你现在感觉怎么样？打完针后有没有头晕、心慌或者其他不舒服？",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00208",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+250min",
+      "text": "医生，我老公刚才又拿着小票和门诊单去注射室窗口问了一遍，护士是按电脑里的今天门诊医嘱确认的。她说后面黄体酮针就按今天新开的单子，每天来这个医院注射室打，连续打到单子上写的截止日期。具体几支几天是我老公看着单子跟护士确认的，我自己看小字还是有点费劲，但窗口已经核过了。\n\n我刚打完歇了会儿，现在没有头晕、心慌、起疹子，肚子也没有明显疼起来。还是一点点褐色，偶尔坠一下，没有鲜红血变多、没有流水发烧，也没掉出来东西。\n\n我现在就按这样记：达芙通每8小时1片，一天三次；黄体酮针每天按门诊新单到这个注射室打；大概一周后回来产科复诊、复查B超；如果红血明显多、肚子持续疼厉害、流水、发烧或者掉出肉样东西，就直接急诊产科。这样执行可以吧？我准备回家了，明天再按时间来打针。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_074__DeepSeek-V3.2",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 4.25,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 4,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.299038105676658,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 7
+}

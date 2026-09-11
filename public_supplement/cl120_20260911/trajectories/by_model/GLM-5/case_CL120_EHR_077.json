@@ -1,0 +1,816 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "422754f2c588e270b65dde247a46e5c9d1c2faf1c303d6665171742fb65c4b3e",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_077__anon_00ebe7341fad54df",
+    "packet_sha256": "94571941d6d432d4da96a565f6d9a221d52f98da2e98702550676b88b225e44c"
+  },
+  "case_id": "case_CL120_EHR_077",
+  "case_metadata": {
+    "blocking_residual_risk_count": "4",
+    "closure_coordination_burden_level": "low",
+    "closure_coordination_burden_score": "0",
+    "contract_complexity_index": "3",
+    "contract_complexity_level": "low",
+    "disease_domain": "obstetrics_gynecology",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "4",
+    "primary_friction": "external_system_gap",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "document_or_image_quality_problem | delayed_or_staged_result_return",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "postpartum_warning",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者最初报告纸质材料/护士交代/手机记录不一致，尤其维生素E似乎既像局部涂抹又像po口服，构成本案主要执行失败。",
+      "原病区护士站经家属电话口头确认：维生素E软胶囊不是吃的，是挤出油少量涂会阴/小阴唇局部，每日2次，防止再粘连；手机里类似po的记录不要按口服理解。",
+      "医生随后明确行动化：不口服、不塞阴道，挤一点油薄涂外阴/小阴唇分离处，早晚一次，并说明清洁、蘸干、避免反复冲洗和刺激。",
+      "患者teach-back：‘维生素E不吃，挤一点点油，绿豆那么大，薄薄涂在外面分开的地方，早晚一次，不往里面弄’，并复述发热、出血多、尿不出来、脓臭分泌物、疼痛加重等红旗。",
+      "患者实际执行反馈：已按要求局部薄涂，未口服、未往里面塞；之后一天内早晚各涂一次，仍能排尿、无发热、无流脓臭味、仅少量淡红色印子和轻微刺痛。",
+      "复诊责任链已具体化：家属按较早日期设置提醒，准备携带纸质出院单、手机记录、药盒到妇科门诊现场核对；医生认可该方式，并提示红旗时不等复诊直接急诊/回医院。",
+      "安全事件状态显示既往CSE_vitaminE_route_confusion_001已存在mitigation_signal_present，currently_unmitigated=false，blocks_episode_closure=false。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应推进到24-72小时症状复评或较早妇科复诊结果：确认体温、排尿、出血、分泌物、疼痛趋势及创面情况，并由门诊统一文书/药盒/手机医嘱和后续涂药时长。",
+    "rationale": "本案的当前责任单元是术后回家后因出院信息不一致导致的居家护理/用药执行失败，而不是要求完成整个外阴粘连分离术后的全部愈合旅程。到目前为止，核心阻塞线程已闭环：维生素E口服/外用混淆经原病区护士站口头核实、医生后续明确纠偏、患者teach-back并实际完成至少两次正确局部薄涂；未发生误服或阴道内塞。患者连续反馈无发热、尿潴留、大量出血、脓臭分泌物或疼痛进行性加重，仅少量淡红渗血和轻微刺痛，已被边界化。复诊日期/文书冲突尚未被线上医生完全核验，但已形成可执行责任链：按较早复诊日期、家属设提醒，携带纸质出院单、手机记录和药盒到原妇科门诊现场核对；若出现红旗则提前急诊/回原病区。该残余属于有owner、due window、verification path和escalation path的bounded residual follow-up，不再阻断当前居家执行失败episode的安全闭合。需要保留：第1轮医生曾使用‘服用维生素E’造成中等程度用药路线混淆风险，该安全事件可评分；但后续已由外部护士站确认、医生纠偏和患者实际执行所缓解，当前不阻断闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：术后门诊尚未实际完成查体复诊，创面愈合、感染/裂开/再粘连风险仍需由妇科门诊按较早复诊日核对。",
+      "bounded_residual_followup：纸质出院单、手机记录、药盒之间的不一致尚未由线下门诊最终统一，但患者/家属已有明确携带材料和现场核对计划。",
+      "global_disease_journey_background：外阴/小阴唇粘连可能有复发风险，后续护理持续时间、性生活恢复时间、是否继续涂药等需随复诊结果调整。",
+      "scoreable_safety_event：早期医生把维生素E称为‘服用’造成可避免的用药路线混淆风险，虽已纠正但应保留供评分。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "外阴手术后回家护理和复诊信息对不上",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我刚做完小阴唇粘连分离相关的手术，出院时说恢复还可以，尿管也拔了，带了维生素E让我吃。可是回家后护士说的注意事项、纸上写的门诊随访，还有手机里能看到的记录不太一致，我现在有点慌，不知道哪些情况算必须马上去看。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内的相关资料：1）本次小阴唇粘连分离手术的住院病历、手术记录、出院小结；2）出院医嘱、带药记录、门诊随访预约；3）护士站/出院宣教记录；4）患者手机端可见的随访提醒或医嘱摘要。我需要核对不同来源的信息差异，确认实际的随访时间、注意事项和用药方案。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络中可授权访问的既往病历、本次小阴唇粘连分离手术相关的住院记录、出院小结、手术记录、出院带药和用药记录、门诊随访安排、护士交班/出院宣教记录、患者手机端可查看的随访提醒或处方记录，以及家庭照护可及性信息。我需要核对护士口头交代的注意事项、书面出院指导、门诊随访预约和系统记录之间是否存在不一致，以便向患者明确哪些是紧急情况需要立即就诊。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者的小阴唇粘连分离手术相关病历：包括入院记录、手术记录、出院小结、出院医嘱/带药单、门诊随访预约单；同时调取护士交代的注意事项文本、患者手机端可见的随访记录，以及用药清单（维生素E的具体用法用量）。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内可授权访问的本次住院病历、出入院记录、手术记录、出院医嘱、出院小结、门诊随访预约记录、用药清单，以及患者手机端可见的记录内容，用于核对护士口头交代的注意事项、纸质随访单和系统记录之间的差异。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的本次住院病历、出院小结、手术记录、出院医嘱/用药清单、门诊随访安排，以及患者手机端可见的记录索引，以核对护士口头交代、纸质文书和电子记录之间的具体差异。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我理解您现在比较焦虑。刚做完手术出院，发现护士交代的、纸上写的和手机记录对不上，确实会让人不踏实。\n\n目前我这边的医疗网络中能看到有您的就诊记录索引，但详细的手术记录、出院小结和医嘱文件还需要进一步调取核对。在完成核对之前，我先给您说一下**小阴唇粘连分离术后需要立即就医的危险信号**：\n\n---\n\n**以下情况请尽快去医院（急诊或妇科门诊）：**\n1. **出血较多**——出血量明显多于一平时月经量，或持续渗血不止\n2. **剧烈疼痛**——止痛药无法缓解，或疼痛突然加重\n3. **排尿困难**——完全尿不出来，或排尿时疼痛剧烈、尿线明显变细\n4. **发热**——体温超过38.5°C，伴或不伴寒战\n5. **局部红肿、流脓**——伤口周围明显红肿、有脓性分泌物或异常臭味\n6. **伤口裂开**——发现伤口明显裂开或出血\n\n---\n\n**建议您现在可以做的：**\n- 把出院时给您的**纸质材料拍个照片**发给我\n- 把**手机上看到的记录截图**发给我\n- 告诉我护士当时口头交代了什么\n\n我这边核对完之后，会帮您把真正需要遵循的注意事项和随访时间整理清楚给您，避免信息不一致带来的困扰。\n\n目前只要没有上述危险信号，按护士交代的日常护理、按时服用维生素E即可，不必过于担心。有不舒服随时联系我。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者可读回出院材料和手机记录中的维生素E用法冲突；请核对出院医嘱并明确口服还是局部使用。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者当前没有明显急诊红旗，但仍需确认疼痛、出血、排尿、分泌物和体温变化的观察阈值。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00054",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我刚又翻了一下纸，我这边能看见的字大概是“会阴局部涂抹”还是“小阴唇局部涂抹”，后面写“每天2次”“预防再次粘连”，但有几个字我不敢说百分百看对。\n\n手机那个用药记录又像写“维生素E 100mg bid po”，我不知道 bid、po 是啥意思，是不是口服？我妈说护士当时好像说“涂在局部，防止再粘上”，但我们也怕记错。您刚才又说“服用维生素E”，我就更不敢动了。\n\n我现在还没敢吃下一次，也没敢乱涂。刚量体温不烧，尿能尿出来，就是尿的时候有点刺，护垫上只有一点淡红色，不是一直流，也没闻到臭味。您能不能直接告诉我：这个维生素E到底是吃，还是涂在小阴唇那里？涂的话要涂多少、要不要先洗一下？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "我调取患者在CareLoop联合医疗网络中本次小阴唇粘连分离手术的住院病历、手术记录、出院小结、出院医嘱单、用药清单和门诊随访安排，以核实维生素E的给药途径和用法用量。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00063",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "我调取该患者在CareLoop联合医疗网络内的小阴唇粘连分离手术相关病历：包括手术记录、出院小结、出院医嘱单、护理交班记录、用药处方/医嘱单、门诊随访预约单。我需要核对维生素E的具体用法（口服还是局部外用）、剂量、频次，以及术后护理注意事项和随访时间安排。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00069",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00071",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "我需要调取该患者在 CareLoop 联合医疗网络中所有可授权访问的相关资料：1）小阴唇粘连分离手术的手术记录和出院小结；2）出院医嘱原文和用药处方；3）门诊随访安排；4）最近一次住院病程记录。患者报告的用药方式存在严重冲突（纸质写\"局部涂抹\"与电子记录写\"po口服\"），需要核对原始医嘱以确保安全。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00073",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00075",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00077",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+12min",
+      "text": "我调取小阴唇粘连分离手术相关的出院记录、手术记录、出院医嘱、用药处方及护士交班记录，明确维生素E的用法是口服还是局部外用、具体剂量和频次。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00079",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00081",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+12min",
+      "text": "我调取CareLoop联合医疗网络中该患者本次小阴唇粘连分离手术相关的住院病历、手术记录、出院小结、出院医嘱单、用药处方和护理交班记录，重点核对维生素E的给药途径（口服还是外用）、剂量和频次。同时查看是否有其他外用药物医嘱。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "我非常理解您的焦虑——信息不一致确实让人不敢用药。我跟您说明现在的情况：\n\n**关于维生素E的用法问题：**\n我这边目前调取不到您完整的出院医嘱记录，所以**暂时无法100%确认**到底是口服还是外用。您看到的两个信息：\n- 纸上写\"会阴/小阴唇局部涂抹，每天2次，预防再次粘连\"\n- 手机写\"维生素E 100mg bid po\"（bid=每天两次，po=口服）\n\n这两种用法在临床上**都可能存在**，但不能混用。在我无法确认原始医嘱之前，**请您先暂停服用或外涂**，不要冒险。\n\n**您现在的情况暂时是安全的：**\n- 不发烧 ✓\n- 能自己排尿 ✓\n- 出血量很少、非持续性 ✓\n- 没有异常臭味 ✓\n\n这些说明目前没有紧急情况。\n\n**接下来请您做一件事：**\n请您用手机把**纸质出院材料完整拍一张清晰照片**发给我。我需要看到纸上完整的医嘱内容，才能帮您确认到底是哪种用法。\n\n**如果今天内无法确认，或您实在不放心：**\n建议您联系**原住院科室**或**出院小结上的联系电话**，直接询问医生/护士确认用法。这不是小事，用药途径弄错可能影响恢复。\n\n**如果出现以下情况，请直接去医院急诊或妇科：**\n- 出血变多（超过月经量或持续渗血）\n- 发热超过38.5°C\n- 排尿困难或疼痛剧烈加重\n- 伤口红肿、流脓、明显裂开\n\n您现在先把纸拍给我，我们一起把这个问题弄清楚。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00103",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+40min",
+      "text": "医生，我妈刚才打通了原来住院那个病区护士站电话，她帮我们核对了，说这个维生素E软胶囊**不是吃的**，是把胶囊里面的油挤出来，少量涂在会阴/小阴唇局部，一天2次，主要是防止再粘连。她还说手机里那个像 po 的不要按口服来理解。\n\n我现在稍微放心点了，刚才也没吃、没乱涂。现在还是不发烧，尿能尿出来，尿的时候有一点刺，护垫上一点淡红色，不是哗哗流，也没有臭味流脓那种。\n\n但我还是怕涂错，您能不能帮我说简单一点：  \n这个油到底是涂在外面分开的地方薄薄一层就行吗？一次挤一整颗还是挤一点点？涂之前要不要用水洗，还是尿完擦干再涂？早晚各一次可以吗？还有我这种少量渗血还能涂吗，什么时候必须回医院？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00109",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+40min",
+      "text": "很好，护士站已经帮您确认了用法，这下心里应该踏实多了。您刚才没乱吃、没乱涂，做得非常对。\n\n我现在用最简单的话告诉您怎么涂：\n\n**怎么涂：**\n- 把胶囊刺破或拧开，挤出里面的油\n- **一次挤一点点就行**，大概绿豆大小，不需要整颗都用。一颗可以用多次\n- 用干净的手指蘸着油，**薄薄涂一层**在分开的地方，外阴外面那一片涂到就行，不用往里面伸\n\n**什么时候涂：**\n- **早晚各一次可以**，比如早上起床后一次、晚上睡觉前一次\n- 涂之前：尿完用纸轻轻擦干就行，不需要专门水洗。如果刚洗完澡、皮肤是干净的，直接涂就可以\n\n**少量渗血能不能涂：**\n- 护垫上一点点淡红色、不是哗哗流，**可以继续涂**，轻轻涂就行\n- 维生素E油本身对创面还有一定保护作用\n\n---\n\n**什么情况必须回医院：**\n1. 出血明显变多——比现在多很多，或持续渗血不止\n2. 发热超过38.5°C\n3. 排尿困难——完全尿不出来，或尿时疼痛剧烈加重\n4. 局部红肿明显、有脓性分泌物或臭味\n5. 疼痛突然加重，止痛药不管用\n\n您现在的情况是安全的，按上面说的方法涂就行。有变化随时联系我。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00124",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+50min",
+      "text": "医生，我大概明白了，就是这个维生素E不吃，挤一点点油，绿豆那么大，薄薄涂在外面分开的地方，早晚一次，不往里面弄。要是出血多、发烧38.5以上、尿不出来或者尿痛突然很厉害、流脓有臭味、疼得明显加重就回医院。\n\n我还有两个小问题想最后确认下：  \n1. 我平时习惯尿完就想用水冲一下，不洗总怕脏，会不会反而感染？您意思是每次尿完纸轻轻擦干就行，不用每次洗，对吗？如果我想洗，是不是一天洗澡那次就够了，别反复冲？  \n2. 复诊时间我和我妈看不太明白，纸上像写的是一个日期，护士电话里又说好像几天后门诊看一下，两边不太一样。这个应该按纸质出院材料上的日期去，还是按护士说的？如果现在没有那些严重情况，能不能等到复诊再去？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00129",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+50min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的出院小结、手术记录、门诊随访安排、纸质出院材料扫描件（如有）、护士交班记录或出院宣教记录，以核对术后复诊时间的具体安排。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00131",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+50min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00133",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+50min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00135",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+50min",
+      "text": "我调取小阴唇粘连分离术相关的出院记录、出院小结、纸质出院医嘱材料、门诊随访预约记录、以及护士站可能留下的沟通备注，重点核对：1）医嘱中维生素E的用法确认；2）门诊复诊的具体日期和时间安排。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00137",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+50min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00139",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+50min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00141",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+50min",
+      "text": "我调取该患者在CareLoop联合医疗网络中的出院小结、手术记录、门诊随访预约记录、纸质出院材料的电子存档或扫描件，以核对复诊时间的正式安排。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00143",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+50min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00145",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+50min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00147",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+50min",
+      "text": "我调取患者本次小阴唇粘连分离手术的出院小结、纸质出院医嘱原文、门诊随访预约记录，以及护士电话交代的随访时间安排，用于核对复诊时间的不一致问题。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00149",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+50min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00151",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+50min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00154",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+50min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内的出院记录、出院小结、门诊随访安排、纸质出院材料扫描件（如有）、护士交班记录，以及任何与复诊时间相关的医嘱文件，帮助核对复诊日期的差异。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00157",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+50min",
+      "text": "您总结得很准确，用药方法和急诊红线都理解对了。\n\n**关于清洗的问题：**\n\n您理解得完全正确：\n- 每次尿完后用纸**轻轻蘸干、擦干**就行，不需要每次用水冲\n- 反复冲洗反而可能把细菌带向伤口方向，也容易造成局部潮湿\n- 想洗的话，**每天洗澡时冲洗一次外阴足够了**，用温水即可，不要用沐浴露、肥皂等刺激性产品洗里面\n- 洗完、尿完都记住：**从前往后擦**\n\n您之前的习惯是出于爱干净的心理，但这个部位术后\"干燥、少刺激\"反而更利于愈合。\n\n---\n\n**关于复诊时间不一致的问题：**\n\n我这边暂时调取不到您完整的出院随访记录，无法直接帮您确认哪个日期是正确的。建议您这样做：\n\n1. **首选**：再打一次住院病区护士站电话，让护士帮忙查一下系统里登记的正式随访时间\n2. **备选**：如果两个时间相差不大（比如差1-3天），可以**按较早的那个日期去**，这样不会错过\n3. 如果方便的话，把纸质出院材料上的随访日期那一行拍给我看一下，我帮您判断\n\n---\n\n**最后确认您的问题：**\n- 只要没有前面说的那些严重情况（出血多、高烧、排尿困难、流脓臭味、疼痛明显加重），**可以安心等到复诊再去**\n- 您目前的情况稳定，不必太担心\n\n有变化随时联系我。祝您恢复顺利！",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00173",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+68min",
+      "text": "好的医生，我刚才按您说的弄了一次：洗手了，尿完就轻轻蘸干，然后把维生素E挤了一点点油，薄薄涂在外面分开的那个地方，没有吃，也没有往里面塞。涂的时候有一点点刺，但不是越来越疼。\n\n现在护垫还是一点淡红色，不是一直流，也没发烧，尿也能尿出来，没有脓和臭味。这样我就先早晚继续薄涂，对吧？\n\n复诊那个我就不折腾拍照了，我妈已经按早一点那个日子设了手机提醒。到时候我把纸质出院单、手机里的记录、还有维生素E药盒都带去门诊让他们核对，这样应该够了吧？如果中间没有您说的那些严重情况，我就先等复诊。谢谢医生，心里踏实多了。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00183",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+68min",
+      "text": "您做得非常好，第一次涂的操作完全正确：洗手、蘸干、薄涂、不往里面塞，流程都对。涂的时候有一点点刺是正常的，只要不是越来越疼就行。\n\n是的，按您说的继续：早晚各一次薄薄涂在外面分开的地方，目前的少量淡红色渗血可以继续涂。\n\n复诊安排也很妥当——带齐纸质出院单、手机记录和药盒去门诊核对，让现场医生把不一致的地方当面确认清楚，这是最稳妥的。\n\n总结一下您目前的情况：稳定、理解正确、计划清晰。只要没有出血明显增多、高烧38.5以上、排尿困难、流脓臭味或疼痛突然加重，安心等到复诊即可。\n\n祝您恢复顺利！有变化随时联系我。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00203",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+1508min",
+      "text": "医生，今天已经按您说的早晚各涂了一次，都是挤一点点薄薄涂外面，没有吃，也没有往里面塞。\n\n目前感觉还算稳定，还是能尿出来，也没发烧、没流脓臭味，护垫上就一点淡红色印子，涂的时候有点轻微刺痛，但没有突然变疼。这样我就继续按这个办法护理，保持干燥，少折腾了。\n\n复诊材料我妈也帮我放好了，出院单、手机记录、药盒都准备带去，按早一点那个日子去门诊现场核对。要是中间没有您说的那些情况，我就先在家等复诊。谢谢医生，这样我放心多了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_077__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2.25,
+    "aggregate_median": 2.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.0897247358851685,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 5
+}

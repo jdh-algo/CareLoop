@@ -1,0 +1,572 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "fee64928c3c9fda44ed88cf4394045c933ad297d65c75885efe448da202cb01f",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_112__anon_50b62ae080bc574b",
+    "packet_sha256": "2a989fd9c1673a40ab1f404158d7c642fe62ef7a75021af6d25eef40422381f2"
+  },
+  "case_id": "case_CL120_EHR_112",
+  "case_metadata": {
+    "blocking_residual_risk_count": "4",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "3",
+    "contract_complexity_level": "low",
+    "disease_domain": "musculoskeletal_geriatrics",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "medication_confusion_or_execution_failure",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "6",
+    "secondary_frictions": "cost_transport_or_work_barrier | privacy_stigma_or_sensitive_history",
+    "starting_phase": "discharge_transition",
+    "target_problem": "frailty_caregiver_execution",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "医生早期调取/利用病历线索，识别多发伤、C7/颈椎横突骨折、耳鼻喉会诊、住院针剂医嘱等背景，并把“不要凭执行单自行续打针剂、需耳鼻喉评估、红旗急诊”转成家属可执行行动。",
+      "家属反馈已联系原病区/护士站及后续药房/出院服务处核药：破伤风免疫球蛋白、克林霉素静滴、氯化钠针、艾司奥美拉唑针为住院或急诊期间记录，不是回家继续输液/补针项目；口服药按药袋标签和出院清单，冲突则暂停核实。",
+      "家属按建议带患者到医院耳鼻喉分诊并完成当天评估、纯音测听和声导抗；线下医生未按突发内耳损伤立即住院处理，建议耳干燥、不掏不滴、不用力擤鼻，约1周复查。",
+      "家属读回听力报告关键字段：右耳B型鼓室图、右耳传导性听力下降、外耳道容积约0.9；医生解释其提示中耳积液/积血或鼓膜活动受限可能，仍需复查耳镜和听力/声导抗，不能仅凭数值定因。",
+      "多轮红旗阴性：无耳流血/清水样耳漏、持续眩晕呕吐、面瘫、意识异常、肢体麻木无力等；患者回家后夜间稳定休息。",
+      "最终teach-back：家属复述针剂不自行弄、耳部保持干燥不掏不滴不用力擤鼻、明天落实约一周内耳鼻喉复查、挂不上联系原医院耳鼻喉、颈椎按出院单预约脊柱外科、出现突然听力加重/耳漏/眩晕呕吐/面瘫/意识异常/肢体无力等直接急诊。",
+      "医生最后补充颈托压迫、呼吸/吞咽困难、皮肤受压破损等安全边界，并确认明天落实耳鼻喉和脊柱外科复查。"
+    ],
+    "if_continued_next_focus": "无需为当前出院转换episode继续前台推进。若继续模拟，只应在真实到达约1周耳鼻喉复查或出现红旗/预约失败时重新打开：核实复查是否完成、听力/耳镜变化、是否需进一步治疗；同时确认脊柱外科随访预约和伤口/颈托执行情况。",
+    "rationale": "同意导演喊卡。本案目标是多发伤出院转换期的有界执行性闭环，而不是证明右耳、颈椎、伤口等全部长期随访已经完成。轨迹中核心阻断点已被收束：住院针剂/破伤风/克林霉素等已由药房或出院服务处核验为住院/急诊已执行项目，家属不再准备自行续输或补针；外伤后右耳疼闷和听力下降已完成线下耳鼻喉评估、纯音测听/声导抗并经线下医生和AI医生解释为传导性/中耳功能受影响方向，当前无耳漏、面瘫、持续眩晕呕吐等急诊红旗；颈椎横突骨折按出院单保守处理、颈托保护和脊柱外科门诊随访；家属完成teach-back，能复述今晚/明天/一周内任务、红旗急诊条件和挂号失败替代路径。残余的耳鼻喉一周复查号、脊柱外科门诊随访、口服药按标签执行及冲突时核实，均已有责任人、时间窗、验证/升级路径，属于 bounded residual follow-up，不再阻断当前出院转换episode闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：耳鼻喉约1周内复查尚未真实完成，但责任人为家属/耳鼻喉科，时间窗明确，复查内容为耳镜、鼓膜、听力/声导抗；若听力逐日加重、耳流血/清水样耳漏、持续眩晕呕吐、面瘫或发热耳痛加重则提前联系原医院耳鼻喉或急诊。",
+      "bounded_residual_followup：脊柱外科门诊随访尚未完成，但按出院单预约，颈托/中立位保护和活动限制已明确；若肢体麻木无力、步态变差、颈痛急剧加重、颈托无法佩戴或呼吸/吞咽受影响则提前就医。",
+      "bounded_residual_followup：面部/头皮/颊部创口仍需家庭观察感染、渗液、发热、换药/拆线要求；目前无提示该线程存在急性阻断，若出现红肿热痛、渗脓、发热或疼痛加重需复诊。",
+      "bounded_residual_followup：口服出院带药需按标签和出院清单执行；若药袋标签与清单冲突，家属已知先暂停并联系药房/原病区核实。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "摔伤出院后，家里人分不清针水和复诊安排",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我家老人前阵子摔了一跤，脸上缝过还是清创过，颈椎那边也说有个横突骨折，刚从病房回来。出院时拿了一堆单子，有CT、会诊、还有破伤风和消炎针的记录，我听医生说保守处理、门诊复查，但家里人现在分不清哪些药已经打完了，哪些还要继续，右耳又说疼、听不清，想先问问怎么理顺。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取本次跌倒相关的完整时间线、急诊与住院/出院记录、出院医嘱和诊断、颈椎及头面部/颞骨CT报告原文、耳鼻喉及其他会诊记录、面部伤口处置与拆线计划、破伤风和抗感染药物给药记录、出院带药及药房记录；同时查看老人基础病、过敏史、肾功能、抗凝/抗血小板用药和复诊安排。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "可以一起理顺，但目前资料里还查不到这次住院记录，所以先不要凭单据自行续打“消炎针”或重复打破伤风针。请把出院记录中的“出院诊断、出院医嘱、带药清单（药名/剂量/每天几次/几天）”逐字读给我，也请列出家里现有药盒上的名称；并告诉我出院日期、右耳疼和听不清从何时开始，有无耳流血/流水、眩晕呕吐、剧烈或加重头痛、嗜睡意识异常、面歪、手脚无力麻木。若有这些情况之一，或耳后肿痛、发热，应立即去急诊；否则右耳外伤后听力下降也建议尽快（最好今天至24小时内）到耳鼻喉科检查耳道、鼓膜和听力，期间不要掏耳、滴药或让耳朵进水。颈部按出院要求固定，暂勿按摩、推拿或突然转头。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00027",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "耳鼻喉科复查目前不能视为已预约或已完成；需继续确认家属是否能今天或24小时内挂号就诊。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "脊柱外科随访只是会诊建议，不等于已经挂号完成；需医生下一步把复诊科室、时间窗口和红旗返院条件说清。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00033",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "我这边翻到几张能看清的，我先念关键几行，怕念错。\n\n出院这张上面写的诊断我看到有“多发性损伤”“面部/头皮裂伤”，还有一行是“C7颈椎横突骨折”。脊柱外科会诊单大概写的是“暂无特殊处理，保守对症处理，门诊随访”，但没看明白到底几天后去挂号复查。\n\n药这块我更糊涂：袋子里没看到新的什么抗生素药瓶。纸上有“克林霉素静滴”这种记录，还有“破伤风免疫球蛋白一次肌注”，我感觉像是在医院已经打过的记录，不知道是不是出院后还要继续。我先按您说的不自己去续打针、也不再补破伤风。\n\n右耳我刚问老人了，他说现在还是疼、听不清，比摔倒前明显。我们目前没看到耳朵流血流水，他也没说天旋地转、没吐，叫他反应还行，没有嗜睡糊涂，脸也没歪，手脚也没说麻木没力，体温量了一下没发烧。就是他现在很烦，说刚到家脖子还固定着，不想今天再跑医院。\n\n医生，这个右耳听不清是必须今天就去耳鼻喉急诊吗？还是明天白天挂耳鼻喉门诊也可以？颈椎这个“门诊随访”一般挂脊柱外科多久去复查比较稳？还有这些克林霉素、破伤风，我是不是就当成住院已执行记录，不拿去外面继续打？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00038",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取这次跌倒相关的急诊、住院及出院完整时间线，重点查看出院日期、出院医嘱和带药清单、克林霉素及破伤风免疫球蛋白的实际执行记录；头颅/颞骨/颈椎CT报告原文、耳部症状记录及耳鼻喉和脊柱外科会诊原文，并查看面部/头皮伤口处理及拆线复诊要求。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00040",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00042",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "按目前情况（无耳流血/流水、眩晕呕吐、意识异常或神经症状），今晚可以严密观察，明天白天尽早挂耳鼻喉科，不必强迫老人今晚跑急诊；但外伤后新发听力下降不能拖，最好在24小时内检查耳道、鼓膜并做听力评估。今晚若听力突然进一步下降，出现耳流血/清水、剧烈或加重头痛、反复呕吐、眩晕站不稳、嗜睡糊涂、面歪或肢体麻木无力，立即急诊。不要掏耳、滴耳药、擤鼻或让耳朵进水。\n\n“克林霉素静滴”和“破伤风免疫球蛋白一次肌注”从表述上更像住院期间执行记录，但我目前没有原始医嘱，不能仅凭这几行确认。安全做法是：不要自行续打克林霉素，也不要重复注射破伤风免疫球蛋白；只有出院医嘱或带药清单明确写了继续用药，才按其执行。若伤口红肿热痛加重、流脓或发热，要复诊。\n\nC7横突骨折可先按会诊意见保守处理，继续按出院要求佩戴固定，避免推拿、按摩、负重和突然转头。若医嘱没写日期，建议1周内挂脊柱外科复诊并带齐CT影像和报告，由医生决定固定时长及是否复查影像；若颈痛明显加重、手脚麻木无力、走路不稳或大小便异常，立即急诊。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00059",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+24min",
+      "text": "好的，那我今晚就按这个来：不去外面续打克林霉素，也不再补破伤风；耳朵不掏、不滴药、不进水，也不让他擤鼻子。夜里我就盯着有没有耳朵流血流水、突然更听不见、头痛呕吐、发晕站不稳、叫不醒说胡话、脸歪手脚没劲这些，有就直接急诊，不跟他商量了。\n\n现在老人坐着还行，就是右耳还是说闷、听不清，脖子固定着不舒服，人有点烦。我准备明早一早带出院单、药袋、CT片和报告去医院。\n\n我还想确认两个实际问题：  \n1. 明天耳朵这个是挂耳鼻喉普通门诊就行，还是要挂“急诊耳鼻喉”？如果普通号排到下午，会不会太晚？  \n2. 药这块我今晚还需要打电话问原来病区/护士站核对吗？还是明天把药袋和单子带去耳鼻喉或者药房窗口，让他们帮忙看哪些是出院带药、哪些是住院打过的记录？我怕自己把纸认错。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+24min",
+      "text": "1. 明早先挂耳鼻喉普通门诊即可，尽量选最早号；若只能排到下午，只要整夜及上午症状稳定，一般可以等到下午，但不要拖过明天。到院后可先到分诊台说明“摔伤后新发右耳疼、闷、听力明显下降”，请护士判断是否需要加急或转耳鼻喉急诊。若出现你列出的任一警讯，或听力明显继续下降，就不要等门诊号，直接急诊。\n\n2. 今晚若原病区/护士站还能联系上，建议打一次电话最直接：请他们按出院医嘱核对“哪些仅是住院已执行记录、是否有必须今晚开始的出院带药”，尤其确认克林霉素和破伤风免疫球蛋白；没人接也不必反复折腾，仍不要自行续针或补针。明天把出院记录、医嘱单、费用/执行清单、全部药袋和药品实物带齐。药物最好先找原病区、出院服务处或药房窗口核对；耳鼻喉医生主要处理耳伤，也可以结合出院医嘱再确认，但不应只靠耳鼻喉替全科室核药。今晚只服用带药清单中明确写明、且药袋标签能对应上药名和用法的药；任何对不上的先暂缓，并把名称逐字发给我或明天让药师核对。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00080",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+234min",
+      "text": "医生，我刚按您说的打通了原来病区护士站。护士听我读了药名，又查了下出院登记，初步跟我说那个“破伤风免疫球蛋白”是住院/急诊时候一次性处理的记录，不是叫我们回家再去补打一针；“克林霉素静滴”也不是让老人回家自己继续输液。她也提醒说如果药袋标签和出院带药清单对不上，今晚不要自己找诊所输针，明天带药袋和单子去药房或出院服务处核对。\n\n所以今晚我们没有出去续打克林霉素，也没再打破伤风。老人现在已经躺着半坐着休息，颈托戴着还是嫌难受。右耳还是闷、疼、听不清，跟摔倒前不一样，但这三个多小时没感觉明显更差；我也没看到耳朵流血流水，没有反复吐、明显天旋地转站不稳、叫不醒糊涂、脸歪、手脚没劲这些。\n\n我怕我电话里有听漏，明天还是把出院单、药袋、CT片报告都带去医院。想再确认一下我明早顺序这样对不对：先去耳鼻喉分诊台说明“摔伤后右耳疼闷、听力下降”，能看门诊就看门诊，护士说要急诊就转急诊；同时或者看完后去药房/出院服务处把药袋和单子正式核一遍。这样安排可以吗？如果明早普通号只有下午，只要夜里没变坏，是不是还是可以先等，但到院后找分诊问能不能提前？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00086",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+234min",
+      "text": "这样安排可以。明早先到耳鼻喉分诊台明确说“摔伤后新发右耳疼、闷和听力下降”，请护士判断提前看普通门诊还是转急诊；随后去药房或出院服务处，拿药品实物逐项对照出院带药清单。若普通号只有下午，只要夜间和上午症状没有加重，一般可以等待，但到院后仍先请分诊评估能否提前。\n\n今晚继续不要自行输克林霉素或重复打破伤风免疫球蛋白，也不要掏耳、滴药、进水或用力擤鼻。颈托若只是压迫不适，可检查是否过紧、皮肤是否被磨红，但不要自行拆除或大幅调整，保持颈部中立位。若听力突然进一步下降、耳流血或清水、剧烈头痛、反复呕吐、明显眩晕站不稳、意识异常、面歪或肢体无力，直接急诊，不等明天门诊。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00102",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+744min",
+      "text": "医生，我们已经到医院了，耳鼻喉号挂上了，分诊台我也按您说的讲了“摔倒后右耳疼、闷、听不清”，护士让我们先在这边等叫号，说上午会尽量看一下，具体是不是急诊我也没太听明白，反正现在在耳鼻喉候诊区。\n\n昨晚还算平稳，没吐，耳朵也没流血流水，人是清楚的。就是右耳还是疼、闷、听不清，没觉得好转。老人戴颈托坐久了很烦，一直催我看完耳朵就回家。\n\n药袋和出院单我都带来了，但还没去药房/出院服务处核，因为我一个人拿着片子和药袋，又怕一走开错过叫号。现在这种情况，是先守着把耳鼻喉看完比较要紧吧？如果等得久，我再趁空去药房核药可以吗？克林霉素和破伤风我们昨晚都没有再弄。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00108",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+744min",
+      "text": "对，先守着把耳鼻喉看完更重要，不要为了核药错过叫号。若预计等很久，可先问分诊护士大约还要多久、离开几分钟会不会过号；只有护士确认可以，您再带老人一起或请工作人员协助保管/排队，别把老人单独留下，也别摘颈托乱走。克林霉素和破伤风昨晚没有重复处理是对的，药房核对可以放在耳鼻喉看完之后。就诊时把外伤经过、持续听力下降及CT/出院资料都给医生看，并询问是否需要耳镜和听力检查。若候诊中突然更听不见、耳流血/清水、剧烈头痛、呕吐、明显眩晕、意识异常或肢体无力，立即告诉分诊护士，不再普通候诊。看完后把耳鼻喉检查结论、听力结果和处方逐字发我，我再帮您核对下一步。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00122",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+839min",
+      "text": "医生，看完耳鼻喉了。医生用那个耳镜看了，说我听着意思是现在没看到耳朵还在流血，也没说有清水流出来；脸也没歪，老人也没有那种天旋地转一直吐。但是右耳还是疼、闷，听力还是比摔倒前差。\n\n医生说不能只看一眼就算没事，给开了听力检查，我看单子上好像是纯音测听，还有一个测耳压/鼓膜压力那种，我术语记不准。检查排到一会儿稍晚点，现在结果还没做出来。\n\n他也交代耳朵保持干燥，不要掏，不要自己滴药，不要用力擤鼻；如果耳朵又流血流水、突然更听不见、眩晕呕吐、脸歪这些，就马上急诊。我这样理解对吧？\n\n药房/出院服务处还没去核药，我一个人带着老人和这些片子单子，老人颈托坐久了很烦。昨晚到现在我们都没有再输克林霉素，也没再打破伤风。现在是先老实等这个听力检查做完更要紧，还是趁还没轮到去药房核一下？我怕一跑又错过检查。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00128",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+839min",
+      "text": "您理解得对。现在优先把已经安排的纯音测听和鼓室图（测耳压/鼓膜功能）做完，不要为核药错过检查；结果能帮助判断是外耳/中耳传导问题，还是内耳听力受损，后者处理时效更重要。先问听力检查窗口预计时间和能否短暂离开，只有工作人员明确不会过号，且能带老人一起安全前往时，再去药房；否则检查结束后再核药即可。克林霉素和破伤风继续不要自行重复。\n\n耳朵继续保持干燥、不掏、不自行滴药、不用力擤鼻。颈托坐得难受，可请现场护士帮助检查松紧及受压皮肤，别自行摘除或大幅调整。检查做完后，务必带结果回耳鼻喉医生当日解读，不要只拿报告回家；请把报告结论、各耳听力数值和医生处方逐字发我。若等待中突然听力明显恶化、耳流血/清水、眩晕呕吐或面歪，立即告诉工作人员急诊处理。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00145",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+924min",
+      "text": "医生，检查做完也回耳鼻喉看过了。医生看了报告，跟我说的大概意思是右耳像是摔伤以后“传导”或者中耳那块功能受影响，我也可能把词说错了；他没说现在要按什么突发性内耳听力损伤马上住院打针那种处理。让我们耳朵继续保持干燥，不掏、不自己滴药、不用力擤鼻，大概一周左右再复查。  \n\n老人现在右耳还是疼、闷、听不清，没明显好转，但这一个多小时没有耳朵流血流水，也没有一直眩晕呕吐、脸歪这些。老人颈托坐得烦，一直催我回家。  \n\n报告纸在我手里，我怕自己总结错。上面我能看到“纯音测听”和“声导抗”这些字，还有左右耳曲线和数字。您要不告诉我先念哪几行？我可以按报告逐字打给您，不想自己乱解释。  \n\n另外耳鼻喉这边好像没让我自己滴耳药，我还没完全看处方袋，药房/出院服务处也还没正式核药。克林霉素和破伤风我们还是没再弄。现在耳朵这边既然已经看完了，是不是应该趁还在医院去药房把药袋和出院清单核一下？如果老人实在坐不住，最晚今天回家前不核会不会有风险？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00151",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+924min",
+      "text": "既然耳鼻喉检查和当日复诊已完成、目前也没有急症信号，现在最值得做的是趁还在医院把药袋和出院带药清单正式核对一次，重点问清：①每种药是否需要回家继续；②剂量、次数、疗程和首次服用时间；③克林霉素静滴、破伤风免疫球蛋白是否均为住院已完成记录。不要自行续输、补打或滴耳药。若老人确实无法继续等，至少请药房/出院服务处快速核对后再走；实在办不到，回家后先不要服用任何“标签与清单对不上”或用途不明的药，今天通过原病区或药房电话核清，明确的常规带药则按标签和出院医嘱执行。\n\n报告请优先逐字打这些内容，不必抄曲线：1）纯音测听的“检查结论/诊断提示”；2）右耳和左耳的气导、骨导平均听阈（如有）；3）是否写“气骨导差、传导性/感音神经性/混合性听力损失”；4）声导抗或鼓室图左右耳分型（A、As、Ad、B、C型）、外耳道容积及声反射结论；5）耳鼻喉病历的诊断和复查时间；6）处方药名、规格、用法。看不到的项目就不要猜。\n\n目前继续保持耳内干燥、不掏耳、不自行滴药、不用力擤鼻，按约一周复查。若听力突然进一步下降、耳流血或清水、持续明显眩晕呕吐、面歪或意识异常，立即急诊。颈托不适可离院前请护士检查松紧和受压皮肤，不要自行摘除。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00165",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+959min",
+      "text": "医生，药房/出院服务处刚才已经帮我们对着药袋、出院带药清单，还有那几张住院医嘱/收费单快速核过了。窗口的人说，破伤风免疫球蛋白、克林霉素静滴、氯化钠针、艾司奥美拉唑针这些，是住院或者急诊期间已经用过的记录，不是叫我们回家再输液、再补打，也没有让我们马上回病房补针。这个我现在算放心一点了。\n\n老人现在还是右耳疼、闷、听不清，但这会儿没有耳朵流血流水，也没有一直晕得吐、脸歪、叫不清楚这些。颈托戴着很烦，他一直催我走，我们现在在大厅坐着收东西，准备离院。\n\n听力报告我还没敢自己乱总结。我先照着能看懂的几行给您打，可能不全：报告上有“纯音测听”“声导抗”几个字，耳鼻喉医生口头说大概是右耳传导/中耳功能受影响，让一周左右复查。具体数字我怕念错，您看我回家路上或者到家后按您说的，先把“检查结论/诊断提示”和声导抗那几行逐字打给您行不行？带回家的药我也按药盒标签和出院带药清单吃，针剂那些我们不自己弄。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+959min",
+      "text": "可以，先安全回家；不要边走路或开车边抄报告，到家后把“检查结论/诊断提示”、声导抗/鼓室图左右耳分型，以及耳鼻喉诊断和复查时间逐字发我，看不清就留空别猜。针剂不再自行使用；口服带药按药盒标签和出院清单执行，如两者不一致先停下核实。耳朵继续保持干燥、不掏、不滴药、不用力擤鼻。颈托先按出院要求佩戴，离院前若方便请护士检查松紧和受压皮肤，不要自行摘除；还需按出院单安排脊柱外科复查。若听力突然明显变差、耳流血或清水、持续眩晕呕吐、面歪、意识异常或肢体无力，立即急诊。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00186",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+994min",
+      "text": "医生，我们到家了，老人已经坐下了，颈托还戴着。右耳还是疼、闷、听不清，跟在医院差不多，没有突然更严重；我刚看了也没见耳朵流血流水，他也没有一直晕得吐、脸歪或者人糊涂那种。\n\n药这块窗口已经核过了，针剂那些不回家弄，口服药我等会儿按药袋标签和出院清单来，对不上我就先不吃再问。\n\n我现在照着听力报告念，意思我不懂，您帮我看下。报告最上面写的是“纯音测听、声导抗”。  \n纯音测听这里我能看到一行像是“右耳传导性听力下降/损失”，后面字有点挤，我怕念错；左耳那边好像没写这么明显的问题。数字和曲线我先不乱抄。  \n声导抗/鼓室图这块，我看到右耳那里好像写着“B型”，左耳好像是“A型”，旁边还有“外耳道容积”几个字，具体数值我看得费劲。  \n耳鼻喉病历诊断那栏我照着念：好像写“右耳外伤后听力下降”，还有“鼓膜情况待复查”这类字，复查是医生口头说一周左右，纸上具体哪一天我还没翻到。\n\n我这样先读这些关键行行吗？如果右耳是B型，是不是说明中耳里面有问题？这种在家等一周复查安全吗，还是明天还要再去更大的医院看耳科？老人已经很累了，我怕拖了听力恢复。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00191",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+994min",
+      "text": "请调取本次外伤相关的急诊、住院及出院记录，重点查看耳鼻喉会诊/门诊病历、耳镜所见、纯音测听与声导抗报告原文（含左右耳听力类型、气骨导差、鼓室图分型及外耳道容积）、头颅/颞骨CT结论、出院诊断和耳鼻喉复查要求；同时查看颈椎横突骨折影像、脊柱会诊意见及复诊时间。",
+      "turn": 9,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00193",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+994min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 9,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00195",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+994min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 9,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00198",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+994min",
+      "text": "这些关键行已经很有帮助。若确为“右耳传导性听力下降＋右侧B型鼓室图”，通常提示声音传到内耳的过程受阻，外伤后常见原因包括中耳积液/积血或鼓膜活动受限；但B型还要结合耳镜所见和“外耳道容积”判断，单凭您目前读出的内容不能确定鼓膜是否穿孔，也不能判断具体原因。\n\n从目前看：症状稳定、耳鼻喉已当天检查并判为传导性问题，且没有耳流血/清水、持续眩晕呕吐、面瘫或意识异常，今晚在家观察并按约一周复查通常是合理的，不必仅因B型明天奔赴更大医院。传导性下降一般也不像突发性感音神经性聋那样需要争分夺秒用激素。不过复查不能只停留在口头计划：明天请挂好约1周内的耳鼻喉科，复查耳镜/鼓膜及听力或声导抗；若完全挂不上，或疼痛、听力逐日加重，则提前到耳科评估。\n\n继续保持耳内干燥，不掏耳、不自行滴药、不用力擤鼻，也不要自行做捏鼻鼓气。若听力突然明显下降、耳流血或清水、持续明显眩晕呕吐、面歪、意识异常，立即急诊。稍后若能看清，请只再读右耳“外耳道容积”数值、纯音测听结论原文及纸面复查时间；看不清不用猜。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00212",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1006min",
+      "text": "医生，我又对着纸看了最后几行，按我看到的念，不知道单位对不对。\n\n右耳“外耳道容积”那里好像是 **0.9**，后面单位像是 ml 还是 cm³ 我看不懂；左耳那边好像 **1.0** 左右。鼓室图右耳还是我刚才说的像 **B型**，左耳 **A型**。  \n纯音测听结论那行我能看清的就是类似：**“右耳传导性听力下降”**，后面有没有“轻中度”之类我不敢乱认。\n\n纸上具体哪天复查我真没找到，耳鼻喉医生口头说的是一周左右。那我明天就先去挂一周内耳鼻喉复查号，挂不上我再问原来医院能不能加号或者提前看。\n\n老人现在躺下了，右耳还是疼闷听不清，跟刚才差不多，没有突然变坏。我今晚就不再折腾他了。  \n我理解就是：今晚观察，耳朵别进水、不掏、不滴药、不擤鼻鼓气；口服药按药袋和出院清单，针剂不自己弄；明天挂耳鼻喉一周内复查，颈托按出院要求戴着，脊柱外科也按出院单约复查。要是突然听力明显更差、流血流水、一直晕吐、脸歪、人不清楚这些就急诊。这样对吗？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00218",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1006min",
+      "text": "对，您理解得准确，今晚让老人休息即可。右耳外耳道容积约0.9 mL并不提示明显增大的容积，结合右耳B型和“传导性听力下降”，更支持中耳积液/积血或鼓膜活动受限，但仍需复查耳镜确认，不能仅凭这些数值定因。\n\n明天把约1周内的耳鼻喉复查号落实，复查耳镜、鼓膜及听力/声导抗；挂不上或疼痛、听力逐日加重，就提前联系原医院耳鼻喉科。颈托和脊柱外科复查按出院单执行。若突然明显听力下降、耳流血或清水、持续眩晕呕吐、面歪、意识异常，或出现新发四肢麻木无力，立即急诊。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00232",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1014min",
+      "text": "好的医生，那我今晚就不再翻单子折腾他了，让老人戴着颈托先睡。我记住了：针剂不自己弄，耳朵保持干的，不掏不滴药，也不让他用力擤鼻子。\n\n明天我去落实耳鼻喉一周内复查，挂不上就问原医院耳鼻喉能不能提前看；颈椎这边也按出院单去约。晚上我就主要看有没有您说的突然更听不清、耳朵流血流水、一直晕吐、脸歪、人不清楚，或者手脚麻木没力气，有这些就直接急诊。谢谢您，今天先这样。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00242",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1014min",
+      "text": "好的，今晚先让老人休息，您总结得很准确。颈托按出院要求佩戴；若明显勒痛、呼吸或吞咽困难，或皮肤持续受压发白、发紫、破损，不要自行大幅调整，及时联系病区或就医。明天落实耳鼻喉和脊柱外科复查即可；出现您列出的任何警示症状，直接急诊。晚安。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_112__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 4,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": false,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.299038105676658,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 11
+}

@@ -1,0 +1,785 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "a629be8fd7e4c219587d4db9cca08c5d2c2b0872570c21fa3fb51d2667178305",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_022__anon_fd2ad34389d8e166",
+    "packet_sha256": "6b6702c725c2c9c06ec3b7f21116c0b954e9e3a645e8c546372b6c374a50b272"
+  },
+  "case_id": "case_CL120_EHR_022",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "low",
+    "closure_coordination_burden_score": "0",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "respiratory",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "medication_confusion_or_execution_failure",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "cost_transport_or_work_barrier | privacy_stigma_or_sensitive_history",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "lung_nodule_mass",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者最初读回头孢呋辛、克林霉素、皮试、术前0.5-1小时等内容，提示把住院/术前医嘱与出院用药混淆。",
+      "医生要求当天联系病区或出院药房核对出院带药完整清单、抗血小板药名、剂量、频次、疗程，并强调不要凭猜测自行购买、补服、加倍或继续使用住院针剂。",
+      "病区办公护士回拨后外部确认头孢呋辛/克林霉素/皮试/术前用药不是居家继续用药，并查到阿司匹林肠溶片100mg、每次1片、每日1次。",
+      "在家中药袋不可靠时，医生要求不要吃看不清来源的药，需正规药品标签/药师核对；患者随后在家属陪同下到正规药房获得外盒清楚的阿司匹林100mg，并已服1片，没有补两片。",
+      "患者完成 teach-back：阿司匹林100mg每日固定1片，不补、不加、不自行停改，疗程等病区或主管医生确认；把需问病区的问题写到纸上。",
+      "医生给出安全网：胸痛、气短、晕厥、持续心悸、穿刺处持续出血或迅速鼓包、黑便、呕血、明显过敏反应等立即就医。",
+      "末轮患者确认药盒、纸条和次日闹钟已放床头，明天仍100mg吃1片；当前无胸痛气短、穿刺处出血鼓包，病区文字和CT完整报告未回流，明天会反馈关键原话。"
+    ],
+    "if_continued_next_focus": "等待明日病区/主管医生文字答复或小程序信息回流后，核对阿司匹林疗程/起算日/是否还有其他出院药，并落实首次心脏复查日期项目；拿到完整CT报告后再进行肺结节大小、性质和复查窗口分层。",
+    "rationale": "按本案 authored contract，当前责任单元主要是房缺封堵术后回家第一天的 home_execution_failure：患者把术前/住院针剂、出院药和复查资料混在一起，存在误用药或漏用抗血小板药的风险。轨迹已完成该 bounded episode 的安全闭环：医生识别了用药执行失败，使用工作区/EHR线索与患者读回、病区护士回拨和正规药房核验共同区分了围手术期头孢呋辛/克林霉素/皮试不是居家药；阿司匹林肠溶片100mg每日1次已由外部病区/药师核验，患者已按单次剂量服首片，未补服加倍，且设置闹钟、纸条并能复述不自行停改和红旗处理。当前无胸痛、气短、晕厥、穿刺处活动性出血/鼓包、黑便、呕血或过敏喘憋。残余的阿司匹林疗程/起算日、是否还有其他出院药、首次心脏复查项目日期、完整CT肺结节报告仍未回流，但它们已被明确边界化为后续责任：病区/主管医生/医院小程序确认，患者明日反馈关键原文，出现红旗立即就医。因此这不是长期房缺术后管理或肺结节管理的 durable closure，而是本次居家用药混乱/最低安全执行 episode 的安全闭合。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：阿司匹林疗程、起算日、复查后是否调整、完整出院药是否只有阿司匹林仍待病区/主管医生文字或小程序确认；已有 owner、明日/近期反馈路径和不自行停改的安全边界。",
+      "bounded_residual_followup：首次心内/心外术后复查日期、地点、心超/心电图等项目尚未落实；医生已要求患者向病区/主管医生确认并回传，若出现心血管红旗则急诊。",
+      "bounded_residual_followup：左上肺结节完整CT报告关键字段未补齐，复查时间窗未最终风险分层；当前没有新高危症状，医生已要求拿到完整报告后再核对复查安排，不能视为肺结节长期管理闭环。",
+      "global_disease_journey_background：房缺封堵术后长期随访、抗血小板疗程调整、肺结节影像随访仍继续，不属于本次 home_execution_failure episode 的完全终结。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "房缺术后回家后，复查结节和用药安排有点乱",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我31岁，前阵子因为房间隔缺损做了封堵手术，出院时说要休息、加强营养，还提到胸部CT有个左上肺小结节，像炎症或增生，让以后复查。我回家后单子和药名弄混了，不确定哪些只是术前用的针，哪些还要继续管，最近请假也不太方便，想问我现在该先确认什么？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取患者本次房间隔缺损封堵相关的完整时间线、入院与出院记录、手术记录、出院医嘱和随访计划；核对出院带药/处方及药房记录（药名、剂量、频次、疗程），区分住院或术前一次性注射药与出院后需继续服用的药；同时调取术前胸部CT报告原文（结节大小、形态、具体位置及建议复查时间）、术后心脏超声/心电图和近期检验结果，并查看其复诊请假及就医可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取 CareLoop 联合医疗网络内这次房间隔缺损封堵术相关的5条源记录全文/可见详情：住院时间线、入院及出院记录、手术记录、出院医嘱和随访计划；同时查处方/药房与实际出院带药记录（药名、剂量、频次、疗程），区分术前/术中注射用药与出院后需继续药物；调取胸部CT报告原文，重点核对左上肺结节大小、形态、是否实性及建议复查时间；并查看心脏超声、心电图等术后结果及患者请假、交通和复诊可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并展开 R01—R05 的完整记录及时间线，重点查看房间隔缺损封堵术的入院记录、手术记录、出院小结和出院医嘱；核对术后应继续服用的药名、剂量、频次、疗程及停药条件，区分住院术前/术中注射药；同时查看胸部CT报告原文（结节大小、形态、具体日期及复查建议）、术后心脏超声/心电图结果和随访安排，并查询药房发药记录及患者就医请假/复查可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并展开 R01—R05 的完整记录及其日期、科室和文书类型，重点查看房间隔缺损封堵术的住院/手术记录、出院小结与出院医嘱、实际出院带药和药房记录、术前术中用药，以及胸部CT报告原文；同时查看术后心脏超声/心电图等结果、复诊计划和可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并展开记录 R01—R05 的原文或可见详情，重点包括房间隔缺损封堵手术日期与手术记录、出院小结及医嘱、出院带药/处方与药房记录、术前及住院期间注射用药、心脏超声和胸部CT报告原文（含肺结节大小、形态、与既往对比及建议复查时间），并整理完整时间线；同时查询随访安排及患者就医/请假可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "目前最优先的是**把出院后必须继续吃的药核对清楚**，尤其房间隔缺损封堵术后常会使用一段时间的抗血小板药（如阿司匹林、氯吡格雷），但具体品种、剂量和疗程必须以你的手术记录和出院医嘱为准，不能凭常规方案猜，也不要自行停药、补服或把住院期间的针剂继续使用。目前可见资料里没有具体药名和报告内容。\n\n建议按这个顺序处理：\n\n1. **今天先找齐并拍清楚**：出院小结、出院带药单/处方、药盒正反面及药板、胸部CT报告、心脏超声报告。可遮住姓名[REDACTED_NAME]，但药名、规格、用法、日期要完整。如果医院有电子病历，也可联系心内科病房或出院药房核对“出院带药清单”。  \n2. **核对前不要把任何针剂当作居家药使用**；不少针剂只是术前或住院期间使用。已经明确写在出院带药单上的口服药先按原医嘱服用。若你已漏服或停药，不要自行加倍，尽快询问手术医院。  \n3. **确认心脏复诊安排**：复诊日期、心脏超声/心电图时间、抗血小板药疗程，以及活动限制。近期避免剧烈运动和重体力劳动；穿刺处未愈合前避免泡澡、游泳。以后看牙或做其他有创操作，要主动说明体内有封堵器，是否需要预防用药由医生结合情况决定。  \n4. **肺结节通常不是当前急症**，但必须根据CT原文确定结节大小、实性还是磨玻璃、边缘特征及建议复查间隔。先拿到报告和影像；没有这些信息，不宜随意定“三个月”或“一年”。如果吸烟、有肿瘤家族史或既往影像，要一并告诉医生。复查通常可提前预约，尽量安排在休息日，减少请假次数。\n\n若出现持续或加重的胸痛、明显气短、晕厥、持续心悸，咯血，发热伴寒战，或穿刺处不断出血/迅速肿大，请立即急诊。你可以把上述单据和药盒照片发来，我再帮你逐项区分“住院临时用药”和“出院后必须继续用药”。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者可提供部分出院资料读回，但目前不能视为医生已看到完整图片或完整原始报告；仍需继续核对出院带药单、药盒/处方、心脏复诊安排和CT报告关键字段。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "工作台未见明确出院带药清单；需继续通过患者读回/药盒/处方或出院药房、病房确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "患者仅能读回肺结节报告片段；需补充大小、性质、报告日期和既往影像对比后再决定复查时间窗。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "存在患者将住院临时针剂单误认为出院用药单的风险；需核对文书标题、日期、医嘱类别和是否为出院带药。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "若患者读回仍不能确认出院带药，应建议当天联系出院药房或病房核对；可能需等待回电。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00055",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我翻了十来分钟，袋子里好几张混一起了，我怕拍了您也看不清，我先把能看见的字打出来。\n\n有一张上面写着像是：  \n“头孢呋辛钠”“术前0.5-1小时”“皮试”，旁边还有“克林霉素”这些字。我刚才看您说的，感觉这个是不是就是住院或者术前打针用的，不是我回家还要用的？\n\n出院记录那张我只看到“注意休息、加强营养”“一般情况可出院”这种，没看到很明确的“出院带药”几个字，也没找到写阿司匹林或者氯吡格雷的地方，可能我还没翻到，药袋也不知道是不是家里人放别处了。\n\nCT那张我看到的是“左肺上叶结节”“炎性或增生可能”“建议复查”，但是大小、磨玻璃还是实性那些我还没找到，看得有点乱。\n\n那我现在是不是应该打出院小结上那个病区电话，直接问他们“我的出院带药清单是什么、有没有阿司匹林/氯吡格雷、怎么吃多久”？还有这个头孢和克林霉素我先不要管它，对吗？目前我没有明显胸痛气短发烧，主要就是怕把真正该吃的药漏了。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00060",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请一次调取本次房间隔缺损封堵术相关的住院时间线、手术记录、出院小结及完整出院医嘱/带药处方、药房发药记录和当前用药清单；同时调取胸部CT报告原文（日期、左上肺结节大小、密度/性质、影像特征、既往对比及复查建议）和术后复诊安排。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00064",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00067",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "对，建议你今天就打病区或出院药房电话，按下面的话逐项核对：①房间隔缺损封堵术后的出院带药完整清单；②是否有阿司匹林、氯吡格雷或其他抗血小板药；③每种药的规格、每次剂量、每天次数、开始日期和总疗程；④如果已经漏服，应从什么时候恢复、是否需要提前复诊。请让对方最好通过医院公众号/短信/打印处方给你一份文字清单，并记下接听人员和时间。\n\n你读出的“头孢呋辛钠、术前0.5–1小时、皮试”，高度符合围手术期注射用药说明；“克林霉素”也可能是备选抗菌药。它们不能据此视为出院后居家用药，先不要自行购买、口服或注射，除非出院医嘱明确写了继续使用。\n\n目前没有胸痛、气短、发热，暂不提示急症；但抗血小板药不能长期拖着不确认。若今天联系不上病区，再联系出院药房、心内科门诊或医院病案/互联网医院，并说明“封堵术后出院药不清楚，担心漏服”。不要凭猜测自行开始、加倍或补服阿司匹林/氯吡格雷。核实后把对方逐字告知的药名、规格、用法和疗程发我，我继续帮你检查。\n\n肺结节先不用今天处理；之后补齐CT报告日期、结节毫米数、实性/磨玻璃及建议复查期限，再确定复查时间。若出现持续胸痛、明显气短、晕厥或穿刺处持续出血，立即急诊。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00081",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+50min",
+      "text": "医生我打过电话了，刚打的是出院小结上那个病区电话。那边护士说他们在交接班，比较忙，没给我完整查清单，只简单说我前面读的“头孢呋辛钠、克林霉素、皮试、术前0.5-1小时”这些，更像住院/手术前后用的，不建议我当成回家还要用的药。这个我就先不管它了。\n\n但是她没在电话里给我念出出院带药到底有哪些，说下午可能办公护士或者主管医生回电话，或者让我去医院公众号里找电子的出院带药记录。我刚点了公众号，入口有点乱，还没找到。药房电话我也打了几次，一直占线。\n\n所以现在最关键的还是没确定有没有阿司匹林、氯吡格雷这些抗血小板药。我现在没有自己去买，也没补吃、没加倍吃。就是怕如果真该吃，等到下午才问清楚，会不会耽误啊？我是不是就继续等回拨/继续打药房，没核清之前还是不要自己猜着吃，对吧？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00086",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+50min",
+      "text": "请调取患者本次房间隔缺损封堵术相关的完整住院时间线、手术记录、出院小结/出院医嘱、出院带药处方及药房发药记录，重点核对抗血小板药名称、剂量、起止日期和是否已发药；同时查看近期心脏超声/心电图及胸部CT报告原文，并查询可用的心内科病区、出院药房或互联网医院联系/就诊可及性信息。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00088",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+50min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00090",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+50min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00093",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+50min",
+      "text": "对，在没有可靠核清药名、剂量及禁忌前，不要凭猜测自行购买或服用，也不要补服、加倍；再等到今天下午回拨，通常比误服更安全。但封堵术后抗血小板方案很重要，今天必须确认，不能拖到明后天。\n\n现在请继续做两件事：①等病区/主管医生回电，同时继续联系出院药房或心内科门诊；②请家人再找药袋、收费清单或公众号里的“门诊/住院服务—出院记录/处方/用药清单”。接通后要对方逐项念清：药名、规格、每次几片、每天几次、从哪天开始、吃多久，以及若已漏服该怎么恢复；最好让对方发文字记录。\n\n如果到今天下班前仍完全核不清，建议本人或家属带身份证、出院材料和现有药品去病区护士站或出院药房当面核对，不要继续仅靠猜。若你家里其实有明确标注姓名[REDACTED_NAME]/药袋，先把标签逐字发我。\n\n如果出现持续胸痛、明显气短、晕厥、单侧肢体无力或说话不清，立即急诊。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00111",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+160min",
+      "text": "医生，办公护士刚回电话了，我怕自己记错，先照我纸上写的念给您听。\n\n她说我前面看到的“头孢呋辛钠、克林霉素、皮试、术前0.5-1小时”这些，系统里看是住院/围手术期的，不是让我回家继续用的，这个我就放心一点了。\n\n然后她说出院带药里有一个抗血小板的，我纸上记的是“阿司匹林肠溶片 100mg”，后面我写的是“每次1片，每天1次”，疗程那里她好像说“3个月”还是“复查再看”，我这块没听太准。她还说从出院后按医嘱吃。我家属刚翻到一个药袋和小票，药袋上也像是阿司匹林，但我还没敢吃。\n\n我今天上午到现在都没吃这个，算漏了一次吗？我现在下午能不能先按“100mg一片、一天一次”吃上？还是必须再去药房窗口把正式清单打印出来再吃？目前我没有胸痛气短，就是心里一直慌。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00116",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+160min",
+      "text": "请调取本次房间隔缺损封堵术的住院时间线、手术记录、出院小结、出院医嘱和正式带药处方/药房记录，重点核对阿司匹林的规格、剂量、频次、开始日期、疗程，是否合并其他抗血小板药；同时查看过敏史、消化道出血/溃疡史、近期血小板和肾功能等用药安全信息。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00118",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+160min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00120",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+160min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00123",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+160min",
+      "text": "按病区护士查到的出院带药，加上你现有药袋也标着阿司匹林，信息已基本一致。若药袋确认是你的姓名、药名为“阿司匹林肠溶片”、规格100mg，且你没有阿司匹林过敏、正在活动性出血/黑便或呕血，也没有医生交代禁用，那么今天下午可以先服1片（100mg），不必为了打印清单继续拖延。今天上午未吃可算漏服/延迟一次，但现在只服正常单次剂量，绝不能加倍；以后每天固定时间一次，按药品说明整片吞服。\n\n疗程目前不要凭记忆定为3个月，也不要自行停药：今天再请病区通过文字确认“开始日期、预计疗程、复诊时是否调整”，之后以正式出院处方或主管医生答复为准。若药袋姓名、规格或用法有任何一项对不上，或你有上述过敏/出血情况，先别吃，立即让药房或病区核对。服后若出现喘憋、面唇肿胀、大片皮疹，或明显出血、黑便、呕血，立即就医。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00138",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+166min",
+      "text": "医生不好意思，我刚才可能说得不准，让您误会了。\n\n不是我已经确认药袋上写着阿司匹林了，是家属说“看着像”，但我现在手边其实没有那种能看清姓名、药名、100mg、一天一次的正规药袋标签。我能确认的只有：病区办公护士电话里查系统说有“阿司匹林肠溶片100mg，每次1片，每天1次”，还有我自己纸上这么记的。\n\n我到现在还没吃，也没自己买、没补、没加倍。我没有阿司匹林过敏史，现在也没有黑便、呕血，牙龈鼻子没有明显出血，穿刺那里也没在流血，也没有新胸痛气短。\n\n那这种情况，只有护士系统电话确认、但我手上核不到药袋标签，今天这片是可以先吃，还是必须再让病区/药房给我再确认一次文字或清单以后再吃？我就怕一边漏药，一边又怕吃错。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00143",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+166min",
+      "text": "请调取此次房间隔缺损封堵术的住院时间线、手术记录、出院记录/出院医嘱、正式出院带药处方及药房发药记录，重点核实阿司匹林肠溶片的药名、规格、剂量、起始日期、疗程，以及是否同时使用其他抗血小板或抗凝药、是否记载禁忌或出血风险；同时调取近期血常规、肝肾功能和胸部CT报告原文。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00145",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+166min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00147",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+166min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00150",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+166min",
+      "text": "谢谢你及时纠正。按你现在能确认的信息——病区办公护士已从院内用药记录核对出“阿司匹林肠溶片100mg，每次1片、每天1次”，且你无过敏、活动性出血或医生交代禁用——这已可作为较可靠的医嘱核对，今天可以按正常单次剂量服100mg，不必一定等到打印纸出来；不要加倍补服。关键是必须拿到药名和规格明确的正规药品：如果你手边现有药无法看清名称或规格，就不要吃那颗不明药，去正规药房购买/让药师核对后再服。今天仍请病区或药房补发文字清单，重点确认疗程和是否还有其他出院药；在疗程确认前不要自行停药。若今晚仍无法取得或核实正规药品，再联系病区值班医生处理，不要用不明药代替。出现黑便、呕血、持续出血、面唇肿胀或喘憋，立即就医。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00164",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+201min",
+      "text": "医生，我按您说的办了，没吃家里那颗看不清的。家属陪我去了正规药房，把病区护士电话里说的“阿司匹林肠溶片100mg，一次1片，一天1次”跟药师说了，药师给的是外盒写清楚100mg的阿司匹林肠溶片。\n\n我回家刚吃了1片，没有补两片。现在过了半个多小时，暂时没有哪里出血、也没有喘不上气那种，就是人有点累。\n\n我想再确认一下：这样今天先吃上是对的吧？后面我就每天固定吃1片，先不要自己停，对吗？\n\n还有我怕自己又记混，麻烦您给我列个最简单的下一步：\n1. 阿司匹林要再问病区哪几句话？是吃多久、从哪天算、还有没有别的出院药？\n2. 心脏封堵术后一般什么时候复查？\n3. 那个左上肺结节，我现在先不急，后面要问CT报告上的大小和多久复查，是这样吗？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00169",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+201min",
+      "text": "请调取本次房间隔缺损封堵术的手术记录、出院小结、正式出院带药/处方及复查计划；同时调取胸部CT报告原文和既往胸部影像对比。请按日期列出阿司匹林及其他出院药的剂量、起始时间、疗程，以及心脏和肺结节随访建议。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+201min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00173",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+201min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00176",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+201min",
+      "text": "对，今天这样吃1片是合适的，没有加倍也对。之后先按每天固定时间1片（100mg）服用；在主管医生明确疗程前不要自行停药或加减量。轻微疲劳可先休息观察；若出现明显胸痛、气短、晕厥，或黑便、呕血、持续出血、面唇肿胀/喘憋，立即就医。\n\n最简单的下一步：\n1. 问病区三句话：“阿司匹林从哪一天开始算、共吃多久？复查后是否调整？完整出院药只有阿司匹林，还是还有其他药？”最好请对方发文字处方。\n2. 心脏复查：具体以出院医嘱为准；封堵术后常见会在约1个月、3个月、6个月复诊并做心脏超声/心电图，但各医院方案不同。请同时问：“我的第一次心内科复查是哪天，要做心脏超声、心电图或其他检查吗？”\n3. 肺结节：目前没有相关急症表现，可以先不急。之后拿到CT报告，确认检查日期、结节大小（毫米）、实性还是磨玻璃、边缘描述、是否有旧片对比，以及报告建议多久复查；有这些信息后才能准确安排复查时间。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00190",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+213min",
+      "text": "好的医生，我明白一点了。现在我先按阿司匹林100mg每天固定1片吃，不补、不加，也不自己停，疗程等病区或主管医生说准。\n\n我把您那几句话抄纸上了，晚点我家属帮我再问病区，或者明早小程序/电话问：从哪天算、吃多久、复查后要不要改、出院药是不是只有这个，还有第一次复查哪天、要不要做心超心电图。\n\n肺结节我先不折腾了，等我拿到完整CT报告再把日期、大小那些读给您。今天先休息一下，人确实有点累。谢谢您。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00200",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+213min",
+      "text": "好的，你现在的安排是对的，今天先安心休息，避免剧烈运动和提重物，穿刺处保持清洁干燥。等病区答复和完整CT报告拿到后，把原话或关键内容发我，我再帮你核对用药疗程、心脏复查和肺结节复查时间。若疲劳明显加重，或出现胸痛、气短、晕厥、心悸持续不缓解、穿刺处出血/迅速肿大、黑便或呕血，请立即就医。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00214",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+288min",
+      "text": "好的医生，我就先不折腾资料了。药和纸条都放一起了，明天吃药闹钟也设好了，还是按100mg一天1片来，不自己改。\n\n现在穿刺那里看着还行，也没有胸痛气短那些，就是累，准备躺着休息了。病区要是明天回我文字，或者CT完整报告出来，我再把关键几行发您。谢谢您。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00223",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+288min",
+      "text": "好，今晚先休息即可。起身慢一些，避免剧烈活动和提重物；明天仍按已核对的阿司匹林肠溶片100mg服1片，不补服、不自行停改。病区文字答复或CT完整报告出来后，把关键原文发来，我继续帮你核对。若今晚出现胸痛、气短、晕厥，穿刺处持续出血或迅速鼓包，黑便、呕血或明显过敏反应，请立即就医。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00238",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+438min",
+      "text": "好的医生，那我今晚就先睡了。药盒、纸条和明天闹钟都放床头了，明天还是100mg吃1片，不补也不自己改。\n\n现在没有胸痛气短，也没看到穿刺那里出血鼓包。病区文字和CT完整报告还没回来，明天有了我再把关键原话打给您。谢谢您，辛苦了。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_022__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3,
+    "aggregate_median": 3.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 1,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 2.0,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 8
+}

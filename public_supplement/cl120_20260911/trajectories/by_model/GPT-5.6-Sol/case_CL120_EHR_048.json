@@ -1,0 +1,1036 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "899f45efe5df4d807fa774e4e440c8e0a72043292966f453ab0c57cbb31881a9",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_048__anon_2cfb658b4d490aaf",
+    "packet_sha256": "b7b6a266af96cee83f93efa3a3cf5e1b3d5027adc5557b438c4da8d95d7c3917"
+  },
+  "case_id": "case_CL120_EHR_048",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "7",
+    "contract_complexity_level": "high",
+    "disease_domain": "renal_urology",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "misstated_family_or_patient_information",
+    "required_receipt_count": "3",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "delayed_or_staged_result_return | low_adherence_or_refusal",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "renal_function_electrolyte_and_urine_color_medication_safety",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "前序轨迹中患者已到院并进入肾内科病区/留观，护士接管给药和尿量记录，家属不再凭记忆补药、加倍或自行决定用药。",
+      "夜间未发生明显恶化；床边医生、护士、药师确认血压、尿量、精神状态稳定，晨间肾功能/电解质趋势未继续快速恶化，允许在书面方案明确后出院。",
+      "turn 20 家属反馈药师窗口和护士站再次核实：正式出院新药单关键药名被圈清，回家只吃新单上继续的硝苯地平控释片、阿托伐他汀、利格列汀；旧沙坦类、二甲双胍、非布司他复查前不吃，不能自行恢复；旧药袋贴明显标记并单独保管。",
+      "turn 21 医生确认家属理解：只按新单服药，旧药由家属保管，暂缓药等复查后由肾内科决定，后天复查并让肾内科医生看结果，红旗直接就医不等预约。",
+      "turn 21 家属完成出院手续后再次复述：出院小结、正式药单、复查单放文件袋；旧药袋单独放自己包里；回家两天按新单吃三种药；旧沙坦、二甲双胍、非布司他及布洛芬/双氯芬酸/塞来昔布等止痛药不碰；按后天复查和红旗返院执行。",
+      "safety_event_status 显示无既往 critical safety event，当前无未缓解安全事件阻断闭环。"
+    ],
+    "if_continued_next_focus": "若继续模拟，下一高价值节点是后天复查肾功能/电解质/尿检等结果回流后，由肾内科或AI医生再次解释趋势，决定暂缓药是否继续暂停或恢复，并检查居家血压、血糖、尿量/体重记录及是否出现红旗。",
+    "rationale": "本 case 的目标是 bounded home-execution failure：在老人肌酐升高/电解质和尿色变化背景下，把不清楚的用药、是否复查/就医、出院后怎么执行转化为可执行的安全责任链。当前轨迹已完成核心闭环：患者已被外部肾内科接管并留观复查；晨间趋势、尿量、血压和精神状态经床边医生/护士/药师评估后允许出院；正式出院药单和复查单已由药师/护士圈定核实；AI医生已行动化解释“只按新单、旧药隔离、暂缓药复查后由肾内科决定、不自行恢复、NSAIDs禁用/避免”；家属在手续完成后能生活化复述继续药、暂缓/禁用药、旧药保管、后天复查、结果由肾内科看、红旗直接就医。后天肾功能/电解质复查尚未发生，但已有明确 owner、due window、verification route 和 escalation path，属于 bounded residual follow-up，不再阻断当前出院用药安全 episode 闭合。闭环主要由外部肾内科/药师/护士与AI医生共同形成，应注意 attribution：外部线下团队完成了诊疗接管和正式医嘱，AI医生贡献在于风险分层、推动就医/留观、避免自行用旧药、要求正式核药并促成家属teach-back。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：后天或大后天复查肾功能、电解质等尚未发生；复查后是否恢复沙坦类、二甲双胍、非布司他需由肾内科根据结果决定。该线程已有家属执行、肾内科看结果、异常直接就医的责任链。",
+      "global_disease_journey_background：CKD4期/慢性肾功能不全、高血压、糖尿病、痛风、前列腺增生等长期管理仍持续，不能理解为疾病治愈。",
+      "bounded_residual_risk：AI医生未直接看到原始正式药单/报告，信息依赖家属读回与药师/护士外部确认；但关键出院执行项已被外部核实并由家属teach-back，当前安全边界可接受。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "老人肌酐升高复诊后，家里拿不准尿色变深和用药该怎么办",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我爸73岁，前阵子复查说肌酐又高了，家里人听得有点乱，好像从一百多涨到快两百。他晚上老起夜，尿有泡沫，颜色也比以前深。之前有高血压、痛风，后来又说有糖尿病。药不少，有些名字我记不准，他最近还不太愿意按时吃，说没啥感觉。想问问现在该注意什么，要不要急着再去查？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取 CareLoop 联合医疗网络内已授权、已同步的全部相关时间线和原始资料：近两年肾功能（肌酐、尿素氮、eGFR、钾钠碳酸氢根）及历次变化，尿常规、尿白蛋白/肌酐比或24小时尿蛋白，血糖和糖化血红蛋白、血压、尿酸、血常规、肝功能；肾脏/泌尿系影像；高血压、糖尿病、痛风及肾病相关门急诊/住院记录；当前及近期处方、药房记录和停药调整，尤其降压药、降糖药、降尿酸药、利尿剂、止痛药及中草药；同时查看最近记录日期、照护与就医可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并展开 R01—R05 五条记录的完整可见内容及日期、科室、诊断、肌酐/eGFR/尿素氮/血钾等肾功能趋势、尿检与尿白蛋白、血糖/HbA1c、血压和泌尿系影像；同时查询处方及药房记录，重点核对降压药、降糖药、降尿酸药、利尿剂、止痛药及近期停漏药情况。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并展开 R01—R05 五条记录的完整可见内容及日期、科室、诊断、肾功能趋势（肌酐/eGFR/尿素氮/钾）、尿检和尿蛋白、血糖/HbA1c、尿酸、血压，以及处方和药房用药记录；同时查看近期急诊/住院文书、影像和照护可及性。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并展开 R01—R05 五条原始记录的日期、科室、诊断、病程及处方；同时查询近一年全部肾功能（肌酐、尿素氮、eGFR、钾钠碳酸氢根）、尿检及尿白蛋白/肌酐比、血糖/HbA1c、血压记录、泌尿系超声，以及当前和近半年药房配药记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00029",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "需要尽快复查，最好今天或明天就去肾内科/综合内科；肌酐若确实从一百多升到接近200，可能是肾功能明显下降，也要排除脱水、感染、尿路梗阻或药物影响。请带齐最近化验单和全部药盒，查肾功能（肌酐、尿素氮、eGFR）、电解质尤其血钾、尿常规及尿蛋白定量、血糖，并评估泌尿系超声；同时测血压、记录尿量。药物先不要自行停换，但暂时不要吃布洛芬、双氯芬酸、塞来昔布等止痛药，也不要自行用中草药、偏方或保健品；降压、降糖、降尿酸药需由医生结合肾功能逐项核对。不要因尿色深而强行大量喝水，正常饮水即可，少盐。若出现尿量明显减少或一天几乎无尿、呼吸困难、明显水肿、持续呕吐、嗜睡/意识异常、胸闷心悸或极度乏力，应立即急诊。请告诉我：最近一次肌酐的准确数值和日期、之前数值及日期，目前血压/血糖、一天尿量是否减少、有无水肿发热腰痛排尿疼痛；药名可照着药盒逐字读给我。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "当前未预约超声；如到院开单，超声完成时间取决于门诊/急诊路径和排队情况。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18min",
+      "text": "医生，我刚翻到一张化验单，照着纸读，最近一次肌酐好像写的是 192，单位我没太看明白；前面一张旧的好像是 132，日期看着像四个月前，但我不敢保证没看错。血钾、电解质、尿常规、尿蛋白这些我现在没找到。\n\n药盒这边只找到几个能读出来的：多沙唑嗪缓释片、非那雄胺、百令胶囊；还有降压、降糖、降尿酸的药他说在别的袋子里，我还没翻全，一天吃几次他也说得不清楚，还承认有时候嫌麻烦漏吃。\n\n他现在倒是没有喘，也不是一天没尿，尿还是有，就是颜色深、泡沫多；腿我看不出明显肿，没发烧，腰不疼，排尿疼他说没有。就是他觉得自己没啥事，不想今天去排队。我想尽量今天带他去肾内科或综合内科，但如果挂不到号，像他这种肌酐 192 的情况，是不是也应该直接去急诊分诊抽血查血钾和肾功能？还是明天门诊也能等？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "请调取联合医疗网络内这位患者近一年全部肾功能及电解质结果（尤其肌酐、eGFR、尿素氮、血钾、碳酸氢根）、尿常规/尿蛋白、血糖和糖化血红蛋白、血压记录、泌尿系影像，以及完整处方和药房取药记录；同时查看相关门诊/住院记录、诊断时间线及近期就医可及性。请保留各项准确日期、单位和报告原文。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18min",
+      "text": "按目前信息，我建议今天就去。肌酐若确实从约132升到192，增幅接近一半，而且血钾等关键结果不明，不能只凭“没感觉、还有尿”判断安全。今天挂不到肾内科或综合内科，就直接到急诊分诊，说明“73岁，肌酐约4个月从132升至192，合并高血压、糖尿病、痛风，实际用药不清且漏服”，至少尽快复查肾功能、尿素氮、eGFR、电解质尤其血钾、血糖、尿常规和尿蛋白，并评估是否有尿路梗阻；超声当天做不上，也不要因此耽误抽血和医生评估。带上两张化验单、所有药盒/药袋和既往资料。去医院前正常少量饮水即可，不要猛灌水；不要服布洛芬、双氯芬酸、塞来昔布等止痛药或偏方，也先不要自行停掉、补吃或加倍任何处方药，交给现场医生逐项核对。若出现尿量明显减少、心悸胸闷、明显乏力或嗜睡、持续呕吐、呼吸困难或水肿，立即按急症处理。若因客观原因今天确实完全无法就医，最迟明早首批门诊复查，但我不建议仅在家继续观察到明天以后。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00077",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+183min",
+      "text": "若该事件成立，医生侧可获知患者已有当天基础检查报告，但具体结果需读取结构化文本或家属逐项读回。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00081",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+183min",
+      "text": "医生，我们已经听您的来了，现在在急诊/综合内科这边等，抽血和尿已经做完了，老人坐旁边还一直说“我又不是没尿”。我照着手机报告读几个我看得懂的：\n\n这次肌酐还是高，写着大概 **190多**，跟之前那个192差不多，有向上箭头；eGFR我看到好像是 **30多**，有向下箭头。尿素氮也有箭头，但我有点分不清是不是写 **10点几**。  \n血钾这一项我特意看了，像是 **4点几**，护士刚才口头说“钾还可以”，但我不敢说是不是正式结论。  \n尿检里面我看到 **尿蛋白有加号**，好像还有潜血/红细胞也有提示，尿颜色还是偏深、泡沫多。血糖也有箭头，具体我怕读错。\n\n现在最卡的是超声窗口说今天普通可能排不上，要等接诊医生决定能不能加急，或者明天约。现场医生还没正式把结果都跟我们讲完。请问这种肌酐190多、eGFR三十多、血钾目前像还行的情况，是不是还得继续在急诊等医生看完，可能要住院吗？如果今天超声真做不上，明天再做会不会耽误？我怕我爸看血钾没事又要吵着回家。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00086",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+183min",
+      "text": "请调取并整理患者今天急诊/综合内科已回报的肾功能、电解质、血糖、尿常规结构化结果及报告时间；同时查看近6个月肌酐/eGFR趋势、既往泌尿系或肾脏影像、前列腺/尿潴留相关记录、当前处方与药房用药清单，以及今天接诊记录中生命体征、尿量、查体和处置计划。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00088",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+183min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00090",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+183min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00093",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+183min",
+      "text": "先不要因为“还有尿、血钾暂时正常”就离开，请继续等接诊医生把正式结果、血压和用药全部评估完。肌酐约190、eGFR三十多提示肾功能明显下降；血钾正常只是暂时排除一个急险点，不能排除梗阻、肾脏炎症或其他急性加重。是否住院要结合基线变化、尿量、血压、酸碱/电解质、感染、尿蛋白和血尿程度及超声决定，并非单凭肌酐数值决定。\n\n请现在向医生明确说：73岁、约4个月肌酐从132升至约192，合并高血压/糖尿病/痛风，尿蛋白和潜血可能阳性，药物不清且漏服，并请医生判断超声是否需今天加急。若尿量稳定、无发热腰痛、呼吸困难、水肿或呕吐，血钾及其他关键指标稳定，医生评估后认为无急性梗阻风险，那么明天尽早做泌尿系超声通常可以；但应由现场医生确认并留下明确预约及复查方案后再走。若出现尿量骤减、膀胱胀痛、发热腰痛、胸闷气促、明显水肿、呕吐嗜睡，或医生发现高钾、酸中毒等，则不能等到明天。离开前也请让医生逐项核对全部药物，尤其降压、降糖、降尿酸药和止痛药，不要自行停药、补服或加倍。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00107",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+258min",
+      "text": "医生，我按您说的已经跟现场接诊医生又说了一遍重点：73岁、肌酐从一百三十多到一百九十多，还有高血压糖尿病痛风，尿蛋白和潜血可能有，药也吃得乱。现场医生看了正式抽血尿检，说钾现在不是马上抢救那种，但肾功能不好，不能就这么当没事回去。\n\n现在超声还没做上，护士说在协调今天晚些时候加急，不行可能就让我们留观到明天一早。药盒药袋我也已经交到护士站/药师那边核对了，但还没把完整药单和今晚哪些能吃哪些先别吃告诉我们。\n\n我爸现在还在旁边吵着说“钾都没事，我又能尿，回家吃饭算了”。他目前没有喘、没发烧腰痛，也没说肚子胀得尿不出来，就是我也说不清今天尿量到底比平时少没少。我们准备先不走，等超声安排和药师核药结果。\n\n我想再确认一下：在药单没核完前，今晚是不是先不要自己补吃漏掉的药、不要加倍，也别吃止痛药和偏方？如果现场医生最后说今晚留观等超声，我们就留；如果他说可以回家明早超声，是不是也必须让他写清楚哪些药今晚能吃、明早几点复查、出现尿少/胸闷喘/水肿呕吐发热这些就立刻回来？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00113",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+258min",
+      "text": "对，你们理解得基本正确。药单核完、现场医生明确交代前，不要自行补吃漏服药、不要加倍，也不要吃布洛芬、双氯芬酸、塞来昔布等止痛药，更不要用中草药、偏方或保健品；但也不要把所有长期药一概自行停掉，今晚每一种是否服用都让现场医生或药师逐项写清楚。若建议留观等超声，就留下。若允许回家，离开前务必拿到书面方案：今晚及明早各药怎么吃、超声具体时间地点、何时复查肾功能/电解质和由谁复诊。今晚可记录每次排尿及大致尿量，不要猛灌水。若明显少尿或数小时无尿并伴不适、胸闷气喘、明显水肿、反复呕吐、发热腰痛、膀胱胀痛、嗜睡或意识异常，立即返回急诊。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00130",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+378min",
+      "text": "医生，又过了两个小时，超声刚才加急做完了。现场口头说没看到明显急性尿路梗阻，也不像膀胱憋着尿排不出来那种。我爸一听就又说“没堵不就没事了，回家吧”，我也有点怕自己理解轻了。\n\n现场医生又说了，超声没堵不代表肾功能就安全，肌酐还是一百九十多，尿检也不正常，建议我们留观到明早，再复查肾功能、电解质、血压和尿量。我现在先劝他留下，虽然他一直抱怨饿、想回家。\n\n药这边护士/药师只帮我们核对了一部分，我听清楚的有多沙唑嗪、非那雄胺、百令胶囊、骨化三醇这些；降压、降糖、降尿酸那几样他们说明早结合复查和完整处方再逐个定。今晚现场给了个临时纸条，我怕读错，就按他们写的来，不自己补漏服、不加倍，也不吃止痛药和偏方，这样理解对吧？\n\n尿量我们刚开始记，刚才他尿过一次，但没量杯，量多少我说不准。护士让我们先记时间和大概多少，我就写“几点尿了一次，大概小半杯/半杯”这种可以吗？如果一晚上尿少到什么程度，我需要马上去叫护士？另外我劝他留观时就说“超声没堵只是排除一种急的堵住，肌酐和尿异常还要看明早复查”，这样说对不对？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+378min",
+      "text": "对，你们现在的理解和做法都正确：建议按现场医生意见留观到明早。超声未见明显梗阻，只排除了一个常见急症原因，并不等于肾功能没问题；肌酐190多、尿检异常仍需看复查趋势、电解质、血压和尿量。\n\n今晚严格按现场临时医嘱服药；不补漏服、不加倍，不自行吃止痛药、偏方或其他未核对药物。老人饿的话先问护士能否进食、是否有检查需要空腹，不要自行判断。\n\n尿量先记录时间和“小半杯/半杯”等估计也可以，但最好现在向护士要量杯或尿壶，之后尽量按毫升记录。住在留观区，不必等达到某个固定数字：如果连续约4–6小时完全没尿，或尿量突然明显少于平时，就马上叫护士；任何时候出现膀胱胀痛、胸闷气喘、明显水肿、反复呕吐、心悸乏力、嗜睡或意识异常，也立即呼叫。你劝他的那句话很准确，可以再加一句：‘留下是为了确认肾功能没有继续恶化，并把今晚和以后的药逐项理清。’",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00153",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+918min",
+      "text": "医生，我们昨晚就按这个留在留观区了，没敢带他走。我问护士要了尿壶/量杯，夜里尿是有的，记录单刚才已经交给护士看了。我自己记得大概尿了几次，不是那种四五个小时一点没有，具体总量我现在脑子有点糊，算不太准。\n\n夜里还算平稳，没有喘、胸闷，也没吐，肚子没说胀痛，人也没糊涂，就是一直睡不好、抱怨想回家。药也是按现场临时写的吃的，没有自己补漏服、加倍，也没吃止痛药偏方。\n\n早上已经又抽血、留尿了，护士说等肾功能、电解质、血糖、尿这些结果出来，现场医生再决定住院、继续留观还是带方案回家。现在新肌酐、血钾这些数值还没出来，我爸又开始说“昨晚都没事，尿也有，赶紧回家”。\n\n我想问下，等结果这会儿我们还主要盯尿量、喘不喘、肿不肿、吐不吐、精神状态这些对吧？等报告出来以后，像肌酐比昨天更高、血钾高、尿量明显少，或者医生说尿检更差，这些是不是就基本不能回家、要住院？如果数值差不多稳定，现场医生同意回家，是不是也必须拿到写清楚的药单、复查时间和找哪个科复诊再走？我怕他一催我就漏问了。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00159",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+918min",
+      "text": "对，等结果期间继续观察尿量趋势、呼吸/胸闷、浮肿、呕吐、精神状态，也留意心悸、明显乏力；有变化马上叫护士。昨夜平稳和仍有尿是好现象，但不能代替今早化验判断，现在不要自行离开。\n\n是否住院不能只看某一项：若肌酐继续明显升高、血钾升高、酸碱或其他电解质异常、尿量明显减少、血压/血糖控制不稳，或出现上述症状，通常更需要住院或继续留观处理。尿检“更差”还要看具体是蛋白、红细胞还是感染指标及其程度，不能单凭一个加号决定去留。即使数值暂时稳定，也要由现场医生结合基线和整体情况确认能否回家。\n\n若医生同意回家，离开前请拿到书面内容：①完整药单，注明每种药继续、暂停或调整及剂量时间；②何时复查肌酐、尿素氮、电解质尤其血钾、血糖和尿检/尿蛋白；③复诊科室，优先肾内科，同时协调高血压、糖尿病和痛风用药；④哪些情况立即返急诊。再确认报告如何领取、由谁复核。可以直接把这四项给现场医生看，没写清前先别被老人催着走。结果出来后把正式数值和现场结论逐项告诉我，我再帮你们一起核对。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00173",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1038min",
+      "text": "医生，又等了差不多两个小时，关键抽血结果还是没全出来。护士刚才来过，说今早肾功能、电解质、血糖那些好像检验那边还在复核还是批次问题，系统里没全回，叫我们中午前后再等他们刷一次，结果齐了接诊医生统一说。\n\n尿检好像有一部分先能看到，护士提了一句有些不正常，但我没看清也没敢当结论，现场医生也说不能只看尿，要等肌酐、钾、血糖这些一起出来再决定走不走、药怎么开。\n\n我爸现在又坐起来催，说“尿都有，超声也没堵，报告拖这么久还不如回家”。目前这会儿倒是没有新的喘、胸闷、糊涂，也不是一直没尿，尿量单还在护士那边看。我就是熬得有点乱，想确认一下：这种结果延迟到中午前后，我们继续在留观区等是对的吧？尿检先异常是不是不能说明马上更严重，但也不能拿它说可以回家？\n\n等中午结果真出来，我准备就抓着问现场医生几件事：新肌酐比昨天升没升、血钾和其他电解质有没有危险、血糖血压稳不稳、尿量和尿检到底提示什么、要不要住院；如果让回家，就必须写清药单、多久复查、挂肾内科还是哪个科、什么情况立刻回急诊。这样问够不够？我怕到时候他一催，我又漏了。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00179",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1038min",
+      "text": "对，继续留在留观区等关键结果齐全、由现场医生统一评估是正确的，现在不要自行离开。尿检异常既不能单独证明病情马上加重，也不能作为可以回家的依据；必须结合肌酐变化、血钾及其他电解质、血糖血压、尿量和症状判断。\n\n你列的问题已经很完整，再补两点：①和他原来的肌酐基线相比，这次属于急性加重、慢性肾病进展，还是两者都有；②尿检具体异常是蛋白、红细胞还是感染指标，是否需要尿蛋白定量或进一步检查。若允许回家，还要问清复查的具体日期（不要只写“近期”）、由谁查看结果，以及每一种药继续/暂停/调量。\n\n你可以直接照着手机逐项问，不必靠记忆。等待期间若出现尿量骤减或数小时无尿、胸闷气喘、明显水肿、反复呕吐、心悸乏力、嗜睡或意识变化，立即叫护士，不要继续等报告。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00195",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1098min",
+      "text": "医生，已经到中午前后了，我这边还是没拿到完整正式结果，也还没有接诊医生给我们明确说到底住院、继续留观还是能带方案回家。护士刚才说再帮我们刷系统，但我听着还是“有些异常”这种零碎话，我不敢当正式结论。\n\n我爸又催得厉害，说等这么久还不如走。我现在准备直接去护士站问清楚三句话：结果到底齐没齐、谁来给我们解释、如果还没齐大概要等多久，能不能让接诊医生先看一下现在已有的结果。这样问可以吧？我怕一直坐着等，等到最后医生几句话说完我又记不住。\n\n如果等会儿拿到单子，我就不拍照折腾了，我照着纸逐字给您打出来关键行：肌酐、尿素氮、eGFR、血钾和其他电解质、血糖，还有尿检里面蛋白、潜血/红细胞、白细胞或感染那些，再把现场医生说的“急性加重还是慢性问题”、药哪些继续哪些暂停、几号复查、谁看结果读给您。这样够不够？现在老人暂时没出现喘、糊涂、一直没尿这些，我先继续按您说的劝他别走。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00201",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1098min",
+      "text": "这样问完全可以，而且现在就去问。请明确要求：在老人离开前，由接诊医生根据目前已有结果先当面评估；若关键结果仍未齐，说明缺哪几项、预计多久、等待期间是否必须继续留观。不要仅凭“有些异常”或老人暂时没症状自行离开。\n\n你逐字录入这些项目基本够了，最好同时带上每项数值、单位、参考范围和采血时间；另外补充碳酸氢根/二氧化碳结合力、钠、钙、尿蛋白具体等级，以及血压、尿量。现场结论和药物请尽量让医生写下来；你也可以当场照手机清单逐条复述，请医生确认。\n\n若老人坚持要走，马上告诉护士“患者准备自行离开，请接诊医生先评估并交代风险”，不要悄悄离开。出现胸闷气喘、明显乏力或心悸、呕吐、嗜睡糊涂、尿量骤减/无尿，立即呼叫护士。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00216",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1128min",
+      "text": "医生，我按您说的去护士站问了，护士叫了接诊医生过来床边看了一下系统里现在有的结果，还有昨晚尿量记录。医生说正式完整报告还没全部出来，下午结果齐了还要再复评，现在暂时不建议我们自己走，要继续留观到下午，不能悄悄离开。\n\n他给我写了个临时纸条，我照着大概读给您，不敢说全：  \n1. 等下午复评，护士或接诊医生会再刷系统通知我们；  \n2. 今天先不要自己补漏服的药，也不要加倍吃；  \n3. 不要自己吃布洛芬、双氯芬酸、塞来昔布这类止痛药；  \n4. 偏方、保健品、没核对过的药也先别吃；  \n5. 长期那些降压、降糖、降尿酸药到底怎么吃，还是等下午结果和医生/药师核完再写清。\n\n我爸现在还是不高兴，说“医生都来了还不让走”，我只能跟他说人家明确说了不能偷偷走，下午还要看结果。我现在最怕就是下午如果说可以回家，几句话一交代我又漏了药。我是不是就盯住让他们写清楚：哪些药继续、哪些停、剂量时间、几天内复查肾功能电解质血糖尿检、谁看结果、什么情况马上回急诊？如果下午还是不让走，我就按现场医生安排继续留观或住院，对吧？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00222",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1128min",
+      "text": "对，完全正确。下午若仍建议留观或住院，就按现场医生安排，不要自行离开；若允许回家，离开前请拿到书面方案并逐项核对：①每种药的准确名称、剂量、服用时间，以及继续/暂停/调整到何时；②复查项目和具体日期；③由哪个科、哪位医生查看结果，如何联系；④哪些情况立即返急诊。最好请医生或药师与你按现有药盒逐一核对，并确认今天回家后第一顿药怎么吃，避免重复或漏服。若暂时无法明确某种药，就让他们写清“先暂停还是暂按原方案”，不要自行猜。你可以把完整结果和书面药单关键内容逐字发来，我再帮你复核。等待期间继续按临时纸条执行；若出现胸闷气喘、明显心悸乏力、反复呕吐、嗜睡糊涂或尿量骤减，立刻叫护士。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00238",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1218min",
+      "text": "医生，下午又坐了一个多小时，还是没等到最终正式说法，也没有拿到能回家的书面药单。护士说还在等接诊医生下午复评，我这边现在就是按他们说的继续留观，不敢带我爸悄悄走。\n\n我爸又催了几次，说太累了想回家，我只能跟他说医生和护士都说了不能自己走。现在我能确认的是还没出现新的喘、胸闷、糊涂、反复吐这些，尿量还是护士那边在看着，我没自己算。\n\n等会儿医生一来，我就先抓三件事问清：到底能不能走；如果能走，今晚第一顿药怎么吃、哪些先停哪些继续；还有几号复查、谁看结果、什么情况马上回急诊。要是他只是口头说，我就让他写下来，或者让药师按我们带的药盒一盒一盒核。这样我继续等接诊医生当面复评就行吧？我现在是真怕最后他们很忙，几句话讲完我又漏听。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00244",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1218min",
+      "text": "对，继续留观，等接诊医生当面复评并明确去留；在正式同意前不要自行离开。你抓的三件事完全正确。\n\n为防漏听，可以直接把手机递给医生看，并请他在离开前写清：今晚第一顿每种药怎么吃；哪些继续、暂停或调量以及到何时；复查的具体日期和项目；谁负责看结果；哪些情况立即返急诊。最好由医生或药师按药盒逐一核对，你当面复述一遍，请对方确认。\n\n如果仍只口头交代，就请护士协助打印或补写出院/留观医嘱；没有明确的药不要自行猜、补服或加倍。若最后仍建议留观或住院，就继续按现场安排。等待中一旦出现胸闷气喘、心悸明显乏力、反复呕吐、嗜睡糊涂或尿量骤减，立即叫护士。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00260",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1338min",
+      "text": "医生，刚才接诊医生终于又到床边看过了，没有同意我们直接回家，说要转肾内科短期住院，或者先继续留观等肾内科接过去再查原因、重新核药。护士现在在准备交接，我爸还在旁边抱怨，说“又不是抢救，住什么院”，但我和护士先把他劝住了。\n\n我手里还是只有临时交代纸，不是正式完整报告。我照着纸和医生刚才说的大概理解是：现在暂时没听说有那种马上抢救的高钾、完全没尿、糊涂，也没说有明显堵住；但是肌酐还是比他原来高，尿检也有异常，所以不能因为他现在没特别难受就回家。\n\n今晚药这块我怕弄错，我再跟您确认一下：现在就是不要自己补漏服的药、不要加倍吃；布洛芬、双氯芬酸、塞来昔布这种止痛药不要吃；偏方、保健品、没核对过的药先别碰。那些降压、降糖、降尿酸，还有肾病相关的药，今晚到底怎么吃，先不靠我们自己猜，等肾内科医生或者药师按药盒正式核完写医嘱，对吧？\n\n那我现在主要就是配合办住院/继续留观，盯着不要让老人自己走，有胸闷气喘、心慌很厉害、吐、犯糊涂、尿突然很少这些就马上叫护士，是不是这样理解就行？我真是有点熬懵了，怕把“暂时不用抢救”听成“问题不严重”。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00267",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1338min",
+      "text": "你理解得完全正确。“暂时不用抢救”只表示目前未发现需要立即复苏或紧急透析等情况，不等于问题轻；肌酐较基线升高且尿检异常、原因和用药尚未厘清，短期住院或继续留观很有必要。\n\n今晚不要自行补药、加倍或凭记忆决定长期药；你列出的布洛芬、双氯芬酸、塞来昔布，以及偏方、保健品和未核对药物先不要用。降压、降糖、降尿酸及肾病相关药，等肾内科医生或药师结合血压、血糖、肾功能、电解质和药盒逐项开出正式医嘱；如果到了常规服药时间仍没核完，直接叫护士确认，不要自行猜。饮水也不要擅自猛灌或严格限水，按现场医嘱。\n\n现在配合交接，防止老人自行离开即可。若胸闷气喘、明显心慌乏力、反复呕吐、嗜睡或糊涂、尿量突然显著减少/无尿，马上叫护士。你已经把关键事情处理得很好，先把交接和核药做好，不必独自判断病情轻重。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00281",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1383min",
+      "text": "医生，我按您说的没让他走，现在肾内科这边护士已经开始接手了。我们带来的那些药盒护士先拿去登记核对了，她也说先别让我自己凭记忆给我爸补药、加倍或者自己决定今晚吃哪几个。\n\n正式药还没完全核完，护士说等肾内科医生或者药师看化验、血压血糖和药盒后再开医嘱。要是到他平时吃药那个点还没弄好，我就去叫护士问，不自己拿药给他吃。\n\n尿量这边护士也说会继续记，或者让我配合报尿。我现在记住的红旗就是：胸闷气喘、很心慌很乏力、反复吐、犯糊涂、尿突然很少或者没尿，就马上叫护士。这样我今晚就按这个边界守着行吧？我爸还在嘟囔想回家，但现在至少没再往外走了。",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00288",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1383min",
+      "text": "对，今晚就按这个边界守着。所有药和饮水量都以肾内科正式医嘱为准；到了平时服药时间仍未核完，就直接叫护士，别自行拿药。尿量按护士要求记录，每次排尿尽量及时报，不必自己判断多少算危险。出现你记住的任何红旗，或老人突然明显嗜睡、站立不稳，就立刻按铃。\n\n他若再次坚持回家，直接请护士和肾内科医生来说明风险，不要由你一个人劝，也不要自行办理离院。你现在已经做得很稳妥，交接后可以轮流休息，手机记下医生明早查房时要问的三项：目前考虑什么原因、今晚正式药单、下一次肾功能和电解质何时复查。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00303",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1443min",
+      "text": "好，医生，我就按您这个来。现在药盒已经不在我手里了，护士说今晚药归他们系统医嘱走，我不自己给他拿药吃；尿量也是按她给的办法报，我不自己瞎判断。\n\n我爸现在就是睡不踏实，嘴里还嘟囔想回家，但没有再往外走。目前我看着没有喘、吐、人糊涂这些情况。要是半夜他又闹着走，或者有什么不对，我就直接按铃叫护士，不自己硬劝。\n\n我手机上先记了明早查房问三件事：到底考虑什么原因、正式药单怎么写、下次肾功能和电解质什么时候复查。正式药单和报告我现在还没拿到，等明早医生或药师写清了，我再把关键几行读给您帮我看。今晚我实在有点熬不住了，先眯一会儿，但不自己做主。",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00310",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1443min",
+      "text": "好，你现在的处理很稳妥，可以先休息。老人仍睡不踏实、念叨回家，也请顺手告诉值班护士；若突然比现在更躁动、认不清人或地点、嗜睡叫不醒、站立不稳，或出现喘、吐、胸闷心慌、尿量明显减少，就立即按铃。其余药物、饮水和尿量都按病区医嘱，不必由你守着自行判断。明早拿到正式报告和药单后，把检查名称、数值及参考范围，以及每种药的名称、剂量和频次逐字发来，我帮你复核。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00326",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1983min",
+      "text": "医生，早上查房过了，我昨晚在陪护椅上也没怎么睡清楚，但夜里总体还算稳，护士那边一直看着，没出现我能看到的喘、反复吐、叫不醒、明显糊涂或者完全没尿。老人现在比夜里安静点，就是还嫌住院麻烦，偶尔念叨想回家。\n\n肾内科医生查房说得比较快，我听的大概是：肌酐比他原来基础值高，尿里也有异常，不能当普通小问题，要继续住院/留观观察，还要复查肾功能和电解质。医生还提到可能跟他原来的高血压、糖尿病、痛风，还有最近药吃得乱、有没有脱水感染这些有关，但我怕我没听全，不敢当成已经确定原因。\n\n我照护士给我看的摘要和我自己抄的读几行，可能有字看错：  \n一个是“复查肾功能、电解质”，时间好像是今天上午抽血后看结果，后面还要不要再抽要等医生说；  \n尿检那边我只记住有“尿蛋白”“潜血”这些字，具体几个加号我没抄全；  \n药这块现在还是按病区医嘱，护士给药，我们家属不自己从药盒拿。护士跟我说有些药暂时先停或者等医生再定，尤其之前那些止痛药、保健品肯定不碰。降压、降糖、降尿酸这些我没敢自己记名字，说是等药师/医生核完再按医嘱走。\n\n我现在最怕的是我把“暂时先停”理解成以后都不能吃，或者出院后又不知道怎么接药。您帮我看一下，我现在抓的重点是不是就是：继续住院等复查结果和核药；药只按护士医嘱，不自己补、不加倍；如果喘、胸闷心慌、吐、糊涂、叫不醒、尿突然很少就马上按铃？还有我待会儿应该重点再追问医生哪几句，免得查房一走我又漏了。",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00331",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1983min",
+      "text": "请调取此次急诊/留观及肾内科住院记录、今晨查房记录与医嘱、截至目前全部肾功能和电解质趋势（含肌酐、尿素氮、eGFR、钾钠碳酸氢根及既往基线）、尿常规和尿蛋白定量/尿白蛋白肌酐比、血常规与感染指标、血糖及糖化血红蛋白、尿量记录、泌尿系影像，以及药师核对后的入院前实际用药和当前继续/暂停药物及原因。请注明采样时间、参考范围、资料来源和仍未回报项目。",
+      "turn": 14,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00333",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1983min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 14,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00335",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1983min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 14,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00338",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1983min",
+      "text": "你抓的重点完全正确。“暂时停药”通常只是当前肾功能不稳时先暂停，绝不等于以后永久不能吃；是否恢复、何时恢复、恢复多少，要看复查结果和具体药名。现在继续住院观察，所有药只按护士和正式医嘱，不补服、不加倍，也不要自行恢复旧药；出现喘、胸闷心慌、反复呕吐、明显糊涂或叫不醒、尿量骤减/无尿，立即按铃。\n\n待会儿请重点问医生或药师这几句，并请写进医嘱/出院单：\n1. 今天肌酐、尿素氮、钾、钠、碳酸氢根/eGFR分别是多少，和原来基础值相比是升、稳还是降？下一次何时复查？\n2. 目前更像急性肾损伤、原有慢性肾病加重，还是两者都有？还要排查脱水、感染或尿路梗阻吗？\n3. 尿蛋白和潜血具体多少，是否要查尿蛋白定量/尿白蛋白肌酐比、尿沉渣或泌尿系超声？\n4. 请按每一种药写清：继续、减量、暂时停到何时、永久停，及恢复条件；尤其是降压、降糖、降尿酸药。止痛时能用什么替代，也请写清。\n5. 出院必须达到什么条件？出院后几天复查、由谁看结果，出现哪些情况立即返院？\n\n离开前拿到一份完整药单，和家中药盒逐项核对并请药师确认；不要只凭“先停一下”的口头印象。你昨夜很辛苦，今天尽量请家人轮换休息。",
+      "turn": 14,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00352",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2103min",
+      "text": "医生，我刚按您说的又去问了住院医生和药师，拿到一张临时核药的小纸条，不是最后出院药单。我照纸条和他们口头说的给您读一下，怕我理解错。\n\n现在最明确的是：住院期间所有药都走护士正式医嘱，我们家属不能自己从旧药盒里拿药给我爸吃，哪怕是他平时吃惯的降压、降糖、降尿酸药，也要等他们这边核完。止痛药那几类他们特意说了，布洛芬、双氯芬酸、塞来昔布，还有偏方、保健品，现在都不要碰。\n\n复查这块纸上写的是“复查肾功能、电解质”，时间好像是今天下午或者明天早晨再抽一次，具体看病区安排。护士也让继续报尿量，他尿了就叫我们说一声/记一下。化验数值我这会儿还没抄全，纸条上也没写完整肌酐、钾钠那些。\n\n我现在想确认一下：这张纸条只能算住院期间临时边界，对吧？不能当成出院后长期怎么吃药的方案。出院前我还得让他们把每种药写清楚：继续还是停、停到什么时候、什么条件恢复，尤其降压降糖降尿酸这些。老人现在还嫌住院烦，但目前我看着没喘、没吐、人也没糊涂，也不是完全没尿。我就继续守住不自己给药、不碰止痛药偏方、尿量按护士报，有不对马上按铃，是不是就行？",
+      "turn": 14,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00358",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2103min",
+      "text": "对，你理解得准确：这张纸条只是住院期间的临时用药边界，不能当作出院后的长期方案。现在继续做到：只用护士按正式医嘱发的药；旧药不自行补、不加倍、不恢复；布洛芬、双氯芬酸、塞来昔布及偏方、保健品都不碰；尿量按病区要求记录和报告，饮水也按医嘱，不自行猛灌或限水。\n\n出院前一定拿到正式药单，逐项写清药名、剂量、次数，是继续、减量、暂时停还是停用；若暂时停，要注明恢复条件和由谁决定恢复。还要确认复查肾功能、电解质的时间、出院后复查日期及结果由谁复核。\n\n目前没有喘、吐、意识异常且仍有尿是相对稳定的表现，但仍需等复查，不能据此自行离院。若胸闷气喘、明显心慌乏力、反复呕吐、新发或加重糊涂/嗜睡、尿量突然显著减少或无尿，立即按铃；老人坚持离院也请直接叫护士和住院医生处理。拿到复查数值或正式药单后逐字发来，我再帮你核对。",
+      "turn": 15,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00374",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2313min",
+      "text": "医生，下午这轮复查医生已经来看过了。我这边还没有正式报告单，也没有最后出院药单，只能按床边医生和护士站说的给您转述，数值我没抄到，怕说错。\n\n他们大概意思是：下午肾功能、电解质和尿量记录看了，说目前没有那种要马上抢救的明显情况，肾功能好像没有继续很快坏下去，钾钠这些暂时还在能监测的范围。但医生还是说不能今天带回家，至少留到明早再复查一次；明早如果趋势稳定，才可能考虑带正式药单出院。\n\n药这块药师还没完全整理完，还是分什么住院期间暂停、按医嘱继续、出院前再决定几类。我现在记住的是住院期间都按护士正式医嘱给，我们家属不从旧药盒拿；布洛芬、双氯芬酸、塞来昔布，还有偏方保健品都不碰。降压、降糖、降尿酸那些我不敢凭记忆说，等他们明天写正式单子。\n\n我爸现在人很疲惫、睡不好，还小声说想回家，但目前我看着没喘、没反复吐、人也没明显糊涂，不是完全没尿。要是半夜不对我就按铃。\n\n我现在最担心明早如果他们说能出院，但药单或者复查没写细，我们回家又吃乱。您帮我再捋一下，明早出院前我必须盯着他们写清哪几项？我手机上现在想记的是：正式药单每个药怎么吃/停到什么时候、肾功能电解质几天后复查、结果由谁看、什么情况马上返院。还缺什么最关键的吗？",
+      "turn": 15,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00380",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2313min",
+      "text": "你记的四项都对。明早出院前再盯紧这几项，并尽量写进出院记录，不只口头交代：\n1. 明早肌酐、尿素氮、eGFR、钾钠和碳酸氢根的具体数值，与入院及原来基础值相比是好转、稳定还是恶化；目前判断是急性肾损伤、慢性肾病还是两者都有。\n2. 完整药单逐药写清药名、剂量、次数、继续/减量/暂缓/停用；暂缓药注明何时复评、满足什么条件才能恢复、由哪位医生决定。请药师拿正式药单与家中全部旧药盒逐项核对，旧药不要自行接回。\n3. 复查不仅写“几天后”，还要写日期、项目、地点、由谁看结果及联系办法；同时安排肾内科随访，并确认是否还需尿蛋白定量、尿沉渣或泌尿系超声。\n4. 写清居家血压、血糖、尿量和体重如何监测，以及饮水、盐分和饮食要求。不要自行猛喝水，也不要自行限水。\n5. 疼痛或痛风发作时允许用什么药、多少剂量；明确继续避开布洛芬、双氯芬酸、塞来昔布及成分不明的偏方保健品。\n6. 确认出院条件和返院标准；胸闷气喘、明显心慌乏力、反复呕吐、意识改变、尿量显著减少或无尿、明显水肿等应立即就医。\n\n出院时还要拿齐出院小结、正式药单和本次关键化验/影像报告。若药单、复查日期或结果接收人仍没写清，先请住院医生或药师补全再离院。今晚仍按病区医嘱，不自行给旧药；疲惫和睡不好也告诉护士，若突然躁动、认人不清或叫不醒就马上按铃。",
+      "turn": 16,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00397",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2323min",
+      "text": "医生，我明白了。我先不再折腾拍照了，明早如果拿到正式报告、出院小结和药单，我就把关键行一个字一个字打给您，像肌酐、尿素氮、eGFR、钾钠、碳酸氢根，还有每个药名剂量次数这些。看不懂的我就让护士或药师当面圈出来，不靠自己猜。\n\n今晚我就守住几条：旧药盒不碰，不补服、不加倍、不恢复；止痛那些布洛芬、双氯芬酸、塞来昔布，还有偏方保健品都不碰；护士怎么给药、怎么记尿量就按病区的来。老人现在还是睡不好、嫌麻烦想回家，但没有突然糊涂、喘、反复吐或者没尿这种情况。要是半夜他突然认不清、叫不醒、喘、吐、尿明显少，我就直接按铃。\n\n明早我重点就盯正式药单、复查日期和谁看结果，不写清我就先不急着办出院。说实话我怕医生忙，我问漏了，我手机备忘录已经把您这几条存好了。",
+      "turn": 16,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00403",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2323min",
+      "text": "你已经把关键点记得很完整，今晚不用再反复核对，尽量轮换休息。明早若准备出院，除正式药单、复查日期和结果接收人外，再确认本次肾功能的诊断判断及居家血压、血糖、尿量/体重、饮水饮食要求。拿到资料后逐字发关键行即可；在正式方案明确前，继续不要自行接回旧药。若老人坚持马上离院，或出现你列出的任何异常，立即叫护士和住院医生。",
+      "turn": 17,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00419",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2863min",
+      "text": "医生，早上查房过了，昨晚还算平稳，护士也交接了尿量。没有喘、反复吐、叫不醒、明显糊涂，也没有说完全没尿。老人还是想回家，但比昨天安稳些。\n\n肾内科医生看了早上的血，说大概是“没有继续很快恶化，也没有马上抢救的指征”，如果上午到中午血压、尿量、症状都稳，可能带书面方案出院；如果哪项不满意就继续住院观察。我怕听漏，没敢自己理解太多。\n\n我现在照着我手里这张化验单和医生圈的地方先打几行，单位我可能看不全：  \n- 肌酐：好像是 **___**，医生说比昨天没有明显再冲上去；  \n- 尿素氮：**___**；  \n- eGFR：**___**，这个我不太会看；  \n- 钾：**___**，钠：**___**；  \n- 还有一个像“二氧化碳结合力/碳酸氢根”的，写的是 **___**。  \n这些空的地方我等会儿再让护士站帮我确认一下，我怕我把小数点看错。\n\n药单这边还不是我完全能看懂的正式版，药师刚才说还在最后核。我听到最明确的还是：旧药盒不能自己接回去吃，止痛那些布洛芬、双氯芬酸、塞来昔布和偏方保健品继续不要碰。降压、降糖、降尿酸哪些继续哪些停，我不敢凭耳朵记，等正式药单出来我逐条打给您。\n\n我现在想请您帮我看两件事：一是上面这些化验数值等我补全后，哪些如果不理想就不该急着出院；二是如果等会儿他们说能走，药单和复查安排里哪些没写清我必须再拦着问药师/医生，别又回家吃乱。",
+      "turn": 17,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00425",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2863min",
+      "text": "你做得对：空着比猜数值安全。能否出院不能只看肌酐一个数，还要看与昨天的趋势、尿量、血压、症状和整体医嘱。\n\n等护士确认后，请把“数值＋单位＋参考范围”逐项发来。以下情况通常应先请肾内科明确处理，不要急着办出院：钾明显升高（尤其≥6.0 mmol/L，或心慌、胸闷、明显无力）；碳酸氢根/总二氧化碳明显偏低（尤其<15 mmol/L）；钠严重异常；肌酐继续明显上升；尿量显著减少或接近无尿；血压持续过高/过低；新出现气喘、水肿加重、反复呕吐、嗜睡或糊涂。eGFR低说明过滤功能差，但急性肾损伤时它不够准确，不能单凭一个eGFR决定出院。尿素氮也要结合症状和趋势，单个数值一般不是唯一标准。具体是否安全仍由床边肾内科结合心电图、液体状态等判断。\n\n若允许出院，没写清以下内容就请先拦住补全：\n1. 每种药的通用名、剂量、每天几次、从哪天开始；明确继续、减量、暂缓或停用。暂缓药要写恢复条件、复评日期及由谁决定，尤其降压、降糖、降尿酸药。\n2. 请药师用正式药单和全部旧药盒逐一核对；不要把旧药自行接回，也不要补服或加倍。继续避开布洛芬、双氯芬酸、塞来昔布及成分不明的偏方保健品，并写明疼痛/痛风发作可用什么替代。\n3. 复查要写具体日期、项目（至少肾功能和电解质，是否加尿检由肾内科定）、地点、结果由谁复核和联系方式；不能只写“定期复查”。\n4. 写清居家血压、血糖、尿量/体重监测方法，以及饮水、盐分和饮食要求。\n5. 写明返院标准，并拿齐出院小结、正式药单和关键报告。\n\n现在先不要凭不完整药单离院。正式数值和药单出来后逐字发我，我帮你逐项核对。",
+      "turn": 18,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00442",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2953min",
+      "text": "医生，我刚从护士站和药师那边回来，他们在电脑里帮我念了一遍，我是照他们圈出来的纸打的，不敢说自己全懂。\n\n早晨复查他们说大概是：肌酐还是在 **190上下**，跟昨天比没有继续很快往上冲；血钾护士说没到您说那种要抢救的高钾范围，钠也没说严重异常；那个二氧化碳结合力/碳酸氢根，医生说也没低到要马上处理。尿量记录还有尿。住院医生口头说现在没有马上抢救的指征，如果中午后血压、尿量、精神状态还稳，可能下午带书面方案出院。\n\n药师拿我带来的旧药盒和出院前药单对了一轮，纸上圈了“继续、暂缓、停用”几类，但我现在最怕还是回家吃乱。药师反复说旧药盒不要自己接回去吃，不补服、不加倍；布洛芬、双氯芬酸、塞来昔布，还有偏方保健品继续不碰。降压、降糖、降尿酸那些，药师说要按他圈的正式单来，不能凭我们记忆恢复。\n\n复查这块我听到/看到写的是：**出院后3天内复查肾功能、电解质**，结果要给肾内科或者负责医生看。我还想让他们写清具体哪天、在哪查、结果发给谁，不然回家我怕又没人管。\n\n我爸现在躺着累，还是催我办出院，但没有明显喘憋、反复吐、叫不醒，也不是完全没尿。我现在想请您帮我把关：如果下午真让出院，我是不是只要盯死三件事——正式药单逐个药写清、3天内复查和谁看结果写清、返院红旗写清？还有哪些药是绝对不能我回家自己恢复的，麻烦您再帮我说得简单一点，我等会儿好照着问药师。",
+      "turn": 18,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00448",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2953min",
+      "text": "对，核心就是这三件事；再加一项：写清居家怎么监测血压、血糖、尿量/体重，以及饮水要求。\n\n你可以直接这样问药师：\n“请按正式出院药单逐个告诉我：药名、剂量、每天几次、从哪天开始，是继续、暂缓还是停用；暂缓的何时复查、满足什么条件才能恢复、由谁决定。请把家里旧药逐盒标清，没写明继续的我们一律不自行恢复。”\n\n回家绝对不要自行恢复的，简单记为：\n1. 旧药单上没有明确写“继续”的任何药，尤其降压药、降糖药、降尿酸药；\n2. 所有标为“暂缓”或“停用”的药，必须等复查后由医生明确恢复；\n3. 布洛芬、双氯芬酸、塞来昔布等止痛药，以及成分不明的偏方、保健品；\n4. 不补漏服、不加倍，也不要自己调整剂量。\n\n复查单请写成具体日期、地点、项目和结果接收医生/联系方式，不能只写“3天内复查”。返院红旗包括：明显气喘、胸闷心慌或严重乏力、反复呕吐、意识糊涂或叫不醒、尿量明显减少或无尿、水肿迅速加重、血压持续明显异常。出院必须以床边医生确认中午后血压、尿量和精神状态稳定为前提，不要因为老人催促而提前走。拿到正式药单后，把每个药名、剂量、次数和“继续/暂缓/停用”逐字发来，我再帮你核一遍。",
+      "turn": 19,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00464",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3028min",
+      "text": "医生，我又按您那句话去问了药师和护士，床边医生也看了中午前后的血压、尿量和精神状态，说如果书面方案都明确，可以办出院。我现在手里拿的是他们圈过的出院药单和复查单，我照着圈的地方念，字和单位可能有打错的，您帮我看看我理解是不是对。\n\n药这块我先读最关键的几行：\n\n1. 圈“继续”的有几个：  \n- **硝苯地平控释片**，好像是 **30mg，一天1次**；  \n- **阿托伐他汀钙片**，写的是 **20mg，晚上1次**；  \n- 还有一个降糖的，字像 **“利格列汀片”5mg，一天1次**，这个我怕打错，药师说按新单吃，不按旧盒子自己加。\n\n2. 圈“暂缓/复查后再说”的：  \n- 我看见有 **二甲双胍**，药师说先不要吃；  \n- 还有一个像 **缬沙坦/厄贝沙坦**这种降压药，被圈到暂缓了，说等肾功能复查后肾内科决定；  \n- 降尿酸那个好像是 **非布司他**，也是让我先别自己恢复。这个我爸以前一直惦记着吃，我最怕他回家看见旧药盒又拿出来。\n\n3. 圈“停用/不要碰”的护士药师反复说：旧药单没写继续的都不要接回去吃，**布洛芬、双氯芬酸、塞来昔布**这些止痛药，还有偏方保健品都不要碰；漏吃也不补、不加倍。\n\n复查单这边写的是：**出院后3天内，肾内科门诊或急诊复查肾功能、电解质、尿常规/尿蛋白相关**，结果给肾内科门诊医生看。具体日期护士说最好后天或大后天一早来，挂不上门诊就走急诊复查，不要拖到一周后。\n\n我现在还卡两件事：  \n第一，回家饮水到底怎么做？护士说别猛灌水，也别故意不喝，我理解是不是就按平时少量多次，别因为怕肾不好就拼命喝？如果脚肿、喘、尿少就不能硬喝，对吧？  \n第二，记录我怕记漏。是不是每天早晚记血压、血糖，尿量大概用量杯/尿壶估一下，再每天称体重？如果我只能做到早晚两次血压血糖、尿量大概记，这样行不行？\n\n老人现在坐床边催我赶紧办，精神还行就是累。我准备把旧药盒回家先单独装起来，不让他自己拿，只按这张新药单分药。您看我上面读的“继续/暂缓/停用”理解有没有明显不对的地方？",
+      "turn": 19,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00470",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3028min",
+      "text": "你的分类理解总体正确，也符合药师的交代：硝苯地平控释片、阿托伐他汀和利格列汀按正式新药单继续；二甲双胍、那种沙坦类降压药及非布司他先暂缓，复查后由肾内科决定，绝不能自己恢复。因你对药名字样仍有一点不确定，离院前请让药师在正式单上把“利格列汀”和具体是哪一种沙坦药圈清并口头确认；我只能依据你读出的内容核对，最终以书面出院药单为准。旧药单独收起、由你分药非常合适。\n\n饮水理解也对：若出院单没有规定限水量，就正常少量多次，不猛灌、也不故意少喝；避免酒和很咸的汤水。出现尿明显减少、脚肿加重或气喘时不要硬灌水，应尽快联系肾内科或就医。\n\n记录方面，早晚各一次血压、血糖，加上全天尿量大致估算，已经很有价值；有条件每天早晨排尿后、早餐前称体重。血压静坐5分钟后测，血糖注明空腹还是餐后。做不到精确尿量也不要焦虑，至少记录次数、明显增减以及是否整段时间无尿。\n\n按后天或大后天的明确日期复查，不拖到一周。若出现气喘、胸闷心慌、反复呕吐、明显嗜睡或糊涂、尿量骤减或无尿、水肿迅速加重，或血压/血糖明显异常并伴不适，直接就医。床边医生已确认状态稳定且药单、复查安排均书面明确后，可以按流程出院。",
+      "turn": 20,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00485",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3063min",
+      "text": "医生，我刚又去药师窗口和护士站核了一遍，这回药师在正式出院新药单上把关键药名都圈清楚了，也口头跟我确认了。那我就按他们圈的理解执行：\n\n回家只吃新单上圈“继续”的：硝苯地平控释片、阿托伐他汀、利格列汀。家里旧的那个沙坦类降压药、二甲双胍、非布司他，药师说复查前都先不吃，不能我们自己看着恢复。旧药袋他们也帮我贴了明显标记，我现在单独装我包里，回去不让老人自己翻出来吃。\n\n复查我听明白的是后天一早去肾内科门诊/他们指定窗口看，实在挂不上就走急诊复查；大后天算最晚了，不拖。主要查肾功能、电解质，结果还要给肾内科医生看，不是我们自己看个数就算完。\n\n回家这两天我就按新药单分药，水就少量多次正常喝，不猛灌也不故意少喝；早晚量血压血糖，尿量大概记一下，能称体重就称。要是出现喘、胸闷心慌、一直吐、糊涂叫不醒、尿很少或者没尿、脚肿明显厉害，就不等复查，直接去医院。\n\n老人现在还催着走，说以前药吃惯了，我最担心他回家又念叨旧药。我先把旧药收在我这边。这样的话，我现在可以按床边医生和药师这套书面方案去办出院了吧？",
+      "turn": 20,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00491",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+3063min",
+      "text": "可以。既然床边医生已确认血压、尿量和精神状态稳定，正式出院药单及复查安排也已明确，就按医院流程办出院。你对用药、复查和警示症状的理解是正确的：只按新单服药，旧药由你保管，任何暂缓药都等复查后由肾内科决定是否恢复。离院前带齐出院小结、正式药单和复查单。后天按时复查并让肾内科医生看结果；若出现你列出的异常，直接就医，不等预约。",
+      "turn": 21,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00505",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+3118min",
+      "text": "医生，我们手续都办完了，现在刚推到医院门口等车。我把出院小结、正式出院药单、复查单都放一个文件袋里了，旧药袋我单独塞我自己包里，没给我爸拿着。\n\n我最后再跟您确认一下我按这个执行：回家这两天就照药师现场圈的新单吃那三个——硝苯地平控释片、阿托伐他汀、利格列汀；旧的沙坦降压药、二甲双胍、非布司他，还有那些止痛药布洛芬、双氯芬酸、塞来昔布和偏方保健品，先都不让他碰，等后天复查完肾内科医生说了再说。\n\n后天一早我带他去肾内科门诊或者指定窗口复查，挂不上就走急诊，查肾功能、电解质这些，结果给肾内科医生看。回家早晚量血压血糖，尿大概记一下，能称体重就称。要是喘、胸闷心慌、吐得厉害、糊涂叫不醒、尿很少/没尿、脚肿明显厉害，我就直接带他回来，不等后天。\n\n我爸现在还是嫌麻烦，说“以前药吃惯了”，我回去先把旧药锁柜子里。这样我们就先回家观察，等后天复查结果再来问医生怎么调药，对吧？",
+      "turn": 21,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_048__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 4,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7320508075688772,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 21
+}

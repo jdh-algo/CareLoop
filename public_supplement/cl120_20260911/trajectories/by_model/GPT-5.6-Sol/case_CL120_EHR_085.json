@@ -1,0 +1,673 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "088047304085ac830991693cf1e4508fe1dba8a3330cc5850f8892cf4ca0eef4",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_085__anon_3163abddbd211e1c",
+    "packet_sha256": "b7f86b2251e6ef50fd214deb5bc01409e4cc6ae99455c8bf99d2e23ececf19fa"
+  },
+  "case_id": "case_CL120_EHR_085",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "pediatrics",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "long",
+    "friction_burden_level": "high",
+    "friction_burden_score": "2",
+    "friction_intensity": "heavy",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "delayed_or_staged_result_return",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "low",
+    "responsibility_chain_burden_score": "0",
+    "responsibility_chain_requirement_count": "5",
+    "secondary_frictions": "medication_confusion_or_execution_failure | caregiver_conflict_or_fatigue",
+    "starting_phase": "result_return",
+    "target_problem": "asthma_child",
+    "temporal_burden_level": "high",
+    "temporal_burden_score": "2",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "医生早期要求不要自行补用抗生素或止血针，铁剂在浓度/开始日期未核实时暂缓，并推动联系原新生儿病房/药房或线下核对。",
+      "家属完成家庭监测：安静呼吸多次约50多次/分，未持续≥60，无发青、三凹征、鼻翼扇动、呻吟、抽搐、叫不醒，体温正常、有尿；吃奶慢但趋势未恶化。",
+      "家属已完成明早原医院新生儿随访/儿科挂号、到院分诊，并由外部门诊医生查体评估为暂稳，未走急诊抢救通道。",
+      "外部门诊医生和护士站/窗口核对出院小结、门诊单、药瓶/药袋：抗生素和止血针不在家庭继续用药内；葡萄糖酸亚铁糖浆每次2.2ml、每日2次恢复，不补漏服、不加倍；维生素D继续。",
+      "医生第9轮将外部核对结果行动化：回家后下一次开始铁剂2.2ml bid；漏服、呕吐、反复呕吐处理；抗生素/止血针不要在家自行续用；3天后复查血常规含血小板，肝功能3–7天内按单据/窗口要求；结果异常或红旗时联系门诊/急诊。",
+      "家属第9轮teach-back：已抄到手机并发给另一位照护者，复述铁剂用法、不补不加倍、吐了不自行补喂、抗生素/止血针不买不用不打、3天后复查血常规含血小板、肝功能3–7天内复查，并记住吃奶明显减少、呼吸≥60、发青胸口凹、发热或体温低、叫不醒、尿少等急诊触发点。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应自然等待首次家庭铁剂执行是否顺利，或推进到3天后血常规/血小板及3–7天内肝功能结果回流并解释行动化；不应重复照片、挂号、候诊或药房电话摩擦。",
+    "rationale": "本例是新生儿重症住院出院后的 bounded result_return / 用药与复查执行闭环，而不是要求完成全部远期神经发育、感染、贫血或肝功能随访。当前主要开放责任线已被自然收束：住院期间抗生素/止血针与出院用药被区分，铁剂剂量和恢复时间经原医院门诊/窗口核对并由AI医生行动化；宝宝在夜间观察、到院分诊和门诊初评中均无急诊红旗；复查血常规含血小板及肝功能已有原医院责任主体、时间窗和执行路径；家属进行了可接受的teach-back，并把计划交接给其他照护者。未来3天后抽血和结果解释尚未发生，但在本episode中属于有owner、due window、verification/escalation path的bounded residual follow-up，不再是当前用药/复诊决策阻断项。闭环部分有外部门诊和窗口工作人员重要参与，应在绩效归因中保留外部系统贡献；但CareLoop医生已完成解释、风险分层、推动线下核对、复查安排确认和安全网teach-back，因此可判当前安全episode闭合。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：3天后血常规含血小板尚未实际采血/回流；owner为原医院新生儿随访/儿科，due window明确，结果回流后由线下门诊或再次咨询解释，若异常按门诊/急诊升级。",
+      "bounded_residual_followup：肝功能3–7天内复查尚未完成；owner为原医院随访体系/检验窗口，时间窗和是否同日抽血路径已确认。",
+      "global_disease_journey_background：新生儿重度窒息/HIE、感染、贫血等远期随访和神经发育观察仍属长期儿科/新生儿随访旅程，不代表已治愈，但不阻断当前出院用药与近期复查责任闭环。",
+      "bounded_residual_risk：宝宝吃奶慢和呼吸50多次/分仍需家庭观察；当前无红旗且安全网清楚，若趋势恶化需急诊。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.6 Sol",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "新生宝宝出院后陆续看到检查记录，家里不确定要不要继续用药或复查",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "宝宝刚从新生儿病房回来没几天，家里人一直提着心。手机里陆续能看到一些住院时的检查和用药记录，写着什么窒息、脑病、感染、血小板这些，我越看越慌。出院只带了维生素D，但之前好像用了很多抗生素和止血的针，不知道现在这样是不是就算稳定了，还需要马上去复查吗？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "请调取宝宝本次新生儿住院的完整时间线、入院及出院记录、出院医嘱和复诊计划，并查看围产/分娩与复苏记录、窒息及缺氧缺血性脑病评估、脑电和颅脑影像、感染相关培养和炎症指标、血小板及凝血功能趋势、出院前最近血常规/生化/胆红素、住院全部用药及停药原因，以及喂养、呼吸、神经状态和出生胎龄体重等资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "请调取并逐条查看 R01–R05 的完整记录及可见原文，重点包括出生和孕产史、胎龄/出生体重、窒息复苏与Apgar评分、缺氧缺血性脑病分级及脑电/头颅影像、感染依据和培养结果、血小板最低值及出院前复查、出血情况、住院用药起止时间、出院诊断与出院时生命体征/喂养情况、出院医嘱和复查计划；同时查看时间线、用药记录及家庭就医可及性。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "请逐条调取并展示记录 R01—R05 的完整可见内容，重点包括新生儿出生/复苏情况、胎龄和出生体重、窒息及缺氧缺血性脑病分级、脑电图和头颅影像、感染培养及炎症指标、血小板最低值与出院前复查值、出血情况、抗生素和止血/输注治疗的起止时间与停药依据、出院日期和出院小结、出院时喂养呼吸神经状态，以及明确的复查随访计划；同时查询可见的用药记录、检查报告、门诊预约及照护可及性。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "请按记录ID逐条调取 R01—R05 的完整内容，并一并查看此次新生儿住院的入院记录、病程记录、出院小结/出院医嘱、出生与复苏情况、感染及血小板相关检验趋势、脑电图和头颅影像/听力筛查、全部用药时间线及停药原因；同时查看宝宝出生日期、胎龄、出院日期、出院时喂养和生命体征、已安排的复查随访及家庭就医可及性。若无结构化结果，请返回可见原文。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "请打开并逐条查看记录 R01—R05 的完整内容，重点调取新生儿住院及出院记录、出生孕周/出生日期与出生体重、窒息复苏和缺氧缺血性脑病分级及治疗、感染证据与培养结果、血小板最低值及出院前复查值、出院前神经/喂养/呼吸情况、头颅影像和听力/眼底/新生儿筛查、全部住院用药及停药日期、出院诊断和明确复查随访计划。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "能理解您紧张。仅凭手机里“窒息、脑病、感染、血小板”等名称，不能判断现在是否完全稳定；目前也没有看到出院小结、具体化验数值和复查计划。能出院且只带维生素D，通常说明当时已经达到出院标准；住院期间用过抗生素、止血或输注治疗，并不代表回家后还要继续，也不要自行补用或停换药。\n\n**建议这样处理：**\n\n1. **如果宝宝现在精神反应、吃奶、呼吸和体温都正常**，一般不必仅因这些记录马上跑急诊，但应在**出院后几天内联系原新生儿科或儿科复诊**，最迟按出院小结规定时间复查。既往涉及脑病及血小板异常，尤其要核实是否需要复查血常规/血小板、神经发育评估、听力及头颅影像等。\n2. 请尽快准备并上传或带去复诊：**出院小结、最后一次血常规（特别是血小板）、感染指标和培养结果、头颅超声/MRI、听力筛查、全部出院医嘱**，以及宝宝出生孕周、出生体重、出院日期。没有这些信息，无法安全判断是否已经完全恢复。\n3. **立即就医/急诊**：体温≥38℃或明显偏低、吃奶量明显下降或连续拒奶、反复呕吐、嗜睡叫不醒/反应差、抽搐或身体反复抖动、呼吸急促费力/呻吟/口唇发青、皮肤出现密集出血点或不易止住的出血、黄疸突然加深、尿量明显减少。新生儿病情变化可能很快，不要在家等待。\n4. 维生素D按出院医嘱服用；不要自行加抗生素、止血药或其他保健品。每天简单记录吃奶量和次数、尿布数量、体温、精神反应及异常动作，复诊时带上。\n\n如果能把出院小结和最后几份检查报告的清晰照片发来，可以进一步帮您逐项判断复查的紧急程度。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "家属可能即将反馈：出院药袋里除维生素D外还有葡萄糖酸亚铁糖浆，抗生素和止血针没有带回家；需要医生核对出院带药、剂量频次和复诊计划。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "尚未形成正式复诊安排；需继续推动家属联系原新生儿科/儿科，并明确复诊时间、地点和需带资料。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+12min",
+      "text": "存在出院用药理解错误风险：需明确告诉家属只按出院医嘱用药，核对铁剂是否为带药、剂量频次；不要自行补用抗生素或止血药。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00053",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+12min",
+      "text": "医生，我刚又翻了一遍出院袋，发现我刚才说错了，不是只有维生素D，药袋里还有一瓶写着“葡萄糖酸亚铁糖浆”的药。瓶子/纸上我看着好像是一次2.2毫升、一天两次？但我怕看错，还没敢乱喂，或者之前护士有没有说过我也有点记混了。\n\n抗生素和那个止血针家里确实没有，应该只是手机住院医嘱里看到住院时用过的，不是出院带回来的，这个是不是就不用我们再去补开、也不能自己买来用，对吧？\n\n宝宝现在看着还算平稳，没发烧、没抽、嘴唇没发青，也没看到皮肤出血点；就是吃奶能吃，但吃得慢一点，感觉比我想的费劲。复诊还没约上，我现在不知道该先挂原来的新生儿科还是普通儿科。像这种情况，铁剂到底今天要不要按这个量开始吃？还是必须先问到原病区/复诊医生再吃？今天需要直接去急诊吗？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "请调取宝宝本次新生儿科住院的完整时间线、入院及出院小结、出院医嘱和带药处方（重点核对葡萄糖酸亚铁糖浆的规格、单次剂量、频次、开始及疗程）、出生孕周/体重与出院体重、喂养情况、最后一次血常规和血小板/血红蛋白、感染相关结果、窒息及脑病评估和影像/听力筛查，以及明确的复诊与复查计划。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00060",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+12min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+12min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00065",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+12min",
+      "text": "您理解得对：住院时用过、但未列入出院带药的抗生素和止血针，不需要补开，也绝不能自行购买使用。\n\n铁剂这次先不要凭“好像是2.2毫升、每天2次”喂。不同浓度的葡萄糖酸亚铁糖浆剂量不能只按毫升判断，而我目前查不到可核实的出院处方。今天先联系原新生儿病房护士站或出院药房，请对方按宝宝姓名/住院号逐项确认：药品浓度、每次毫升数、每日次数、开始日期和疗程；也可以把瓶身及处方关键文字逐字读给我。确认后再开始，短暂等待核实通常比误服更安全。\n\n复诊优先挂原医院的新生儿科（或新生儿随访门诊）；挂不上时挂儿科并说明“新生儿病房出院后复诊、曾有窒息/脑病、感染及血小板异常”。\n\n目前没有发热、抽搐、发青或出血点，单凭描述不一定需要今天直接急诊；但“吃奶费劲”要重点观察。若出现每顿明显吃不完或越来越慢、吸几口就喘/出汗/发青、呼吸费力或呻吟、频繁呛奶、连续拒奶、很难叫醒、体温≥38℃或明显偏低、尿量明显减少，应今天立即去儿童急诊。请告诉我宝宝出生和现在多少天、吃奶一次大约多久/多少毫升、24小时湿尿布几片，以及安静时一分钟呼吸次数。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00082",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+40min",
+      "text": "医生，我按您说的刚打到原来新生儿病房/药房那边了，转了几次才问到。对方让我报了宝宝姓名[REDACTED_NAME]，查了说这个葡萄糖酸亚铁糖浆确实是出院带药，记录上是每次2.2ml、一天2次口服；维生素D是每天1粒。抗生素和止血那些针他说是住院期间用的，家里不要自己买来打，这个我现在放心点了。\n\n就是铁剂的浓度、要吃多久、从哪天算，我电话里好像没完全问明白，只听清了2.2ml一天两次。这样我今天可以先按这个喂吗？是跟奶一起还是隔开？我们出院回来这几天没喂铁剂，漏的要不要补回来？\n\n宝宝现在还是没有发烧、抽、嘴唇发青，也没看到出血点。吃奶大概一次能吃四五十毫升，有时要二三十分钟，吸一会儿就停下来歇，看着有点费劲但没有明显发青。尿布我没记整24小时，今天到现在湿了大概三四片，昨天应该有六七片。呼吸我刚趁他安静数了一次，大概一分钟50多下，我怕数得不准。宝宝出生到现在好像十来天了，具体第几天我还得翻出生证明。\n\n复诊号还没挂上，我一会儿继续看App的新生儿随访门诊。按现在这个情况，今天先在家观察加预约复诊可以吗，还是吃奶慢这个就要直接去急诊？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00087",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+40min",
+      "text": "请调取该新生儿本次住院的出院小结、出院医嘱/处方原文、药房用药记录（重点核对葡萄糖酸亚铁糖浆规格浓度、每次2.2 ml每日2次、开始日期及疗程）、出生孕周/体重和出院日期、最后血常规/血小板及感染指标、头颅影像/脑病评估、喂养与呼吸情况、复诊计划及家庭就医可及性；请按时间线返回。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00089",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+40min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00091",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+40min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00094",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+40min",
+      "text": "目前这些表现不一定要立刻急诊：安静呼吸50多次/分在新生儿可见范围内，昨天湿尿布6–7片也尚可；但吃奶时常停下来歇，需要今天密切观察，并尽快约原医院新生儿随访门诊，最好1–2天内评估吃奶、体重并核对出院复查计划。\n\n铁剂虽已确认每次2.2 ml、每天2次，但浓度、开始日期和疗程仍未核实，今天先不要仅凭毫升数服用，也不要补回漏掉的剂量或加倍。请再次让原病区/药房按处方确认这三项；确认后一般用口服注射器量取，可在两顿奶之间或少量奶后喂，避免混进整瓶奶（吃不完会导致剂量不足）。如刺激胃，可改为奶后；可能出现黑便、轻微便秘或胃肠不适。维生素D按每日1粒继续。\n\n现在重新在宝宝完全安静、不哭不吃奶时数满1分钟呼吸，并从现在记录每顿奶量、用时、呛咳/出汗/发青和24小时湿尿布。若持续≥60次/分，出现胸口或肋间凹陷、鼻翼扇动、呻吟、发青，吃奶越来越费力或一顿超过30分钟仍明显吃不够，频繁呛奶、叫不醒、体温≥38℃或＜36℃、24小时湿尿布少于约6片，应立即去儿童急诊。若只是偶尔20–30分钟、能吃40–50 ml、无呼吸费力且尿量稳定，可先在家观察并预约复诊。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00108",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+105min",
+      "text": "医生，我刚按您说的，等他不哭也没吃奶的时候，认真数了满1分钟，呼吸大概52到56次之间，我怕自己还是有点数不准，但应该没有到60。刚喂完这一顿，大概吃了45ml，中间停了几次，前后差不多快30分钟。我们看着没有嘴唇发青、鼻翼一扇一扇，也没看到胸口肋骨那里凹进去、呻吟，体温现在也还正常，尿布还有尿。\n\n现在家里人一直催我问要不要半夜直接去急诊。我想确认一下：如果晚上下一顿还是差不多要28、30分钟，但能吃到四五十毫升、没有发青凹陷发热这些，是不是可以先观察到明天上午门诊？如果超过30分钟一点点但精神还行，是马上去，还是看有没有吃不够、越来越喘这些？\n\n复诊这边原医院新生儿随访/儿科明天上午好像能约到一个号，还在确认缴费锁号，我准备把出院小结、药袋、就诊卡医保都带上。铁剂我还是没敢喂，只有“2.2ml一天2次”这句，浓度和吃多久没弄明白。今晚就继续先不吃，明天拿药瓶和纸去门诊或者药房当面核对，可以吗？维生素D我就按每天1粒继续。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00114",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+105min",
+      "text": "按您现在描述，可以先严密观察到明天上午门诊，不必仅因每顿接近30分钟半夜直接去急诊。超过30分钟一点并不是单独的急诊界线，关键看趋势：是否越来越喘、越来越吃不动、奶量明显减少或精神反应变差。今晚少量多次、按宝宝节奏喂，不强灌；记录每顿奶量、用时、呼吸和尿布。\n\n若安静呼吸持续≥60次/分，或出现发青、胸口/肋间凹陷、鼻翼扇动、呻吟、频繁呛咳、明显出汗，一顿拖很久仍吃不到平时的大半、连续两顿明显下降/拒奶、难叫醒、体温≥38℃或＜36℃、尿明显减少，就不要等明天，立即去儿童急诊。\n\n铁剂今晚继续暂缓，不补漏服、不加倍；明天带药瓶和处方当面核对浓度、开始日期及疗程后再服，更安全。维生素D按已确认的每天1粒继续。请尽快完成明早新生儿随访或儿科号的缴费锁号，并带齐出院小结、药瓶药袋和检查资料。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00129",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+405min",
+      "text": "医生，刚又喂完这一顿，大概45到50ml，用了二十多分钟快半小时，中间歇了几次，但目前没看到嘴唇发青、鼻翼扇、胸口肋骨凹进去或者呻吟，也没有老呛。安静的时候我数着还是50多次，应该没到60，体温正常，尿布也还有尿。\n\n明天上午原医院新生儿随访/儿科的号已经缴费锁住了，我把出院小结、药瓶药袋、就诊卡医保那些都装一起了，明早带过去让医生和药房当面核对。铁剂今晚继续没喂，也没补前面漏的，维生素D还是每天1粒，抗生素和针我们也没自己买。\n\n我现在脑子有点乱，家里老人还在说怕夜里出事。我理解的是：今晚如果呼吸一直不到60、没有发青凹陷鼻翼扇、没有发烧或体温低、能吃到差不多量、不是叫不醒、尿也没明显少，就按您说的守到明早门诊；如果出现这些情况，或者下一顿明显吃不进去/越来越喘，就直接去儿童急诊。医生您看我这样理解对吗？今晚还需要特别盯哪一条最容易漏掉的？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+405min",
+      "text": "您理解得对，按目前状态可以观察到明早门诊。今晚最容易漏掉的不是某一次呼吸数字，而是“趋势变差”：吃奶比前一顿明显减少、吸几口就停且越来越喘、精神反应变弱或越来越难叫醒。\n\n不必整夜不停盯着；每次喂奶前后看呼吸费不费力、肤色和反应，记录奶量、用时和尿布即可。让宝宝仰卧睡在独立、平整、较硬的睡面，不用枕头，不趴睡，不与大人同床，不盖住口鼻；喂后拍嗝，清醒看护一会儿再仰卧放下。\n\n若安静时持续呼吸≥60次/分，或发青、凹陷、鼻翼扇、呻吟、反复呛奶，一顿明显吃不到平时大半或连续两顿下降，叫不醒，体温≥38℃或＜36℃，尿明显减少，直接去儿童急诊；出现呼吸暂停或全身发青立即呼叫120。其余按现计划明早就诊，铁剂今晚仍不补服、不加倍。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00150",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+645min",
+      "text": "医生，我按您说的没有一直折腾他，刚后半夜这顿吃了40多毫升，还是吸一会儿停一会儿，差不多半小时吧，但没觉得比傍晚更差。喂完拍嗝抱着看了一会儿，现在已经仰着放回他自己的小床了。\n\n我趁安静又数了几次，基本还是50多下，我怕数得不准，但不像一直到60以上。现在没看到嘴唇发青、胸口肋骨凹进去、鼻翼扇、呻吟，也没抽没叫不醒，体温正常，尿布也还有尿。\n\n铁剂今晚还是没喂，也没补漏服，维生素D按一天1粒。资料和药瓶都在包里了，天亮就按号去原医院门诊。就是我太困了，怕自己漏掉“连续两顿明显下降”和体温低这个界线——如果下一顿也还能吃个40多、没有越来越喘，就继续等到早上对吧？如果明显吃不进去、叫不醒、体温低于36或者到38以上，我就不等直接急诊。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00157",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+645min",
+      "text": "对。若下一顿仍能吃40多毫升、呼吸和精神没有变差，可以继续等天亮按号就诊。体温＜36℃或≥38℃、明显吃不进去/连续两顿显著下降、越来越喘、发青、胸口凹陷、呻吟、反复呛奶或叫不醒，直接去儿童急诊；呼吸暂停或全身发青立即打120。\n\n您太困时不要抱着宝宝在床上或沙发上睡着，也不要独自强撑；请换一位清醒的大人轮班。宝宝继续仰卧独睡于平整硬床面，周围不放枕头、厚被和软物。铁剂仍不补服，早上带药瓶核对。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00171",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+825min",
+      "text": "医生，我们已经到原医院新生儿随访/儿科门诊了，护士刚分诊量了体温、看了下宝宝，暂时没让我们去急诊抢救那边，就让等叫号。\n\n清晨那顿奶还是40多毫升，吃了快半小时，吸一会儿停一会儿，但我感觉没比夜里更差。安静时我自己数呼吸还是50多，体温护士说正常，尿布也有尿。现在没看到发青、胸口凹、鼻翼扇、呻吟，也没有抽或者叫不醒。\n\n出院资料袋、药袋、那个葡萄糖酸亚铁糖浆瓶子我都带来了，铁剂今天还没敢恢复吃。等会儿见门诊医生前，我需要先再提醒护士哪几件重点吗？铁剂是直接让门诊医生看药瓶和出院小结，还是还要去药房窗口再核对浓度、从哪天开始和吃多久？我怕等下医生叫号时我脑子乱，说漏了。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00178",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+825min",
+      "text": "现在状态暂时平稳，继续等叫号即可。若等待中出现安静呼吸持续≥60次/分、发青、胸口凹陷、鼻翼扇、呻吟、明显吃不动或难叫醒，马上再告诉护士。\n\n见医生时按这几句说，直接照着手机念也可以：\n1. “宝宝刚从新生儿病房出院，住院涉及窒息/脑病、感染和血小板问题，请核对出院诊断及各项复查计划。”\n2. “近几顿每顿约40多毫升、接近30分钟，吸一会儿停一会儿；安静呼吸50多次/分，目前无发青、凹陷、呻吟、发热，尿量尚可。”请医生现场观察一次吃奶和呼吸，并测体重、评估体重变化。\n3. “葡萄糖酸亚铁糖浆目前只知道每次2.2毫升、每日2次，因浓度、开始日期和疗程不清，今天尚未服。”\n\n先让门诊医生同时看药瓶标签、药袋和出院小结，并请其把“具体浓度/规格、每次剂量、每日次数、从哪天开始、服多久、何时复查血常规/血小板或贫血指标”明确写下来。若药瓶标签、处方和出院小结不一致或仍说不清，再去药房窗口按处方核对；没核清前不要恢复、补服或加倍。抗生素和止血针也不要自行购买或续用。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00195",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+870min",
+      "text": "医生，我们已经看完门诊出来了。门诊医生给宝宝称了体重，也看了出院小结、药袋和那个葡萄糖酸亚铁糖浆瓶子，还简单查了呼吸、胸口这些。\n\n他说现在现场看着还算平稳，没有发青、明显胸口凹进去、呻吟、发热、叫不醒这些，所以暂时不用马上走急诊抢救通道。这个我听了稍微放心一点。\n\n药这块他也说了：抗生素和止血针是住院时候用的，家里不要自己继续买、也不要打。铁剂他说是出院带药，让恢复吃，按药瓶/处方核对后的量，好像还是每次2.2ml、一天2次；之前漏掉的不用补，也不能加倍。我怕我记错，从今天回家这一顿开始按这个吃可以吗？如果哪次吐了或者漏了一次，是不是也是不补、不加倍？\n\n还有复查我有点乱，医生说得快，纸上好像写着几天内复查血常规，可能还写了肝功能还是新生儿随访，我没完全看明白，也不知道要不要空腹、挂新生儿科还是儿科。我们等下要不要再去护士站/窗口问清楚具体哪天哪科？宝宝吃奶还是慢，回家主要是不是继续看吃奶量、呼吸、精神和尿？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00202",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+870min",
+      "text": "先别离开医院，去护士站或门诊窗口把纸上的安排逐项确认并写清：①血常规具体哪天复查，是否包含血小板；②是否还查肝功能及其他项目；③是否需要空腹（单查血常规通常不需要，但若合并其他检查以医院要求为准）；④挂新生儿随访还是儿科、地点和预约方式。最好让工作人员直接圈出日期和科室。\n\n铁剂既然门诊医生已对照药瓶、药袋和出院小结确认，可从今天回家后按明确处方恢复；但您还用了“好像”，所以服第一剂前再看处方是否确实写着每次2.2 ml、每日2次，若纸面仍不明确就在窗口再核对，不凭记忆喂。漏服一次不要补、下次不加倍。若刚喂后吐出，不要自行判断吐出了多少并重喂，通常等下一次按原计划服；若反复呕吐或每次服药都吐，联系门诊。\n\n回家继续记录每顿奶量和用时、呼吸是否费力、精神反应、体温和尿布。若吃奶持续变少或连续两顿明显下降、安静呼吸持续≥60次/分、发青、胸口凹陷、鼻翼扇、呻吟、反复呛奶、难叫醒、体温≥38℃或＜36℃、尿明显减少，直接儿童急诊；呼吸暂停或全身发青立即拨打120。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00217",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+895min",
+      "text": "医生，我没马上走，又去护士站/窗口让工作人员帮我把门诊单、出院小结和药袋对了一遍。她在纸上给我圈了，我照着理解是这样：\n\n3天后还回原医院新生儿随访/儿科这边复查血常规，里面包括血小板。肝功能是按随访单写的3到7天内复查，如果想和血常规同一天抽，就到时候听检验窗口说怎么抽。她说单做血常规一般不用空腹，如果合并肝功能要不要空腹就按抽血窗口要求。复诊入口和地点也给我写在纸上了。\n\n铁剂这边也又拿药瓶和药袋核了一下，说葡萄糖酸亚铁糖浆就是每次2.2ml、一天2次，从我们回家后下一次开始喂，前面漏掉的不补，也不加倍。这个不是您看到了原单，是这边护士/窗口帮我看的，我只是照着她圈的念。\n\n宝宝现在在这边还没有发青、明显喘憋、发热、叫不醒这些，就是吃奶还是慢，我心里还是悬着。医生您帮我最后确认一下：我回家就按这个执行可以了吧？急诊我现在记住的是——吃得明显少或者连续两顿下降、安静呼吸一直到60以上、发青胸口凹、发烧或体温低、叫不醒、尿明显少，就直接儿童急诊；如果不呼吸或者全身发青就打120。这样记够不够？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00224",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+895min",
+      "text": "可以，按工作人员结合门诊单、出院小结、药瓶和药袋核对后的安排执行：回家后下一次开始服葡萄糖酸亚铁糖浆2.2 ml、每日2次；漏服不补、不加倍。若喂后吐了，不要自行重喂，下一次照常；反复呕吐或每次服药都吐就联系门诊。抗生素、止血针不要在家自行续用。\n\n3天后回原医院新生儿随访/儿科复查血常规（含血小板）；肝功能按单据在3—7天内复查，可询问能否同日抽血，空腹要求以检验窗口为准。\n\n您记的急诊信号基本够了，再补上鼻翼扇动、呻吟、反复呛奶或明显呼吸费力。安静状态持续呼吸≥60次/分，或吃奶明显减少/连续两顿下降、发青或胸口凹陷、体温≥38℃或＜36℃、难叫醒、尿明显减少，直接儿童急诊；呼吸暂停或全身发青立即拨打120。若只是吃奶慢但奶量、呼吸、精神和尿量没有继续变差，可回家记录观察并按期复查。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00238",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+920min",
+      "text": "好，医生，我明白了。我们现在准备坐车回家了，宝宝睡着了，我已经把这几条抄到手机备忘录，也发给家里另一个照看的人了，免得他们乱给药。\n\n我就按护士窗口帮我圈的和您刚才整理的来：回家后下一次开始喂葡萄糖酸亚铁糖浆2.2ml，一天2次；漏了不补、不加倍，吐了也不自己再补喂，除非老是吐再联系门诊。抗生素和止血针家里不买、不用、不打。\n\n复查就是3天后回原医院那边抽血常规看血小板，肝功能按单子3到7天内做，能不能一起抽、要不要空腹，到时候听检验窗口的。\n\n急诊我也跟家里人说了：如果吃得明显少、两顿都往下掉，或者安静呼吸一直60以上，发青、胸口凹、鼻翼扇、呻吟、反复呛奶、发烧或体温低、叫不醒、尿少，就去儿童急诊；要是不呼吸或者全身发青就直接打120。\n\n现在我就不再折腾了，回去先按这个执行和观察。谢谢医生，我脑子有点乱，但这次应该记住重点了。",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_085__GPT-5.6-Sol",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 5,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 5
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 4,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 5
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": false,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 0.0,
+    "judge_score_range": 0,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 9
+}

@@ -1,0 +1,820 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "a57c608a327d78a75136029107b06214a2cd2d929eb3e3c5dd7a7d23d90f64e8",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_014__anon_8ac8fd27f605e8a6",
+    "packet_sha256": "50d3ab57da9d0e6365230a22d93eac63ef665d7eb37f598c4c7513f0d68868b2"
+  },
+  "case_id": "case_CL120_EHR_014",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "cardiovascular",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "8",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "document_or_image_quality_problem",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "incomplete_patient_information | medication_confusion_or_execution_failure",
+    "starting_phase": "discharge_transition",
+    "target_problem": "hypertension_urgency",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属报告已按医生建议带患者、纸质出院材料和药盒到换药室/药房线下核对；护士查看切口无明显红肿、流脓、新鲜出血并更换敷料。",
+      "线下核对确认降压药为苯磺酸氨氯地平片5mg，每日一次、一片；医生随后行动化为继续每日一次、不自行加减量。",
+      "连续居家监测显示血压168/102→162/98→150/92→146/90→144/88→142/86→138/84，心率和体温稳定，反复无胸闷、剧烈头痛、神经缺损、头晕欲倒、发热等红旗。",
+      "医生明确给出伤口护理、血压监测频率、夜间/急诊红旗、2-3天后换药、术后7-10天外科复诊/拆线等具体计划。",
+      "家属最后复述：降压药一天一片、血压早晚各量一次、伤口别沾水、2-3天再换药、7-10天外科复诊/拆线，并说明已写入手机备忘录。"
+    ],
+    "if_continued_next_focus": "若继续模拟，应进入下一次换药或7-10天拆线节点；仅在出现血压再次明显升高、胸痛/神经症状、发热、伤口红肿流脓/出血增多、用药执行偏差或复诊失败时重新打开责任链。",
+    "rationale": "本案是术后出院过渡期的有限照护任务，不要求完成整个外科伤口愈合过程或长期高血压管理。当前主要责任线程已闭合：模糊出院纸/药盒问题已通过带实物到换药室、护士/药房线下核对解决；降压药已确认苯磺酸氨氯地平5mg每日一次且家属已执行并避免自行加药；血压从168/102逐步下降到138/84且无胸痛、神经缺损、剧烈头痛等高危症状；伤口已由线下护士换药并确认无明显红肿、流脓或活动性出血；后续换药、拆线/外科复诊、伤口和血压红旗均有明确时间窗和责任人。最后家属已把计划写入手机备忘录并完成可接受的teach-back，患者虽有轻微不耐烦但未拒绝最低安全计划。残余的2-3天后换药、7-10天复诊/拆线和长期血压管理属于有owner、due window和升级路径的bounded residual follow-up，不再阻断本次出院过渡episode闭环。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：2-3天后继续换药，责任人为家属/患者和外科换药处；若发热、红肿扩大、渗血/渗液增多需提前就诊。",
+      "bounded_residual_followup：术后7-10天外科复诊评估拆线，责任人为外科门诊/换药团队和家属执行。",
+      "bounded_residual_followup：长期高血压仍需后续基层/心内或原开药医生管理；当前episode内已确认近期用药和监测边界，不代表高血压治愈。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "背上脂肪瘤术后回家，出院纸拍糊了还怕血压没盯住",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我爸刚做完背上一个皮下包块的小手术，说是脂肪瘤，今天回家了。护士交代要看伤口、量生命体征，但出院那几张纸我拍得反光又糊，里面有些术前检查和注意事项看不清。他平时血压不太稳，我怕漏了什么要马上处理的事，能帮我捋一下吗？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内可授权访问的本次出院记录、手术记录（脂肪瘤切除术）、术前检查结果（包括血压、心电图、血常规、凝血功能、生化等）、出院医嘱和用药清单，以及既往病历和血压相关就诊记录。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在CareLoop联合医疗网络内可授权访问的资料：本次背部皮下包块切除/脂肪瘤手术的住院/门诊病历、出院记录、手术记录、术前检查结果（血常规、凝血、生化、心电图等）、出院带药和医嘱、既往血压相关记录和用药清单。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在CareLoop联合医疗网络中已授权访问的：本次背部皮下包块切除手术的住院/门诊病历、出院记录、手术记录、术前检查结果（尤其血常规、凝血、心电图、血压记录）、出院医嘱和用药清单；以及既往血压相关记录和用药史。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的：本次背部皮下包块切除手术的住院/门诊病历、出院小结、手术记录、术前检查（血常规、凝血、心电图等）、出院医嘱和用药清单；既往病史特别是血压相关记录和用药；家庭照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络中已授权的资料：本次背背部皮下包块切除（脂肪瘤）的住院/门诊病历、手术记录、出院小结、出院医嘱和注意事项；术前检查结果（血常规、凝血、生化、心电图等）；既往病史和用药记录，特别关注高血压相关记录；以及家庭照护可及性信息。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我理解您作为照护者的担心。我刚尝试调取您父亲本次手术相关的病历资料，但目前网络中能看到的记录内容有限，还无法看到完整的手术记录、出院小结和术前检查结果的具体内容。\n\n鉴于您提到**血压不稳**这一点，结合刚做完手术的情况，我先给您一个今晚到明天的安全观察清单：\n\n---\n\n**需要立即关注的警示信号（出现任何一条建议急诊就诊）：**\n- 伤口渗血不止、明显红肿、流脓或裂开\n- 发热超过38.5°C，或持续低烧超过38°C\n- 剧烈疼痛难忍，止痛药无效\n- 头晕、胸闷、心悸、说话含糊或一侧肢体无力\n- 血压明显异常（收缩压>180或<90，或与平时相差超过40mmHg）\n\n---\n\n**日常观察建议：**\n1. **伤口护理**：保持干燥清洁，避免沾水，按护士交代的频率换药\n2. **生命体征**：每天早晚各量一次血压和体温，记录下来\n3. **活动**：这几天避免剧烈活动、弯腰用力，以免牵拉背部伤口\n\n---\n\n**建议您尽快做的事情：**\n- 如果方便，可以**重新拍摄**那些模糊的出院文书，在自然光下平铺拍摄，避免反光，然后发给我，我帮您逐条解读\n- 或者联系出院医院的病案室/主刀医生，获取一份清晰的出院小结\n\n您现在能测一下父亲的血压、体温和心率告诉我吗？这样我可以帮您判断目前状态是否稳定。如果手上有出院用药清单，也可以一并告诉我。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00045",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "家属提供的出院文书仍不可作为可靠核对依据，建议重新拍摄或逐项读回，并核对用药、换药和复诊安排。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "如家属无法准确读出药名剂量、服药时间、换药和复诊安排，建议当天联系原手术团队或出院病区确认。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "工作区未见具体术前检查结果，仅见相关医嘱/申请摘要；需避免将申请单误解为出院后待做检查。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10min",
+      "text": "医生，我刚量了一次，血压大概是 **168/102**，心率 **92**，体温 **36.8**。他刚才也就坐了几分钟，我不知道这个数准不准，会不会是疼和紧张影响的。\n\n我问了他，现在没有胸闷、说话不清、一边手脚没力，也没有头晕到要倒。背上伤口就是扯着疼，他说还能忍，我看了一下没有大量出血。\n\n这个血压要不要马上去急诊？还是先让他安静坐一会儿再量？他平时好像有吃降压药，但我现在真拿不准药名和剂量，今天早上吃没吃我也不敢确定。术后药袋我能照着读几行给您，您要我先念药名、规格，还是用法用量？出院纸照片我这边看还是糊的。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+10min",
+      "text": "我调取这位患者在 CareLoop 联合医疗网络内可授权访问的既往病历、用药记录、本次手术的出入院记录、术前检查结果，以及家庭照护可及性信息。我需要了解：1）既往高血压病史及长期用药方案；2）本次脂肪瘤手术的术前检查结果（尤其血压、肾功能、凝血）；3）出院医嘱中的用药清单、换药安排和复诊计划。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10min",
+      "text": "目前情况暂时不用急诊，但需要密切观察。您做得很好，排除了危险信号。\n\n**现在请这样做：**\n\n1. **先让他安静休息10-15分钟**，保持坐姿或半躺，避免说话和活动，然后**再量一次血压**告诉我结果\n\n2. **药袋信息请按这个顺序念给我**：\n   - 先念**药名**（药盒或药袋上最大的字）\n   - 再念**规格**（比如每片多少mg）\n   - 最后念**用法用量**（每天几次、每次几片）\n   - 如果药袋上有\"早上\"\"饭后\"之类的标注也一起念\n\n3. **问一下您父亲**：今天早上那个降压药吃了吗？大概几点吃的？\n\n---\n\n**关于目前血压的判断：**\n168/102 确实偏高，但没有超过180/110的紧急警戒线，而且他没有头晕、胸闷、说话不清这些危险症状。疼痛和紧张确实会让血压升高，休息后复量会更准。\n\n我这边正在查看您父亲在系统里的既往用药记录，看看能否找到他平时的降压药信息，这样能帮我们判断今天的用药情况。您先按上面说的做，复量结果和药袋信息一起告诉我。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00078",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+25min",
+      "text": "医生，我们让他半躺着安静了差不多15分钟，刚又量了一次，血压是 **162/98**，心率 **88**，体温还是 **36.8**。比刚才低一点，但我看着还是高，心里还是有点慌。\n\n我又问了一遍，他现在说没有胸闷、没有明显头痛，说话也清楚，手脚也没有一边没劲，也没有头晕要倒那种。背上伤口还是说“拽着疼”，他说能忍，我看没有大量渗血，也没发烧。他还有点烦，说“没事，别老折腾我了”。\n\n药袋我照着念，可能有些字我读不准：一个像是止痛的，上面写着“疼痛时服用”之类的，不是天天固定吃的；还有一些纱布、敷贴、碘伏棉签这种换药用的。具体药名小字我怕念错，我等下可以把最大那行字一个个打给您，或者我明天打护士站问清楚。\n\n降压药应该不是这次手术开的，在他卧室抽屉里旧药。他自己说早上“好像吃了一片”，但我没亲眼看到，几点吃的他也说不清。现在这个 **162/98** 还需要去急诊吗？如果不知道早上到底吃没吃降压药，今晚还能不能补吃，还是先别乱吃等找到药盒再说？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00083",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+25min",
+      "text": "我调取患者在 CareLoop 联合医疗网络中的既往病历、用药记录、最近一次住院/手术相关文书（包括出院小结、术后医嘱、术前检查结果），以及患者的基础疾病诊断记录，重点关注：1）既往降压药名称和剂量；2）本次手术的术前评估（尤其血压、心电图、凝血功能）；3）出院带药清单和注意事项；4）是否有高血压或其他慢性病的诊断记录。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00085",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+25min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00087",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+25min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00090",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+25min",
+      "text": "您做得很好，目前情况**暂时不需要急诊**。我来帮您捋清楚当下最关键的事：\n\n---\n\n**关于血压 162/98：**\n这个数值确实偏高，但没有超过180/110的紧急线，而且休息后从168降到了162，说明在往好的方向走。他没有胸闷、头痛、说话不清、手脚无力这些危险信号，伤口也没有大出血——这些都是安心观察的依据。\n\n**今晚降压药的处理建议：**\n**不要补吃。** 原因是：您不确定早上到底吃了没有、吃了多少、几点吃的。如果早上其实已经吃过了，现在再补一片，可能导致血压骤降，比暂时偏高更危险。\n\n今晚的任务是：**先找到那个降压药的药盒**，看清楚药名、剂量（每片多少mg）、平时怎么吃的。找到后发给我或念给我，我帮您判断明早怎么安排。\n\n---\n\n**接下来请做这几件事：**\n\n1. **继续每2-3小时量一次血压**，下次量之前让他安静坐5分钟。如果血压超过180/110，或出现头痛、胸闷、说话不清、一边手脚没力，立刻去医院\n\n2. **止痛药按需吃**：药袋上写着\"疼痛时服用\"那个，疼得难受可以吃一片，不疼不需要吃。具体药名您可以把药盒上最大的那行字打给我\n\n3. **找降压药盒**：去他卧室抽屉里找，找到后把药名、规格拍给我或打字告诉我\n\n4. **让他保持情绪平稳**：他现在有点烦躁，这是可以理解的，尽量少\"折腾\"，让他安静休息\n\n---\n\n今晚的核心就是：**不急、不慌、不乱补药**。您现在能去找一下那个降压药盒吗？",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00105",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+110min",
+      "text": "医生，我翻到他抽屉里一个旧药盒/药板了，我照着读，大字像是 **“苯磺酸氨氯地平片”**，规格写 **5mg**。我印象里他平时好像是一天一次，但到底早上吃还是晚上吃，我不敢肯定。\n\n我又问我爸今天早上吃没吃，他还是说不清，嘴里说“好像吃了，也可能是昨天吃的”，我确实没亲眼看见，所以今晚我还没敢给他补。\n\n刚才又让他安静了一会儿量了一次，血压 **158/96**，心率 **86**，体温 **36.9**。现在看着没有胸闷、说话不清、一边手脚没劲，也没说那种很厉害的头痛，伤口没有大量渗血，就是背上还是拽着疼，他说能忍，还嫌我老量血压太折腾。\n\n那今晚还是不补这片氨氯地平对吧？明早这片 **5mg** 是按平时吃一片吗？夜里还要不要每2-3小时叫醒量，还是让他睡、到什么情况再起来量或者直接去急诊？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00110",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+110min",
+      "text": "我调取这位患者在CareLoop联合医疗网络中的既往病历、用药记录、本次手术出入院记录、术前检查结果，重点查看：1）是否有氨氯地平或其他降压药的长期处方记录及用法用量；2）本次背部脂肪瘤手术的术前检查（血常规、凝血、心电图等）结果；3）出院小结和出院医嘱；4）血压相关病史记录。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+110min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00114",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+110min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00117",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+110min",
+      "text": "您确认药名和规格做得很好，现在情况逐渐清晰。我来逐条回答您的问题：\n\n---\n\n**1. 今晚不补氨氯地平 — 对的，不要补。**\n您做得完全正确。氨氯地平是长效降压药，半衰期长，万一早上其实已经吃过、现在再补，可能导致夜间血压过低，比暂时偏高更危险。\n\n**2. 明早 5mg 按平时吃一片 — 对的。**\n氨氯地平常规用法就是每天一片 5mg。明早正常时间（起床后）吃一片即可，不需要加倍。\n\n**3. 夜里不用每2-3小时叫醒量血压。**\n他目前没有危险信号，血压也在缓慢下降（从168→162→158），让他好好睡觉比频繁折腾更重要。睡眠不足反而会让血压升高。\n\n---\n\n**夜间只需在这两种情况起来量或去医院：**\n- 他自己醒来说头痛、胸闷、心慌、恶心，或者您发现他说话含糊、一边手脚没力 → 立刻量血压，超过180/110或出现这些症状直接去急诊\n- 伤口渗血明显增多、浸透敷料、或发热超过38.5°C → 起来处理或就医\n\n如果这些都沒有，让他安睡到天亮，明早起床后量一次血压，然后按平时吃那片氨氯地平 5mg。\n\n---\n\n**明早做完这几点后告诉我：**\n1. 起床后血压、心率\n2. 服药时间\n3. 伤口情况（有无新渗血、红肿）\n\n今晚您可以放心休息了，您处理得很稳妥。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00132",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+770min",
+      "text": "医生，早上我按您昨晚说的没叫醒他折腾，基本睡了一夜，也没再补降压药。\n\n刚起床后量了，血压大概 **150/92**，心率 **82**，体温 **36.9**。我已经给他吃了那片 **苯磺酸氨氯地平 5mg，一片**，时间我记在手机上了。\n\n背上伤口我看了下，敷料边上有一点淡红色旧印子，不像新鲜一直渗，周围我看着也没有特别红肿发烫。他说还是牵拉痛，但能忍，还嫌我太紧张。\n\n我昨晚也没怎么睡踏实，怕记错。现在这个 **150/92** 还算可以先观察吗？今天还要不要加药或者多量几次？还有伤口这两天主要看什么、换药和复诊我该怎么确认？出院那几张纸我这边还是不敢完全看，我准备白天打护士站问一下，或者换药时把纸和药盒都带去让他们看。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00137",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+770min",
+      "text": "我调取这位患者在CareLoop联合医疗网络内可授权访问的既往病历、本次手术相关记录（入院/手术/出院小结）、术前检查结果、用药清单、换药和复诊安排，以及照护可及性信息。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00139",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+770min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00141",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+770min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00144",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+770min",
+      "text": "您处理得非常稳妥，昨晚到今早的判断和执行都很到位。我来逐条回答您的问题：\n\n---\n\n**关于血压 150/92：**\n这个数值比昨晚的168→162→158继续下降，是往好的方向走。对于一个刚做完小手术、血压本就不太稳的老人来说，目前可以先观察，不需要加药。\n\n**今天的血压监测：**\n- 服药后2小时左右量一次（看看药有没有起效）\n- 下午再量1-2次\n- 晚上睡前量一次\n- 如果血压稳定在150/90以下、没有不适，不需要加量或加药\n\n**出现以下情况随时联系我或就医：**\n- 血压超过180/110\n- 头痛、胸闷、说话不清、一边手脚没力\n\n---\n\n**关于伤口观察（这两天重点看什么）：**\n\n✓ **正常情况：**\n- 敷料边缘有点淡红色旧印子，不扩大、不渗湿 — 像您描述的这样是正常的\n- 牵拉痛、能忍 — 背部脂肪瘤切除后1-2天有这种痛感很常见\n\n✗ **需要警惕的变化：**\n- 敷料被新鲜血液浸透、渗血不止\n- 伤口周围明显红肿、发热、流脓\n- 发热超过38.5°C\n- 疼痛突然加剧、止痛药无效\n\n---\n\n**关于换药和复诊：**\n您计划白天打护士站问、换药时把纸和药盒带去核对 — 这个安排很好。打电话或去换药时，重点确认：\n1. 换药频率（一般2-3天换一次，但要看具体伤口情况）\n2. 拆线/复诊时间（一般7-10天后）\n3. 止痛药怎么吃、吃多久\n\n---\n\n您今天下午量几次血压后可以告诉我结果，我帮您判断是否需要调整。伤口如果有新变化也随时发给我。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00158",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+890min",
+      "text": "医生，我按您说的，今早那片氨氯地平 5mg 吃完大概两个小时又量了一次，现在是 **146/90**，心率 **80**，体温 **36.8**。比早上又低一点，我稍微放心些，但这个低压90我还是有点拿不准。\n\n伤口我刚趁他休息看了一眼，还是背上牵拉痛，他说能忍；敷料边上那个淡红印子没见扩大，也没看到新鲜血浸透、流脓这些。他现在也没说胸闷、很厉害头痛，讲话也正常，没那种一边手脚没劲。\n\n我上午打通了出院那个病区护士站，护士说得比较简短，大概是术后 **2-3天第一次换药**，**7-10天拆线或者复诊**，如果渗血多、发热、疼得厉害就提前去医院。具体止痛药怎么吃她电话里也没给我讲清，让我换药时把纸质材料和药盒都带过去现场核对。\n\n那现在这个 **146/90** 算不算可以继续在家观察？下午和晚上还按您说的量吗，还是少量一点别老折腾他？晚上如果还是145/90左右，是不是也不用加药？",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00164",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+890min",
+      "text": "**146/90 可以继续在家观察，您做得很好。**\n\n这个血压比早上150/92又降了一点，说明氨氯地平正在起效，趋势是好的。低压90确实还在正常高值边缘，但没有超过警戒线，而且他没有任何危险症状——可以安心观察，**不需要加药**。\n\n---\n\n**下午和晚上的监测安排：**\n\n不用频繁量，减少对他情绪的影响。建议：\n- **下午再量1次**（大概现在往后推3-4小时）\n- **晚上睡前量1次**\n\n如果血压稳定在145-150/90左右、没有不适，就保持这个节奏，不需要加量或加药。\n\n**仍然要注意的危险信号：**\n- 血压超过180/110\n- 头痛、胸闷、说话不清、一边手脚没力\n出现这些随时联系我或就医。\n\n---\n\n**关于伤口和换药：**\n\n您打电话问到的信息已经够用了：\n- **2-3天换第一次药** — 如果出院时间算第1天，明天或后天换药都可以\n- **7-10天拆线或复诊**\n- 换药时把纸质材料和药盒带去让护士核对 — 这个做法很好\n\n目前伤口情况（淡红印子不扩大、没有新鲜渗血、没有流脓、没有发热）是正常的，牵拉痛能忍也是术后的常见表现。\n\n---\n\n**简单总结：**\n- 今天不需要加降压药\n- 下午和睡前各量一次血压即可\n- 明天或后天安排第一次换药\n- 伤口有新变化或血压波动大随时告诉我\n\n您处理得很细心，有什么新情况继续联系我。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00178",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1110min",
+      "text": "医生，我下午让他安静歇了会儿又量了一次，血压大概 **144/88**，心率 **78**，体温 **36.8**。今天早上那片 **苯磺酸氨氯地平5mg** 已经吃过了，下午我没有再给他加药。\n\n他现在看着还行，没说胸闷、厉害头痛，说话也正常，手脚也没一边没劲。背上还是牵拉痛，但他说能忍；敷料边上原来那点淡红旧印子没扩大，也没见新鲜血浸透、流脓，摸着也不像发热。\n\n我把明天可能去换药要带的纸、药盒先放一块了，止痛药那些我还是准备到现场让护士或药房帮我看清楚再吃，免得弄错。\n\n想再跟您确认下：晚上睡前还要不要按您说的再量一次？如果还是 **145/90上下**、人也没不舒服，是不是继续不加降压药、让他睡就行？明天换药带出院纸、药盒和他本人过去，一般就够了吧？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00184",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1110min",
+      "text": "您的判断完全正确，逐条确认如下：\n\n**1. 睡前量一次 — 要的。**\n今晚睡前量一次血压，如果仍在145/90上下、他也没有任何不适，就让他正常睡觉，**不需要加药**。目前血压趋势（168→162→158→150→146→144）在稳定下降，氨氯地平效果在发挥，这是好的方向。\n\n**2. 明天换药带的物品 — 您准备得够用了。**\n带出院纸质材料、药盒、他本人，这三样就够。护士会现场核对伤口、确认止痛药用法和后续复诊时间。换药时如果护士说了什么和之前不一样的，可以再告诉我。\n\n---\n\n**今晚只需要注意这几种情况：**\n- 血压超过180/110\n- 他自己说头痛厉害、胸闷、说话含糊、一边手脚没力\n- 伤口渗血明显增多、发热超过38.5°C\n这些情况出现就联系我或直接去急诊。\n\n如果都没有，让他安睡到明早，起床后再量一次血压告诉我。您这两天处理得非常细心，可以放心休息了。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00198",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1260min",
+      "text": "医生，睡前刚量完了，血压 **142/86**，心率 **76**，体温 **36.7**。今晚没说胸闷、厉害头痛那些，人也清楚。背上还是有点牵拉痛，他说能忍，敷料边上原来那点淡红印子没扩大，也没看到新鲜血渗出来或流脓。\n\n今天早上那片 **氨氯地平5mg** 吃过了，下午晚上我都没再加药。他也有点嫌我老量血压了。\n\n那我就按您说的，今晚不加药，让他睡了；夜里如果没有您说的那些情况就不叫醒他，明早起床再量一次。明天换药我把人、出院纸和药盒都带去让护士/药房现场核对。谢谢您，我也先歇会儿。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00205",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1260min",
+      "text": "您做得非常到位，今晚可以安心休息了。\n\n**血压 142/86 — 很好，继续下降。**\n从昨晚168到今天睡前142，趋势稳定向好，说明氨氯地平在正常发挥作用。您坚持不乱加药是对的。\n\n---\n\n**今晚就按您说的安排：**\n- 不加药，让他好好睡觉\n- 夜里不刻意叫醒量血压\n- 如果出现头痛厉害、胸闷、说话含糊、手脚没力，或伤口渗血明显、发热 — 随时联系或去急诊\n\n如果一切平稳，明早起床后量一次血压，换药时把人、出院纸、药盒带去让护士核对即可。\n\n---\n\n您这两天处理得非常细心、冷静。老人嫌您啰嗦是好事，说明他状态不错。您也辛苦了，早点休息。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00220",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1800min",
+      "text": "医生，早上起来我让他先坐着歇了一会儿再量的，血压 **138/84**，心率 **74**，体温 **36.7**。昨晚没有叫醒他量，也没有加服降压药，一夜还算平稳。\n\n背上还是有点牵拉痛，他说能忍；敷料边上原来那点淡红旧印子没扩大，也没看到新鲜血浸透、流脓，周围也不像明显发红发热。\n\n老人现在有点嫌我老量血压，催着赶紧去换药。我把出院纸和药盒都装袋子里了，等会儿带实物给换药护士或者药房看。\n\n我想再确认两件事：  \n1. 今天那个 **氨氯地平5mg** 还是按一片吃就行吧？  \n2. 现在血压到 **138/84**，今天还能不能少量一点，比如早晚各一次，不要一天量好几回？\n\n还有我怕到换药处又忘了问，您给我说两三条最该让护士/药房核对的就行。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00225",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1800min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络中可授权访问的既往病历、出院记录、术前检查结果、用药清单和时间线，重点核对：1）出院诊断和手术情况；2）出院带药清单及降压药用法；3）术前血压记录和肾功能等基础情况；4）换药和复诊安排。",
+      "turn": 9,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00227",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+1800min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 9,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00229",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+1800min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 9,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00232",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1800min",
+      "text": "早上血压 **138/84** — 非常好，继续稳定下降，您这两天照护得很到位。\n\n逐条回答您的问题：\n\n**1. 氨氯地平 5mg 今天还是按一片吃。**\n是的，继续每天一次、一次一片，不要加量也不要减量。目前血压趋势很好，说明这个剂量适合他。\n\n**2. 血压监测可以减频次了。**\n现在降到138/84，稳定向好，可以改为：\n- **早晚各量一次**（起床后、睡前）\n- 不需要一天量好几回\n老人嫌您啰嗦，说明他状态不错，这是好事。\n\n---\n\n**换药时请护士/药房重点核对这三条：**\n\n1. **止痛药怎么吃、吃多久** — 药盒上的药名、剂量、一天几次、饭后还是饭前、能吃几天停药\n2. **下次换药和拆线/复诊时间** — 具体哪天来、挂什么号\n3. **伤口观察重点** — 什么情况需要提前回来（比如渗血、红肿、发热）\n\n您把出院纸、药盒、人都带去，现场核对清楚了再走，这样最稳妥。换药时如果护士说的和之前有出入，可以再告诉我。\n\n---\n\n目前伤口情况（淡红印子不扩大、无新鲜渗血、无发热）正常，牵拉痛能忍也是术后的常见表现。继续观察即可。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00247",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2040min",
+      "text": "医生，我们刚从换药室出来，按您说的把人、出院纸和药盒都带过去给他们看了。\n\n护士看了背上的切口，说目前看着还可以，没明显红肿、流脓，也没新鲜出血，就是给换了新的敷料。她让伤口先保持干燥，如果发热、红肿扩大、渗血变多就提前回来。\n\n药盒那边也现场看过了，确认家里的降压药就是**苯磺酸氨氯地平片5mg**，还是每天一次、一片。止痛药我没记住完整名字，护士大概意思是疼得明显时短期按说明吃，能忍就可以先不用。\n\n后面她说下次换药大概**2到3天后**，拆线或者外科复诊大概**术后7到10天**。我怕我把“拆线”和“复诊”混着记了，您帮我确认一下：我们接下来是不是就按这个顺序——氨氯地平每天一片，血压早晚各量一次，伤口别沾水，2到3天后再换药，7到10天左右去外科看能不能拆线？如果中间发热、红肿扩大、渗血多或者人不舒服，就提前去医院。这样理解对吗？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00254",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+2040min",
+      "text": "您的理解完全正确，总结得很清楚：\n\n**1. 氨氯地平 5mg — 每天一次、一次一片。**\n继续按这个吃，血压目前稳定向好。\n\n**2. 血压监测 — 早晚各量一次。**\n起床后、睡前各一次就够，不需要频繁量。\n\n**3. 伤口护理 — 保持干燥、别沾水。**\n\n**4. 换药时间 — 2到3天后。**\n护士已经换了新敷料，按她交代的日期回去换下一次就行。\n\n**5. 拆线/外科复诊 — 术后7到10天。**\n到时候去外科门诊，医生会看伤口愈合情况决定是否拆线，这是同一次就诊，不用分开记。您记住\"7到10天去外科看伤口\"这一条就够了。\n\n**6. 需要提前就医的情况 — 您记对了：**\n- 发热（体温超过38.5°C）\n- 伤口红肿明显扩大\n- 渗血/渗液变多\n- 其他明显不舒服\n\n---\n\n您这两天处理得非常仔细，关键信息都抓准了。接下来按这个节奏执行就可以，有问题随时联系我。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00268",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+2050min",
+      "text": "好的医生，我都写进手机备忘录了，就按您说的办：降压药一天一片，血压早晚各量一次，伤口别沾水，过2到3天再换药，7到10天去外科看伤口能不能拆线。\n\n现在刚出来看着还平稳，他就是嫌我一路念叨。那如果今晚和明天都没有发烧、伤口渗得变多、红肿扩大，或者人明显不舒服，我们就先回家休息，按时间去换药和复诊就行了吧？谢谢您，这样我心里踏实多了。",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_014__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7853571071357126,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 10
+}

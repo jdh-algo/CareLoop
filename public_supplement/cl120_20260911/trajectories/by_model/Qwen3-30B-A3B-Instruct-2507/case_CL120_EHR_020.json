@@ -1,0 +1,488 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "2e95fdeb119d8c708b452797cbd5c21a9fcdfaa20b33f5d3f027faf7a0f5970b",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_020__anon_e395ba3b71eac240",
+    "packet_sha256": "c0fd80cc65cd41cbe0039143864638a8664b7ddd15e9bfd7a625d3b05cea0bb0"
+  },
+  "case_id": "case_CL120_EHR_020",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "5",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "respiratory",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "low",
+    "friction_burden_score": "0",
+    "friction_intensity": "light",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "4",
+    "primary_friction": "privacy_stigma_or_sensitive_history",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "external_system_gap | misstated_family_or_patient_information",
+    "starting_phase": "result_return",
+    "target_problem": "asthma_copd_exacerbation",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "家属初始担心报告中“衣原体、偏肺病毒、肺实变”是否意味着当前药物不对，且不清楚是否要马上找医生。",
+      "医生建议在住院病房按床头铃，请护士测体温、氧饱和度并通知主管/值班医生核对原始报告和当前医嘱，而不是家属自行换药。",
+      "护士已到床旁复测体温和指脉氧、查看呼吸和精神；家属转述暂无明显血氧下降、口唇发紫、严重喘憋或叫不醒。",
+      "值班医生已到床旁，并在病区电脑核对原始报告和当前医嘱；确认当班暂无抢救/ICU级红旗，先继续现有输液、雾化、退热等住院医嘱，让家属不要自行停药换药。",
+      "值班医生说明衣原体、偏肺病毒、肺实变需结合病程判断，痰培养/药敏若未最终出来由病区继续追踪。",
+      "AI 医生将夜间观察重点具体化为呼吸费力/变快、脸色发紫发灰、叫不醒/精神差、持续高热、喝水尿量明显减少等，并说明出现时立即按铃叫护士和值班医生。",
+      "家属 teach-back：孩子睡着后不反复叫醒，继续按病房原医嘱输液雾化，夜里主要看呼吸、脸色、体温、精神、喝水和尿量；明日查房询问培养/药敏、抗感染是否覆盖衣原体、肺实变是否复查及整体病情风险。"
+    ],
+    "if_continued_next_focus": "如果继续模拟，应进入次日查房或住院后续节点：确认培养/药敏是否回报、主管医生对抗感染覆盖逻辑和病情趋势的解释、肺实变复查/出院复诊安排，以及用药副作用和出院医嘱 teach-back。",
+    "rationale": "本 case 的核心是住院儿童肺炎检查结果回流后，家属不确定是否需要调整用药的 bounded result-return 任务，而不是要求肺炎/肺实变完整治愈或长期随访全部完成。当前轨迹已完成该 bounded episode 的安全闭环：家属没有自行停换药；护士已床旁复测并确认暂无明显低氧、发绀、严重喘憋或意识异常；值班医生已通过病区系统核对原始报告和当前医嘱，解释衣原体、偏肺病毒、肺实变需结合病程看，暂按住院抗感染、雾化、退热等原方案执行；痰培养/药敏等迟发结果由病区继续追踪；AI 医生进一步把夜间按铃红旗、不要反复叫醒、明日查房需问的问题清单化；家属最后能复述并确认夜间观察、按铃条件、不自行改药以及明日查房问题。残余的培养/药敏、是否调整抗感染、肺实变复查和出院/复诊计划仍是后续住院/儿科责任线程，但对当前“结果关键词导致用药疑问”的责任单元已有明确 owner、时间窗和升级路径，属于 bounded residual follow-up，不阻断本次安全 episode closure。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：痰培养/药敏等迟发结果尚未最终回流或完整解释，但已由住院病区团队作为责任人继续追踪，明日查房再确认，异常时由病区调整医嘱。",
+      "bounded_residual_followup：当前抗感染是否需根据后续结果或临床反应调整，仍由主管/值班儿科团队决定；家属已明确不自行停换药。",
+      "bounded_residual_followup：肺实变后续是否及何时复查影像、出院/复诊计划仍待主管医生查房或出院前明确；这属于后续住院/门诊管理，不阻断当前结果回流用药疑问 episode 的闭合。",
+      "global_disease_journey_background：肺炎恢复、可能的后续咳嗽病程、复查和出院后短期随访仍需继续，但不要求在本次线上 bounded episode 内全部完成。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3-30B-A3B-Instruct-2507",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "孩子肺炎检查结果出来后家长不确定要不要调整用药",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，我家孩子这两天咳嗽发烧，最高烧到39度多，晚上咳得更厉害，还有痰和流清鼻涕。之前拍片说不太好，住进来后又抽血、做了痰的检查和雾化。刚才看到结果里写了什么衣原体、偏肺病毒、肺实变，我有点慌，不知道现在的药还对不对，要不要马上找医生。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取该患儿在CareLoop中心医院的最新病历记录、住院期间的血常规和痰培养检查报告原文、影像学报告（特别是胸部影像）、当前用药清单，以及护理记录中关于发热和咳嗽的动态描述，以确认衣原体感染、偏肺病毒感染和肺实变的诊断依据及治疗方案匹配度。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取CareLoop中心医院的既往病历、最近的检查检验结果（特别是痰培养、血常规、胸部影像报告）、用药清单、住院时间线，以及家庭照护可及性信息，以全面评估患儿当前病情和治疗方案的合理性。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取CareLoop联合医疗网络中已授权/已同步的既往病历、最近检查结果、用药清单、痰培养及血常规报告原文、影像学报告（肺实变）、时间线和照护可及性信息，确认当前诊断与治疗方案依据。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取CareLoop中心医院的既往病历、最近的检查检验结果（尤其是痰培养、衣原体、偏肺病毒检测、胸部影像报告）、用药清单、住院时间线以及家庭照护可及性信息，以便评估当前病情和治疗方案的适配性。请按权限返回所有可见资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取患者在CareLoop中心医院的既往病历、最近的检查检验结果（尤其是痰培养、血常规、胸片/CT）、用药清单、治疗时间线，以及家庭照护可及性信息，以确认当前诊断和用药是否匹配。请按权限返回所有可见资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好，孩子目前有高烧、咳嗽加重、有痰和流清鼻涕，结合检查提示存在衣原体感染、偏肺病毒感染以及肺部实变，说明呼吸道感染较重，确实需要密切关注。目前您看到的这些结果提示病情复杂，需要针对性治疗。\n\n虽然我们正在进一步评估，但根据现有信息，目前的治疗方案是基于这些病原体和影像表现制定的。请您先继续遵医嘱用药，注意监测孩子的体温、呼吸频率和精神状态。如果出现呼吸急促（每分钟超过40次）、嘴唇发紫、持续高烧不退或精神萎靡，请立即联系医护人员或前往急诊。\n\n后续还需要补充痰培养、血常规等结果的详细分析，以及用药调整的复核，我们会尽快跟进。目前请先安心照护，不要自行停药或换药。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "家属已看到部分病原学/影像结果关键词，但原始结构化报告未在当前工作台呈现。建议请家属立即通过病区护士或主管医生确认结果是否已被看到，并核对当前抗感染、雾化、退热和监测医嘱。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "部分病原/影像结果不能代表所有住院检查均已完成。若痰培养/药敏未回，应交代家属由主管医生继续追踪。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00049",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "建议不要仅凭家属转述关键词决定换药；应请其让病区医护查看院内系统原始报告，并说明当前床旁实际用药。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00050",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "建议明确告诉家属：现在就在病房，应按呼叫铃请护士查看孩子状态并通知主管/值班医生核对结果和医嘱。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00055",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+10min",
+      "text": "医生，我刚按您说的看了一下。孩子刚雾化完没多久，还是咳得有痰，鼻涕也挺明显，精神比烧到39度多那会儿好一点，但还是一直黏着我说不舒服。\n\n我摸着没那么烫，量了一下好像是38度左右，具体我怕夹得不准。呼吸我数了两次，孩子一直动，大概三十多下，不到40吧，但我也不敢保证。嘴唇看着没有发紫，也不是叫不醒那种。\n\n我现在还不清楚病房医生有没有看到手机上那几个结果，“衣原体、偏肺病毒、肺实变”我也只看懂这几个字，别的看不明白。她这边输液和雾化还是按原来的在做，我不敢乱停。您看我现在是不是就按床头铃，让护士来测个氧饱和度、体温，再请她通知值班医生或主管医生帮我们核对一下报告和现在用药？会不会显得太麻烦护士？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00061",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10min",
+      "text": "您现在可以放心按床头铃，让护士来帮孩子测体温和氧饱和度，同时请护士通知值班医生或主管医生。这不是麻烦，而是非常必要的安全步骤。孩子目前有肺实变和病毒感染，需要医生根据完整检查结果来评估治疗是否合适，尤其是痰培养和药敏结果还没完全出来。您看到的‘衣原体’‘偏肺病毒’‘肺实变’这些信息，只是部分报告内容，具体用药是否对症，必须由医生结合完整报告和孩子当前状态来判断。请不要自行调整药物，但请务必让医护人员尽快复核。我们这边也已登记，会持续追踪结果并及时跟进。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00078",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+22min",
+      "text": "医生，护士刚才已经来了，给孩子夹手指测了氧饱和度，也重新量了体温，还看了他呼吸和精神。具体数字我有点没记住，护士说血氧暂时还可以，没有明显掉下来，也没有嘴唇发紫、喘得特别厉害、叫不醒那种马上要抢救的表现。\n\n但是孩子还是烧着，咳嗽有痰、鼻涕也多，一直黏着我不舒服。现在输液和雾化还是按原来的医嘱在做，没有改。护士说已经把我说的“衣原体、偏肺病毒、肺实变”这些转给护理站和值班医生了，让医生看系统里的原始报告和现在用药，不过医生还没来床边解释。\n\n我现在就想问一下，在等值班医生来的这段时间，我最该盯哪几样？如果等会儿医生看完只说“先观察、继续原方案”，这种情况下我能不能先放心？还是说只要继续发热咳痰就得再催医生？另外如果出现什么情况，我必须马上再按铃叫护士或医生？",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00084",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+22min",
+      "text": "您现在可以放心盯住这几件事：第一，继续观察孩子的呼吸频率，如果超过每分钟40次，或出现呼吸费力、肋骨凹陷、鼻翼扇动，要立刻按铃；第二，注意精神状态，如果孩子变得特别嗜睡、叫不醒、反应迟钝，也要马上叫医生；第三，体温如果持续在39度以上，或退烧药后6小时内又烧起来，也要及时反馈。\n\n如果医生看完报告后说‘先观察、继续原方案’，您可以放心，这说明当前治疗是合适的，不需要再催。但只要孩子还在发热、咳痰、精神不好，就说明感染还在活动，医生可能需要等痰培养、药敏等结果出来再调药，所以继续观察是必要的。\n\n特别要警惕的紧急情况包括：嘴唇发紫、呼吸急促（>40次/分）、意识模糊、持续高烧不退、或孩子拒绝喝水、尿量明显减少。一旦出现这些，马上按铃叫护士或医生，别犹豫。您已经做得很好了，继续这样照护，我们也在持续追踪结果。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00099",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+52min",
+      "text": "医生，值班医生刚才已经来床边看过了，不是只听我说那几个词，他说他在病区电脑里看了原始报告和现在的医嘱。大概意思是现在孩子没有嘴唇发紫、叫不醒、特别喘憋这些情况，暂时不到抢救或者转ICU那种程度，先继续现在输液、雾化，还有退烧这些处理，让我不要自己停药换药。\n\n他也提到衣原体、偏肺病毒、肺实变这些要结合病程看，痰培养、药敏如果还没最后出来，病区会继续盯着。我说实话没全记住，也不知道现在输的具体药名，只记住“先继续原方案、等后续结果、不要乱改”。\n\n孩子现在还是咳得有痰，鼻涕多，体温还反复，黏着我不舒服，所以我心里还是不踏实。您能不能再用最简单的话帮我捋一下：今晚我主要就盯呼吸、精神、体温、喝水尿尿这几样对吗？像培养、药敏这种，我是明天查房时再问主管医生，还是夜里也要追着问？另外如果孩子睡着了，我要不要一直叫醒他看反应，还是看呼吸和脸色就行？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00106",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+52min",
+      "text": "您现在主要盯这几样就对了：呼吸（看有没有急促、费力、肋骨凹陷）、精神状态（是否清醒、反应正常）、体温（持续高烧或反复）、喝水和尿量（有没有明显减少）。这些是判断孩子情况是否恶化的关键。\n\n关于痰培养和药敏结果：现在还没完全出来，病区医生会继续盯着。您不用夜里追着问，明天查房时再确认就行，医生会主动跟您沟通后续调整。\n\n孩子睡着了，不用一直叫醒看，但可以每隔1-2小时轻轻摸摸额头、看看呼吸是否平稳、脸色有没有发青。只要呼吸均匀、脸色红润、没有异常呻吟或抽动，就可以放心让他睡。但一旦发现呼吸突然变快、脸色发灰、叫不醒，马上按铃。\n\n您已经做得很好了，继续这样照护，我们也在持续追踪结果，有变化会第一时间通知您。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00121",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+70min",
+      "text": "医生，我现在小声回您一下。孩子睡着了，我没再叫醒他。刚才这十几二十分钟我在旁边看着，呼吸还算匀，脸色也没发青发灰，没有那种怪呻吟、抽动，或者怎么都叫不醒的情况。\n\n我现在理解的是：夜里如果他突然喘得厉害、呼吸明显变快或者看着费劲，嘴唇脸色发紫发灰，怎么叫都没反应，或者一直高烧压不下来，还有喝水很少、尿也明显少，就马上按铃叫护士和值班医生，对吧？平时就让他睡，我隔一阵看一下呼吸和脸色，不用反复弄醒他。\n\n另外麻烦您帮我整理一下明天查房我该问主管医生的几句话，我怕我一紧张又听不懂。是不是就问这几个重点：  \n1. 痰培养、药敏结果出来没有，后面要不要换药？  \n2. 现在输的药有没有管到那个“衣原体”？  \n3. 偏肺病毒这个是不是主要靠观察和对症处理？  \n4. 肺实变后面要不要复查片子，大概多久复查？  \n\n这样问够不够？还有没有最该问的一句您帮我补上。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00131",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+70min",
+      "text": "您理解得非常到位，夜里如果孩子出现呼吸急促、嘴唇发紫、叫不醒、持续高烧不退，或喝水少、尿量明显减少，确实要立刻按铃叫护士和医生，平时不用反复叫醒他，看呼吸和脸色就行。\n\n您明天查房想问的几个问题已经很全面了，我再帮您补上最重要的一句：**“目前孩子的整体病情评估是稳定、在好转，还是有进展风险？接下来最需要警惕的是什么？”** 这句话能帮您快速了解医生对病情的整体判断和下一步重点。\n\n您已经做得非常好，继续这样照护，我们也在持续追踪结果，有变化会第一时间通知您。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00145",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+75min",
+      "text": "好，我把这句也记上了：问主管医生“现在整体是稳定、好转，还是还有进展风险，最要警惕什么”。\n\n孩子现在还在睡，我就不折腾他了，输液雾化都照病房原来的来。夜里我主要看呼吸、脸色、烧得压不住、喝水尿尿这些，有不对就按铃。明天查房我就拿备忘录问，怕到时候医生说快了我又听漏。谢谢您，我先守着他睡一会儿。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_020__Qwen3-30B-A3B-Instruct-2507",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 2.5,
+    "aggregate_median": 2.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 2,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.5,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 5
+}

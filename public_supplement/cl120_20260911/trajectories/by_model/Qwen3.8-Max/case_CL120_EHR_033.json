@@ -1,0 +1,648 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "40a126cb4c3f0dd992a5839c9d736ce9411a4006c5631b9b97b0ac562a0aed59",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_033__anon_643551247b5fcc22",
+    "packet_sha256": "9ec29bfad775dc4ac3f9788324d1754057eae6ee3cdeb78f477fb09245ebc150"
+  },
+  "case_id": "case_CL120_EHR_033",
+  "case_metadata": {
+    "blocking_residual_risk_count": "6",
+    "closure_coordination_burden_level": "high",
+    "closure_coordination_burden_score": "2",
+    "contract_complexity_index": "10",
+    "contract_complexity_level": "high",
+    "disease_domain": "endocrine_metabolic",
+    "evidence_integration_burden_level": "high",
+    "evidence_integration_burden_score": "2",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "7",
+    "expected_turn_budget_category": "long",
+    "friction_burden_level": "high",
+    "friction_burden_score": "2",
+    "friction_intensity": "heavy",
+    "handoff_is_transition_only": "False",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "6",
+    "primary_friction": "caregiver_conflict_or_fatigue",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "privacy_stigma_or_sensitive_history | incomplete_patient_information",
+    "starting_phase": "home_execution_failure",
+    "target_problem": "hypoglycemia",
+    "temporal_burden_level": "high",
+    "temporal_burden_score": "2",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "初始症状为突发冷汗、手抖、发慌、乏力，后续家庭血糖最低约3.2 mmol/L，补糖后逐步升至4.4、5.6，并且症状明显缓解。",
+      "夜间和次日持续监测：睡前约6.3、清晨约5.1、内分泌门诊现场约6.0、晚饭前约5.8、当晚睡前约6.1 mmol/L，期间未再出现冷汗、手抖、心慌、意识异常，患者清醒能说话吞咽。",
+      "家属已将疑似诺和锐/速效胰岛素和不明降糖药单独收好，期间未自行恢复使用。",
+      "患者和家属已真实到医院，药房/内分泌前台和内分泌门诊当面核对实物；内分泌医生给出临时方案：速效胰岛素和不明降糖药先不自行恢复，规律少量进食，餐前/睡前记录血糖，48小时内带记录复诊或电话回报。",
+      "AI医生在内分泌方案回流后进行了行动化：明确今晚睡前测糖、低于3.9或症状复发按低血糖处理、15分钟复测、两次不缓解或不能吞咽/叫不醒拨120、明天四点血糖记录、48小时内联系/复诊内分泌。",
+      "家属在最后一轮完成了可信teach-back：知道低于3.9或症状复发补糖并15分钟复测，两次不缓解或叫不醒/不能吞咽拨120；知道明天记录早餐前、午餐前、晚餐前、睡前血糖并48小时内内分泌回报/复诊。",
+      "妇科线当前无新红旗；病理未回流但已被明确边界化为1-2天内妇科复诊/询问病理，若疼痛红肿加重、发热寒战、流脓增多、出血或走路明显加重则当天就诊。"
+    ],
+    "if_continued_next_focus": "若继续，应只压缩低价值重复等待，重点跟踪48小时内内分泌复诊/电话回报是否根据四点血糖记录调整降糖方案，以及1-2天内妇科复诊/病理询问是否出现新结果或局部红旗。",
+    "rationale": "本轮 CareLoop 的核心责任是处理外阴肿块/脓肿背景下在家发生的低血糖样急性执行失败与高风险降糖药物不确定性。该急性 episode 已形成安全闭环：低血糖症状经补糖、进食和多次复测后稳定；患者清醒、能吞咽、无复发症状；疑似速效胰岛素和不明降糖药已停止自行使用并经线下药房/内分泌门诊实物核对；外部内分泌医生已给出48小时临时方案；AI医生将方案转化为家庭可执行清单，家属已按睡前测糖、备糖、停用未核实降糖药、低血糖处理阈值、120急诊阈值、明日四点血糖记录和48小时内内分泌回报/复诊进行了可执行复述。外阴局部/病理线程仍未完成，但当前无发热寒战、红肿疼痛加重、流脓增多、出血、走路明显加重等红旗；已有1-2天内妇科复诊/询问病理、出现红旗当天就诊的责任边界。因此病理/妇科后续属于有owner、时间窗和升级路径的bounded residual follow-up，不阻断本次低血糖家庭执行失败 episode 的安全闭环。闭环部分有外部内分泌接管贡献，不能记作AI医生单独完成全部医疗处置，但AI医生完成了风险识别、家庭急救指导、停药边界、外部核验推动、结果行动化和teach-back确认。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup: 外阴肿块/脓肿的妇科复诊和病理结果尚未正式回流；目前不是本次低血糖急性episode的action-blocking残余，因为无局部红旗，且已有妇科复诊/询问病理时间窗和当天就诊红旗。",
+      "bounded_residual_followup: 糖尿病/降糖治疗长期方案尚未最终调整；当前已由内分泌医生临时接管，48小时内带血糖记录复诊/电话回报，未核实降糖药和速效胰岛素不得自行恢复。",
+      "global_disease_journey_background: 外阴病变性质、后续手术/病理/肿瘤或感染管理仍需线下妇科继续完成；本结论不代表肿瘤或妇科疾病治愈。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "Qwen3.8-Max",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "外阴肿块术前在家处理时突然出冷汗发慌",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "我替家里人问一下，她外阴那边之前有个肿块，前几天一下肿到像鸡蛋那么大，疼得厉害，去门诊打过消炎针，后来又换成口服抗生素，疼是好点了。现在等后面处理和病理这些事，但她刚才在家突然冒冷汗、手抖、发慌，说有点没力气。我不太清楚她今天有没有按时吃饭，也怕问多了她嫌丢人。",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我需要先调取这位患者在 CareLoop 联合医疗网络内已授权/已同步的既往病历、最近门诊记录（外阴肿块相关）、用药清单（包括打过的消炎针和当前口服抗生素的具体药名、剂量、开始时间）、最近的检查检验结果（血常规、血糖、肝肾功能等），以及患者基本信息（年龄、既往史如糖尿病等）。同时查看时间线，确认她最近一次就诊时间和后续病理安排。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "你好，你描述的这些情况我听到了。外阴肿块经过消炎治疗后疼痛减轻是好事，但她现在突然冒冷汗、手抖、发慌、没力气，这几个症状需要我们先排除一些紧急情况，请你现在配合我做几件事：\n\n1. 先让她平躺休息，不要勉强站立或走动。\n2. 如果家里有体温计，马上量一下体温；如果有血压计和血糖仪，也一起测一下，把数值告诉我。\n3. 关于吃饭的事，这不是丢人的问题，低血糖确实会引起手抖、出冷汗和心慌。如果她意识清醒、能正常吞咽，可以先让她喝一点温糖水或含糖饮料，观察15到20分钟看症状有没有缓解。\n4. 请确认一下她现在吃的口服抗生素具体叫什么名字，药盒还在不在？有些抗生素可能会引起胃肠道反应或者低血糖样不适。\n\n另外我需要特别提醒：虽然她之前打消炎针后局部好转了，但突然出冷汗、发抖也可能是感染入血（脓毒症）的早期表现，尤其是之前有过较大脓肿的情况。如果出现以下任何一种情况，请不要等，立刻拨打120去急诊：\n- 体温超过38.5℃或反而低于36℃；\n- 心跳很快（静息时超过100次/分）或感觉心跳很乱；\n- 意识变差、叫不太醒或说话含糊；\n- 喝了糖水休息20分钟后症状完全没有缓解甚至加重。\n\n你先去看看她的体温和精神状态，把结果告诉我，我们再决定下一步怎么处理。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00024",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "患者家庭指尖血糖低，补糖后部分缓解；建议按低血糖处理流程进行短间隔复测和用药核对，当前无医院检验报告待回传。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00025",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "家属床边发现降糖相关用品和抗生素，但药名剂量及今日使用情况未核清；需标签/处方读回或线下药房/开药医生核对。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00026",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+18min",
+      "text": "既往病历提到需关注病理结果，但当前系统没有已手术取材/送检或病理待回报 receipt；不能认为病理正在回传。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00031",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+18min",
+      "text": "医生，我按您说的弄了。她现在躺着，意识是清楚的，能说话也能咽东西，就是嫌我一直问她烦。\n\n刚测血糖大概是3.2，应该是偏低吧？我给她喝了半杯含糖饮料，过了十几分钟，冷汗和手抖比刚才好多了，但还是说没力气、心里发慌。体温36.7，心跳我看大概104左右。血压计不知道是不是我没弄好，没量出来准数。\n\n她说早上好像没怎么吃，至于今天有没有打那个针、吃没吃降糖药我还没问清楚。床头我看到有抗生素盒子、血糖试纸，还有一个像胰岛素笔的东西，但药名剂量我现在还没读明白。\n\n现在要不要继续给她喝糖水，还是吃点饭/饼干？多久再测一次血糖？心跳一百零几这种要不要马上去急诊？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00037",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18min",
+      "text": "你做得很好，先让她喝含糖饮料是对的。血糖3.2确实是低血糖，她出冷汗、手抖、心慌很可能就是低血糖引起的。现在症状有好转，说明处理方向没错。请你按下面步骤做：\n\n1. 继续补糖和进食：如果她还能喝，请再给她喝小半杯含糖饮料或吃几块糖果；等手抖、心慌进一步减轻后，一定要让她吃点能顶饿的东西，比如几片饼干、面包、一小碗米饭或面条。光喝糖水血糖容易再次掉下来。\n\n2. 多久复测血糖：从刚才喝完那半杯饮料算起，过15分钟再测一次指尖血糖。如果还是低于3.9，或者症状又加重了，就再喝一点含糖饮料，再过15分钟复测。目标是血糖稳定在4.0以上且人感觉舒服些。\n\n3. 关于心跳104次/分要不要马上去急诊：低血糖本身就会让心跳加快，加上她之前有外阴脓肿的感染史，心跳快需要重视，但不一定马上叫急救车。判断标准是：如果补糖后过了15到20分钟，血糖升上来了（比如超过4.0），出汗和手抖明显好转，心跳也慢慢降下来，可以在家继续观察并尽快吃东西；但如果出现以下任何一种情况，请不要等，立刻拨打120去急诊——意识变差、说话含糊或叫不太醒；喝了糖水休息20分钟后症状完全没缓解甚至更重；体温升到38.5℃以上或降到36℃以下；心跳持续在120次/分以上不降，或者感觉心跳很乱、胸闷喘不上气。\n\n4. 现在需要你帮我核对药盒：我知道她嫌烦，但这件事非常关键，关系到安全。请你现在去床头把那个像胰岛素笔的东西和抗生素盒子拿过来，把上面印的药名逐字念给我或打字发给我。我特别需要确认：她今天有没有打胰岛素？打了多少单位？另外吃的口服降糖药叫什么名字、今天吃了没有？因为如果今天打了胰岛素或吃了降糖药又没怎么吃饭，就是这次低血糖最直接的原因。你可以温和地跟她说：“医生怕你用错药伤身体，让我帮忙对一下药名”，这不是丢人的事。\n\n你现在先去安排她再喝点甜的、准备点吃的东西，然后帮我把药名读出来。测完下一次血糖马上告诉我数值和她的心跳变化，我们随时调整。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00052",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+36min",
+      "text": "医生，我又按您说的给她喝了点甜饮料，也吃了几块饼干/面包，差不多十五二十分钟后复测血糖是4.4左右。她现在人是清醒的，能说话能吞咽，刚才出冷汗和手抖基本好了，就是还说很乏力，心里还有点慌。\n\n心跳我摸着/仪器看大概96到100之间，比刚才慢点，体温还是不高。血压计我还是没量出靠谱的数，不知道是不是袖带没绑好。\n\n药我拿过来看了，那个像胰岛素笔的上面我能看见像“诺和锐”几个字，但我不敢确定她今天到底打没打、打了多少，她问她也说得含糊，还嫌我烦。抗生素盒子我只能读出一部分，剂量和今天什么时候吃的我现在也说不准，等会儿我可能得找开药的地方或让家里人帮忙看。\n\n现在血糖4.4了，接下来还要多久测一次？今天这个“诺和锐”或者其他降糖药是不是先别让她用了？她还没怎么吃正经饭，我怕一会儿又掉下去。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00057",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+36min",
+      "text": "请调取该患者在 CareLoop 联合医疗网络内已授权/已同步的既往病历、门诊和住院记录、用药清单（特别是降糖药如胰岛素种类和剂量、口服降糖药）、最近检查结果、外阴肿块/脓肿相关就诊记录和时间线。同时查看家庭照护可及性信息。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00059",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+36min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00061",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+36min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+36min",
+      "text": "你做得非常好，处理得很及时。血糖从3.2升到4.4，冷汗和手抖基本消退，说明这次不舒服确实是低血糖引起的，而且补糖的方向完全正确。\n\n针对你现在最担心的几个问题，我们一步步来：\n\n1. 今天“诺和锐”还要不要打？\n绝对先不要打。“诺和锐”是一种起效非常快的胰岛素，必须在准备吃饭、马上要吃东西的时候才能打。她今天没怎么正经吃饭，如果现在或者等会儿打了这个针，血糖很可能会再次严重掉下来。在确认她能吃下一顿正常的正餐之前，这支笔先收起来，今天暂时不用。\n\n2. 接下来多久测一次血糖？\n虽然现在到了4.4，但因为她刚才只吃了饼干或面包，还没吃正餐，加上不确定体内有没有残留的降糖药作用，血糖还有可能往下掉。请你这样安排：\n- 从现在算起，过30分钟再测一次指尖血糖。\n- 如果她能顺利吃完一顿正餐，饭后1小时再测一次。\n- 只要血糖低于3.9，或者她又开始出冷汗、心慌、手抖，立刻再喝半杯含糖饮料，15分钟后复测。\n- 目标是在吃正餐前，让血糖尽量维持在5.0以上比较安全。\n\n3. 赶紧让她吃一顿正餐\n饼干和面包含糖能救急，但消化快，顶不了多久。趁她现在清醒、能吞咽，尽快给她弄一点有饭有菜的正餐，比如一小碗米饭配点肉和菜，或者一碗面条、几个饺子。吃点扎实的饭菜，血糖才能真正稳住。\n\n4. 关于心跳和乏力的观察\n心跳从104降到96-100，是在往好的方向走。低血糖刚恢复时，人觉得全身没力气、心里还有点发慌是很常见的，身体需要时间缓过来。但如果她吃完正餐休息半小时后，心跳还是持续在100以上降不下来，或者乏力加重、精神变差，考虑到她外阴脓肿的病史，我们需要警惕是不是感染引起的反应，那就不能在家里等了。\n\n5. 药盒的事还需要你帮个忙\n我知道她嫌烦，但这事关乎安全，不能马虎。你可以温和地跟她说：“医生怕你用错药伤身体，让我帮忙对一下”。\n- 抗生素盒子：请你把盒子拿过来，尽量把上面印的字逐字念给我或打字发给我，特别是药名和剂量（比如多少mg）。如果实在看不清，可以拍张清晰的照片发给我，或者等下联系开药的门诊核对。\n- 其他降糖药：除了那支“诺和锐”，家里还有没有口服的降糖药片？如果有，也请告诉我名字。因为有些口服降糖药（比如格列美脲、格列齐特等）也会引起低血糖，且持续时间比打针还长，我需要知道她今天到底吃了什么。\n\n总结一下你现在要做的：先把诺和锐收起来别用 -> 让她赶紧吃正餐 -> 30分钟后复测血糖 -> 把药盒上的字读给我。\n\n你先去安排她吃饭，有任何变化随时告诉我，我一直在线陪着你。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00078",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+70min",
+      "text": "医生，我先反馈一下：那支疑似写着“诺和锐”的笔我已经收起来了，放抽屉里没让她再碰。\n\n我给她弄了半碗面/饭菜，她吃得不多，但总算吃了点正经东西。过了大概三十多分钟又测了一次血糖，现在是5.6左右。她现在清醒，说话吞咽都正常，冷汗和手抖没再出现，心慌也轻多了，就是人还是虚，躺着不太想动。心跳现在大概88到94这样，体温还是正常。血压计我还是量不准，弄了几次都不太靠谱。\n\n药这块我刚在床边翻了一下，没看到明确写着格列美脲、格列齐特、二甲双胍这些字的药片，但我也不敢说家里一定没有，可能还有别的地方。抗生素盒子上的字太小太乱，我现在还是只能看出零碎几行，没法保证读准。她早上到底有没有打那个针、打了多少，还是说得含糊，一问就烦。\n\n现在血糖到5.6了，今晚还要怎么测？比如睡前、半夜还要不要叫醒测？这种情况现在还需要去急诊吗，还是先在家盯着？明天是不是要联系开药的医院或者内分泌医生把她胰岛素这些药重新核一下？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00083",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+70min",
+      "text": "请调取该患者在 CareLoop 联合医疗网络内已授权/已同步的以下资料：1）既往病历和门诊记录，重点关注糖尿病诊断、降糖方案（是否使用诺和锐或其他胰岛素、口服降糖药种类及剂量）、外阴肿块/脓肿的就诊经过；2）最近的检查检验结果，特别是血糖、糖化血红蛋白、肾功能、肝功能、血常规、感染指标；3）当前用药清单和药房发药记录，核对是否有格列美脲、格列齐特、二甲双胍等口服降糖药以及抗生素的具体名称和剂量；4）时间线，整理近期外阴肿块处理与低血糖事件的时间关系。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00085",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+70min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00087",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+70min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00090",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+70min",
+      "text": "你做得非常好，这几步处理得很到位。血糖从3.2升到5.6，冷汗和手抖没再出现，心跳也从一百多降到了88到94，体温正常，人清醒能说话——这些都说明这次低血糖已经稳住了，暂时不需要去急诊，今晚可以在家继续观察。\n\n但因为她早上吃得少、今天到底有没有打“诺和锐”还不确定，加上她吃的不多，体内可能还有残留的胰岛素或药物作用，今晚不能完全放松警惕。请你按下面的节奏来安排：\n\n1. 今晚血糖怎么测？\n- 睡前（大概晚上10点到11点左右）一定要测一次指尖血糖。\n- 如果睡前血糖在6.0以上，可以让她安心睡；如果在5.0到6.0之间，建议睡前再让她吃一点含淀粉的小零食，比如两片饼干或半片面包，防止半夜掉下来。\n- 半夜要不要叫醒？如果睡前血糖稳定在6.0以上、人睡得安稳没有出冷汗或翻来覆去，一般不需要特意叫醒。但如果睡前偏低，或者你发现她睡觉时突然出汗、呼吸变快、睡得很不安稳，请轻轻叫醒她，测一下血糖。只要低于3.9，立刻喝小半杯含糖饮料，15分钟后复测。\n\n2. 现在还需要去急诊吗？\n目前情况比之前好很多，暂时不用去。但如果今晚出现以下任何一种情况，请不要等，直接拨打120：\n- 叫她叫不太醒、说话含糊或者反应明显变慢；\n- 再次大量出冷汗、严重手抖，喝了糖水15到20分钟仍不缓解；\n- 体温突然升高超过38.5℃，或者反而降到36℃以下；\n- 心跳再次持续超过100次/分降不下来，或者觉得胸闷喘不上气。\n\n3. 关于用药和明天的安排\n你的判断完全正确，明天必须联系开药的医院或内分泌科医生重新核对用药。因为“诺和锐”是速效胰岛素，必须在吃饭前打，没吃饭绝不能打；而且我们还没确认她今天到底打了多少、有没有同时吃其他口服降糖药。在没有和医生重新核对清楚之前，那支笔继续收好，明天所有的降糖药都先不要自己用，等医生评估后再决定。\n\n抗生素盒子看不清没关系，你今天已经很辛苦了，不要再为这个跟她起冲突。明天白天可以带着药盒去开药的门诊让护士或药师帮忙核对一下名字和剂量。\n\n总结一下今晚你要做的：让她好好休息 -> 睡前测一次血糖 -> 根据睡前数值决定要不要吃点小零食 -> 留意她睡眠状态 -> 明早联系内分泌医生核对所有降糖药。\n\n你先去安排她休息，睡前测完血糖把数值发给我，我今晚都在。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00105",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+330min",
+      "text": "医生，睡前这次我刚测了，血糖大概6.3。她现在人清醒，能正常说话、吞咽，没有再出冷汗、手抖，也没有明显心慌，体温也没高。就是她还说虚、没力气，后面也没吃多少东西，现在只想睡了，还说“我就是没劲，不出汗了”。\n\n那支疑似“诺和锐”的笔，还有我看不准的那些降糖药相关东西，我都单独收起来了，今晚没再让她用。抗生素盒子小字我今晚就不折腾她了，明天我带实物去门诊/药房，或者联系内分泌那边核对。\n\n她现在这个6.3，是不是今晚就不用再加饼干了？半夜如果她睡得安稳、不出汗，我是不是不用特意叫醒测？明早起来是不是也先别自己用那些降糖药，先问到医生再说？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00111",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+330min",
+      "text": "你做得非常棒，今晚这一路处理得很稳当。现在血糖6.3、人清醒、不出汗不手抖、心跳和体温都正常，说明低血糖已经安全度过了，你可以稍微松口气了。\n\n针对你问的三个问题，我明确回答你：\n\n1. 睡前6.3，还要不要加饼干？\n不用加了。6.3是一个安全的数值，高于我们之前说的6.0的“安心线”，直接让她睡就行。\n\n2. 半夜要不要特意叫醒测血糖？\n如果她睡得安稳，没有突然出大汗、翻来覆去或者呼吸急促，就不需要特意叫醒她，让她好好休息恢复体力。但如果你自己中途醒来，可以顺便看一眼她的状态；如果发现她出汗多或者睡得很不安稳，再轻轻叫醒测一下。只要不低于3.9就没事。\n\n3. 明早起来降糖药用不用？\n绝对先不要用。在联系到内分泌医生或开药医生重新核对清楚之前，那支疑似“诺和锐”的笔和其他所有降糖药都继续收好，明早千万别自己打或吃。因为今天到底打了多少、吃了什么还没查清，盲目用药可能再次引起低血糖。\n\n另外有两点叮嘱：\n- 关于她说“没劲”：刚经历过一次明显的低血糖，身体就像跑了一场长跑，觉得虚、没力气是很正常的，通常休息一晚、明天吃点东西后会慢慢缓过来，不用太担心。\n- 床头备点甜的：虽然今晚大概率平稳了，但为了以防万一，请在她床头放一杯含糖饮料或几块糖果。万一半夜她醒了觉得心慌出汗，伸手就能拿到。\n\n你今晚辛苦了，一直盯着非常不容易。明天白天记得带药盒去门诊或药房核对，同时联系内分泌科医生。今晚你先陪着她休息，有任何不对劲随时叫我，我一直都在。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00125",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+840min",
+      "text": "医生，早上她醒了，人是清醒的，能正常说话。昨晚后半夜我自己醒了一次看了看，她睡得还算安稳，没有大汗、手抖、叫不醒那种情况，床头放的糖和甜饮料也没用上。\n\n现在她还是说虚、没力气，胃口一般，没再像昨晚那样发慌出冷汗。我记着您说的，早上那支疑似“诺和锐”的笔和那些看不准的降糖药都还收着，没让她打，也没让她吃，准备白天带实物去门诊/药房窗口，或者联系内分泌那边核对。\n\n我想问下早上现在是不是先测个空腹血糖？早餐如果她吃不下太多，是先吃点粥、面包、鸡蛋这些可以吗？如果血糖不低但她吃得少，降糖药还是一直先停到问到内分泌医生为止，对吧？\n\n还有她外阴那个肿块/脓肿和病理复诊也还没弄清楚，今天我是先去内分泌或药房把用药核对好，还是妇科复诊也要一起跑？我有点怕两头都耽误。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00130",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+840min",
+      "text": "请调取该患者在 CareLoop 联合医疗网络内已授权/已同步的以下资料：1. 既往病历和门诊记录，重点关注外阴肿块/脓肿的诊断、处理经过及是否已有病理送检或待回报；2. 内分泌科就诊记录、糖尿病诊断、当前降糖药处方（尤其是胰岛素种类和口服药清单）；3. 最近的检查检验结果，包括血糖、糖化血红蛋白、血常规、炎症指标等；4. 当前用药清单；5. 按时间线整理上述记录。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00132",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+840min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 6 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00134",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+840min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+840min",
+      "text": "请调取患者在 CareLoop 联合医疗网络内已授权可见的既往病历、门诊/住院记录、时间线、用药清单和检查检验结果，重点关注：1. 外阴肿块/脓肿相关的妇科就诊记录、是否已行切开引流或活检、病理送检状态及复诊安排；2. 糖尿病相关诊断、既往降糖方案（是否确有用诺和锐及其他口服药）、最近血糖或糖化血红蛋白记录；3. 近期抗生素处方名称与剂量。同时查询照护可及性信息，了解今天是否能挂到内分泌科和妇科门诊号源。",
+      "turn": 6,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00138",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+840min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00140",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+840min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 6,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00143",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+840min",
+      "text": "早上好，听到她安稳睡了一夜、人清醒、没再出冷汗和手抖，我放心多了。你昨晚盯得很辛苦，处理得非常到位。\n\n针对你今天早上的问题，我们按顺序一件件来：\n\n1. 现在要不要测空腹血糖？\n要测。如果家里有血糖仪，现在先测一次指尖血糖。只要数值在4.0以上，就可以安心吃早餐；如果低于3.9，先喝小半杯含糖饮料，过15分钟复测升上来后再吃。\n\n2. 早餐吃什么？\n她胃口一般没关系，先吃点温和、能顶饿的东西。粥、面包、鸡蛋都可以，最好搭配着吃，比如小半碗粥加一个鸡蛋，或者一片面包加一点菜。不要只喝白粥或只吃一点点甜的，那样血糖容易忽高忽低。\n\n3. 降糖药是不是继续停？\n对，你的理解完全正确。不管今天测出来的血糖是多少，也不管她吃得多吃得少，在那支疑似“诺和锐”的笔和所有降糖药被内分泌医生当面核对清楚之前，一律先不要用。这是底线，防止再次发生危险的低血糖。\n\n4. 今天先去内分泌还是先去妇科？会不会两头耽误？\n不会耽误，但我们要分个轻重缓急。用药安全是第一位的，所以今天的重点是“把药核清”。建议你这样安排：\n- 上午优先去内分泌科门诊，或者直接去药房窗口/开药的门诊，把那支笔和抗生素盒子带上，让医生或药师当面核对药名、剂量和她到底该怎么用。\n- 外阴肿块/脓肿的病理复诊确实也重要，但如果今天实在跑不过来两个科室，可以先打妇科门诊的电话，说明昨晚刚发生过一次低血糖、今天必须先核对降糖药，问他们病理结果是否已经出来、最晚可以推迟到哪一天复诊。通常晚一两天去妇科复诊是安全的，但降糖药用错可能马上出问题。\n- 如果你到了医院发现两个科室离得不远，或者挂号方便，能同一天看完当然最好。\n\n另外提醒两点：\n- 她觉得虚、没力气，是昨晚低血糖后身体还没完全恢复的表现，今天让她多休息，不要勉强活动。\n- 去医院路上包里一定要备好几块糖果或一小瓶含糖饮料，万一路上又觉得心慌出汗，随时能吃上。\n\n你现在先帮她测个血糖，告诉我数值，然后准备点早餐。吃完早餐后你们再出发去医院，有任何情况随时联系我。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00157",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+875min",
+      "text": "医生，我刚按您说的测了，血糖仪显示大概5.1。这个是刚吃早饭前后那一会儿测的，我有点记不准算不算严格空腹，反正数值是5.1左右。\n\n她现在人清醒，说话吞咽都正常，没有再出冷汗、手抖，也没明显心慌。就是还一直说虚、没力气，想躺着。早饭吃了点，差不多半碗粥，配了一点鸡蛋/面包，没有吐。\n\n那支疑似写“诺和锐”的笔，还有那些我看不准的降糖药，我都没让她用，和抗生素盒子一起装袋了，准备上午带去医院药房窗口或者内分泌门诊让他们当面看。\n\n我现在想确认两件事：出门前还需要再测一次血糖吗？如果路上或者排队久，她又说心慌、冒汗，是不是先吃糖/喝甜饮料，然后15分钟再测？她早餐吃得不多，我怕在医院排队撑不住。\n\n还有妇科那边我还没打电话，等会儿打的话，我是不是就简单说：她外阴肿块/脓肿做过处理，要问病理结果和复诊时间，但昨晚发生低血糖，今天先去核降糖药，问能不能晚一两天复诊？这样说可以吗？",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00163",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+875min",
+      "text": "你做得非常好，每一步都安排得很稳当。血糖5.1是安全的，她吃了半碗粥加鸡蛋/面包，也没有再出冷汗和手抖，说明目前状态平稳，你们可以按计划去医院了。\n\n针对你现在问的几件事，我逐一回答：\n\n1. 出门前还要不要再测一次血糖？\n如果你们准备在半小时到一小时内出发，现在不用再测了，5.1加上刚吃过东西，短时间内是安全的。但如果因为挂号、等车等原因要拖一个多小时才出门，建议临出门前再测一次，确认还在4.0以上再走。\n\n2. 路上或排队时又心慌冒汗怎么办？\n你的理解完全正确。万一在路上或排队时她又觉得心慌、出冷汗、手抖，不要等，立刻让她吃两三块糖果或喝小半瓶含糖饮料（比如可乐、果汁），然后休息15分钟后再测一次血糖。只要升到3.9以上、症状缓解了，就继续按原计划就诊；如果吃了糖15到20分钟还是没缓解，或者人变得迷糊、叫不太醒，就不要继续排队了，直接找医院急诊或拨打120。\n\n另外提醒一下：因为她早餐吃得不多，排队久了确实容易饿。除了急救用的糖果/甜饮料，包里最好再带一点能“顶饿”的小零食，比如几块饼干或一小片面包。如果排队超过两三个小时，中间可以让她吃一点，防止血糖慢慢往下掉。但记住，急救用的糖和平时垫肚子的饼干要分开放，别搞混了。\n\n3. 妇科电话怎么说？\n你刚才说的那段话非常清楚、得体，就按你说的讲。你可以这样说：“您好，我是某某某的家属。她之前外阴肿块做过处理，想问一下病理结果出来没有、复诊时间怎么安排。但她昨晚发生了低血糖，今天必须先去内分泌科核对降糖药，怕今天赶不过来，想问下妇科复诊能不能晚一两天？”\n这样既说明了原因，也问了最关键的两个信息（病理结果出了没、最晚能推迟到哪一天），医生听了会理解的。通常推迟一两天复诊是安全的，但如果对方说病理有特殊情况需要尽快看，你再告诉我，我们重新调整今天的安排。\n\n最后叮嘱一句：所有降糖药继续收好别用，到了医院先让内分泌医生或药师当面核对那支笔和抗生素盒子。路上慢一点，让她多坐着休息，有任何变化随时联系我。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00178",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+980min",
+      "text": "医生，我们已经到医院了，折腾了快两个小时。路上她没有再明显出冷汗、手抖、心慌，也没有迷糊叫不醒，现在人清醒，就是还说虚、没力气，坐在候诊椅上不太想动。\n\n药我都带来了，那支像“诺和锐”的笔，还有几个我看不准的降糖药、抗生素盒子都在袋子里。刚才先去药房窗口/内分泌前台让人看了实物，他们大概意思是那支笔不能自己随便恢复打，降糖药也别自己乱吃，具体要等内分泌医生正式看了再调。我现在还是没让她打针，也没让她吃降糖药。\n\n妇科那边我也打电话问了，对方说现在好像还没有能拿的病理结果，或者说还没到医生正式解释的复诊点，我也没完全听明白。她们说低血糖和降糖药可以先处理，妇科复诊晚一两天大概可以，但如果下面那个地方红肿疼痛明显加重、发烧发冷、流脓变多、出血，或者走路疼得更厉害，就要当天回妇科门诊或急诊。\n\n现在我们还在等内分泌叫号。医生我想再确认一下：等号这段时间降糖药是不是继续一律不碰？她要是只是虚、没劲但不出汗不心慌，是不是先让她坐着休息、少量吃点饼干面包就行？妇科那边如果没有这些加重情况，顺延一两天应该还能接受吧？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00184",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+980min",
+      "text": "你们已经安全到医院了，药房和内分泌前台也看过了实物，你这一路安排得非常稳妥，辛苦了。\n\n针对你现在问的三件事，我逐一明确回答：\n\n1. 等号这段时间降糖药是不是继续一律不碰？\n对，继续一律不碰。药房窗口说得完全正确，在内分泌医生正式看过、核对清楚那支笔和所有降糖药之前，绝对不能自己恢复打针或吃药。袋子收好，等会儿直接拿给接诊医生看。\n\n2. 只是虚、没劲但不出汗不心慌，能不能坐着休息、吃点饼干面包？\n可以。她昨晚刚经历过低血糖，身体还在恢复期，觉得虚弱、没力气是正常的。让她安心坐在候诊椅上休息，不要勉强走动。包里带的饼干、面包现在就可以让她少量吃一点垫垫肚子，这属于“防饿”的食物，不是急救用的糖，慢慢吃就行。只要她没有再出冷汗、手抖、心慌，就不需要额外喝含糖饮料。\n如果等待时间比较长（比如超过两三个小时），中间可以再让她吃一点小零食，防止血糖慢慢往下掉。但如果她又出现心慌、出汗、手抖，就立刻换成糖果或甜饮料，按我们之前说的处理。\n\n3. 妇科复诊顺延一两天能不能接受？\n完全可以接受。妇科电话里说得很清楚：低血糖和用药安全是今天的第一优先级，先处理好这个。只要外阴肿块那个地方没有出现红肿疼痛明显加重、发烧发冷、流脓变多、出血或者走路疼得更厉害这些情况，晚一两天去复诊是安全的。你就安心陪她在内分泌这边等叫号，不用两头跑。\n\n总结一下现在要做的：\n- 降糖药继续收在袋子里，等会儿给医生看；\n- 让她坐着休息，少量吃点饼干面包垫肚子；\n- 留意有没有再出冷汗、心慌，如果没有就踏实等叫号；\n- 妇科那边只要没有加重的表现，就先放一放。\n\n你已经做得非常好了，现在就陪着她安心等叫号。有任何新变化随时告诉我。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00200",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1040min",
+      "text": "医生，我们刚看完内分泌门诊出来了。医生当面看了那支胰岛素笔和药盒，系统里也查了一些记录，现场又测了一次指尖血糖，我记得大概是6.0左右。等的时候她吃了几口饼干/面包，没有再出汗、手抖、心慌，也没有迷糊叫不醒，就是人还是虚，想回家躺着。\n\n内分泌医生口头交代的大概是：那支速效胰岛素先不要自己恢复打，其他看不准的降糖药也先别自己吃，等他们明确方案；今天先规律吃饭、少量多餐。让我们记餐前和睡前血糖，明天或者48小时内带记录复诊/电话回报。低于3.9，或者又出汗手抖心慌，就按低血糖处理，不缓解就急诊。\n\n我现在脑子有点乱，能不能麻烦您帮我把今晚到明天整理成最简单的执行清单？比如：\n1. 今天回家后晚饭前、睡前测就行吗？中间要不要测？\n2. 血糖低于多少马上吃糖？吃多少、多久复测？\n3. 什么情况不用再犹豫直接急诊？\n4. 明天是三餐前和睡前都记下来，然后报给内分泌，是这样吗？\n\n妇科那边病理还是没正式结果。她现在不太愿意多说下面的情况，只说没比昨天更疼；也没发烧发冷，没说流脓变多或出血。那是不是就还是按您前面说的，先盯红旗，1-2天内再去妇科复诊/问病理？",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00206",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1040min",
+      "text": "你们辛苦了，内分泌医生已经当面核对过药盒、测了血糖6.0，人清醒、症状缓解，说明最危险的时候已经过去。你现在脑子乱很正常，我帮你把今晚到明天的安排整理成最简单的清单，你照着做就行：\n\n一、今天回家后怎么测血糖？\n1. 晚饭前测一次。\n2. 睡前测一次。\n3. 中间要不要测？如果她状态平稳、没有出冷汗/手抖/心慌，就不用加测；但如果她又说发慌、出汗、手抖，随时立刻测。\n\n二、血糖低于多少吃糖？吃多少？多久复测？\n1. 只要血糖低于3.9，或者虽然没测但她出现出冷汗、手抖、心慌，就马上处理。\n2. 立刻让她吃15克左右的“快糖”：比如3-4块硬糖果，或喝小半杯（约150毫升）含糖饮料/果汁。注意：这时候要用纯糖，不要用饼干面包代替。\n3. 吃完坐着休息，15分钟后复测一次血糖。如果升到3.9以上且症状缓解，再让她吃一两块饼干或一小片面包垫肚子防回落；如果还是低于3.9或没缓解，再吃一次同等量的糖，再过15分钟复测。\n\n三、什么情况不用犹豫直接去急诊？\n遇到以下任何一条，不要再等，直接去急诊或打120：\n1. 吃了两次糖（过了30分钟）血糖还是低于3.9，或者心慌出汗手抖一直不缓解。\n2. 人变得迷糊、说话含糊、叫不太醒，或者出现抽搐。\n3. 突然晕倒或完全无法吞咽（这时候不要强行喂糖水，防呛咳）。\n\n四、明天怎么记血糖报给内分泌？\n对，你的理解完全正确。明天记录四个点：早餐前、午餐前、晚餐前、睡前。把这四个数字写在纸上或手机里，明天或48小时内按内分泌医生交代的方式带记录去复诊或电话回报。\n\n五、降糖药的底线\n那支速效胰岛素笔和所有看不准的降糖药继续收好，绝对不要自己恢复打针或吃药，一切等内分泌医生明确新方案后再动。\n\n六、妇科那边怎么办？\n你的判断是对的。她现在没比昨天更疼、没发烧发冷、没流脓变多或出血，这些都没有触发红旗。所以外阴这边先继续观察，按原计划1-2天内去妇科复诊问病理结果就可以。\n但请私下温和地提醒她留意这几个信号：如果下面突然明显更疼、红肿范围扩大、发烧发冷、流脓变多变臭、出血增多，或者走路疼得受不了，就不要等，当天回妇科门诊或急诊。\n\n你今天一路处理得非常稳当，现在带她回家好好休息，少量多餐吃饭，床头照旧放一点糖果或甜饮料备用。有任何拿不准的随时找我。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00220",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1340min",
+      "text": "医生，我们回家歇了一阵，刚刚晚饭前测了指尖血糖，纸上记的是5.8左右。她现在人清醒，能说话也能吞咽，就是一直说虚、累，想躺着；没有再像昨晚那样冒冷汗、手抖、心慌，也没有迷糊叫不醒。\n\n那支胰岛素笔和那些看不准的降糖药我都单独收起来了，今晚没敢动，也没让她吃。床头我放了糖和一瓶甜饮料。\n\n我怕我记错，再跟您对一下：今晚还要睡前再测一次；如果低于3.9，或者又出汗手抖心慌，就先吃几块糖/喝点甜饮料，15分钟后再测；要是两次还不行，或者人迷糊叫不醒、不能吞咽，就直接急诊/120，对吧？\n\n还有明天我就记早餐前、午餐前、晚餐前、睡前这四个数。内分泌那边我有点没听清，是明天先打电话报这几个数就行，还是一定要带着记录再跑一趟门诊？如果电话没人接，是不是48小时内带记录去复诊也可以？\n\n妇科那边她只说下面没比昨天更疼，也没发烧发冷，没说流脓变多或出血。这个我就先盯着红旗，1-2天内再去问病理和复诊，对吗？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00226",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1340min",
+      "text": "你做得非常好，每一步都执行得很到位。晚饭前血糖5.8是安全的，人清醒、能说话吞咽、没有再出冷汗手抖，说明现在状态平稳，你可以稍微松口气了。\n\n我把你问的几件事逐一明确确认一下，你照着做就行：\n\n1. 今晚还要不要测？怎么处理？\n对，今晚睡前再测一次。如果低于3.9，或者她又出现出汗、手抖、心慌，就立刻让她吃几块糖或喝小半瓶甜饮料（约150毫升），坐着休息15分钟后再测一次。如果升到3.9以上且症状缓解，可以再吃一两块饼干垫肚子；如果两次处理后还是不行，或者人迷糊叫不醒、不能吞咽，就不要犹豫，直接去急诊或打120。你的理解完全正确。\n\n2. 明天怎么记？怎么报给内分泌？\n明天就按你说的，记四个数：早餐前、午餐前、晚餐前、睡前，写在纸上或手机里。关于怎么报给内分泌：建议明天白天先试着打内分泌门诊电话，把这四个数报给他们听，问清楚下一步用药怎么调。如果电话一直没人接，不用着急，在48小时内带着这张记录纸直接去门诊复诊就可以，这样最稳妥，不会耽误事。\n\n3. 妇科那边怎么办？\n对，目前她没有更疼、没发烧发冷、没流脓变多或出血，这些都没触发红旗。你就继续按我们说的盯着这些信号，1到2天内去妇科问病理结果和安排复诊就可以。她觉得不好意思说没关系，你不用反复追问细节，只要温和地提醒她一句“如果觉得下面突然更疼、红肿变大、发烧或者流东西变多了，一定要马上告诉我”就行，把判断权交给她，她会安心的。\n\n最后再叮嘱两句：那支胰岛素笔和所有降糖药继续单独收好，今晚绝对不要用；床头放的糖和甜饮料保持原位，方便随时拿到。今天你们跑了一天非常辛苦，今晚你也尽量跟着早点休息，但睡前那次血糖一定记得测。有任何拿不准的随时找我。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00240",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1580min",
+      "text": "医生，睡前这次刚测了，血糖仪是6.1左右。我把数记小纸条上了。\n\n她现在已经躺下了，人清醒，能正常说话、喝水吞咽，没再出汗、手抖、心慌那些，就是说虚、累，想睡。那支胰岛素笔和那几样看不准的降糖药我都还收在袋子里，今晚没碰。\n\n床头糖和甜饮料也放好了。我今晚就按您说的看着：低于3.9或者又出那些低血糖症状就先补糖，15分钟后再测；两次还不行，或者叫不醒、不能吞咽就急诊/120。明天我记早饭前、午饭前、晚饭前、睡前四个数，再联系内分泌，电话不通就48小时内带纸去复诊。\n\n妇科那边她只说下面没更疼，也没发烧这些，我就不老问她了，先盯红旗。这样今晚应该可以让她睡了吧？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_033__Qwen3.8-Max",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 4,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7320508075688772,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 10
+}

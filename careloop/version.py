@@ -1,0 +1,5 @@
+FRAMEWORK_NAME = "CareLoop"
+DISTRIBUTION_NAME = "careloop"
+PACKAGE_VERSION = "1.2.2"
+RUNTIME_VERSION = "careloop_runtime_lite_public_1_2_2"
+FRAMEWORK_STATUS = "research_evaluation_framework_not_clinically_validated_or_deployment_ready"

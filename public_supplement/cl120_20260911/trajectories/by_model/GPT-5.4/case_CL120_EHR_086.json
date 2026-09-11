@@ -1,0 +1,647 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "7d87f1eeaa1d43506695de47f73a664e1f5820a2e0f8506e6b661f06e4fa94d9",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_086__anon_586832ffe551c644",
+    "packet_sha256": "830e5a8b61f2764f6dd779e9bcf8b3659a9243d5cedc5846efef9d02d2265854"
+  },
+  "case_id": "case_CL120_EHR_086",
+  "case_metadata": {
+    "blocking_residual_risk_count": "4",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "pediatrics",
+    "evidence_integration_burden_level": "low",
+    "evidence_integration_burden_score": "0",
+    "expected_closure_within_100": "maybe",
+    "expected_evidence_channel_count": "5",
+    "expected_turn_budget_category": "long",
+    "friction_burden_level": "high",
+    "friction_burden_score": "2",
+    "friction_intensity": "heavy",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "4",
+    "primary_friction": "low_adherence_or_refusal",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "moderate",
+    "responsibility_chain_burden_score": "1",
+    "responsibility_chain_requirement_count": "7",
+    "secondary_frictions": "caregiver_conflict_or_fatigue | document_or_image_quality_problem",
+    "starting_phase": "result_return",
+    "target_problem": "caregiver_medication_error",
+    "temporal_burden_level": "high",
+    "temporal_burden_score": "2",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "EHR/出院信息提示：侧脑室较前增宽，注意动态随访头颅B超，警惕脑积水；存在家庭用药混乱风险。",
+      "住院针剂/固尔苏等已被护士/药房确认不是居家继续用药；家庭药物核对后形成D3每日1粒、铁剂每日2.5ml、AD暂停的方案。",
+      "照护者已执行用药方案：D3一天1粒、铁剂2.5ml、AD未再喂；漏服不加倍、吐奶不追补规则已被记下。",
+      "头颅B超原预约错过后，医生推动联系超声窗口和新生儿随访门诊，后续改期并实际完成检查。",
+      "家属回报并经线下护士/门诊医生确认：本次头颅B超为双侧侧脑室轻度/稍增宽，较前无明显加重，当前暂不急诊、不住院。",
+      "医生解释该结果不是彻底没事，而是目前稳定、需约1个月后复查头颅B超并去早产儿/新生儿随访门诊。",
+      "医生给出家庭群纸条，包含结果含义、复查责任、用药边界和红旗急诊条件。",
+      "照护者确认已转发家庭群、写入备忘录，家人不再强硬阻拦；并能复述：不用马上住院急诊，但1个月后必须复查；药仍为D3每日1粒、铁剂2.5ml、AD暂停；喷射吐、抽搐/发青、叫不醒、吃奶明显变差、前囟鼓紧等直接急诊。",
+      "目前宝宝短期内吃奶、反应与前几天相近，无新急诊红旗。"
+    ],
+    "if_continued_next_focus": "若继续运行，下一步只需在1个月复查窗口前确认预约/提醒是否已落实，或在出现喷射呕吐、抽搐/发青、叫不醒、吃奶明显下降、前囟明显鼓紧等红旗时立即急诊；无需继续重复照片/窗口摩擦。",
+    "rationale": "本案是早产/极低出生体重儿出院后用药混乱与头颅B超随访结果回流的 bounded episode。当前核心责任链已闭合：出院后家庭用药已通过门诊/药房/药袋读回核对，形成并执行了明确方案；头颅B超虽曾错过，但已补做，结果经线下新生儿随访门诊/护士解释为双侧侧脑室轻度/稍增宽、较前无明显加重，当前无急诊/住院指征；AI医生随后将结果转化为家属可执行的家庭纸条，强调“目前稳定但不是没事”，明确1个月后复查头颅B超并随早产儿/新生儿门诊复诊，红旗直接急诊。照护者已把纸条转发家庭群、写入备忘录，并能复述稳定含义、复查必要性、用药规则和急诊触发点。剩余的早产儿长期随访和1个月后复查属于有责任人、时间窗、验证路径和升级条件的 bounded residual follow-up，不再阻断当前 episode closure。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：约1个月后复查头颅B超并随早产儿/新生儿随访门诊复诊；责任主体为家属执行预约/到诊，线下新生儿随访团队解读，若出现红旗则提前急诊。",
+      "bounded_residual_followup：早产/极低出生体重儿的长期发育、营养、神经系统随访仍需持续管理，但不属于当前用药混乱与本次头颅B超结果回流 episode 的未闭合 blocker。",
+      "bounded_residual_followup：当前头颅B超资料可靠性主要来自家属读回加线下医护确认，而非AI直接看清原图；但已经有外部临床确认和行动计划，足以支撑当前 episode 安全闭合。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GPT-5.4",
+  "events_public": [
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00001",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "case_title": "早产外貌宝宝出院后用药和复查都乱了",
+        "opening": true,
+        "relationship_to_patient": "caregiver",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+0min",
+      "text": "宝宝刚从新生儿科回来不久，出生时很小，之前插过管、打过针，出院单上写着还要看头颅B超、注意脑室什么的。我这两天喂药和复查时间都搞乱了，家里人还说孩子现在看着还行别折腾。我拍的出院纸也有点糊，能不能帮我看看哪些事最不能拖？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我先调取这名新生儿在 CareLoop 联合医疗网络内已授权可见的出院记录、NICU/新生儿科住院病历、出院医嘱、近期检查结果（尤其头颅超声/颅脑B超、眼底筛查、听力筛查、黄疸/血常规/电解质等）、当前用药/出院带药清单、随访时间线，以及家庭照护可及性信息。请尽量按时间顺序返回关键日期、出生孕周/出生体重、主要住院问题、出院后必须完成的复查项目及建议时限。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00010",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "能帮，而且先抓最不能拖的。对这种早产/低出生体重、出院后还被交代做头颅B超的宝宝，最不能拖的通常是两件事：一是按时复查头颅B超和新生儿/早产儿随访；二是把现在正在吃的药、每种怎么吃、吃到哪天先立刻核对清楚。哪怕孩子现在看着还行，也不能因为看着稳定就把这些随访停掉。\n\n先看有没有需要马上就医的情况：如果宝宝出现奶量明显变差、反复吐、叫不醒/特别没精神、呼吸急促或发青、发热或体温过低、抽动、呻吟、前囟明显鼓、尿明显变少，请现在就去急诊。\n\n如果目前没有这些危险表现，你现在先做两件事并直接发我：\n1）把出院单上你能看清的几行关键内容逐字打出来：出院诊断、出院后用药、复查科室、复查时间、头颅B超建议那一行；\n2）把家里现在实际在喂的每一种药名、一次喂多少、一天几次、上一次是什么时间，按清单发我。\n\n如果出院单还是看不清，不要硬猜，优先把文字读给我。我再帮你按轻重缓急排好：今天必须做什么、这周内不能错过什么。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00026",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "家属可提供部分出院后随访和实际喂药读回；头颅B超随访仍未预约，出院用药仍需进一步核对。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00027",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "头颅B超/脑室增宽动态随访目前仅有出院建议，尚无预约或检查完成信息。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "家属用药读回不可靠，需当天完成药物核对；院内已结束用药不应默认在家继续。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00029",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+14min",
+      "text": "存在因家庭劝退和执行困难导致头颅B超/早产儿随访未及时预约的风险。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00034",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+14min",
+      "text": "医生，我照您说的先不拍了，我照纸读，可能有漏字。\n\n宝宝现在刚吃完奶睡着，吃奶还可以，脸色我看着没有发青，也没有抽、没有一直吐，叫醒吃奶也能醒，尿布今天也有湿的，体温刚量是36点多。暂时没看到您说那种马上急诊的样子。\n\n出院纸我能看清的几行是：\n- 上面写“早产儿”“低出生体重儿”这些。\n- 还有一行像是“头颅B超随访”“动态随访”。\n- B超那里我能读到“侧脑室较前增宽”，后面有“警惕脑积水”几个字，我看到这个就很慌。\n- 复查那块好像写“早产儿随访门诊”或者“新生儿随访”，但日期我没看明白，好像不是已经约好的号。\n- 头颅B超现在我们还没约上，家里人还说孩子看着可以先等等，我有点不敢等。\n\n药这边我把手边实物说一下，可能我搞乱了：\n1. 有个滴剂，像是“维生素AD滴剂”，我昨天晚上大概8点喂过1粒/一滴那种，今天还没敢喂。\n2. 还有一个写“维生素D3”的小瓶，我不知道跟上面那个是不是重复，家里人说每天滴一滴，但我怕两个一起喂多了。\n3. 有个药袋上写得像“铁剂”还是“蛋白琥珀酸铁口服液”，我看不太准，之前我好像喂过一次，量是按小滴管一小格，大概上午10点多，但我现在不确定是不是出院就让吃。\n4. 住院时我听过“固尔苏、葡萄糖、盐水、碳酸氢钠”这些词，但家里没有这些针，我也没用，就是怕是不是单子上也写了我误会了。\n\n医生，您直接跟我说一下：像AD和D3这种不确定是不是重复的，我今天是不是先只喂一种还是先都停一下等核对？铁剂如果不确定剂量还能不能喂？还有头颅B超这个“侧脑室增宽、警惕脑积水”，今天是不是必须打电话给原新生儿科约，还是可以等到随访门诊？我怕家里人又说我太紧张。",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00039",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+14min",
+      "text": "我先调取这名宝宝在 CareLoop 联合医疗网络内已授权可见的本次新生儿科住院/出院记录、出院小结原文、出院医嘱、出院带药/用药清单、近一次头颅B超报告原文、相关检查结果时间线，以及早产儿/新生儿随访与头颅B超预约或未预约信息；同时查看家庭照护可及性信息。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00041",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+14min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00043",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+14min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+14min",
+      "text": "你这次不是太紧张，反而是抓到了重点。我直接给你结论：\n\n1）头颅B超这件事不要等\n今天就联系原新生儿科/出院医院，约头颅B超或新生儿/早产儿随访；如果今天约不上，至少今天把电话打出去、把最早时间定下来。因为出院单既然写了“侧脑室增宽、警惕脑积水、动态随访”，就不属于“看着还行可以先拖着”的事。\n\n2）AD 和 D3 先不要同时喂\n在没核对清楚前，今晚先二选一，不要两个都喂。我更倾向于你先把维生素AD和维生素D3都先暂停这一晚，明天白天尽快找开药的科室或药房核对后再恢复；漏这一晚通常比重复补充更安全。以后确认前，也不要把 AD 和 D3 一起常规喂。\n\n3）铁剂如果剂量不确定，先别再喂\n尤其是你现在连是不是出院后继续吃、具体吃多少都不确定，就先暂停，等核对清楚再喂。不要凭“小滴管一小格”继续猜。\n\n4）住院时那些针药你家里不用管\n你说的固尔苏、葡萄糖、盐水、碳酸氢钠，多半是住院期间治疗，不是回家自己继续用的，不要因为看到这些名字就自己加用。\n\n你现在最该做的是两步：\n- 先打原新生儿科/出院病区电话：说明“早产低体重儿出院，单子写头颅B超随访，侧脑室增宽、警惕脑积水，目前还没预约上”，让他们告诉你最早检查或随访时间。\n- 同时把家里3样东西放一起：维生素AD、维生素D3、那个疑似铁剂。给对方逐个读药名，请他们明确：哪个继续、哪个停、每次多少、一天几次、从哪天开始。\n\n如果宝宝出现下面任何一种，不要等预约，直接急诊：吃奶明显变差、反复喷射样吐、叫不醒/越来越蔫、抽动、呼吸异常、脸色发青、前囟明显鼓、体温异常、尿明显变少。\n\n你先去打电话，打完把对方回复我的原话发我：1）B超/随访约到哪天；2）AD和D3到底留哪个；3）铁剂是否需要吃、一次多少。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00062",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+52min",
+      "text": "医生，我刚挂了原来新生儿病区护士站电话，护士大概说的是：固尔苏、葡萄糖、盐水、碳酸氢钠这些是住院时候用的，不是我们家里继续用的，这个我算是放心一点了。\n\n但是AD、D3还有那个像铁剂的药，她没在电话里给我定具体怎么吃，说要按出院带药清单、药袋标签，最好今天工作时间再问门诊药房/出院结算药房，或者带着药盒和出院单去早产儿随访门诊复核。我怕我记漏了，她意思不是已经确认剂量了。\n\n头颅B超还是没约上，她说走早产儿随访门诊/新生儿随访，必要时门诊再开单或者联系超声预约。我现在有点卡住：今天剩下时间我是先打药房电话核药，还是先挂早产儿随访门诊？如果挂不上号，要不要直接抱孩子去医院窗口问？家里人又说宝宝睡得挺好别折腾。\n\n宝宝现在刚醒了一下又睡了，吃奶刚才还行，没发青没抽，也没喷射吐。但我今晚药还是不敢喂错——那是不是按您刚才说的，AD和D3今晚先都不喂，铁剂也先停，等药房核清楚再说？还是AD/D3必须留一个？我怕早产儿停一天会不会不好。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00068",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+52min",
+      "text": "对，今晚先按更安全的做：AD先不喂，D3先不喂，那个像铁剂的药也先停，等明天把药袋标签/出院带药清单核清楚再恢复。停这1晚通常问题不大，但把AD和D3重复、或者铁剂剂量喂错更不安全。所以今晚不是“必须留一个”，而是先都不要自行猜着喂。\n\n今天剩下时间的优先顺序我给你排好：\n1）先挂早产儿随访门诊/新生儿随访，这是最卡后面头颅B超的关键；\n2）挂号同时，能打通的话再打门诊药房/出院药房电话核药；\n3）如果线上挂不上、电话也说不清，明天工作时间直接带出院单、药袋、药盒去早产儿随访门诊或医院窗口问，不要因为“宝宝看着还行”就往后拖。\n\n头颅B超不是今晚半夜立刻冲急诊去做的事，但也不是可以拖很多天不管的事。你们现在没有喷射吐、抽动、发青、叫不醒、前囟鼓这些急症表现，可以按“尽快挂随访并推动B超预约”的路线走。\n\n你现在就回我两件事就行：\n- 早产儿/新生儿随访有没有挂到号，时间是哪天；\n- 药房电话有没有打通，药袋上能不能逐字读出3个药的名字。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00083",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+182min",
+      "text": "医生，我回您一下，随访号挂到了，是明天上午的早产儿/新生儿随访门诊，具体我手机上看是上午的号，我等下把截图也存好，明天一早带宝宝去。\n\n但是头颅B超还没算约上，电话/窗口那边说要明天门诊医生看了以后开单，再协调超声排时间。所以我有点怕明天去了又排不上，不过总算不是完全没路子了。\n\n药房电话我也打了，没把AD、D3和那个像铁剂的剂量核清楚，她让我们明天把药袋标签、药盒、小瓶子和出院带药清单都带过去现场核对。我现在已经都装一个袋子里了，怕忘。\n\n宝宝这两个多小时睡过，醒来吃了一次奶，暂时没看到发青、抽、喷射吐、叫不醒，体温也没觉得异常，尿布也有湿的。那我今晚就继续按您说的，AD、D3、那个铁剂都先不喂，明天现场问清再说，对吧？还有明天这个门诊必须抱宝宝本人去吧，不是我一个人拿单子去就行吧？今晚如果突然吐得厉害、发青、抽或者叫不醒，我就不等明天直接急诊，是这个意思吗？",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00089",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+182min",
+      "text": "对，你今晚就按这个执行：AD、D3、那个像铁剂的药都先不要喂，明天到门诊把药袋标签、药盒、小瓶子和出院带药清单现场逐一核清后再决定。停今晚这一晚，通常比重复或剂量喂错更安全。\n\n明天这个门诊，最好抱宝宝本人去，不建议只拿单子你一个人去。因为门诊医生除了看出院资料，还可能需要直接看宝宝状态、测体重、问吃奶和大小便，头颅B超开单和后续安排也更顺。\n\n你今晚理解得对：如果突然出现明显呕吐尤其喷射样、发青、抽动、叫不醒/越来越蔫、吃奶明显变差、呼吸不对劲、体温明显异常、尿明显变少，就不要等明天，直接急诊。\n\n明天到门诊时你就抓3件事，别被带偏：\n1）先让医生明确头颅B超什么时候开、什么时候做；\n2）把“侧脑室增宽、警惕脑积水、动态随访”这句主动告诉医生；\n3）当场把AD、D3、铁剂逐个核清：是否都需要、哪个停、哪个留、一次多少、一天几次、从哪天开始。\n\n你今晚已经处理得很对了，不是在瞎折腾，是在避免漏复查和喂错药。明天看完门诊后，把医生关于头颅B超安排和3种药怎么吃的原话发我，我再帮你一起核一遍。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00106",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1082min",
+      "text": "医生，我们现在已经出门了，快到医院/在候诊这边了。昨晚按您说的那三个药都没再喂，宝宝夜里大概还算平稳，吃奶、尿布都有，没出现您说的发青、抽、喷射吐、叫不醒那些。\n\n药盒、药袋、小瓶子、出院单我都装袋子带着了，宝宝本人也抱来了。我现在脑子有点乱，怕进去一紧张说漏。等会儿见门诊医生，我是不是一开口就说：“早产低出生体重，出院单写侧脑室较前增宽、警惕脑积水，要安排头颅B超随访；另外AD、D3和铁剂吃法没核清，想现场核对”？\n\n还有就是如果今天B超排不到当天做，我要不要请门诊医生一定给个最早日期，或者让他写清楚多久内必须做？我怕只说“回去等预约”又拖着了。",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1082min",
+      "text": "对，就这么说，而且可以更利落一点，直接按这几句讲：\n\n1）“宝宝是早产、低出生体重儿，出院单提示侧脑室较前增宽，警惕脑积水，需要头颅B超动态随访。”\n2）“今天想先明确头颅B超怎么开、最早什么时候能做。”\n3）“另外把出院带药现场核对一下：维生素AD、维生素D3、铁剂到底哪些要吃，分别怎么吃。”\n\n如果你一紧张，就照着手机念这三句就行，已经够关键了。\n\n如果今天B超做不了，要当场问清两件事：\n- 最早能排到哪一天；\n- 医生认为最晚不要超过多久做。\n\n最好请医生把安排写在病历/单子上，或者你当场把医生原话记下来、拍下挂号单和申请单。不要只听“回去等预约”但没有具体日期。\n\n你还可以补一句：\n“如果不能当天做，麻烦告诉我这几天在家需要重点观察哪些表现，出现什么要马上急诊。”\n\n昨晚那三个药先没喂，这一步你们做得对。现在先别自己恢复，等现场核清再说。\n\n看完门诊后，你把两类信息发我就行：\n1）头颅B超是今天做了，还是约到哪天；\n2）AD、D3、铁剂最后分别怎么吃。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00125",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1167min",
+      "text": "门诊已开头颅B超申请，超声窗口排到两天后上午；目前未检查、无报告。若期间出现喷射吐、抽动、发青、叫不醒、吃奶明显差、前囟明显鼓起等，应急诊。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00126",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+1167min",
+      "text": "门诊/药房窗口已核药：住院针剂不是家庭用药；出院带药为D3和铁剂；家中AD暂不和D3叠加。照护者仍需按药袋标签把D3、铁剂具体剂量频次读回确认。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00130",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1167min",
+      "text": "医生，我们刚从随访门诊出来，在药房窗口这边坐下喘口气。按您说的我照手机念了，门诊医生看了宝宝，也问吃奶、吐不吐、抽不抽这些，还称了体重测体温。现在没有叫我们马上急诊或住院，但他说不是不用管了，头颅B超还是要随访。\n\nB超单已经开了，今天没排上，窗口给约到两天后上午，具体几点我等会儿再看单子，反正还没做，所以现在没有结果。我记得窗口也说了，这两天如果喷射吐、抽、发青、叫不醒、吃奶明显差、前囟鼓起来，就别等预约，直接急诊。\n\n药这边门诊医生和药房窗口看了我带的实物，说固尔苏、碳酸氢钠、氯化钠、葡萄糖这些不是回家用的。现在回家主要就是D3和铁剂，家里那个维生素AD小瓶先不要跟D3叠着吃。\n\n我现在最怕的是回家把D3和铁剂的滴数、毫升、一天几次又弄乱。您能不能帮我整理成最简单的这两天清单？我可以照药袋标签读给您听：一个是维生素D3，另一个铁剂我看着像什么口服液，剂量我怕读错，您让我按哪几行读？B超做完我再把结果回来发您。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00136",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1167min",
+      "text": "可以，我先只核最关键的几行，别一股脑全读。\n\n请你按这个顺序逐字读给我：\n1）维生素D3药袋/药盒上的药名\n2）“规格”那一行\n3）“用法用量”那一行\n4）铁剂那个口服液的药名\n5）铁剂的“规格”那一行\n6）铁剂的“用法用量”那一行\n\n如果标签上还有“每次__滴 / __毫升”“每日__次”“口服”这种字样，也一起读。\n\n先不要自己猜，也先不要读一大段说明书。你就按上面6行，一行一行发我，我帮你整理成这两天最简单清单。\n\n目前先定下来的事只有3条：\n- 头颅B超已约到两天后，先别拖掉；\n- 家里的维生素AD先不要和D3一起用；\n- 固尔苏、碳酸氢钠、氯化钠、葡萄糖这些不是回家用药。\n\n如果这两天出现喷射吐、抽动、发青、叫不醒、吃奶明显变差、前囟鼓起来，不等B超，直接急诊。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00152",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1177min",
+      "text": "医生，我照药袋标签一行一行打，字有点小，我尽量按原字写，您帮我看我理解得对不对：\n\n1）维生素D3药名：维生素D3滴剂  \n2）规格：我看是 400单位/粒，后面还有胶囊型/滴剂这种字样  \n3）用法用量：口服，一次1粒，每日1次。药房的人说是剪开/拧开滴到奶嘴或小勺里喂，我怕“1粒”和“几滴”这个别弄错。\n\n4）铁剂药名：蛋白琥珀酸铁口服溶液  \n5）规格：这里写 15ml：40mg，我不太懂这个mg是不是铁的量  \n6）用法用量：口服，一次2.5ml，每日1次。标签上就是这么写的，我手边有药房给的小量杯/针筒那种。\n\n所以我现在是不是就按：D3每天一次1粒，铁剂每天一次2.5ml，AD先不吃？这两个要不要分开早晚喂，还是都白天喂也行？铁剂能不能混一点奶里，不然怕宝宝不吞。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00158",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1177min",
+      "text": "对，你现在可以先按这个最简方案执行：\n\n1）维生素D3：每天1次，每次1粒。\n2）铁剂：每天1次，每次2.5ml。\n3）家里的维生素AD：先不要和D3一起吃，先停着。\n\n你对“1粒”和“几滴”的担心是对的：既然药袋写的是“400单位/粒、一次1粒”，那就按“1粒”喂，不要自己再换算成几滴。按药房教你的方式，把这1粒剪开/拧开后喂进去就行。\n\n铁剂这边，药袋既然写的是“一次2.5ml，每日1次”，就用针筒/量器量到2.5ml，不要凭感觉倒。你看到的“15ml:40mg”通常是这瓶药的规格信息，你眼下最该照着执行的是药袋上的每次毫升数，也就是2.5ml。\n\n时间上不用太死板，不一定非得一早一晚分开；都放在白天也可以。为了不乱，建议固定成每天差不多同一时间。\n\n喂法上：\n- D3可以单独喂。\n- 铁剂最好不要混在一整瓶奶里，怕宝宝没喝完，实际剂量就不准了。可以用针筒慢慢喂到嘴里，或者只混很少量奶、确保能全部喝完。\n- 如果你想更稳妥，D3和铁剂可以错开喂，比如一个上午、一个下午，这样家里更不容易记混，也方便观察宝宝吃后有没有不适。\n\n你这两天可以直接照这个家庭清单：\n- 上午或白天固定时间：D3 1粒\n- 另一个固定时间：铁剂 2.5ml\n- AD暂停\n- 两天后按约定去做头颅B超\n\n如果宝宝吃药后明显吐得厉害、吃奶变差，或者这两天出现喷射吐、抽动、发青、叫不醒、前囟鼓起来，不等B超，直接急诊。\n\n你把头颅B超具体预约时间也记好；做完后把结果或医生原话发我，我继续帮你看。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00173",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1192min",
+      "text": "医生，我先按您这个记了，回家就把AD那个小瓶单独收起来不喂了。D3就一天1粒，铁剂一天2.5ml，用针筒量，不倒一整瓶奶里。我打算一个上午一个下午，省得家里人也跟着弄混。\n\n我还有两个实际问题怕到时候慌：如果刚喂完D3或者铁剂，宝宝很快吐奶了，是马上再补一遍，还是先不补、等第二天正常喂？如果哪天我们漏了一次，第二天能不能补两次，还是也不补？\n\nB超单我等会儿坐车前再看具体几点，做完以后我如果看不懂报告，是把报告上“超声提示/结论”那几行打给您，还是把线下医生怎么说的也一起发？",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00179",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1192min",
+      "text": "这两个都按同一个原则：不要补双倍。\n\n1）如果刚喂完很快就吐奶了：\n- 先不要立刻再补一遍。\n- 当天先观察，第二天按原计划正常喂就行。\n- 因为到底吐出了多少很难判断，立刻补容易变成重复喂。\n\n2）如果哪天漏了一次：\n- 第二天也不要补两次。\n- 还是恢复到原来的每天一次。\n\n所以你就记一句最省心的话：吐了不追补，漏了不加倍，第二天照常。\n\nB超做完后，最好两样都发我：\n1）报告上“超声提示/结论”那几行原文；\n2）线下医生怎么解释、怎么安排复查的原话。\n\n如果你来不及发整段，至少把这几项打给我：\n- 是否写了脑室增宽/侧脑室增宽\n- 是较前好转、稳定，还是加重\n- 有没有提到脑积水、出血后改变、随访建议\n- 下次让多久复查\n\n这两天继续按你现在这个分法就很好：D3一天1粒，铁剂一天2.5ml，AD先停。若出现喷射样呕吐、抽动、发青、叫不醒、吃奶明显变差、前囟鼓起，不等B超，直接急诊。",
+      "turn": 8,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00196",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+1207min",
+      "text": "好，医生，我记下这句了：吐了不追补，漏了不加倍，第二天照常。\n\n现在我已经把纸条写好了，AD小瓶也单独收起来了，等会儿跟家里人也说都按这张来：D3一天1粒，铁剂一天2.5ml，先不喂AD。宝宝刚吃完奶睡着了，看着还平稳，暂时没有您说的那些急的表现。\n\nB超还是两天后上午去做，没做之前我就先盯着。做完我不光拍，我会把报告“超声提示/结论”那几行打出来，再把线下医生怎么说、让多久复查也发您。谢谢医生，我先照这个执行。",
+      "turn": 8,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00202",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+1207min",
+      "text": "好，就先按这张执行，今天不用再折腾改来改去。\n\n你们现在做得对：\n- D3 每天1粒\n- 铁剂 每天2.5ml\n- AD 先不喂\n- 两天后上午去做头颅B超\n\n宝宝目前看着平稳就继续观察。到做B超前，如果出现喷射样呕吐、抽动、发青、叫不醒、吃奶明显变差、前囟鼓起来，别等预约，直接急诊。\n\nB超做完后，把这3样发我就行：\n1）报告“超声提示/结论”原文\n2）线下医生怎么解释\n3）医生让多久复查\n\n你先安心按计划执行，有新情况随时发我。",
+      "turn": 9,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00217",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+4027min",
+      "text": "医生，我先跟您说一下，宝宝这两天药基本还是按纸条喂的：D3一天1粒，铁剂2.5ml，AD那个小瓶没再喂。有一次时间晚了点，但我没加倍补。\n\n宝宝现在看着还算平稳，吃奶也没明显变差，没有喷射吐、抽、发青、叫不醒，我摸着囟门也没觉得鼓得很明显。\n\n但是……今天上午那个头颅B超我们没做成。我夜里带宝宝太困了，早上出门拖拖拉拉，家里人又一直说“孩子看着还行，别折腾”，结果窗口时间已经错过了，现在没有B超报告，也没有医生解释。我心里挺慌的，怕把脑室增宽这个随访耽误了。\n\n医生您直接告诉我一下，我现在应该先打给谁？是超声窗口问能不能今天补做，还是打新生儿随访门诊，还是要重新挂号？如果今天补不上，能不能等重新预约，最多能拖几天？哪些情况是一出现就不能听家里人劝、必须马上急诊的？",
+      "turn": 9,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00223",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+4027min",
+      "text": "先别自责，现在最优先的是把检查重新接上，不是继续等。\n\n你现在按这个顺序做：\n1）先打超声窗口：问“今天错过头颅B超时间，能不能今天加号/候补补做，或者最近的最早空位是哪天？”\n2）如果超声窗口说今天补不了，立刻打新生儿随访门诊/开单医生门诊：说明“孩子是新生儿科出院后随访，出院单要求复查头颅B超，原本今天应做但错过了，现在想尽快补上，请问是否需要重新挂号，还是直接改期即可。”\n3）只有在对方明确说原单失效、必须重开时，再去重新挂号。\n\n所以不是先在家继续观望，今天就开始联系。一般优先问超声窗口能不能补做/改最近时间；补不上，再找新生儿随访门诊协助改期。\n\n在宝宝目前吃奶没明显变差、没有喷射吐、抽动、发青、叫不醒、前囟明显鼓起的前提下，通常可以等重新预约，但不要拖太久。我的建议是：尽量改到最近几天内，最好1–3天内；如果实在约不上，也尽量不要超过1周，还要看线下门诊是否认为需要更早。\n\n一旦出现下面任一条，不要再等预约，也不要听家里人劝，直接急诊：\n- 喷射样呕吐\n- 抽动/惊厥\n- 发青、呼吸异常\n- 叫不醒、反应明显变差\n- 奶量明显下降或吃不进去\n- 前囟明显鼓起、比平时紧张很多\n- 明显尖声哭闹、状态和平时很不一样\n\n你给窗口/门诊打电话时，可以直接照着这句说：\n“宝宝是新生儿科出院后随访，出院单要求复查头颅B超，之前提到要看脑室变化。今天上午原预约错过了。孩子目前生命体征看着还平稳，但我担心耽误随访，想问今天能否补做，若不能，最早能改到哪天？需不需要重新挂号或找门诊重开单？”\n\n药这边你现在先继续原方案，不用改：D3每天1粒，铁剂每天2.5ml，AD先不喂。\n\n你先去打电话；打完把对方回复原话发我，我帮你判断下一步到底是直接改期、找门诊，还是必须重新挂号。",
+      "turn": 10,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00238",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+4102min",
+      "text": "医生，我打完电话了。先打的超声窗口，他们说今天已经满了，不能当天加号也不能候补补做。窗口说我原来那张头颅B超单好像还没失效，可以改最近的空位，不一定要重新挂号重开。\n\n我又打了新生儿随访门诊，护士帮我登记协调了，说改到后天上午做。具体几点我等会儿还要再翻一下预约信息，怕我现在说错。\n\n宝宝现在刚睡下，看着还算平稳，吃奶没明显变差，也没有喷射吐、抽动、发青、叫不醒这些。药还是按纸条：D3每天1粒，铁剂2.5ml，AD小瓶继续收起来不喂。\n\n护士也跟我说了那些急的情况，如果喷射吐、抽、发青、叫不醒、吃奶明显下降、囟门鼓起来就别等后天，直接急诊。那这两天我就这样盯着，后天做完我把报告“超声提示/结论”那几行和线下医生原话发您，对吧？",
+      "turn": 10,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00244",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+4102min",
+      "text": "对，就这样执行。\n\n你这次处理得很好：已经把头颅B超重新接上到后天上午，而且目前宝宝也没有你前面说的那些急症表现，这样可以先继续观察，不需要自己再改药。\n\n这两天先保持不变：\n- D3 每天1粒\n- 铁剂 每天2.5ml\n- AD 继续先不喂\n\n后天做完后，把这几项发我就行：\n1）报告里“超声提示/结论”原文\n2）线下医生怎么解释\n3）医生让多久复查\n\n如果你一时看不懂整张报告，不用全抄，先把“提示/结论”那几行逐字发来也可以。\n\n这两天一旦出现下面任何一种，就不要等后天，直接急诊：喷射样呕吐、抽动、发青、叫不醒、吃奶明显下降、前囟明显鼓起，或者状态和平时很不一样。\n\n你等会儿把预约具体时间再核对好，按时去做；做完马上发我，我继续帮你看。",
+      "turn": 11,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00260",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7102min",
+      "text": "医生，我们今天上午头颅B超终于做完了，我现在抱着宝宝在外面等，刚拿到报告。宝宝这两天在家总体还平稳，没有喷射吐、抽、发青、叫不醒，吃奶也没明显少，药还是D3一天1粒、铁剂2.5ml，AD没喂。\n\n我照着报告“超声提示”这里念，可能有字不准：\n\n“侧脑室轻度增宽？”前面好像写的是“双侧侧脑室前角/体部”，我有点看不懂；  \n后面结论写：“双侧侧脑室稍增宽，较前无明显增宽”还是“较前无明显变化”，这个字我看着像“变化”。  \n没有看到写“脑积水”这三个字，也没看到“出血”两个字。\n\n线下医生看了一眼说，大概意思是现在不用急诊、不用住院，孩子状态好就先观察，让我们按新生儿随访门诊复查。我记得他说好像1个月左右再复查头颅B超，具体我怕记错，单子上没写得很清楚，我等下也可以再去问护士一遍。\n\n医生，像这个“侧脑室稍增宽、较前无明显变化”，是算稳定吗？是不是不是加重、暂时不用马上住院？我最怕它变成脑积水。现在我们就继续按药和观察，等一个月复查可以吗？",
+      "turn": 11,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00266",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7102min",
+      "text": "从你现在念到的内容看，倾向于是相对稳定、没有明显加重，不像需要马上住院或急诊处理的那种。\n\n关键就在这句：如果是“侧脑室稍增宽，较前无明显变化/无明显增宽”，通常更偏向于——\n1）现在确实还有轻度脑室增宽；\n2）但和前次比没有明显进展；\n3）再结合宝宝目前精神、吃奶、呼吸、反应都还平稳，线下医生说先观察、门诊随访，这个方向是说得通的。\n\n所以按你目前提供的信息，我同意你先按“暂不急诊、继续观察、按时随访复查”的思路走。\n\n你最担心的脑积水，目前你念到的报告里没有直接写“脑积水”，也没听到线下医生建议住院或急查，这都算相对安心的信号。但因为我现在不是看到报告原文，只是根据你口述判断，所以最终还是以报告原文和现场医生意见为准。\n\n现在建议你做两件事：\n1）药先继续原方案，不要自己改：D3一天1粒，铁剂2.5ml，AD先不喂。\n2）你现在就再去问护士或门诊一句最关键的话：\n“这次头颅B超结论是不是算稳定、不是加重？下次具体多久复查，是不是1个月左右？”\n\n最好把这两句原话确认清楚再发我：\n- 复查时间：到底是2周、1个月，还是更早\n- 如果中间出现什么情况要提前就诊\n\n如果护士/医生确认就是“1个月左右复查”，而且宝宝继续没有这些表现，那一般可以按这个时间复查：\n- 喷射样呕吐\n- 抽动/惊厥\n- 发青或呼吸异常\n- 叫不醒、反应变差\n- 奶量明显下降\n- 前囟明显鼓起、紧张\n- 明显尖声哭闹或状态和平时很不一样\n\n一旦出现上述任何一条，就不要等1个月，直接急诊。\n\n你先去把“多久复查”再问准，然后把护士/医生原话发我，我帮你把下一步定死。",
+      "turn": 12,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00283",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7127min",
+      "text": "医生，我刚又去问了护士和门诊医生，宝宝现在在我怀里睡着了。\n\n他们看了今天这个头颅B超报告，说大概就是“双侧侧脑室轻度/稍增宽”，跟上次比没有明显加重。现在看宝宝吃奶、反应这些还可以，暂时不用急诊，也不用住院。\n\n我记在手机备忘录了：药还是原来那样，D3每天1粒，铁剂每天2.5ml，AD先不喂，不要自己改来改去。复查是约1个月后再做头颅B超，然后一起看早产儿/新生儿随访门诊。\n\n护士也说了，中间如果喷射吐、抽搐发青、叫不醒、吃奶明显差、囟门鼓起来很紧，或者哭声特别尖状态不对，就不要等1个月，直接急诊。\n\n我现在稍微放心点，但还是怕回家后家里人听成“没事了就不用复查”。医生您能不能帮我把这个整理成几条简单一点、硬一点的话，我直接发家里群里，让他们别再劝我拖复查。",
+      "turn": 12,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00289",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+7127min",
+      "text": "可以，直接发家里群里就用下面这段：\n\n【宝宝这次不是“没事了”，是“目前稳定，但必须按时复查”】\n1）这次头颅B超意思是：双侧侧脑室只有轻度/稍增宽，跟上次比没有明显加重，所以现在暂时不用住院、不用急诊。\n2）但这不等于以后都不用管。医生已经明确说了：约1个月后必须复查头颅B超，并去早产儿/新生儿随访门诊一起看。\n3）药也不能自己乱改：D3每天1粒，铁剂每天2.5ml，AD先不喂。\n4）如果家里谁因为“现在看着还行”就主张拖掉复查，这是不对的。这个复查本来就是看脑室后面会不会变化，不能靠肉眼看着还行就当没事。\n5）中间一旦出现这些情况，不等1个月，直接急诊：喷射样呕吐、抽搐/发青、叫不醒、吃奶明显变差、囟门鼓得很紧、哭声特别尖或状态明显不对。\n\n你也可以再补一句更硬一点的话：\n“现在的结论叫暂时稳定，不叫随访结束。谁劝拖复查，谁就是在耽误孩子按医生要求监测。”\n\n你今天处理得很好，回家就按这版执行。",
+      "turn": 13,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "family",
+      "event_id": "lite_evt_00303",
+      "event_type": "family_message",
+      "metadata": {
+        "actor_role": "family",
+        "relationship_to_patient": "caregiver",
+        "route": "actor_patient_family_route",
+        "speaker_category": "family",
+        "speaker_display": "照护者"
+      },
+      "sim_time": "T+7172min",
+      "text": "医生，我已经把您这段直接复制到家里群里了，也把药和复查写进备忘录了。家里人看了以后语气缓和点了，暂时没人再说“不用复查”了。\n\n宝宝现在到家路上/刚到家，睡着挺安静的，吃奶和反应跟前几天差不多，没有新出现那些很急的情况。我现在理解就是：这次先算稳定、不是明显加重，所以不用马上住院急诊；但不是彻底没事，1个月后必须复查头颅B超加随访门诊，对吧？\n\n我现在还卡一个实际问题：这个1个月后的复查，是我现在就去医院小程序上尽量约，还是等快到日子提前几天挂号？我怕到时候号又不好约，家里人一忙又拖了。是不是最好我今天就设个手机提醒，再让家里指定一个人跟我一起记着？",
+      "turn": 13,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_086__GPT-5.4",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 4.25,
+    "aggregate_median": 5.0,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 2
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 5,
+      "gpt-5.6-sol": 3
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": false
+    },
+    "judge_score_population_sd": 1.299038105676658,
+    "judge_score_range": 3,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 13
+}

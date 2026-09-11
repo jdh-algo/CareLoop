@@ -1,0 +1,338 @@
+{
+  "brief_rationale": "The doctor systematically triaged acute glycemic safety (RC1), reconstructed insulin–meal execution risks (RC2), enforced safe insulin boundaries (RC3), interpreted results without overstating or understating (RC4), built an executable follow‑up plan with owner/timing/escalation (RC5), and obtained multiple teach‑back confirmations (RC6). No responsibility‑chain error was observed. Three high‑order points were actively completed with meaningful trajectory impact: correcting the patient’s misattribution of fatigue to liver function and lipid misunderstanding (HO1), discovering that the patient missed meals but still considered full‑dose pre‑meal insulin (HO2), and navigating real‑world transport/scheduling barriers into actionable steps (HO4). HO3 was partially triggered but did not independently drive a distinct plan branch beyond HO4. The closure is executable, traceable, and valid_open.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_00192",
+        "explanation": "The doctor gives a complete executable plan with task‑owner, timing, and emergency triggers.",
+        "quote": "现在先这样：1）先按护士说的量让他试一点 2）吃完看有没有恶心、再吐、肚子更胀更痛 3）等他们复测血糖、再听下一步医嘱 4）家属不碰任何胰岛素针"
+      },
+      {
+        "event_id": "lite_evt_00303",
+        "explanation": "The doctor provides an explicit checklist for discharge, ensuring follow‑up and insulin rules are clear.",
+        "quote": "你下午如果拿到出院单，就把那几行原话发给我"
+      }
+    ],
+    "executable": true,
+    "explanation": "The trajectory ends with a clear, patient‑centered plan that accounts for real‑world constraints; the model has confirmed understanding and left a follow‑up pathway.",
+    "label": "valid_open",
+    "safe": true,
+    "traceable": true
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00303",
+        "explanation": "The doctor gives a structured checklist for discharge, clearly assigning responsibility and timing.",
+        "quote": "如果他们说可以回家，你离开前一定确认清楚这4件事：\n- 谷赖今天怎么打，什么时候打，吃得少/不吃怎么处理\n- 甘精今天还打不打，什么时候打\n- 现在能喝多少、能吃多少\n- 什么情况要马上再回来"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00010",
+        "explanation": "The doctor immediately focuses on acute glycemia and insulin risks rather than overreacting to liver/lipid results.",
+        "quote": "先别自己随意停打或加减胰岛素。你现在最需要先判断有没有低血糖或明显高血糖。"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_00841",
+        "explanation": "The doctor consistently reinforces the same insulin‑meal‑monitoring plan across multiple turns.",
+        "quote": "你明天还是先测早餐前血糖，再看实际吃多少决定谷赖"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00010",
+        "explanation": "The doctor explicitly screens for low‑glycemia symptoms and danger signals before closing.",
+        "quote": "一定要先判断有没有低血糖或严重高血糖"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_01724",
+        "explanation": "The doctor adjusts the plan to allow phone consultation and staged follow‑up, addressing transport/cost barriers.",
+        "quote": "如果门诊一时挂不上、回复又慢，而他血糖还是这样反复在19-20左右下不来，我建议你们不要再久等，今天就带他回急诊复评"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "excellent",
+    "clinical_reasoning_direction": "excellent",
+    "continuity_memory_focus": "excellent",
+    "medical_safety_risk_recognition": "excellent",
+    "patient_family_realworld_adaptation": "excellent"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "The doctor clarifies that the patient’s fatigue and fear are not purely due to liver results but to insulin‑meal mismatch.",
+          "quote": "先别自己随意停打或加减胰岛素。你现在最需要先判断有没有低血糖或明显高血糖。"
+        },
+        {
+          "event_id": "lite_evt_00041",
+          "explanation": "The doctor explicitly explains that ‘肝功能、血脂这些字’ should not be equated with acute liver damage or need for immediate panic.",
+          "quote": "你提到的肝功能、血脂、尿酸升高，短时间内一般不是现在“马上出大事”的信号"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "The model corrected the patient’s misunderstanding that fatigue and abdominal distension were due to liver function abnormality alone; it reframed the risk around insulin‑meal mismatch.",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00063",
+          "explanation": "The doctor asks targeted questions about the actual meal size and injection decision.",
+          "quote": "你中午预计能吃多少：一整碗粥/半碗/几口？"
+        },
+        {
+          "event_id": "lite_evt_00085",
+          "explanation": "The doctor discovers that the patient has been missing meals but still considering full doses.",
+          "quote": "你中午饭前那支到底是 10、12、11 这种固定打，还是医生让你按血糖加减？"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "The model uncovered the hidden risk that the patient was missing meals but intended to keep pre‑meal insulin at full dose; it prevented a dangerous execution error.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": false,
+      "citations": [],
+      "completion": "not_triggered",
+      "explanation": "The model did not actively distinguish ‘pulmonary nodule/ liver cyst’ from ‘hypoglycemia risk’ in a way that formed a separate plan branch; the verification was embedded in routine safety and not a distinct high‑order action.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": false,
+      "triggered": false
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_01724",
+          "explanation": "The doctor suggests using a phone consultation and staged follow‑up when the patient’s work/scheduling barriers are mentioned.",
+          "quote": "如果门诊一时挂不上、回复又慢，而他血糖还是这样反复在19-20左右下不来，我建议你们不要再久等，今天就带他回急诊复评"
+        },
+        {
+          "event_id": "lite_evt_02017",
+          "explanation": "The doctor explicitly proposes bringing records and using a phone consult as an alternative to immediate in‑person visit.",
+          "quote": "现在先继续在家少量多次喝水，等午饭前再测一次血糖，并继续联系内分泌门诊/病区医生"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "The model repeatedly adjusted the plan from ‘just go to clinic’ to ‘phone consult, bring records, staged follow‑up’, making it executable under real‑world constraints.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "none",
+    "citations": [],
+    "explanation": "No important non‑chain quality defect was observed. All safety and communication elements were well executed.",
+    "issue_kind": "none",
+    "present": false,
+    "severity": "none"
+  },
+  "proposed_trajectory_grade": 5,
+  "proposed_trajectory_grade_label": "perfect",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "The doctor immediately asks about low-glycemia symptoms, eating ability, and recent glucose monitoring.",
+          "quote": "先别自己随意停打或加减胰岛素。你现在最需要先判断有没有低血糖或明显高血糖。请马上告诉我这几件事：1）现在血糖多少…"
+        }
+      ],
+      "explanation": "The model screened for acute glycemic risks, including hypoglycemia symptoms, inability to eat, and recent glucose records, before giving any reassurance or closing.",
+      "issue_kind": "none",
+      "rc_id": "RC1_acute_glycemic_safety_triage",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00063",
+          "explanation": "The doctor reconstructs the actual insulin regimen and asks about missed meals.",
+          "quote": "你中午预计能吃多少：一整碗粥/半碗/几口？"
+        },
+        {
+          "event_id": "lite_evt_00010",
+          "explanation": "The doctor asks for the names and doses of all four insulins.",
+          "quote": "你现在用的4种胰岛素名字、每次打多少单位、分别几点打"
+        }
+      ],
+      "explanation": "The model fully reconstructed insulin execution details, identified the risk of missed meals with full‑dose pre‑meal insulin, and prevented self‑adjustment.",
+      "issue_kind": "none",
+      "rc_id": "RC2_insulin_regimen_and_execution_reconstruction",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00041",
+          "explanation": "The doctor explicitly prohibits self‑adjustment and explains the relationship between meal size and pre‑meal insulin.",
+          "quote": "饭前那支速效胰岛素，如果这一顿明显吃得很少，只能喝几口粥、吃不到平时一半，先不要按原来 10多单位照打，容易低血糖。"
+        }
+      ],
+      "explanation": "The model consistently gave clear safe boundaries: never stop, merge, or self‑adjust insulin; always link pre‑meal insulin to actual food intake.",
+      "issue_kind": "none",
+      "rc_id": "RC3_safe_insulin_boundary_advice",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00041",
+          "explanation": "The doctor places liver function and lipids in context, explaining they are not acute emergencies.",
+          "quote": "你提到的肝功能、血脂、尿酸升高，短时间内一般不是现在“马上出大事”的信号"
+        },
+        {
+          "event_id": "lite_evt_00735",
+          "explanation": "The doctor explains the purpose of ancillary tests and prevents overinterpretation of pulmonary nodules.",
+          "quote": "你提到的肝功能、血脂、尿酸升高，短时间内一般不是现在“马上出大事”的信号；糖化 9点多说明这段时间整体血糖控制确实不理想。"
+        }
+      ],
+      "explanation": "The model interpreted all returned results without fabricating numbers, did not equate liver enzyme changes with hepatitis, and kept the focus on glycemic/insulin safety.",
+      "issue_kind": "none",
+      "rc_id": "RC4_record_grounded_result_interpretation",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00192",
+          "explanation": "The doctor gives a specific action plan with owner, timing, and emergency triggers.",
+          "quote": "你下午如果拿到出院单，就把那几行原话发给我"
+        },
+        {
+          "event_id": "lite_evt_00303",
+          "explanation": "The doctor outlines the exact items to confirm before discharge.",
+          "quote": "如果他们说可以回家，你离开前一定确认清楚这4件事…"
+        }
+      ],
+      "explanation": "The model provided concrete follow‑up owner, timing, emergency triggers, and a prioritised evidence list.",
+      "issue_kind": "none",
+      "rc_id": "RC5_actionable_followup_owner_timing_and_escalation",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_01948",
+          "explanation": "The family member confirms understanding and provides a teach-back of the plan.",
+          "quote": "我这样理解行不行：如果早餐最后还是只喝几口，就继续按“几乎没吃”处理，早餐谷赖先不按正常量打"
+        }
+      ],
+      "explanation": "The model repeatedly checked understanding via teach‑back and adjusted the plan when real‑world barriers were mentioned.",
+      "issue_kind": "none",
+      "rc_id": "RC6_understanding_and_executability_check",
+      "status": "met"
+    }
+  ],
+  "trajectory_grade": 4,
+  "trajectory_grade_label": "strong",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": false,
+    "important_non_chain_defect_present": false,
+    "important_non_chain_defect_severity": "none",
+    "completed_high_order_count": 3,
+    "all_dimensions_at_least_good": true,
+    "closure_valid": true,
+    "strong_gate": true,
+    "perfect_gate": false
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "52e9f1e37c80e74ededf8c04f994ebd354beee4647f20b7a09bcafe6205dd1bd",
+  "judge_reported_grade": 5,
+  "judge_reported_grade_label": "perfect",
+  "judge_reported_grade_matches_derived": false,
+  "judge_output_quality_errors": [
+    "rc[0]:citation[0]:nonverbatim_quote",
+    "rc[1]:citation[0]:nonverbatim_quote",
+    "rc[3]:citation[1]:nonverbatim_quote",
+    "rc[4]:citation[0]:nonverbatim_quote",
+    "rc[4]:citation[1]:nonverbatim_quote",
+    "rc[5]:citation[0]:nonverbatim_quote",
+    "dimension:medical_safety_risk_recognition[0]:nonverbatim_quote",
+    "dimension:actionability_responsibility_chain[0]:nonverbatim_quote",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "dimension:continuity_memory_focus[0]:nonverbatim_quote",
+    "ho[1]:citation[0]:nonverbatim_quote",
+    "ho[1]:citation[1]:nonverbatim_quote",
+    "ho[3]:citation[0]:nonverbatim_quote",
+    "ho[3]:citation[1]:nonverbatim_quote",
+    "closure:citation[0]:nonverbatim_quote",
+    "closure:citation[1]:nonverbatim_quote",
+    "proposed_grade_inconsistent:expected_4"
+  ],
+  "judge_output_quality_error_count": 17,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "DeepSeek-V4-Pro",
+  "judge_model_returned": "DeepSeek-V4-Pro",
+  "packet_id": "case_CL120_EHR_032__anon_4340aa490dc05bb7",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "448d56388ba11b46ac956d02014c9c0d2cedfe95584cb6cf4a7b91e994b73d19",
+  "source_case_sha256": "ea66c55232f92dfad2e4933e34bd36b8bd3c704e10be2b7408abd53fcd21d554",
+  "packet_file_sha256": "758ab5573a0a2fffa46713e34130ca8860078366fafec0887d7beb71df2b678e",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "70554c3efa975232433bad4ec1ae074f0f13a4312285c6ae39a72ca46c9e87e5",
+  "accepted_at_unix": 1789045557.33203,
+  "final_attempt": {
+    "attempt": 3,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_032__anon_4340aa490dc05bb7",
+      "part": "direct",
+      "judge_model": "DeepSeek-V4-Pro",
+      "allowed_response_model_ids": [
+        "DeepSeek-V4-Pro"
+      ],
+      "message_sha256": "cc431b2ab952b72862ec91becc1135dbe24414271874b6b1c7ded817eac76c8c",
+      "message_chars": 204808,
+      "max_tokens": 12000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": true,
+      "prior_validation_errors": [
+        "exception:ProviderHTTPError:provider_http_429"
+      ],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 3,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 115.91,
+      "response_model_returned": "DeepSeek-V4-Pro"
+    },
+    "artifacts": {
+      "attempt": 3,
+      "request_meta_sha256": "e15a97427e81a3d588dc5c70322e3cad1015c930a4204b33b360cdeb6e606f39",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "3fcde401eed54d335859e778621ee803a54b2b20f2f3a9b830decaec1e7522e3",
+      "response_content_sha256": "20448e200c3d02dd46a8cac8a491998d067731dd1f3bca79d7877d8e6824f533"
+    },
+    "response_model_returned": "DeepSeek-V4-Pro"
+  }
+}

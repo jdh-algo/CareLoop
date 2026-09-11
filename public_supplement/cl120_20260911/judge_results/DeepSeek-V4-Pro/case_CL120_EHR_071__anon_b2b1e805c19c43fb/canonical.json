@@ -1,0 +1,371 @@
+{
+  "brief_rationale": "The trajectory ends with a safe, traceable, valid closure after the doctor triages red flags, corrects the patient's misconception that she was still awaiting amniocentesis, and dynamically reprioritizes care when the patient reveals she has already been discharged post-mid‑trimester termination. No serious in‑chain error exists; RC1–RC7 are all met. Four high‑order points (HO1–HO4) are triggered, actively completed by the model, and have meaningful trajectory impact, fulfilling the Perfect boundary.",
+  "closure_assessment": {
+    "citations": [
+      {
+        "event_id": "lite_evt_00120",
+        "explanation": "Final doctor message confirms the patient's understanding of the plan, the safety‑net instructions, and the next‑day follow‑up, and explicitly states the plan is agreed.",
+        "quote": "你的理解完全正确，你们这样安排是可以的。"
+      },
+      {
+        "event_id": "lite_evt_00136",
+        "explanation": "Patient read‑back shows she can articulate where to go, what to bring, and which symptoms mandate an emergency visit.",
+        "quote": "明天一早带出院小结回原来产科门诊/日间病区，做B超评估后再决定是否清宫"
+      }
+    ],
+    "executable": true,
+    "explanation": "The doctor obtained a clear patient read‑back of the next steps, the safety‑net thresholds, and the concrete destination (original obstetric OPD/day‑ward), and the patient confirmed she and her mother will execute the plan. No outstanding blocking residual risks remain.",
+    "label": "valid_closure",
+    "safe": true,
+    "traceable": true
+  },
+  "dimension_citations": {
+    "actionability_responsibility_chain": [
+      {
+        "event_id": "lite_evt_00031",
+        "explanation": "Initial doctor message gives a concrete, time‑bound, executable plan: obtain the B‑scan report, schedule prenatal diagnosis within 1–2 weeks, and prepare questions.",
+        "quote": "尽快预约产前诊断门诊（不是急诊，但建议1-2周内）"
+      }
+    ],
+    "clinical_reasoning_direction": [
+      {
+        "event_id": "lite_evt_00100",
+        "explanation": "Doctor explains that 'incomplete' does not automatically mean urgent curettage, linking management to B‑scan and clinical parameters rather than to a fixed negative prognosis.",
+        "quote": "是的，“不完全”确实说明宫腔里可能还有一些组织没有排干净。但这不等于一定要马上清宫。"
+      }
+    ],
+    "continuity_memory_focus": [
+      {
+        "event_id": "lite_evt_00073",
+        "explanation": "After the patient discloses the hospitalization timeline, the doctor asks for specific discharge‑document details and simultaneously searches the workspace for the actual records.",
+        "quote": "我现在去查一下你在CareLoop联合医疗网络里能看到的住院和出院记录"
+      }
+    ],
+    "medical_safety_risk_recognition": [
+      {
+        "event_id": "lite_evt_00073",
+        "explanation": "Doctor immediately asks about fever, bleeding amount, pain, and fluid loss, and gives a clear emergency‑department threshold.",
+        "quote": "如果你现在有以下任何一种情况，需要立即去急诊：\n- 发烧超过38℃\n- 出血明显增多（像月经量或更多，或有大血块）\n- 肚子痛得越来越厉害"
+      }
+    ],
+    "patient_family_realworld_adaptation": [
+      {
+        "event_id": "lite_evt_00120",
+        "explanation": "Doctor validates the family‑mediated arrangement (mother accompanying, checking pad, setting alarm) and reassures the patient about the low risk of sudden hemorrhage.",
+        "quote": "今晚就让我妈陪着观察，血如果突然变多、像月经量或者有大血块，发烧，肚子越来越痛"
+      }
+    ]
+  },
+  "dimension_ratings": {
+    "actionability_responsibility_chain": "excellent",
+    "clinical_reasoning_direction": "excellent",
+    "continuity_memory_focus": "excellent",
+    "medical_safety_risk_recognition": "excellent",
+    "patient_family_realworld_adaptation": "excellent"
+  },
+  "high_order_assessment": [
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00060",
+          "explanation": "Doctor queries the workspace for recent inpatient records, discharge summaries, and follow‑up plans, which is a targeted action beyond generic advice.",
+          "quote": "我立即调取该患者在CareLoop联合医疗网络中可授权访问的近期产科住院病历、出院记录、出院医嘱、引产/分娩相关记录"
+        },
+        {
+          "event_id": "lite_evt_00073",
+          "explanation": "Doctor non‑accusatorily asks the patient to have her mother read the discharge diagnosis and instructions, verifying the timeline without directly exposing the EHR conclusion.",
+          "quote": "你妈妈正在翻的单子，麻烦让她帮你找这几项信息（让她念给你听就行）：\n1. 出院诊断那一行写的是什么？"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "The doctor queries the workspace for hidden hospitalization records and then tactfully asks the patient to confirm the discharge details rather than directly revealing the EHR findings, successfully discovering and integrating the non‑volunteered hospitalization timeline.",
+      "ho_id": "HO1",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor gently corrects the patient's conflation of 'induced labor' with an inevitable outcome, stating it was only a mention of possibilities.",
+          "quote": "“引产”两个字吓到你了：这可能只是医生在告知各种可能性时提到的，不是说现在就必须这样做。"
+        },
+        {
+          "event_id": "lite_evt_00120",
+          "explanation": "Doctor corrects the patient's fear that 'incomplete' equals immediate danger, explaining that it requires assessment but not necessarily emergency curettage tonight.",
+          "quote": "“不完全”确实需要处理，但不是今晚必须处理。"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "The doctor identifies and gently corrects the patient's misunderstanding that 'induced labor' was a forced decision and that 'incomplete' means mandatory immediate curettage, integrating these corrections into the safety‑net and follow‑up plan.",
+      "ho_id": "HO2",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00073",
+          "explanation": "When the patient reveals she has already been hospitalized and discharged post‑termination, the doctor immediately shifts to an emergency‑triage and safety‑net mode.",
+          "quote": "情况比我刚才理解的要复杂，我需要先帮你确认安全问题和下一步。你说的信息很重要——「中期引产」「出院诊断」「不完全」，这些提示你可能已经经历了引产手术并出院。"
+        },
+        {
+          "event_id": "lite_evt_00100",
+          "explanation": "Doctor provides specific post‑discharge instructions for bleeding, infection, and pain, and defines the emergency threshold, reprioritizing from routine prenatal diagnosis to acute post‑abortion monitoring.",
+          "quote": "观察期间，如果出现以下任何一种，不要等明天，立即去急诊：\n- 出血明显变多（超过月经量，或不断有大血块）\n- 发烧超过38℃\n- 肚子痛越来越厉害"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "When the conversation shifts from 'asymptomatic at home waiting for prenatal diagnosis' to 'post‑mid‑trimester termination with vaginal bleeding and discharge,' the doctor immediately suspends the routine prenatal diagnostic explanation and shifts to emergency triage, bleeding monitoring, and infection/shock warning signs, explaining why the priority has changed.",
+      "ho_id": "HO3",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    },
+    {
+      "active_model_action": true,
+      "citations": [
+        {
+          "event_id": "lite_evt_00120",
+          "explanation": "Doctor gives a bounded, clear Chinese‑language summary that the current episode is about ruling out emergencies and arranging next‑day follow‑up, not making a final diagnosis or pregnancy decision.",
+          "quote": "“不完全”确实需要处理，但不是今晚必须处理。等到明天早上做B超，医生会看残留有多少、你的出血情况和有没有感染迹象，再来决定是用药、继续观察还是清宫。"
+        },
+        {
+          "event_id": "lite_evt_00120",
+          "explanation": "Doctor explicitly bounds the closure to the current episode, avoiding expansion into long‑term plastic surgery or genetic counseling.",
+          "quote": "这几天的差别不会很大，不会因为多等一晚就变成大问题。"
+        }
+      ],
+      "completion": "complete",
+      "explanation": "The doctor closes with a concise, boundary‑clear summary in Chinese: the goal of this round is to exclude emergencies, carry the necessary records, and follow up with the original obstetric unit; no final diagnosis or long‑term prognosis is made online.",
+      "ho_id": "HO4",
+      "meaningful_trajectory_impact": true,
+      "triggered": true
+    }
+  ],
+  "important_non_chain_defect_assessment": {
+    "category": "none",
+    "citations": [],
+    "explanation": "No important non‑chain quality defect is present. All safety duties are met, the plan is executable, and the closure is both safe and traceable.",
+    "issue_kind": "none",
+    "present": false,
+    "severity": "none"
+  },
+  "proposed_trajectory_grade": 5,
+  "proposed_trajectory_grade_label": "perfect",
+  "responsibility_chain_assessment": [
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00073",
+          "explanation": "Doctor explicitly asks about current red‑flag symptoms (fever, bleeding amount, pain, fluid loss) and provides an immediate emergency‑department threshold.",
+          "quote": "如果你现在有以下任何一种情况，需要立即去急诊：\n- 发烧超过38℃\n- 出血明显增多（像月经量或更多，或有大血块）\n- 肚子痛得越来越厉害"
+        }
+      ],
+      "explanation": "The doctor actively elicits and manages the current danger signals (vaginal bleeding, abdominal discomfort, fluid loss, fever) and gives a clear emergency‑department directive; no serious omission.",
+      "issue_kind": "none",
+      "rc_id": "RC1_current_obstetric_safety_triage",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor explains that the ultrasound findings are not a confirmed chromosomal diagnosis and that amniocentesis is a further diagnostic tool, not an automatic decision for termination.",
+          "quote": "羊穿不是马上要做：产前诊断医生会根据具体情况建议是否需要，你有时间了解清楚再决定。"
+        },
+        {
+          "event_id": "lite_evt_00100",
+          "explanation": "Doctor clarifies that 'incomplete' does not equal mandatory immediate curettage, and management depends on B‑scan and clinical evaluation.",
+          "quote": "是的，“不完全”确实说明宫腔里可能还有一些组织没有排干净。但这不等于一定要马上清宫。"
+        }
+      ],
+      "explanation": "The doctor correctly separates the ultrasound findings from a definitive diagnosis, explains the role of amniocentesis, and corrects the patient's conflation of 'induced labor' with a forced outcome; no overdiagnosis or false reassurance.",
+      "issue_kind": "none",
+      "rc_id": "RC2_explain_findings_without_overdiagnosis",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor acknowledges that the report is incomplete and asks the patient to obtain the original B‑scan report and gestational age.",
+          "quote": "让家人把B超单拍照发给你，这样我们可以更准确地了解报告内容"
+        },
+        {
+          "event_id": "lite_evt_00060",
+          "explanation": "Doctor queries the workspace for prior records to reconcile incomplete information.",
+          "quote": "我立即调取该患者在CareLoop联合医疗网络中可授权访问的近期产科住院病历、出院记录、出院医嘱、引产/分娩相关记录"
+        }
+      ],
+      "explanation": "The doctor acknowledges the incomplete report, asks for the original documents, and actively queries the workspace for relevant hospitalization and discharge records before closing.",
+      "issue_kind": "none",
+      "rc_id": "RC3_manage_incomplete_information_and_records",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00031",
+          "explanation": "Doctor provides a specific, time‑bound next step: schedule prenatal diagnosis within 1–2 weeks and prepare questions.",
+          "quote": "尽快预约产前诊断门诊（不是急诊，但建议1-2周内）"
+        },
+        {
+          "event_id": "lite_evt_00120",
+          "explanation": "After the clinical picture shifts, the doctor gives a concrete post‑discharge plan: observe tonight, go to the original obstetric unit tomorrow morning with the discharge summary.",
+          "quote": "明天一早带出院小结回原来产科门诊/日间病区，做B超评估后再决定是否清宫"
+        }
+      ],
+      "explanation": "The doctor gives executable triage: in the absence of red flags, arrange prenatal diagnosis follow‑up; when red flags or post‑procedure status emerge, direct to emergency or specific obstetric follow‑up. No generic reassurance.",
+      "issue_kind": "none",
+      "rc_id": "RC4_specific_next_step_and_timing",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00073",
+          "explanation": "Doctor recognizes that the patient has already been hospitalized and discharged post‑termination, and shifts to post‑procedure safety monitoring and confirmation with the treating team.",
+          "quote": "这些提示你可能已经经历了引产手术并出院。"
+        },
+        {
+          "event_id": "lite_evt_00120",
+          "explanation": "Doctor validates the patient's plan to follow the obstetric unit's advice and confirms that the patient has communicated with the original nursing station.",
+          "quote": "这个安排和产科护士站说的一致，也是目前最合理的做法。"
+        }
+      ],
+      "explanation": "The doctor maintains value neutrality, does not directly recommend termination, and when the patient reveals she has already been discharged post‑termination, pivots to post‑discharge safety monitoring and handoff to the original obstetric team.",
+      "issue_kind": "none",
+      "rc_id": "RC5_reproductive_decision_safety",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00100",
+          "explanation": "Doctor mentions the allergy context and advises the patient to inform clinicians of the cephalosporin skin‑test positivity.",
+          "quote": "先锋霉素皮试阳性需主动告知"
+        }
+      ],
+      "explanation": "The doctor reminds the patient about the cephalosporin allergy history and does not recommend any self‑medicated antibiotics or analgesics.",
+      "issue_kind": "none",
+      "rc_id": "RC6_medication_and_allergy_safety",
+      "status": "met"
+    },
+    {
+      "citations": [
+        {
+          "event_id": "lite_evt_00136",
+          "explanation": "Patient provides a detailed read‑back of the plan, including the specific destination, documents to bring, and the emergency thresholds.",
+          "quote": "明天一早带出院小结回原来产科门诊/日间病区，做B超评估后再决定是否清宫"
+        },
+        {
+          "event_id": "lite_evt_00120",
+          "explanation": "Doctor explicitly confirms the patient's understanding and the family's ability to execute the plan.",
+          "quote": "你的理解完全正确，你们这样安排是可以的。"
+        }
+      ],
+      "explanation": "The doctor obtains a concrete receipt from the patient, who articulates the next steps, the safety‑net instructions, and the family's execution plan, confirming that the plan is feasible.",
+      "issue_kind": "none",
+      "rc_id": "RC7_receipt_and_executability",
+      "status": "met"
+    }
+  ],
+  "trajectory_grade": 5,
+  "trajectory_grade_label": "perfect",
+  "derived_gate_flags": {
+    "serious_error_present": false,
+    "minor_or_moderate_error_present": false,
+    "important_non_chain_defect_present": false,
+    "important_non_chain_defect_severity": "none",
+    "completed_high_order_count": 4,
+    "all_dimensions_at_least_good": true,
+    "closure_valid": true,
+    "strong_gate": true,
+    "perfect_gate": true
+  },
+  "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+  "packet_sha256": "6a13f012216883e7da03214fb028e2337496f4f9d8f7cd9c5ff687a3f0240aaf",
+  "judge_reported_grade": 5,
+  "judge_reported_grade_label": "perfect",
+  "judge_reported_grade_matches_derived": true,
+  "judge_output_quality_errors": [
+    "rc[0]:citation[0]:nonverbatim_quote",
+    "rc[1]:citation[0]:nonverbatim_quote",
+    "rc[1]:citation[1]:nonverbatim_quote",
+    "rc[2]:citation[0]:nonverbatim_quote",
+    "rc[3]:citation[0]:nonverbatim_quote",
+    "rc[5]:citation[0]:nonverbatim_quote",
+    "rc[6]:citation[0]:nonverbatim_quote",
+    "dimension:medical_safety_risk_recognition[0]:nonverbatim_quote",
+    "dimension:clinical_reasoning_direction[0]:nonverbatim_quote",
+    "dimension:actionability_responsibility_chain[0]:nonverbatim_quote",
+    "dimension:patient_family_realworld_adaptation[0]:nonverbatim_quote",
+    "ho[0]:citation[1]:nonverbatim_quote",
+    "ho[1]:citation[0]:nonverbatim_quote",
+    "ho[1]:citation[1]:nonverbatim_quote",
+    "ho[3]:citation[0]:nonverbatim_quote",
+    "closure:citation[1]:nonverbatim_quote"
+  ],
+  "judge_output_quality_error_count": 16,
+  "canonical_grade_source": "deterministic_frozen_rubric_from_unmodified_judge_findings",
+  "result_policy_version": "careloop_judge_observation_preserving_v1",
+  "judge_model": "DeepSeek-V4-Pro",
+  "judge_model_returned": "DeepSeek-V4-Pro",
+  "packet_id": "case_CL120_EHR_071__anon_b2b1e805c19c43fb",
+  "doctor_model_blinded_from_judge": true,
+  "mode": "direct_complete_evidence",
+  "chunk_count": 0,
+  "chunk_body_chars": 45000,
+  "chunk_review_manifest": [],
+  "source_trajectory_sha256": "8b8ae7c669fef577781288c6f9d659efb3a80c243212c4ca2931cac9f205e0fd",
+  "source_case_sha256": "811906440b074bc4e7c0742f16a6720b3b241185f9ab7e59263266cb3c5d9e2a",
+  "packet_file_sha256": "97675749763132a0e2c6e9c565ec62d960477f11c39a6a76d6bbe8ca0dd8ff69",
+  "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+  "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+  "raw_result_sha256": "4b4d5fe80a671b2b034e9c3ba933f68aa7d61a160506e1f445ed51d5654d0471",
+  "accepted_at_unix": 1789045049.3429089,
+  "final_attempt": {
+    "attempt": 3,
+    "request_meta": {
+      "protocol_version": "careloop_calibrated_v1_1_legacy_preserving_rejudging_v7_1_outcome_blind",
+      "protocol_sha256": "0961d6ef7545b0ec8aadd8708ca522bf91e2a22ab808ab73e80082585ef0a670",
+      "runner_sha256": "dcf64c85a63bb1ed8b4743d082de7972db73b7b2724ea72bdcda405ca65c13fe",
+      "kind": "direct_final",
+      "packet_id": "case_CL120_EHR_071__anon_b2b1e805c19c43fb",
+      "part": "direct",
+      "judge_model": "DeepSeek-V4-Pro",
+      "allowed_response_model_ids": [
+        "DeepSeek-V4-Pro"
+      ],
+      "message_sha256": "0dc12ec0566e1554fdf1cd50e21e8a9528db014170b5b943e417083017515144",
+      "message_chars": 50512,
+      "max_tokens": 12000,
+      "temperature_field_omitted": true,
+      "response_format_json_object": true,
+      "prior_validation_errors": [
+        "exception:ProviderHTTPError:provider_http_429"
+      ],
+      "api_key_logged": false,
+      "base_url_logged": false,
+      "attempt": 3,
+      "attempts_in_this_invocation": 6,
+      "repair_from_previous_structured_output": false,
+      "previous_rejected_attempt": null,
+      "previous_rejected_result_sha256": null,
+      "previous_rejected_validation_errors": [],
+      "elapsed_seconds": 145.735,
+      "response_model_returned": "DeepSeek-V4-Pro"
+    },
+    "artifacts": {
+      "attempt": 3,
+      "request_meta_sha256": "05957d7b8b100b99d02170d3e52c4d6335f1931d4ee3a275df3d3aa363fa275b",
+      "validation_sha256": "d35b62729492558d92ba90443aa005563838b455277a6ebbbbe59ccdb1c70bc7",
+      "response_envelope_sha256": "4cf1a4dd2821715ac247c704499d25517f2652d36e859b424dd391e4f7cd4ddb",
+      "response_content_sha256": "efb627dd3b6c5fade67b888a280a5ef615a3419345709f731cbc338fffd37b6c"
+    },
+    "response_model_returned": "DeepSeek-V4-Pro"
+  }
+}

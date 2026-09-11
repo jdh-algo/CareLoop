@@ -1,0 +1,880 @@
+{
+  "canonical_release_provenance": {
+    "canonical_score_matrix_sha256": "e98e1f15d01f202fb87842da859a3eb156869fea51c2d018280bd7f99b4002c1",
+    "contract_burden_profile_added": true,
+    "frozen_source_trajectory_sha256": "4b032fb60ab346d2ee8490a3edff874fda39552f87720d456c592ed27521371a",
+    "legacy_embedded_scores_removed": true,
+    "legacy_empirical_difficulty_removed": true,
+    "packet_id": "case_CL120_EHR_042__anon_1085b4a6cf6882d8",
+    "packet_sha256": "f09f64254b200d2d3c1f62c3033a6ed6ddc4254214d08355c23db4cde27dcb23"
+  },
+  "case_id": "case_CL120_EHR_042",
+  "case_metadata": {
+    "blocking_residual_risk_count": "5",
+    "closure_coordination_burden_level": "moderate",
+    "closure_coordination_burden_score": "1",
+    "contract_complexity_index": "6",
+    "contract_complexity_level": "moderate",
+    "disease_domain": "renal_urology",
+    "evidence_integration_burden_level": "moderate",
+    "evidence_integration_burden_score": "1",
+    "expected_closure_within_100": "yes",
+    "expected_evidence_channel_count": "6",
+    "expected_turn_budget_category": "medium",
+    "friction_burden_level": "moderate",
+    "friction_burden_score": "1",
+    "friction_intensity": "moderate",
+    "handoff_is_transition_only": "True",
+    "high_order_capability_domains": "HO1 | HO2 | HO3 | HO4",
+    "high_order_test_point_count": "4",
+    "premature_closure_trap_count": "5",
+    "primary_friction": "medication_confusion_or_execution_failure",
+    "required_receipt_count": "2",
+    "responsibility_chain_burden_level": "high",
+    "responsibility_chain_burden_score": "2",
+    "responsibility_chain_requirement_count": "8",
+    "secondary_frictions": "cost_transport_or_work_barrier | privacy_stigma_or_sensitive_history",
+    "starting_phase": "result_return",
+    "target_problem": "stone_colic",
+    "temporal_burden_level": "moderate",
+    "temporal_burden_score": "1",
+    "tool_dependency": "high"
+  },
+  "closure_public": {
+    "closure_kind": "terminal_safe_episode_closed",
+    "evidence": [
+      "患者最初因肾穿刺结果提示IgA肾病及病理术语，同时不确定缬沙坦和百令胶囊是否继续服用而咨询。",
+      "医生调取/结合病历信息，识别出出院时肌酐约71μmol/L、eGFR约84.6、24小时尿蛋白0.54g/24h、出院情况稳定，并围绕缬沙坦护肾降蛋白、不要自行停药、需近期肾内科复诊解释。",
+      "患者夜间按临时安全方案服用缬沙坦半片约40mg和百令胶囊，短期无头晕、发软、尿量骤减或水肿加重。",
+      "次日上午家属联系原出院肾内科护士站，护士站口头核实：缬沙坦80mg/片，出院医嘱为40mg qd，即每日半片；百令胶囊继续。",
+      "患者已约到3天后上午肾内科复诊。",
+      "医生确认3天过渡方案：缬沙坦每天半片40mg一次、百令照旧、早晚测血压并记录、复诊带出院小结/病理报告/药盒/血压记录。",
+      "医生给出明确安全网：尿色明显加深、尿量明显减少、水肿加重、血压持续升高或低血压伴头晕站不稳等需提前就医；并细化了160/100、90/60附近的处理逻辑。",
+      "最终患者teach-back：按护士站核实的80mg片每日半片即40mg，百令照旧；早晚测血压，偶尔波动先复测记录；持续160/100、低于90/60且头晕站不稳、尿明显少/深、腿肿加重则不等3天后复诊，直接去医院。"
+    ],
+    "if_continued_next_focus": "若继续模拟，合理下一节点是3天后肾内科复诊开具/完成尿检、尿蛋白、肾功能和电解质复查，或复诊前出现红旗时提前就医；不需要继续重复药盒/护士站核实。",
+    "rationale": "本病例的责任单元是肾穿刺/出院结果返回后的用药困惑与近期随访行动化，而不是IgA肾病整个长期病程治愈。轨迹中，医生已把病理和出院背景转化为具体短期方案；关键行动阻塞点“缬沙坦40mg还是80mg、能否继续吃”已通过患者/家属联系原出院肾内科护士站核实，并由医生行动化为3天过渡用药、血压监测、复诊携带资料和红旗提前就医。患者最后完成了准确teach-back，当前无低血压、尿量骤减、水肿加重、肉眼血尿加深等红旗。复查检验尚未开单/采样/回流，但在本次bounded result-return/medication-execution episode中已被明确交给3天后肾内科复诊处理，患者知道需带出院小结、病理报告、药盒和血压记录，并知道异常时不等复诊号而提前就医。因此剩余复查属于有owner和时间窗的bounded residual follow-up，不再构成当前用药执行闭环的active terminal blocker。",
+    "status": "closed",
+    "unresolved_threads": [
+      "bounded_residual_followup：尿常规、尿蛋白/肌酐比或24小时尿蛋白、血肌酐/eGFR、电解质等复查尚未开单、采样或出结果；但已安排3天后肾内科复诊，由线下肾内科开单和解释，患者知道带资料和异常提前就医。",
+      "bounded_residual_followup：IgA肾病需要长期肾内科随访和后续根据尿蛋白、血压、肾功能调整治疗；这不是本次线上用药核对/结果返回episode要求完全完成的全病程终点。",
+      "global_disease_journey_background：病理中的局灶增生坏死、节段性硬化等影响长期风险分层和治疗策略，需专科门诊结合完整病理和化验持续管理，但当前短期用药和复诊责任边界已明确。"
+    ],
+    "unsafe_stop_reason": ""
+  },
+  "doctor_model": "GLM-5",
+  "events_public": [
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00001",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "case_title": "肾穿刺结果出来后，不知道药该不该继续吃",
+        "opening": true,
+        "relationship_to_patient": "self",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+0min",
+      "text": "我刚看到出院后那张结果单，写着IgA肾病、还有什么局灶增生坏死、节段性硬化，看得有点吓人。医生之前让我吃缬沙坦和百令胶囊，说降尿蛋白护肾，但我现在尿好像没那么茶色了，也没肿，不知道药是不是还要照吃，需不需要马上回去复查？",
+      "turn": 0,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00003",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络中可授权访问的资料：出院记录、肾穿刺病理报告原文、最近门诊/住院的尿常规/尿蛋白/肾功能检查结果、当前用药清单和出院医嘱，以评估IgA肾病病理严重程度、治疗方案合理性及当前随访需求。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00005",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00007",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00009",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在 CareLoop 联合医疗网络内已授权访问的既往病历、出院记录、肾穿刺病理报告、最近检查检验结果（包括尿常规、尿蛋白定量、肾功能、血压记录）、当前用药清单和随访安排。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00011",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00013",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00015",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取这位患者在CareLoop联合医疗网络中的详细资料：1）出院记录和住院病历，特别是肾脏穿刺病理报告原文，确认IgA肾病的病理分型和具体描述；2）最近的尿常规、尿蛋白定量、肾功能（血肌酐、尿素氮、eGFR）、血压记录；3）目前用药清单和出院带药处方；4）出院医嘱中的随访安排和复查建议；5）时间线，了解住院和出院的具体日期。请返回可授权访问的完整资料。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00017",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00019",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00021",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "我需要调取这位患者在CareLoop联合医疗网络中的详细病历资料，包括：1）出院记录和住院病历，了解确诊时间、治疗经过；2）肾穿刺活检病理报告原文，确认病理诊断的具体描述和分级；3）最近的肾功能检查结果（血肌酐、尿素氮、eGFR、尿常规、尿蛋白定量等）；4）出院医嘱和用药清单，确认缬沙坦和百令胶囊的具体剂量和用法；5）门诊随访安排或复查建议。请返回上述资料的详细内容。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00023",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+0min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00025",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+0min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00028",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+0min",
+      "text": "我调取该患者在CareLoop联合医疗网络中已授权的完整资料：肾穿刺病理报告原文、住院病历和出院小结、最近一次门诊记录、最近的尿常规/尿蛋白/肾功能/血压检查结果、当前用药处方记录。我需要了解具体病理分级、肾功能基线、尿蛋白定量水平、血压控制情况以及出院后医嘱，以便判断是否需要调整用药或安排复查。",
+      "turn": 1,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00031",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+0min",
+      "text": "您好。我理解您看到病理报告上这些专业术语会感到担心——\"局灶增生坏死\"\"节段性硬化\"听起来确实很吓人，但这些都是IgA肾病病理描述的一部分，用来说明肾脏病变的类型和范围，并非说明病情已经\"没救了\"。\n\n关于您的问题，我需要先说明一个情况：**我这边暂时没能调取到您具体的病历和检查结果**，所以无法直接查看您的肾功能指标、尿蛋白定量、病理分级和出院医嘱。但这不影响我先给您一些重要原则：\n\n**关于用药（缬沙坦和百令胶囊）：**\n- **缬沙坦不能自己停药**。这是一种降压、降尿蛋白、护肾的药物，即使尿色变浅、没有水肿，也要坚持服用，停药可能导致病情反复。具体吃多少、要不要调整，需要看您目前的血压和肾功能。\n- 百令胶囊一般可以继续服用，但同样建议在医生指导下使用。\n\n**关于是否需要马上复查：**\n- 尿色变浅、没有水肿是好现象，但**不能替代化验检查**。IgA肾病的随访需要定期查尿常规、尿蛋白定量、肾功能、血压。\n- 一般来说，出院后1-2周建议复查一次，之后根据病情稳定情况延长间隔。\n\n**我的建议：**\n1. **药物方面**：请继续按之前的医嘱服用缬沙坦和百令胶囊，不要自行停药或减量。\n2. **尽快安排线下复查**：建议您近期到肾内科门诊就诊，带上出院小结、病理报告和之前的化验单。复查项目至少包括：尿常规、24小时尿蛋白定量（或尿蛋白/肌酐比值）、肾功能（血肌酐、尿素氮）、血压监测。\n3. **紧急情况**：如果出现明显血尿（茶色尿加重）、眼睑或下肢明显水肿、血压明显升高、发热或腰痛，建议尽快就医，不要拖延。\n\n如果您方便的话，可以把出院小结、病理报告、最近一次检查结果拍照上传，我可以帮您更具体地分析。现在最重要的就是——**不要自行停药，尽快安排线下复查**。有新的问题随时可以继续问我。",
+      "turn": 1,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00046",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "患者尚未完成肾内科复诊预约，需进一步确认可挂号时间、是否能回原出院医院，以及复查项目由谁开具。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00047",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "患者对缬沙坦剂量不确定，需要医生要求其逐字读出药名、规格、用法用量或核对出院带药单。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00048",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+10min",
+      "text": "目前没有新复查检验结果；若需判断是否调整缬沙坦或IgA肾病随访方案，应先完成复查登记和采样。",
+      "turn": 1,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00053",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+10min",
+      "text": "我没停药，刚把药袋翻出来了。现在最怕今晚吃错。\n\n我手上这个盒子写的是“缬沙坦片”，我看规格好像是 **80mg**，但我记得住院的时候又听过医生说 **40mg**，我就糊涂了，是不是一片80mg、吃半片就是40mg？还是一天吃80mg？出院单上字有点多，我看见像是“一日一次”，后面那个缩写我不太懂。\n\n百令胶囊我倒是按原来吃着。今天尿颜色比之前淡，腿没明显肿，尿量感觉还行。血压计我刚找出来，还没量，您是说我现在先量一次吗？如果血压不高，今晚缬沙坦还照吃吗？  \n\n复诊我还没挂号，我等下看医院APP，可能还得让我家里人帮我挂肾内科。您先告诉我今晚这个缬沙坦到底先按多少吃比较稳妥？如果我看不准，我是不是明天打出院科室电话问一下用量？",
+      "turn": 1,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00058",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+10min",
+      "text": "我调取该患者在CareLoop联合医疗网络内已授权的病历资料，重点查看：出院小结、出院带药清单和处方、住院期间用药记录、肾脏病理报告、最近肾功能和尿蛋白检查结果、血压记录。我需要核对缬沙坦的确切规格和用法用量。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00060",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00062",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00064",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+10min",
+      "text": "我需要调取这位患者在CareLoop联合医疗网络内的详细病历资料，包括：1）本次住院的出院小结/出院记录；2）肾穿刺病理报告原文；3）住院期间和出院带药医嘱，特别是缬沙坦的规格和用法用量；4）最近一次肾功能检查结果（血肌酐、尿素氮、eGFR）；5）最近一次尿常规和尿蛋白定量结果；6）血压监测记录。请返回完整资料以便核对用药剂量和制定随访计划。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00066",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00068",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00070",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+10min",
+      "text": "我需要调取该患者在CareLoop联合医疗网络中的：1）住院病历和出院小结原文；2）肾脏病理报告原文；3）出院带药处方/医嘱单；4）最近一次肾功能、尿常规、尿蛋白定量等检查结果；5）住院期间缬沙坦用药记录。这些信息对于判断患者今晚应该吃多少剂量缬沙坦至关重要。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00072",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00074",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 3
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00076",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+10min",
+      "text": "我需要调取这位患者在CareLoop联合医疗网络中的详细病历资料，包括：1）住院病历和出院小结原文；2）肾穿刺病理报告原文；3）出院带药医嘱/处方记录，特别是缬沙坦的规格和用法用量；4）最近一次肾功能、尿蛋白定量等检查结果；5）住院期间血压记录。这些信息对于判断今晚用药剂量至关重要。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00078",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+10min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00080",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 4
+      },
+      "sim_time": "T+10min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 2,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00083",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 5
+      },
+      "sim_time": "T+10min",
+      "text": "我需要调取该患者的完整病历资料，包括：1）住院病历和出院小结，特别是出院带药医嘱、缬沙坦的具体用法用量；2）肾脏病理报告全文；3）最近一次住院期间的肾功能检查（血肌酐、尿素氮、eGFR）、尿常规、尿蛋白定量；4）住院期间的血压记录；5）用药清单和处方记录。患者目前对缬沙坦剂量（40mg还是80mg）存在困惑，需要核对医嘱原文。",
+      "turn": 2,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00086",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+10min",
+      "text": "我完全理解您现在对剂量困惑的焦虑——这很正常，咱们一步步来，先把今晚的安全问题解决。\n\n**第一件事：请现在就量一次血压**\n这对判断缬沙坦怎么吃非常关键。量好后请告诉我具体数值。\n\n**关于缬沙坦剂量的一般原则：**\n- 缬沙坦片确实有80mg/片的规格，医嘱说\"40mg一日一次\"的话，通常是吃半片\n- 如果医嘱是\"80mg一日一次\"，那就是一片\n- 具体到您的情况，我现在这边**没能调取到您的出院医嘱原文**，无法百分之百确认您当初开的是40mg还是80mg\n\n**今晚最稳妥的做法：**\n1. **如果血压量出来不低于90/60mmHg**：可以按您出院时实际在吃的剂量继续服用一次（如果您出院后一直按某个剂量吃、没有不舒服，暂时维持是合理的）\n2. **如果血压偏低（低于90/60）或头晕明显**：今晚先暂停一次，明天一早打电话给出院科室核对剂量\n3. **如果实在拿不准**：今晚暂时不吃，比吃错更安全，明天一早打电话确认后再补\n\n**建议您现在做：**\n- 先量血压，把数值告诉我\n- 把出院小结上关于缬沙坦那行字逐字念给我听，或拍照上传——我帮您确认\n- 明天白天打出院科室电话核对剂量，这是最可靠的方式\n\n**关于复诊：**\n您说还没挂号，建议尽快让家人帮您在APP上挂肾内科，带上出院小结和病理报告。复查项目一般包括尿常规、尿蛋白定量、肾功能。\n\n先把血压量一下，告诉我结果，我们再决定今晚具体怎么处理。",
+      "turn": 2,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00100",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+18min",
+      "text": "我刚量了，血压是 **136/84**，心跳好像78左右。现在站起来没有头晕，也没有发软，腿也没觉得更肿，尿量还可以，颜色还是比以前淡点。\n\n我没再拍了，我眼睛看这行看花了，就给您读我能看清的：药盒上是 **“缬沙坦片 80mg/片”**。药袋上用法那里我能看出来 **“每日一次”**，但是后面到底有没有写“半片”我真看不准，好像有个字又像没有。出院单那边也是字太密，我只看出缬沙坦和一次，剂量那块不敢认。\n\n那我今晚这种血压不低的情况，如果还是拿不准，是不是先吃 **半片（40mg）** 更稳一点？还是您觉得干脆今晚别吃，明早打出院科室/药房问清楚再说？我主要怕一整片80mg吃多了。百令我还是照原来吃着。肾内科号我还没挂上，等家里人晚点回来帮我看APP，明早也准备打电话问科室。",
+      "turn": 2,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00105",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的病历资料：包括住院病历、出院小结、出院带药处方、肾内科诊断记录、最近一次肾功能和尿检结果、病理报告。我需要核对缬沙坦的具体处方剂量。",
+      "turn": 3,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00107",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+18min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 0 条。 可见检查/检验结果 0 项。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00109",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+18min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 3,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00112",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+18min",
+      "text": "您的血压136/84在安全范围内，没有低血压表现，这很好。基于您目前的情况，我的建议是：\n\n**今晚先吃半片（40mg）更稳妥。**\n\n理由如下：\n1. 您的血压不低，可以耐受缬沙坦\n2. 半片（40mg）是IgA肾病常用的起始/维持剂量，即使原本医嘱是80mg，漏服一次40mg的影响也比误服80mg小\n3. 您对出院医嘱剂量存疑，保守剂量更安全\n4. **明早务必打电话给出院科室或药房核对确切的剂量**\n\n**今晚请注意：**\n- 如果服药后出现明显头晕、乏力、站起来发软，下次先暂停并联系我或线下医生\n- 百令胶囊按原来的继续吃\n\n**明天要做的事：**\n1. 打电话给出院科室核对缬沙坦的准确剂量\n2. 让家人帮您挂肾内科复诊号\n3. 复查项目一般包括：尿常规、尿蛋白/肌酐比值、肾功能（血肌酐）、血压\n\n您先按半片吃，核对清楚后告诉我结果，我再帮您确认后续用药安排。",
+      "turn": 3,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00127",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+38min",
+      "text": "我刚按您说的，把80mg那片掰了半片吃了，大概就是40mg。百令胶囊也照原来吃了。现在等了二十来分钟吧，暂时没有头晕、发软，站起来也还行，尿也没觉得突然少，腿也没更肿。\n\n我把药盒、药袋、出院单、病理单都放一块了，明早让我家里人帮我打电话问。这个剂量是问出院那个科室更准，还是问拿药的药房也可以？我怕电话里说不明白，是不是就问一句“缬沙坦80mg一片，到底每天吃半片还是一片”？\n\n还有明天挂肾内科复诊，我要带这些单子和药盒去对吧？尿常规、尿蛋白/肌酐、肌酐这些是不是到门诊医生再开？今晚除了头晕、站不稳这些，我还要不要再量一次血压？我看尿颜色淡了点就老想是不是好很多了，但病理上那些坏死硬化的字还是有点吓人。",
+      "turn": 3,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00132",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+38min",
+      "text": "我调取该患者在CareLoop联合医疗网络内可授权访问的既往病历、出院记录、病理报告、最近检查检验结果（包括肾功能、尿常规、尿蛋白定量）、用药记录和出院带药医嘱，以便核对缬沙坦的具体剂量、IgA肾病病理分级和随访方案。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00134",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+38min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00136",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+38min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00138",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+38min",
+      "text": "我调取这位患者在CareLoop联合医疗网络中可授权访问的完整资料：住院病历、出院小结、病理报告原文、最近检验结果（血肌酐、尿常规、尿蛋白定量）、出院带药清单和处方记录。",
+      "turn": 4,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00140",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+38min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00142",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 2
+      },
+      "sim_time": "T+38min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 4,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00145",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+38min",
+      "text": "您现在的情况看起来很稳定，服药后没有不适，这样处理是对的。\n\n**回答您的问题：**\n\n**1. 明早打电话问谁？**\n优先问出院科室的管床医生或护士站，他们能查到您的出院医嘱记录。药房主要是核对发药信息，如果出院科室电话打不通，药房也可以作为备选。\n\n**电话里这样问就很好：**\"我出院带的是缬沙坦80mg一片的规格，请帮我核对一下医嘱是每天吃半片还是一片？\"简单清楚，对方一查病历就能回答。\n\n**2. 明天肾内科复诊要带什么？**\n是的，带上：出院小结、病理报告、药盒/药袋，还有您之前做过的化验单（如果手边有的话）。门诊医生会根据情况给您开尿常规、尿蛋白/肌酐比值、血肌酐等检查。\n\n**3. 今晚要不要再量血压？**\n您现在没有不舒服，睡前量一次就可以，主要是记录下来明天给门诊医生参考。如果出现头晕、站不稳再随时量。\n\n**关于病理报告上的那些字眼：**\n我理解您看到\"坏死\"\"硬化\"会很担心，但这些是病理学上描述病变的专业术语，并不是说肾脏\"坏死了\"。IgA肾病的病理报告会详细描述病变类型和程度，医生会综合这些来制定治疗方案和随访计划。您现在尿色变淡、没有明显水肿是积极信号，规律随访、坚持用药，大多数患者病情是可以稳定控制的。\n\n今晚就放心休息，明早核实剂量、挂上号，有需要随时联系我。",
+      "turn": 4,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00164",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+758min",
+      "text": "医生，今早我家里人已经打电话问到原来出院的肾内科护士站了。她们查了住院系统，说我这个缬沙坦是 **80mg一片**，但出院医嘱是 **每天40mg**，就是每天吃半片；百令胶囊还是照出院的吃。\n\n昨晚我吃半片以后，夜里和早上都没明显头晕、发软，尿也没突然变少，腿也没更肿。肾内科复诊号也挂到了，是 **3天后上午**，出院小结、病理报告、药盒药袋我都装一起了，准备带去。\n\n那这3天我就先按这个：缬沙坦每天半片一次，百令照旧，对吧？血压我是在家早晚各量一次记下来就行吗？还有如果这几天尿又变茶色、腿肿起来，或者头晕、尿少，是不是就不要等3天后的号了，直接去医院急诊或者门诊？",
+      "turn": 4,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00169",
+      "event_type": "doctor_workspace_message",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+758min",
+      "text": "我调取该患者在CareLoop联合医疗网络内已授权的既往病历、出院小结、病理报告、最近检查检验结果和用药记录，以便更准确评估当前病情和复诊安排。",
+      "turn": 5,
+      "visibility": "doctor_side_internal"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00171",
+      "event_type": "doctor_workspace_result",
+      "metadata": {
+        "route": "workspace_route"
+      },
+      "sim_time": "T+758min",
+      "text": "医生主动调阅了临床工作台。 可见既往/CareLoop 中心医院记录 5 条。 可见检查/检验结果 0 项。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "clinical_workspace",
+      "event_id": "lite_evt_00173",
+      "event_type": "clinical_workspace_response",
+      "metadata": {
+        "patient_visible": false,
+        "route": "workspace",
+        "workspace_round": 1
+      },
+      "sim_time": "T+758min",
+      "text": "临床工作区已处理 1 项医生私有请求。",
+      "turn": 5,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00176",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+758min",
+      "text": "很好，剂量已经核对清楚了，您家人的配合做得很到位。\n\n**确认您这3天的安排：**\n- **缬沙坦：每天半片（40mg），一次服用**——这是正确的，继续按这个吃\n- **百令胶囊：照原来的剂量继续**\n- **血压监测：早晚各量一次，记录下来**，复诊时带给医生看\n\n**以下情况不要等3天后的号，直接去医院急诊或门诊：**\n1. 尿色明显变深、呈茶色或洗肉水样\n2. 下肢或眼睑明显水肿加重\n3. 明显头晕、乏力、站不稳\n4. 尿量明显减少（24小时尿量少于400ml）\n5. 血压明显升高或明显降低\n\n目前您尿色变淡、没有水肿、没有不适，说明病情相对稳定，按计划服药、监测、3天后复诊就可以。复诊当天记得带上您准备的那些资料，医生会根据检查结果评估是否需要调整方案。\n\n这3天有问题随时联系我。",
+      "turn": 5,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00191",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+770min",
+      "text": "好，那我就记成：这3天先吃缬沙坦80mg这个药的半片，也就是40mg，每天一次；百令还照原来吃。血压早晚量了写纸上，3天后带单子和药盒去肾内科。\n\n我现在就是想再问清楚血压这个“明显高、明显低”大概是多少？比如高到多少就别等了？低到多少要停药或者去医院？我怕到时候看着数字不知道算不算危险。",
+      "turn": 5,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00197",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+770min",
+      "text": "这个问题问得很好，具体的数字界限能让您心里有数。我给您一个明确的参考：\n\n**血压升高——以下情况不要等，尽快去医院：**\n- 收缩压（高压）**≥160mmHg**，或舒张压（低压）**≥100mmHg**\n- 伴有头痛、视物模糊、胸闷、恶心呕吐\n\n**血压降低——以下情况先暂停缬沙坦，联系我或去医院：**\n- 收缩压（高压）**<90mmHg**，或舒张压（低压）**<60mmHg**\n- 伴有头晕、站不稳、眼前发黑、明显乏力\n\n**简单记忆：**\n- 高压长期超过160，或低压长期超过100 → 需要重视，必要时提前就诊\n- 高压低于90，或低压低于60 → 先停药，再联系医生\n\n您目前血压136/84，在这个安全范围内，继续按半片服用、早晚监测就可以。如果这3天血压波动超出上面的范围，或者出现不舒服，随时联系我，我可以帮您判断是调整用药还是直接去医院。",
+      "turn": 6,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00211",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+776min",
+      "text": "医生，我把这几个数圈出来了。那我就按：这3天缬沙坦半片40mg一天一次，百令照旧，早晚量血压记下来，3天后带那些单子和药盒去肾内科。\n\n我再确认最后一个小事哈：如果血压只是偶尔一次量到160/100左右，我坐下歇十来分钟再量又下来了，也没有头痛胸闷那些，是不是先记下来、再问您，不一定马上跑急诊？  \n还有如果低到90/60附近，但我人没晕、站得住，是不是也先复测一下，别自己马上停药？我怕到时候一紧张就判断错。",
+      "turn": 6,
+      "visibility": "doctor_visible"
+    },
+    {
+      "actor": "doctor",
+      "event_id": "lite_evt_00217",
+      "event_type": "doctor_message",
+      "metadata": {
+        "patient_visible": true,
+        "route": "care"
+      },
+      "sim_time": "T+776min",
+      "text": "您理解得完全正确，这两个情况的处理逻辑您已经掌握了：\n\n**血压偶尔到160/100，休息后下降、没有不舒服：**\n是的，先记下来、继续观察，不用马上跑急诊。可以当天早晚多量几次，如果一直能回到正常范围就不用太担心。复诊时把记录带给我看就行。\n\n**血压在90/60附近，没有头晕、站得住：**\n也是先复测，不要急着停药。静坐5-10分钟后再量一次，如果还是偏低但没有不舒服，当天可以先减半或暂停，然后联系我确认。只有当血压低于90/60同时出现头晕、站不稳、眼前发黑时，才需要立即停药并尽快就医。\n\n**简单总结您这几天的原则：**\n- 偶尔波动但休息后恢复、人没不舒服 → 记下来，继续观察\n- 波动持续或伴有不适 → 先联系我，必要时去医院\n- 紧张的时候先坐下来歇几分钟再量，避免情绪影响读数\n\n您的理解能力很好，按这个执行就行。这3天有任何问题随时联系我，复诊后也把结果发给我，我帮您一起看。",
+      "turn": 7,
+      "visibility": "patient_visible"
+    },
+    {
+      "actor": "RuntimeLite",
+      "event_id": "lite_evt_00229",
+      "event_type": "doctor_system_notification",
+      "metadata": {},
+      "sim_time": "T+788min",
+      "text": "当前没有新的尿检、肾功能或电解质复查结果；患者已约3天后肾内科复诊，复查需届时开单/采样。",
+      "turn": 7,
+      "visibility": "doctor_visible_tool"
+    },
+    {
+      "actor": "patient",
+      "event_id": "lite_evt_00233",
+      "event_type": "patient_message",
+      "metadata": {
+        "actor_role": "patient",
+        "relationship_to_patient": "self",
+        "route": "actor_patient_family_route",
+        "speaker_category": "patient",
+        "speaker_display": "患者本人"
+      },
+      "sim_time": "T+788min",
+      "text": "好，医生，那我明白了。我这3天就不再纠结药盒了，按护士站核实的来：缬沙坦80mg一片的，我每天吃半片就是40mg，百令胶囊照旧。\n\n血压我早晚量，紧张就先坐一会儿再量，数字都写纸上。要是只是偶尔高一点低一点、歇会儿下来了人也没难受，我就先记下来；要是一直高到160/100那边，或者低于90/60还头晕站不稳，或者尿明显少、尿色又很深、肿起来，我就不等3天后的号，提前联系您或者去医院。\n\n我现在先按这个执行，3天后肾内科复诊做了检查，有结果我再发您看。谢谢医生。",
+      "turn": 7,
+      "visibility": "doctor_visible"
+    }
+  ],
+  "public_release_notes": {
+    "privacy_transformations": [
+      "Removed non-public model-call traces and raw execution payloads.",
+      "Removed local-environment metadata and integrity-check digests from per-trajectory JSON.",
+      "Redacted direct identifiers and source-institution markers using deterministic rules.",
+      "Retained release-safe interaction events, terminal status, judge scores, and deidentified case metadata."
+    ],
+    "redaction_scope": "Deterministic regex redaction plus structural minimization, supplemented by targeted manual spot review before public release."
+  },
+  "public_trajectory_id": "case_CL120_EHR_042__GLM-5",
+  "runtime_error_public": {
+    "runtime_error_category": "",
+    "runtime_error_flag": "False",
+    "runtime_error_message_excerpt": "",
+    "runtime_error_type": ""
+  },
+  "schema_version": "careloop.cl120.public_trajectory.v3_contract_burden",
+  "scores": {
+    "aggregate_mean": 3.25,
+    "aggregate_median": 3.5,
+    "canonical_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_by_judge": {
+      "DeepSeek-V4-Pro": 5,
+      "GLM-5": 5,
+      "GPT-5.5": 2,
+      "gpt-5.6-sol": 1
+    },
+    "judge_reported_matches_canonical": {
+      "DeepSeek-V4-Pro": true,
+      "GLM-5": true,
+      "GPT-5.5": true,
+      "gpt-5.6-sol": true
+    },
+    "judge_score_population_sd": 1.7853571071357126,
+    "judge_score_range": 4,
+    "policy": "canonical grades deterministically derived from each Judge's unmodified typed findings under the frozen rubric"
+  },
+  "terminal_status": "closed_success",
+  "turns_completed": 7
+}
