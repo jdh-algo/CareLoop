@@ -6,6 +6,12 @@ The framework makes latent capability limitations observable in complete traject
 
 CareLoop is **not** a clinical deployment system, medical device, regulatory certification tool, or substitute for clinician judgment.
 
+## Paper
+
+**CareLoop: Measuring the Gap Between Knowing Medicine and Practicing It in the Context of Patients' Lives**
+
+[Read the CareLoop preprint](paper/CareLoop_Preprint.pdf). This manuscript is a preprint and has not yet completed peer review.
+
 ## CL120 result release
 
 The release provides 120 frozen deidentified case contracts under `cases/public_cl120_deidentified_120/`. The companion directory `public_supplement/cl120_20260911/` contains 1,200 trajectories from 10 tested models, 4,800 accepted structured LLM-Judge assessments, and 6,000 structured physician assessments covering the same trajectories. The primary reported endpoints are six 0–1 capability domains, FCC, and safety-gated C-RWR. The frozen 1–5 rubric is reported as a conventional supplementary comparator.
